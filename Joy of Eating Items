@@ -1,0 +1,26 @@
+    new G.Tech({
+    name:'Cooking',
+    desc:'Unlocks [chef] to make better [food]s, that provide more [Happiness].',
+    icon:[ICON NEEDED],
+    cost:{'insight':60},
+		req:{'Joy of eating':true},
+  });
+    new G.Unit({
+    name:'Chef',
+    desc:'Creates higher level [food].',
+    icon:[ICON NEEDED],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{},
+    modes:{
+			'off':G.MODE_OFF,
+			'papyrus':{name:'Papyrus',icon:[15,12,'magixmod'],desc:'Gain mainly [papyrus] out of this shack. To craft [papyrus] , [worker] will use [Sugar cane] .',use:{'worker':1,'stone tools':1}},
+		effects:[
+			{type:'convert',from:{'Potion pot':1,},into:{'Combat potion pot':1},repeat:1,every:3},
+		],
+		req:{'Cooking':true},
+		category:'crafting',
+	});
+    new G.Unit({
+    name:'Windmill',
+    desc:'Creates flour from wheat'
