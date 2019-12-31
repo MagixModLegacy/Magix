@@ -874,6 +874,7 @@ func:function(){
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'misc',
+		hidden:true,
 		partOf:'Paper',
 	});
 		new G.Res({
@@ -886,6 +887,7 @@ func:function(){
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'misc',
+		hidden:true,
 		partOf:'Paper',
 	});
 		new G.Res({
@@ -898,6 +900,7 @@ func:function(){
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'misc',
+		hidden:true,
 		partOf:'Paper',
 	});
 		new G.Res({
@@ -3537,6 +3540,7 @@ func:function(){
 		use:{'worker':1,'Wand':3},
 		upkeep:{'food':11},
 		req:{'Wizardry':true,'Wizard wisdom':false},
+		hidden:true(if:'Wizard wisdom':true),
 		//require:{'wizard':3},
 		effects:[
 			{type:'gather',what:{'insight':0.012}},
