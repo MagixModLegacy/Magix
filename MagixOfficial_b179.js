@@ -535,7 +535,7 @@ func:function(){
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
-		category:'misc',
+		partOf:'First aid things',
 	});
 		new G.Res({
 		name:'Bandage',
@@ -546,7 +546,7 @@ func:function(){
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
-		category:'misc',
+		partOf:'First aid things',
 	});
 		new G.Res({
 		name:'Triangular bandage',
@@ -557,7 +557,19 @@ func:function(){
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
+		partOf:'First aid things',
+	});
+		new G.Res({
+		name:'First aid things',
+		desc:'More advanced things, tools used by [healer,healers].',
+		icon:[choose([22,23]),6,'magixmod'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.01;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 		category:'misc',
+		meta:true,
 	});
 		new G.Res({
 		name:'Cloudy water',
@@ -3540,8 +3552,7 @@ func:function(){
 		use:{'worker':1,'Wand':3},
 		upkeep:{'food':11},
 		req:{'Wizardry':true,'Wizard wisdom':false},
-		hidden:true(if:'Wizard wisdom':true),
-		//require:{'wizard':3},
+		hidden:true,
 		effects:[
 			{type:'gather',what:{'insight':0.012}},
 			{type:'convert',from:{'Paper':13},into:{'Poet\'s notes':1},every:30,req:{'Notewriting':true}},
