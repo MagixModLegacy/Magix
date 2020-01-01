@@ -1,3 +1,4 @@
+//This section deals mostly with new food items.
 		new G.Tech({
 		name:'Cooking',
 		desc:'Unlocks [chef] to make better [food]s, that provide more [Happiness].',
@@ -14,9 +15,10 @@
 		upkeep:{},
 		modes:{
 			'off':G.MODE_OFF,
-			'Cake':{name:'Cake',icon:[ICON NEEDED],desc:'Create cake from flour and sugar',use:{'worker':1,'stone tools':1}},
+			'Make Cake':{name:'Make Cake',icon:[ICON NEEDED],desc:'Create cake from flour and sugar',use:{'worker':1,'stone tools':1}},
 		effects:[
-			{type:'convert',from:{'Sugar':5,'Flour':5,},into:{'Cake':1},repeat:1,every:3},
+			{type:'convert',from:{'Sugar':5,'Flour':5},into:{'Cake':1}},mode:'Make Cake'},
+			
 		],
 		req:{'Cooking':true},
 		category:'crafting',
@@ -25,5 +27,10 @@
 		name:'Windmill',
 		desc:'Creates flour from wheat'
 		icon:[ICON NEEDED]
-    
-    
+		cost:{'Land':1},
+		effects:[
+			{type:'convert,from:{'Wheat':1},into:{'Flour':1}},
+	});
+		new G.Res({
+		name:'Wheat',
+		desc:'
