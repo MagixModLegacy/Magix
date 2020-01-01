@@ -18,7 +18,6 @@
 			'Make Cake':{name:'Make Cake',icon:[ICON NEEDED],desc:'Create cake from flour and sugar',use:{'worker':1,'stone tools':1}},
 		effects:[
 			{type:'convert',from:{'Sugar':5,'Flour':5},into:{'Cake':1}},mode:'Make Cake'},
-			
 		],
 		req:{'Cooking':true},
 		category:'crafting',
@@ -30,7 +29,15 @@
 		cost:{'Land':1},
 		effects:[
 			{type:'convert,from:{'Wheat':1},into:{'Flour':1}},
+		],
 	});
 		new G.Res({
 		name:'Wheat',
-		desc:'
+		desc:'Useful to make flour for more complex dishes',
+		icon:[ICON NEEDED],
+		category:'misc',
+	});
+		new G.Unit({
+		name:'Wheat Farm',
+		desc:'Farms [Wheat].',
+		icon:[ICON NEEDED]
