@@ -40,4 +40,6 @@
 		new G.Unit({
 		name:'Wheat Farm',
 		desc:'Farms [Wheat].',
-		icon:[ICON NEEDED]
+		icon:[ICON NEEDED],
+		req:'
+		
