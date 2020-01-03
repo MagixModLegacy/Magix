@@ -5263,7 +5263,7 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',what:{'Orange firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true},'Firework crafting':true,
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -5279,7 +5279,7 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',what:{'Dark Orange Firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -5288,7 +5288,7 @@ G.writeMSettingButton=function(obj)
 		desc:'@unlocks [Artisan of new year].',
 		icon:[0,0,'seasonal'],
 		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'<span style="color: yellow">Culture of celebration</span>':false},
 	});
 		new G.Res({
 		name:'Blue firework',
@@ -5300,6 +5300,7 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
+		hidden:true,
 	});
 		new G.Res({
 		name:'Orange firework',
@@ -5311,13 +5312,14 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
+		hidden:true,
 	});
 		new G.Tech({
 		name:'Firework launching',
 		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
 		icon:[17,0,'seasonal'],
 		cost:{'insight':70},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
 	});
 		new G.Unit({
 		name:'Firework launching guy',
@@ -5331,7 +5333,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
 			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -5340,7 +5342,7 @@ G.writeMSettingButton=function(obj)
 		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
 		icon:[16,0,'seasonal'],
 		cost:{'insight':400},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'<span style="color: yellow">Culture of celebration</span>':false},
 	});
 		new G.Res({
 		name:'Dark Blue Firework',
@@ -5352,6 +5354,7 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
+		hidden:true,
 	});
 		new G.Res({
 		name:'Dark Orange Firework',
@@ -5363,6 +5366,7 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
+		hidden:true,
 	});
 		new G.Res({
 		name:'Firecracker',
@@ -5374,5 +5378,6 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
+		hidden:true,
 	});
 }});
