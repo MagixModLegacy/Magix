@@ -1,10 +1,10 @@
 //This section deals mostly with new food items.
 		new G.Tech({
-		name:'Cooking',
+		name:'Cooking II',
 		desc:'Unlocks [chef] to make better [food]s, that provide more [Happiness].',
 		icon:[ICON NEEDED],
 		cost:{'insight':60},
-		req:{'Joy of eating':true},
+		req:{'Joy of eating':true,'Cooking':true},
 	});
 		new G.Unit({
 		name:'Chef',
@@ -16,10 +16,14 @@
 		modes:{
 			'off':G.MODE_OFF,
 			'Make Cake':{name:'Make Cake',icon:[ICON NEEDED],desc:'Create cake from flour and sugar',use:{'worker':1,'stone tools':1}},
+			'Make Sauce':{name:'Make Sauce',icon:[ICON NEEDED],desc:'Create sauce from meat and tomatoes',use:{'worker':1,'stone tools':1}},
+		},
 		effects:[
-			{type:'convert',from:{'Sugar':5,'Flour':5},into:{'Cake':1}},mode:'Make Cake'},
+			{type:'convert',from:{'Sugar':5,'Flour':5},into:{'Meal':1}},mode:'Make Cake'},
+			{type:'convert',from:{'Meat':2,'Tomato':2},into:{'Sauce':1}},mode:'Make Sauce'},\
+			{type:'convert',from:{'Sauce':2,'Noodles
 		],
-		req:{'Cooking':true},
+		req:{'Cooking II':true},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -35,11 +39,54 @@
 		name:'Wheat',
 		desc:'Useful to make flour for more complex dishes',
 		icon:[ICON NEEDED],
-		category:'misc',
+		category:'Food & Water',
 	});
 		new G.Unit({
 		name:'Wheat Farm',
 		desc:'Farms [Wheat].',
 		icon:[ICON NEEDED],
-		req:'
+		req:{'Farming'},
+		cost:{'Land':1}
+		effects:[
+			{type:'gather',what:{'Wheat':5}},
+		],
+	});
+		new G.res({
+		name:'Meal',
+		desc:'Better [Food].'
+		icon:[ICON NEEDED],
+		catergory:'Food & Water',
+		partof:'Food',
+	});
+		new G.res({
+		name:'Sauce',
+		desc:'An ingredient to make [Meal]s.'
+		icon:[ICON NEEDED],
+		category:'Ingredients',
+	});
+//The ingredients category isn't finalized
+		new G.Res({
+		name:'Tomato',
+		desc:'Useful to make [Sauce] for more complex dishes',
+		icon:[ICON NEEDED],
+		category:'Food & Water',
+	});
+		new G.Unit({
+		name:'Tomato Farm',
+		desc:'Farms [Tomato].',
+		icon:[ICON NEEDED],
+		req:{'Farming'},
+		cost:{'Land':1,'Worker':3}
+		modes:{
+			'off':G.MODE_OFF,
+			'Farm Tomatoes':{name:'Farm Tomatoes',icon:[ICON NEEDED],desc:'Farm Tomatoes',use:{'stone tools':3}},
+			'Farm Wheat':{name:'Farm Wheat',icon:[ICON NEEDED],desc:'Farm ',use:{'stone tools':3}},
+		effects:[
+			{type:'gather',what:{'Tomato':5}},
+		],
+	});
+		new G.Tech({
+		name:'Farming',
+		desc:'Unlocks farms to make fruits and vegetables',
+		
 		
