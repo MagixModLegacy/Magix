@@ -2974,7 +2974,7 @@ func:function(){
 		name:'Art of cooking',
 		desc:'<font color="fuschia">Unlocks [Chef] . Talented with art of cooking worker may make tasty and very decent food [Meals] . [Meals,Meals] makes people even happier</font>',
 		icon:[23,13,'magixmod'], 
-		cost:{'insight':531,'wisdom':30,'culture':400,'inspiration':200},
+		cost:{'insight':535,'wisdom':30,'culture':400,'inspiration':200},
 		req:{'Cooking':true},
 	});
 		new G.Tech({
@@ -2995,7 +2995,7 @@ func:function(){
 		name:'Baking',
 		desc:'<li>Unlocks [Bakery].</li>',
 		icon:[22,12,'magixmod'], 
-		cost:{'insight':850},
+		cost:{'insight':890},
 		req:{'Flour-crafting':true},
 	});
 /////////////////////////////////////////////////////////////////////
