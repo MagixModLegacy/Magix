@@ -88,7 +88,7 @@ func:function(){
 		category:'gear',
 		tick:function(me,tick)
 		{
-			var toSpoil=me.amount*0.008;
+			var toSpoil=me.amount*0.004;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		displayUsed:true,
