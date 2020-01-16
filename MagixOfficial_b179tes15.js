@@ -2354,7 +2354,7 @@ func:function(){
 		name:'Cooking',
 		desc:'<span style="color: #aaffff">Better food will make people even happier. Unlocks [Chef,cheves] who will do even better food out of other food ingredients. </span>',
 		icon:[8,12,22,10,'magixmod'],
-		cost:{'insight':250,'wisdom':15},
+		cost:{'insight':250,'wisdom':15,'authority':50},
 		chance:300,
 		category:'knowledge',
 		req:{'Second portal to new world':true,'<span style="color: ##FF0900">Paradise building</span>':true},
@@ -2981,14 +2981,14 @@ func:function(){
 		name:'Farm of wheat',
 		desc:'Unlocks [Wheat farm] . Then it may be converted into [flour] .',
 		icon:[23,12,'magixmod'], 
-		cost:{'insight':450},
+		cost:{'insight':420},
 		req:{'Cooking':true},
 	});
 		new G.Tech({
 		name:'Flour-crafting',
 		desc:'<li>Unlocks [Windmill].</li>',
 		icon:[22,11,'magixmod'], 
-		cost:{'insight':650},
+		cost:{'insight':685},
 		req:{'Farm of wheat':true},
 	});
 		new G.Tech({
