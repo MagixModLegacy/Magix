@@ -2975,14 +2975,14 @@ func:function(){
 		desc:'<font color="fuschia">Unlocks [Chef] . Talented with art of cooking worker may make tasty and very decent food [Meals] . [Meals,Meals] makes people even happier</font>',
 		icon:[23,13,'magixmod'], 
 		cost:{'insight':531,'wisdom':30,'culture':400,'inspiration':200},
-		req:{'papercrafting':true,'Poetry':true,'Cooking':true},
+		req:{'Cooking':true},
 	});
 		new G.Tech({
 		name:'Farm of wheat',
 		desc:'Unlocks [Wheat farm] . Then it may be converted into [flour] .',
-		icon:[23,11,'magixmod'], 
+		icon:[23,12,'magixmod'], 
 		cost:{'insight':450},
-		req:{'papercrafting':true,'Poetry':true,'Cooking':true},
+		req:{'Cooking':true},
 	});
 		new G.Tech({
 		name:'Flour-crafting',
