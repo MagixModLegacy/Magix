@@ -520,6 +520,28 @@ func:function(){
 		},
 	});
 		new G.Res({
+		name:'wheat',
+		desc:'Not edible but useful grain in crafting of [bread] .',
+		icon:[23,11,'magixmod'],
+		category:'misc',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.001;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
+		new G.Res({
+		name:'flour',
+		desc:'Made out of [wheat] . Now having [flour] you may start crafting [bread] .',
+		icon:[23,12,'magixmod'],
+		category:'misc',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.001;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
+		new G.Res({
 		name:'Alchemy zone',
 		desc:'This part of land will be occupied by [Alchemists] and their seats. Here they brew potions, antidotums and many more.',
 		icon:[17,7,'magixmod'],
@@ -2951,9 +2973,16 @@ func:function(){
 		new G.Tech({
 		name:'Art of cooking',
 		desc:'<font color="fuschia">Unlocks [Chef] . Talented with art of cooking worker may make tasty and very decent food [Meals] . [Meals,Meals] makes people even happier</font>',
-		icon:[23,13,'magixmod'], 
+		icon:[23,12,'magixmod'], 
 		cost:{'insight':531,'wisdom':30,'culture':400,'inspiration':200},
-		req:{'papercrafting':true,'Poetry':true},
+		req:{'papercrafting':true,'Poetry':true,'Cooking':true},
+	});
+		new G.Tech({
+		name:'Farm of wheat',
+		desc:'Unlocks [Wheat farm] . Then it may be converted into [flour] .',
+		icon:[23,13,'magixmod'], 
+		cost:{'insight':450},
+		req:{'papercrafting':true,'Poetry':true,'Cooking':true},
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
@@ -2992,6 +3021,20 @@ func:function(){
 		}
 	}
 	//Units for real
+		new G.Unit({
+		name:'Wheat farm',
+		desc:'@Special for [wheat] . Without [wheat] it is impossible to craft [bread].',
+		icon:[24,12,'magixmod'],
+		cost:{},
+		req:{'Farm of wheat':true},
+		use:{'worker':8,'land':15},
+		upkeep:{'water':14},
+		category:'production',
+		effects:[
+			{type:'gather',context:'gather',what:{'wheat':77}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
+		],
+	});
 		new G.Unit({
 		name:'Chef',
 		desc:'[Chef] is a unit that can make even tastier and more enjoyable [food] out of [food,various food types] . <font color="fuschia"><b>You gotta believe!</b></font>',
