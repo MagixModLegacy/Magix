@@ -5218,7 +5218,7 @@ G.writeMSettingButton=function(obj)
 		desc:'@unlocks [Artisan of new year].',
 		icon:[0,0,'seasonal'],
 		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism'false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},
 	});
 		new G.Res({
 		name:'Blue firework',
