@@ -2984,6 +2984,20 @@ func:function(){
 		cost:{'insight':450},
 		req:{'papercrafting':true,'Poetry':true,'Cooking':true},
 	});
+		new G.Tech({
+		name:'Flour-crafting',
+		desc:'<li>Unlocks [Windmill].</li>',
+		icon:[22,12,'magixmod'], 
+		cost:{'insight':650},
+		req:{'Farm of wheat':true},
+	});
+		new G.Tech({
+		name:'Baking',
+		desc:'<li>Unlocks [Bakery].</li>',
+		icon:[22,13,'magixmod'], 
+		cost:{'insight':850},
+		req:{'Flour-crafting':true},
+	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
@@ -3021,6 +3035,33 @@ func:function(){
 		}
 	}
 	//Units for real
+		new G.Unit({
+		name:'Bakery',
+		desc:'<font color=" ##c74e52">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
+		icon:[24,10,'magixmod'],
+		cost:{'basic building materials':100},
+		use:{'land':1},
+		require:{'worker':2,'metal tools':2,'Instructor':1},
+		upkeep:{'log':0.6},
+		effects:[
+			{type:'convert',from:{'flour':10},into:{'bread':3},every:5,repeat:2},
+		],
+		req:{'Baking':true},
+		category:'crafting',
+	});
+		new G.Unit({
+		name:'Windmill',
+		desc:'@An unit which can convert [wheat] into [flour] .',
+		icon:[24,11,'magixmod'],
+		cost:{},
+		req:{'Flour-crafting':true},
+		use:{'worker':2,'land':1},
+		upkeep:{},
+		category:'production',
+		effects:[
+			{type:'convert',from:{'wheat':1.1},into:{'flour':0.9},every:4,repeat:1},
+		],
+	});
 		new G.Unit({
 		name:'Wheat farm',
 		desc:'@Special for [wheat] . Without [wheat] it is impossible to craft [bread].',
