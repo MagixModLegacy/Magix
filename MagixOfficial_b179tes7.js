@@ -2944,7 +2944,7 @@ func:function(){
 		name:'Art of cooking',
 		desc:'<font color="fuschia">Unlocks [chef] . Talented with art of cooking worker may make tasty and very decent food [meals] . [meals,Meals] makes people even happier</font>',
 		icon:[23,13,'magixmod'], 
-		cost:{'insight':800,'wisdom':30,'culture':400,'inspiration':200},
+		cost:{'insight':541,'wisdom':30,'culture':400,'inspiration':200},
 		req:{'papercrafting':true,'Poetry':true},
 	});
 /////////////////////////////////////////////////////////////////////
