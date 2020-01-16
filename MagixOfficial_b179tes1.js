@@ -527,39 +527,6 @@ func:function(){
 		displayUsed:true,
 	});
 		new G.Res({
-		name:'Plaster',
-		desc:'Common, basic thing used in [health,First Aid] to prevent infections enter into the wound. They will prevent wound from bleeding too much',
-		icon:[16,10,'magixmod'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		partOf:'First aid things',
-	});
-		new G.Res({
-		name:'Bandage',
-		desc:'Common, basic thing used in [health,First Aid] to prevent wounds from bleeding too much mainly.',
-		icon:[17,10,'magixmod'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		partOf:'First aid things',
-	});
-		new G.Res({
-		name:'Triangular bandage',
-		desc:'Basic thing used in [health,First Aid] to immobilize arm-wounds. Can be used to bandage other type of wounds.',
-		icon:[15,10,'magixmod'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		partOf:'First aid things',
-	});
-		new G.Res({
 		name:'First aid things',
 		desc:'More advanced things, tools used by [healer,healers].',
 		icon:[choose([22,23]),6,'magixmod'],
@@ -874,46 +841,11 @@ func:function(){
 		name:'Paper',
 		desc:'Describes amount of all paper types you have currently in total.',
 		icon:[14,12,'magixmod'],
-		meta:true,
-	});
-		new G.Res({
-		name:'papyrus',
-		desc:'Paper made out of [Sugar cane]. Better than stone carving.',
-		icon:[15,12,'magixmod'],
 		tick:function(me,tick)
 		{
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
-		category:'misc',
-		hidden:true,
-		partOf:'Paper',
-	});
-		new G.Res({
-		name:'pergamin',
-		desc:'Paper made out of [hide] or [leather].',
-		icon:[16,12,'magixmod'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'misc',
-		hidden:true,
-		partOf:'Paper',
-	});
-		new G.Res({
-		name:'common paper',
-		desc:'Paper made out of [Bamboo]. In later stages you may craft this paper out of [log].',
-		icon:[17,12,'magixmod'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'misc',
-		hidden:true,
-		partOf:'Paper',
 	});
 		new G.Res({
 		name:'Bone dust',
@@ -2443,7 +2375,7 @@ func:function(){
 //Then we add a new technology for wizards:
 	new G.Tech({
 		name:'Wizardry',
-		desc:'@unlocks [Archaic wizard] .Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
+		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
 		icon:[5,3,'magixmod'],
 		cost:{'insight':75,'faith':5},
 		req:{'well-digging':true},
@@ -3157,22 +3089,22 @@ func:function(){
 	});
 		new G.Unit({
 		name:'paper-crafting shack',
-		desc:'Allows to make [Paper] You can choose between 3 types of paper: [papyrus] , [pergamin] , [common paper] . <span style="color: ##FF6B40">It is paradise version of this shack and works at same rates as its mortal bro.</span>',
+		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> , <li>pergamin</li> , <li>common paper</li> . <span style="color: ##FF6B40">It is paradise version of this shack and works at same rates as its mortal bro.</span>',
 		icon:[0,12,'magixmod',20,14,'magixmod'],
 		cost:{'basic building materials':800},
 		use:{'Land of the Paradise':0.7,'Industry point':0.05},
 		gizmos:true,
 		modes:{
 			'off':G.MODE_OFF,
-			'papyrus':{name:'Papyrus',icon:[15,12,'magixmod'],desc:'Gain mainly [papyrus] out of this shack. To craft [papyrus] , [worker] will use [Sugar cane] .',use:{'worker':1,'stone tools':1}},
-			'pergamin':{name:'Pergamin',icon:[16,12,'magixmod'],desc:'Gain mainly [pergamin] out of this shack. To craft [pergamin] , [worker] will use [hide] or [leather] .',use:{'worker':1,'stone tools':1}},
-			'commonpaper':{name:'Common paper',icon:[17,12,'magixmod'],desc:'Craft [common paper] out of [Bamboo] with help of secret non-magic recipe.',use:{'worker':1,'stone tools':1}},
+			'papyrus':{name:'Papyrus',icon:[15,12,'magixmod'],desc:'Gain mainly <b>papyrus</b> out of this shack. To craft <b>papyrus</b>, [worker] will use [Sugar cane] .',use:{'worker':1,'stone tools':1}},
+			'pergamin':{name:'Pergamin',icon:[16,12,'magixmod'],desc:'Gain mainly <b>pergamin</b> out of this shack. To craft <b>pergamin</b> , [worker] will use [hide] or [leather] .',use:{'worker':1,'stone tools':1}},
+			'commonpaper':{name:'Common paper',icon:[17,12,'magixmod'],desc:'Craft <b>common paper</b> out of [Bamboo] with help of secret non-magic recipe.',use:{'worker':1,'stone tools':1}},
 		},
 		effects:[
-			{type:'convert',from:{'Sugar cane':3.4},into:{'papyrus':1.5},every:1,mode:'papyrus'},
-			{type:'convert',from:{'hide':1.75},into:{'pergamin':1.15},every:4,mode:'pergamin'},
-			{type:'convert',from:{'leather':1.5},into:{'pergamin':1.15},every:4,mode:'pergamin'},
-			{type:'convert',from:{'Bamboo':4},into:{'common paper':1.4},every:2,mode:'commonpaper'},
+			{type:'convert',from:{'Sugar cane':3.4},into:{'Paper':1.5},every:1,mode:'papyrus'},
+			{type:'convert',from:{'hide':1.75},into:{'Paper':1.15},every:4,mode:'pergamin'},
+			{type:'convert',from:{'leather':1.5},into:{'Paper':1.15},every:4,mode:'pergamin'},
+			{type:'convert',from:{'Bamboo':4},into:{'Paper':1.4},every:2,mode:'commonpaper'},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','joy of eating':true}},
 			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}}
@@ -3497,22 +3429,22 @@ func:function(){
 	});
 		new G.Unit({
 		name:'Paper-crafting shack',
-		desc:'Allows to make [Paper] You can choose between 3 types of paper: [papyrus] , [pergamin] , [common paper] .',
+		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> , <li>pergamin</li> , <li>common paper</li> .',
 		icon:[0,12,'magixmod',25,2],
 		cost:{'basic building materials':800},
 		use:{'land':0.7},
 		gizmos:true,
 		modes:{
 			'off':G.MODE_OFF,
-			'papyrus':{name:'Papyrus',icon:[15,12,'magixmod'],desc:'Gain mainly [papyrus] out of this shack. To craft [papyrus] , [worker] will use [Sugar cane] .',use:{'worker':1,'stone tools':1}},
-			'pergamin':{name:'Pergamin',icon:[16,12,'magixmod'],desc:'Gain mainly [pergamin] out of this shack. To craft [pergamin] , [worker] will use [hide] or [leather] .',use:{'worker':1,'stone tools':1}},
-			'commonpaper':{name:'Common paper',icon:[17,12,'magixmod'],desc:'Craft [common paper] out of [Bamboo] with help of secret non-magic recipe.',use:{'worker':1,'stone tools':1}},
+			'papyrus':{name:'Papyrus',icon:[15,12,'magixmod'],desc:'Gain mainly [Paper] out of this shack. To craft <strong>papyrus</strong> , [worker] will use [Sugar cane] .',use:{'worker':1,'stone tools':1}},
+			'pergamin':{name:'Pergamin',icon:[16,12,'magixmod'],desc:'Gain mainly [Paper] out of this shack. To craft <b>pergamin</b> , [worker] will use [hide] or [leather] .',use:{'worker':1,'stone tools':1}},
+			'commonpaper':{name:'Common paper',icon:[17,12,'magixmod'],desc:'Craft [Paper] out of [Bamboo] with help of secret non-magic recipe.',use:{'worker':1,'stone tools':1}},
 		},
 		effects:[
-			{type:'convert',from:{'Sugar cane':3.4},into:{'papyrus':1.5},every:1,mode:'papyrus'},
-			{type:'convert',from:{'hide':1.75},into:{'pergamin':1.15},every:4,mode:'pergamin'},
-			{type:'convert',from:{'leather':1.5},into:{'pergamin':1.15},every:4,mode:'pergamin'},
-			{type:'convert',from:{'Bamboo':4},into:{'common paper':1.4},every:2,mode:'commonpaper'},
+			{type:'convert',from:{'Sugar cane':3.4},into:{'Paper':1.5},every:1,mode:'papyrus'},
+			{type:'convert',from:{'hide':1.75},into:{'Paper':1.15},every:4,mode:'pergamin'},
+			{type:'convert',from:{'leather':1.5},into:{'Paper':1.15},every:4,mode:'pergamin'},
+			{type:'convert',from:{'Bamboo':4},into:{'Paper':1.4},every:2,mode:'commonpaper'},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','joy of eating':true}},
 			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}}
@@ -3576,12 +3508,10 @@ func:function(){
 		use:{'worker':1,'Wand':3},
 		upkeep:{'food':11},
 		req:{'Wizardry':true,'Wizard wisdom':false},
-		hidden:true,
 		effects:[
 			{type:'gather',what:{'insight':0.012}},
 			{type:'convert',from:{'Paper':13},into:{'Poet\'s notes':1},every:30,req:{'Notewriting':true}},
         ],
-		category:'discovery',
 		limitPer:{'population':3},
 	});
 		new G.Unit({
@@ -4238,9 +4168,9 @@ func:function(){
 		staff:{'stone tools':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'convert',from:{'wounded':1,'herb':2.5,'Bandage':1,'Plaster':0.5,'Triangular bandage':0.33},into:{'adult':1,'health':0.44},chance:4/10,every:10},
-			{type:'convert',from:{'wounded alchemist':1,'herb':2.5,'Bandage':1,'Plaster':0.5,'Triangular bandage':0.33,'Medicament brews':0.3},into:{'Alchemist':1,'health':0.44},chance:4/10,every:10},
-			{type:'convert',from:{'wounded child alchemist':1,'herb':2.5,'Bandage':1,'Plaster':0.5,'Triangular bandage':0.33,'Medicament brews':0.3},into:{'Child alchemist':1,'health':0.44},chance:4/10,every:10},
+			{type:'convert',from:{'wounded':1,'herb':2.5,'First aid things':1.5},into:{'adult':1,'health':0.44},chance:4/10,every:10},
+			{type:'convert',from:{'wounded alchemist':1,'herb':2.5,'First aid things':1,'Medicament brews':0.3},into:{'Alchemist':1,'health':0.44},chance:4/10,every:10},
+			{type:'convert',from:{'wounded child alchemist':1,'herb':2.5,'First aid things':1,'Medicament brews':0.3},into:{'Child alchemist':1,'health':0.44},chance:4/10,every:10},
 			{type:'gather',context:'gather',what:{'health':0.1},req:{'Nutrition':true}},
 		],
 		req:{'healing':true,'first aid':true},
