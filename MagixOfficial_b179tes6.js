@@ -2321,6 +2321,15 @@ func:function(){
 		req:{'Second portal to new world':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Trait({
+		name:'Cooking',
+		desc:'<span style="color: #aaffff">Better food will make people even happier. Unlocks [Chef,cheves] who will do even better food out of other food ingredients. </span>',
+		icon:[22,10,'magixmod'],
+		cost:{'insight':250,'wisdom':15},
+		chance:300,
+		category:'knowledge',
+		req:{'Second portal to new world':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+	});
+		new G.Trait({
 		name:'<span style="color: yellow">Culture of celebration</span>',
 		desc:'Unlocks seasonal content. <b><span style="color: aqua">Seasonal content is a content available for some time like Christmas content. Currently added events: Xmas, New year eve, halloween, Valentine day.</span></b>',
 		icon:[18,15,'magixmod'],
@@ -2387,7 +2396,6 @@ func:function(){
 		icon:[3,2,'magixmod'],
 		cost:{'insight':50},
 		req:{'Wizardry':true},
-		category:'gods',
 	});
 		new G.Tech({
 		name:'More useful housing',
@@ -2932,6 +2940,13 @@ func:function(){
 		cost:{'insight':916,'wisdom':9},
 		req:{'papercrafting':true,'Poetry':true},
 	});
+		new G.Tech({
+		name:'Art of cooking',
+		desc:'<font color="fuschia">Unlocks [chef] . Talented with art of cooking worker may make tasty and very decent food [meals] . [meals,Meals] makes people even happier</font>',
+		icon:[23,13,'magixmod'], 
+		cost:{'insight':800,'wisdom':30,'culture':400,'inspiration':200},
+		req:{'papercrafting':true,'Poetry':true},
+	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
@@ -2969,6 +2984,28 @@ func:function(){
 		}
 	}
 	//Units for real
+		new G.Unit({
+		name:'Chef',
+		desc:'There you can craft [Jar for concoctions,Concoctions] which are not so safe. At stand there are recipes already but you will decide who you will hire. No accident chance there.</span>',
+		icon:[24,13,'magixmod'],
+		cost:{},
+		use:{'Alchemy zone':0.3},
+		upkeep:{},
+		modes:{
+			'off':G.MODE_OFF,
+			'ha':{name:'Hire adult alchemist',icon:[12,5,'magixmod'],desc:'Hires adult alchemist to the stand. ',use:{'Alchemist':1,'stone tools':1}},
+			'hc':{name:'Hire child alchemist',icon:[12,7,'magixmod'],desc:'Hires child alchemist to the stand. ',use:{'Child alchemist':1,'stone tools':1},req:{'Alchemy for children':'on'}},
+		},
+		effects:[
+			{type:'convert',from:{'Jar for concoctions':1,'water':0.4,'Dark essence':2,'Dark fire pit':0.5},into:{'Dark concoction':1},every:6,mode:'ha'},
+			{type:'convert',from:{'Jar for concoctions':1,'water':0.6,'Nature essence':2,'Scobs of life':0.5,'Water essence':0.2},into:{'Nature concoction':1},every:6,mode:'ha'},
+			{type:'convert',from:{'Jar for concoctions':1,'water':0.4,'Dark essence':2,'Dark fire pit':0.5},into:{'Dark concoction':1},every:6,mode:'hc'},
+			{type:'convert',from:{'Jar for concoctions':1,'water':0.6,'Nature essence':2,'Scobs of life':0.5,'Water essence':0.2},into:{'Nature concoction':1},every:6,mode:'hc'},
+		],
+		req:{'Combat potion & concoction brewing':true},
+		gizmos:true,
+		category:'alchemy',
+	});
 		new G.Unit({
 		name:'Concoctions crafting stand',
 		desc:'There you can craft [Jar for concoctions,Concoctions] which are not so safe. At stand there are recipes already but you will decide who you will hire. No accident chance there.</span>',
