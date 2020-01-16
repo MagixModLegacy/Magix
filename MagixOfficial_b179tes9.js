@@ -1308,7 +1308,8 @@ func:function(){
 		desc:'[Meals] are tastier than common food that is part of a [Meals,meal] . Makes people happier than other [food] .',
 		icon:[22,13,'magixmod'],
 		turnToByContext:{'eating':{'health':0.024,'happiness':0.045,'bone':0.1},'decay':{'spoiled food':0.8}},
-		category:'misc',
+		category:'food',
+		partOf:'food',
 	});
 //But books has to be stored somewhere right?
 	new G.Res({
