@@ -2750,6 +2750,7 @@ func:function(){
 		icon:[1,12,'magixmod'],
 		cost:{'insight':100},
 		req:{'smelting':true,'prospecting II':true},
+		category:'knowledge',
 		effects:[
 		],
 	});
