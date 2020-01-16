@@ -2387,6 +2387,7 @@ func:function(){
 		icon:[3,2,'magixmod'],
 		cost:{'insight':50},
 		req:{'Wizardry':true},
+		category:'gods',
 	});
 		new G.Tech({
 		name:'More useful housing',
@@ -2750,7 +2751,6 @@ func:function(){
 		icon:[1,12,'magixmod'],
 		cost:{'insight':100},
 		req:{'smelting':true,'prospecting II':true},
-		category:'knowledge',
 		effects:[
 		],
 	});
