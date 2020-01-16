@@ -522,7 +522,7 @@ func:function(){
 		new G.Res({
 		name:'wheat',
 		desc:'Not edible but useful grain in crafting of [bread] .',
-		icon:[23,11,'magixmod'],
+		icon:[23,10,'magixmod'],
 		category:'misc',
 		tick:function(me,tick)
 		{
@@ -533,7 +533,7 @@ func:function(){
 		new G.Res({
 		name:'flour',
 		desc:'Made out of [wheat] . Now having [flour] you may start crafting [bread] .',
-		icon:[23,12,'magixmod'],
+		icon:[23,11,'magixmod'],
 		category:'misc',
 		tick:function(me,tick)
 		{
@@ -2973,28 +2973,28 @@ func:function(){
 		new G.Tech({
 		name:'Art of cooking',
 		desc:'<font color="fuschia">Unlocks [Chef] . Talented with art of cooking worker may make tasty and very decent food [Meals] . [Meals,Meals] makes people even happier</font>',
-		icon:[23,12,'magixmod'], 
+		icon:[23,13,'magixmod'], 
 		cost:{'insight':531,'wisdom':30,'culture':400,'inspiration':200},
 		req:{'papercrafting':true,'Poetry':true,'Cooking':true},
 	});
 		new G.Tech({
 		name:'Farm of wheat',
 		desc:'Unlocks [Wheat farm] . Then it may be converted into [flour] .',
-		icon:[23,13,'magixmod'], 
+		icon:[23,11,'magixmod'], 
 		cost:{'insight':450},
 		req:{'papercrafting':true,'Poetry':true,'Cooking':true},
 	});
 		new G.Tech({
 		name:'Flour-crafting',
 		desc:'<li>Unlocks [Windmill].</li>',
-		icon:[22,12,'magixmod'], 
+		icon:[22,11,'magixmod'], 
 		cost:{'insight':650},
 		req:{'Farm of wheat':true},
 	});
 		new G.Tech({
 		name:'Baking',
 		desc:'<li>Unlocks [Bakery].</li>',
-		icon:[22,13,'magixmod'], 
+		icon:[22,12,'magixmod'], 
 		cost:{'insight':850},
 		req:{'Flour-crafting':true},
 	});
@@ -3037,11 +3037,11 @@ func:function(){
 	//Units for real
 		new G.Unit({
 		name:'Bakery',
-		desc:'<font color=" ##c74e52">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
+		desc:'<font color=" ##f74e00">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
 		icon:[24,10,'magixmod'],
 		cost:{'basic building materials':100},
-		use:{'land':1},
-		require:{'worker':2,'metal tools':2,'Instructor':1},
+		use:{'land':1,'Instructor':1},
+		require:{'worker':2,'metal tools':2},
 		upkeep:{'log':0.6},
 		effects:[
 			{type:'convert',from:{'flour':10},into:{'bread':3},every:5,repeat:2},
