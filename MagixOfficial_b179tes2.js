@@ -2755,7 +2755,7 @@ func:function(){
 	});
 		new G.Tech({
 		name:'papercrafting',
-		desc:'@unlocks [Paper-crafting shack]. There you can craft: @[papyrus] out of [Sugar cane], @[pergamin] out of [hide] , [leather] , and [common paper] out of [Bamboo] with help of secret non-magic recipe.<>',
+		desc:'@unlocks [Paper-crafting shack]. There you can craft: <font color="red">papyrus</font> out of [Sugar cane], @<font color="red">pergamin</font> out of [hide] , [leather] , and <font color="red">common paper</font> out of [Bamboo] with help of secret non-magic recipe.<>',
 		icon:[18,12,'magixmod'],
 		cost:{'insight':480,'wisdom':5},
 		req:{'city planning':true},
@@ -3089,7 +3089,7 @@ func:function(){
 	});
 		new G.Unit({
 		name:'paper-crafting shack',
-		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> , <li>pergamin</li> , <li>common paper</li> . <span style="color: ##FF6B40">It is paradise version of this shack and works at same rates as its mortal bro.</span>',
+		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> <li>pergamin</li> <li>common paper</li> <font="color: ##FF6B40">It is paradise version of this shack and works at same rates as its mortal bro.</font>',
 		icon:[0,12,'magixmod',20,14,'magixmod'],
 		cost:{'basic building materials':800},
 		use:{'Land of the Paradise':0.7,'Industry point':0.05},
@@ -3429,7 +3429,7 @@ func:function(){
 	});
 		new G.Unit({
 		name:'Paper-crafting shack',
-		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> , <li>pergamin</li> , <li>common paper</li> .',
+		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> <li>pergamin</li> <li>common paper</li> ',
 		icon:[0,12,'magixmod',25,2],
 		cost:{'basic building materials':800},
 		use:{'land':0.7},
@@ -5218,7 +5218,7 @@ G.writeMSettingButton=function(obj)
 		desc:'@unlocks [Artisan of new year].',
 		icon:[0,0,'seasonal'],
 		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism'false},
 	});
 		new G.Res({
 		name:'Blue firework',
@@ -5249,7 +5249,7 @@ G.writeMSettingButton=function(obj)
 		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
 		icon:[17,0,'seasonal'],
 		cost:{'insight':70},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true},
 	});
 		new G.Unit({
 		name:'Firework launching guy',
@@ -5272,7 +5272,7 @@ G.writeMSettingButton=function(obj)
 		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
 		icon:[16,0,'seasonal'],
 		cost:{'insight':400},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true},
 	});
 		new G.Res({
 		name:'Dark Blue Firework',
