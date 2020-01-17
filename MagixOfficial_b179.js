@@ -2967,12 +2967,12 @@ func:function(){
 		name:'Better papercrafting recipe',
 		desc:'Multiplies amount of [Paper] crafted in shacks by 40%. If you go into moderating culture you obtain additional 8%, while in joy path just 4%.',
 		icon:[8,12,14,12,'magixmod',21,15,'magixmod'], 
-		cost:{'insight':916,'wisdom':9},
+		cost:{'insight':846,'wisdom':9},
 		req:{'papercrafting':true,'Poetry':true},
 	});
 		new G.Tech({
 		name:'Art of cooking',
-		desc:'<font color="fuschia">Unlocks [Chef] . Talented with art of cooking worker may make tasty and very decent food [Meals] . [Meals,Meals] makes people even happier</font>',
+		desc:'<font color="fuschia">Unlocks [Chef] . Talented with art of cooking worker may make tasty and very decent food [Meals] . A [Meals,Meal] makes people even happier</font>',
 		icon:[23,13,'magixmod'], 
 		cost:{'insight':535,'wisdom':30,'culture':400,'inspiration':200},
 		req:{'Cooking':true},
