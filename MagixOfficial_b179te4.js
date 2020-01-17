@@ -1327,7 +1327,7 @@ func:function(){
 			if (G.year==30 && !madeWarnToolDecayMesg){
        				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made started to decay. This doesn\'t seem good.</b></font>',icon:[24,6,'magixmod']});
 				madeWarnToolDecayMesg = true
-		},
+		}},
 		category:'misc',
 	});
 		new G.Res({
