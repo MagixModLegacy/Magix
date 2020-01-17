@@ -1323,11 +1323,7 @@ func:function(){
 		{
 			var toSpoil=me.amount*0.009;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		}
-			if (G.year==30 && !madeWarnToolDecayMesg){
-       				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made started to decay. This doesn\'t seem good.</b></font>',icon:[24,6,'magixmod']});
-				madeWarnToolDecayMesg = true
-		}},
+		},
 		category:'misc',
 	});
 		let madeWarnToolDecayMesg = false
