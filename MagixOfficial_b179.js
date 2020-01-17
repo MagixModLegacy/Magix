@@ -479,7 +479,7 @@ func:function(){
         tick:function(me,tick)
         {
             if (me.amount>=1 && !madeUnlockMessage){ 
-                G.Message({type:'good',text:'<b>You and your people activated passage to Plain Island. Out of portal an Emblem fall and hits on rock. Big rectangular portal shines and you can see what is beyond it. You come through and notice there are flat plains. Now it is time for more discoveries and build there some stuff.</b>',icon:[8,3,'magixmod']});
+                G.Message({type:'good',text:'<b>You and your people activated passage to Plain Island. Out of portal an Emblem falls and hits on rock. Big rectangular portal shines and you can see what is beyond it. You come through and notice there are flat plains. Now it is time for more discoveries and build there some stuff.</b>',icon:[8,3,'magixmod']});
                 madeUnlockMessage = true
             }
         },
