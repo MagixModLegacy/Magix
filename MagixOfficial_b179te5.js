@@ -1314,7 +1314,7 @@ func:function(){
 		},
 		category:'misc',
 	});
-		let madeWarnToolDecayMesg = false
+		
 		new G.Res({
 		name:'Light explosives',
 		desc:'Dangerous and useful. May be use to break wall or in mining. This second one is dangerous so be careful. Light explosives are these which has small power of explosion <b><span style="color: #e7ffff">but they are still dangerous for human.</span></b> There are some excepts.',
@@ -1330,12 +1330,18 @@ func:function(){
 		}},
 		category:'misc',
 	});
+		let madeWarnToolDecayMesg = false
 		new G.Res({
 		name:'Meals',
 		desc:'[Meals] are tastier than common food that is part of a [Meals,meal] . Makes people happier than other [food] .',
 		icon:[22,13,'magixmod'],
 		turnToByContext:{'eating':{'health':0.024,'happiness':0.045,'bone':0.1},'decay':{'spoiled food':0.8}},
 		category:'food',
+		tick:function(me,tick)
+			if (G.year==30 && !madeWarnToolDecayMesg){
+       				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made started to decay. This doesn\'t seem good.</b></font>',icon:[24,6,'magixmod']});
+				madeWarnToolDecayMesg = true
+		}},
 		partOf:'food',
 	});
 //But books has to be stored somewhere right?
