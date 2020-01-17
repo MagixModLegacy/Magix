@@ -1336,7 +1336,7 @@ func:function(){
 		tick:function(me,tick)
 		{
 			if (G.year>=3 && G.year<=5 && !madeWarnToolDecayMesg){
-       				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made started to decay. This doesn\'t seem good.</b></font>',icon:[24,6,'magixmod']});
+       				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made started to decay. <li>This doesn\'t seem good.</li></font>',icon:[24,6,'magixmod']});
 				madeWarnToolDecayMesg = true
 		}},
 		partOf:'food',
