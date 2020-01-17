@@ -1334,6 +1334,7 @@ func:function(){
 		turnToByContext:{'eating':{'health':0.024,'happiness':0.045,'bone':0.1},'decay':{'spoiled food':0.8}},
 		category:'food',
 		tick:function(me,tick)
+		{
 			if (G.year==30 && !madeWarnToolDecayMesg){
        				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made started to decay. This doesn\'t seem good.</b></font>',icon:[24,6,'magixmod']});
 				madeWarnToolDecayMesg = true
