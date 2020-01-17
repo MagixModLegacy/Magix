@@ -3652,7 +3652,7 @@ func:function(){
 	});
 		new G.Unit({
 		name:'Wizard',
-		desc:'A man needed to make his towers even exist. Provides 1 [wisdom] per each one instead of gaining [insight] like [Archaic wizard]',
+		desc:'A man needed to make his towers even exist. Provides 1 [wisdom] per each one instead of gaining [insight] like [Archaic wizard] was.',
 		icon:[choose([21,22,23,24]),8,'magixmod'],
 		cost:{'insight':1,'stick':2,'food':1,'water':1},
 		use:{'worker':1,'Wand':3},
@@ -4297,7 +4297,7 @@ func:function(){
 	});
 		new G.Unit({
 		name:'First aid healer',
-		desc:'@uses [Bandage]s,[Plaster]s,[Triangular bandage]s to heal the [wounded] mainly and slowly. Sometimes may use herb to heal wounded if these things are not enough.<>The [healer] knows the solution to bunch of wound types so it makes pain stay away.',
+		desc:'@uses <b><font color=" ##008b8b>Bandages,Plasters,Triangular bandages</font></b> to heal the [wounded] mainly and slowly. Sometimes may use herb to heal wounded if these things are not enough.<>The [healer] knows the solution to bunch of wound types so it makes pain stay away.',
 		icon:[18,1,'magixmod'],
 		cost:{},
 		use:{'worker':1},
