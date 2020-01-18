@@ -1676,8 +1676,11 @@ func:function(){
 		meta:true,
 		tick:function(me,tick)
 		{
-				if (G.year>=29){
-				var toSpoil=(G.getRes('metal tools').amount*0.0001);G.lose(me.name,randomFloor(toSpoil),'decay');
+				if (G.year>=29)//Gear decaying at year 30 and later
+				{
+				var toSpoil=(G.getRes('metal tools').amount*0.0001);G.lose(('metal tools'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('stone tools').amount*0.0004);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('knapped tools').amount*0.00055);G.lose(('knapped tools'),randomFloor(toSpoil),'decay');
 				}
 		},
 		visible:false,
@@ -4489,7 +4492,7 @@ func:function(){
 		G.getDict('artisan').modes['CraftFirstAid']={
 			name:'Craft first aid things',
 			icon:[16,10,'magixmod',15,10,'magixmod'],
-			desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [Triangular bandage],[Bandage],[Plaster].',
+			desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',
 			req:{'first aid':true},
 			use:{'stone tools':1},
 		};
