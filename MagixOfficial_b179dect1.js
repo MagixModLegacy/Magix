@@ -1674,6 +1674,12 @@ func:function(){
 		icon:[11,8,'magixmod'],
 		partOf:'misc materials',
 		meta:true,
+		tick:function(me,tick)
+		{
+				if (G.year>=29){
+				var toSpoil=(G.getRes('metal tools').amount*0.0001);G.lose(me.name,randomFloor(toSpoil),'decay');
+				}
+		},
 		visible:false,
 	});
 		new G.Res({
@@ -4487,9 +4493,9 @@ func:function(){
 			req:{'first aid':true},
 			use:{'stone tools':1},
 		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'Bandage':1},every:5,mode:'CraftFirstAid'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':0.5,'herb':1},into:{'Plaster':1},every:5,mode:'CraftFirstAid'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'Triangular bandage':1},every:7,mode:'CraftFirstAid'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'First aid things':1},every:5,mode:'CraftFirstAid'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':0.5,'herb':1},into:{'First aid things':1},every:5,mode:'CraftFirstAid'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'First aid things':1},every:7,mode:'CraftFirstAid'});
 
 //4 modes for Artisans. Each of them can convert 8 different flowers into its dyes.
 		G.getDict('artisan').modes['Make dyes from flowers(Set 1)']={
