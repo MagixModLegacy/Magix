@@ -86,11 +86,6 @@ func:function(){
 		desc:'Wands are basic of wizardry. Thing used by beginner wizards. Without it most of spells are impossible to be casted. @Number to the left means how much is now used, to the right how much is in stock.',
 		icon:[6,4,'magixmod'],
 		category:'gear',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.004;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
 		displayUsed:true,
 	});
 		new G.Res({
@@ -284,11 +279,6 @@ func:function(){
 		icon:[13,6,'magixmod'],
 		category:'gear',
 		displayUsed:true,
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.002;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
 	});
 		new G.Res({
 		name:'Crossbow belt',
@@ -296,11 +286,6 @@ func:function(){
 		icon:[13,7,'magixmod'],
 		category:'gear',
 		displayUsed:true,
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.002;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
 	});
 		new G.Res({
 		name:'Fishing net',
@@ -308,11 +293,6 @@ func:function(){
 		icon:[13,8,'magixmod'],
 		category:'gear',
 		displayUsed:true,
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
 	});
 		new G.Res({
 		name:'Thread',
@@ -728,11 +708,6 @@ func:function(){
 		desc:'Solid, durable weapons made of metal and wood. One of many parts of soldiers equipment.@Number to the left means how much is now used, to the right how much is in stock.',
 		icon:[15,11,'magixmod'],
 		displayUsed:true,
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
 		category:'gear',
 	});
 		new G.Res({
@@ -740,11 +715,6 @@ func:function(){
 		desc:'Solid, durable armor set made for soldiers to protect against not every, but common threats like ambush for instance.@Number to the left means how much is now used, to the right how much is in stock.',
 		icon:[16,11,'magixmod'],
 		displayUsed:true,
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
 		category:'gear',
 	});
 		new G.Res({
@@ -1681,6 +1651,12 @@ func:function(){
 				var toSpoil=(G.getRes('metal tools').amount*0.0001);G.lose(('metal tools'),randomFloor(toSpoil),'decay');
 				var toSpoil=(G.getRes('stone tools').amount*0.0004);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
 				var toSpoil=(G.getRes('knapped tools').amount*0.00055);G.lose(('knapped tools'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('stone weapons').amount*0.0004);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('bow').amount*0.00025);G.lose(('bow'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('Wand').amount*0.0003);G.lose(('Wand'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('Crossbow').amount*0.0003);G.lose(('Crossbow'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('metal weapons').amount*0.0001);G.lose(('metal weapons'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('armor set').amount*0.0001);G.lose(('armor set'),randomFloor(toSpoil),'decay');
 				}
 		},
 		visible:false,
