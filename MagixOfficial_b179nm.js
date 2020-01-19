@@ -2407,16 +2407,16 @@ func:function(){
 		category:'gods',
 	});
 //Then we add a new technology for wizards:
-    new G.Tech({
+let gift =     new G.Tech({
         name:'<font color="yellow">A gift from the Mausoleum</font>',
-        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting adventure than previous one.',
+        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
         icon:[1,14],
         cost:{},
-        chance:0.000009
+        req:{'tribalism':false},
     });
 function checkMagic(){
-  if(G.achiev[0].won && G.year >= 2){
-    G.gainTech('<font color="yellow">A gift from the Mausoleum</font>')
+  if(G.achiev[0].won){
+    G.gainTech(gift)
     G.Message({
       type:"good",
       text: "Since you have built the Mausoleum it the past, you have access to magic!"
