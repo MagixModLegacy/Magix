@@ -2415,8 +2415,8 @@ func:function(){
         chance:0.000009
     });
 function checkMagic(){
-  if(G.achiev[0].won){
-    G.gainTech['<font color="yellow">A gift from the Mausoleum</font>']
+  if(G.achiev[0].won && G.year >= 2){
+    G.gainTech('<font color="yellow">A gift from the Mausoleum</font>')
     G.Message({
       type:"good",
       text: "Since you have built the Mausoleum it the past, you have access to magic!"
