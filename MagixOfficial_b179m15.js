@@ -2423,13 +2423,6 @@ func:function(){
 		req:{'Wizardry':true},
 	});
 		new G.Tech({
-		name:'test',
-		desc:'test.',
-		icon:[3,2,'magixmod'],
-		cost:{'insight':1},
-		req:{G.achiev({'mausoleum':won=1})},
-	});
-		new G.Tech({
 		name:'More useful housing',
 		desc:'Can store food. Building made out of hard bricks. And in addition it will give a housing to your population',
 		icon:[5,2,'magixmod'],
@@ -4755,6 +4748,10 @@ func:function(){
 			use:{'Wand':1,'knapped tools':1},
 		};	
 		G.getDict('firekeeper').effects.push({type:'convert',from:{'Fire essence':1,'stick':13},into:{'fire pit':5},mode:'firesfromessence'});
+	//Upkker
+		G.unitByName=['furnace']={
+			upkeep:{'log':1}
+		};
 //Nickel mines
 		G.getDict('mine').modes['nickel']={
 			name:'Nickel',
