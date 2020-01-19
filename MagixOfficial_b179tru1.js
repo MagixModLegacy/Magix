@@ -4768,6 +4768,8 @@ func:function(){
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Granite':30},max:25,mode:'ostones'});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Diorite':30},max:25,mode:'ostones'});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Andesite':30},max:25,mode:'ostones'});
+	//upkeep test
+		G.getDict('furnace').upkeep.push({'log':1});
 //2 modes for architect
 		G.getDict('architect').modes['Brickhouser']={
 			name:'Brickhouse building',
