@@ -4292,7 +4292,7 @@ func:function(){
 	});
 		new G.Unit({
 		name:'First aid healer',
-		desc:'@uses <b><font color=" ##008b8b>Bandages,Plasters,Triangular bandages</font></b> to heal the [wounded] mainly and slowly. Sometimes may use herb to heal wounded if these things are not enough.<>The [healer] knows the solution to bunch of wound types so it makes pain stay away.',
+		desc:'@heals [wounded] mainly and slowly. Sometimes may use herb to heal wounded if these things are not enough.<>The [healer] knows the solution to bunch of wound types so it makes pain stay away.',
 		icon:[18,1,'magixmod'],
 		cost:{},
 		use:{'worker':1},
@@ -4768,6 +4768,8 @@ func:function(){
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Granite':30},max:25,mode:'ostones'});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Diorite':30},max:25,mode:'ostones'});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Andesite':30},max:25,mode:'ostones'});
+	//vanilla tech costs changes
+		G.getDict('clans').effects.push({type:'cost',what:{'influence':5}});
 //2 modes for architect
 		G.getDict('architect').modes['Brickhouser']={
 			name:'Brickhouse building',
