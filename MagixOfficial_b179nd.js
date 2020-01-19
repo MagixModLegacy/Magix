@@ -2408,8 +2408,8 @@ func:function(){
 	});
 //Then we add a new technology for wizards:
 function checkMagic(){
-  if(G.achiev[0].won){
-    G.gainTech('Wizardry')
+  if(G.achiev['mausoleum'].won){
+    G.gainTech('<font color="yellow">A gift from the Mausoleum</font>')
     G.Message({
       type:"good",
       text: "Since you have built the Mausoleum it the past, you have access to magic!"
@@ -2430,11 +2430,18 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 }
 })
 	new G.Tech({
+        name:'<font color="yellow">A gift from the Mausoleum</font>',
+        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
+        icon:[1,14],
+        cost:{},
+        req:{'tribalism':false},
+    });
+	new G.Tech({
 		name:'Wizardry',
 		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
 		icon:[5,3,'magixmod'],
 		cost:{'insight':75,'faith':5},
-		req:{'tribalism':false},
+		req:{'well-digging':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 	});
 //New tech to allow wizards progressing
 		new G.Tech({
