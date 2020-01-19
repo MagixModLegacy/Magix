@@ -4748,10 +4748,6 @@ func:function(){
 			use:{'Wand':1,'knapped tools':1},
 		};	
 		G.getDict('firekeeper').effects.push({type:'convert',from:{'Fire essence':1,'stick':13},into:{'fire pit':5},mode:'firesfromessence'});
-	//Upkker
-		G.unitByName=['furnace']={
-			upkeep:{'log':1}
-		};
 //Nickel mines
 		G.getDict('mine').modes['nickel']={
 			name:'Nickel',
