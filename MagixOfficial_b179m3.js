@@ -2427,7 +2427,7 @@ func:function(){
 		desc:'test.',
 		icon:[3,2,'magixmod'],
 		cost:{'insight':1},
-		req:{G.Achiev{'mausoleum'.won==1}},
+		req:{G.achiev{'mausoleum'.won==1}},
 	});
 		new G.Tech({
 		name:'More useful housing',
