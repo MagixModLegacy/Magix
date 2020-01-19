@@ -2416,6 +2416,13 @@ func:function(){
 	});
 //New tech to allow wizards progressing
 		new G.Tech({
+		name:'test',
+		desc:'test.',
+		icon:[3,2,'magixmod'],
+		cost:{'insight':1},
+		req:{game.achiev[0].won},
+	});
+		new G.Tech({
 		name:'Mana brewery',
 		desc:'You can find a specimen who will convert water into mana.',
 		icon:[3,2,'magixmod'],
