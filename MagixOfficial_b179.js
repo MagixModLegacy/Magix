@@ -4768,8 +4768,6 @@ func:function(){
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Granite':30},max:25,mode:'ostones'});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Diorite':30},max:25,mode:'ostones'});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Andesite':30},max:25,mode:'ostones'});
-	//vanilla tech costs changes
-		G.getDict('clans').cost.push({'influence':5}});
 //2 modes for architect
 		G.getDict('architect').modes['Brickhouser']={
 			name:'Brickhouse building',
