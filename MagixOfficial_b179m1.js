@@ -2423,6 +2423,13 @@ func:function(){
 		req:{'Wizardry':true},
 	});
 		new G.Tech({
+		name:'test',
+		desc:'test.',
+		icon:[3,2,'magixmod'],
+		cost:{'insight':1},
+		req:{'mausoleum'.won=1},
+	});
+		new G.Tech({
 		name:'More useful housing',
 		desc:'Can store food. Building made out of hard bricks. And in addition it will give a housing to your population',
 		icon:[5,2,'magixmod'],
