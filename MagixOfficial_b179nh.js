@@ -2412,7 +2412,7 @@ func:function(){
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting adventure than previous one.',
         icon:[1,14],
         cost:{},
-        req:{'tribalism':false},
+        chance:999999
     });
 function checkMagic(){
   if(G.achiev[0].won){
