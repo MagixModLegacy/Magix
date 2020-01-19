@@ -2407,20 +2407,20 @@ func:function(){
 		category:'gods',
 	});
 //Then we add a new technology for wizards:
-	function checkMagic(){
-  	if(G.achiev[0].won){
-   	 G.gainTech('Wizardry')
-   	 G.Message({
-     	 type:"good",
-     	 text: "Since you have built the Mausoleum it the past, you have access to magic!"
-   	 })
- 	 else {
- 	 G.Message({
-    	  type:"bad",
-     	 text: "Since you haven't built the Mausoleum it the past yet, you don't have access to magic yet"
-	   })
- 	 }
-	}
+function checkMagic(){
+  if(G.achiev[0].won){
+    G.gainTech('Wizardry')
+    G.Message({
+      type:"good",
+      text: "Since you have built the Mausoleum it the past, you have access to magic!"
+    })
+  } else {
+  G.Message({
+      type:"bad",
+      text: "Since you haven't built the Mausoleum it the past yet, you don't have access to magic yet"
+   })
+  }
+}
 checkMagic()
 const oldNewGame = G.NewGameConfirm.bind({})
 G.NewGameConfirm = new Proxy(oldNewGame, {
