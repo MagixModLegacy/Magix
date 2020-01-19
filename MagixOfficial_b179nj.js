@@ -2416,7 +2416,7 @@ func:function(){
     });
 function checkMagic(){
   if(G.achiev[0].won){
-    G.gainTech[83]
+    G.gainTech['<font color="yellow">A gift from the Mausoleum</font>']
     G.Message({
       type:"good",
       text: "Since you have built the Mausoleum it the past, you have access to magic!"
