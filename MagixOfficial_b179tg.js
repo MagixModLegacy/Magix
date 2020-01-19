@@ -5240,7 +5240,7 @@ G.writeMSettingButton=function(obj)
 	{
 		G.tabs.push({
 			name:'Magix:About',
-			id:'Magix:About',
+			id:'Magix',
 			popup:true,
 			addClass:'right',
 			desc:'Options and information about the Magix mod.'
