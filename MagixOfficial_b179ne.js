@@ -2408,7 +2408,7 @@ func:function(){
 	});
 //Then we add a new technology for wizards:
 function checkMagic(){
-  if(G.achiev['mausoleum'].won){
+  if(G.achiev[0].won){
     G.gainTech('<font color="yellow">A gift from the Mausoleum</font>')
     G.Message({
       type:"good",
