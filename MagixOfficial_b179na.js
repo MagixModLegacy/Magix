@@ -2407,12 +2407,34 @@ func:function(){
 		category:'gods',
 	});
 //Then we add a new technology for wizards:
+	function checkMagic(){
+  	if(G.achiev[0].won){
+   	 G.gainTech('Wizardry)
+   	 G.Message({
+     	 type:"good",
+     	 text: "Since you have built the Mausoleum it the past, you have access to magic!"
+   	 })
+ 	 else {
+ 	 G.Message({
+    	  type:"bad",
+     	 text: "Since you haven't built the Mausoleum it the past yet, you don't have access to magic yet"
+	   })
+ 	 }
+	}
+checkMagic()
+const oldNewGame = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame, {
+  apply: function(target, thisArg, args){
+    target(...args)
+    checkMagic()
+}
+})
 	new G.Tech({
 		name:'Wizardry',
 		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
 		icon:[5,3,'magixmod'],
 		cost:{'insight':75,'faith':5},
-		req:{'well-digging':true},
+		req:{'tribalism':false},
 	});
 //New tech to allow wizards progressing
 		new G.Tech({
