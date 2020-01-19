@@ -2407,6 +2407,13 @@ func:function(){
 		category:'gods',
 	});
 //Then we add a new technology for wizards:
+    new G.Tech({
+        name:'<font color="yellow">A gift from the Mausoleum</font>',
+        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting adventure than previous one.',
+        icon:[1,14],
+        cost:{},
+        req:{'tribalism':false},
+    });
 function checkMagic(){
   if(G.achiev[0].won){
     G.gainTech('<font color="yellow">A gift from the Mausoleum</font>')
@@ -2429,13 +2436,6 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
     checkMagic()
 }
 })
-	new G.Tech({
-        name:'<font color="yellow">A gift from the Mausoleum</font>',
-        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
-        icon:[1,14],
-        cost:{},
-        req:{'tribalism':false},
-    });
 	new G.Tech({
 		name:'Wizardry',
 		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
