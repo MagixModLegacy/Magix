@@ -2409,7 +2409,7 @@ func:function(){
 //Then we add a new technology for wizards:
 	function checkMagic(){
   	if(G.achiev[0].won){
-   	 G.gainTech('Wizardry)
+   	 G.gainTech('Wizardry')
    	 G.Message({
      	 type:"good",
      	 text: "Since you have built the Mausoleum it the past, you have access to magic!"
