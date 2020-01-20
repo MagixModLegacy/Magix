@@ -2415,7 +2415,7 @@ let gift =     new G.Tech({
         chance:0.000000000001,
     });
 function checkMagic() {
-  if (G.achievByName['mausoleum'].won) {
+  if (G.achiev[0].won) {
     if (!G.has(gift)) {
       G.gainTech(gift)
       G.Message({
