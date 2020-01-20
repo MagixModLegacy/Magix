@@ -2416,7 +2416,7 @@ let gift =     new G.Tech({
     });
 function checkMagic() {
   if (G.achiev[0].won) {
-    if (G.achiev[0].won >= 0) {
+    if (G.achiev[0].won >= 0 && (G.has('<font color="yellow">A gift from the Mausoleum</font>')=false)) {
       G.gainTech(gift)
       G.Message({
         type: 'good',
@@ -3030,16 +3030,6 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		cost:{'insight':890},
 		req:{'Flour-crafting':true},
 	});		
-		new G.Tech({
-		name:'test',
-		desc:'<li>Unlocks [Bakery].</li>',
-		icon:[22,12,'magixmod'], 
-		cost:{'insight':0},
-		effects:[
-			{type:'show res',what:['wisdom']},
-			{type:'hide unit',what:['wanderer']},
-		],
-	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
