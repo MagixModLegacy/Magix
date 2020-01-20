@@ -2412,16 +2412,16 @@ let gift =     new G.Tech({
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
         icon:[1,14],
         cost:{},
-        req:{'tribalism':false},
+        chance:0,
     });
 function checkMagic() {
   if (G.achiev[0].won) {
     if (!G.has(gift)) {
       G.gainTech(gift)
       G.Message({
-        type: 'good',
-        text: '<font family="Comic Sans MS">Since you have built the Mausoleum it the past, you have access to magic!</font>',
-        icon: [4, 12, 6, 1, 'magixmod']
+        type:'good',
+        text:'Since you have built the Mausoleum it the past, you have access to magic!',
+        icon:[4,12,6,1,'magixmod']
       });
     }
 
@@ -2429,9 +2429,9 @@ function checkMagic() {
  else {
 
   G.Message({
-    type: 'good',
-    text: '<font family="Comic Sans MS">Since you haven\'t built the Mausoleum it the past yet, you don\'t have access to magic yet</font>',
-    icon: [3, 12, 6, 1, 'magixmod']
+    type:'bad',
+    text:'Since you haven\'t built the Mausoleum it the past yet, you don\'t have access to magic yet',
+    icon:[3,12,6,1,'magixmod']
   });
 
 }
