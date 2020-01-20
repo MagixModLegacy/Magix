@@ -2415,7 +2415,7 @@ let gift =     new G.Tech({
         chance:0,
     });
 function checkMagic() {
-  if (G.achiev[0].won) {
+  if (G.achievByName['mausoleum'].won) {
     if (!G.has(gift)) {
       G.gainTech(gift)
       G.Message({
@@ -2429,7 +2429,7 @@ function checkMagic() {
  else {
 
   G.Message({
-    type: 'good',
+    type: 'bad',
     text: '<font family="Comic Sans MS">Since you haven\'t built the Mausoleum it the past yet, you don\'t have access to magic yet</font>',
     icon: [3, 12, 6, 1, 'magixmod']
   });
