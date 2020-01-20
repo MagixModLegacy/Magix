@@ -2419,7 +2419,7 @@ function checkMagic(){
       if(!G.has(gift)){
     G.gainTech(gift)
 	G.Message({type:'good',text:'Since you have built the Mausoleum it the past, you have access to magic!',icon:[4,12,6,1,'magixmod']});
-    })
+    }
   }
   } else {
   G.Message({
