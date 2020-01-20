@@ -5231,11 +5231,11 @@ G.writeMSettingButton=function(obj)
 		}
 	}
 
-	if (!G.HSettingsLoaded)
+	if (!G.mSettingsLoaded)
 	{
 		G.tabs.push({
 			name:'Magix:About',
-			id:'Magix:about',
+			id:'Magix',
 			popup:true,
 			addClass:'right',
 			desc:'Options and information about the Magix mod.'
@@ -5248,7 +5248,7 @@ G.writeMSettingButton=function(obj)
 		
 	}
 
-	G.tabPopup['Magix:about']=function()
+	G.tabPopup['Magix']=function()
 	{
 		var str='';
 		str+='<div class="par">'+
