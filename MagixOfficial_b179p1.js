@@ -2416,7 +2416,7 @@ let gift =     new G.Tech({
     });
 function checkMagic() {
   if (G.achiev[0].won) {
-    if (G.achiev[0].won >= 0) {
+    if (G.achiev[0].won >= 0 &&) {
       G.gainTech(gift)
       G.Message({
         type: 'good',
@@ -3029,6 +3029,16 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		icon:[22,12,'magixmod'], 
 		cost:{'insight':890},
 		req:{'Flour-crafting':true},
+	});		
+		new G.Tech({
+		name:'test',
+		desc:'<li>Unlocks [Bakery].</li>',
+		icon:[22,12,'magixmod'], 
+		cost:{'insight':0},
+		effects:[
+			{type:'show res',what:['wisdom']},
+			{type:'hide unit',what:['wanderer']},
+		],
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
