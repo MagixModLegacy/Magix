@@ -2420,8 +2420,8 @@ function checkMagic(){
     G.gainTech(gift)
     G.Message({
       type:"good",
-      text: "Since you have built the Mausoleum it the past, you have access to magic!",
-	icon:[4,12,6,1,'magixmod']
+      text: "Since you have built the Mausoleum it the past, you have access to magic!"
+	
     })
 
 }
@@ -2429,7 +2429,6 @@ function checkMagic(){
   G.Message({
       type:"bad",
       text: "Since you haven't built the Mausoleum it the past yet, you don't have access to magic yet",
-	  icon:[3,12,6,1,'magixmod']
    })
   }
 }
