@@ -2417,7 +2417,7 @@ let gift =     new G.Tech({
 function checkMagic() {
   if (G.achievByName['mausoleum'].won) {
     if (!G.has(gift)) {
-      G.gainTech(gift)
+      G.gainTech('<font color="yellow">A gift from the Mausoleum</font>')
       G.Message({
         type:'good',
         text:'Since you have built the Mausoleum it the past, you have access to magic!',
