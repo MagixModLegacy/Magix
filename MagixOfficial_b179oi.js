@@ -2419,13 +2419,13 @@ function checkMagic(){
       if(!G.has(gift)){
     G.gainTech(gift)
     G.Message({type:'good',text:'<font family="Comic Sans MS">Since you have built the Mausoleum it the past, you have access to magic!</font>',icon:[4,12,6,1,'magixmod']});
-    }
+    })
 
 }
   } else {
   G.Message({
     G.Message({type:'good',text:'<font family="Comic Sans MS">Since you haven\'t built the Mausoleum it the past yet, you don\'t have access to magic yet</font>',icon:[3,12,6,1,'magixmod']});
-   })
+   }
   }
 }
 checkMagic()
