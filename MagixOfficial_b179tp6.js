@@ -3053,10 +3053,13 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		desc:'Hunts for a Thieves and neutralizes them. Has a chance to become wounded while fighting a thief. //<span style "color=fuschia">Can neutralize a thief to make him fear of commiting next crime but has a small chance to make a [corpse] out of a bad guy</span>',
 		icon:[4,13,'magixmod'],
 		cost:{},
-		use:{'worker':1},
+		use:{'worker':1,'metal weapons':1,'armor set':1},
 		req:{'hunting':true},
 		category:'guard',
 		priority:5,
+		effects:[
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/30},
+		],
 	});
 		new G.Unit({
 		name:'Bakery',
