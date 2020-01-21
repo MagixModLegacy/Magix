@@ -2407,7 +2407,8 @@ func:function(){
 		req:{'The God\'s call':true,'7th essence':true},
 		category:'gods',
 	});
-	//G.hasNot is function that has inverted working rules than G.has
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	//G.hasNot is function that has inverted working rules than G.has//
 	G.hasNot=function(what)
     {
         var me=G.getDict(what);
@@ -2417,6 +2418,7 @@ func:function(){
         else if (type=='unit' && G.unitsOwnedNames.includes(what)) return false;
         return true;
     }
+	/////////////////////////////////////////////////////////////////////////////////////////////
 //Then we add a new technology for wizards:
 let gift =     new G.Tech({
         name:'<font color="yellow">A gift from the Mausoleum</font>',
