@@ -1591,6 +1591,13 @@ func:function(){
 		},
 		icon:[21,2,'magixmod'],
 	});
+		new G.Res({
+		name:'thief',
+		desc:'[thief,Thieves] are unhappy adults who commit crimes to show their unhappiness. Even 200% [happiness] won\'t decrease their spawn rate to zero. They can: @steal resource @wound and even <b>kill people</b>',
+		icon:[23,0,'magixmod'],
+		category:'demog',
+		partOf:'population'
+	});
 	//To make recovery not like wounded child alch becomes adult alch
 		let madeThanks4playmesg = false
 		new G.Res({
