@@ -2426,8 +2426,8 @@ let gift =     new G.Tech({
         chance:0.000000000001,
     });
 function checkMagic() {
-  if (G.achiev[0].won) {
-    if (G.achiev[0].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
       G.gainTech(gift)
       G.Message({
         type: 'good',
@@ -2437,7 +2437,7 @@ function checkMagic() {
     }
 
 }
- else if(G.achiev[0].won <= 1){
+ else if(G.achievByName['mausoleum'].won < 1){
 
   G.Message({
     type: 'bad',
