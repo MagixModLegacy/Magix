@@ -3070,7 +3070,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 	});
 		new G.Unit({
 		name:'Bakery',
-		desc:'<font color=" ##f74e00">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
+		desc:'<font color=" ##FF7F50">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
 		icon:[24,10,'magixmod'],
 		cost:{'basic building materials':100},
 		use:{'land':1,'Instructor':1},
@@ -3086,13 +3086,13 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		name:'Windmill',
 		desc:'@An unit which can convert [wheat] into [flour] .',
 		icon:[24,11,'magixmod'],
-		cost:{},
+		cost:{'basic building materials':600},
 		req:{'Flour-crafting':true},
 		use:{'worker':2,'land':1},
 		upkeep:{},
 		category:'production',
 		effects:[
-			{type:'convert',from:{'wheat':1.1},into:{'flour':0.9},every:4,repeat:1},
+			{type:'convert',from:{'wheat':1.2,'water':0.2},into:{'flour':1},every:4,repeat:1},
 		],
 	});
 		new G.Unit({
@@ -3105,7 +3105,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		upkeep:{'water':14},
 		category:'production',
 		effects:[
-			{type:'gather',context:'gather',what:{'wheat':77}},
+			{type:'gather',context:'gather',what:{'wheat':91}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
 		],
 	});
