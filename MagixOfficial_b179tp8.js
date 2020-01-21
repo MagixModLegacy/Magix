@@ -4793,7 +4793,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 //Other stones prospected mine
 		G.getDict('mine').modes['ostones']={
 			name:'Other stones',
-			icon:[4,12,'magixmod'],
+			icon:[3,12,'magixmod'],
 			desc:'Mine for other stones with 3x efficiency than common [stone].',
 			req:{'prospecting II':true},
 			use:{'worker':3,'metal tools':3},
