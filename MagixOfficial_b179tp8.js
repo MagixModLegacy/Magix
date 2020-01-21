@@ -2400,7 +2400,7 @@ let gift =     new G.Tech({
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
         icon:[4,12,'magixmod',1,14],
         cost:{},
-        chance:0.000000000001,
+        req:{'tribalism':false}
     });
 function checkMagic() {
   if (G.achievByName['mausoleum'].won) {
