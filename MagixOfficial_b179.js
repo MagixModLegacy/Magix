@@ -7,6 +7,7 @@ manifest:'ModManifest.js',
 requires:['Default dataset*'],
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
+//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects copying icons from icon sheets used for the mod. All noticed plagiariasm may be punished. Copyright: 2020 
 //Mana and essences.
 		G.resCategories={
 
