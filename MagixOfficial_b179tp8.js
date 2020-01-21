@@ -3077,7 +3077,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		require:{'worker':2,'metal tools':2},
 		upkeep:{'log':0.6},
 		effects:[
-			{type:'convert',from:{'flour':15},into:{'bread':5},every:4,repeat:3},
+			{type:'convert',from:{'flour':18},into:{'bread':6},every:4,repeat:3},
 		],
 		req:{'Baking':true},
 		category:'crafting',
@@ -3092,7 +3092,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		upkeep:{},
 		category:'production',
 		effects:[
-			{type:'convert',from:{'wheat':2.4,'water':0.4},into:{'flour':2},every:3,repeat:2},
+			{type:'convert',from:{'wheat':3.6,'water':0.6},into:{'flour':3},every:3,repeat:2},
 		],
 	});
 		new G.Unit({
@@ -3105,7 +3105,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		upkeep:{'water':14},
 		category:'production',
 		effects:[
-			{type:'gather',context:'gather',what:{'wheat':131}},
+			{type:'gather',context:'gather',what:{'wheat':151}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
 		],
 	});
