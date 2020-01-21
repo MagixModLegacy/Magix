@@ -4266,7 +4266,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		desc:'@subclass of gatherer which instead of Food and water, will collect flowers which will have its specific use. The further you will research the more types of [Flowers] he will be able to collect.',
 		icon:[7,11,'magixmod'],
 		cost:{},
-		req:{},
+		req:{'<font color="yellow">A gift from the Mausoleum</font>':true},
 		use:{'worker':1},
 		category:'production',
 		effects:[
@@ -4296,7 +4296,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		effects:[
 			{type:'convert',from:{'insight':4,'adult':1},into:{'Instructor':1},every:375,mode:'thoughts'},
 		],
-		req:{'speech':true},
+		req:{'speech':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 		category:'discovery',
 		priority:5,
 	});
