@@ -1593,7 +1593,7 @@ func:function(){
 	});
 		new G.Res({
 		name:'thief',
-		desc:'[thief,Thieves] are unhappy adults who commit crimes to show their unhappiness. Even 200% [happiness] won\'t decrease their spawn rate to zero. They can: @steal resource @wound and even <b>kill people</b>',
+		desc:'[thief,Thieves] are unhappy adults who commit crimes to show their unhappiness. Even 200% [happiness] won\'t decrease their spawn rate to zero. They can: @steal resources @wound and even <b>kill [population,people]</b>',
 		icon:[23,0,'magixmod'],
 		category:'demog',
 		partOf:'population'
