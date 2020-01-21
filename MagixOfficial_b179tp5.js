@@ -3049,6 +3049,16 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 	}
 	//Units for real
 		new G.Unit({
+		name:'Thief hunter',
+		desc:'Hunts for a Thieves and neutralizes them. Has a chance to become wounded while fighting a thief. //<span style "color=fuschia">Can neutralize a thief to make him fear of commiting next crime but has a small chance to make a [corpse] out of a bad guy</span>',
+		icon:[4,13,'magixmod'],
+		cost:{},
+		use:{'worker':1},
+		req:{'hunting':true},
+		category:'guard',
+		priority:5,
+	});
+		new G.Unit({
 		name:'Bakery',
 		desc:'<font color=" ##f74e00">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
 		icon:[24,10,'magixmod'],
@@ -4617,7 +4627,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 //Carver will be able to smash granite, diorite, andesite blocks and craft them
 		G.getDict('carver').modes['gdablockscraft']={
 			name:'Cut other stones',
-			icon:[4,12,'magixmod'],
+			icon:[3,12,'magixmod'],
 			desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',
 			use:{'knapped tools':1},
 			req:{'masonry':true},
@@ -4773,7 +4783,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 //Other stones prospected mine
 		G.getDict('mine').modes['ostones']={
 			name:'Other stones',
-			icon:[6,12,'magixmod'],
+			icon:[4,12,'magixmod'],
 			desc:'Mine for other stones with 3x efficiency than common [stone].',
 			req:{'prospecting II':true},
 			use:{'worker':3,'metal tools':3},
@@ -4865,6 +4875,11 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 	G.unitCategories.unshift({
 			id:'alchemy',
 			name:'Alchemy'
+		});
+	//Category for guards & soldiers
+	G.unitCategories.unshift({
+			id:'guard',
+			name:'<span style="color:#ff66cc">Army & Guards</span>'
 		});
 	G.policyCategories.push(
 			{id:'Florists',name:'Florists gathering'}
