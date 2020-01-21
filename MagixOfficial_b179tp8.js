@@ -3077,7 +3077,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		require:{'worker':2,'metal tools':2},
 		upkeep:{'log':0.6},
 		effects:[
-			{type:'convert',from:{'flour':10},into:{'bread':3},every:4,repeat:3},
+			{type:'convert',from:{'flour':15},into:{'bread':5},every:4,repeat:3},
 		],
 		req:{'Baking':true},
 		category:'crafting',
