@@ -749,46 +749,18 @@ func:function(){
 		meta:true,
 	});
 		new G.Res({
-		name:'Granite',
-		desc:'One of few types of stone. Is harder to find than regular [stone].',
-		icon:[5,12,'magixmod'],
-		category:'build',
-		partOf:'archaic building materials',
-	});
-		new G.Res({
-		name:'Diorite',
-		desc:'One of few types of stone. Is harder to find than regular [stone].',
-		icon:[7,12,'magixmod'],
-		category:'build',
-		partOf:'archaic building materials',
-	});
-		new G.Res({
-		name:'Andesite',
-		desc:'One of few types of stone. Is harder to find than regular [stone].',
-		icon:[6,12,'magixmod'],
-		category:'build',
-		partOf:'archaic building materials',
-	});
-		new G.Res({
-		name:'cut granite',
-		desc:'[Granite] carved into blocks for easier hauling and building.',
-		icon:[4,12,'magixmod'],
-		partOf:'basic building materials',
-		category:'build',
-	});
-		new G.Res({
-		name:'cut diorite',
-		desc:'[Diorite] carved into blocks for easier hauling and building.',
+		name:'Various stones',
+		desc:'Different types of stones that can be used like regular [stone] .',
 		icon:[3,12,'magixmod'],
-		partOf:'basic building materials',
 		category:'build',
+		partOf:'archaic building materials',
 	});
 		new G.Res({
-		name:'cut andesite',
-		desc:'[Andesite] carved into blocks for easier hauling and building.',
+		name:'Various cut stones',
+		desc:'Different types of cut stones that can be used like regular [cut stone] .',
 		icon:[2,12,'magixmod'],
-		partOf:'basic building materials',
 		category:'build',
+		partOf:'basic building materials',
 	});
 		new G.Res({
 		name:'nickel ore',
@@ -1335,12 +1307,8 @@ func:function(){
 		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
 		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
 		G.getDict('freshwater').res['gather']['Sugar cane']=0.000000004;
-		G.getDict('rocky substrate').res['mine']['Granite']=0.075;
-		G.getDict('rocky substrate').res['mine']['Diorite']=0.075;
-		G.getDict('rocky substrate').res['mine']['Andesite']=0.075;
-		G.getDict('rocky substrate').res['quarry']['cut granite']=0.07;
-		G.getDict('rocky substrate').res['quarry']['cut diorite']=0.07;
-		G.getDict('rocky substrate').res['quarry']['cut andesite']=0.07;
+		G.getDict('rocky substrate').res['mine']['Various stones']=0.075;
+		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
 		G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
 		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;//test
 	//To make game not crash by precious pots i had to add it
@@ -2423,7 +2391,7 @@ func:function(){
 let gift =     new G.Tech({
         name:'<font color="yellow">A gift from the Mausoleum</font>',
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
-        icon:[1,14],
+        icon:[4,12,'magixmod',1,14],
         cost:{},
         chance:0.000000000001,
     });
@@ -2807,14 +2775,14 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 	});
 		new G.Tech({
 		name:'prospecting II',
-		desc:'@[mine]s can now dig in search of [nickel ore,Nickel] or focus to mine [Granite],[Diorite],[Andesite] with 3x efficiency instead of any prospected mineral.',
+		desc:'@[mine]s can now dig in search of [nickel ore,Nickel] or focus to mine [Various stones] with 3x efficiency instead of any prospected mineral.',
 		icon:[11,12,'magixmod'],
 		cost:{'insight':270},
 		req:{'prospecting':true,'mining':true},
 	});
 		new G.Tech({
 		name:'quarrying II',
-		desc:'@[quarry] can now dig for [cut granite],[cut diorite],[cut andesite] by new special mode. @<b>"Advanced quarry stone" mode and "Quarry other stones mode(non advanced)" has 1.7% chance to gain 6 to 13 [platinum ore]s .',
+		desc:'@[quarry] can now dig for [Various cut stones] by new special mode. @<b>"Advanced quarry stone" mode and "Quarry other stones mode(non advanced)" has 1.7% chance to gain 6 to 13 [platinum ore]s .',
 		icon:[10,12,'magixmod'],
 		cost:{'insight':355},
 		req:{'prospecting II':true,'quarrying':true},
@@ -4650,23 +4618,19 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		G.getDict('carver').modes['gdablockscraft']={
 			name:'Cut other stones',
 			icon:[4,12,'magixmod'],
-			desc:'Your carver will craft [cut granite] , [cut diorite] , [cut andesite] out of 9 [Granite] , [Diorite] , [Andesite] each.',
+			desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',
 			use:{'knapped tools':1},
 			req:{'masonry':true},
 		};	
-		G.getDict('carver').effects.push({type:'convert',from:{'Granite':9},into:{'cut granite':1},every:5,mode:'gdablockscraft'});
-		G.getDict('carver').effects.push({type:'convert',from:{'Diorite':9},into:{'cut diorite':1},every:5,mode:'gdablockscraft'});
-		G.getDict('carver').effects.push({type:'convert',from:{'Andesite':9},into:{'cut andesite':1},every:5,mode:'gdablockscraft'});
+		G.getDict('carver').effects.push({type:'convert',from:{'Various stones':9},into:{'Various cut stones':1},every:5,mode:'gdablockscraft'});
 		G.getDict('carver').modes['gdablockssmash']={
 			name:'Smash other stone blocks',
 			icon:[7,12,'magixmod'],
-			desc:'Your carver will smash [cut granite] , [cut diorite] , [cut andesite] into 9 [Granite] , [Diorite] , [Andesite].',
+			desc:'Your carver will smash a [Various cut stones,Various cut stone] into 9 [Various stones].',
 			use:{'knapped tools':1},
 			req:{'masonry':true},
 		};	
 		G.getDict('carver').effects.push({type:'convert',from:{'cut granite':1},into:{'Granite':9},every:5,mode:'gdablockssmash'});
-		G.getDict('carver').effects.push({type:'convert',from:{'cut diorite':1},into:{'Diorite':9},every:5,mode:'gdablockssmash'});
-		G.getDict('carver').effects.push({type:'convert',from:{'cut andesite':1},into:{'Andesite':9},every:5,mode:'gdablockssmash'});
 //While woodcutter cuts tree to grant logs
 		G.getDict('woodcutter').effects.push({type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1});
 //Weaving colored clothing
@@ -4719,9 +4683,8 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 			req:{'quarrying II':true},
 			use:{'worker':3,'metal tools':3},
 		};
-		G.getDict('quarry').effects.push({type:'gather',context:'quarry',what:{'cut granite':5},mode:'quarryotherstones'});
-		G.getDict('quarry').effects.push({type:'gather',context:'quarry',what:{'cut diorite':5},max:6,mode:'quarryotherstones'});
-		G.getDict('quarry').effects.push({type:'gather',context:'quarry',what:{'cut andesite':5},max:6,mode:'quarryotherstones'});
+		G.getDict('quarry').effects.push({type:'gather',context:'quarry',what:{'Various cut stones':5},mode:'quarryotherstones'});
+
 //Fisher can fish with new fishing nets
 			G.getDict('fisher').modes['Net fishing']={
 			name:'Net fishing',
@@ -4815,9 +4778,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 			req:{'prospecting II':true},
 			use:{'worker':3,'metal tools':3},
 		};	
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Granite':30},max:25,mode:'ostones'});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Diorite':30},max:25,mode:'ostones'});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Andesite':30},max:25,mode:'ostones'});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Various stones':30},max:25,mode:'ostones'});
 //2 modes for architect
 		G.getDict('architect').modes['Brickhouser']={
 			name:'Brickhouse building',
