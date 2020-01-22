@@ -4357,7 +4357,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		use:{'worker':8,'Land of the Plain Island':35},
 		category:'plainisleunit',
 		effects:[
-			{type:'gather',context:'gather',what:{'Berries':5.3}},
+			{type:'gather',context:'gather',what:{'Berries':15.3}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:8,req:{'God\'s trait #2 Berry rush':true}}
 		],
