@@ -1596,7 +1596,13 @@ func:function(){
 		desc:'[thief,Thieves] are unhappy adults who commit crimes to show their unhappiness. Even 200% [happiness] won\'t decrease their spawn rate to zero. They can: @steal resources @wound and even <b>kill [population,people]</b>',
 		icon:[23,0,'magixmod'],
 		category:'demog',
-		partOf:'population'
+		partOf:'population',
+		tick:function(me,tick)
+		{
+			//if (G.year>89) //Spawning rate
+			//var n=randomFloor(G.getRes('adult').amount*0.0002*-happiness);G.gain('thief',n,'unhappiness')
+				
+		}
 	});
 	//To make recovery not like wounded child alch becomes adult alch
 		let madeThanks4playmesg = false
