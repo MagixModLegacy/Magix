@@ -3038,8 +3038,8 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		req:{'Flour-crafting':true},
 	});
 let thieffight = new G.Tech({
-    name:{'Battling thieves'},
-    desc:{'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .'},
+    name:'Battling thieves',
+    desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
     icon:[22, 16, "magixmod"],
     cost:{'insight':90},
     req:{'tribalism':false,'hunting':true}
