@@ -1612,9 +1612,9 @@ func:function(){
   		  G.gain('thief',n,'unhappiness');
 			}
 			var toCalm=me.amount*0.007;
-			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');G.gain('adult'(toCalm),'calmdown');
+			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');G.gain('adult',n,'calmdown');
 			var toNeut=me.amount*0.001;
-			var spent=G.lose(me.name,randomFloor(toNeut),'neutralized by civillian');
+			var spent=G.lose(me.name,randomFloor(toNeut),'neutralized by civillian');//Civillian banishes a person from your civilization then
 		}
 	});
 	//To make recovery not like wounded child alch becomes adult alch
