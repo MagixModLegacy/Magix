@@ -1335,8 +1335,8 @@ func:function(){
 		{
 			if(G.year>89){
 			var n=randomFloor(G.getRes('thief').amount*1.5)
-			G.lose('archaic building materials',randomFloor(toSpoil),'thievery');
-			G.lose('basic building materials',randomFloor(toSpoil),'thievery');
+			var toRob=(G.getRes('archaic building materials').amount*0.0001);G.lose('archaic building materials',randomFloor(toRob),'thievery');
+			var toRob=(G.getRes('basic building materials').amount*0.0001);G.lose('basic building materials',randomFloor(toRob),'thievery');
 			}
 		},
 		hidden:true,
