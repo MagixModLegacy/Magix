@@ -1600,7 +1600,7 @@ func:function(){
 		tick:function(me,tick)
 		{
 		if (G.year>6){ //Spawning rate
- 		   var n=(G.getRes('adult').amount*(G.getRes('happiness')/(G.getRes('happiness')*0.00001));
+ 		   var n = G.getRes('adult').amount * 0.00001
   		  G.gain('thief',n,'unhappiness');
 			}
 		}
