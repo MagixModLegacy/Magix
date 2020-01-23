@@ -1613,8 +1613,8 @@ func:function(){
 			}
 			var toCalm=me.amount*0.007;
 			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');
-			var toCalm=me.amount*0.001;
-			var spent=G.lose(me.name,randomFloor(toCalm),'neutralized by civillian');
+			var toNeut=me.amount*0.001;
+			var spent=G.lose(me.name,randomFloor(toNeut),'neutralized by civillian');
 		}
 	});
 	//To make recovery not like wounded child alch becomes adult alch
