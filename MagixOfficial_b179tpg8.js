@@ -1611,6 +1611,10 @@ func:function(){
  		   var n = G.getRes('adult').amount * 0.00001
   		  G.gain('thief',n,'unhappiness');
 			}
+			var toCalm=me.amount*0.007;
+			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');
+			var toCalm=me.amount*0.001;
+			var spent=G.lose(me.name,randomFloor(toCalm),'neutralized by civillian');
 		}
 	});
 	//To make recovery not like wounded child alch becomes adult alch
