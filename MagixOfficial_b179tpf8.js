@@ -1331,6 +1331,14 @@ func:function(){
 		desc:'debug for spell of capacity.',
 		partOf:'material storage',
 		icon:[0,0,'magixmod'],
+		tick:function(me,tick)
+		{
+			if(G.year>89){
+			var n=randomFloor(G.getRes('thief').amount*1.5)
+			G.lose('archaic building materials',randomFloor(toSpoil),'thievery');
+			G.lose('basic building materials',randomFloor(toSpoil),'thievery');
+			}
+		},
 		hidden:true,
 	});
 //New types of people
@@ -1599,7 +1607,7 @@ func:function(){
 		partOf:'population',
 		tick:function(me,tick)
 		{
-		if (G.year>6){ //Spawning rate
+		if (G.year>89){ //Spawning rate
  		   var n = G.getRes('adult').amount * 0.00001
   		  G.gain('thief',n,'unhappiness');
 			}
