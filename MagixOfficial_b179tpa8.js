@@ -1599,8 +1599,8 @@ func:function(){
 		partOf:'population',
 		tick:function(me,tick)
 		{
-			//if (G.year>89) //Spawning rate
-			//var n=randomFloor(G.getRes('adult').amount*0.0002*-happiness);G.gain('thief',n,'unhappiness')
+			if (G.year>6) //Spawning rate
+			var n=randomFloor(G.getRes('adult').amount*happiness/happiness*0.00001);G.gain('thief',n,'unhappiness');
 				
 		}
 	});
