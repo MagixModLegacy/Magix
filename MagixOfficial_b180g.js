@@ -3045,7 +3045,7 @@ new G.Tech({
     req:{'tribalism':false,'hunting':true}
 })
 function thieffightS() {
-    if ((G.year >= 6) && G.hasNot('Battling thieves')) {
+    if ((G.year >= 6) && G.has('Battling thieves')) {
         G.gainTech('Battling thieves')
     }
 }
