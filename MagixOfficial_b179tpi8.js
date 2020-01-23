@@ -3036,7 +3036,20 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		icon:[22,12,'magixmod'], 
 		cost:{'insight':890},
 		req:{'Flour-crafting':true},
-	});		
+	});
+let thieffight = new G.Tech({
+    name: "Battling thieves",
+    desc:
+        "Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .",
+    icon: [22, 16, "magixmod"],
+    cost: {'insight':100},
+    req: {'tribalism':false,'hunting':true}
+})
+function thieffight() {
+    if ((G.year > 89) & G.hasNot("Battling thieves")) {
+        G.gainTech(thieffight)
+    }
+}
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
@@ -3080,12 +3093,12 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		icon:[4,13,'magixmod'],
 		cost:{},
 		use:{'worker':1,'metal weapons':1,'armor set':1},
-		req:{'hunting':true},
+		req:{'Battling thieves':true},
 		category:'guard',
 		priority:5,
 		effects:[
-			{type:'convert',from:{'thief':1},into:{'adult':1},every:4,chance:1/4,context:'neutralization'},
-			{type:'convert',from:{'thief':1},into:{'corpse':1},every:4,chance:1/48,context:'killed by Thief Hunter'},
+			{type:'convert',from:{'thief':1},into:{'adult':1},every:4,chance:1/4},
+			{type:'convert',from:{'thief':1},into:{'corpse':1},every:4,chance:1/48},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/30},
 		],
 	});
