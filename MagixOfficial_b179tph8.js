@@ -3084,6 +3084,8 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		category:'guard',
 		priority:5,
 		effects:[
+			{type:'convert',from:{'thief':1},into:{'adult':1},every:4,chance:1/4,context:'neutralization'},
+			{type:'convert',from:{'thief':1},into:{'corpse':1},every:4,chance:1/48,context:'killed by Thief Hunter'},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/30},
 		],
 	});
