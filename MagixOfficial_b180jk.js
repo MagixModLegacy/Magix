@@ -1612,7 +1612,7 @@ func:function(){
   		  G.gain('thief',n,'unhappiness');
 			}
 			var toCalm=me.amount*0.007;
-			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');
+			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');G.gain('adult'(toCalm),'calmdown');
 			var toNeut=me.amount*0.001;
 			var spent=G.lose(me.name,randomFloor(toNeut),'neutralized by civillian');
 		}
