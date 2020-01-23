@@ -1599,9 +1599,10 @@ func:function(){
 		partOf:'population',
 		tick:function(me,tick)
 		{
-			if (G.year>6) //Spawning rate
-			var n=(G.getRes('adult').amount*(G.getRes('happiness')/(G.getRes('happiness')*0.00001));G.gain('thief',n,'unhappiness');
-				
+		if (G.year>6){ //Spawning rate
+ 		   var n=(G.getRes('adult').amount*(G.getRes('happiness')/(G.getRes('happiness')*0.00001));
+  		  G.gain('thief',n,'unhappiness');
+			}
 		}
 	});
 	//To make recovery not like wounded child alch becomes adult alch
