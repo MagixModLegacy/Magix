@@ -3045,7 +3045,7 @@ let thieffight = new G.Tech({
     req:{'hunting':true}
 });
 function thieffightS() {
-    if ((G.year >= 8) && G.has('hunting')) {
+    if (G.year >= 8 && G.has('hunting')) {
         G.gainTech(thieffight)
     }
 };
