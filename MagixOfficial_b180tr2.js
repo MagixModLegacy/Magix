@@ -5533,6 +5533,6 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
   apply: function(target, thisArg, args) {
     target(...args)
     checkDemoc()
-  }
+  };
 
 }});
