@@ -5526,7 +5526,6 @@ function checkDemoc() {
     if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="yellow">Authority of the ancestor</font>')) {
       G.gainTech(gifD)
 }
-}
 checkDemoc()
 const oldNewGame = G.NewGameConfirm.bind({})
 G.NewGameConfirm = new Proxy(oldNewGame, {
