@@ -4515,7 +4515,7 @@ function thieffightS() {
 		icon:[6,13,'magixmod'],
 		wideIcon:[5,13,'magixmod'],
 		cost:{'basic building materials':1000,'precious building materials':500},
-		costPerStep:{'basic building materials':2500,'precious building materials':500,'infulence':45,'authority':0.25},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'influence':45,'authority':0.25},
 		steps:200,
 		messageOnStart:'You began the construction of Pagoda of Democracy. Over the blossoms it looks like the most beautiful place you have ever seen.',
 		finalStepCost:{'authority':25,'people':250,'precious building materials':4500,'gem block':50},
