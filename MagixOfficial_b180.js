@@ -3125,7 +3125,7 @@ function thieffightS() {
 		upkeep:{},
 		category:'production',
 		effects:[
-			{type:'convert',from:{'wheat':3.6,'water':0.6},into:{'flour':3},every:3,repeat:2},
+			{type:'convert',from:{'wheat':6,'water':1},into:{'flour':5},every:3,repeat:2},
 		],
 	});
 		new G.Unit({
@@ -3138,7 +3138,7 @@ function thieffightS() {
 		upkeep:{'water':14},
 		category:'production',
 		effects:[
-			{type:'gather',context:'gather',what:{'wheat':151}},
+			{type:'gather',context:'gather',what:{'wheat':230}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
 		],
 	});
