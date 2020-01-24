@@ -4915,7 +4915,7 @@ function thieffightS() {
 		name:'Democration',
 		wideIcon:[5,13,'magixmod'],
 		icon:[6,13,'magixmod'],
-		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 Influence & Authority at start of each next run!</b>',
+		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
 		fromWonder:'Democration',
 		effects:[
 			{type:'addFastTicksOnStart',amount:150},
