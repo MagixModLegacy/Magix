@@ -4518,7 +4518,7 @@ function thieffightS() {
 		costPerStep:{'basic building materials':2500,'precious building materials':500,'influence':45,'authority':0.25},
 		steps:200,
 		messageOnStart:'You began the construction of Pagoda of Democracy. Over the blossoms it looks like the most beautiful place you have ever seen.',
-		finalStepCost:{'authority':25,'people':250,'precious building materials':4500,'gem block':50},
+		finalStepCost:{'authority':25,'population':250,'precious building materials':4500,'gem block':50},
 		finalStepDesc:'To complete the wonder and make justice and democration last even longer you need to do the final step.',
 		use:{'land':10},
 		req:{'monument-building':true},
