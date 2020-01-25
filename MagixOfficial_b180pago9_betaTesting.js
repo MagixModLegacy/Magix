@@ -5594,7 +5594,7 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
 	
 let gifI =  new G.Tech({
         name:'<font color="aqua">Genius feeling</font>',
-        desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [imsight]',
+        desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
         icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
         cost:{},
 	effects:[
