@@ -94,6 +94,12 @@ func:function(){
 		desc:'Spikes out of [cactus]. May wound... a lot!',
 		icon:[12,0,'magixmod'],
 		category:'misc',
+		tick:function(me,tick)
+		{    
+			if (G.year >= 6 && G.hasNot('Battling thieves')) {
+      			G.gainTech('Battling thieves')
+			}
+		},
 		partOf:'misc materials',
 	});
 		new G.Res({
@@ -3041,8 +3047,8 @@ let thieffight = new G.Tech({
     name:'Battling thieves',
     desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
     icon:[22, 16, "magixmod"],
-    cost:{'insight':89,'thief':1},
-    req:{'hunting':true}
+    cost:{'insight':90},
+    req:{'hunting':true,'tribalism':false}
 });
 function thieffightS() {
     if (G.year >= 8 && G.has('hunting')) {
