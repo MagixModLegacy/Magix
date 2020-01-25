@@ -28,7 +28,7 @@
 		category:'political',
 	});
 	
-let gifD =     new G.Tech({
+let gifD =  new G.Tech({
         name:'<font color="fuschia">Authority of the ancestor</font>',
         desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
         icon:[4,12,'magixmod',6,13,'magixmod'],
@@ -41,8 +41,11 @@ let gifD =     new G.Tech({
     });
 function checkDemoc() {
   if (G.achievByName['Democration'].won) {
-    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="yellow">Authority of the ancestor</font>')) {
+    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
       G.gainTech(gifD)
+    }
+
+}
 }
 }
 checkDemoc()
@@ -52,7 +55,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
     target(...args)
     checkDemoc()
   }
-});
+})
   
   
   THE DEMOCRATION VICTORY DO NOT PROVIDE THE BONUSES SO IT WILL NEED TO BE CODED.
