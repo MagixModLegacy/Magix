@@ -5617,6 +5617,5 @@ G.NewGameConfirm = new Proxy(oldNewGame2, {
     checkDemoc()
   }
 })
-}});
 
 }});
