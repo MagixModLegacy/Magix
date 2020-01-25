@@ -3041,13 +3041,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
    		name:'Battling thieves',
    		desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
    		icon:[22, 16, "magixmod"],
-   		cost:{'insight':90},
-		effects:[
-			{type:'function',
-			 	if(G.year >= 6 && G.hasNot('Battling thieves'))
-      				G.gain('Battling thieves')
-			};
-		],
+   		cost:{'insight':89,'thief':1},
     		req:{'hunting':true,'tribalism':false}
 });
 
