@@ -5528,7 +5528,7 @@ G.writeMSettingButton=function(obj)
 		cost:{'basic building materials':1000,'precious building materials':500},
 		costPerStep:{'basic building materials':2500,'precious building materials':500,'influence':45,'authority':0.25},
 		steps:200,
-		messageOnStart:'You began the construction of Pagoda of Democracy. Over the blossoms it looks like the most beautiful place you have ever seen.',
+		messageOnStart:'You began the construction of Pagoda of Democracy. Over the blossoms it looks like the most beautiful place you have ever seen. Some people say that Pagoda is taller than Mausoleum.',
 		finalStepCost:{'authority':25,'population':250,'precious building materials':4500,'gem block':50},
 		finalStepDesc:'To complete the wonder and make justice and democration last even longer you need to do the final step.',
 		use:{'land':10},
@@ -5562,4 +5562,61 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
     checkDemoc()
   }
 })
+	//democrat
+		new G.Achiev({
+		tier:0,
+		name:'Insight-ly',
+		wideIcon:[choose([0,3,6]),17,'magixmod'],
+		icon:[choose([1,4,7]),17,'magixmod'],
+		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+  		new G.Unit({
+		name:'Complex of Dreamers',
+		desc:'@leads to the <b>Insight-ly victory</b><>The nice complex built at basis of a [Wizard complex] . In the name of [dreamer]s. It is their home. This wonder may provide housing and... produce [insight] by itself! It is [insight] and [wisdom] specified so it needs it while building. <>The core collects all ideas and dreams of all [dreamer]s and [Thoughts sharer]s.',
+		wonder:'Insight-ly',
+		icon:[choose([1,4,7]),17,'magixmod'],
+		wideIcon:[choose([0,3,6]),17,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':500,'wisdom':10},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'insight':450,'wisdom':1},
+		steps:200,
+		messageOnStart:'You began the construction of Complex of Dreamers. Over the blossoms it looks like the most beautiful place you have ever seen.',
+		finalStepCost:{'wisdom':125,'population':250,'precious building materials':4500,'gem block':50,'insight':1000},
+		finalStepDesc:'To complete the wonder and make your whole civilization much smarter you will need to perform a final step.',
+		use:{'land':10},
+		req:{'monument-building':true},
+		category:'discovery',
+	});
+	
+let gifI =  new G.Tech({
+        name:'<font color="aqua">Genius feeling</font>',
+        desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [imsight]',
+        icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'insight':6}},
+		],
+        req:{'tribalism':false}
+    });
+function checkDream() {
+  if (G.achievByName['Insight-ly'].won) {
+    if (G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="aqua">Genius feeling</font>')) {
+      G.gainTech(gifI)
+    }
+}
+}
+checkDream()
+const oldNewGame2 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame2, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkDemoc()
+  }
+})
+}});
+
 }});
