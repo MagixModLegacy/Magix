@@ -13,7 +13,7 @@
 	});
   		new G.Unit({
 		name:'Pagoda of Democracy',
-		desc:'@leads to the <b>Democration victory</b><>The nice pagoda built over the forest of blossoms. In the name of justice and democration. It is more political thing so that\'s why you see it in political category. This wonder is like fertlizer of justice roots. It is [influence] and [authority] specified so it needs it while building.',
+		desc:'@leads to the <b>Democration victory</b><>The nice pagoda built over the forest of cherry blossoms. In the name of justice and democration. It is more political thing so that\'s why you see it in political category. This wonder is like fertlizer of justice roots. It is [influence] and [authority] specified so it needs it while building.',
 		wonder:'Democration',
 		icon:[6,13,'magixmod'],
 		wideIcon:[5,13,'magixmod'],
