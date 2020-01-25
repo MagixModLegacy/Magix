@@ -3043,18 +3043,16 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		cost:{'insight':890},
 		req:{'Flour-crafting':true},
 	});
-let thieffight = new G.Tech({
-    name:'Battling thieves',
-    desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
-    icon:[22, 16, "magixmod"],
-    cost:{'insight':90},
-    req:{'hunting':true,'tribalism':false}
+		new G.Tech({
+   		name:'Battling thieves',
+   		desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
+   		icon:[22, 16, "magixmod"],
+   		cost:{'insight':90},
+		effects:[
+		],
+    		req:{'hunting':true,'tribalism':false}
 });
-function thieffightS() {
-    if (G.year >= 8 && G.has('hunting')) {
-        G.gainTech(thieffight)
-    }
-};
+
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
