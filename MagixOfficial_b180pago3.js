@@ -5555,8 +5555,8 @@ function checkDemoc() {
 }
 }
 checkDemoc()
-const oldNewGame = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame, {
+const oldNewGame1 = G.NewGameConfirm1.bind({})
+G.NewGameConfirm1 = new Proxy(oldNewGame1, {
   apply: function(target, thisArg, args) {
     target(...args)
     checkDemoc()
