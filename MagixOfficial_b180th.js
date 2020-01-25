@@ -3043,10 +3043,10 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
    		icon:[22, 16, "magixmod"],
    		cost:{'insight':90},
 		effects:[
-			{type:'function',{
-			 	if (G.year >= 6 && G.hasNot('Battling thieves')) {
+			{type:'function',
+			 	if (G.year >= 6 && G.hasNot('Battling thieves'))
       				G.gain('Battling thieves')
-			}
+			};
 		],
     		req:{'hunting':true,'tribalism':false}
 });
