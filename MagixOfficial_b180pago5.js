@@ -5549,10 +5549,9 @@ let gifD =  new G.Tech({
     });
 function checkDemoc() {
   if (G.achievByName['Democration'].won) {
-    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
+    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="fuschia">Authority of the ancestor</font>')) {
       G.gainTech(gifD)
     }
-}
 }
 checkDemoc()
 const oldNewGame1 = G.NewGameConfirm.bind({})
