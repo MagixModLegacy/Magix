@@ -97,7 +97,7 @@ func:function(){
 		tick:function(me,tick)
 		{    
 			if (G.year >= 6 && G.hasNot('Battling thieves')) {
-      			G.gainTech('Battling thieves')
+      			G.gainTechByName('Battling thieves')
 			}
 		},
 		partOf:'misc materials',
