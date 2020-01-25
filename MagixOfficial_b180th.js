@@ -3044,7 +3044,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
    		cost:{'insight':90},
 		effects:[
 			{type:'function',
-			 	if (G.year >= 6 && G.hasNot('Battling thieves'))
+			 	if(G.year >= 6 && G.hasNot('Battling thieves'))
       				G.gain('Battling thieves')
 			};
 		],
