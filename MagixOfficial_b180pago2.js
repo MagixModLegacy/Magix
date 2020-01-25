@@ -5552,8 +5552,6 @@ function checkDemoc() {
     if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
       G.gainTech(gifD)
     }
-
-}
 }
 }
 checkDemoc()
