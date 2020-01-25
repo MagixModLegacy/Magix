@@ -1,4 +1,3 @@
-
 G.AddData({
 name:'Magix',
 author:'pelletsstarPL',
