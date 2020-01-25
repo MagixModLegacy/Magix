@@ -5553,6 +5553,7 @@ function checkDemoc() {
       G.gainTech(gifD)
     }
 }
+}
 checkDemoc()
 const oldNewGame1 = G.NewGameConfirm.bind({})
 G.NewGameConfirm = new Proxy(oldNewGame1, {
