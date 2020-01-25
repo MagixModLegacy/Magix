@@ -94,12 +94,6 @@ func:function(){
 		desc:'Spikes out of [cactus]. May wound... a lot!',
 		icon:[12,0,'magixmod'],
 		category:'misc',
-		tick:function(me,tick)
-		{    
-			if (G.year >= 6 && G.hasNot('Battling thieves')) {
-      			G.gain('Battling thieves')
-			}
-		},
 		partOf:'misc materials',
 	});
 		new G.Res({
@@ -3049,6 +3043,10 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
    		icon:[22, 16, "magixmod"],
    		cost:{'insight':90},
 		effects:[
+			{type:'function',{
+			 	if (G.year >= 6 && G.hasNot('Battling thieves')) {
+      				G.gain('Battling thieves')
+			}
 		],
     		req:{'hunting':true,'tribalism':false}
 });
