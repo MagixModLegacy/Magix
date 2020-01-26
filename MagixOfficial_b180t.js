@@ -3043,7 +3043,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
    		icon:[22, 16, "magixmod"],
    		cost:{'insight':89,'thief':1},
     		req:{'hunting':true,'tribalism':false}
-});
+	});
 
 /////////////////////////////////////////////////////////////////////
 	//UNITS
@@ -5506,3 +5506,4 @@ G.writeMSettingButton=function(obj)
 		category:'seasonal',
 		hidden:true,
 	});
+}});
