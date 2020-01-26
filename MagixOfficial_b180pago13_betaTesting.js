@@ -3045,8 +3045,8 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
     		req:{'hunting':true,'tribalism':false}
 	});
 	function checkY90() {
-  if (G.year>3) {
-    if (G.year>3 && G.hasNot('Battling thieves')) {
+  if (G.has('tribalism')) {
+    if (G.year>10 && G.hasNot('Battling thieves')) {
       G.gainTech(giftThief)
     }
 }
