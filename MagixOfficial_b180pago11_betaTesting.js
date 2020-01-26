@@ -5633,7 +5633,7 @@ G.NewGameConfirm = new Proxy(oldNewGame2, {
 	});
   		new G.Unit({
 		name:'Fortress of cultural legacy',
-		desc:'@leads to the <b>Sacrificed for culture victory</b><>The fortresss built out  of [precious bulding materials]. In the name of [storyteller,people of culture]. It is their home a place where they may give their creations for future generations. This wonder may... produce [culture] by itself and increase [culture] gains by 20% if performed a final step! It is [culture] and [inspiration] specified so it needs it while building. <>Inside of the Fortress people store most important and most beautiful arts , statues, sculptures. That wonder makes the culture immune to perditions.',
+		desc:'@leads to the <b>Sacrificed for culture victory</b><>The fortresss built out  of [precious building materials]. In the name of [storyteller,people of culture]. It is their home a place where they may give their creations for future generations. This wonder may... produce [culture] by itself and increase [culture] gains by 20% if performed a final step! It is [culture] and [inspiration] specified so it needs it while building. <>Inside of the Fortress people store most important and most beautiful arts , statues, sculptures. That wonder makes the culture immune to perditions.',
 		wonder:'Sacrificed for culture',
 		icon:[6,12,'magixmod'],
 		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
