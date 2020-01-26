@@ -5614,7 +5614,7 @@ const oldNewGame2 = G.NewGameConfirm.bind({})
 G.NewGameConfirm = new Proxy(oldNewGame2, {
   apply: function(target, thisArg, args) {
     target(...args)
-    checkDemoc()
+    checkDream()
   }
 })
 
