@@ -3041,11 +3041,11 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
    		name:'Battling thieves',
    		desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
    		icon:[22, 16, "magixmod"],
-   		cost:{'insight':89,'thief':1},
+   		cost:{'insight':90},
     		req:{'hunting':true,'tribalism':false}
 	});
 	function checkY90() {
-  if (G.has('tribalism')) {
+  if (G.has('speech')) {
     if (G.year>10 && G.hasNot('Battling thieves')) {
       G.gainTech(giftThief)
     }
