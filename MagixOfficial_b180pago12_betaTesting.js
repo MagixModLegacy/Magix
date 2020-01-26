@@ -3037,13 +3037,28 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		cost:{'insight':890},
 		req:{'Flour-crafting':true},
 	});
-		new G.Tech({
+		let giftThief = new G.Tech({
    		name:'Battling thieves',
    		desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
    		icon:[22, 16, "magixmod"],
    		cost:{'insight':89,'thief':1},
     		req:{'hunting':true,'tribalism':false}
-});
+	});
+	function checkY90() {
+  if (G.year>3) {
+    if (G.year>3 && G.hasNot('Battling thieves')) {
+      G.gainTech(giftThief)
+    }
+}
+}
+checkY90()
+const oldNewGameT = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameT, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkY90()
+  }
+})
 
 /////////////////////////////////////////////////////////////////////
 	//UNITS
