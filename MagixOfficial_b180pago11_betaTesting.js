@@ -5577,7 +5577,7 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
 	});
   		new G.Unit({
 		name:'Complex of Dreamers',
-		desc:'@leads to the <b>Insight-ly victory</b><>The nice complex built at basis of a [wizard complex] . In the name of [dreamer]s. It is their home. This wonder may provide housing and... produce [insight] by itself if final step finished! It is [insight] and [wisdom] specified so it needs it while building. <>The core collects all ideas and dreams of all [dreamer]s and [Thoughts sharer]s.',
+		desc:'@leads to the <b>Insight-ly victory</b><>The nice complex built at basis of a [Wizard Complex] . In the name of [dreamer]s. It is their home. This wonder may provide housing and... produce [insight] by itself if final step finished! It is [insight] and [wisdom] specified so it needs it while building. <>The core collects all ideas and dreams of all [dreamer]s and [Thoughts sharer]s.',
 		wonder:'Insight-ly',
 		icon:[choose([1,4,7]),17,'magixmod'],
 		wideIcon:[choose([0,3,6]),17,'magixmod'],
@@ -5588,6 +5588,7 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
 		finalStepCost:{'wisdom':125,'population':250,'precious building materials':4500,'gem block':50,'insight':1000},
 		finalStepDesc:'To complete the wonder and make your whole civilization much smarter you will need to perform a final step.',
 		use:{'land':30},
+		upkeep:{'Mana':15},
 		req:{'monument-building':true},
 		category:'discovery',
 	});
@@ -5632,12 +5633,12 @@ G.NewGameConfirm = new Proxy(oldNewGame2, {
 	});
   		new G.Unit({
 		name:'Fortress of cultural legacy',
-		desc:'@leads to the <b>Sacrificed for culture victory</b><>The nice complex built at basis of a [Wizard complex] . In the name of [dreamer]s. It is their home. This wonder may... produce [culture] by itself and increase [culture] gains by 20% if performed a final step! It is [culture] and [inspiration] specified so it needs it while building. <>Inside of the Fortress people store most important and most beautiful arts , statues, sculptures. That wonder makes the culture immune to perditions.',
+		desc:'@leads to the <b>Sacrificed for culture victory</b><>The fortresss built out  of [precious bulding materials]. In the name of [storyteller,people of culture]. It is their home a place where they may give their creations for future generations. This wonder may... produce [culture] by itself and increase [culture] gains by 20% if performed a final step! It is [culture] and [inspiration] specified so it needs it while building. <>Inside of the Fortress people store most important and most beautiful arts , statues, sculptures. That wonder makes the culture immune to perditions.',
 		wonder:'Sacrificed for culture',
 		icon:[6,12,'magixmod'],
 		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
 		cost:{'basic building materials':1500,'precious building materials':400,'inspiration':10},
-		costPerStep:{'basic building materials':2500,'precious building materials':500,'culture':450,'inspiration':1},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'culture':450,'inspiration':1,'glass':1},
 		steps:200,
 		messageOnStart:'You began the construction of <b>Fortress of cultural legacy</b>. Made at not flat grounds will make people come inside to watch the arts of the centuries. <b>Unleash the unbreakable cultural roots!</b>',
 		finalStepCost:{'inspiration':125,'population':250,'precious building materials':4500,'gem block':50,'culture':650},
