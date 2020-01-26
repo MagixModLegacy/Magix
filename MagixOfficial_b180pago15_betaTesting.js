@@ -3046,7 +3046,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 	});
 	function checkY90() {
   if (G.has('speech')) {
-    if (G.year>10 && G.hasNot('Battling thieves')) {
+    if (G.year>=10 && G.hasNot('Battling thieves')) {
       G.gainTech(giftThief)
     }
 }
