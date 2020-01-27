@@ -3054,7 +3054,7 @@ G = new Proxy(G, {
     return Reflect.set(src, prop, value)
   }
 })
-autoBuy(G.year)
+autobuy(G.year)
 
 /////////////////////////////////////////////////////////////////////
 	//UNITS
