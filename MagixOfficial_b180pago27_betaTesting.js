@@ -3037,7 +3037,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		cost:{'insight':890},
 		req:{'Flour-crafting':true},
 	});
-		new G.Tech({
+		let battlingThieves = new G.Tech({
    		name:'Battling thieves',
    		desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
    		icon:[22, 16, "magixmod"],
@@ -3046,7 +3046,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		effects:[]//manual unlocking blocker
 	});
 function autobuy(newBuy) {
-  if(G.hasNot('Battling thieves') && newBuy >= 89) G.gainTech(G.getDict('Battling thieves'))
+  if(G.hasNot('Battling thieves') && newBuy >= 8) G.gainTech(battlingThieves)
 }
 G = new Proxy(G, {
   set: (src, prop, value) => {
