@@ -3047,7 +3047,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 function autobuy(newBuy) {
   if(G.hasNot('Battling thieves') && newBuy >= 5) G.earn('Battling thieves')
 }
-let oldYear = G.year + 0
+let oldYear = G.year + 5
 G.year = new Proxy(oldYear, {
   set: (newValue) => {
     autobuy(newValue)
