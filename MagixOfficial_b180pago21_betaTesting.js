@@ -3051,7 +3051,7 @@ G = new Proxy(G, {
   set: (src, prop, value) => {
     if(prop === "year")
       autobuy(src[prop])
-    return Reflect.set(...arguments)
+    return Reflect.set(src, prop, value)
   }
 })
 autoBuy(G.year)
