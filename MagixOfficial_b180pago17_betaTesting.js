@@ -3044,7 +3044,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
    		cost:{'insight':90},
     		req:{'hunting':true,'tribalism':false}//manual unlocking blocker
 	});
-function autoBuy() {
+function autobuy(newBuy) {
   if(G.hasNot('Battling thieves') && newBuy >= 5) G.earn('Battling thieves')
 }
 let oldYear = G.year + 0
@@ -3054,7 +3054,7 @@ G.year = new Proxy(oldYear, {
     return newValue
   }
 })
-autoBuy()
+autobuy(G.year)
 
 /////////////////////////////////////////////////////////////////////
 	//UNITS
