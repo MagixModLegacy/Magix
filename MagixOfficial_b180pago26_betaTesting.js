@@ -3046,7 +3046,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		effects:[]//manual unlocking blocker
 	});
 function autobuy(newBuy) {
-  if(G.hasNot('Battling thieves') && newBuy >= 11) G.gainTech(G.getDict('Battling thieves'))
+  if(G.hasNot('Battling thieves') && newBuy >= 89) G.gainTech(G.getDict('Battling thieves'))
 }
 G = new Proxy(G, {
   set: (src, prop, value) => {
