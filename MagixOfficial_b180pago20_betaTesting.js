@@ -3048,10 +3048,10 @@ function autobuy(newBuy) {
   if(G.hasNot('Battling thieves') && newBuy >= 11) G.earn('Battling thieves')
 }
 G = new Proxy(G, {
-  set: (src, prop) => {
+  set: (src, prop, value) => {
     if(prop === "year")
       autobuy(src[prop])
-    return src[prop]
+    return Reflect.set(...arguments)
   }
 })
 autoBuy(G.year)
