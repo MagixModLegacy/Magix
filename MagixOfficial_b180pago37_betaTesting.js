@@ -743,7 +743,7 @@ func:function(){
 		tick:function(me,tick)
 		{
 			if (G.has('Knowledgeable'));
-			G.gain('insight',0.75,'Complex of Dreamers'));
+			G.gain('insight',0.75,'Complex of Dreamers');
 			
 		},
 		category:'misc',
