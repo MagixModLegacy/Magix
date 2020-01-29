@@ -2373,6 +2373,33 @@ func:function(){
 		chance:330,
 		req:{'culture of moderation':true},
 	});
+		new G.Trait({
+		name:'Political roots',
+		desc:'Your people are seeming like they want political things go with old traditions. @Unlocks [Pagoda of Democracy] a political wonder.',
+		icon:[22,1,'magixmod'],
+		cost:{'influence':200},
+		chance:1050,
+		req:{'Will to know more':true,'Cultural roots':false,'Roots of insight':false},
+		category:'main'
+	});
+		new G.Trait({
+		name:'Cultural roots',
+		desc:'Your people are seeming like they cultivate traiditions born at their generation and share\'em to future times. @Unlocks [Fortress of cultural legacy] a cultural wonder.',
+		icon:[22,1,'magixmod'],
+		cost:{'culture':500},
+		chance:1050,
+		req:{'Will to know more':true,'Political roots':false,'Roots of insight':false},
+		category:'main'
+	});
+		new G.Trait({
+		name:'Roots of insight',
+		desc:'Your people are seeming like they are born for discoveries. @Unlocks [Complex of dreamers] a  wonder of insight.',
+		icon:[22,1,'magixmod'],
+		cost:{'culture':500},
+		chance:1050,
+		req:{'Will to know more':true,'Cultural roots':false,'Political roots':false},
+		category:'main'
+	});
 	//God's traits
 		new G.Trait({
 		name:'God\'s trait #1 Housing',
