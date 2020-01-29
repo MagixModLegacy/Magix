@@ -3092,14 +3092,14 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Politic power rising up',
-		desc:'Makes [Pagoda of democracy] gather [influence] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
+		desc:'Makes [Pagoda of Democracy] gather [influence] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
 		icon:[21,17,'magixmod'], 
 		cost:{'insight':25,'culture':200},
 		req:{'Political roots':true},
 	});
 		new G.Tech({
 		name:'Knowledgeable',
-		desc:'Makes [Complex of Dreamers] gather [insight] per tick. In addition adds 7500 [housing] . Let it have something from the [wizard complex]',
+		desc:'Makes [Complex of Dreamers] gather [insight] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
 		icon:[23,17,'magixmod'], 
 		cost:{'culture':200},
 		req:{'Political roots':true},
