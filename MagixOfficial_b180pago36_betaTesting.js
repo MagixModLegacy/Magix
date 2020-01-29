@@ -740,6 +740,12 @@ func:function(){
 		desc:'If you want to start farming [Beet] and crafting [sugar] these seeds are a must.',
 		icon:[6,11,'magixmod'],
 		partOf:'misc materials',
+		tick:function(me,tick)
+		{
+			if (G.has('Knowledgeable'));
+			G.gain('insight',0.75,'Complex of Dreamers'));
+			
+		},
 		category:'misc',
 	});
 		new G.Res({
@@ -3102,7 +3108,7 @@ autobuy(G.year)
 		desc:'Makes [Complex of Dreamers] gather [insight] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
 		icon:[23,17,'magixmod'], 
 		cost:{'culture':200},
-		req:{'Political roots':true},
+		req:{'Roots of insight':true},
 	});
 
 
@@ -5593,7 +5599,7 @@ G.writeMSettingButton=function(obj)
 		finalStepCost:{'authority':25,'population':250,'precious building materials':4500,'gem block':50},
 		finalStepDesc:'To complete the wonder and make justice and democration last even longer you need to do the final step.',
 		use:{'land':10},
-		req:{'monument-building':true},
+		req:{'monument-building':true,'Political roots':true},
 		category:'political',
 	});
 	
@@ -5650,7 +5656,7 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
 		finalStepDesc:'To complete the wonder and make your whole civilization much smarter you will need to perform a final step.',
 		use:{'land':30},
 		upkeep:{'Mana':15},
-		req:{'monument-building':true},
+		req:{'monument-building':true,'Roots of insight':true},
 		category:'discovery',
 	});
 	
@@ -5705,7 +5711,7 @@ G.NewGameConfirm = new Proxy(oldNewGame2, {
 		finalStepCost:{'inspiration':125,'population':250,'precious building materials':4500,'gem block':50,'culture':650},
 		finalStepDesc:'To complete the wonder and prevent culture and traditions from being perditioned... you need to perform that final step.',
 		use:{'land':10},
-		req:{'monument-building':true},
+		req:{'monument-building':true,'Cultural roots':true},
 		category:'cultural',
 	});
 	
