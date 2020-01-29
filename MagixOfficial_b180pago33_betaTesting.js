@@ -2376,7 +2376,7 @@ func:function(){
 		new G.Trait({
 		name:'Political roots',
 		desc:'Your people are seeming like they want political things go with old traditions. @Unlocks [Pagoda of Democracy] a political wonder.',
-		icon:[22,1,'magixmod'],
+		icon:[20,17,'magixmod'],
 		cost:{'influence':200},
 		chance:1050,
 		req:{'Will to know more':true,'Cultural roots':false,'Roots of insight':false},
@@ -2385,7 +2385,7 @@ func:function(){
 		new G.Trait({
 		name:'Cultural roots',
 		desc:'Your people are seeming like they cultivate traiditions born at their generation and share\'em to future times. @Unlocks [Fortress of cultural legacy] a cultural wonder.',
-		icon:[22,1,'magixmod'],
+		icon:[19,17,'magixmod'],
 		cost:{'culture':500},
 		chance:1050,
 		req:{'Will to know more':true,'Political roots':false,'Roots of insight':false},
@@ -2393,9 +2393,9 @@ func:function(){
 	});
 		new G.Trait({
 		name:'Roots of insight',
-		desc:'Your people are seeming like they are born for discoveries. @Unlocks [Complex of dreamers] a  wonder of insight.',
-		icon:[22,1,'magixmod'],
-		cost:{'culture':500},
+		desc:'Your people are seeming like they are born for discoveries. @Unlocks [Complex of Dreamers] a  wonder of insight.',
+		icon:[18,17,'magixmod'],
+		cost:{'wisdom':100},
 		chance:1050,
 		req:{'Will to know more':true,'Cultural roots':false,'Political roots':false},
 		category:'main'
