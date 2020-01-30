@@ -1125,21 +1125,21 @@ func:function(){
 		new G.Res({
 		name:'Pagoda construction point',
 		desc:'Gained from building [Pagoda of democracy].',
-		icon:[8,12,11,3],
+		icon:[8,12,11,4],
 		hidden:true,
 		category:'main',
 	});
 		new G.Res({
 		name:'Fortress construction point',
 		desc:'Gained from building [Fortress of cultural legacy].',
-		icon:[8,12,10,3],
+		icon:[8,12,10,4],
 		hidden:true,
 		category:'main',
 	});
 		new G.Res({
 		name:'Complex construction point',
 		desc:'Gained from building [Complex of Dreamers].',
-		icon:[8,12,8,3],
+		icon:[8,12,8,4],
 		hidden:true,
 		category:'main',
 	});
