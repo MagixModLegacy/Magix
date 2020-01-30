@@ -2465,7 +2465,7 @@ func:function(){
 		new G.Trait({
 		name:'<font color="maroon">Moderation</font>',
 		desc:'The time has finally come and people seem very curious. That is a sign that they want to know more and more. May unlock unique techs , traits , units for this path.',
-		icon:[25,16,'magixmod'],
+		icon:[25,17,'magixmod'],
 		cost:{},
 		chance:1000,
 		req:{'culture of moderation':true},
@@ -2474,7 +2474,7 @@ func:function(){
 		new G.Trait({
 		name:'<font color="maroon">Caretaking</font>',
 		desc:'People do not seem curious to further discoveries. Instead of it they wish to live long, calmly and in peace. May unlock unique techs , traits , units for this path.',
-		icon:[24,16,'magixmod'],
+		icon:[24,17,'magixmod'],
 		cost:{},
 		req:{'joy of eating':true},
 		chance:1000,
