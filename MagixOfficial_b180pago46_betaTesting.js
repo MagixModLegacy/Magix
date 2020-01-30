@@ -2474,7 +2474,7 @@ func:function(){
 		new G.Trait({
 		name:'<font color="maroon">Caretaking</font>',
 		desc:'People do not seem curious to further discoveries. Instead of it they wish to live long, calmly and in peace. May unlock unique techs , traits , units for this path.',
-		icon:[21,11,'magixmod'],
+		icon:[24,17,'magixmod'],
 		cost:{},
 		req:{'joy of eating':true},
 		chance:1000,
