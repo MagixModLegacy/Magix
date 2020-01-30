@@ -740,12 +740,12 @@ func:function(){
 		desc:'If you want to start farming [Beet] and crafting [sugar] these seeds are a must.',
 		icon:[6,11,'magixmod'],
 		partOf:'misc materials',
- 		tick:function(me,tick)
-       		 {
-           	 if (G.has('Knowledgeable') && (G.getRes('insight') < G.getRes('wisdom')));
-           	 G.gain('insight', (G.getRes('wisdom') - G.getRes('insight')) > 0.75 ? 0.75 : (G.getRes('wisdom') - G.getRes('insight')) ,'Complex of Dreamers');
+  	 tick:function(me,tick)
+        {
+            if (G.has('Knowledgeable') && (G.getRes('insight').amount < G.getRes('wisdom').amount));
+            G.gain('insight', (G.getRes('wisdom').amount - G.getRes('insight').amount) > 0.75 ? 0.75 : (G.getRes('wisdom').amount - G.getRes('insight').amount) ,'Complex of Dreamers');
             
-       		 },
+        },
 		category:'misc',
 	});
 		new G.Res({
