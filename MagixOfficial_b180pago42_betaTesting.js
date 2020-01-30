@@ -1122,6 +1122,27 @@ func:function(){
 		hidden:true,
 		category:'main',
 	});
+		new G.Res({
+		name:'Pagoda construction point',
+		desc:'Gained from building [Pagoda of democracy].',
+		icon:[8,12,11,3],
+		hidden:true,
+		category:'main',
+	});
+		new G.Res({
+		name:'Fortress construction point',
+		desc:'Gained from building [Fortress of cultural legacy].',
+		icon:[8,12,10,3],
+		hidden:true,
+		category:'main',
+	});
+		new G.Res({
+		name:'Complex construction point',
+		desc:'Gained from building [Complex of Dreamers].',
+		icon:[8,12,8,3],
+		hidden:true,
+		category:'main',
+	});
 //New content
 		new G.Res({
 		name:'Florist\'s notes',
@@ -3099,21 +3120,24 @@ autobuy(G.year)
 		name:'Cultural forces arise',
 		desc:'Makes [Fortress of cultural legacy] gather [culture] per tick.',
 		icon:[22,17,'magixmod'], 
-		cost:{'insight':70,'culture':200},
+		cost:{'insight':70,'Fortress construction point':200},
 		req:{'Cultural roots':true},
 	});
 		new G.Tech({
 		name:'Politic power rising up',
 		desc:'Makes [Pagoda of Democracy] gather [influence] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
 		icon:[21,17,'magixmod'], 
-		cost:{'insight':25,'culture':200},
+		cost:{'insight':25,'Pagoda construction point':200},
 		req:{'Political roots':true},
 	});
 		new G.Tech({
 		name:'Knowledgeable',
 		desc:'Makes [Complex of Dreamers] gather [insight] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
 		icon:[23,17,'magixmod'], 
-		cost:{'culture':200},
+		cost:{'Complex construction point':200},
+		effects:[
+			{type:'provide res',what:{'housing':7500}}
+		],
 		req:{'Roots of insight':true},
 	});
 
@@ -5599,7 +5623,7 @@ G.writeMSettingButton=function(obj)
 		icon:[6,13,'magixmod'],
 		wideIcon:[5,13,'magixmod'],
 		cost:{'basic building materials':1000,'precious building materials':500},
-		costPerStep:{'basic building materials':2500,'precious building materials':500,'influence':45,'authority':0.25},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'influence':45,'authority':0.25,'Pagoda construction point':-1},
 		steps:200,
 		messageOnStart:'You began the construction of Pagoda of Democracy. Over the blossoms it looks like the most beautiful place you have ever seen. Some people say that Pagoda is taller than Mausoleum.',
 		finalStepCost:{'authority':25,'population':250,'precious building materials':4500,'gem block':50},
@@ -5655,7 +5679,7 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
 		icon:[choose([1,4,7]),17,'magixmod'],
 		wideIcon:[choose([0,3,6]),17,'magixmod'],
 		cost:{'basic building materials':1000,'precious building materials':500,'wisdom':10},
-		costPerStep:{'basic building materials':2500,'precious building materials':500,'insight':450,'wisdom':1},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'insight':450,'wisdom':1,'Complex construction point':-1},
 		steps:200,
 		messageOnStart:'You began the construction of Complex of Dreamers. The complex looks like not from this world when night visits the world.',
 		finalStepCost:{'wisdom':125,'population':250,'precious building materials':4500,'gem block':50,'insight':1000},
@@ -5711,7 +5735,7 @@ G.NewGameConfirm = new Proxy(oldNewGame2, {
 		icon:[6,12,'magixmod'],
 		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
 		cost:{'basic building materials':1500,'precious building materials':400,'inspiration':10},
-		costPerStep:{'basic building materials':2500,'precious building materials':500,'culture':450,'inspiration':1,'glass':1},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'culture':450,'inspiration':1,'glass':1,'Fortress construction point':-1},
 		steps:200,
 		messageOnStart:'You began the construction of <b>Fortress of cultural legacy</b>. Made at not flat grounds will make people come inside to watch the arts of the centuries. <b>Unleash the unbreakable cultural roots!</b>',
 		finalStepCost:{'inspiration':125,'population':250,'precious building materials':4500,'gem block':50,'culture':650},
