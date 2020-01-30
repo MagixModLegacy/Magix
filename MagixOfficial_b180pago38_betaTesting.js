@@ -742,7 +742,7 @@ func:function(){
 		partOf:'misc materials',
 		tick:function(me,tick)
 		{
-			if (G.has('Knowledgeable'));
+			if (G.has('Knowledgeable') && (G.getRes('insight') < G.getRes('wisdom')));
 			G.gain('insight',0.75,'Complex of Dreamers');
 			
 		},
