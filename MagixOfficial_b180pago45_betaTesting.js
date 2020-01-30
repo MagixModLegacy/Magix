@@ -2461,38 +2461,24 @@ func:function(){
 		req:{'The God\'s call':true,'7th essence':true},
 		category:'gods',
 	});
-	//Short term test
+	//Moderation or caretaking?
 		new G.Trait({
-		name:'SHort term Test trait 1',
-		desc:'TEST I',
-		icon:[21,12,'magixmod'],
+		name:'<font color="maroon">Moderation</font>',
+		desc:'The time has finally come and people seem very curious. That is a sign that they want to know more and more. May unlock unique techs , traits , units for this path.',
+		icon:[25,17,'magixmod'],
 		cost:{},
-		chance:55,
-		category:'short',
+		chance:1000,
+		req:{'culture of moderation':true},
+		category:'main',
 	});
 		new G.Trait({
-		name:'SHort term Test trait 2',
-		desc:'TEST II',
+		name:'<font color="maroon">Caretaking</font>',
+		desc:'People do not seem curious to further discoveries. Instead of it they wish to live long, calmly and in peace. May unlock unique techs , traits , units for this path.',
 		icon:[21,11,'magixmod'],
 		cost:{},
-		chance:55,
-		category:'short',
-	});
-		new G.Trait({
-		name:'SHort term Test trait 3',
-		desc:'TEST III',
-		icon:[21,10,'magixmod'],
-		cost:{},
-		chance:55,
-		category:'short',
-	});
-		new G.Trait({
-		name:'SHort term Test trait 4',
-		desc:'TEST IV',
-		icon:[21,9,'magixmod'],
-		cost:{},
-		chance:55,
-		category:'short',
+		req:{'joy of eating':true},
+		chance:1000,
+		category:'main',
 	});
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
