@@ -2461,6 +2461,39 @@ func:function(){
 		req:{'The God\'s call':true,'7th essence':true},
 		category:'gods',
 	});
+	//Short term test
+		new G.Trait({
+		name:'SHort term Test trait 1',
+		desc:'TEST I',
+		icon:[21,12,'magixmod'],
+		cost:{},
+		chance:55,
+		category:'short',
+	});
+		new G.Trait({
+		name:'SHort term Test trait 2',
+		desc:'TEST II',
+		icon:[21,11,'magixmod'],
+		cost:{},
+		chance:55,
+		category:'short',
+	});
+		new G.Trait({
+		name:'SHort term Test trait 3',
+		desc:'TEST III',
+		icon:[21,10,'magixmod'],
+		cost:{},
+		chance:55,
+		category:'short',
+	});
+		new G.Trait({
+		name:'SHort term Test trait 4',
+		desc:'TEST IV',
+		icon:[21,9,'magixmod'],
+		cost:{},
+		chance:55,
+		category:'short',
+	});
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
 	G.hasNot=function(what)
