@@ -3189,6 +3189,32 @@ G.NewGameConfirm = new Proxy(oldNewGame2, {
     checkDream()
   }
 })
+let gifD =  new G.Tech({
+        name:'<font color="fuschia">Authority of the ancestor</font>',
+        desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
+        icon:[4,12,'magixmod',6,13,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'authority':1}},
+			{type:'provide res',what:{'influence':1}},
+		],
+        req:{'tribalism':false}
+    });
+function checkDemoc() {
+  if (G.achievByName['Democration'].won) {
+    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="fuschia">Authority of the ancestor</font>')) {
+      G.gainTech(gifD)
+    }
+}
+}
+checkDemoc()
+const oldNewGame1 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame1, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkDemoc()
+  }
+})
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
@@ -4681,6 +4707,22 @@ G.NewGameConfirm = new Proxy(oldNewGame2, {
 		upkeep:{'Mana':15},
 		req:{'monument-building':true,'Roots of insight':true},
 		category:'discovery',
+	});
+  		new G.Unit({
+		name:'Pagoda of Democracy',
+		desc:'@leads to the <b>Democration victory</b><>The nice pagoda built over the forest of cherry blossoms. In the name of justice and democration. It is more political thing so that\'s why you see it in political category. This wonder is like fertlizer of justice roots. It is [influence] and [authority] specified so it needs it while building.',
+		wonder:'Democration',
+		icon:[6,13,'magixmod'],
+		wideIcon:[5,13,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':500},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'influence':45,'authority':0.25,'Pagoda construction point':-1},
+		steps:200,
+		messageOnStart:'You began the construction of Pagoda of Democracy. Over the blossoms it looks like the most beautiful place you have ever seen. Some people say that Pagoda is taller than Mausoleum.',
+		finalStepCost:{'authority':25,'population':250,'precious building materials':4500,'gem block':50},
+		finalStepDesc:'To complete the wonder and make justice and democration last even longer you need to do the final step.',
+		use:{'land':10},
+		req:{'monument-building':true,'Political roots':true},
+		category:'political',
 	});
 	//Artisans will make wands for wizards. Mode for it.
 		G.getDict('artisan').modes['Craftwands']={
