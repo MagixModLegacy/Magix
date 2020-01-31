@@ -740,11 +740,6 @@ func:function(){
 		desc:'If you want to start farming [Beet] and crafting [sugar] these seeds are a must.',
 		icon:[6,11,'magixmod'],
 		partOf:'misc materials',
-  		 tick:function(me,tick) //Making wonders having their effects.
-       		 {
-           	 if (G.has('Knowledgeable') && (G.getRes('insight').amount < G.getRes('wisdom').amount));
-           	 G.gain('insight', (G.getRes('wisdom').amount - G.getRes('insight').amount) > 0.75 ? 0.75 : (G.getRes('wisdom').amount - G.getRes('insight').amount) ,'Complex of Dreamers'); 
-	},
 		category:'misc',
 	});
 		new G.Res({
@@ -1057,11 +1052,6 @@ func:function(){
 		desc:'The bigger limit the more essence.',
 		icon:[0,2,'magixmod'],
 		hidden:true,
-		tick:function(me,tick)
-			{
-			if (G.has('Cultural forces arise') && (G.getRes('culture').amount < G.getRes('inspiration').amount));
-            		G.gain('culture', (G.getRes('inspiration').amount - G.getRes('culture').amount) > 0.75 ? 0.75 : (G.getRes('inspiration').amount - G.getRes('culture').amount) ,'Fortress of cultural legacy');
-		},
 		category:'main',
 	});
 		new G.Res({
@@ -1076,11 +1066,6 @@ func:function(){
 		desc:'The bigger limit the more essence.',
 		icon:[0,3,'magixmod'],
 		category:'main',
-		tick:function(me,tick)
-			{
-			if (G.has('Politic power rising up') && (G.getRes('influence').amount < G.getRes('authority').amount));
-            		G.gain('influence', (G.getRes('authority').amount - G.getRes('influence').amount) > 0.75 ? 0.75 : (G.getRes('authority').amount - G.getRes('influence').amount) ,'Pagoda of democracy');
-		},
 		hidden:true,
 	});
 		new G.Res({
@@ -4603,7 +4588,7 @@ autobuy(G.year)
 //WonderFULL
   		new G.Unit({
 		name:'Fortress of cultural legacy',
-		desc:'@leads to the <b>Sacrificed for culture victory</b><>The fortresss built out  of [precious building materials]. In the name of [storyteller,people of culture]. It is their home a place where they may give their creations for future generations. This wonder may... produce [culture] by itself and increase [culture] gains by 20% if performed a final step! It is [culture] and [inspiration] specified so it needs it while building. <>Inside of the Fortress people store most important and most beautiful arts , statues, sculptures. That wonder makes the culture immune to perditions.',
+		desc:'@leads to the <b>Sacrificed for culture victory</b><>The fortresss built out  of [precious building materials]. In the name of [storyteller,people of culture]. It is their home a place where they may give their creations for future generations. This wonder may... empower [culture] by itself and increase [culture] gains by 20% if performed a final step! It is [culture] and [inspiration] specified so it needs it while building. <>Inside of the Fortress people store most important and most beautiful arts , statues, sculptures. That wonder makes the culture immune to perditions.',
 		wonder:'Sacrificed for culture',
 		icon:[6,12,'magixmod'],
 		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
@@ -4619,7 +4604,7 @@ autobuy(G.year)
 	});
   		new G.Unit({
 		name:'Complex of Dreamers',
-		desc:'@leads to the <b>Insight-ly victory</b><>The nice complex built at basis of a [Wizard Complex] . In the name of [dreamer]s. It is their home. This wonder may provide housing and... produce [insight] by itself if final step finished! It is [insight] and [wisdom] specified so it needs it while building. <>The core collects all ideas and dreams of all [dreamer]s and [Thoughts sharer]s.',
+		desc:'@leads to the <b>Insight-ly victory</b><>The nice complex built at basis of a [Wizard Complex] . In the name of [dreamer]s. It is their home. This wonder may provide housing and... empower [insight] by itself if final step finished! It is [insight] and [wisdom] specified so it needs it while building. <>The core collects all ideas and dreams of all [dreamer]s and [Thoughts sharer]s.',
 		wonder:'Insight-ly',
 		icon:[choose([1,4,7]),17,'magixmod'],
 		wideIcon:[choose([0,3,6]),17,'magixmod'],
