@@ -740,6 +740,18 @@ func:function(){
 		desc:'If you want to start farming [Beet] and crafting [sugar] these seeds are a must.',
 		icon:[6,11,'magixmod'],
 		partOf:'misc materials',
+  		 tick:function(me,tick) //Making wonders having their effects.
+       		 {
+           	 if (G.has('Knowledgeable') && (G.getRes('insight').amount < G.getRes('wisdom').amount));
+           	 G.gain('insight', (G.getRes('wisdom').amount - G.getRes('insight').amount) > 0.75 ? 0.75 : (G.getRes('wisdom').amount - G.getRes('insight').amount) ,'Complex of Dreamers');
+		
+		if (G.has('Cultural forces arise') && (G.getRes('culture').amount < G.getRes('inspiration').amount));
+           	 G.gain('culture', (G.getRes('inspiration').amount - G.getRes('culture').amount) > 0.75 ? 0.75 : (G.getRes('inspiration').amount - G.getRes('culture').amount) ,'Fortress of cultural legacy');
+		
+		if (G.has('Politic power rising up') && (G.getRes('influence').amount < G.getRes('authority').amount));
+		    G.gain('influence', (G.getRes('authority').amount - G.getRes('influence').amount) > 0.75 ? 0.75 : (G.getRes('authority').amount - G.getRes('influence').amount) ,'Pagoda of democracy');
+            
+	},
 		category:'misc',
 	});
 		new G.Res({
@@ -3037,14 +3049,100 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		cost:{'insight':890},
 		req:{'Flour-crafting':true},
 	});
+		let battlingThieves = new G.Tech({
+           name:'Battling thieves',
+           desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
+           icon:[22, 16, "magixmod"],
+           cost:{'insight':90},
+            req:{'hunting':true,'tribalism':false},
+        effects:[]//manual unlocking blocker
+    });
+function autobuy(newBuy) {
+  if(!G.techsOwnedNames.includes(battlingThieves.name) && newBuy >= 89) G.gainTech(battlingThieves)
+}
+G = new Proxy(G, {
+  set: (src, prop, value) => {
+    if(prop === "year")
+      autobuy(src[prop])
+    return Reflect.set(src, prop, value)
+  }
+})
+autobuy(G.year)
 		new G.Tech({
-   		name:'Battling thieves',
-   		desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
-   		icon:[22, 16, "magixmod"],
-   		cost:{'insight':89,'thief':1},
-    		req:{'hunting':true,'tribalism':false}
+		name:'Cultural forces arise',
+		desc:'Makes [Fortress of cultural legacy] gather [culture] per tick.',
+		icon:[22,17,'magixmod'], 
+		cost:{'insight':70,'Fortress construction point':200},
+		req:{'Cultural roots':true},
 	});
-
+		new G.Tech({
+		name:'Politic power rising up',
+		desc:'Makes [Pagoda of Democracy] gather [influence] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
+		icon:[21,17,'magixmod'], 
+		cost:{'insight':25,'Pagoda construction point':200},
+		req:{'Political roots':true},
+	});
+		new G.Tech({
+		name:'Knowledgeable',
+		desc:'Makes [Complex of Dreamers] gather [insight] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
+		icon:[23,17,'magixmod'], 
+		cost:{'Complex construction point':200},
+		effects:[
+			{type:'provide res',what:{'housing':7500}}
+		],
+		req:{'Roots of insight':true},
+	});
+let gifC =  new G.Tech({
+        name:'<font color=" ##00C000">Artistic gray cells</font>',
+        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
+        icon:[4,12,'magixmod',6,12,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'inspiration':3}},
+			{type:'provide res',what:{'culture':3}},
+		],
+        req:{'tribalism':false}
+    });
+function checkCultu() {
+  if (G.achievByName['Sacrificed for culture'].won) {
+    if (G.achievByName['Sacrificed for culture'].won >= 0 && G.hasNot('<font color=" ##00C000">Artistic gray cells</font>')) {
+      G.gainTech(gifC)
+    }
+}
+}
+checkCultu()
+const oldNewGame3 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame3, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkCultu()
+  }
+})
+let gifI =  new G.Tech({
+        name:'<font color="aqua">Genius feeling</font>',
+        desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
+        icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'insight':6}},
+		],
+        req:{'tribalism':false}
+    });
+function checkDream() {
+  if (G.achievByName['Insight-ly'].won) {
+    if (G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="aqua">Genius feeling</font>')) {
+      G.gainTech(gifI)
+    }
+}
+}
+checkDream()
+const oldNewGame2 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame2, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkDream()
+  }
+})
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
@@ -4504,6 +4602,40 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		req:{'monument-building II':true,'<span style="color: red">Revenants</span>':true,'Dark wonder':true},
 		category:'wonder',
 	});
+//WonderFULL
+  		new G.Unit({
+		name:'Fortress of cultural legacy',
+		desc:'@leads to the <b>Sacrificed for culture victory</b><>The fortresss built out  of [precious building materials]. In the name of [storyteller,people of culture]. It is their home a place where they may give their creations for future generations. This wonder may... produce [culture] by itself and increase [culture] gains by 20% if performed a final step! It is [culture] and [inspiration] specified so it needs it while building. <>Inside of the Fortress people store most important and most beautiful arts , statues, sculptures. That wonder makes the culture immune to perditions.',
+		wonder:'Sacrificed for culture',
+		icon:[6,12,'magixmod'],
+		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
+		cost:{'basic building materials':1500,'precious building materials':400,'inspiration':10},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'culture':450,'inspiration':1,'glass':1,'Fortress construction point':-1},
+		steps:200,
+		messageOnStart:'You began the construction of <b>Fortress of cultural legacy</b>. Made at not flat grounds will make people come inside to watch the arts of the centuries. <b>Unleash the unbreakable cultural roots!</b>',
+		finalStepCost:{'inspiration':125,'population':250,'precious building materials':4500,'gem block':50,'culture':650},
+		finalStepDesc:'To complete the wonder and prevent culture and traditions from being perditioned... you need to perform that final step.',
+		use:{'land':10},
+		req:{'monument-building':true,'Cultural roots':true},
+		category:'cultural',
+	});
+  		new G.Unit({
+		name:'Complex of Dreamers',
+		desc:'@leads to the <b>Insight-ly victory</b><>The nice complex built at basis of a [Wizard Complex] . In the name of [dreamer]s. It is their home. This wonder may provide housing and... produce [insight] by itself if final step finished! It is [insight] and [wisdom] specified so it needs it while building. <>The core collects all ideas and dreams of all [dreamer]s and [Thoughts sharer]s.',
+		wonder:'Insight-ly',
+		icon:[choose([1,4,7]),17,'magixmod'],
+		wideIcon:[choose([0,3,6]),17,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':500,'wisdom':10},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'insight':450,'wisdom':1,'Complex construction point':-1},
+		steps:200,
+		messageOnStart:'You began the construction of Complex of Dreamers. The complex looks like not from this world when night visits the world.',
+		finalStepCost:{'wisdom':125,'population':250,'precious building materials':4500,'gem block':50,'insight':1000},
+		finalStepDesc:'To complete the wonder and make your whole civilization much smarter you will need to perform a final step.',
+		use:{'land':30},
+		upkeep:{'Mana':15},
+		req:{'monument-building':true,'Roots of insight':true},
+		category:'discovery',
+	});
 	//Artisans will make wands for wizards. Mode for it.
 		G.getDict('artisan').modes['Craftwands']={
 			name:'Craft wands',
@@ -4887,6 +5019,19 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		effects:[
 			{type:'addFastTicksOnStart',amount:300},
 			{type:'addFastTicksOnResearch',amount:25}	
+		],
+	});
+
+		new G.Achiev({
+		tier:0,
+		name:'Sacrificed for culture',
+		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
+		icon:[6,12,'magixmod'],
+		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
 		],
 	});
 
