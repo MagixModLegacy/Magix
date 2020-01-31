@@ -2468,7 +2468,7 @@ func:function(){
 		icon:[25,17,'magixmod'],
 		cost:{},
 		chance:1000,
-		req:{'culture of moderation':true},
+		req:{'culture of moderation':true,'<font color="maroon">Caretaking</font>':false},
 		category:'main',
 	});
 		new G.Trait({
@@ -2476,7 +2476,7 @@ func:function(){
 		desc:'People do not seem curious to further discoveries. Instead of it they wish to live long, calmly and in peace. May unlock unique techs , traits , units for this path.',
 		icon:[24,17,'magixmod'],
 		cost:{},
-		req:{'joy of eating':true},
+		req:{'joy of eating':true,'<font color="maroon">Moderation</font>':false},
 		chance:1000,
 		category:'main',
 	});
