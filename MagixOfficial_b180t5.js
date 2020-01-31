@@ -3138,7 +3138,7 @@ autobuy(G.year)
 		],
 		req:{'Roots of insight':true},
 	});
-let gifC =  new G.Tech({
+	let gif =  new G.Tech({
         name:'<font color=" ##00C000">Artistic gray cells</font>',
         desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
         icon:[4,12,'magixmod',6,12,'magixmod'],
@@ -3148,22 +3148,22 @@ let gifC =  new G.Tech({
 			{type:'provide res',what:{'culture':3}},
 		],
         req:{'tribalism':false}
-    });
-function checkCultu() {
-  if (G.achievByName['Sacrificed for culture'].won) {
-    if (G.achievByName['Sacrificed for culture'].won >= 0 && G.hasNot('<font color=" ##00C000">Artistic gray cells</font>')) {
-      G.gainTech(gifC)
-    }
-}
-}
-checkCultu()
-const oldNewGame3 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame3, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkCultu()
-  }
-})
+    	});
+	function checkCultu() {
+  	if (G.achievByName['Sacrificed for culture'].won) {
+    	if (G.achievByName['Sacrificed for culture'].won >= 0 && G.hasNot('<font color=" ##00C000">Artistic gray cells</font>')) {
+     	 G.gainTech(gif)
+    	}
+	}
+	}
+	checkCultu()
+	const oldNewGame3 = G.NewGameConfirm.bind({})
+	G.NewGameConfirm = new Proxy(oldNewGame3, {
+ 	 apply: function(target, thisArg, args) {
+   	 target(...args)
+   	 checkCultu()
+ 	 }
+	})
 let gifI =  new G.Tech({
         name:'<font color="aqua">Genius feeling</font>',
         desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
