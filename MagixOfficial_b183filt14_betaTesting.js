@@ -3258,7 +3258,7 @@ autobuy(G.year)
 		upkeep:{'coal':1,'Mana':1.5},
 		use:{'worker':1,'Land of the Paradise':1,'Industry point':1},
 		req:{'<font color="maroon">Moderation</font>':true,'Water filtering':true},
-		category:'crafting',
+		category:'paradiseunit',
 		effects:[
 			{type:'convert',from:{'Cloudy water':37},into:{'water':28,'cloud':2},every:1},
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
@@ -3273,7 +3273,7 @@ autobuy(G.year)
 		upkeep:{'sand':1,'Mana':1},
 		use:{'worker':1,'Land of the Paradise':0.75,'Industry point':0.5},
 		req:{'<font color="maroon">Caretaking</font>':true,'Water filtering':true},
-		category:'crafting',
+		category:'paradiseunit',
 		effects:[
 			{type:'convert',from:{'Cloudy water':15},into:{'water':14,'cloud':1},every:1},
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
