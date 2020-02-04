@@ -1317,6 +1317,17 @@ func:function(){
 		}},
 		partOf:'food',
 	});
+		new G.Res({
+		name:'cloud',
+		desc:'Useful while owning big bunches of it. Useless if having so less. Effect of filtering [Cloudy water] and gathering [water] from it.',
+		icon:[25,9,'magixmod'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'misc',
+	});
 //But books has to be stored somewhere right?
 	new G.Res({
 		name:'book storage',
@@ -3186,6 +3197,13 @@ autobuy(G.year)
 		icon:[25,13,'magixmod'], 
 		cost:{'insight':120,'wisdom':30,'water':-210},
 		req:{'Water filtering':true,'Paradise crafting':true}
+	});
+		new G.Tech({
+		name:'Faithful cloudy water filtering',
+		desc:'Obtaining this tech will open a way for you to make [Cloudy water] become a [water] .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] .',
+		icon:[25,13,'magixmod'], 
+		cost:{'insight':1000,'wisdom':50,'faith':180,'cloud':550},
+		req:{'God\'s trait #1 Housing':true}
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
