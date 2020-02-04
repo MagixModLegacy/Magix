@@ -3184,7 +3184,7 @@ autobuy(G.year)
 		name:'Cloudy water filtering',
 		desc:'Obtaining this tech will open a way for you to make [Cloudy water] become a [water] .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] .',
 		icon:[25,13,'magixmod'], 
-		cost:{'wisdom':30},
+		cost:{'insight':120,'wisdom':30,'water':-210},
 		req:{'Water filtering':true,'Paradise crafting':true}
 	});
 /////////////////////////////////////////////////////////////////////
