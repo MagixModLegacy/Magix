@@ -3168,10 +3168,17 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Filtering with better quality',
-		desc:'Obtaining this tech will make you fulfill one of two requirements to start cleaning [muddy water] and making [water] from it. <>Another one is obtaining [Caretaking] or [Moderation] .',
+		desc:'Water filtrating units that can convert [muddy water] into the [water] works at the 175% of their normal efficiency.',
 		icon:[25,15,'magixmod'], 
-		cost:{'insight':450,'wisdom':15},
-		req:{'Water filtering':true,'Burial in new world':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
+		cost:{'insight':520,'wisdom':15},
+		req:{'Water filtering':true,'Burial in new world':true},
+	});
+		new G.Tech({
+		name:'Non-magical filters improvement',
+		desc:'Water filtrating units that can convert [muddy water] into the [water] works at the 175% of their current efficiency. <><i>But it still spoils</i>',
+		icon:[25,14,'magixmod'], 
+		cost:{'insight':520,'wisdom':15},
+		req:{'Filtering with better quality':true,'Mo\' floorz':true},
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
