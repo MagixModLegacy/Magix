@@ -3202,7 +3202,7 @@ autobuy(G.year)
 		name:'Faithful cloudy water filtering',
 		desc:'Obtaining this tech will open a way for you to make [Cloudy water] become a [water] .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] .',
 		icon:[25,10,'magixmod'], 
-		cost:{'insight':790,'wisdom':50,'faith':180,'cloud':550},
+		cost:{'insight':710,'wisdom':50,'faith':180,'cloud':550},
 		req:{'God\'s trait #1 Housing':true}
 	});
 /////////////////////////////////////////////////////////////////////
