@@ -3200,10 +3200,17 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Faithful cloudy water filtering',
-		desc:'Obtaining this tech will open a way for you to make [Cloudy water] become a [water] .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] .',
+		desc:'Obtaining this tech will make filters that work on [Cloudy water] 175% more efficient .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] . This upgrade will increase rate of it.',
 		icon:[25,10,'magixmod'], 
 		cost:{'insight':710,'wisdom':50,'faith':180,'cloud':550},
 		req:{'God\'s trait #1 Housing':true}
+	});
+		new G.Tech({
+		name:'Magical filtering way',
+		desc:'Obtaining this tech will make filters that convert [Cloudy water] or [muddy water] work 175% more efficient .<>Upkeep cost won\'t grow up so do not worry. These are all upgrades you can currently obtain for filtering.',
+		icon:[25,10,'magixmod'], 
+		cost:{'insight':1200,'wisdom':25,'wind essence':775,'cloud':1990},
+		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
