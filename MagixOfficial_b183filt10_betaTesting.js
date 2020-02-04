@@ -3209,7 +3209,7 @@ autobuy(G.year)
 		name:'Magical filtering way',
 		desc:'Obtaining this tech will make filters that convert [Cloudy water] or [muddy water] work 175% more efficient .<>Upkeep cost won\'t grow up so do not worry. These are all upgrades you can currently obtain for filtering.',
 		icon:[25,10,'magixmod'], 
-		cost:{'insight':1200,'wisdom':25,'wind essence':775,'cloud':1990},
+		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
 		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
 /////////////////////////////////////////////////////////////////////
