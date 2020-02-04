@@ -1305,6 +1305,17 @@ func:function(){
 		}},
 		partOf:'food',
 	});
+		new G.Res({
+		name:'cloud',
+		desc:'Useful while owning big bunches of it. Useless if having so less. Effect of filtering [Cloudy water] and gathering [water] from it.',
+		icon:[25,9,'magixmod'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'misc',
+	});
 //But books has to be stored somewhere right?
 	new G.Res({
 		name:'book storage',
@@ -3147,6 +3158,48 @@ autobuy(G.year)
 		],
 		req:{'Roots of insight':true},
 	});
+		new G.Tech({
+		name:'Water filtering',
+		desc:'Obtaining this tech will make you fulfill one of two requirements to start cleaning [muddy water] and making [water] from it. <>Another one is obtaining [<font color="maroon">Caretaking</font>] or [<font color="maroon">Moderation</font>] .',
+		icon:[25,16,'magixmod'], 
+		cost:{'insight':30},
+		req:{'bows':true,'<font color="yellow">A gift from the Mausoleum</font>':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
+	});
+		new G.Tech({
+		name:'Filtering with better quality',
+		desc:'Water filtrating units that can convert [muddy water] into the [water] ([Water filter] and [;Water filter,its moderated version]) work at the 175% of their normal efficiency.',
+		icon:[25,15,'magixmod'], 
+		cost:{'insight':520,'wisdom':15},
+		req:{'Water filtering':true,'Burial in new world':true},
+	});
+		new G.Tech({
+		name:'Non-magical filters improvement',
+		desc:'Water filtrating units that can convert [muddy water] into the [water] ([Water filter] and [;Water filter,its moderated version]) work at the 175% of their current efficiency. <><i>But it still spoils</i>',
+		icon:[25,14,'magixmod'], 
+		cost:{'insight':405,'wisdom':15},
+		req:{'Filtering with better quality':true,'Mo\' floorz':true},
+	});
+		new G.Tech({
+		name:'Cloudy water filtering',
+		desc:'Obtaining this tech will open a way for you to make [Cloudy water] become a [water] .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] .',
+		icon:[25,13,'magixmod'], 
+		cost:{'insight':120,'wisdom':30,'water':-210},
+		req:{'Water filtering':true,'Paradise crafting':true}
+	});
+		new G.Tech({
+		name:'Faithful cloudy water filtering',
+		desc:'Obtaining this tech will make filters that work on [Cloudy water] 175% more efficient .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] . This upgrade will increase rate of it.',
+		icon:[25,10,'magixmod'], 
+		cost:{'insight':710,'wisdom':50,'faith':180,'cloud':550},
+		req:{'God\'s trait #1 Housing':true}
+	});
+		new G.Tech({
+		name:'Magical filtering way',
+		desc:'Obtaining this tech will make filters that convert [Cloudy water] or [muddy water] work 175% more efficient .<>Upkeep cost won\'t grow up so do not worry. These are all upgrades you can currently obtain for filtering.',
+		icon:[25,8,'magixmod'], 
+		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
+		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
+	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
@@ -3184,6 +3237,70 @@ autobuy(G.year)
 		}
 	}
 	//Units for real
+		new G.Unit({
+		name:';Cloudy water filter',
+		displayName:'Cloudy water filter',
+		desc:'A filter that uses [Land of the Paradise] and a worker. As his upkeep uses [coal] and [Mana] you gain 82% of converted water. <>Moderation path unit. Has research techs that can improve power and efficiency of the [;Cloudy water filter] <>Conversion: [Cloudy water] into [water]',
+		icon:[25,11,'magixmod'],
+		cost:{'basic building materials':275},
+		upkeep:{'coal':1,'Mana':1.5},
+		use:{'worker':1,'Land of the Paradise':1,'Industry point':1},
+		req:{'<font color="maroon">Moderation</font>':true,'Water filtering':true},
+		category:'paradiseunit',
+		effects:[
+			{type:'convert',from:{'Cloudy water':37},into:{'water':28,'cloud':2},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
+		new G.Unit({
+		name:'Cloudy water filter',
+		desc:'A filter that uses [Land of the Paradise] and a worker. As his upkeep uses [sand] and [Mana] you gain 95% of converted water. <>Caretaking path unit. Has research techs that can improve power and efficiency of the [Cloudy water filter] <>Conversion: [Cloudy water] into [water]',
+		icon:[25,12,'magixmod'],
+		cost:{'basic building materials':75},
+		upkeep:{'sand':1,'Mana':1},
+		use:{'worker':1,'Land of the Paradise':0.75,'Industry point':0.5},
+		req:{'<font color="maroon">Caretaking</font>':true,'Water filtering':true},
+		category:'paradiseunit',
+		effects:[
+			{type:'convert',from:{'Cloudy water':15},into:{'water':14,'cloud':1},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
+		new G.Unit({
+		name:';Water filter',
+		displayName:'Water filter',
+		desc:'A filter that uses land and a worker. As his upkeep uses [coal] you gain 82% of converted water. <>Moderation path unit. Has research techs that can improve power and efficiency of the [;Water filter] <>Conversion: [muddy water] into [water]',
+		icon:[24,16,'magixmod'],
+		cost:{'basic building materials':275},
+		upkeep:{'coal':1},
+		use:{'worker':1,'land':1},
+		req:{'<font color="maroon">Moderation</font>':true,'Water filtering':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'muddy water':37},into:{'water':28},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
+		new G.Unit({
+		name:'Water filter',
+		desc:'A filter that uses land and a worker. As his upkeep uses [sand] you gain 95% of converted water. <>Caretaking path unit. Has research techs that can improve power and efficiency of the [Water filter] <>Conversion: [muddy water] into [water]',
+		icon:[23,16,'magixmod'],
+		cost:{'basic building materials':75},
+		upkeep:{'sand':1},
+		use:{'worker':1,'land':0.75},
+		req:{'<font color="maroon">Caretaking</font>':true,'Water filtering':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'muddy water':15},into:{'water':14},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
 		new G.Unit({
 		name:'Thief hunter',
 		desc:'Hunts for a Thieves and neutralizes them. Has a chance to become wounded while fighting a thief. //<span style "color=fuschia">Can neutralize a thief to make him fear of commiting next crime but has a small chance to make a [corpse] out of a bad guy</span>',
