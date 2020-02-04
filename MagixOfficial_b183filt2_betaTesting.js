@@ -3161,10 +3161,10 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Water filtering',
-		desc:'Obtaining this tech will make you fulfill one of two requirements to start cleaning [muddy water] and making [water] from it. <>Another one is obtaining [Caretaking] or [Moderation] .',
+		desc:'Obtaining this tech will make you fulfill one of two requirements to start cleaning [muddy water] and making [water] from it. <>Another one is obtaining [<font color="maroon">Caretaking</font>] or [<font color="maroon">Moderation</font>] .',
 		icon:[25,16,'magixmod'], 
-		cost:{'insight':45},
-		req:{'bows':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
+		cost:{'insight':30},
+		req:{'bows':true,'<font color="yellow">A gift from the Mausoleum</font>':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
 	});
 		new G.Tech({
 		name:'Filtering with better quality',
