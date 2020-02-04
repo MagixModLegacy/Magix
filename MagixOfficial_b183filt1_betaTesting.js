@@ -3159,6 +3159,20 @@ autobuy(G.year)
 		],
 		req:{'Roots of insight':true},
 	});
+		new G.Tech({
+		name:'Water filtering',
+		desc:'Obtaining this tech will make you fulfill one of two requirements to start cleaning [muddy water] and making [water] from it. <>Another one is obtaining [Caretaking] or [Moderation] .',
+		icon:[25,16,'magixmod'], 
+		cost:{'insight':45},
+		req:{'bows':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
+	});
+		new G.Tech({
+		name:'Filtering with better quality',
+		desc:'Obtaining this tech will make you fulfill one of two requirements to start cleaning [muddy water] and making [water] from it. <>Another one is obtaining [Caretaking] or [Moderation] .',
+		icon:[25,15,'magixmod'], 
+		cost:{'insight':450,'wisdom':15},
+		req:{'Water filtering':true,'Burial in new world':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
+	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
