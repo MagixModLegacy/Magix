@@ -3179,14 +3179,14 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Filtering with better quality',
-		desc:'Water filtrating units that can convert [muddy water] into the [water] works at the 175% of their normal efficiency.',
+		desc:'Water filtrating units that can convert [muddy water] into the [water] ([Water filter] and [;Water filter,its moderated version]) work at the 175% of their normal efficiency.',
 		icon:[25,15,'magixmod'], 
 		cost:{'insight':520,'wisdom':15},
 		req:{'Water filtering':true,'Burial in new world':true},
 	});
 		new G.Tech({
 		name:'Non-magical filters improvement',
-		desc:'Water filtrating units that can convert [muddy water] into the [water] works at the 175% of their current efficiency. <><i>But it still spoils</i>',
+		desc:'Water filtrating units that can convert [muddy water] into the [water] ([Water filter] and [;Water filter,its moderated version]) work at the 175% of their current efficiency. <><i>But it still spoils</i>',
 		icon:[25,14,'magixmod'], 
 		cost:{'insight':405,'wisdom':15},
 		req:{'Filtering with better quality':true,'Mo\' floorz':true},
@@ -3250,6 +3250,39 @@ autobuy(G.year)
 	}
 	//Units for real
 		new G.Unit({
+		name:';Water filter',
+		displayName:'Water filter',
+		desc:'A filter that uses land and a worker. As his upkeep uses [coal] you gain 82% of converted water. <>Moderation path unit. Has research techs that can improve power and efficiency of the [;Water filter] <>Conversion: [muddy water] into [water]',
+		icon:[24,16,'magixmod'],
+		cost:{'basic building materials':275},
+		upkeep:{'coal':1},
+		use:{'worker':1,'land':1},
+		req:{'<font color="maroon">Moderation</font>':true,'Water filtering':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'muddy water':37},into:{'water':28},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
+		new G.Unit({
+		name:'Water filter',
+		desc:'A filter that uses land and a worker. As his upkeep uses [sand] you gain 95% of converted water. <>Caretaking path unit. Has research techs that can improve power and efficiency of the [Water filter] <>Conversion: [muddy water] into [water]',
+		icon:[23,16,'magixmod'],
+		cost:{'basic building materials':75},
+		upkeep:{'sand':1},
+		use:{'worker':1,'land':0.75},
+		req:{'<font color="maroon">Caretaking</font>':true,'Water filtering':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'muddy water':15},into:{'water':14},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
+		new G.Unit({
 		name:'Thief hunter',
 		desc:'Hunts for a Thieves and neutralizes them. Has a chance to become wounded while fighting a thief. //<span style "color=fuschia">Can neutralize a thief to make him fear of commiting next crime but has a small chance to make a [corpse] out of a bad guy</span>',
 		icon:[4,13,'magixmod'],
@@ -3289,6 +3322,7 @@ autobuy(G.year)
 		category:'production',
 		effects:[
 			{type:'convert',from:{'wheat':6,'water':1},into:{'flour':5},every:3,repeat:2},
+			{type:'waste',chance:0.001/47500}
 		],
 	});
 		new G.Unit({
