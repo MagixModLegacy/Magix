@@ -3177,8 +3177,15 @@ autobuy(G.year)
 		name:'Non-magical filters improvement',
 		desc:'Water filtrating units that can convert [muddy water] into the [water] works at the 175% of their current efficiency. <><i>But it still spoils</i>',
 		icon:[25,14,'magixmod'], 
-		cost:{'insight':520,'wisdom':15},
+		cost:{'insight':405,'wisdom':15},
 		req:{'Filtering with better quality':true,'Mo\' floorz':true},
+	});
+		new G.Tech({
+		name:'Cloudy water filtering',
+		desc:'Obtaining this tech will open a way for you to make [Cloudy water] become a [water] .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] .',
+		icon:[25,13,'magixmod'], 
+		cost:{'wisdom':30},
+		req:{'Water filtering':true,'Paradise crafting':true}
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
