@@ -35,15 +35,94 @@
 	}
 	//Units for real
 		new G.Unit({
+		name:';Cloudy water filter',
+		displayName:'Cloudy water filter',
+		desc:'A filter that uses [Land of the Paradise] and a worker. As his upkeep uses [coal] and [Mana] you gain 82% of converted water. <>Moderation path unit. Has research techs that can improve power and efficiency of the [;Cloudy water filter] <>Conversion: [Cloudy water] into [water]',
+		icon:[25,11,'magixmod'],
+		cost:{'basic building materials':275},
+		upkeep:{'coal':1,'Mana':1.5},
+		use:{'worker':1,'Land of the Paradise':1,'Industry point':1},
+		req:{'<font color="maroon">Moderation</font>':true,'Water filtering':true},
+		category:'paradiseunit',
+		effects:[
+			{type:'convert',from:{'Cloudy water':37},into:{'water':28,'cloud':2},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
+		new G.Unit({
+		name:'Cloudy water filter',
+		desc:'A filter that uses [Land of the Paradise] and a worker. As his upkeep uses [sand] and [Mana] you gain 95% of converted water. <>Caretaking path unit. Has research techs that can improve power and efficiency of the [Cloudy water filter] <>Conversion: [Cloudy water] into [water]',
+		icon:[25,12,'magixmod'],
+		cost:{'basic building materials':75},
+		upkeep:{'sand':1,'Mana':1},
+		use:{'worker':1,'Land of the Paradise':0.75,'Industry point':0.5},
+		req:{'<font color="maroon">Caretaking</font>':true,'Water filtering':true},
+		category:'paradiseunit',
+		effects:[
+			{type:'convert',from:{'Cloudy water':15},into:{'water':14,'cloud':1},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
+		new G.Unit({
+		name:';Water filter',
+		displayName:'Water filter',
+		desc:'A filter that uses land and a worker. As his upkeep uses [coal] you gain 82% of converted water. <>Moderation path unit. Has research techs that can improve power and efficiency of the [;Water filter] <>Conversion: [muddy water] into [water]',
+		icon:[24,16,'magixmod'],
+		cost:{'basic building materials':275},
+		upkeep:{'coal':1},
+		use:{'worker':1,'land':1},
+		req:{'<font color="maroon">Moderation</font>':true,'Water filtering':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'muddy water':37},into:{'water':28},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
+		new G.Unit({
+		name:'Water filter',
+		desc:'A filter that uses land and a worker. As his upkeep uses [sand] you gain 95% of converted water. <>Caretaking path unit. Has research techs that can improve power and efficiency of the [Water filter] <>Conversion: [muddy water] into [water]',
+		icon:[23,16,'magixmod'],
+		cost:{'basic building materials':75},
+		upkeep:{'sand':1},
+		use:{'worker':1,'land':0.75},
+		req:{'<font color="maroon">Caretaking</font>':true,'Water filtering':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'muddy water':15},into:{'water':14},every:1},
+			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
+			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
+			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+		],
+	});
+		new G.Unit({
+		name:'Thief hunter',
+		desc:'Hunts for a Thieves and neutralizes them. Has a chance to become wounded while fighting a thief. //<span style "color=fuschia">Can neutralize a thief to make him fear of commiting next crime but has a small chance to make a [corpse] out of a bad guy</span>',
+		icon:[4,13,'magixmod'],
+		cost:{},
+		use:{'worker':1,'metal weapons':1,'armor set':1},
+		req:{'Battling thieves':true},
+		category:'guard',
+		priority:5,
+		effects:[
+			{type:'convert',from:{'thief':1},into:{'adult':1},every:4,chance:1/4},
+			{type:'convert',from:{'thief':1},into:{'corpse':1},every:4,chance:1/48},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/30},
+		],
+	});
+		new G.Unit({
 		name:'Bakery',
-		desc:'<font color=" ##f74e00">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
+		desc:'<font color=" ##FF7F50">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
 		icon:[24,10,'magixmod'],
 		cost:{'basic building materials':100},
 		use:{'land':1,'Instructor':1},
 		require:{'worker':2,'metal tools':2},
 		upkeep:{'log':0.6},
 		effects:[
-			{type:'convert',from:{'flour':10},into:{'bread':3},every:5,repeat:2},
+			{type:'convert',from:{'flour':18},into:{'bread':6},every:4,repeat:3},
 		],
 		req:{'Baking':true},
 		category:'crafting',
@@ -52,13 +131,13 @@
 		name:'Windmill',
 		desc:'@An unit which can convert [wheat] into [flour] .',
 		icon:[24,11,'magixmod'],
-		cost:{},
+		cost:{'basic building materials':600},
 		req:{'Flour-crafting':true},
 		use:{'worker':2,'land':1},
 		upkeep:{},
 		category:'production',
 		effects:[
-			{type:'convert',from:{'wheat':1.1},into:{'flour':0.9},every:4,repeat:1},
+			{type:'convert',from:{'wheat':6,'water':1},into:{'flour':5},every:3,repeat:2},
 		],
 	});
 		new G.Unit({
@@ -71,7 +150,7 @@
 		upkeep:{'water':14},
 		category:'production',
 		effects:[
-			{type:'gather',context:'gather',what:{'wheat':77}},
+			{type:'gather',context:'gather',what:{'wheat':230}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
 		],
 	});
@@ -1222,7 +1301,7 @@
 		desc:'@subclass of gatherer which instead of Food and water, will collect flowers which will have its specific use. The further you will research the more types of [Flowers] he will be able to collect.',
 		icon:[7,11,'magixmod'],
 		cost:{},
-		req:{},
+		req:{'<font color="yellow">A gift from the Mausoleum</font>':true},
 		use:{'worker':1},
 		category:'production',
 		effects:[
@@ -1252,7 +1331,7 @@
 		effects:[
 			{type:'convert',from:{'insight':4,'adult':1},into:{'Instructor':1},every:375,mode:'thoughts'},
 		],
-		req:{'speech':true},
+		req:{'speech':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 		category:'discovery',
 		priority:5,
 	});
@@ -1323,7 +1402,7 @@
 		use:{'worker':8,'Land of the Plain Island':35},
 		category:'plainisleunit',
 		effects:[
-			{type:'gather',context:'gather',what:{'Berries':5.3}},
+			{type:'gather',context:'gather',what:{'Berries':15.3}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:8,req:{'God\'s trait #2 Berry rush':true}}
 		],
@@ -1441,369 +1520,53 @@
 		req:{'monument-building II':true,'<span style="color: red">Revenants</span>':true,'Dark wonder':true},
 		category:'wonder',
 	});
-	//Artisans will make wands for wizards. Mode for it.
-		G.getDict('artisan').modes['Craftwands']={
-			name:'Craft wands',
-			icon:[6,4,'magixmod'],
-			desc:'Your artisan will craft tool used by wizards. It is not any junk tool.',
-			req:{'Wizardry':true},
-			use:{'stone tools':2},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'stick':4,'stone':2},into:{'Wand':1},every:5,mode:'Craftwands'});
-//Artisans will craft fishing nets for fishers
-		G.getDict('artisan').modes['Craftnet']={
-			name:'Craft fishing net',
-			icon:[13,8,'magixmod'],
-			desc:'Your artisan will craft [Fishing net]. Needs [Instructor] because net <b> must be strong. Will use [Dried leather] to make it stronger.',
-			req:{'Fishing II':true},
-			use:{'stone tools':2,'Instructor':1},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':35,'Dried leather':1},into:{'Fishing net':1},every:5,mode:'Craftnet'});
-//Artisans will craft fishing nets for fishers
-		G.getDict('artisan').modes['Craftink']={
-			name:'Craft ink',
-			icon:[18,6,'magixmod'],
-			desc:'Your artisan will craft [Ink]. Will use water and [Black dye],[Blue dye] or [Brown dye].',
-			req:{'Ink crafting':true},
-			use:{},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'Black dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'Craftink'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Brown dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'Craftink'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Blue dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'Craftink'});
-//Artisans will craft bandages, plasters for First Aid Healer.
-		G.getDict('artisan').modes['CraftFirstAid']={
-			name:'Craft first aid things',
-			icon:[16,10,'magixmod',15,10,'magixmod'],
-			desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',
-			req:{'first aid':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'First aid things':1},every:5,mode:'CraftFirstAid'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':0.5,'herb':1},into:{'First aid things':1},every:5,mode:'CraftFirstAid'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'First aid things':1},every:7,mode:'CraftFirstAid'});
-
-//4 modes for Artisans. Each of them can convert 8 different flowers into its dyes.
-		G.getDict('artisan').modes['Make dyes from flowers(Set 1)']={
-			name:'Make dyes from flowers(Set 1)',
-			desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',
-			req:{'plant lore':true},
-			use:{},
-			icon:[11,7,'magixmod'],
-		};
-
-		G.getDict('artisan').effects.push({type:'convert',from:{'Lavender':2},into:{'Purple dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Salvia':3},into:{'Magenta dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Bachelor\'s button':2},into:{'Blue dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Desert rose':2},into:{'Magenta dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Cosmos':2},into:{'Magenta dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Pink rose':3},into:{'Pink dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Pink tulip':2},into:{'Pink dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Coreopsis':2},into:{'Yellow dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-//Set 2
-		G.getDict('artisan').modes['Make dyes from flowers(Set 2)']={
-			name:'Make dyes from flowers(Set 2)',
-			desc:'Your artisan will convert these flowers into dyes: [Crown imperial],[Cyan rose],[Himalayan blue poopy],[Cockscomb],[Red tulip],[Green Zinnia],[cactus],[Lime rose]. @Bonus: While crafting dyes out of [cactus] you will get its spikes and a dye as usual.',
-			req:{'plant lore':true},
-			use:{},
-			icon:[11,7,'magixmod'],
-		};	
-		G.getDict('artisan').effects.push({type:'convert',from:{'Crown imperial':2},into:{'Orange dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Cyan rose':2},into:{'Cyan dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Himalayan blue poopy':2},into:{'Cyan dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Cockscomb':2},into:{'Red dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Red tulip':2},into:{'Red dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Green Zinnia':3},into:{'Green dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'cactus':2},into:{'Green dye':1,'Cactus spikes':3},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Lime rose':2},into:{'Lime dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-//Set 3
-		G.getDict('artisan').modes['Make dyes from flowers(Set 3)']={
-			name:'Make dyes from flowers(Set 3)',
-			desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail]. @Bonus: While crafting dyes out of [Sunflower] you will get its edible [Sunflower seeds] and a dye as usual.',
-			req:{'plant lore':true},
-			use:{},
-			icon:[11,7,'magixmod'],
-		};	
-		G.getDict('artisan').effects.push({type:'convert',from:{'Lime tulip':2},into:{'Lime dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Azure bluet':4},into:{'Light gray dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Daisy':2},into:{'Light gray dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Sunflower':1},into:{'Yellow dye':1,'Sunflower seeds':3},every:7,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Dandelion':2},into:{'Yellow dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Black lily':3},into:{'Black dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Black Hollyhock':2},into:{'Black dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Cattail':2},into:{'Brown dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-//Set 4
-		G.getDict('artisan').modes['Make dyes from flowers(Set 4)']={
-			name:'Make dyes from flowers(Set 4)',
-			icon:[11,7,'magixmod'],
-			desc:'Your artisan will convert these flowers into dyes: [Flax],[Blue orchid],[White tulip],[Lily of the Valley],[Gray rose],[Gray tulip],[Brown flower].',
-			req:{'plant lore':true},
-			use:{},
-		};	
-		G.getDict('artisan').effects.push({type:'convert',from:{'Flax':3},into:{'Light blue dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Blue orchid':2},into:{'Light blue dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'White tulip':2},into:{'White dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Lily of the Valley':3},into:{'White dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Brown flower':2},into:{'Brown dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-	//After researching Hunting II Artisans with Craft bows mode will now be able to craft Crossbows and ammo to it
-		G.getDict('artisan').effects.push({type:'convert',from:{'stick':3,'stone':2},into:{'Crossbow':1},every:5,req:{'Hunting II':true},mode:'bows'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'lumber':1,'stone':25},into:{'Crossbow belt':20},every:5,req:{'Hunting II':true},mode:'bows'});
-//Bookcrafting
-		G.getDict('artisan').modes['Craftbook']={
-			name:'Craft book',
-			icon:[13,12,'magixmod'],
-			desc:'Your artisan will craft [Empty book,books].',
-			req:{'Bookcrafting':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'Paper':30,'hide':1},into:{'Empty book':1},every:7,mode:'Craftbook'});
-	//Kilns will be able to make glass out of sand
-		G.getDict('kiln').modes['Craftglass']={
-			name:'Craft glass',
-			icon:[4,8],
-			desc:'Your kiln will now use sand to make a glass.',
-			req:{'Crafting a glass':true},
-			use:{'stone tools':1},
-		};	
-		G.getDict('kiln').effects.push({type:'convert',from:{'sand':8},into:{'glass':2},every:5,mode:'Craftglass'});
-//Furnaces will be now able to smelt Cobalt, Nickel and Platinum
-		G.getDict('furnace').modes['Cobalt smelting']={
-			name:'Cobalt smelting',
-			icon:[14,0,'magixmod'],
-			desc:'Cast 1[Cobalt ingot] out of 8[Cobalt ore].',
-			req:{'Cobalt-working':true},
-			use:{'worker':2,'metal tools':2,'stone tools':1},
-		};	
-		G.getDict('furnace').effects.push({type:'convert',from:{'Cobalt ore':8},into:{'Cobalt ingot':1},every:5,mode:'Cobalt smelting'});
-		G.getDict('furnace').modes['nickel']={
-			name:'Nickel smelting',
-			icon:[10,9],
-			desc:'Cast 1[hard metal ingot] out of 6[nickel ore]s each.',
-			req:{'prospecting II':true,'nickel-working':true},
-			use:{'worker':2,'metal tools':2},
-		};	
-		G.getDict('furnace').effects.push({type:'convert',from:{'nickel ore':6},into:{'hard metal ingot':1},every:5,mode:'nickel'});
-		G.getDict('furnace').modes['platinum']={
-			name:'Platinum smelting',
-			icon:[3,11,'magixmod'],
-			desc:'Cast 1[platinum ingot] out of 5[platinum ore]s each.',
-			req:{'prospecting II':true,'platinum-working':true},
-			use:{'worker':2,'metal tools':2},
-		};	
-		G.getDict('furnace').effects.push({type:'convert',from:{'platinum ore':5},into:{'platinum ingot':1},every:5,mode:'platinum'});
-//Carving wooden statuettes
-		G.getDict('carver').modes['Carve wooden statuettes']={
-			name:'Carve wooden statuettes',
-			icon:[13,1,'magixmod'],
-			desc:'Your carver will now use carve statuettes out of [log].',
-			use:{'knapped tools':1},
-		};	
-		G.getDict('carver').effects.push({type:'convert',from:{'log':1},into:{'Wooden statuette':1,'Scobs':3},every:7,mode:'Carve wooden statuettes'});
-//Carver will be able to smash granite, diorite, andesite blocks and craft them
-		G.getDict('carver').modes['gdablockscraft']={
-			name:'Cut other stones',
-			icon:[4,12,'magixmod'],
-			desc:'Your carver will craft [cut granite] , [cut diorite] , [cut andesite] out of 9 [Granite] , [Diorite] , [Andesite] each.',
-			use:{'knapped tools':1},
-			req:{'masonry':true},
-		};	
-		G.getDict('carver').effects.push({type:'convert',from:{'Granite':9},into:{'cut granite':1},every:5,mode:'gdablockscraft'});
-		G.getDict('carver').effects.push({type:'convert',from:{'Diorite':9},into:{'cut diorite':1},every:5,mode:'gdablockscraft'});
-		G.getDict('carver').effects.push({type:'convert',from:{'Andesite':9},into:{'cut andesite':1},every:5,mode:'gdablockscraft'});
-		G.getDict('carver').modes['gdablockssmash']={
-			name:'Smash other stone blocks',
-			icon:[7,12,'magixmod'],
-			desc:'Your carver will smash [cut granite] , [cut diorite] , [cut andesite] into 9 [Granite] , [Diorite] , [Andesite].',
-			use:{'knapped tools':1},
-			req:{'masonry':true},
-		};	
-		G.getDict('carver').effects.push({type:'convert',from:{'cut granite':1},into:{'Granite':9},every:5,mode:'gdablockssmash'});
-		G.getDict('carver').effects.push({type:'convert',from:{'cut diorite':1},into:{'Diorite':9},every:5,mode:'gdablockssmash'});
-		G.getDict('carver').effects.push({type:'convert',from:{'cut andesite':1},into:{'Andesite':9},every:5,mode:'gdablockssmash'});
-//While woodcutter cuts tree to grant logs
-		G.getDict('woodcutter').effects.push({type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1});
-//Weaving colored clothing
-		G.getDict('clothier').modes['Weave leather colored clothing']={
-			name:'Weave leather colored clothing',
-			icon:[13,0,'magixmod'],
-			desc:'Your clothier will now weave [leather] but colored clothing.',
-			req:{'weaving':true},
-			use:{'stone tools':1},
-		};	
-		G.getDict('clothier').effects.push({type:'convert',from:{'leather':2,'Dyes':3},into:{'Colored clothing':1},every:6,mode:'Weave leather colored clothing'});
-		G.getDict('clothier').modes['Weave fiber colored clothing']={
-			name:'Weave fiber colored clothing',
-			icon:[13,0,'magixmod'],
-			desc:'Your clothier will now weave fiber but colored clothing.',
-			req:{'weaving':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('clothier').effects.push({type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'Weave fiber colored clothing'});
-		G.getDict('clothier').modes['Dye already made clothing']={
-			name:'Dye already made clothing',
-			icon:[13,0,'magixmod'],
-			desc:'Your clothier will now dye already made [basic clothes] making them become[Colored clothing].',
-			req:{'weaving':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('clothier').effects.push({type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'Dye already made clothing'});
-		G.getDict('clothier').modes['Craft thread']={
-			name:'Craft thread',
-			icon:[13,9,'magixmod'],
-			desc:'Your clothier will now craft [Thread] out of [herb].',
-			req:{'Sewing II':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('clothier').effects.push({type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'});
-//Hunter will now be able to hunt animals with Crossbow
-			G.getDict('hunter').modes['Crossbow hunting']={
-			name:'Crossbow hunting',
-			icon:[13,6,'magixmod'],
-			desc:'Hunt animals with crossbows.',
-			req:{'Hunting II':true},
-			use:{'Crossbow':1,'Crossbow belt':150},
-		};
-		G.getDict('hunter').effects.push({type:'gather',context:'hunt',amount:5,max:6,mode:'Crossbow hunting'});
-//Quarry's mode
-			G.getDict('quarry').modes['quarryotherstones']={
-			name:'Quarry other stones',
-			icon:[3,12,'magixmod'],
-			desc:'Strike the Earth for other than common [cut stone] stones.',
-			req:{'quarrying II':true},
-			use:{'worker':3,'metal tools':3},
-		};
-		G.getDict('quarry').effects.push({type:'gather',context:'quarry',what:{'cut granite':5},mode:'quarryotherstones'});
-		G.getDict('quarry').effects.push({type:'gather',context:'quarry',what:{'cut diorite':5},max:6,mode:'quarryotherstones'});
-		G.getDict('quarry').effects.push({type:'gather',context:'quarry',what:{'cut andesite':5},max:6,mode:'quarryotherstones'});
-//Fisher can fish with new fishing nets
-			G.getDict('fisher').modes['Net fishing']={
-			name:'Net fishing',
-			icon:[13,8,'magixmod'],
-			desc:'Catch fish with [Fishing net].',
-			req:{'Fishing II':true},
-			use:{'Fishing net':1},
-		};
-		G.getDict('fishing').effects.push({type:'gather',context:'gather',what:{'Seafood':5},amount:5,max:6,mode:'Net fishing'});
-//2 new modes for potters. First one for precious pots, second for potion pots.
-		G.getDict('potter').modes['Craft precious pots']={
-			name:'Craft precious pots',
-			icon:[15,8,'magixmod'],
-			desc:'Your potter will craft [Precious pot] out of both [clay] and [mud].',
-			req:{'Precious pottery':true},
-			use:{'knapped tools':1,'stone tools':1,'Instructor':0.33},
-		};	
-		G.getDict('potter').effects.push({type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'Craft precious pots'});
-		G.getDict('potter').modes['Craft potion pots']={
-			name:'Craft potion pots',
-			icon:[14,8,'magixmod'],
-			desc:'Your potter will craft [Potion pot] out of both [clay] and [mud]. These pots do not provide additional [food storage].',
-			req:{'Precious pottery':true},
-			use:{'knapped tools':1,'stone tools':1,'Instructor':0.5},
-		};	
-		G.getDict('potter').effects.push({type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'Craft potion pots'});
-//4 modes for blacksmiths so they can forge armor/weapons out of soft/hard metals
-		G.getDict('blacksmith workshop').modes['forgeweapon']={
-			name:'Forge weapons out of soft metals',
-			icon:[15,11,'magixmod'],
-			desc:'Forge [metal weapons] out of 2[soft metal ingot]s each.',
-			req:{'Weapon blacksmithery':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},repeat:2,mode:'forgeweapon'});
-		G.getDict('blacksmith workshop').modes['forgeweaponhard']={
-			name:'Forge weapons out of hard metals',
-			icon:[15,11,'magixmod'],
-			desc:'Forge [metal weapons] out of 1[hard metal ingot] each.',
-			req:{'Weapon blacksmithery':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'forgeweaponhard'});
-		G.getDict('blacksmith workshop').modes['forgearmor']={
-			name:'Forge armor out of soft metals',
-			icon:[16,11,'magixmod'],
-			desc:'Forge [armor set] out of 8[soft metal ingot]s each.',
-			req:{'Armor blacksmithery':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'soft metal ingot':8},into:{'armor set':1},every:4,mode:'forgearmor'});
-		G.getDict('blacksmith workshop').modes['forgearmorhard']={
-			name:'Forge armor out of hard metals',
-			icon:[16,11,'magixmod'],
-			desc:'Forge [armor set] out of 5[hard metal ingot] each.',
-			req:{'Armor blacksmithery':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'});
-		G.getDict('blacksmith workshop').modes['platinum blocks']={
-			name:'Craft platinum blocks',
-			icon:[4,11,'magixmod'],
-			desc:'Forge [platinum block]s out of 10[platinum ingot] each.',
-			req:{'platinum-working':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'});
-//Firekeeper can set fires with help of Fire essence
-		G.getDict('firekeeper').modes['firesfromessence']={
-			name:'Set up fires out of its essence',
-			icon:[0,2,'magixmod'],
-			desc:'Craft 2[fire pit]s with use of: 1[Fire essence],13[stick]s',
-			req:{'Wizard complex':true},
-			use:{'Wand':1,'knapped tools':1},
-		};	
-		G.getDict('firekeeper').effects.push({type:'convert',from:{'Fire essence':1,'stick':13},into:{'fire pit':5},mode:'firesfromessence'});
-//Nickel mines
-		G.getDict('mine').modes['nickel']={
-			name:'Nickel',
-			icon:[9,12,'magixmod'],
-			desc:'Mine for [nickel ore] with 5x efficiency.',
-			req:{'prospecting II':true},
-			use:{'worker':3,'metal tools':3},
-		};	
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'nickel ore':40},max:25,mode:'nickel'});
-//Other stones prospected mine
-		G.getDict('mine').modes['ostones']={
-			name:'Other stones',
-			icon:[6,12,'magixmod'],
-			desc:'Mine for other stones with 3x efficiency than common [stone].',
-			req:{'prospecting II':true},
-			use:{'worker':3,'metal tools':3},
-		};	
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Granite':30},max:25,mode:'ostones'});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Diorite':30},max:25,mode:'ostones'});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Andesite':30},max:25,mode:'ostones'});
-//2 modes for architect
-		G.getDict('architect').modes['Brickhouser']={
-			name:'Brickhouse building',
-			icon:[5,1,'magixmod'],
-			desc:'This architect will build more useful housing like [Brick house with a silo]',
-			use:{},
-			req:{'Architects knowledge':true,'city planning':true}};
-		G.getDict('architect')
-		effects:[
-		{type:'function',func:function(me){
-		var wiggleRoom=3;
-		var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
-		if (toMake>0 && G.canBuyUnitByName('house',toMake))
-		{
-			G.buyUnitByName('Brick house with a silo',toMake,true);
-		}
-	},mode:'Brickhouser'}
-],	
-		G.getDict('architect').modes['Blockhouser']={
-			name:'Blockhouse building',
-			icon:[9,1,'magixmod'],
-			desc:'This architect will build more advanced [housing,housing] like [Blockhouse] .',
-			use:{},
-			req:{'Architects knowledge':true,'city planning':true}},
-		G.getDict('architect')
-		effects:[
-		{type:'function',func:function(me){
-		var wiggleRoom=3;
-		var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
-		if (toMake>0 && G.canBuyUnitByName('house',toMake))
-		{
-			G.buyUnitByName('Blockhouse',toMake,true);
-		}
-	},mode:'Blockhouser'}
-],	
+//WonderFULL
+  		new G.Unit({
+		name:'Fortress of cultural legacy',
+		desc:'@leads to the <b>Sacrificed for culture victory</b><>The fortresss built out  of [precious building materials]. In the name of [storyteller,people of culture]. It is their home a place where they may give their creations for future generations. This wonder may... empower [culture] by itself and increase [culture] gains by 20% if performed a final step! It is [culture] and [inspiration] specified so it needs it while building. <>Inside of the Fortress people store most important and most beautiful arts , statues, sculptures. That wonder makes the culture immune to perditions.',
+		wonder:'Sacrificed for culture',
+		icon:[6,12,'magixmod'],
+		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
+		cost:{'basic building materials':1500,'precious building materials':400,'inspiration':10},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'culture':450,'inspiration':1,'glass':1,'Fortress construction point':-1},
+		steps:200,
+		messageOnStart:'You began the construction of <b>Fortress of cultural legacy</b>. Made at not flat grounds will make people come inside to watch the arts of the centuries. <b>Unleash the unbreakable cultural roots!</b>',
+		finalStepCost:{'inspiration':125,'population':250,'precious building materials':4500,'gem block':50,'culture':650},
+		finalStepDesc:'To complete the wonder and prevent culture and traditions from being perditioned... you need to perform that final step.',
+		use:{'land':10},
+		req:{'monument-building':true,'Cultural roots':true},
+		category:'cultural',
+	});
+  		new G.Unit({
+		name:'Complex of Dreamers',
+		desc:'@leads to the <b>Insight-ly victory</b><>The nice complex built at basis of a [Wizard Complex] . In the name of [dreamer]s. It is their home. This wonder may provide housing and... empower [insight] by itself if final step finished! It is [insight] and [wisdom] specified so it needs it while building. <>The core collects all ideas and dreams of all [dreamer]s and [Thoughts sharer]s.',
+		wonder:'Insight-ly',
+		icon:[choose([1,4,7]),17,'magixmod'],
+		wideIcon:[choose([0,3,6]),17,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':500,'wisdom':10},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'insight':450,'wisdom':1,'Complex construction point':-1},
+		steps:200,
+		messageOnStart:'You began the construction of Complex of Dreamers. The complex looks like not from this world when night visits the world.',
+		finalStepCost:{'wisdom':125,'population':250,'precious building materials':4500,'gem block':50,'insight':1000},
+		finalStepDesc:'To complete the wonder and make your whole civilization much smarter you will need to perform a final step.',
+		use:{'land':30},
+		upkeep:{'Mana':15},
+		req:{'monument-building':true,'Roots of insight':true},
+		category:'discovery',
+	});
+  		new G.Unit({
+		name:'Pagoda of Democracy',
+		desc:'@leads to the <b>Democration victory</b><>The nice pagoda built over the forest of cherry blossoms. In the name of justice and democration. It is more political thing so that\'s why you see it in political category. This wonder is like fertlizer of justice roots. It is [influence] and [authority] specified so it needs it while building.',
+		wonder:'Democration',
+		icon:[6,13,'magixmod'],
+		wideIcon:[5,13,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':500},
+		costPerStep:{'basic building materials':2500,'precious building materials':500,'influence':45,'authority':0.25,'Pagoda construction point':-1},
+		steps:200,
+		messageOnStart:'You began the construction of Pagoda of Democracy. Over the blossoms it looks like the most beautiful place you have ever seen. Some people say that Pagoda is taller than Mausoleum.',
+		finalStepCost:{'authority':25,'population':250,'precious building materials':4500,'gem block':50},
+		finalStepDesc:'To complete the wonder and make justice and democration last even longer you need to do the final step.',
+		use:{'land':10},
+		req:{'monument-building':true,'Political roots':true},
+		category:'political',
+	});
