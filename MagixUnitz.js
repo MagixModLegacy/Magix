@@ -1570,3 +1570,52 @@
 		req:{'monument-building':true,'Political roots':true},
 		category:'political',
 	});
+
+	//SEASONAL CONTENT//CONTENT WHICH WILL BE AVAILABLE FOR PLAYERS AT SOME TIME LIKE XMAS OR VALENTINE'S DAY
+	
+	//NEW YEAR 'S EVE//
+		new G.Unit({
+		name:'Artisan of new year',
+		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] to finish it up.',
+		icon:[19,0,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'Thread':0.30,'Paper':0.3},
+		effects:[
+			{type:'gather',what:{'Blue firework':1.25}},
+			{type:'gather',what:{'Orange firework':1.25}},
+			{type:'gather',what:{'Firecracker':1}}
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+	});
+		new G.Unit({
+		name:'Artisan of new year (dark)',
+		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
+		icon:[19,0,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
+		effects:[
+			{type:'gather',what:{'Dark Blue Firework':1.25}},
+			{type:'gather',what:{'Dark Orange Firework':1.25}},
+			{type:'gather',what:{'Firecracker':1}}
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+	});
+		new G.Unit({
+		name:'Firework launching guy',
+		desc:'There the guy launches fireworks right up into the sky. Generates happiness by itself and for every firework bunch launched up into the sky.',
+		icon:[18,0,'seasonal'],
+		cost:{'food':10},
+		use:{'worker':1,'land':1},
+		effects:[
+			{type:'convert',from:{'Orange firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Blue firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+	});
