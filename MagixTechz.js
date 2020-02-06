@@ -1,3 +1,40 @@
+let gift =     new G.Tech({
+        name:'<font color="yellow">A gift from the Mausoleum</font>',
+        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
+        icon:[4,12,'magixmod',1,14],
+        cost:{},
+        req:{'tribalism':false}
+    });
+function checkMagic() {
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
+      G.gainTech(gift)
+      G.Message({
+        type: 'good',
+        text: '<font family="Comic Sans MS">Since you have built the Mausoleum it the past, you have access to magic!</font> :)',
+        icon: [4, 12, 6, 1, 'magixmod']
+      });
+    }
+
+}
+ else if(G.achievByName['mausoleum'].won < 1){
+
+  G.Message({
+    type: 'bad',
+    text: '<font family="Comic Sans MS">Since you haven\'t built the Mausoleum it the past yet, so you don\'t have access to magic yet</font> :(',
+    icon: [3, 12, 6, 1, 'magixmod']
+  });
+
+}
+}
+checkMagic()
+const oldNewGame = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkMagic()
+  }
+})
 new G.Tech({
 		name:'Wizardry',
 		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
@@ -583,4 +620,89 @@ new G.Tech({
 		icon:[22,12,'magixmod'], 
 		cost:{'insight':890},
 		req:{'Flour-crafting':true},
+	});
+		let battlingThieves = new G.Tech({
+           name:'Battling thieves',
+           desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
+           icon:[22, 16, "magixmod"],
+           cost:{'insight':90},
+            req:{'hunting':true,'tribalism':false},
+        effects:[]//manual unlocking blocker
+    });
+function autobuy(newBuy) {
+  if(!G.techsOwnedNames.includes(battlingThieves.name) && newBuy >= 89) G.gainTech(battlingThieves)
+}
+G = new Proxy(G, {
+  set: (src, prop, value) => {
+    if(prop === "year")
+      autobuy(src[prop])
+    return Reflect.set(src, prop, value)
+  }
+})
+autobuy(G.year)
+		new G.Tech({
+		name:'Cultural forces arise',
+		desc:'Makes [Fortress of cultural legacy] gather [culture] per tick.',
+		icon:[22,17,'magixmod'], 
+		cost:{'insight':70,'Fortress construction point':200},
+		req:{'Cultural roots':true},
+	});
+		new G.Tech({
+		name:'Politic power rising up',
+		desc:'Makes [Pagoda of Democracy] gather [influence] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
+		icon:[21,17,'magixmod'], 
+		cost:{'insight':25,'Pagoda construction point':200},
+		req:{'Political roots':true},
+	});
+		new G.Tech({
+		name:'Knowledgeable',
+		desc:'Makes [Complex of Dreamers] gather [insight] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
+		icon:[23,17,'magixmod'], 
+		cost:{'Complex construction point':200},
+		effects:[
+			{type:'provide res',what:{'housing':7500}}
+		],
+		req:{'Roots of insight':true},
+	});
+		new G.Tech({
+		name:'Water filtering',
+		desc:'Obtaining this tech will make you fulfill one of two requirements to start cleaning [muddy water] and making [water] from it. <>Another one is obtaining [<font color="maroon">Caretaking</font>] or [<font color="maroon">Moderation</font>] .',
+		icon:[25,16,'magixmod'], 
+		cost:{'insight':30},
+		req:{'bows':true,'<font color="yellow">A gift from the Mausoleum</font>':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
+	});
+		new G.Tech({
+		name:'Filtering with better quality',
+		desc:'Water filtrating units that can convert [muddy water] into the [water] ([Water filter] and [;Water filter,its moderated version]) work at the 175% of their normal efficiency.',
+		icon:[25,15,'magixmod'], 
+		cost:{'insight':520,'wisdom':15},
+		req:{'Water filtering':true,'Burial in new world':true},
+	});
+		new G.Tech({
+		name:'Non-magical filters improvement',
+		desc:'Water filtrating units that can convert [muddy water] into the [water] ([Water filter] and [;Water filter,its moderated version]) work at the 175% of their current efficiency. <><i>But it still spoils</i>',
+		icon:[25,14,'magixmod'], 
+		cost:{'insight':405,'wisdom':15},
+		req:{'Filtering with better quality':true,'Mo\' floorz':true},
+	});
+		new G.Tech({
+		name:'Cloudy water filtering',
+		desc:'Obtaining this tech will open a way for you to make [Cloudy water] become a [water] .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] .',
+		icon:[25,13,'magixmod'], 
+		cost:{'insight':120,'wisdom':30,'water':-210},
+		req:{'Water filtering':true,'Paradise crafting':true}
+	});
+		new G.Tech({
+		name:'Faithful cloudy water filtering',
+		desc:'Obtaining this tech will make filters that work on [Cloudy water] 175% more efficient .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] . This upgrade will increase rate of it.',
+		icon:[25,10,'magixmod'], 
+		cost:{'insight':710,'wisdom':50,'faith':180,'cloud':550},
+		req:{'God\'s trait #1 Housing':true}
+	});
+		new G.Tech({
+		name:'Magical filtering way',
+		desc:'Obtaining this tech will make filters that convert [Cloudy water] or [muddy water] work 175% more efficient .<>Upkeep cost won\'t grow up so do not worry. These are all upgrades you can currently obtain for filtering.',
+		icon:[25,8,'magixmod'], 
+		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
+		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
