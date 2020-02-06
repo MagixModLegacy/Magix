@@ -706,6 +706,28 @@ autobuy(G.year)
 		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
 		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
+//SEASONAL
+		new G.Tech({
+		name:'Firework launching',
+		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
+		icon:[17,0,'seasonal'],
+		cost:{'insight':70},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true},
+	});
+		new G.Tech({
+		name:'Dark essenced fireworks',
+		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
+		icon:[16,0,'seasonal'],
+		cost:{'insight':400},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true},
+	});
+		new G.Tech({
+		name:'Firework crafting',
+		desc:'@unlocks [Artisan of new year].',
+		icon:[0,0,'seasonal'],
+		cost:{'insight':30},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},
+	});
 let gif =  new G.Tech({
         name:'<font color=" ##00C000">Artistic gray cells</font>',
         desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
