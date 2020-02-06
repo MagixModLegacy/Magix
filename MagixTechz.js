@@ -706,3 +706,81 @@ autobuy(G.year)
 		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
 		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
+let gif =  new G.Tech({
+        name:'<font color=" ##00C000">Artistic gray cells</font>',
+        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
+        icon:[4,12,'magixmod',6,12,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'inspiration':3}},
+			{type:'provide res',what:{'culture':3}},
+		],
+        req:{'tribalism':false}
+    	});
+	function checkCultu() {
+  	if (G.achievByName['Sacrificed for culture'].won) {
+    	if (G.achievByName['Sacrificed for culture'].won >= 0 && G.hasNot('<font color=" ##00C000">Artistic gray cells</font>')) {
+     	 G.gainTech(gif)
+    	}
+	}
+	}
+	checkCultu()
+	const oldNewGame3 = G.NewGameConfirm.bind({})
+	G.NewGameConfirm = new Proxy(oldNewGame3, {
+ 	 apply: function(target, thisArg, args) {
+   	 target(...args)
+   	 checkCultu()
+ 	 }
+	})
+let gifI =  new G.Tech({
+        name:'<font color="aqua">Genius feeling</font>',
+        desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
+        icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'insight':6}},
+		],
+        req:{'tribalism':false}
+    });
+function checkDream() {
+  if (G.achievByName['Insight-ly'].won) {
+    if (G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="aqua">Genius feeling</font>')) {
+      G.gainTech(gifI)
+    }
+}
+}
+checkDream()
+const oldNewGame2 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame2, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkDream()
+  }
+})
+let gifD =  new G.Tech({
+        name:'<font color="fuschia">Authority of the ancestor</font>',
+        desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
+        icon:[4,12,'magixmod',6,13,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'authority':1}},
+			{type:'provide res',what:{'influence':1}},
+		],
+        req:{'tribalism':false}
+    });
+function checkDemoc() {
+  if (G.achievByName['Democration'].won) {
+    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="fuschia">Authority of the ancestor</font>')) {
+      G.gainTech(gifD)
+    }
+}
+}
+checkDemoc()
+const oldNewGame1 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame1, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkDemoc()
+  }
+})
+}});
