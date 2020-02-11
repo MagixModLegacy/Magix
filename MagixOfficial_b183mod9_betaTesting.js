@@ -3254,14 +3254,14 @@ autobuy(G.year)
 		desc:'Moderation is a path where people are going for automation to produce more and do less. So people are figuring out the ways to automate production. This tech will be a light for moderated people.',
 		icon:[6,18,'magixmod'], 
 		cost:{'insight':1000,'wisdom':15,'inspiration':5,'culture':80},
-		req:{'Paradise building':true,'<font color="maroon">Moderation</font>':true}
+		req:{'Second portal to new world':true,'<font color="maroon">Moderation</font>':true}
 	});
 		new G.Tech({
 		name:'Manufacturing',
 		desc:'Caretaking is a path where people are going for live long and they do not care about production and automation. They rather manual working at all. This tech is a beginning of manufacture.',
 		icon:[7,18,'magixmod'], 
 		cost:{'insight':1000,'wisdom':15,'inspiration':10,'culture':75},
-		req:{'Paradise building':true,'<font color="maroon">Caretaking</font>':true}
+		req:{'Second portal to new world':true,'<font color="maroon">Caretaking</font>':true}
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
