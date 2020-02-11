@@ -3353,7 +3353,7 @@ autobuy(G.year)
 		cost:{'basic building materials':275},
 		upkeep:{'coal':1,'Mana':1.5},
 		use:{'worker':1,'Land of the Paradise':1,'Industry point':1},
-		req:{'<font color="maroon">Moderation</font>':true,'Water filtering':true},
+		req:{'<font color="maroon">Moderation</font>':true,'Cloudy water filtering':true},
 		category:'paradiseunit',
 		effects:[
 			{type:'convert',from:{'Cloudy water':37},into:{'water':28,'cloud':2},every:1},
@@ -3369,7 +3369,7 @@ autobuy(G.year)
 		cost:{'basic building materials':275},
 		upkeep:{'coal':1,'Mana':1.5},
 		use:{'worker':1,'Land of the Paradise':1,'Industry point':1},
-		req:{'<font color="maroon">Moderation</font>':true,'Water filtering':true},
+		req:{'<font color="maroon">Moderation</font>':true,'Cloudy water filtering':true},
 		category:'paradiseunit',
 		effects:[
 			{type:'convert',from:{'Cloudy water':37},into:{'water':28,'cloud':2},every:1},
