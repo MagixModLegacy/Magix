@@ -3296,15 +3296,15 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Manufacture units I',
-		desc:'Unlocks [Hut of Potters] and [Hovel of paint]. Their work can be controlled by policies if unlocked.',
+		desc:'Unlocks [Hut of Potters] and [Hovel of paint]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [artisan]s on <b>Craft dyes set (1,2,3,4)</b> mode will become USELESS! They won\'t produce.</font> ',
 		icon:[17,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5},
-		req:{'workstation planning':true,'<font color="maroon">Caretaking</font>':true}
+		req:{'<font color="maroon">Caretaking</font>':true,'workstation planning':true,}
 	});
 		new G.Tech({
 		name:'Factories I',
-		desc:'Unlocks [Factory of pots] and [Leather factory]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [clothier]s on <b>Craft leather</b> and <b>Craft leather (cheap)</b> and [Drying rack]s will become USELESS! They won\'t produce. ',
-		icon:[17,18,'magixmod'], 
+		desc:'Unlocks [Factory of pots] and [Leather factory]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [clothier]s on <b>Craft leather</b> and <b>Craft leather (cheap)</b> mode and [Drying rack]s will become USELESS! They won\'t produce.</font> ',
+		icon:[18,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5},
 		req:{'Moderated workstation planning':true,'<font color="maroon">Moderation</font>':true}
 	});
