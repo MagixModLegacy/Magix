@@ -3244,10 +3244,10 @@ autobuy(G.year)
 	//Back to normal :)
 		new G.Tech({
 		name:'Advanced casting',
-		desc:'People figured a way to make a [furnace] produce more at the same costs of run and upkeep. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [furnace]s will work 20% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [furnace]s will work 10% more efficient.',
+		desc:'[blacksmith workshop,Blacksmiths] will get taught to be more exact and better due to changing times. Now they may craft basic industry gear and other things which they wouldn\'t craft without this knowledge.',
 		icon:[5,18,'magixmod'], 
 		cost:{'insight':850},
-		req:{'smelting':true,'masonry':true,'Paradise building':true}
+		req:{'smelting':true,'masonry':true,'Paradise building':true},
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
