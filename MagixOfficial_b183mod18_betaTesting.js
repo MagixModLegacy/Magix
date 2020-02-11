@@ -3299,7 +3299,7 @@ autobuy(G.year)
 		desc:'Unlocks [Hut of Potters] and [Hovel of paint]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [artisan]s on <b>Craft dyes set (1,2,3,4)</b> mode will become USELESS! They won\'t produce.</font> ',
 		icon:[17,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5},
-		req:{'workstation planning':true}
+		req:{'workstation planning':true,'Manufacturing':true}
 	});
 		new G.Tech({
 		name:'Factories I',
