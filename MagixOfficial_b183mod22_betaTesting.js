@@ -3285,20 +3285,20 @@ autobuy(G.year)
 		desc:'People lead by [<font color="maroon">Moderation</font>] want exact plans of building. It leads to construct more advanced constructions that can work better than single [potter] for instance.',
 		icon:[11,18,'magixmod'], 
 		cost:{'insight':995,'wisdom':5},
-		req:{'Paradise crafting':true,'<font color="maroon">Moderation</font>':true}
+		req:{'Paradise crafting':true,'<font color="maroon">Moderation</font>':true,'Measuring system':true}
 	});
 		new G.Tech({
 		name:'workstation planning ',
 		desc:'People lead by [<font color="maroon">Caretaking</font>] do not need exact plans of building. They are interested in how many people it needs and where components will be arranged without super exact descriptions.',
 		icon:[12,18,'magixmod'], 
 		cost:{'insight':995,'wisdom':5},
-		req:{'Paradise crafting':true,'<font color="maroon">Caretaking</font>':true}
+		req:{'Paradise crafting':true,'<font color="maroon">Caretaking</font>':true,'Measuring system':true}
 	});
 		new G.Tech({
 		name:'Manufacture units I',
 		desc:'Unlocks [Hut of Potters] and [Hovel of colours]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [artisan]s on <b>Craft dyes set (1,2,3,4)</b> mode will become USELESS! They won\'t produce.</font> ',
 		icon:[17,18,'magixmod'], 
-		cost:{'insight':750,'wisdom':5,'stone':1365},//Food is too make tech at same level as Factories I
+		cost:{'insight':750,'wisdom':5,'stone':1365},//Stones are there to make tech at same level as Factories I
 		req:{'workstation planning':true,'Manufacturing':true}
 	});
 		new G.Tech({
@@ -5569,6 +5569,9 @@ autobuy(G.year)
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':24},max:28,mode:'tin',req:{'Explosive crafting & mining':true}});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':1},max:3,mode:'coal',req:{'Explosive crafting & mining':true}});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':38},max:52,mode:'any',req:{'Explosive crafting & mining':true}});
+//2 path techs effects
+		G.getDict('furnace').effects.push({type:'mult',value:1.2,req:{'Improved furnace construction':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('furnace').effects.push({type:'mult',value:1.1,req:{'Improved furnace construction':true,'<font color="maroon">Caretaking</font>':true}});
 ////////////////////////////////////////////
 //Fixes copied out of heritage mod
 	G.fixTooltipIcons=function()
