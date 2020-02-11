@@ -3288,11 +3288,25 @@ autobuy(G.year)
 		req:{'Paradise crafting':true,'<font color="maroon">Moderation</font>':true}
 	});
 		new G.Tech({
-		name:'workstation planning',
+		name:'workstation planning ',
 		desc:'People lead by [<font color="maroon">Caretaking</font>] do not need exact plans of building. They are interested in how many people it needs and where components will be arranged without super exact descriptions.',
 		icon:[12,18,'magixmod'], 
 		cost:{'insight':995,'wisdom':5},
 		req:{'Paradise crafting':true,'<font color="maroon">Caretaking</font>':true}
+	});
+		new G.Tech({
+		name:'Manufacture units I',
+		desc:'Unlocks [Hut of Potters] and [Hovel of paint]. Their work can be controlled by policies if unlocked.',
+		icon:[17,18,'magixmod'], 
+		cost:{'insight':750,'wisdom':5},
+		req:{'workstation planning':true,'<font color="maroon">Caretaking</font>':true}
+	});
+		new G.Tech({
+		name:'Factories I',
+		desc:'Unlocks [Factory of pots] and [Leather factory]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [clothier]s on <b>Craft leather</b> and <b>Craft leather (cheap)</b> and [Drying rack]s will become USELESS! They won\'t produce. ',
+		icon:[17,18,'magixmod'], 
+		cost:{'insight':750,'wisdom':5},
+		req:{'Moderated workstation planning':true,'<font color="maroon">Moderation</font>':true}
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
