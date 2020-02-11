@@ -1,0 +1,131 @@
+# Magix
+
+=================================================================================================================================================================================================================================
+
+                                                     ✚          ✚         •            ✚✚✚✚✚✚✚✚            ✦            ✚       ✚
+                                                     ✚✚       ✚✚        • •          ✚                       ✦             ✚      ✚
+                                                     ✚ ✚     ✚ ✚       •   •        ✚                        ✦              ✚    ✚
+                                                     ✚  ✚   ✚  ✚       •   •        ✚                        ✦              ✚    ✚
+                                                     ✚   ✚✚✚   ✚      •••••••      ✚     ✚✚✚✚✚✚           ✦               ✚✚✚
+                                                     ✚          ✚      •      •      ✚           ✚            ✦              ✚    ✚
+                                                     ✚          ✚     •       •       ✚         ✚             ✦             ✚      ✚
+                                                     ✚          ✚     •       •        ✚✚✚✚✚✚✚              ✦            ✚       ✚
+
+=================================================================================================================================================================================================================================
+UPDATE LOG
+
+27 XII 2019
+Revenant features
+
+- Seasonal content for New Year Eve available since 27th December till 4th January
+- 3rd wonder unlocked while wild corpses will appear at the world and providing massive amount of burial spots
+- 1 improving papercrafting tech
+- 2 technologies for the wonder
+- 1 new EARNABLE achievement
+- Achievement for building up Temple of Heaven got earnable too!
+  Have fun
+
+23 XII 2019
+
+- Added combat potions
+
+- Soldiers etc are for 2020
+- First seasonal content will be available at 29th December till 4th January 2020
+- New year's eve
+- If you will see after 4th January 2020 content from Eve ofc you will as long as you don't ascend / start new game . Before ascending / doing game will lose its effects till next year
+- 2 new traits which may add 1 , 2 or more % to health of your population
+- The trait you get depends what you got at early game stage. Dependency is between culture of moderation and joy of eating
+- Added concoctions as new ingredients of potions
+- Stands for crafting these potions with chance to cause accident to its workers
+
+10 XII 2019
+Gotta blast underground!
+
+- Explosive mines added to the game
+
+Explosive mines uses TNT(light explosives) gathers more, has own upkeep but has bigger chance to waste/collapse wounding their miners.
+
+- Since some research each mode of mine / plain island mine allows to gather Sulfur used to craft currently Light explosives.
+- Light explosives are used to make Explosive mine work
+- Added third type of artisan
+- Figured out text coloring so that means that trait names , descriptions of units, technologies, traits can be coloured in all >12 Million colours (RGB)
+  So some description and unit names etc. gained colours
+- Paper-crafting shacks are now welcome in Paradise
+  At the cost of Industry points of course
+- Trait unlocking seasonal content like halloween, xmas(sorry no xmas this year but New year's eve of course will be added),Valentine's day
+
+28 XI 2019
+Paradise constructions part 2 and last one of this update
+
+- Constructions which can only be built in Paradise at the cost of Industry Points.
+
+They are same like their from Mortal World but have their own textures. Soon may do really have little bit more possibilites than normal ones.
+
+- Implemented orchards (currently ambrosium one) from where you gather Ambrosium leaves used to craft Ambrosium shard with help of many additional ingredients
+- Redesigned Well of mana texture and improved a little Brick house texture
+- 1 new trait, some new researches
+- Book storage works now making Libraries start being useful
+- Alchemy zone can be made out of Paradise land
+
+22 XI 2019
+Paradise constructions part 1
+
+- Added new storage constructions
+- Added new type of water
+- God's traits
+- Industry points(prep for further updates)
+- Possibility to gather science
+
+10 XI 2019
+Small utility update.
+
+- Now alcohol(currently wine only) finally may make people drunken
+- Obtaining an Emblem will make you see message on messages box. (some kind of storyline) (bugged because it repeats as long as you will have emblems amount <1)
+- n people/person fell drunk and got better message at message box
+- drunken person can die
+
+9 XI 2019 Big changes caused by Books & Politics update!
+
+- Made wizard become unlockable after getting Wizard wisdom tech. Before getting it you will own Archaic one
+- Changes at costs of some researches.
+- 5 new researches & units, 1 new trait & policy, bunch of new resources.
+- Added modes for Architects but why does not they build brickhouses and blockhouses i dunno.
+- Changed link to mod.
+- Essence storages tech now works causing amount of mana and essences limited.
+- Bigger usage for Ink and Paper. Books , notes(not that musical one yet), lodge of writers and library to store books
+- Note: If you are playing in debug mode I am NOT responsible for any of bugs caused by it.
+- Bug with 0/0 insight caused by wizards is unfixable.
+- Changelog will be now here instead at Magix about tab.
+
+31 X 2019: Second portal to second world. Feel lights everywhere
+
+- Attempting fixing wizard wisdom bug.
+- Changes at power of Wizard Complex.
+- Added few more researches. They are for alchemy and new world.
+- New ingredients which can be made. To unlock them just buy some researches that may unlock them for you.
+- Migrated image sheet from imgur to other website which allows for sharing image sheet for content like this mod.
+
+25 X 2019: Improved alchemy by ingredient crafting tech.
+
+- Failed to fix bug with wisdom going below 100 caused by wizards.
+- Rest of effects which prospecting II and quarrying II provides now work ingame.
+- Improved juicy expertise trait effect and increased its cost a little bit (from 5k juice to 6.5k).
+
+22 X 2019: Added policy which will decide how long will be education cycle for alchemists.
+
+- Added new trait which requires culture of the afterlife to occur.
+- Small improvements to vanilla things(platinum and nickel ores).
+
+October 2019: 2nd wonder. Revenants trait - the first long term trait
+
+- Brews are available.
+- New culture source.
+- Vanilla improvements(armor , weapon blacksmithery).
+- Papercrafting added.
+
+September 2019: Juicery, farms, ink, instructors, alchemists added+
+
+- Thoughts sharer.
+- Florist. Two new early game units
+
+july - august 2019 Magix starts being developed
