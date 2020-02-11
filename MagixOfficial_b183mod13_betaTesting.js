@@ -1331,7 +1331,7 @@ func:function(){
 		new G.Res({
 		name:'Basic factory equipment',
 		desc:'Mostly useful while in [<font color="maroon">Moderation</font>] path. Without it some automation would be impossible. It involves metal hooks or weights or elements of the conveyor.',
-		icon:[choose[9,10],18,'magixmod'],
+		icon:[choose([9,10]),18,'magixmod'],
 		category:'gear',
 	});
 //But books has to be stored somewhere right?
