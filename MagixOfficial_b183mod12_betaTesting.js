@@ -1328,6 +1328,12 @@ func:function(){
 		},
 		category:'misc',
 	});
+		new G.Res({
+		name:'Basic factory equipment',
+		desc:'Mostly useful while in [<font color="maroon">Moderation</font>] path. Without it some automation would be impossible. It involves metal hooks or weights or elements of the conveyor.',
+		icon:[choose[9,10],18,'magixmod'],
+		category:'gear',
+	});
 //But books has to be stored somewhere right?
 	new G.Res({
 		name:'book storage',
@@ -1698,6 +1704,7 @@ func:function(){
 				var toSpoil=(G.getRes('metal weapons').amount*0.0001);G.lose(('metal weapons'),randomFloor(toSpoil),'decay');
 				var toSpoil=(G.getRes('armor set').amount*0.0001);G.lose(('armor set'),randomFloor(toSpoil),'decay');
 				var toSpoil=(G.getRes('Fishing net').amount*0.0002);G.lose(('Fishing net'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('Basic factory equipment').amount*0.008);G.lose(('Basic factory equipment'),randomFloor(toSpoil),'decay');
 				}
 		},
 		visible:false,
@@ -2491,6 +2498,16 @@ func:function(){
 		chance:1000,
 		category:'main',
 	});
+	//Another knowledge
+		new G.Trait({
+		name:'Measuring system',
+		desc:'<span style="color: #aaffff">People noticed that they will need a measuring system to make constructing, planning easier... so they created their own system of measuring things.</span>.',
+		icon:[13,18,'magixmod'],
+		cost:{'wisdom':75},
+		chance:475,
+		req:{'Will to know more':true},
+		category:'knowledge',
+	});
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
 	G.hasNot=function(what)
@@ -2503,7 +2520,7 @@ func:function(){
         return true;
     }
 	/////////////////////////////////////////////////////////////////////////////////////////////
-//Then we add a new technology for wizards:
+//Techs, techs and once again techs:
 let gift =     new G.Tech({
         name:'<font color="yellow">A gift from the Mausoleum</font>',
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
