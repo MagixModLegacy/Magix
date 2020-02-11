@@ -3280,6 +3280,20 @@ autobuy(G.year)
 		cost:{'insight':1000,'wisdom':15,'inspiration':10,'culture':75,'influence':205},
 		req:{'Second portal to new world':true,'<font color="maroon">Caretaking</font>':true}
 	});
+		new G.Tech({
+		name:'Moderated workstation planning',
+		desc:'People lead by [<font color="maroon">Moderation</font>] want exact plans of building. It leads to construct more advanced constructions that can work better than single [potter] for instance.',
+		icon:[11,18,'magixmod'], 
+		cost:{'insight':995,'wisdom':5},
+		req:{'Paradise crafting':true,'<font color="maroon">Moderation</font>':true}
+	});
+		new G.Tech({
+		name:'workstation planning',
+		desc:'People lead by [<font color="maroon">Caretaking</font>] do not need exact plans of building. They are interested in how many people it needs and where components will be arranged without super exact descriptions.',
+		icon:[12,18,'magixmod'], 
+		cost:{'insight':995,'wisdom':5},
+		req:{'Paradise crafting':true,'<font color="maroon">Caretaking</font>':true}
+	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
