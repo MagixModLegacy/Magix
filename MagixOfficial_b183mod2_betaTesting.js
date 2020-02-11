@@ -3212,11 +3212,32 @@ autobuy(G.year)
 		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
 		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
-	//For two-path techs for A step Further update
+	//Four two-path techs for "A step further" update
 		new G.Tech({
 		name:'Improved furnace construction',
 		desc:'People figured a way to make a [furnace] produce more at the same costs of run and upkeep. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [furnace]s will work 20% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [furnace]s will work 10% more efficient.',
 		icon:[1,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+		new G.Tech({
+		name:'Focused gathering',
+		desc:'[gatherer]s were always thinking that they can gather more. This tech is another chance for them. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [gatherer]s will gather 7.5% more. <>If they have chosen [<font color="maroon">Caretaking</font>] then [gatherer]s will work 12.5% more.',
+		icon:[2,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+		new G.Tech({
+		name:'Bigger fires',
+		desc:'[firekeeper]s figured out how to make bigger fires. They will need to use more [stick]s but most important thing is that there will be profit <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [firekeeper]s will work 5% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [firekeeper]s will work 8% more efficient.',
+		icon:[3,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+		new G.Tech({
+		name:'Motivation for artisans',
+		desc:'[artisan]\'s succesful work made him work harder and motivated. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [artisan]s will work 8% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [artisan]s will work 4% more efficient. <>Doesn\'t include [artisan of juice] and [Pyro-Artisan] !',
+		icon:[4,18,'magixmod'], 
 		cost:{'insight':1000},
 		req:{'culture of the afterlife':true}
 	});
