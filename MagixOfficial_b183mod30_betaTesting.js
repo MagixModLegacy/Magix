@@ -5575,15 +5575,15 @@ autobuy(G.year)
 //Manufacture units I and Factories I disables
 	//Factories I
 		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
-		G.getDict('clothier').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'make leather'});
-		G.getDict('clothier').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'cheap make leather'});
+		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'cheap make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'cheap make leather'});
 		G.getDict('Drying rack').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
 	//Manufacture units I
 		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true},mode:'Make dyes from flowers(Set 1)'}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true},mode:'Make dyes from flowers(Set 2)'}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true},mode:'Make dyes from flowers(Set 3)'}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true},mode:'Make dyes from flowers(Set 4)'}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 1)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 2)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 3)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 4)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 	
 ////////////////////////////////////////////
 //Fixes copied out of heritage mod
