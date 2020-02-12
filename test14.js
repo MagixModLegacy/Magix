@@ -6542,7 +6542,7 @@ new G.Unit({
 	new G.ChooseBox({
 		name:'research box',
 		context:'tech',
-		choicesN:1,
+		choicesN:10,
 		getCosts:function()
 		{
 			var cost=Math.floor(G.getRes('wisdom').amount*(0.025+0.05*this.roll));
