@@ -4188,7 +4188,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'clay':3,'fire pit':0.01},into:{'pot':1},every:3,repeat:2,mode:'clay pots'},
 			{type:'convert',from:{'mud':10,'fire pit':0.01},into:{'pot':1},every:6,mode:'mud pots'},
 			{type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'craft precious pots'},
-			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'};
+			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'}
 		],
 		req:{'pottery':true},
 		category:'crafting',
@@ -4250,7 +4250,6 @@ G.writeMSettingButton=function(obj)
 		icon:[22,3],
 		cost:{'archaic building materials':100},
 		use:{'land':4},
-		//require:{'worker':3,'stone tools':3},
 		modes:{
 			'off':G.MODE_OFF,
 			'quarry':{name:'Quarry stone',icon:[0,8],desc:'Produce [cut stone] and other minerals.',use:{'worker':3,'stone tools':3}},
@@ -4388,7 +4387,7 @@ G.writeMSettingButton=function(obj)
 		upkeep:{'coin':0.1},
 		effects:[
 			{type:'gather',context:'chop',amount:1,max:1},
-			{type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1});
+			{type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1}
 		],
 		req:{'woodcutting':true},
 		category:'production',
