@@ -3367,22 +3367,6 @@ autobuy(G.year)
 			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
 		],
 	});
-			new G.Unit({
-		name:';Cloudy water filter',
-		displayName:'Cloudy water filter',
-		desc:'A filter that uses [Land of the Paradise] and a worker. As his upkeep uses [coal] and [Mana] you gain 82% of converted water. <>Moderation path unit. Has research techs that can improve power and efficiency of the [;Cloudy water filter] <>Conversion: [Cloudy water] into [water]',
-		icon:[25,11,'magixmod'],
-		cost:{'basic building materials':275},
-		upkeep:{'coal':1,'Mana':1.5},
-		use:{'worker':1,'Land of the Paradise':1,'Industry point':1},
-		req:{'<font color="maroon">Moderation</font>':true,'Cloudy water filtering':true},
-		category:'paradiseunit',
-		effects:[
-			{type:'convert',from:{'Cloudy water':37},into:{'water':28,'cloud':2},every:1},
-			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
-			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
-		],
-	});
 		new G.Unit({
 		name:';Cloudy water filter',
 		displayName:'Cloudy water filter',
