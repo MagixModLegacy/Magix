@@ -5365,6 +5365,9 @@ autobuy(G.year)
 	G.policyCategories.push(
 			{id:'Education',name:'Education'}
 	);
+	G.policyCategories.push(
+			{id:'prod',name:'Production'}
+	);
 	//
 	G.knowCategories.push(
 			{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'}
@@ -5469,7 +5472,21 @@ autobuy(G.year)
 			{type:'rocky substrate'},
 		],
 	});
-
+		new G.Policy({
+		name:'Factory of pots production rates',
+		desc:'You can change the rates of production for [Factory of pots] . Remember the bigger rates the people will need to work harder and may become unhappy.',
+		icon:[14,18,'magixmod'],
+		cost:{'influence':75},
+		startMode:'1',
+		req:{'Production rates influence':true},
+			modes:{
+			'0.5':{name:'0.5',desc:'[Factory of pots] produces 50% less than default.'},
+			'1':{name:'1',desc:'[Factory of pots] produces its normal rate.'},
+			'1.5':{name:'1.5',desc:'[Factory of pots] produces 50% more than default.'},
+			'2':{name:'2',desc:'[Factory of pots] produces 100% more than default. People may become unhappy'},
+		},
+		category:'prod',
+	});
 		new G.Policy({
 		name:'harvest rituals for flowers',
 		desc:'Improves [Florist] efficiency by 20%. Consumes 1 [faith] & 1 [influence] every 20 days; will stop if you run out.',
