@@ -740,18 +740,6 @@ func:function(){
 		desc:'If you want to start farming [Beet] and crafting [sugar] these seeds are a must.',
 		icon:[6,11,'magixmod'],
 		partOf:'misc materials',
-  	 tick:function(me,tick) //Making wonders having their effects.
-        {
-            if (G.has('Knowledgeable') && (G.getRes('insight').amount < G.getRes('wisdom').amount));
-            G.gain('insight', (G.getRes('wisdom').amount - G.getRes('insight').amount) > 0.75 ? 0.75 : (G.getRes('wisdom').amount - G.getRes('insight').amount) ,'Complex of Dreamers');
-		
-		if (G.has('Cultural forces arise') && (G.getRes('culture').amount < G.getRes('inspiration').amount));
-            G.gain('culture', (G.getRes('inspiration').amount - G.getRes('culture').amount) > 0.75 ? 0.75 : (G.getRes('inspiration').amount - G.getRes('culture').amount) ,'Fortress of cultural legacy');
-		
-		if (G.has('Politic power rising up') && (G.getRes('influence').amount < G.getRes('authority').amount));
-            G.gain('influence', (G.getRes('authority').amount - G.getRes('influence').amount) > 0.75 ? 0.75 : (G.getRes('authority').amount - G.getRes('influence').amount) ,'Pagoda of democracy');
-            
-	},
 		category:'misc',
 	});
 		new G.Res({
@@ -3360,7 +3348,7 @@ autobuy(G.year)
 		upkeep:{'coal':2,'fire pit':0.1},
 		use:{'worker':10,'land':1,'Instructor':1},
 		req:{'<font color="maroon">Moderation</font>':true,'Factories I':true},
-		category:'production',
+		category:'crafting',
 		effects:[
 			{type:'convert',from:{'clay':400,'mud':275,'fire pit':1},into:{'pot':325},every:5},
 			{type:'convert',from:{'clay':400,'mud':275,'dyes':75,'fire pit':1},into:{'Precious pot':305},every:10},
