@@ -4045,7 +4045,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'stone':10},into:{'cut stone':1},every:15,mode:'cut stone'},
 			{type:'convert',from:{'cut stone':1},into:{'stone':9},every:5,mode:'smash cut stone'},
 			{type:'convert',from:{'gems':10},into:{'gem block':1},every:15,mode:'gem blocks'},
-			{type:'convert',from:{'log':1},into:{'Wooden statuette':1,'Scobs':3},every:7,mode:'Carve wooden statuettes'},
+			{type:'convert',from:{'log':1},into:{'Wooden statuette':1,'Scobs':3},every:7,mode:'wood statuettes'},
 			{type:'convert',from:{'Various stones':9},into:{'Various cut stones':1},every:5,mode:'gdablockscraft'},
 			{type:'convert',from:{'Various cut stones':1},into:{'Various stones':9},every:5,mode:'gdablockssmash'},
 			{type:'mult',value:1.2,req:{'ground stone tools':true}}
