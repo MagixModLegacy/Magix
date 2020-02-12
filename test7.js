@@ -6653,7 +6653,7 @@ new G.Unit({
 			req:{'Fishing II':true},
 			use:{'Fishing net':1},
 		};
-		G.getDict('fishing').effects.push({type:'gather',context:'gather',what:{'Seafood':5},amount:5,max:6,mode:'Net fishing'});
+		G.getDict('fisher').effects.push({type:'gather',context:'gather',what:{'seafood':5},amount:5,max:6,mode:'Net fishing'});
 //2 new modes for potters. First one for precious pots, second for potion pots.
 		G.getDict('potter').modes['Craft precious pots']={
 			name:'Craft precious pots',
