@@ -3361,7 +3361,7 @@ autobuy(G.year)
 		new G.Unit({
 		name:'Hovel of colours',
 		desc:'Does same thing as [artisan] on <b>Craft dyes set (1,2,3,4)</b> was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
-		icon:[20,18,'magixmod'],
+		icon:[19,18,'magixmod'],
 		cost:{'basic building materials':975},
 		upkeep:{'fire pit':0.2},
 		use:{'worker':20,'land':1,'Instructor':2,'stone tools':25},
