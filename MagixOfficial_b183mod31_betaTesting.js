@@ -3351,7 +3351,7 @@ autobuy(G.year)
 		category:'crafting',
 		effects:[
 			{type:'convert',from:{'clay':400,'mud':275,'fire pit':1},into:{'pot':325},every:5},
-			{type:'convert',from:{'clay':400,'mud':275,'dyes':75,'fire pit':1},into:{'Precious pot':305},every:10},
+			{type:'convert',from:{'clay':400,'mud':275,'Dyes':45,'fire pit':1},into:{'Precious pot':305},every:10},
 			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
 		],
 	});
