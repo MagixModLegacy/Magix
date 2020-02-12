@@ -4207,6 +4207,7 @@ G.writeMSettingButton=function(obj)
 		},
 		effects:[
 			{type:'convert',from:{'clay':1},into:{'brick':10},every:5,mode:'bricks'},
+			{type:'convert',from:{'sand':3},into:{'glass':10},every:5,mode:'glass'},
 		],
 		gizmos:true,
 		req:{'masonry':true},
