@@ -1316,6 +1316,12 @@ func:function(){
 		},
 		category:'misc',
 	});
+		new G.Res({
+		name:'Basic factory equipment',
+		desc:'Mostly useful while in [<font color="maroon">Moderation</font>] path. Without it some automation would be impossible. It involves metal hooks or weights or elements of the conveyor.',
+		icon:[choose([9,10]),18,'magixmod'],
+		category:'gear',
+	});
 //But books has to be stored somewhere right?
 	new G.Res({
 		name:'book storage',
@@ -2460,6 +2466,24 @@ func:function(){
 		req:{'The God\'s call':true,'7th essence':true},
 		category:'gods',
 	});
+		new G.Trait({
+		name:'God\'s trait #4 Potter\'s frenzy',
+		desc:'Increases efficiency of [Factory of pots] and [Hut of potters] by 25% without harming people\'s [happiness].',
+		icon:[21,18,'magixmod'],
+		cost:{'faith':100},
+		chance:275,
+		req:{'The God\'s call':true,'7th essence':true},
+		category:'gods',
+	});
+		new G.Trait({
+		name:'God\'s trait #5 Colored life',
+		desc:'Increases efficiency of [Hovel of colours] by 25% without harming people\'s [happiness].',
+		icon:[22,18,'magixmod'],
+		cost:{'faith':100},
+		chance:275,
+		req:{'The God\'s call':true,'7th essence':true,'<font color="maroon">Caretaking</font>':true},
+		category:'gods',
+	});
 	//Moderation or caretaking?
 		new G.Trait({
 		name:'<font color="maroon">Moderation</font>',
@@ -2478,6 +2502,16 @@ func:function(){
 		req:{'joy of eating':true,'<font color="maroon">Moderation</font>':false},
 		chance:1000,
 		category:'main',
+	});
+	//Another knowledge
+		new G.Trait({
+		name:'Measuring system',
+		desc:'<span style="color: #aaffff">People noticed that they will need a measuring system to make constructing, planning easier... so they created their own system of measuring things.</span>.',
+		icon:[13,18,'magixmod'],
+		cost:{'wisdom':75},
+		chance:475,
+		req:{'Will to know more':true},
+		category:'knowledge',
 	});
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
@@ -3136,21 +3170,21 @@ G = new Proxy(G, {
 autobuy(G.year)
 		new G.Tech({
 		name:'Cultural forces arise',
-		desc:'Makes [Fortress of cultural legacy] gather [culture] per tick.',
+		desc:'Makes [Fortress of cultural legacy] increase power of [culture,cultural units] per tick.',
 		icon:[22,17,'magixmod'], 
 		cost:{'insight':70,'Fortress construction point':200},
 		req:{'Cultural roots':true},
 	});
 		new G.Tech({
 		name:'Politic power rising up',
-		desc:'Makes [Pagoda of Democracy] gather [influence] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
+		desc:'Makes [Pagoda of Democracy] increase power of [influence,influence gathering units] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
 		icon:[21,17,'magixmod'], 
 		cost:{'insight':25,'Pagoda construction point':200},
 		req:{'Political roots':true},
 	});
 		new G.Tech({
 		name:'Knowledgeable',
-		desc:'Makes [Complex of Dreamers] gather [insight] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
+		desc:'Makes [Complex of Dreamers] increase power of [insight,insight gatherers(dreamers)] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
 		icon:[23,17,'magixmod'], 
 		cost:{'Complex construction point':200},
 		effects:[
@@ -3200,6 +3234,91 @@ autobuy(G.year)
 		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
 		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
+		new G.Tech({
+		name:'Improved furnace construction',
+		desc:'People figured a way to make a [furnace] produce more at the same costs of run and upkeep. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [furnace]s will work 20% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [furnace]s will work 10% more efficient.',
+		icon:[1,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+		new G.Tech({
+		name:'Focused gathering',
+		desc:'[gatherer]s were always thinking that they can gather more. This tech is another chance for them. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [gatherer]s will gather 7.5% more. <>If they have chosen [<font color="maroon">Caretaking</font>] then [gatherer]s will work 12.5% more.',
+		icon:[2,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+		new G.Tech({
+		name:'Bigger fires',
+		desc:'[firekeeper]s figured out how to make bigger fires. They will need to use more [stick]s but most important thing is that there will be profit <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [firekeeper]s will work 5% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [firekeeper]s will work 8% more efficient.',
+		icon:[3,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+		new G.Tech({
+		name:'Motivation for artisans',
+		desc:'[artisan]\'s succesful work made him work harder and motivated. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [artisan]s will work 8% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [artisan]s will work 4% more efficient. <>Doesn\'t include [artisan of juice] and [Pyro-Artisan] !',
+		icon:[4,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+	//Back to normal :)
+		new G.Tech({
+		name:'Advanced casting',
+		desc:'[blacksmith workshop,Blacksmiths] will get taught to be more exact and better due to changing times. Now they may craft basic industry gear and other things which they wouldn\'t craft without this knowledge.',
+		icon:[5,18,'magixmod'], 
+		cost:{'insight':850},
+		req:{'smelting':true,'masonry':true,'monument-building II':true},
+	});
+		new G.Tech({
+		name:'Automation',
+		desc:'Moderation is a path where people are going for automation to produce more and do less. So people are figuring out the ways to automate production. This tech will be a light for moderated people.',
+		icon:[6,18,'magixmod'], 
+		cost:{'insight':1000,'wisdom':15,'inspiration':5,'culture':80,'influence':205},
+		req:{'Second portal to new world':true,'<font color="maroon">Moderation</font>':true}
+	});
+		new G.Tech({
+		name:'Manufacturing',
+		desc:'Caretaking is a path where people are going for live long and they do not care about production and automation. They rather manual working at all. This tech is a beginning of manufacture.',
+		icon:[7,18,'magixmod'], 
+		cost:{'insight':1000,'wisdom':15,'inspiration':10,'culture':75,'influence':205},
+		req:{'Second portal to new world':true,'<font color="maroon">Caretaking</font>':true}
+	});
+		new G.Tech({
+		name:'Moderated workstation planning',
+		desc:'People lead by [<font color="maroon">Moderation</font>] want exact plans of building. It leads to construct more advanced constructions that can work better than single [potter] for instance.',
+		icon:[11,18,'magixmod'], 
+		cost:{'insight':995,'wisdom':5},
+		req:{'Paradise crafting':true,'<font color="maroon">Moderation</font>':true,'Measuring system':true}
+	});
+		new G.Tech({
+		name:'workstation planning',
+		desc:'People lead by [<font color="maroon">Caretaking</font>] do not need exact plans of building. They are interested in how many people it needs and where components will be arranged without super exact descriptions.',
+		icon:[12,18,'magixmod'], 
+		cost:{'insight':995,'wisdom':5},
+		req:{'Paradise crafting':true,'<font color="maroon">Caretaking</font>':true,'Measuring system':true}
+	});
+		new G.Tech({
+		name:'Manufacture units I',
+		desc:'Unlocks [Hut of Potters] and [Hovel of colours]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [artisan]s on <b>Craft dyes set (1,2,3,4)</b> mode will become USELESS! They won\'t produce.</font> ',
+		icon:[17,18,'magixmod'], 
+		cost:{'insight':750,'wisdom':5,'stone':1365},//Stones are there to make tech at same level as Factories I
+		req:{'workstation planning':true,'Manufacturing':true}
+	});
+		new G.Tech({
+		name:'Factories I',
+		desc:'Unlocks [Factory of pots] and [Leather factory]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [clothier]s on <b>Craft leather</b> and <b>Craft leather (cheap)</b> mode and [Drying rack]s will become USELESS! They won\'t produce.</font> ',
+		icon:[18,18,'magixmod'], 
+		cost:{'insight':750,'wisdom':5},
+		req:{'Moderated workstation planning':true,'<font color="maroon">Moderation</font>':true}
+	});
+		new G.Tech({
+		name:'Production rates influence',
+		desc:'Allows to control production expenditures for [Manufacture units I,Manufacture units] (if unlocked) or [Factories I,Factories] (if unlocked)',
+		icon:[16,18,'magixmod'], 
+		cost:{'insight':795,'wisdom':5,'influence':175,'authority':10},
+		req:{'Second portal to new world':true,'Better influence & authority':true}
+	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
 //Unit gets converted. Needed to make mine collapsions possible or other wasting with wounding people and else things
@@ -3237,6 +3356,110 @@ autobuy(G.year)
 		}
 	}
 	//Units for real
+		new G.Unit({
+		name:'Hovel of colours',
+		desc:'Does same thing as [artisan] on <b>Craft dyes set (1,2,3,4)</b> was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[19,18,'magixmod'],
+		cost:{'basic building materials':975},
+		upkeep:{'fire pit':0.2},
+		use:{'worker':20,'land':1,'Instructor':2,'stone tools':25},
+		req:{'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true},
+		category:'crafting',
+		effects:[
+			({type:'convert',from:{'Lavender':2},into:{'Purple dye':10},every:2}),
+		({type:'convert',from:{'Salvia':6},into:{'Magenta dye':2},every:3}),
+		({type:'convert',from:{'Bachelor\'s button':6},into:{'Blue dye':2},every:2}),
+		({type:'convert',from:{'Desert rose':6},into:{'Magenta dye':2},every:3}),
+		({type:'convert',from:{'Cosmos':4},into:{'Magenta dye':2},every:2}),
+		({type:'convert',from:{'Pink rose':6},into:{'Pink dye':2},every:3}),
+		({type:'convert',from:{'Pink tulip':4},into:{'Pink dye':2},every:2}),
+		({type:'convert',from:{'Coreopsis':4},into:{'Yellow dye':2},every:3}),
+		({type:'convert',from:{'Crown imperial':4},into:{'Orange dye':2},every:2}),
+		({type:'convert',from:{'Cyan rose':4},into:{'Cyan dye':2},every:3}),
+		({type:'convert',from:{'Himalayan blue poopy':4},into:{'Cyan dye':2},every:3}),
+		({type:'convert',from:{'Cockscomb':4},into:{'Red dye':2},every:2}),
+		({type:'convert',from:{'Red tulip':4},into:{'Red dye':2},every:3}),
+		({type:'convert',from:{'Green Zinnia':6},into:{'Green dye':2},every:3}),
+		({type:'convert',from:{'cactus':4},into:{'Green dye':2,'Cactus spikes':4},every:3}),
+		({type:'convert',from:{'Lime rose':4},into:{'Lime dye':2},every:3}),
+		({type:'convert',from:{'Lime tulip':4},into:{'Lime dye':2},every:3}),
+		({type:'convert',from:{'Azure bluet':8},into:{'Light gray dye':2},every:3}),
+		({type:'convert',from:{'Daisy':4},into:{'Light gray dye':2},every:3}),
+		({type:'convert',from:{'Sunflower':2},into:{'Yellow dye':2,'Sunflower seeds':6},every:4}),
+		({type:'convert',from:{'Dandelion':4},into:{'Yellow dye':2},every:3}),
+		({type:'convert',from:{'Black lily':6},into:{'Black dye':2},every:3}),
+		({type:'convert',from:{'Black Hollyhock':4},into:{'Black dye':2},every:3}),
+		({type:'convert',from:{'Cattail':4},into:{'Brown dye':2},every:3}),
+		({type:'convert',from:{'Flax':3},into:{'Light blue dye':1},every:3}),
+		({type:'convert',from:{'Blue orchid':2},into:{'Light blue dye':1},every:3}),
+		({type:'convert',from:{'White tulip':2},into:{'White dye':1},every:3}),
+		({type:'convert',from:{'Lily of the Valley':3},into:{'White dye':1},every:3}),
+		({type:'convert',from:{'Brown flower':2},into:{'Brown dye':1},every:3}),
+		({type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:3}),
+		({type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:3}),
+			//Production influence
+		{type:'mult',value:0.5,req:{'Hovel of colours production rates':0.5}},
+		{type:'mult',value:1.5,req:{'Hovel of colours production rates':1.5}},
+		{type:'mult',value:2,req:{'Hovel of colours production rates':2}},
+		{type:'mult',value:1.25,req:{'God\'s trait #5 Colored life':true}},
+		],
+	});
+		new G.Unit({
+		name:'Hut of potters',
+		desc:'Does same thing as [potter] was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[20,18,'magixmod'],
+		cost:{'basic building materials':475,'archaic building materials':500},
+		upkeep:{'fire pit':0.2},
+		use:{'worker':20,'land':1,'Instructor':2,'stone tools':25},
+		req:{'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'clay':200,'mud':145,'fire pit':1},into:{'pot':113},every:2},
+			{type:'convert',from:{'clay':200,'mud':145,'Dyes':18,'fire pit':1},into:{'Precious pot':101},every:9},
+			{type:'convert',from:{'clay':120,'mud':95},into:{'Potion pot':90},every:4},
+			{type:'mult',value:0.5,req:{'Hut of potters production rates':0.5}},
+			{type:'mult',value:1.5,req:{'Hut of potters production rates':1.5}},
+			{type:'mult',value:2,req:{'Hut of potters production rates':2}},
+			{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
+		],
+	});
+		new G.Unit({
+		name:'Factory of pots',
+		desc:'Does same thing as [potter] was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[14,18,'magixmod'],
+		cost:{'basic building materials':775,'Basic factory equipment':400},
+		upkeep:{'coal':2,'fire pit':0.1},
+		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
+		req:{'<font color="maroon">Moderation</font>':true,'Factories I':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'clay':400,'mud':275,'fire pit':1},into:{'pot':325},every:5},
+			{type:'convert',from:{'clay':400,'mud':275,'Dyes':45,'fire pit':1},into:{'Precious pot':305},every:10},
+			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
+			{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
+			{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
+			{type:'mult',value:2,req:{'Factory of pots production rates':2}},
+			{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
+		],
+	});
+		new G.Unit({
+		name:'Leather factory',
+		desc:'Does same thing as [clothier] on craft leather mode and [Drying rack] were. All 3 (2 modes of [clothier] and 1 unit) work all the time. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[15,18,'magixmod'],
+		cost:{'basic building materials':775,'Basic factory equipment':400},
+		upkeep:{'coal':2,'fire pit':0.1},
+		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
+		req:{'<font color="maroon">Moderation</font>':true,'Factories I':true},
+		category:'crafting',
+		effects:[	
+			{type:'convert',from:{'leather':20},into:{'Dried leather':20},every:7},
+			{type:'convert',from:{'hide':200,'water':1000,'salt':150,'log':15},into:{'leather':235},every:15},
+			{type:'convert',from:{'hide':200,'muddy water':1000,'herb':145},into:{'leather':235},every:20},
+			{type:'mult',value:0.5,req:{'Leather factory production rates':0.5}},
+			{type:'mult',value:1.5,req:{'Leather factory production rates':1.5}},
+			{type:'mult',value:2,req:{'Leather factory production rates':2}},
+		],
+	});
 		new G.Unit({
 		name:';Cloudy water filter',
 		displayName:'Cloudy water filter',
@@ -5070,6 +5293,14 @@ autobuy(G.year)
 			use:{'worker':1,'metal tools':1,'stone tools':1},
 		};	
 		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'});
+				G.getDict('blacksmith workshop').modes['factgear']={
+			name:'Forge factory equipment',
+			icon:[9,18,'magixmod'],
+			desc:'Forge [Basic factory equipment] out of 11[hard metal ingot]s each.',
+			req:{'Advanced casting':true},
+			use:{'worker':3,'metal tools':3,'Instructor':1},
+		};	
+		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'});
 //Firekeeper can set fires with help of Fire essence
 		G.getDict('firekeeper').modes['firesfromessence']={
 			name:'Set up fires out of its essence',
@@ -5336,7 +5567,66 @@ autobuy(G.year)
 			{type:'rocky substrate'},
 		],
 	});
-
+	new G.Policy({
+		name:'Factory of pots production rates',
+		desc:'You can change the rates of production for [Factory of pots] . Remember the bigger rates the people will need to work harder and may become unhappy.',
+		icon:[23,18,'magixmod',14,18,'magixmod'],
+		cost:{'influence':125},
+		startMode:'1',
+		req:{'Production rates influence':true,'<font color="maroon">Moderation</font>':true},
+			modes:{
+			'0.5':{name:'0.5',desc:'[Factory of pots] produces 50% less than default.'},
+			'1':{name:'1',desc:'[Factory of pots] produces its normal rate.'},
+			'1.5':{name:'1.5',desc:'[Factory of pots] produces 50% more than default.'},
+			'2':{name:'2',desc:'[Factory of pots] produces 100% more than default. People may become unhappy'},
+		},
+		category:'prod',
+	});
+		new G.Policy({
+		name:'Leather factory production rates',
+		desc:'You can change the rates of production for [Leather factory] . Remember the bigger rates the people will need to work harder and may become unhappy.',
+		icon:[23,18,'magixmod',15,18,'magixmod'],
+		cost:{'influence':125},
+		startMode:'1',
+		req:{'Production rates influence':true,'<font color="maroon">Moderation</font>':true},
+			modes:{
+			'0.5':{name:'0.5',desc:'[Leather factory] produces 50% less than default.'},
+			'1':{name:'1',desc:'[Leather factory] produces its normal rate.'},
+			'1.5':{name:'1.5',desc:'[Leather factory] produces 50% more than default.'},
+			'2':{name:'2',desc:'[Leather factory] produces 100% more than default. People may become unhappy'},
+		},
+		category:'prod',
+	});
+		new G.Policy({
+		name:'Hut of potters production rates',
+		desc:'You can change the rates of production for [Hut of potters] . Remember the bigger rates the people will need to work harder and may become unhappy.',
+		icon:[23,18,'magixmod',20,18,'magixmod'],
+		cost:{'influence':125},
+		startMode:'1',
+		req:{'Production rates influence':true,'<font color="maroon">Caretaking</font>':true},
+			modes:{
+			'0.5':{name:'0.5',desc:'[Hut of potters] produces 50% less than default.'},
+			'1':{name:'1',desc:'[Hut of potters] produces its normal rate.'},
+			'1.5':{name:'1.5',desc:'[Hut of potters] produces 50% more than default.'},
+			'2':{name:'2',desc:'[Hut of potters] produces 100% more than default. People may become unhappy'},
+		},
+		category:'prod',
+	});
+		new G.Policy({
+		name:'Hovel of colours production rates',
+		desc:'You can change the rates of production for [Hovel of colours] . Remember the bigger rates the people will need to work harder and may become unhappy.',
+		icon:[23,18,'magixmod',19,18,'magixmod'],
+		cost:{'influence':125},
+		startMode:'1',
+		req:{'Production rates influence':true,'<font color="maroon">Caretaking</font>':true},
+			modes:{
+			'0.5':{name:'0.5',desc:'[Hovel of colours] produces 50% less than default.'},
+			'1':{name:'1',desc:'[Hovel of colours] produces its normal rate.'},
+			'1.5':{name:'1.5',desc:'[Hovel of colours] produces 50% more than default.'},
+			'2':{name:'2',desc:'[Hovel of colours] produces 100% more than default. People may become unhappy'},
+		},
+		category:'prod',
+	});
 		new G.Policy({
 		name:'harvest rituals for flowers',
 		desc:'Improves [Florist] efficiency by 20%. Consumes 1 [faith] & 1 [influence] every 20 days; will stop if you run out.',
@@ -5445,6 +5735,19 @@ autobuy(G.year)
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':24},max:28,mode:'tin',req:{'Explosive crafting & mining':true}});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':1},max:3,mode:'coal',req:{'Explosive crafting & mining':true}});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':38},max:52,mode:'any',req:{'Explosive crafting & mining':true}});
+	//Manufacture units I and Factories I disables
+	//Factories I
+		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'cheap make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'cheap make leather'});
+		G.getDict('Drying rack').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+	//Manufacture units I
+		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 1)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 2)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 3)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 4)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+	
 ////////////////////////////////////////////
 //Fixes copied out of heritage mod
 	G.fixTooltipIcons=function()
