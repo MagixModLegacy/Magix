@@ -4311,7 +4311,7 @@ G.writeMSettingButton=function(obj)
 		icon:[24,2],
 		cost:{'basic building materials':100},
 		use:{'land':1},
-		upkeep:{'log':0.5},
+		upkeep:{'log':1},
 		modes:{
 			'off':G.MODE_OFF,
 			'copper':{name:'Copper smelting',icon:[9,9],desc:'Cast [soft metal ingot]s out of 5 [copper ore]s each.',use:{'worker':2,'stone tools':2},req:{}},
