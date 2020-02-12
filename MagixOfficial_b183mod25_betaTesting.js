@@ -3172,7 +3172,7 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Politic power rising up',
-		desc:'Makes [Pagoda of Democracy] increase power [influence,influese gathering units] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
+		desc:'Makes [Pagoda of Democracy] increase power of [influence,influence gathering units] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
 		icon:[21,17,'magixmod'], 
 		cost:{'insight':25,'Pagoda construction point':200},
 		req:{'Political roots':true},
@@ -3310,9 +3310,9 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Production rates influence',
-		desc:'Allows to control production expenditures for [Manufacture units I,Manufacture units] (if unlocked) or to [Factories I,Factories] (if unlocked)',
+		desc:'Allows to control production expenditures for [Manufacture units I,Manufacture units] (if unlocked) or [Factories I,Factories] (if unlocked)',
 		icon:[16,18,'magixmod'], 
-		cost:{'insight':750,'wisdom':5,'influence':175,'authority':10},
+		cost:{'insight':795,'wisdom':5,'influence':175,'authority':10},
 		req:{'Second portal to new world':true,'Better influence & authority':true}
 	});
 /////////////////////////////////////////////////////////////////////
@@ -3352,6 +3352,21 @@ autobuy(G.year)
 		}
 	}
 	//Units for real
+		new G.Unit({
+		name:'Factory of pots',
+		desc:'Does same thing as [potter] was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[14,18,'magixmod'],
+		cost:{'basic building materials':575},
+		upkeep:{'coal':2,'fire pit':0.1},
+		use:{'worker':10,'land':1,'Instructor':1},
+		req:{'<font color="maroon">Moderation</font>':true,'Factories I':true},
+		category:'production',
+		effects:[
+			{type:'convert',from:{'clay':400,'mud':275,'fire pit':1},into:{'pot':325},every:5},
+			{type:'convert',from:{'clay':400,'mud':275,'dyes':75,'fire pit':1},into:{'Precious pot':305},every:10},
+			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
+		],
+	});
 			new G.Unit({
 		name:';Cloudy water filter',
 		displayName:'Cloudy water filter',
@@ -5579,6 +5594,24 @@ autobuy(G.year)
 //2 path techs effects
 		G.getDict('furnace').effects.push({type:'mult',value:1.2,req:{'Improved furnace construction':true,'<font color="maroon">Moderation</font>':true}});
 		G.getDict('furnace').effects.push({type:'mult',value:1.1,req:{'Improved furnace construction':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('gatherer').effects.push({type:'mult',value:1.075,req:{'Focused gathering':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('gatherer').effects.push({type:'mult',value:1.125,req:{'Focused gathering':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('firekeeper').effects.push({type:'mult',value:1.05,req:{'Bigger fires':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('firekeeper').effects.push({type:'mult',value:1.08,req:{'Bigger fires':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:1.08,req:{'Motivation for artisans':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:1.04,req:{'Motivation for artisans':true,'<font color="maroon">Caretaking</font>':true}});
+//Manufacture units I and Factories I disables
+	//Factories I
+		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('clothier').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'make leather'});
+		G.getDict('clothier').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'cheap make leather'});
+		G.getDict('Drying rack').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+	//Manufacture units I
+		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true,mode:'Make dyes from flowers(Set 1)'}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true,mode:'Make dyes from flowers(Set 2)'}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true,mode:'Make dyes from flowers(Set 2)'}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true,mode:'Make dyes from flowers(Set 2)'}});
 	
 ////////////////////////////////////////////
 //Fixes copied out of heritage mod
