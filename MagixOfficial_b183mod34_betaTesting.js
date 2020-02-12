@@ -5475,8 +5475,8 @@ autobuy(G.year)
 		new G.Policy({
 		name:'Factory of pots production rates',
 		desc:'You can change the rates of production for [Factory of pots] . Remember the bigger rates the people will need to work harder and may become unhappy.',
-		icon:[14,18,'magixmod'],
-		cost:{'influence':75},
+		icon:[23,18,'magixmod',14,18,'magixmod'],
+		cost:{'influence':125},
 		startMode:'1',
 		req:{'Production rates influence':true},
 			modes:{
@@ -5484,6 +5484,21 @@ autobuy(G.year)
 			'1':{name:'1',desc:'[Factory of pots] produces its normal rate.'},
 			'1.5':{name:'1.5',desc:'[Factory of pots] produces 50% more than default.'},
 			'2':{name:'2',desc:'[Factory of pots] produces 100% more than default. People may become unhappy'},
+		},
+		category:'prod',
+	});
+		new G.Policy({
+		name:'Leather factory production rates',
+		desc:'You can change the rates of production for [Leather factory] . Remember the bigger rates the people will need to work harder and may become unhappy.',
+		icon:[23,18,'magixmod',15,18,'magixmod'],
+		cost:{'influence':125},
+		startMode:'1',
+		req:{'Production rates influence':true},
+			modes:{
+			'0.5':{name:'0.5',desc:'[Leather factory] produces 50% less than default.'},
+			'1':{name:'1',desc:'[Leather factory] produces its normal rate.'},
+			'1.5':{name:'1.5',desc:'[Leather factory] produces 50% more than default.'},
+			'2':{name:'2',desc:'[Leather factory] produces 100% more than default. People may become unhappy'},
 		},
 		category:'prod',
 	});
