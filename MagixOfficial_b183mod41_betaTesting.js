@@ -5296,6 +5296,14 @@ autobuy(G.year)
 			use:{'worker':1,'metal tools':1,'stone tools':1},
 		};	
 		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'});
+			G.getDict('blacksmith workshop').modes['factgear']={
+			name:'Forge factory equipment',
+			icon:[9,18,'magixmod'],
+			desc:'Forge [Basic factory equipment] out of 11[hard metal ingot]s each.',
+			req:{'Advanced casting':true},
+			use:{'worker':3,'metal tools':3,'Instructor':1},
+		};	
+		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'});
 //Firekeeper can set fires with help of Fire essence
 		G.getDict('firekeeper').modes['firesfromessence']={
 			name:'Set up fires out of its essence',
