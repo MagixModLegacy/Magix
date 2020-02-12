@@ -188,6 +188,229 @@ G.props['fastTicksOnResearch']=150;
         return true;
     }
 	/////////////////////////////////////////////////////////////////////////////////////////////
+	//New gains for gatherer
+		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Berry seeds': 0.005},amount:1,max:1});
+		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Beet seeds': 0.005},amount:1,max:1});
+		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Watermelon seeds':0.0001},amount:1,max:1});
+//Healer generates health by trait and research(it is temporary)
+		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.008},amount:1,max:1,req:{'Nutrition':true}});
+		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.001},amount:1,max:1,req:{'first aid':true}}); 
+//Effects of "Spell of Capacity"
+		G.getDict('warehouse').effects.push({type:'provide',what:{'material storage debug':800},req:{'Spell of capacity':true}});
+		G.getDict('barn').effects.push({type:'provide',what:{'food storage debug pots':800},req:{'Spell of capacity':true}});
+		G.getDict('granary').effects.push({type:'provide',what:{'food storage debug pots':200},req:{'Spell of capacity':true}});
+		G.getDict('stockpile').effects.push({type:'provide',what:{'material storage debug':200},req:{'Spell of capacity':true}});
+		G.getDict('storage pit').effects.push({type:'provide',what:{'food storage debug pots':80,'material storage debug':80},req:{'Spell of capacity':true}});
+//Effects of better house construction research
+		G.getDict('house').effects.push({type:'provide',what:{'housing':0.125},req:{'Better house construction':true}});
+		G.getDict('Brick house with a silo').effects.push({type:'provide',what:{'housing':0.2},req:{'Better house construction':true}});
+//Effects of God's trait number one
+		G.getDict('hovel').effects.push({type:'provide',what:{'housing':0.5},req:{'God\'s trait #1 Housing':true}});
+		G.getDict('hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
+		G.getDict('bamboo hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
+		G.getDict('mud shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
+		G.getDict('branch shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
+//Mortal mine sulfur gains
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':17},max:31,mode:'salt',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'gold',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':25},max:31,mode:'ostones',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'iron',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'nickel',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':24},max:28,mode:'tin',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':1},max:3,mode:'coal',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':38},max:52,mode:'any',req:{'Explosive crafting & mining':true}});
+	//Manufacture units I and Factories I disables
+	//Factories I
+		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'cheap make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'cheap make leather'});
+		G.getDict('Drying rack').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+	//Manufacture units I
+		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 1)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 2)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 3)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 4)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+	
+////////////////////////////////////////////
+//Fixes copied out of heritage mod
+	G.fixTooltipIcons=function()
+	{
+		G.parse=function(what)
+		{
+			var str='<div class="par">'+((what
+			.replaceAll(']s',',*PLURAL*]'))
+			.replace(/\[(.*?)\]/gi,G.parseFunc))
+			.replaceAll('http(s?)://','http$1:#SLASH#SLASH#')
+			.replaceAll('//','</div><div class="par">')
+			.replaceAll('#SLASH#SLASH#','//')
+			.replaceAll('@','</div><div class="par bulleted">')
+			.replaceAll('<>','</div><div class="divider"></div><div class="par">')+'</div>';
+			return str;
+		}
+	}
+	G.initializeFixIcons=function()
+	{
+		if (G.parse("http://").search("http://") == -1)
+		{
+			G.fixTooltipIcons();
+			setTimeout(G.initializeFixIcons,500);	// check again to make sure this version of the function stays applied during page load
+		}
+	}
+	G.initializeFixIcons();
+//Magix tab
+G.writeMSettingButton=function(obj)
+	{
+		G.pushCallback(function(obj){return function(){
+			var div=l('MsettingButton-'+obj.id);
+			if (div)
+			{
+				var me=G.getMSetting(obj.name);
+				if (me.binary==true)
+				{
+					var on = (G.checkMSetting(obj.name)=="on");
+
+					div.innerHTML=obj.text||me.name;
+					if (on) div.classList.add('on');
+				}
+
+				div.onclick=function(div,name,value,siblings){return function(){G.clickMSettingButton(div,name,value,siblings);}}(div,obj.name,obj.value,obj.siblings);
+				if (obj.tooltip) G.addTooltip(div,function(str){return function(){return str;};}(obj.tooltip),{offY:-8});
+			}
+		}}(obj));
+		return '<div class="button" id="msettingButton-'+obj.id+'"></div>';
+	}
+
+	G.clickmSettingButton=function(div,name,value,siblings)
+	{
+		var me=G.getmSetting(name);
+
+		if (me.binary)
+		{
+			if (G.checkmSetting(name)=="on")
+			{
+				G.setmSettingMode(me,me.modes["off"]);
+			}
+			else{
+				G.setmSettingMode(me,me.modes["on"]);
+			}
+		}
+		else
+		{
+			G.setmSettingMode(me,me.modes[value]);
+		}
+
+		if (div)
+		{
+			var on=(me.mode.id=="on");
+			if (on) div.classList.add('on'); else div.classList.remove('on');
+			if (siblings)
+			{
+				for (var i in siblings)
+				{
+					if (('msettingButton-'+siblings[i])!=div.id)
+					{l('msettingButton-'+siblings[i]).classList.remove('on');}
+				}
+			}
+		}
+	}
+
+	// A function to write each category of settings and buttons
+	G.writeMSettingCategories=function()
+	{
+		var str='';
+		for (c in G.mSettingCategory)
+		{
+			if (c=='hidden') continue;
+			var category=G.mSettingCategory[c];
+			str+='<div class="barred fancyText">'+category.displayName+'</div>';
+			for (var i in G.mSetting)
+			{
+				var s = G.mSetting[i];
+				if (s.hcategory == c)
+				{
+					if (s.type=='setting')
+					{
+						str+=G.writeSettingButton({
+							id:s.id,
+							name:s.name,
+							text:s.displayName,
+							tooltip:s.desc
+						});
+					} else {
+						str+=G.writeMSettingButton({
+							id:s.name,
+							name:s.name,
+							text:s.displayName,
+							tooltip:s.desc,
+						});
+					}
+				}
+			}
+			str+='<br /><br />';
+		}
+		return str;
+	}
+
+	// only add the tab once per page load (otherwise tab will duplicate itself with new game or mod reloading)
+	for (t in G.tabs) {
+		if (G.tabs[t].name=='Magix:About')
+		{
+			G.mSettingsLoaded = true;
+		}
+	}
+
+	if (!G.mSettingsLoaded)
+	{
+		G.tabs.push({
+			name:'Magix:About',
+			id:'Magix',
+			popup:true,
+			addClass:'right',
+			desc:'Options and information about the Magix mod.'
+		});
+		// Don't make assumptions about the existing tabs
+		// (or another mod that does the same thing)
+		// make sure everything is numbered and built properly
+		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
+		G.buildTabs();
+		
+	}
+
+	G.tabPopup['Magix']=function()
+	{
+		var str='';
+		str+='<div class="par">'+
+		'<b>The Magix mod</b> is a mod for NeverEnding Legacy made by <b>pelletsstarPL</b>.'+'It is currently in semi-alpha, may feature strange and exotic bugs, and may be updated at any time.</div>'+'<div class="par">While in development, the mod may be unstable and subject to changes, but the overall goal is to '+
+		'expand and improve the legacy with flexible, balanced, user-created content and improvements to existing mechanics.</div>'+
+		'Below this description you will see something like Q&A with me.</div>'+
+		'<div class="fancyText title">The Magix mod - why did I make this mod?</div>'+
+		'<b>The Magix mod</b> has been made while i was wondering how legacy would look if last update was at February 2019(to 2017 it would be 3 more vanilla game updates) let\'s say.'+
+		'I was checking bunch of mods and noticed... <b>There is none mod about magic... But I am gonna change it</b>.'+
+		'As i said i did and effect of that is at your screen.'+
+		'Even today i am proud of fruits of my creativity and time i sacrificed to make this entertaining mod.'+
+		'I made this mod due to my hobby: IT. I like things like coding, networking. Who knows... maybe i will become expert of javascript.'+
+		'<div class="fancyText title">Why does this mod have a lot of content?</div>'+
+		'This mod has a lot of content thanks to my creativity.'+
+		'Let\'s be serious. This mod will get more and more content sometime. These concepts, ideas... i have \'em a lot.'+
+		'Not everything of my conceptions, imaginations will be added. I wanted to improve vanilla units too, hope you like it.'+
+		'<div class="fancyText title">What will Magix get soon?</div>'+
+		'I do not want to spoil and <b>ruin the fun</b> so i won\'t answer that question.:)'+
+		'But i can say sooner or later if it will be <b>possible and reasonable</b> i may think about compatibilty with mods of other people.</div>'+
+		'<div class="fancyText title">Will you add more wonders or portals?</div>'+
+		'Yes i will... unless i run out of ideas so then i won\'t :D'+
+		'<div class="fancyText title">How i can ask you by question which is not in Q&A there?</div>'+
+		'Find me at <a href="https://discordapp.com/invite/cookie" target="_blank">Dashnet discord server</a><div>'+
+		'<span style "color: #FF0000"><b>IMPORTANT NOTE! I am not responsible if some crazy bugs and issues will occur in debug mode</b></span>'+
+		'<div class="barred fancyText"><a href="https://raw.githubusercontent.com/pelletsstarPL/Magixmod/master/Changelog" target="_blank">Update log</a><div><div>'+
+		'<div class="divider"></div>'+
+		G.writeMSettingCategories()+
+		'<div class="divider"></div>'+
+		'<div class="buttonBox">'+
+		G.dialogue.getCloseButton()+
+		'</div>';
+		return str;
+	}
 	
 	/*=====================================================================================
 	RESOURCES
@@ -6244,6 +6467,376 @@ new G.Unit({
 	);
 	
 	/*=====================================================================================
+	MAGIX MODIFICATIONS FOR VANILLA UNITS
+	=======================================================================================*/
+//Artisans will make wands for wizards. Mode for it.
+		G.getDict('artisan').modes['Craftwands']={
+			name:'Craft wands',
+			icon:[6,4,'magixmod'],
+			desc:'Your artisan will craft tool used by wizards. It is not any junk tool.',
+			req:{'Wizardry':true},
+			use:{'stone tools':2},
+		};
+		G.getDict('artisan').effects.push({type:'convert',from:{'stick':4,'stone':2},into:{'Wand':1},every:5,mode:'Craftwands'});
+//Artisans will craft fishing nets for fishers
+		G.getDict('artisan').modes['Craftnet']={
+			name:'Craft fishing net',
+			icon:[13,8,'magixmod'],
+			desc:'Your artisan will craft [Fishing net]. Needs [Instructor] because net <b> must be strong. Will use [Dried leather] to make it stronger.',
+			req:{'Fishing II':true},
+			use:{'stone tools':2,'Instructor':1},
+		};
+		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':35,'Dried leather':1},into:{'Fishing net':1},every:5,mode:'Craftnet'});
+//Artisans will craft fishing nets for fishers
+		G.getDict('artisan').modes['Craftink']={
+			name:'Craft ink',
+			icon:[18,6,'magixmod'],
+			desc:'Your artisan will craft [Ink]. Will use water and [Black dye],[Blue dye] or [Brown dye].',
+			req:{'Ink crafting':true},
+			use:{},
+		};
+		G.getDict('artisan').effects.push({type:'convert',from:{'Black dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'Craftink'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Brown dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'Craftink'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Blue dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'Craftink'});
+//Artisans will craft bandages, plasters for First Aid Healer.
+		G.getDict('artisan').modes['CraftFirstAid']={
+			name:'Craft first aid things',
+			icon:[16,10,'magixmod',15,10,'magixmod'],
+			desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',
+			req:{'first aid':true},
+			use:{'stone tools':1},
+		};
+		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'First aid things':1},every:5,mode:'CraftFirstAid'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':0.5,'herb':1},into:{'First aid things':1},every:5,mode:'CraftFirstAid'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'First aid things':1},every:7,mode:'CraftFirstAid'});
+
+//4 modes for Artisans. Each of them can convert 8 different flowers into its dyes.
+		G.getDict('artisan').modes['Make dyes from flowers(Set 1)']={
+			name:'Make dyes from flowers(Set 1)',
+			desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',
+			req:{'plant lore':true},
+			use:{},
+			icon:[11,7,'magixmod'],
+		};
+
+		G.getDict('artisan').effects.push({type:'convert',from:{'Lavender':2},into:{'Purple dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Salvia':3},into:{'Magenta dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Bachelor\'s button':2},into:{'Blue dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Desert rose':2},into:{'Magenta dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Cosmos':2},into:{'Magenta dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Pink rose':3},into:{'Pink dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Pink tulip':2},into:{'Pink dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Coreopsis':2},into:{'Yellow dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
+//Set 2
+		G.getDict('artisan').modes['Make dyes from flowers(Set 2)']={
+			name:'Make dyes from flowers(Set 2)',
+			desc:'Your artisan will convert these flowers into dyes: [Crown imperial],[Cyan rose],[Himalayan blue poopy],[Cockscomb],[Red tulip],[Green Zinnia],[cactus],[Lime rose]. @Bonus: While crafting dyes out of [cactus] you will get its spikes and a dye as usual.',
+			req:{'plant lore':true},
+			use:{},
+			icon:[11,7,'magixmod'],
+		};	
+		G.getDict('artisan').effects.push({type:'convert',from:{'Crown imperial':2},into:{'Orange dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Cyan rose':2},into:{'Cyan dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Himalayan blue poopy':2},into:{'Cyan dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Cockscomb':2},into:{'Red dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Red tulip':2},into:{'Red dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Green Zinnia':3},into:{'Green dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'cactus':2},into:{'Green dye':1,'Cactus spikes':3},every:5,mode:'Make dyes from flowers(Set 2)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Lime rose':2},into:{'Lime dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
+//Set 3
+		G.getDict('artisan').modes['Make dyes from flowers(Set 3)']={
+			name:'Make dyes from flowers(Set 3)',
+			desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail]. @Bonus: While crafting dyes out of [Sunflower] you will get its edible [Sunflower seeds] and a dye as usual.',
+			req:{'plant lore':true},
+			use:{},
+			icon:[11,7,'magixmod'],
+		};	
+		G.getDict('artisan').effects.push({type:'convert',from:{'Lime tulip':2},into:{'Lime dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Azure bluet':4},into:{'Light gray dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Daisy':2},into:{'Light gray dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Sunflower':1},into:{'Yellow dye':1,'Sunflower seeds':3},every:7,mode:'Make dyes from flowers(Set 3)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Dandelion':2},into:{'Yellow dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Black lily':3},into:{'Black dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Black Hollyhock':2},into:{'Black dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Cattail':2},into:{'Brown dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
+//Set 4
+		G.getDict('artisan').modes['Make dyes from flowers(Set 4)']={
+			name:'Make dyes from flowers(Set 4)',
+			icon:[11,7,'magixmod'],
+			desc:'Your artisan will convert these flowers into dyes: [Flax],[Blue orchid],[White tulip],[Lily of the Valley],[Gray rose],[Gray tulip],[Brown flower].',
+			req:{'plant lore':true},
+			use:{},
+		};	
+		G.getDict('artisan').effects.push({type:'convert',from:{'Flax':3},into:{'Light blue dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Blue orchid':2},into:{'Light blue dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'White tulip':2},into:{'White dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Lily of the Valley':3},into:{'White dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Brown flower':2},into:{'Brown dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
+	//After researching Hunting II Artisans with Craft bows mode will now be able to craft Crossbows and ammo to it
+		G.getDict('artisan').effects.push({type:'convert',from:{'stick':3,'stone':2},into:{'Crossbow':1},every:5,req:{'Hunting II':true},mode:'bows'});
+		G.getDict('artisan').effects.push({type:'convert',from:{'lumber':1,'stone':25},into:{'Crossbow belt':20},every:5,req:{'Hunting II':true},mode:'bows'});
+//Bookcrafting
+		G.getDict('artisan').modes['Craftbook']={
+			name:'Craft book',
+			icon:[13,12,'magixmod'],
+			desc:'Your artisan will craft [Empty book,books].',
+			req:{'Bookcrafting':true},
+			use:{'stone tools':1},
+		};
+		G.getDict('artisan').effects.push({type:'convert',from:{'Paper':30,'hide':1},into:{'Empty book':1},every:7,mode:'Craftbook'});
+	//Kilns will be able to make glass out of sand
+		G.getDict('kiln').modes['Craftglass']={
+			name:'Craft glass',
+			icon:[4,8],
+			desc:'Your kiln will now use sand to make a glass.',
+			req:{'Crafting a glass':true},
+			use:{'stone tools':1},
+		};	
+		G.getDict('kiln').effects.push({type:'convert',from:{'sand':8},into:{'glass':2},every:5,mode:'Craftglass'});
+//Furnaces will be now able to smelt Cobalt, Nickel and Platinum
+		G.getDict('furnace').modes['Cobalt smelting']={
+			name:'Cobalt smelting',
+			icon:[14,0,'magixmod'],
+			desc:'Cast 1[Cobalt ingot] out of 8[Cobalt ore].',
+			req:{'Cobalt-working':true},
+			use:{'worker':2,'metal tools':2,'stone tools':1},
+		};	
+		G.getDict('furnace').effects.push({type:'convert',from:{'Cobalt ore':8},into:{'Cobalt ingot':1},every:5,mode:'Cobalt smelting'});
+		G.getDict('furnace').modes['nickel']={
+			name:'Nickel smelting',
+			icon:[10,9],
+			desc:'Cast 1[hard metal ingot] out of 6[nickel ore]s each.',
+			req:{'prospecting II':true,'nickel-working':true},
+			use:{'worker':2,'metal tools':2},
+		};	
+		G.getDict('furnace').effects.push({type:'convert',from:{'nickel ore':6},into:{'hard metal ingot':1},every:5,mode:'nickel'});
+		G.getDict('furnace').modes['platinum']={
+			name:'Platinum smelting',
+			icon:[3,11,'magixmod'],
+			desc:'Cast 1[platinum ingot] out of 5[platinum ore]s each.',
+			req:{'prospecting II':true,'platinum-working':true},
+			use:{'worker':2,'metal tools':2},
+		};	
+		G.getDict('furnace').effects.push({type:'convert',from:{'platinum ore':5},into:{'platinum ingot':1},every:5,mode:'platinum'});
+//Carving wooden statuettes
+		G.getDict('carver').modes['Carve wooden statuettes']={
+			name:'Carve wooden statuettes',
+			icon:[13,1,'magixmod'],
+			desc:'Your carver will now use carve statuettes out of [log].',
+			use:{'knapped tools':1},
+		};	
+		G.getDict('carver').effects.push({type:'convert',from:{'log':1},into:{'Wooden statuette':1,'Scobs':3},every:7,mode:'Carve wooden statuettes'});
+//Carver will be able to smash granite, diorite, andesite blocks and craft them
+		G.getDict('carver').modes['gdablockscraft']={
+			name:'Cut other stones',
+			icon:[3,12,'magixmod'],
+			desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',
+			use:{'knapped tools':1},
+			req:{'masonry':true},
+		};	
+		G.getDict('carver').effects.push({type:'convert',from:{'Various stones':9},into:{'Various cut stones':1},every:5,mode:'gdablockscraft'});
+		G.getDict('carver').modes['gdablockssmash']={
+			name:'Smash other stone blocks',
+			icon:[7,12,'magixmod'],
+			desc:'Your carver will smash a [Various cut stones,Various cut stone] into 9 [Various stones].',
+			use:{'knapped tools':1},
+			req:{'masonry':true},
+		};	
+		G.getDict('carver').effects.push({type:'convert',from:{'cut granite':1},into:{'Granite':9},every:5,mode:'gdablockssmash'});
+//While woodcutter cuts tree to grant logs
+		G.getDict('woodcutter').effects.push({type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1});
+//Weaving colored clothing
+		G.getDict('clothier').modes['Weave leather colored clothing']={
+			name:'Weave leather colored clothing',
+			icon:[13,0,'magixmod'],
+			desc:'Your clothier will now weave [leather] but colored clothing.',
+			req:{'weaving':true},
+			use:{'stone tools':1},
+		};	
+		G.getDict('clothier').effects.push({type:'convert',from:{'leather':2,'Dyes':3},into:{'Colored clothing':1},every:6,mode:'Weave leather colored clothing'});
+		G.getDict('clothier').modes['Weave fiber colored clothing']={
+			name:'Weave fiber colored clothing',
+			icon:[13,0,'magixmod'],
+			desc:'Your clothier will now weave fiber but colored clothing.',
+			req:{'weaving':true},
+			use:{'stone tools':1},
+		};
+		G.getDict('clothier').effects.push({type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'Weave fiber colored clothing'});
+		G.getDict('clothier').modes['Dye already made clothing']={
+			name:'Dye already made clothing',
+			icon:[13,0,'magixmod'],
+			desc:'Your clothier will now dye already made [basic clothes] making them become[Colored clothing].',
+			req:{'weaving':true},
+			use:{'stone tools':1},
+		};
+		G.getDict('clothier').effects.push({type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'Dye already made clothing'});
+		G.getDict('clothier').modes['Craft thread']={
+			name:'Craft thread',
+			icon:[13,9,'magixmod'],
+			desc:'Your clothier will now craft [Thread] out of [herb].',
+			req:{'Sewing II':true},
+			use:{'stone tools':1},
+		};
+		G.getDict('clothier').effects.push({type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'});
+//Hunter will now be able to hunt animals with Crossbow
+			G.getDict('hunter').modes['Crossbow hunting']={
+			name:'Crossbow hunting',
+			icon:[13,6,'magixmod'],
+			desc:'Hunt animals with crossbows.',
+			req:{'Hunting II':true},
+			use:{'Crossbow':1,'Crossbow belt':150},
+		};
+		G.getDict('hunter').effects.push({type:'gather',context:'hunt',amount:5,max:6,mode:'Crossbow hunting'});
+//Quarry's mode
+			G.getDict('quarry').modes['quarryotherstones']={
+			name:'Quarry other stones',
+			icon:[3,12,'magixmod'],
+			desc:'Strike the Earth for other than common [cut stone] stones.',
+			req:{'quarrying II':true},
+			use:{'worker':3,'metal tools':3},
+		};
+		G.getDict('quarry').effects.push({type:'gather',context:'quarry',what:{'Various cut stones':5},mode:'quarryotherstones'});
+
+//Fisher can fish with new fishing nets
+			G.getDict('fisher').modes['Net fishing']={
+			name:'Net fishing',
+			icon:[13,8,'magixmod'],
+			desc:'Catch fish with [Fishing net].',
+			req:{'Fishing II':true},
+			use:{'Fishing net':1},
+		};
+		G.getDict('fishing').effects.push({type:'gather',context:'gather',what:{'Seafood':5},amount:5,max:6,mode:'Net fishing'});
+//2 new modes for potters. First one for precious pots, second for potion pots.
+		G.getDict('potter').modes['Craft precious pots']={
+			name:'Craft precious pots',
+			icon:[15,8,'magixmod'],
+			desc:'Your potter will craft [Precious pot] out of both [clay] and [mud].',
+			req:{'Precious pottery':true},
+			use:{'knapped tools':1,'stone tools':1,'Instructor':0.33},
+		};	
+		G.getDict('potter').effects.push({type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'Craft precious pots'});
+		G.getDict('potter').modes['Craft potion pots']={
+			name:'Craft potion pots',
+			icon:[14,8,'magixmod'],
+			desc:'Your potter will craft [Potion pot] out of both [clay] and [mud]. These pots do not provide additional [food storage].',
+			req:{'Precious pottery':true},
+			use:{'knapped tools':1,'stone tools':1,'Instructor':0.5},
+		};	
+		G.getDict('potter').effects.push({type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'Craft potion pots'});
+//4 modes for blacksmiths so they can forge armor/weapons out of soft/hard metals
+		G.getDict('blacksmith workshop').modes['forgeweapon']={
+			name:'Forge weapons out of soft metals',
+			icon:[15,11,'magixmod'],
+			desc:'Forge [metal weapons] out of 2[soft metal ingot]s each.',
+			req:{'Weapon blacksmithery':true},
+			use:{'worker':1,'metal tools':1,'stone tools':1},
+		};	
+		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},repeat:2,mode:'forgeweapon'});
+		G.getDict('blacksmith workshop').modes['forgeweaponhard']={
+			name:'Forge weapons out of hard metals',
+			icon:[15,11,'magixmod'],
+			desc:'Forge [metal weapons] out of 1[hard metal ingot] each.',
+			req:{'Weapon blacksmithery':true},
+			use:{'worker':1,'metal tools':1,'stone tools':1},
+		};	
+		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'forgeweaponhard'});
+		G.getDict('blacksmith workshop').modes['forgearmor']={
+			name:'Forge armor out of soft metals',
+			icon:[16,11,'magixmod'],
+			desc:'Forge [armor set] out of 8[soft metal ingot]s each.',
+			req:{'Armor blacksmithery':true},
+			use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25},
+		};	
+		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'soft metal ingot':8},into:{'armor set':1},every:4,mode:'forgearmor'});
+		G.getDict('blacksmith workshop').modes['forgearmorhard']={
+			name:'Forge armor out of hard metals',
+			icon:[16,11,'magixmod'],
+			desc:'Forge [armor set] out of 5[hard metal ingot] each.',
+			req:{'Armor blacksmithery':true},
+			use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25},
+		};	
+		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'});
+		G.getDict('blacksmith workshop').modes['platinum blocks']={
+			name:'Craft platinum blocks',
+			icon:[4,11,'magixmod'],
+			desc:'Forge [platinum block]s out of 10[platinum ingot] each.',
+			req:{'platinum-working':true},
+			use:{'worker':1,'metal tools':1,'stone tools':1},
+		};	
+		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'});
+				G.getDict('blacksmith workshop').modes['factgear']={
+			name:'Forge factory equipment',
+			icon:[9,18,'magixmod'],
+			desc:'Forge [Basic factory equipment] out of 11[hard metal ingot]s each.',
+			req:{'Advanced casting':true},
+			use:{'worker':3,'metal tools':3,'Instructor':1},
+		};	
+		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'});
+//Firekeeper can set fires with help of Fire essence
+		G.getDict('firekeeper').modes['firesfromessence']={
+			name:'Set up fires out of its essence',
+			icon:[0,2,'magixmod'],
+			desc:'Craft 2[fire pit]s with use of: 1[Fire essence],13[stick]s',
+			req:{'Wizard complex':true},
+			use:{'Wand':1,'knapped tools':1},
+		};	
+		G.getDict('firekeeper').effects.push({type:'convert',from:{'Fire essence':1,'stick':13},into:{'fire pit':5},mode:'firesfromessence'});
+//Nickel mines
+		G.getDict('mine').modes['nickel']={
+			name:'Nickel',
+			icon:[9,12,'magixmod'],
+			desc:'Mine for [nickel ore] with 5x efficiency.',
+			req:{'prospecting II':true},
+			use:{'worker':3,'metal tools':3},
+		};	
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'nickel ore':40},max:25,mode:'nickel'});
+//Other stones prospected mine
+		G.getDict('mine').modes['ostones']={
+			name:'Other stones',
+			icon:[3,12,'magixmod'],
+			desc:'Mine for other stones with 3x efficiency than common [stone].',
+			req:{'prospecting II':true},
+			use:{'worker':3,'metal tools':3},
+		};	
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Various stones':30},max:25,mode:'ostones'});
+//2 modes for architect
+		G.getDict('architect').modes['Brickhouser']={
+			name:'Brickhouse building',
+			icon:[5,1,'magixmod'],
+			desc:'This architect will build more useful housing like [Brick house with a silo]',
+			use:{},
+			req:{'Architects knowledge':true,'city planning':true}};
+		G.getDict('architect')
+		effects:[
+		{type:'function',func:function(me){
+		var wiggleRoom=3;
+		var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
+		if (toMake>0 && G.canBuyUnitByName('house',toMake))
+		{
+			G.buyUnitByName('Brick house with a silo',toMake,true);
+		}
+	},mode:'Brickhouser'}
+],	
+		G.getDict('architect').modes['Blockhouser']={
+			name:'Blockhouse building',
+			icon:[9,1,'magixmod'],
+			desc:'This architect will build more advanced [housing,housing] like [Blockhouse] .',
+			use:{},
+			req:{'Architects knowledge':true,'city planning':true}},
+		G.getDict('architect')
+		effects:[
+		{type:'function',func:function(me){
+		var wiggleRoom=3;
+		var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
+		if (toMake>0 && G.canBuyUnitByName('house',toMake))
+		{
+			G.buyUnitByName('Blockhouse',toMake,true);
+		}
+	},mode:'Blockhouser'}
+],	
+	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
 	
@@ -8299,6 +8892,139 @@ autobuy(G.year)
 		req:{'rules of food':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 		category:'food',
 	});
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//SEASONAL CONTENT//CONTENT WHICH WILL BE AVAILABLE FOR PLAYERS AT SOME TIME LIKE XMAS OR VALENTINE'S DAY
+//////////////////////////////////////////////////////////////////////////////////////////////////////	
+	//NEW YEAR 'S EVE//
+		new G.Unit({
+		name:'Artisan of new year',
+		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] to finish it up.',
+		icon:[19,0,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'Thread':0.30,'Paper':0.3},
+		effects:[
+			{type:'gather',what:{'Blue firework':1.25}},
+			{type:'gather',what:{'Orange firework':1.25}},
+			{type:'gather',what:{'Firecracker':1}}
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+		//limitPer:{'land':40},
+	});
+		new G.Unit({
+		name:'Artisan of new year (dark)',
+		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
+		icon:[19,0,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
+		effects:[
+			{type:'gather',what:{'Dark Blue Firework':1.25}},
+			{type:'gather',what:{'Dark Orange Firework':1.25}},
+			{type:'gather',what:{'Firecracker':1}}
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+		//limitPer:{'land':40},
+	});
+		new G.Tech({
+		name:'Firework crafting',
+		desc:'@unlocks [Artisan of new year].',
+		icon:[0,0,'seasonal'],
+		cost:{'insight':30},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},
+	});
+		new G.Res({
+		name:'Blue firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky/',
+		icon:[2,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'Orange firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky.',
+		icon:[1,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Tech({
+		name:'Firework launching',
+		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
+		icon:[17,0,'seasonal'],
+		cost:{'insight':70},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true},
+	});
+		new G.Unit({
+		name:'Firework launching guy',
+		desc:'There the guy launches fireworks right up into the sky. Generates happiness by itself and for every firework bunch launched up into the sky.',
+		icon:[18,0,'seasonal'],
+		cost:{'food':10},
+		use:{'worker':1,'land':1},
+		effects:[
+			{type:'convert',from:{'Orange firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Blue firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+		//limitPer:{'land':40},
+	});
+		new G.Tech({
+		name:'Dark essenced fireworks',
+		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
+		icon:[16,0,'seasonal'],
+		cost:{'insight':400},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true},
+	});
+		new G.Res({
+		name:'Dark Blue Firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight./',
+		icon:[5,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'Dark Orange Firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight.',
+		icon:[4,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'Firecracker',
+		desc:'Firecrackers are fireworks but without thread.',
+		icon:[3,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
 	
 	/*=====================================================================================
 	LANDS
@@ -8988,7 +9714,150 @@ autobuy(G.year)
 			{type:'addFastTicksOnResearch',amount:150}
 		],
 	});
-	
+//Temple achiev
+		new G.Achiev({
+		tier:1,
+		name:'Heavenly',
+		wideIcon:[0,11,'magixmod'],
+		icon:[1,11,'magixmod'],
+		desc:'Your soul has been sent to Paradise as archangel with power of top Temple tower in an beautiful stone monument the purpose of which takes root in a pure religious thought.',
+		fromWonder:'Heavenly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+	});
+//skull achiev
+		new G.Achiev({
+		tier:1,
+		name:'Deadly, revenantic',
+		wideIcon:[0,16,'magixmod'],
+		icon:[1,16,'magixmod'],
+		desc:'You escaped and your soul got escorted right into the world of Underwold... you may discover it sometime.',
+		fromWonder:'Deadly, revenantic',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+	});
+
+		new G.Achiev({
+		tier:0,
+		name:'Sacrificed for culture',
+		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
+		icon:[6,12,'magixmod'],
+		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Democration',
+		wideIcon:[5,13,'magixmod'],
+		icon:[6,13,'magixmod'],
+		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
+		fromWonder:'Democration',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Insight-ly',
+		wideIcon:[choose([0,3,6]),17,'magixmod'],
+		icon:[choose([1,4,7]),17,'magixmod'],
+		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+	/*============================================================================================
+	SPECIAL ACHIEVEMENTS EFFECTS
+	===========================================================================================*/
+
+	let gif =  new G.Tech({
+        name:'<font color=" ##00C000">Artistic gray cells</font>',
+        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
+        icon:[4,12,'magixmod',6,12,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'inspiration':3}},
+			{type:'provide res',what:{'culture':3}},
+		],
+        req:{'tribalism':false}
+    	});
+	function checkCultu() {
+  	if (G.achievByName['Sacrificed for culture'].won) {
+    	if (G.achievByName['Sacrificed for culture'].won >= 0 && G.hasNot('<font color=" ##00C000">Artistic gray cells</font>')) {
+     	 G.gainTech(gif)
+    	}
+	}
+	}
+	checkCultu()
+	const oldNewGame3 = G.NewGameConfirm.bind({})
+	G.NewGameConfirm = new Proxy(oldNewGame3, {
+ 	 apply: function(target, thisArg, args) {
+   	 target(...args)
+   	 checkCultu()
+ 	 }
+	})
+let gifI =  new G.Tech({
+        name:'<font color="aqua">Genius feeling</font>',
+        desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
+        icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'insight':6}},
+		],
+        req:{'tribalism':false}
+    });
+function checkDream() {
+  if (G.achievByName['Insight-ly'].won) {
+    if (G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="aqua">Genius feeling</font>')) {
+      G.gainTech(gifI)
+    }
+}
+}
+checkDream()
+const oldNewGame2 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame2, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkDream()
+  }
+})
+let gifD =  new G.Tech({
+        name:'<font color="fuschia">Authority of the ancestor</font>',
+        desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
+        icon:[4,12,'magixmod',6,13,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'authority':1}},
+			{type:'provide res',what:{'influence':1}},
+		],
+        req:{'tribalism':false}
+    });
+function checkDemoc() {
+  if (G.achievByName['Democration'].won) {
+    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="fuschia">Authority of the ancestor</font>')) {
+      G.gainTech(gifD)
+    }
+}
+}
+checkDemoc()
+const oldNewGame1 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame1, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkDemoc()
+  }
+})
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
@@ -9219,437 +10088,5 @@ autobuy(G.year)
 		return lvl;
 	}
 }
-	//New gains for gatherer
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Berry seeds': 0.005},amount:1,max:1});
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Beet seeds': 0.005},amount:1,max:1});
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Watermelon seeds':0.0001},amount:1,max:1});
-//Healer generates health by trait and research(it is temporary)
-		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.008},amount:1,max:1,req:{'Nutrition':true}});
-		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.001},amount:1,max:1,req:{'first aid':true}}); 
-//Effects of "Spell of Capacity"
-		G.getDict('warehouse').effects.push({type:'provide',what:{'material storage debug':800},req:{'Spell of capacity':true}});
-		G.getDict('barn').effects.push({type:'provide',what:{'food storage debug pots':800},req:{'Spell of capacity':true}});
-		G.getDict('granary').effects.push({type:'provide',what:{'food storage debug pots':200},req:{'Spell of capacity':true}});
-		G.getDict('stockpile').effects.push({type:'provide',what:{'material storage debug':200},req:{'Spell of capacity':true}});
-		G.getDict('storage pit').effects.push({type:'provide',what:{'food storage debug pots':80,'material storage debug':80},req:{'Spell of capacity':true}});
-//Effects of better house construction research
-		G.getDict('house').effects.push({type:'provide',what:{'housing':0.125},req:{'Better house construction':true}});
-		G.getDict('Brick house with a silo').effects.push({type:'provide',what:{'housing':0.2},req:{'Better house construction':true}});
-//Effects of God's trait number one
-		G.getDict('hovel').effects.push({type:'provide',what:{'housing':0.5},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('bamboo hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('mud shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('branch shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-//Mortal mine sulfur gains
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':17},max:31,mode:'salt',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'gold',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':25},max:31,mode:'ostones',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'iron',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'nickel',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':24},max:28,mode:'tin',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':1},max:3,mode:'coal',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':38},max:52,mode:'any',req:{'Explosive crafting & mining':true}});
-	//Manufacture units I and Factories I disables
-	//Factories I
-		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
-		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
-		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'cheap make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'cheap make leather'});
-		G.getDict('Drying rack').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
-	//Manufacture units I
-		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 1)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 2)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 3)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 4)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-	
-////////////////////////////////////////////
-//Fixes copied out of heritage mod
-	G.fixTooltipIcons=function()
-	{
-		G.parse=function(what)
-		{
-			var str='<div class="par">'+((what
-			.replaceAll(']s',',*PLURAL*]'))
-			.replace(/\[(.*?)\]/gi,G.parseFunc))
-			.replaceAll('http(s?)://','http$1:#SLASH#SLASH#')
-			.replaceAll('//','</div><div class="par">')
-			.replaceAll('#SLASH#SLASH#','//')
-			.replaceAll('@','</div><div class="par bulleted">')
-			.replaceAll('<>','</div><div class="divider"></div><div class="par">')+'</div>';
-			return str;
-		}
-	}
-	G.initializeFixIcons=function()
-	{
-		if (G.parse("http://").search("http://") == -1)
-		{
-			G.fixTooltipIcons();
-			setTimeout(G.initializeFixIcons,500);	// check again to make sure this version of the function stays applied during page load
-		}
-	}
-	G.initializeFixIcons();
-//Magix tab
-G.writeMSettingButton=function(obj)
-	{
-		G.pushCallback(function(obj){return function(){
-			var div=l('MsettingButton-'+obj.id);
-			if (div)
-			{
-				var me=G.getMSetting(obj.name);
-				if (me.binary==true)
-				{
-					var on = (G.checkMSetting(obj.name)=="on");
-
-					div.innerHTML=obj.text||me.name;
-					if (on) div.classList.add('on');
-				}
-
-				div.onclick=function(div,name,value,siblings){return function(){G.clickMSettingButton(div,name,value,siblings);}}(div,obj.name,obj.value,obj.siblings);
-				if (obj.tooltip) G.addTooltip(div,function(str){return function(){return str;};}(obj.tooltip),{offY:-8});
-			}
-		}}(obj));
-		return '<div class="button" id="msettingButton-'+obj.id+'"></div>';
-	}
-
-	G.clickmSettingButton=function(div,name,value,siblings)
-	{
-		var me=G.getmSetting(name);
-
-		if (me.binary)
-		{
-			if (G.checkmSetting(name)=="on")
-			{
-				G.setmSettingMode(me,me.modes["off"]);
-			}
-			else{
-				G.setmSettingMode(me,me.modes["on"]);
-			}
-		}
-		else
-		{
-			G.setmSettingMode(me,me.modes[value]);
-		}
-
-		if (div)
-		{
-			var on=(me.mode.id=="on");
-			if (on) div.classList.add('on'); else div.classList.remove('on');
-			if (siblings)
-			{
-				for (var i in siblings)
-				{
-					if (('msettingButton-'+siblings[i])!=div.id)
-					{l('msettingButton-'+siblings[i]).classList.remove('on');}
-				}
-			}
-		}
-	}
-
-	// A function to write each category of settings and buttons
-	G.writeMSettingCategories=function()
-	{
-		var str='';
-		for (c in G.mSettingCategory)
-		{
-			if (c=='hidden') continue;
-			var category=G.mSettingCategory[c];
-			str+='<div class="barred fancyText">'+category.displayName+'</div>';
-			for (var i in G.mSetting)
-			{
-				var s = G.mSetting[i];
-				if (s.hcategory == c)
-				{
-					if (s.type=='setting')
-					{
-						str+=G.writeSettingButton({
-							id:s.id,
-							name:s.name,
-							text:s.displayName,
-							tooltip:s.desc
-						});
-					} else {
-						str+=G.writeMSettingButton({
-							id:s.name,
-							name:s.name,
-							text:s.displayName,
-							tooltip:s.desc,
-						});
-					}
-				}
-			}
-			str+='<br /><br />';
-		}
-		return str;
-	}
-
-	// only add the tab once per page load (otherwise tab will duplicate itself with new game or mod reloading)
-	for (t in G.tabs) {
-		if (G.tabs[t].name=='Magix:About')
-		{
-			G.mSettingsLoaded = true;
-		}
-	}
-
-	if (!G.mSettingsLoaded)
-	{
-		G.tabs.push({
-			name:'Magix:About',
-			id:'Magix',
-			popup:true,
-			addClass:'right',
-			desc:'Options and information about the Magix mod.'
-		});
-		// Don't make assumptions about the existing tabs
-		// (or another mod that does the same thing)
-		// make sure everything is numbered and built properly
-		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
-		G.buildTabs();
-		
-	}
-
-	G.tabPopup['Magix']=function()
-	{
-		var str='';
-		str+='<div class="par">'+
-		'<b>The Magix mod</b> is a mod for NeverEnding Legacy made by <b>pelletsstarPL</b>.'+'It is currently in semi-alpha, may feature strange and exotic bugs, and may be updated at any time.</div>'+'<div class="par">While in development, the mod may be unstable and subject to changes, but the overall goal is to '+
-		'expand and improve the legacy with flexible, balanced, user-created content and improvements to existing mechanics.</div>'+
-		'Below this description you will see something like Q&A with me.</div>'+
-		'<div class="fancyText title">The Magix mod - why did I make this mod?</div>'+
-		'<b>The Magix mod</b> has been made while i was wondering how legacy would look if last update was at February 2019(to 2017 it would be 3 more vanilla game updates) let\'s say.'+
-		'I was checking bunch of mods and noticed... <b>There is none mod about magic... But I am gonna change it</b>.'+
-		'As i said i did and effect of that is at your screen.'+
-		'Even today i am proud of fruits of my creativity and time i sacrificed to make this entertaining mod.'+
-		'I made this mod due to my hobby: IT. I like things like coding, networking. Who knows... maybe i will become expert of javascript.'+
-		'<div class="fancyText title">Why does this mod have a lot of content?</div>'+
-		'This mod has a lot of content thanks to my creativity.'+
-		'Let\'s be serious. This mod will get more and more content sometime. These concepts, ideas... i have \'em a lot.'+
-		'Not everything of my conceptions, imaginations will be added. I wanted to improve vanilla units too, hope you like it.'+
-		'<div class="fancyText title">What will Magix get soon?</div>'+
-		'I do not want to spoil and <b>ruin the fun</b> so i won\'t answer that question.:)'+
-		'But i can say sooner or later if it will be <b>possible and reasonable</b> i may think about compatibilty with mods of other people.</div>'+
-		'<div class="fancyText title">Will you add more wonders or portals?</div>'+
-		'Yes i will... unless i run out of ideas so then i won\'t :D'+
-		'<div class="fancyText title">How i can ask you by question which is not in Q&A there?</div>'+
-		'Find me at <a href="https://discordapp.com/invite/cookie" target="_blank">Dashnet discord server</a><div>'+
-		'<span style "color: #FF0000"><b>IMPORTANT NOTE! I am not responsible if some crazy bugs and issues will occur in debug mode</b></span>'+
-		'<div class="barred fancyText"><a href="https://raw.githubusercontent.com/pelletsstarPL/Magixmod/master/Changelog" target="_blank">Update log</a><div><div>'+
-		'<div class="divider"></div>'+
-		G.writeMSettingCategories()+
-		'<div class="divider"></div>'+
-		'<div class="buttonBox">'+
-		G.dialogue.getCloseButton()+
-		'</div>';
-		return str;
-	}
-//SEASONAL CONTENT//CONTENT WHICH WILL BE AVAILABLE FOR PLAYERS AT SOME TIME LIKE XMAS OR VALENTINE'S DAY
-	
-	//NEW YEAR 'S EVE//
-		new G.Unit({
-		name:'Artisan of new year',
-		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] to finish it up.',
-		icon:[19,0,'seasonal'],
-		cost:{},
-		use:{'worker':1},
-		upkeep:{'Thread':0.30,'Paper':0.3},
-		effects:[
-			{type:'gather',what:{'Blue firework':1.25}},
-			{type:'gather',what:{'Orange firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
-		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Unit({
-		name:'Artisan of new year (dark)',
-		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
-		icon:[19,0,'seasonal'],
-		cost:{},
-		use:{'worker':1},
-		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
-		effects:[
-			{type:'gather',what:{'Dark Blue Firework':1.25}},
-			{type:'gather',what:{'Dark Orange Firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
-		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Tech({
-		name:'Firework crafting',
-		desc:'@unlocks [Artisan of new year].',
-		icon:[0,0,'seasonal'],
-		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},
-	});
-		new G.Res({
-		name:'Blue firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky/',
-		icon:[2,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Res({
-		name:'Orange firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky.',
-		icon:[1,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Tech({
-		name:'Firework launching',
-		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
-		icon:[17,0,'seasonal'],
-		cost:{'insight':70},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true},
-	});
-		new G.Unit({
-		name:'Firework launching guy',
-		desc:'There the guy launches fireworks right up into the sky. Generates happiness by itself and for every firework bunch launched up into the sky.',
-		icon:[18,0,'seasonal'],
-		cost:{'food':10},
-		use:{'worker':1,'land':1},
-		effects:[
-			{type:'convert',from:{'Orange firework':1},into:{'happiness':75},every:2,context:'launching'},
-			{type:'convert',from:{'Blue firework':1},into:{'happiness':75},every:2,context:'launching'},
-			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
-			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
-		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Tech({
-		name:'Dark essenced fireworks',
-		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
-		icon:[16,0,'seasonal'],
-		cost:{'insight':400},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true},
-	});
-		new G.Res({
-		name:'Dark Blue Firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight./',
-		icon:[5,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Res({
-		name:'Dark Orange Firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight.',
-		icon:[4,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Res({
-		name:'Firecracker',
-		desc:'Firecrackers are fireworks but without thread.',
-		icon:[3,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-	let gif =  new G.Tech({
-        name:'<font color=" ##00C000">Artistic gray cells</font>',
-        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
-        icon:[4,12,'magixmod',6,12,'magixmod'],
-        cost:{},
-	effects:[
-			{type:'provide res',what:{'inspiration':3}},
-			{type:'provide res',what:{'culture':3}},
-		],
-        req:{'tribalism':false}
-    	});
-	function checkCultu() {
-  	if (G.achievByName['Sacrificed for culture'].won) {
-    	if (G.achievByName['Sacrificed for culture'].won >= 0 && G.hasNot('<font color=" ##00C000">Artistic gray cells</font>')) {
-     	 G.gainTech(gif)
-    	}
-	}
-	}
-	checkCultu()
-	const oldNewGame3 = G.NewGameConfirm.bind({})
-	G.NewGameConfirm = new Proxy(oldNewGame3, {
- 	 apply: function(target, thisArg, args) {
-   	 target(...args)
-   	 checkCultu()
- 	 }
-	})
-let gifI =  new G.Tech({
-        name:'<font color="aqua">Genius feeling</font>',
-        desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
-        icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
-        cost:{},
-	effects:[
-			{type:'provide res',what:{'insight':6}},
-		],
-        req:{'tribalism':false}
-    });
-function checkDream() {
-  if (G.achievByName['Insight-ly'].won) {
-    if (G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="aqua">Genius feeling</font>')) {
-      G.gainTech(gifI)
-    }
-}
-}
-checkDream()
-const oldNewGame2 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame2, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkDream()
-  }
-})
-let gifD =  new G.Tech({
-        name:'<font color="fuschia">Authority of the ancestor</font>',
-        desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
-        icon:[4,12,'magixmod',6,13,'magixmod'],
-        cost:{},
-	effects:[
-			{type:'provide res',what:{'authority':1}},
-			{type:'provide res',what:{'influence':1}},
-		],
-        req:{'tribalism':false}
-    });
-function checkDemoc() {
-  if (G.achievByName['Democration'].won) {
-    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="fuschia">Authority of the ancestor</font>')) {
-      G.gainTech(gifD)
-    }
-}
-}
-checkDemoc()
-const oldNewGame1 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame1, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkDemoc()
-  }
-})
-}});
+});
 
