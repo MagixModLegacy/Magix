@@ -2922,14 +2922,6 @@ G.writeMSettingButton=function(obj)
 		hidden:true,
 		category:'misc',
 	});
-		G.getDict('grass').res['gather']['vegetable']=0.001;
-		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
-		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
-		G.getDict('freshwater').res['gather']['Sugar cane']=0.000000004;
-		G.getDict('rocky substrate').res['mine']['Various stones']=0.075;
-		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
-		G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
-		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;//test
 	//To make game not crash by precious pots i had to add it
 		new G.Res({
 		name:'food storage debug pots',
@@ -6834,7 +6826,14 @@ new G.Unit({
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 2)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 3)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 4)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-	
+		G.getDict('grass').res['gather']['vegetable']=0.001;
+		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
+		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
+		G.getDict('freshwater').res['gather']['Sugar cane']=0.000000004;
+		G.getDict('rocky substrate').res['mine']['Various stones']=0.075;
+		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
+		G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
+		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;//test
 ////////////////////////////////////////////
 	/*=====================================================================================
 	TECHS
