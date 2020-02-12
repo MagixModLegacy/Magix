@@ -4067,8 +4067,12 @@ G.writeMSettingButton=function(obj)
 			'sew hide clothing':{name:'Sew hide clothing',icon:[15,7],desc:'Craft [primitive clothes] from 3 [hide]s each.',use:{'stone tools':1}},
 			'weave fiber clothing':{name:'Weave fiber clothing',icon:[16,7],desc:'Craft [basic clothes] from 50 [herb]s each.',use:{'stone tools':1},req:{'weaving':true}},//TODO : implement fibers
 			'weave leather clothing':{name:'Weave leather clothing',icon:[16,7],desc:'Craft [basic clothes] from 2 [leather] each.',use:{'stone tools':1},req:{'weaving':true,'leather-working':true}},
-			'make leather':{name:'Make leather',icon:[10,7],desc:'Produce [leather] from [hide]s, [water], [salt] and [log]s.',use:{'stone tools':1},req:{'leather-working':true}},
-			'cheap make leather':{name:'Make leather (cheap)',icon:[10,7],desc:'Slowly produce [leather] from [hide]s, [muddy water] and [herb]s.',use:{'stone tools':1}},
+			'make leather':{name:'Make leather',icon:[10,7],desc:'Produce [leather] from [hide]s, [water], [salt] and [log]s.',use:{'stone tools':1},req:{'leather-working':true,'Factories I':false}},
+			'cheap make leather':{name:'Make leather (cheap)',icon:[10,7],desc:'Slowly produce [leather] from [hide]s, [muddy water] and [herb]s.',use:{'stone tools':1,'Factories I':false}},
+			'weave leather colored clothing':{name:'Weave leather colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave [leather] but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
+			'weave fiber colored clothing':{name:'Weave fiber colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave fiber but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
+			'dye already made clothing':{name:'Dye already made clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now dye already made [basic clothes] making them become[Colored clothing].',req:{'weaving':true},use:{'stone tools':1}},
+			'Craft thread':{name:'Craft thread',icon:[13,9,'magixmod'],desc:'Your clothier will now craft [Thread] out of [herb].',req:{'Sewing II':true},use:{'stone tools':1}}
 		},
 		effects:[
 			{type:'convert',from:{'hide':3},into:{'primitive clothes':1},every:8,mode:'sew hide clothing'},
@@ -4077,6 +4081,10 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'herb':50},into:{'basic clothes':1},every:20,mode:'weave fiber clothing'},
 			{type:'convert',from:{'hide':1,'water':5,'salt':1,'log':0.1},into:{'leather':1},every:15,mode:'make leather'},
 			{type:'convert',from:{'hide':1,'muddy water':5,'herb':10},into:{'leather':1},every:30,mode:'cheap make leather'},
+			{type:'convert',from:{'leather':2,'Dyes':3},into:{'Colored clothing':1},every:6,mode:'weave leather colored clothing'},
+			{type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'weave fiber colored clothing'},
+			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
+			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'}
 		],
 		req:{'sewing':true},
 		category:'crafting',
@@ -4094,11 +4102,13 @@ G.writeMSettingButton=function(obj)
 			'endurance hunting':{name:'Endurance hunting',icon:[0,6],desc:'Hunt animals by simply running after them until they get exhausted.//Slow and tedious.'},
 			'spear hunting':{name:'Spear hunting',icon:[5,9],desc:'Hunt animals with spears.',use:{'stone weapons':1},req:{'spears':true}},
 			'bow hunting':{name:'Bow hunting',icon:[6,9],desc:'Hunt animals with bows.',use:{'bow':1},req:{'bows':true}},
+			'crossbow hunting':{name:'Crossbow hunting',icon:[13,6,'magixmod'],desc:'Hunt animals with crossbows.',req:{'Hunting II':true},use:{'Crossbow':1,'Crossbow belt':150}},
 		},
 		effects:[
 			{type:'gather',context:'hunt',amount:1,max:5,mode:'endurance hunting'},
 			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting'},
-			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},//TODO : consuming arrows?
+			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},
+			{type:'gather',context:'hunt',amount:5,max:6,mode:'Crossbow hunting'},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
 		],
@@ -4118,12 +4128,13 @@ G.writeMSettingButton=function(obj)
 			'catch by hand':{name:'Catch by hand',icon:[0,6],desc:'Catch fish with nothing but bare hands.//Slow and tedious.'},
 			'spear fishing':{name:'Spear fishing',icon:[5,9],desc:'Catch fish with spears.',use:{'stone weapons':1},req:{'spears':true}},
 			'line fishing':{name:'Line fishing',icon:[5,9],desc:'Catch fish with fishing poles.',use:{'stone tools':1},req:{'fishing hooks':true}},
-			//TODO : nets
+			'net fishing':{name:'Net fishing',icon:[13,8,'magixmod'], desc:'Catch fish with [Fishing net].',req:{'Fishing II':true},use:{'Fishing net':1}},
 		},
 		effects:[
 			{type:'gather',context:'fish',amount:1,max:5,mode:'catch by hand'},
 			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
 			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
+			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'Net fishing'},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
 		],
 		req:{'fishing':true},
@@ -4143,6 +4154,7 @@ G.writeMSettingButton=function(obj)
 			'stick fires':{name:'Start fires from sticks',icon:[0,6,13,7],desc:'Craft [fire pit]s from 20 [stick]s each.'},
 			'cook':{name:'Cook',icon:[6,7,13,7],desc:'Turn [meat] and [seafood] into [cooked meat] and [cooked seafood] in the embers of [fire pit]s',req:{'cooking':true}},
 			'cure':{name:'Cure & smoke',icon:[11,6,12,6],desc:'Turn 1 [meat] or [seafood] into 2 [cured meat] or [cured seafood] using [salt] in the embers of [fire pit]s',req:{'curing':true}},
+			'firesfromessence':{name:'Set up fires out of its essence',icon:[0,2,'magixmod'], desc:'Craft 2[fire pit]s with use of: 1[Fire essence],13[stick]s',req:{'Wizard complex':true},use:{'Wand':1,'knapped tools':1}}
 		},
 		effects:[
 			{type:'convert',from:{'stick':20},into:{'fire pit':1},every:5,mode:'stick fires'},
@@ -4150,6 +4162,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'seafood':1,'fire pit':0.01},into:{'cooked seafood':1},every:1,repeat:5,mode:'cook'},
 			{type:'convert',from:{'meat':1,'salt':1,'fire pit':0.01},into:{'cured meat':2},every:1,repeat:10,mode:'cure'},
 			{type:'convert',from:{'seafood':1,'salt':1,'fire pit':0.01},into:{'cured seafood':2},every:1,repeat:10,mode:'cure'},
+			{type:'convert',from:{'Fire essence':1,'stick':13},into:{'fire pit':5},mode:'firesfromessence'}
 		],
 		req:{'fire-making':true},
 		category:'crafting',
@@ -4168,10 +4181,14 @@ G.writeMSettingButton=function(obj)
 		modes:{
 			'clay pots':{name:'Craft pots out of clay',icon:[1,7,13,5],desc:'Craft [pot]s from 3 [clay] each; requires [fire pit]s.'},
 			'mud pots':{name:'Craft pots out of mud',icon:[0,7,13,5],desc:'Craft [pot]s from 10 [mud] each; requires [fire pit]s.'},
+			'craft precious pots':{name:'Craft precious pots',icon:[15,8,'magixmod'],desc:'Your potter will craft [Precious pot] out of both [clay] and [mud].',req:{'Precious pottery':true},use:{'knapped tools':1,'stone tools':1,'Instructor':0.33}},
+			'craft potion pots':{name:'Craft potion pots',icon:[14,8,'magixmod'],desc:'Your potter will craft [Potion pot] out of both [clay] and [mud]. These pots do not provide additional [food storage].',req:{'Precious pottery':true},use:{'knapped tools':1,'stone tools':1,'Instructor':0.5}},    
 		},
 		effects:[
 			{type:'convert',from:{'clay':3,'fire pit':0.01},into:{'pot':1},every:3,repeat:2,mode:'clay pots'},
-			{type:'convert',from:{'mud':10,'fire pit':0.01},into:{'pot':1},every:6,mode:'mud pots'}
+			{type:'convert',from:{'mud':10,'fire pit':0.01},into:{'pot':1},every:6,mode:'mud pots'},
+			{type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'craft precious pots'},
+			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'};
 		],
 		req:{'pottery':true},
 		category:'crafting',
@@ -4238,12 +4255,14 @@ G.writeMSettingButton=function(obj)
 			'off':G.MODE_OFF,
 			'quarry':{name:'Quarry stone',icon:[0,8],desc:'Produce [cut stone] and other minerals.',use:{'worker':3,'stone tools':3}},
 			'advanced quarry':{name:'Advanced quarry stone',icon:[8,12,0,8],desc:'Produce [cut stone] and other minerals at a superior rate with metal tools.',use:{'worker':3,'metal tools':3}},
+			'quarryotherstones':{name:'Quarry other stones',icon:[3,12,'magixmod'],desc:'Strike the Earth for other than common [cut stone] stones.',req:{'quarrying II':true},use:{'worker':3,'metal tools':3}},
 		},
 		effects:[
 			{type:'gather',context:'quarry',amount:5,max:10,every:3,mode:'quarry'},
 			{type:'gather',context:'quarry',what:{'cut stone':1},max:5,notMode:'off'},
 			{type:'gather',context:'mine',amount:0.005,max:0.05,notMode:'off'},
 			{type:'gather',context:'quarry',amount:10,max:30,every:3,mode:'advanced quarry'},
+			{type:'gather',context:'quarry',what:{'Various cut stones':5},mode:'quarryotherstones'},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
 		],
 		gizmos:true,
@@ -4266,6 +4285,8 @@ G.writeMSettingButton=function(obj)
 			'tin':{name:'Tin',icon:[13,8],desc:'Mine for [tin ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'iron':{name:'Iron',icon:[10,8],desc:'Mine for [iron ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'gold':{name:'Gold',icon:[11,8],desc:'Mine for [gold ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'nickel':{name:'Nickel',icon:[9,12,'magixmod'],desc:'Mine for [nickel ore] with 5x efficiency.',req:{'prospecting II':true},use:{'worker':3,'metal tools':3}},
+			'ostones':{name:'Other stones',icon:[3,12,'magixmod'],desc:'Mine for other stones with 3x efficiency than common [stone].',req:{'prospecting II':true},use:{'worker':3,'metal tools':3}}
 		},
 		effects:[
 			{type:'gather',context:'mine',amount:10,max:30,mode:'any'},
@@ -4276,6 +4297,9 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',context:'mine',what:{'tin ore':50},max:30,mode:'tin'},
 			{type:'gather',context:'mine',what:{'iron ore':50},max:30,mode:'iron'},
 			{type:'gather',context:'mine',what:{'gold ore':50},max:30,mode:'gold'},
+			{type:'gather',context:'mine',what:{'nickel ore':40},max:25,mode:'nickel'},
+			{type:'gather',context:'mine',what:{'Various stones':30},max:25,mode:'ostones'},
+			{type:'gather',context:'mine',what:{'Sulfur':35},max:51,req:{'Explosive crafting & mining':true}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50}
 		],
 		gizmos:true,
@@ -4329,11 +4353,23 @@ G.writeMSettingButton=function(obj)
 			'metal tools':{name:'Forge tools from soft metals',icon:[2,9],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
 			'hard metal tools':{name:'Forge tools from hard metals',icon:[2,9],desc:'Forge 3 [metal tools] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1},req:{}},
 			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true}},
+			'forgeweapon':{name:'Forge weapons out of soft metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 2[soft metal ingot]s each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},  
+			'forgeweaponhard':{name:'Forge weapons out of hard metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 1[hard metal ingot] each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
+			'forgearmor':{name:'Forge armor out of soft metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 8[soft metal ingot]s each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
+			'forgearmorhard':{name:'Forge armor out of hard metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 5[hard metal ingot] each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
+			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
+			'factgear':{name:'Forge factory equipment',icon:[9,18,'magixmod'],desc:'Forge [Basic factory equipment] out of 11[hard metal ingot]s each.',req:{'Advanced casting':true},use:{'worker':3,'metal tools':3,'Instructor':1}},
 		},
 		effects:[
 			{type:'convert',from:{'soft metal ingot':2},into:{'metal tools':1},repeat:3,mode:'metal tools'},
 			{type:'convert',from:{'hard metal ingot':1},into:{'metal tools':3},repeat:3,mode:'hard metal tools'},
 			{type:'convert',from:{'precious metal ingot':10},into:{'gold block':1},mode:'gold blocks'},
+			{type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},repeat:2,mode:'forgeweapon'},
+			{type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'forgeweaponhard'},
+			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':1},every:4,mode:'forgearmor'},
+			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'},
+			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'},
+			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
 			{type:'waste',chance:0.001/1000},
 			//TODO : better metal tools, weapons etc
 		],
@@ -4634,6 +4670,8 @@ G.writeMSettingButton=function(obj)
 			'off':G.MODE_OFF,
 			'house building':{name:'House building',icon:[21,3],desc:'Build [house]s as long as there is homelessness and the right materials are available.'},
 			'undertaker':{name:'Undertaker',icon:[13,2],desc:'Dig [grave]s as long as there are unburied corpses.'},
+			'blockhouser':{name:'Blockhouse building',icon:[9,1,'magixmod'],desc:'This architect will build more advanced [housing,housing] like [Blockhouse].',req:{'Architects knowledge':true,'city planning':true}},
+			'brickhouser':{name:'Brickhouse building',icon:[5,1,'magixmod'],desc:'This architect will build more useful housing like [Brick house with a silo]',req:{'Architects knowledge':true,'city planning':true}};
 		},
 		effects:[
 			{type:'function',func:function(me){
@@ -4652,7 +4690,23 @@ G.writeMSettingButton=function(obj)
 				{
 					G.buyUnitByName('grave',toMake,true);
 				}
-			},mode:'undertaker'}
+			},mode:'undertaker'},
+			{type:'function',func:function(me){
+				var wiggleRoom=6;
+				var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
+				if (toMake>0 && G.canBuyUnitByName('house',toMake))
+				{
+					G.buyUnitByName('Blockhouse',toMake,true);
+				}
+			},mode:'blockhouser'},
+				{type:'function',func:function(me){
+				var wiggleRoom=10;
+				var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
+				if (toMake>0 && G.canBuyUnitByName('house',toMake))
+				{
+					G.buyUnitByName('Brick house with a silo',toMake,true);
+				}
+			},mode:'blockhouser'},
 		],
 		limitPer:{'land':100},
 		req:{'city planning':true},
@@ -6462,187 +6516,6 @@ new G.Unit({
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
 	=======================================================================================*/
-		G.getDict('clothier').modes['Weave fiber colored clothing']={
-			name:'Weave fiber colored clothing',
-			icon:[13,0,'magixmod'],
-			desc:'Your clothier will now weave fiber but colored clothing.',
-			req:{'weaving':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('clothier').effects.push({type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'Weave fiber colored clothing'});
-		G.getDict('clothier').modes['Dye already made clothing']={
-			name:'Dye already made clothing',
-			icon:[13,0,'magixmod'],
-			desc:'Your clothier will now dye already made [basic clothes] making them become[Colored clothing].',
-			req:{'weaving':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('clothier').effects.push({type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'Dye already made clothing'});
-		G.getDict('clothier').modes['Craft thread']={
-			name:'Craft thread',
-			icon:[13,9,'magixmod'],
-			desc:'Your clothier will now craft [Thread] out of [herb].',
-			req:{'Sewing II':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('clothier').effects.push({type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'});
-//Hunter will now be able to hunt animals with Crossbow
-			G.getDict('hunter').modes['Crossbow hunting']={
-			name:'Crossbow hunting',
-			icon:[13,6,'magixmod'],
-			desc:'Hunt animals with crossbows.',
-			req:{'Hunting II':true},
-			use:{'Crossbow':1,'Crossbow belt':150},
-		};
-		G.getDict('hunter').effects.push({type:'gather',context:'hunt',amount:5,max:6,mode:'Crossbow hunting'});
-//Quarry's mode
-			G.getDict('quarry').modes['quarryotherstones']={
-			name:'Quarry other stones',
-			icon:[3,12,'magixmod'],
-			desc:'Strike the Earth for other than common [cut stone] stones.',
-			req:{'quarrying II':true},
-			use:{'worker':3,'metal tools':3},
-		};
-		G.getDict('quarry').effects.push({type:'gather',context:'quarry',what:{'Various cut stones':5},mode:'quarryotherstones'});
-
-//Fisher can fish with new fishing nets
-			G.getDict('fisher').modes['Net fishing']={
-			name:'Net fishing',
-			icon:[13,8,'magixmod'],
-			desc:'Catch fish with [Fishing net].',
-			req:{'Fishing II':true},
-			use:{'Fishing net':1},
-		};
-		G.getDict('fisher').effects.push({type:'gather',context:'gather',what:{'seafood':5},amount:5,max:6,mode:'Net fishing'});
-//2 new modes for potters. First one for precious pots, second for potion pots.
-		G.getDict('potter').modes['Craft precious pots']={
-			name:'Craft precious pots',
-			icon:[15,8,'magixmod'],
-			desc:'Your potter will craft [Precious pot] out of both [clay] and [mud].',
-			req:{'Precious pottery':true},
-			use:{'knapped tools':1,'stone tools':1,'Instructor':0.33},
-		};	
-		G.getDict('potter').effects.push({type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'Craft precious pots'});
-		G.getDict('potter').modes['Craft potion pots']={
-			name:'Craft potion pots',
-			icon:[14,8,'magixmod'],
-			desc:'Your potter will craft [Potion pot] out of both [clay] and [mud]. These pots do not provide additional [food storage].',
-			req:{'Precious pottery':true},
-			use:{'knapped tools':1,'stone tools':1,'Instructor':0.5},
-		};	
-		G.getDict('potter').effects.push({type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'Craft potion pots'});
-//4 modes for blacksmiths so they can forge armor/weapons out of soft/hard metals
-		G.getDict('blacksmith workshop').modes['forgeweapon']={
-			name:'Forge weapons out of soft metals',
-			icon:[15,11,'magixmod'],
-			desc:'Forge [metal weapons] out of 2[soft metal ingot]s each.',
-			req:{'Weapon blacksmithery':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},repeat:2,mode:'forgeweapon'});
-		G.getDict('blacksmith workshop').modes['forgeweaponhard']={
-			name:'Forge weapons out of hard metals',
-			icon:[15,11,'magixmod'],
-			desc:'Forge [metal weapons] out of 1[hard metal ingot] each.',
-			req:{'Weapon blacksmithery':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'forgeweaponhard'});
-		G.getDict('blacksmith workshop').modes['forgearmor']={
-			name:'Forge armor out of soft metals',
-			icon:[16,11,'magixmod'],
-			desc:'Forge [armor set] out of 8[soft metal ingot]s each.',
-			req:{'Armor blacksmithery':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'soft metal ingot':8},into:{'armor set':1},every:4,mode:'forgearmor'});
-		G.getDict('blacksmith workshop').modes['forgearmorhard']={
-			name:'Forge armor out of hard metals',
-			icon:[16,11,'magixmod'],
-			desc:'Forge [armor set] out of 5[hard metal ingot] each.',
-			req:{'Armor blacksmithery':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'});
-		G.getDict('blacksmith workshop').modes['platinum blocks']={
-			name:'Craft platinum blocks',
-			icon:[4,11,'magixmod'],
-			desc:'Forge [platinum block]s out of 10[platinum ingot] each.',
-			req:{'platinum-working':true},
-			use:{'worker':1,'metal tools':1,'stone tools':1},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'});
-				G.getDict('blacksmith workshop').modes['factgear']={
-			name:'Forge factory equipment',
-			icon:[9,18,'magixmod'],
-			desc:'Forge [Basic factory equipment] out of 11[hard metal ingot]s each.',
-			req:{'Advanced casting':true},
-			use:{'worker':3,'metal tools':3,'Instructor':1},
-		};	
-		G.getDict('blacksmith workshop').effects.push({type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'});
-//Firekeeper can set fires with help of Fire essence
-		G.getDict('firekeeper').modes['firesfromessence']={
-			name:'Set up fires out of its essence',
-			icon:[0,2,'magixmod'],
-			desc:'Craft 2[fire pit]s with use of: 1[Fire essence],13[stick]s',
-			req:{'Wizard complex':true},
-			use:{'Wand':1,'knapped tools':1},
-		};	
-		G.getDict('firekeeper').effects.push({type:'convert',from:{'Fire essence':1,'stick':13},into:{'fire pit':5},mode:'firesfromessence'});
-//Nickel mines
-		G.getDict('mine').modes['nickel']={
-			name:'Nickel',
-			icon:[9,12,'magixmod'],
-			desc:'Mine for [nickel ore] with 5x efficiency.',
-			req:{'prospecting II':true},
-			use:{'worker':3,'metal tools':3},
-		};	
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'nickel ore':40},max:25,mode:'nickel'});
-//Other stones prospected mine
-		G.getDict('mine').modes['ostones']={
-			name:'Other stones',
-			icon:[3,12,'magixmod'],
-			desc:'Mine for other stones with 3x efficiency than common [stone].',
-			req:{'prospecting II':true},
-			use:{'worker':3,'metal tools':3},
-		};	
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Various stones':30},max:25,mode:'ostones'});
-//2 modes for architect
-		G.getDict('architect').modes['Brickhouser']={
-			name:'Brickhouse building',
-			icon:[5,1,'magixmod'],
-			desc:'This architect will build more useful housing like [Brick house with a silo]',
-			use:{},
-			req:{'Architects knowledge':true,'city planning':true}};
-		G.getDict('architect')
-		effects:[
-		{type:'function',func:function(me){
-		var wiggleRoom=3;
-		var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
-		if (toMake>0 && G.canBuyUnitByName('house',toMake))
-		{
-			G.buyUnitByName('Brick house with a silo',toMake,true);
-		}
-	},mode:'Brickhouser'}
-],	
-		G.getDict('architect').modes['Blockhouser']={
-			name:'Blockhouse building',
-			icon:[9,1,'magixmod'],
-			desc:'This architect will build more advanced [housing,housing] like [Blockhouse] .',
-			use:{},
-			req:{'Architects knowledge':true,'city planning':true}},
-		G.getDict('architect')
-		effects:[
-		{type:'function',func:function(me){
-		var wiggleRoom=3;
-		var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
-		if (toMake>0 && G.canBuyUnitByName('house',toMake))
-		{
-			G.buyUnitByName('Blockhouse',toMake,true);
-		}
-	},mode:'Blockhouser'}
-],
-		/////////////////////////////////////////////////////////////////////////////////////////////
 	//New gains for gatherer
 		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Berry seeds': 0.005},amount:1,max:1});
 		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Beet seeds': 0.005},amount:1,max:1});
@@ -6650,16 +6523,7 @@ new G.Unit({
 //Healer generates health by trait and research(it is temporary)
 		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.008},amount:1,max:1,req:{'Nutrition':true}});
 		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.001},amount:1,max:1,req:{'first aid':true}}); 
-//Mortal mine sulfur gains
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':17},max:31,mode:'salt',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'gold',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':25},max:31,mode:'ostones',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'iron',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'nickel',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':24},max:28,mode:'tin',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':1},max:3,mode:'coal',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':38},max:52,mode:'any',req:{'Explosive crafting & mining':true}});
-	//Manufacture units I and Factories I disables
+//Manufacture units I and Factories I disables
 	//Factories I
 		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
 		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
@@ -6667,10 +6531,10 @@ new G.Unit({
 		G.getDict('Drying rack').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
 	//Manufacture units I
 		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 1)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 2)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 3)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 4)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes1',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes2',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes3',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes4',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 ////////////////////////////////////////////
 	/*=====================================================================================
 	TECHS
@@ -6679,7 +6543,7 @@ new G.Unit({
 	new G.ChooseBox({
 		name:'research box',
 		context:'tech',
-		choicesN:5,
+		choicesN:4,
 		getCosts:function()
 		{
 			var cost=Math.floor(G.getRes('wisdom').amount*(0.025+0.05*this.roll));
