@@ -3313,7 +3313,7 @@ autobuy(G.year)
 		desc:'Allows to control production expenditures for [Manufacture units I,Manufacture units] (if unlocked) or to [Factories I,Factories] (if unlocked)',
 		icon:[16,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5,'influence':175,'authority':10},
-		req:{'Second portal to new world':true}
+		req:{'Second portal to new world':true,'Better influence & authority':true}
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
