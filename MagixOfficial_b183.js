@@ -5463,6 +5463,9 @@ autobuy(G.year)
 	G.policyCategories.push(
 			{id:'Education',name:'Education'}
 	);
+	G.policyCategories.push(
+			{id:'prod',name:'Production'}
+	);
 	//
 	G.knowCategories.push(
 			{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'}
