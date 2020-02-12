@@ -187,52 +187,6 @@ G.props['fastTicksOnResearch']=150;
         else if (type=='unit' && G.unitsOwnedNames.includes(what)) return false;
         return true;
     }
-	/////////////////////////////////////////////////////////////////////////////////////////////
-	//New gains for gatherer
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Berry seeds': 0.005},amount:1,max:1});
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Beet seeds': 0.005},amount:1,max:1});
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Watermelon seeds':0.0001},amount:1,max:1});
-//Healer generates health by trait and research(it is temporary)
-		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.008},amount:1,max:1,req:{'Nutrition':true}});
-		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.001},amount:1,max:1,req:{'first aid':true}}); 
-//Effects of "Spell of Capacity"
-		G.getDict('warehouse').effects.push({type:'provide',what:{'material storage debug':800},req:{'Spell of capacity':true}});
-		G.getDict('barn').effects.push({type:'provide',what:{'food storage debug pots':800},req:{'Spell of capacity':true}});
-		G.getDict('granary').effects.push({type:'provide',what:{'food storage debug pots':200},req:{'Spell of capacity':true}});
-		G.getDict('stockpile').effects.push({type:'provide',what:{'material storage debug':200},req:{'Spell of capacity':true}});
-		G.getDict('storage pit').effects.push({type:'provide',what:{'food storage debug pots':80,'material storage debug':80},req:{'Spell of capacity':true}});
-//Effects of better house construction research
-		G.getDict('house').effects.push({type:'provide',what:{'housing':0.125},req:{'Better house construction':true}});
-		G.getDict('Brick house with a silo').effects.push({type:'provide',what:{'housing':0.2},req:{'Better house construction':true}});
-//Effects of God's trait number one
-		G.getDict('hovel').effects.push({type:'provide',what:{'housing':0.5},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('bamboo hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('mud shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('branch shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-//Mortal mine sulfur gains
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':17},max:31,mode:'salt',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'gold',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':25},max:31,mode:'ostones',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'iron',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'nickel',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':24},max:28,mode:'tin',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':1},max:3,mode:'coal',req:{'Explosive crafting & mining':true}});
-		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':38},max:52,mode:'any',req:{'Explosive crafting & mining':true}});
-	//Manufacture units I and Factories I disables
-	//Factories I
-		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
-		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
-		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'cheap make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'cheap make leather'});
-		G.getDict('Drying rack').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
-	//Manufacture units I
-		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 1)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 2)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 3)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 4)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
-	
-////////////////////////////////////////////
 //Fixes copied out of heritage mod
 	G.fixTooltipIcons=function()
 	{
@@ -6835,7 +6789,53 @@ new G.Unit({
 			G.buyUnitByName('Blockhouse',toMake,true);
 		}
 	},mode:'Blockhouser'}
-],	
+],
+		/////////////////////////////////////////////////////////////////////////////////////////////
+	//New gains for gatherer
+		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Berry seeds': 0.005},amount:1,max:1});
+		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Beet seeds': 0.005},amount:1,max:1});
+		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Watermelon seeds':0.0001},amount:1,max:1});
+//Healer generates health by trait and research(it is temporary)
+		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.008},amount:1,max:1,req:{'Nutrition':true}});
+		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.001},amount:1,max:1,req:{'first aid':true}}); 
+//Effects of "Spell of Capacity"
+		G.getDict('warehouse').effects.push({type:'provide',what:{'material storage debug':800},req:{'Spell of capacity':true}});
+		G.getDict('barn').effects.push({type:'provide',what:{'food storage debug pots':800},req:{'Spell of capacity':true}});
+		G.getDict('granary').effects.push({type:'provide',what:{'food storage debug pots':200},req:{'Spell of capacity':true}});
+		G.getDict('stockpile').effects.push({type:'provide',what:{'material storage debug':200},req:{'Spell of capacity':true}});
+		G.getDict('storage pit').effects.push({type:'provide',what:{'food storage debug pots':80,'material storage debug':80},req:{'Spell of capacity':true}});
+//Effects of better house construction research
+		G.getDict('house').effects.push({type:'provide',what:{'housing':0.125},req:{'Better house construction':true}});
+		G.getDict('Brick house with a silo').effects.push({type:'provide',what:{'housing':0.2},req:{'Better house construction':true}});
+//Effects of God's trait number one
+		G.getDict('hovel').effects.push({type:'provide',what:{'housing':0.5},req:{'God\'s trait #1 Housing':true}});
+		G.getDict('hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
+		G.getDict('bamboo hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
+		G.getDict('mud shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
+		G.getDict('branch shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
+//Mortal mine sulfur gains
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':17},max:31,mode:'salt',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'gold',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':25},max:31,mode:'ostones',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'iron',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'nickel',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':24},max:28,mode:'tin',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':1},max:3,mode:'coal',req:{'Explosive crafting & mining':true}});
+		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':38},max:52,mode:'any',req:{'Explosive crafting & mining':true}});
+	//Manufacture units I and Factories I disables
+	//Factories I
+		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+		G.getDict('clothier').effects.push({type:'mult',value:0,mode:'cheap make leather',req:{'Factories I':true,'<font color="maroon">Moderation</font>':true},mode:'cheap make leather'});
+		G.getDict('Drying rack').effects.push({type:'mult',value:0,req:{'Factories I':true,'<font color="maroon">Moderation</font>':true}});
+	//Manufacture units I
+		G.getDict('potter').effects.push({type:'mult',value:0,req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 1)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 2)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 3)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'Make dyes from flowers(Set 4)',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
+	
+////////////////////////////////////////////
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
