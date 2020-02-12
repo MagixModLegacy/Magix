@@ -3288,7 +3288,7 @@ autobuy(G.year)
 		req:{'Paradise crafting':true,'<font color="maroon">Moderation</font>':true,'Measuring system':true}
 	});
 		new G.Tech({
-		name:'workstation planning ',
+		name:'workstation planning',
 		desc:'People lead by [<font color="maroon">Caretaking</font>] do not need exact plans of building. They are interested in how many people it needs and where components will be arranged without super exact descriptions.',
 		icon:[12,18,'magixmod'], 
 		cost:{'insight':995,'wisdom':5},
