@@ -946,6 +946,7 @@ G.writeMSettingButton=function(obj)
 		tick:function(me,tick)
 		{
 			var amount=0;
+			amount+=G.getRes('Precious pot').amount*27;
 			amount+=G.getRes('basket').amount*10;
 			amount+=G.getRes('pot').amount*25;
 			amount+=G.getRes('ice').amount;
@@ -2923,35 +2924,6 @@ G.writeMSettingButton=function(obj)
 		category:'misc',
 	});
 	//To make game not crash by precious pots i had to add it
-		new G.Res({
-		name:'food storage debug pots',
-		desc:'debug for precious pots.',
-		partOf:'food storage',
-		icon:[0,0,'magixmod'],
-		hidden:true,
-		tick:function(me,tick)
-		{
-			var amount=0;
-			amount+=G.getRes('Precious pot').amount*27;
-			amount+=G.getRes('added food storage').amount;
-			me.amount=amount;
-		},
-	});
-		new G.Res({
-		name:'material storage debug',
-		desc:'debug for spell of capacity.',
-		partOf:'material storage',
-		icon:[0,0,'magixmod'],
-		tick:function(me,tick)
-		{
-			if(G.year>89){
-			var n=randomFloor(G.getRes('thief').amount*1.5)
-			var toRob=(G.getRes('archaic building materials').amount*0.0001);G.lose('archaic building materials',randomFloor(toRob),'thievery');
-			var toRob=(G.getRes('basic building materials').amount*0.0001);G.lose('basic building materials',randomFloor(toRob),'thievery');
-			}
-		},
-		hidden:true,
-	});
 //New types of people
 		new G.Res({
 		name:'Instructor',
@@ -3985,6 +3957,11 @@ G.writeMSettingButton=function(obj)
 			'stone weapons':{name:'Craft stone weapons',icon:[5,9],desc:'Turn [stone]s and [stick]s into [stone weapons].',req:{'spears':true},use:{'knapped tools':1}},
 			'bows':{name:'Craft bows',icon:[6,9],desc:'Turn [stone]s and [stick]s into [bow]s.',req:{'bows':true},use:{'stone tools':1}},
 			'baskets':{name:'Weave baskets',icon:[14,7],desc:'Turn [stick]s into [basket]s.',req:{'basket-weaving':true},use:{'knapped tools':1}},
+			'craftwands':{name:'Craft wands',icon:[6,4,'magixmod'],desc:'Your artisan will craft tool used by wizards. It is not any junk tool.',req:{'Wizardry':true},use:{'stone tools':2}},
+			'craftink':{name:'Craft ink',icon:[18,6,'magixmod'],desc:'Your artisan will craft [Ink]. Will use water and [Black dye],[Blue dye] or [Brown dye].',req:{'Ink crafting':true}},
+			'craftnet':{name:'Craft fishing net',icon:[13,8,'magixmod'],desc:'Your artisan will craft [Fishing net]. Needs [Instructor] because net <b> must be strong. Will use [Dried leather] to make it stronger.',req:{'Fishing II':true},use:{'stone tools':2,'Instructor':1}},
+			'craftfirstaid':{name:'Craft first aid things',icon:[16,10,'magixmod'],desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',req:{'first aid':true}, use:{'stone tools':1}},
+			'dyes1':{name:'Make dyes from flowers(Set 1)',desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',req:{'plant lore':true},icon:[11,7,'magixmod']},
 		},
 		effects:[
 			{type:'convert',from:{'stone':1},into:{'knapped tools':1},every:5,mode:'knap'},
@@ -3993,6 +3970,22 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'stick':1,'stone':1},into:{'stone weapons':1},every:8,mode:'stone weapons'},
 			{type:'convert',from:{'stick':1,'stone':1},into:{'bow':1},every:10,mode:'bows'},
 			{type:'convert',from:{'stick':15},into:{'basket':1},every:10,mode:'baskets'},
+			{type:'convert',from:{'stick':4,'stone':2},into:{'Wand':1},every:5,mode:'craftwands'},
+			{type:'convert',from:{'Black dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
+        		{type:'convert',from:{'Brown dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
+        		{type:'convert',from:{'Blue dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
+			{type:'convert',from:{'Thread':35,'Dried leather':1},into:{'Fishing net':1},every:5,mode:'craftnet'},
+			{type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'First aid things':1},every:5,mode:'CraftFirstAid'},
+       			{type:'convert',from:{'Thread':0.5,'herb':1},into:{'First aid things':1},every:5,mode:'CraftFirstAid'},
+       			{type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'First aid things':1},every:7,mode:'CraftFirstAid'},
+			{type:'convert',from:{'Lavender':2},into:{'Purple dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Salvia':3},into:{'Magenta dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Bachelor\'s button':2},into:{'Blue dye':1},every:5,mode:'dyes1'},
+       			{type:'convert',from:{'Desert rose':2},into:{'Magenta dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Cosmos':2},into:{'Magenta dye':1},every:5,mode:'dyes1'},
+       			{type:'convert',from:{'Pink rose':3},into:{'Pink dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Pink tulip':2},into:{'Pink dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Coreopsis':2},into:{'Yellow dye':1},every:5,mode:'dyes1'},
 			{type:'mult',value:1.2,req:{'ground stone tools':true}}
 		],
 		req:{'stone-knapping':true},
@@ -4441,6 +4434,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
 			{type:'provide',what:{'housing':3}},
+			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
 			{type:'waste',chance:1/1000}
 		],
 		req:{'sedentism':true},
@@ -4455,6 +4449,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
 			{type:'provide',what:{'housing':3}},
+			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
 			{type:'waste',chance:3/1000}
 		],
 		req:{'sedentism':true},
@@ -4469,6 +4464,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'housing':5}},
+			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
 			{type:'waste',chance:0.1/1000}
 		],
 		req:{'building':true},
@@ -4483,6 +4479,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'housing':8}},
+			{type:'provide',what:{'housing':0.5},req:{'God\'s trait #1 Housing':true}},
 			{type:'waste',chance:0.03/1000}
 		],
 		req:{'cities':true},
@@ -4497,6 +4494,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':3,'metal tools':3},
 		effects:[
 			{type:'provide',what:{'housing':10}},
+			{type:'provide',what:{'housing':0.125},req:{'Better house construction':true}},
 			{type:'waste',chance:0.01/1000}
 		],
 		req:{'construction':true},
@@ -4513,6 +4511,7 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'provide',what:{'added food storage':400}},
 			{type:'provide',what:{'added material storage':400}},
+			{type:'provide',what:{'added food storage':80,'added material storage':80},req:{'Spell of capacity':true}},
 			{type:'waste',chance:0.8/1000}
 		],
 		req:{'stockpiling':true},
@@ -4527,6 +4526,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'added material storage':1000}},
+			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
 			{type:'waste',chance:0.1/1000}
 		],
 		req:{'stockpiling':true,'building':true},
@@ -4542,6 +4542,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':3,'stone tools':3},
 		effects:[
 			{type:'provide',what:{'added material storage':4000}},
+			{type:'provide',what:{'added material storage':1000},req:{'Spell of capacity':true}},
 			{type:'waste',chance:0.001/1000}
 		],
 		req:{'stockpiling':true,'construction':true},
@@ -4556,6 +4557,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'added food storage':1000}},
+			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
 			{type:'waste',chance:0.01/1000}
 		],
 		req:{'stockpiling':true,'pottery':true},
@@ -4571,6 +4573,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'added food storage':4000}},
+			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
 			{type:'waste',chance:0.001/1000}
 		],
 		req:{'stockpiling':true,'carpentry':true},
@@ -5780,6 +5783,7 @@ new G.Unit({
 		//require:{'wizard':3},
 		effects:[
 			{type:'provide',what:{'housing':15}},
+			{type:'provide',what:{'housing':0.2},req:{'Better house construction':true}},
 			{type:'provide',what:{'food storage':65}},
 			{type:'waste',chance:0.0004/1000},
 		],
@@ -6170,6 +6174,7 @@ new G.Unit({
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'housing':6}},
+			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
 			{type:'waste',chance:0.13/1000}
 		],
 		req:{'building':true},
@@ -6415,46 +6420,6 @@ new G.Unit({
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
 	=======================================================================================*/
-//Artisans will make wands for wizards. Mode for it.
-		G.getDict('artisan').modes['Craftwands']={
-			name:'Craft wands',
-			icon:[6,4,'magixmod'],
-			desc:'Your artisan will craft tool used by wizards. It is not any junk tool.',
-			req:{'Wizardry':true},
-			use:{'stone tools':2},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'stick':4,'stone':2},into:{'Wand':1},every:5,mode:'Craftwands'});
-//Artisans will craft fishing nets for fishers
-		G.getDict('artisan').modes['Craftnet']={
-			name:'Craft fishing net',
-			icon:[13,8,'magixmod'],
-			desc:'Your artisan will craft [Fishing net]. Needs [Instructor] because net <b> must be strong. Will use [Dried leather] to make it stronger.',
-			req:{'Fishing II':true},
-			use:{'stone tools':2,'Instructor':1},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':35,'Dried leather':1},into:{'Fishing net':1},every:5,mode:'Craftnet'});
-//Artisans will craft fishing nets for fishers
-		G.getDict('artisan').modes['Craftink']={
-			name:'Craft ink',
-			icon:[18,6,'magixmod'],
-			desc:'Your artisan will craft [Ink]. Will use water and [Black dye],[Blue dye] or [Brown dye].',
-			req:{'Ink crafting':true},
-			use:{},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'Black dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'Craftink'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Brown dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'Craftink'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Blue dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'Craftink'});
-//Artisans will craft bandages, plasters for First Aid Healer.
-		G.getDict('artisan').modes['CraftFirstAid']={
-			name:'Craft first aid things',
-			icon:[16,10,'magixmod',15,10,'magixmod'],
-			desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',
-			req:{'first aid':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'First aid things':1},every:5,mode:'CraftFirstAid'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':0.5,'herb':1},into:{'First aid things':1},every:5,mode:'CraftFirstAid'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'First aid things':1},every:7,mode:'CraftFirstAid'});
 
 //4 modes for Artisans. Each of them can convert 8 different flowers into its dyes.
 		G.getDict('artisan').modes['Make dyes from flowers(Set 1)']={
@@ -6790,21 +6755,6 @@ new G.Unit({
 //Healer generates health by trait and research(it is temporary)
 		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.008},amount:1,max:1,req:{'Nutrition':true}});
 		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.001},amount:1,max:1,req:{'first aid':true}}); 
-//Effects of "Spell of Capacity"
-		G.getDict('warehouse').effects.push({type:'provide',what:{'material storage debug':800},req:{'Spell of capacity':true}});
-		G.getDict('barn').effects.push({type:'provide',what:{'food storage debug pots':800},req:{'Spell of capacity':true}});
-		G.getDict('granary').effects.push({type:'provide',what:{'food storage debug pots':200},req:{'Spell of capacity':true}});
-		G.getDict('stockpile').effects.push({type:'provide',what:{'material storage debug':200},req:{'Spell of capacity':true}});
-		G.getDict('storage pit').effects.push({type:'provide',what:{'food storage debug pots':80,'material storage debug':80},req:{'Spell of capacity':true}});
-//Effects of better house construction research
-		G.getDict('house').effects.push({type:'provide',what:{'housing':0.125},req:{'Better house construction':true}});
-		G.getDict('Brick house with a silo').effects.push({type:'provide',what:{'housing':0.2},req:{'Better house construction':true}});
-//Effects of God's trait number one
-		G.getDict('hovel').effects.push({type:'provide',what:{'housing':0.5},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('bamboo hut').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('mud shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
-		G.getDict('branch shelter').effects.push({type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}});
 //Mortal mine sulfur gains
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':17},max:31,mode:'salt',req:{'Explosive crafting & mining':true}});
 		G.getDict('mine').effects.push({type:'gather',context:'mine',what:{'Sulfur':26},max:28,mode:'gold',req:{'Explosive crafting & mining':true}});
