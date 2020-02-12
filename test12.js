@@ -4670,7 +4670,7 @@ G.writeMSettingButton=function(obj)
 			'house building':{name:'House building',icon:[21,3],desc:'Build [house]s as long as there is homelessness and the right materials are available.'},
 			'undertaker':{name:'Undertaker',icon:[13,2],desc:'Dig [grave]s as long as there are unburied corpses.'},
 			'blockhouser':{name:'Blockhouse building',icon:[9,1,'magixmod'],desc:'This architect will build more advanced [housing,housing] like [Blockhouse].',req:{'Architects knowledge':true,'city planning':true}},
-			'brickhouser':{name:'Brickhouse building',icon:[5,1,'magixmod'],desc:'This architect will build more useful housing like [Brick house with a silo]',req:{'Architects knowledge':true,'city planning':true}};
+			'brickhouser':{name:'Brickhouse building',icon:[5,1,'magixmod'],desc:'This architect will build more useful housing like [Brick house with a silo]',req:{'Architects knowledge':true,'city planning':true}}
 		},
 		effects:[
 			{type:'function',func:function(me){
