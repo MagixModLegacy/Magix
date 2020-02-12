@@ -3961,7 +3961,11 @@ G.writeMSettingButton=function(obj)
 			'craftink':{name:'Craft ink',icon:[18,6,'magixmod'],desc:'Your artisan will craft [Ink]. Will use water and [Black dye],[Blue dye] or [Brown dye].',req:{'Ink crafting':true}},
 			'craftnet':{name:'Craft fishing net',icon:[13,8,'magixmod'],desc:'Your artisan will craft [Fishing net]. Needs [Instructor] because net <b> must be strong. Will use [Dried leather] to make it stronger.',req:{'Fishing II':true},use:{'stone tools':2,'Instructor':1}},
 			'craftfirstaid':{name:'Craft first aid things',icon:[16,10,'magixmod'],desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',req:{'first aid':true}, use:{'stone tools':1}},
-			'dyes1':{name:'Make dyes from flowers(Set 1)',desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',req:{'plant lore':true},icon:[11,7,'magixmod']},
+			'dyes1':{name:'Make dyes from flowers(Set 1)',desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']},
+			'dyes2':{name:'Make dyes from flowers(Set 2)',desc:'Your artisan will convert these flowers into dyes: [Crown imperial],[Cyan rose],[Himalayan blue poopy],[Cockscomb],[Red tulip],[Green Zinnia],[cactus],[Lime rose]. @Bonus: While crafting dyes out of [cactus] you will get its spikes and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']}, 
+			'dyes3':{name:'Make dyes from flowers(Set 3)',desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail]. @Bonus: While crafting dyes out of [Sunflower] you will get its edible [Sunflower seeds] and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']},
+			'dyes4':{name:'Make dyes from flowers(Set 4)',icon:[11,7,'magixmod'],desc:'Your artisan will convert these flowers into dyes: [Flax],[Blue orchid],[White tulip],[Lily of the Valley],[Gray rose],[Gray tulip],[Brown flower].',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true}},
+			'craftbook':{name:'Craft book',icon:[13,12,'magixmod'],desc:'Your artisan will craft [Empty book,books].',req:{'Bookcrafting':true},use:{'stone tools':1}},
 		},
 		effects:[
 			{type:'convert',from:{'stone':1},into:{'knapped tools':1},every:5,mode:'knap'},
@@ -3975,9 +3979,9 @@ G.writeMSettingButton=function(obj)
         		{type:'convert',from:{'Brown dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
         		{type:'convert',from:{'Blue dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
 			{type:'convert',from:{'Thread':35,'Dried leather':1},into:{'Fishing net':1},every:5,mode:'craftnet'},
-			{type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'First aid things':1},every:5,mode:'CraftFirstAid'},
-       			{type:'convert',from:{'Thread':0.5,'herb':1},into:{'First aid things':1},every:5,mode:'CraftFirstAid'},
-       			{type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'First aid things':1},every:7,mode:'CraftFirstAid'},
+			{type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'First aid things':1},every:5,mode:'craftfirstaid'},
+       			{type:'convert',from:{'Thread':0.5,'herb':1},into:{'First aid things':1},every:5,mode:'craftfirstaid'},
+       			{type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'First aid things':1},every:7,mode:'craftfirstaid'},
 			{type:'convert',from:{'Lavender':2},into:{'Purple dye':1},every:5,mode:'dyes1'},
         		{type:'convert',from:{'Salvia':3},into:{'Magenta dye':1},every:5,mode:'dyes1'},
         		{type:'convert',from:{'Bachelor\'s button':2},into:{'Blue dye':1},every:5,mode:'dyes1'},
@@ -3986,13 +3990,38 @@ G.writeMSettingButton=function(obj)
        			{type:'convert',from:{'Pink rose':3},into:{'Pink dye':1},every:5,mode:'dyes1'},
         		{type:'convert',from:{'Pink tulip':2},into:{'Pink dye':1},every:5,mode:'dyes1'},
         		{type:'convert',from:{'Coreopsis':2},into:{'Yellow dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Crown imperial':2},into:{'Orange dye':1},every:5,mode:'dyes2'},
+       			{type:'convert',from:{'Cyan rose':2},into:{'Cyan dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Himalayan blue poopy':2},into:{'Cyan dye':1},every:5,mode:'dyes2'},
+       			{type:'convert',from:{'Cockscomb':2},into:{'Red dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Red tulip':2},into:{'Red dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Green Zinnia':3},into:{'Green dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'cactus':2},into:{'Green dye':1,'Cactus spikes':3},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Lime rose':2},into:{'Lime dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Lime tulip':2},into:{'Lime dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Azure bluet':4},into:{'Light gray dye':1},every:5,mode:'dyes3'},
+       			{type:'convert',from:{'Daisy':2},into:{'Light gray dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Sunflower':1},into:{'Yellow dye':1,'Sunflower seeds':3},every:7,mode:'dyes3'},
+        		{type:'convert',from:{'Dandelion':2},into:{'Yellow dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Black lily':3},into:{'Black dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Black Hollyhock':2},into:{'Black dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Cattail':2},into:{'Brown dye':1},every:5,mode:'dyes3'},
+			{type:'convert',from:{'stick':3,'stone':2},into:{'Crossbow':1},every:5,req:{'Hunting II':true},mode:'bows'},
+        		{type:'convert',from:{'lumber':1,'stone':25},into:{'Crossbow belt':20},every:5,req:{'Hunting II':true},mode:'bows'},
+    			{type:'convert',from:{'Flax':3},into:{'Light blue dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Blue orchid':2},into:{'Light blue dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'White tulip':2},into:{'White dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Lily of the Valley':3},into:{'White dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Brown flower':2},into:{'Brown dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:5,mode:'dyes4'},
+       		 	{type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Paper':30,'hide':1},into:{'Empty book':1},every:7,mode:'craftbook'},
 			{type:'mult',value:1.2,req:{'ground stone tools':true}}
 		],
 		req:{'stone-knapping':true},
 		category:'crafting',
 	});
-	
-	new G.Unit({
+		new G.Unit({
 		name:'carver',
 		desc:'@starts with the ability to turn [stone]s or [bone]s into [statuette]s@gains more modes as technology progresses<>A [carver] uses fine hand-crafting to produce goods out of wood, stone and bone.',
 		icon:[21,2],
@@ -4005,7 +4034,10 @@ G.writeMSettingButton=function(obj)
 			'bone statuettes':{name:'Carve bone statuettes',icon:[8,9],desc:'Turn [bone]s into [statuette]s.',use:{'knapped tools':1}},
 			'cut stone':{name:'Cut stones',icon:[0,8],desc:'Slowly turn 10 [stone]s into 1 [cut stone].',req:{'masonry':true},use:{'stone tools':1}},
 			'smash cut stone':{name:'Smash stone blocks',icon:[2,6],desc:'Turn [cut stone]s into 9 [stone]s each.',req:{'quarrying':true},use:{'stone tools':1}},
-			'gem blocks':{name:'Carve gem blocks',icon:[7,9],desc:'Slowly turn 10 [gems] into 1 [gem block].',req:{'gem-cutting':true},use:{'stone tools':1}}
+			'gem blocks':{name:'Carve gem blocks',icon:[7,9],desc:'Slowly turn 10 [gems] into 1 [gem block].',req:{'gem-cutting':true},use:{'stone tools':1}},
+			'wood statuettes':{name:'Carve wooden statuettes',icon:[13,1,'magixmod'],desc:'Your carver will now use carve statuettes out of [log].',use:{'knapped tools':1}},
+			'gdablockscraft':{name:'Cut other stones',icon:[3,12,'magixmod'],desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',use:{'knapped tools':1},req:{'masonry':true}},
+			'gdablockssmash':{name:'Smash other stone blocks',icon:[2,12,'magixmod'],desc:'Your carver will smash a [Various cut stones,Various cut stone] into 9 [Various stones].',use:{'knapped tools':1},req:{'masonry':true}},    
 		},
 		effects:[
 			{type:'convert',from:{'stone':1},into:{'statuette':1},every:5,mode:'stone statuettes'},
@@ -4013,6 +4045,9 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'stone':10},into:{'cut stone':1},every:15,mode:'cut stone'},
 			{type:'convert',from:{'cut stone':1},into:{'stone':9},every:5,mode:'smash cut stone'},
 			{type:'convert',from:{'gems':10},into:{'gem block':1},every:15,mode:'gem blocks'},
+			{type:'convert',from:{'log':1},into:{'Wooden statuette':1,'Scobs':3},every:7,mode:'Carve wooden statuettes'},
+			{type:'convert',from:{'Various stones':9},into:{'Various cut stones':1},every:5,mode:'gdablockscraft'},
+			{type:'convert',from:{'Various cut stones':1},into:{'Various stones':9},every:5,mode:'gdablockssmash'},
 			{type:'mult',value:1.2,req:{'ground stone tools':true}}
 		],
 		req:{'carving':true},
@@ -4141,17 +4176,17 @@ G.writeMSettingButton=function(obj)
 		req:{'pottery':true},
 		category:'crafting',
 	});
-	new G.Unit({
+		new G.Unit({
 		name:'kiln',
 		desc:'@processes goods with fire<>A [kiln] is an impressive edifice for those not yet accustomed to its roaring fire.',//TODO : desc
 		icon:[23,2],
 		cost:{'archaic building materials':50,'basic building materials':20},
 		use:{'land':1},
-		//require:{'worker':1,'stone tools':1},
-		//upkeep:{'stick':3},//TODO : some fuel system
+		upkeep:{'log':0.5},
 		modes:{
 			'off':G.MODE_OFF,
-			'bricks':{name:'Fire bricks',icon:[3,8],desc:'Produce 10 [brick]s out of 1 [clay].',use:{'worker':1,'stone tools':1},req:{}},
+			'bricks':{name:'Fire bricks',icon:[3,8],desc:'Produce 10 [brick]s out of 1 [clay].',use:{'worker':1,'stone tools':1}},
+			'glass':{name:'Craft glass',icon:[4,8],desc:'Your kiln will now use sand to make a glass.',req:{'Crafting a glass':true},use:{'stone tools':1}},
 		},
 		effects:[
 			{type:'convert',from:{'clay':1},into:{'brick':10},every:5,mode:'bricks'},
@@ -4161,7 +4196,7 @@ G.writeMSettingButton=function(obj)
 		category:'crafting',
 	});
 	
-	new G.Unit({
+		new G.Unit({
 		name:'well',
 		desc:'@produces fresh [water], up to 20 per day<>The [well] is a steady source of drinkable water.',
 		icon:[25,3],
@@ -4253,7 +4288,7 @@ G.writeMSettingButton=function(obj)
 		icon:[24,2],
 		cost:{'basic building materials':100},
 		use:{'land':1},
-		//require:{'worker':2,'stone tools':2},
+		upkeep:{'log':0.5},
 		modes:{
 			'off':G.MODE_OFF,
 			'copper':{name:'Copper smelting',icon:[9,9],desc:'Cast [soft metal ingot]s out of 5 [copper ore]s each.',use:{'worker':2,'stone tools':2},req:{}},
@@ -4262,7 +4297,10 @@ G.writeMSettingButton=function(obj)
 			'gold':{name:'Gold smelting',icon:[11,9],desc:'Cast [precious metal ingot]s out of 5 [gold ore]s each.',use:{'worker':2,'metal tools':2},req:{'gold-working':true}},
 			'bronze':{name:'Bronze alloying',icon:[10,9],desc:'Cast [hard metal ingot]s out of 8 [copper ore]s and 2 [tin ore]s each.',use:{'worker':2,'metal tools':2},req:{'bronze-working':true}},
 			'steel':{name:'Steel alloying',icon:[12,9],desc:'Cast [strong metal ingot]s out of 19 [iron ore]s and 1 [coal] each.',use:{'worker':2,'metal tools':2},req:{'steel-making':true}},
-		},
+			'cobalt':{name:'Cobalt smelting',icon:[14,0,'magixmod'],desc:'Cast 1[Cobalt ingot] out of 8[Cobalt ore].',req:{'Cobalt-working':true},use:{'worker':2,'metal tools':2,'stone tools':1}},
+	  		'nickel':{name:'Nickel smelting',icon:[10,9],desc:'Cast 1[hard metal ingot] out of 6[nickel ore]s each.',req:{'prospecting II':true,'nickel-working':true},use:{'worker':2,'metal tools':2}},
+			'platinum':{name:'Platinum smelting',icon:[3,11,'magixmod'],desc:'Cast 1[platinum ingot] out of 5[platinum ore]s each.',req:{'prospecting II':true,'platinum-working':true},use:{'worker':2,'metal tools':2}},  
+			},
 		effects:[
 			{type:'convert',from:{'copper ore':5},into:{'soft metal ingot':1},repeat:3,mode:'copper'},
 			{type:'convert',from:{'tin ore':10},into:{'soft metal ingot':1},repeat:3,mode:'tin'},
@@ -4270,6 +4308,9 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'gold ore':5},into:{'precious metal ingot':1},repeat:1,mode:'gold'},
 			{type:'convert',from:{'tin ore':2,'copper ore':8},into:{'hard metal ingot':1},repeat:3,mode:'bronze'},
 			{type:'convert',from:{'iron ore':19,'coal':1},into:{'strong metal ingot':1},repeat:1,mode:'steel'},
+			{type:'convert',from:{'Cobalt ore':8},into:{'Cobalt ingot':1},every:5,mode:'Cobalt smelting'},
+			{type:'convert',from:{'nickel ore':6},into:{'hard metal ingot':1},every:5,mode:'nickel'},
+			{type:'convert',from:{'platinum ore':5},into:{'platinum ingot':1},every:5,mode:'platinum'},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -4310,7 +4351,8 @@ G.writeMSettingButton=function(obj)
 		staff:{'knapped tools':1},
 		upkeep:{'coin':0.1},
 		effects:[
-			{type:'gather',context:'chop',amount:1,max:1}
+			{type:'gather',context:'chop',amount:1,max:1},
+			{type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1});
 		],
 		req:{'woodcutting':true},
 		category:'production',
@@ -6420,153 +6462,6 @@ new G.Unit({
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
 	=======================================================================================*/
-
-//4 modes for Artisans. Each of them can convert 8 different flowers into its dyes.
-		G.getDict('artisan').modes['Make dyes from flowers(Set 1)']={
-			name:'Make dyes from flowers(Set 1)',
-			desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',
-			req:{'plant lore':true},
-			use:{},
-			icon:[11,7,'magixmod'],
-		};
-
-		G.getDict('artisan').effects.push({type:'convert',from:{'Lavender':2},into:{'Purple dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Salvia':3},into:{'Magenta dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Bachelor\'s button':2},into:{'Blue dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Desert rose':2},into:{'Magenta dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Cosmos':2},into:{'Magenta dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Pink rose':3},into:{'Pink dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Pink tulip':2},into:{'Pink dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Coreopsis':2},into:{'Yellow dye':1},every:5,mode:'Make dyes from flowers(Set 1)'});
-//Set 2
-		G.getDict('artisan').modes['Make dyes from flowers(Set 2)']={
-			name:'Make dyes from flowers(Set 2)',
-			desc:'Your artisan will convert these flowers into dyes: [Crown imperial],[Cyan rose],[Himalayan blue poopy],[Cockscomb],[Red tulip],[Green Zinnia],[cactus],[Lime rose]. @Bonus: While crafting dyes out of [cactus] you will get its spikes and a dye as usual.',
-			req:{'plant lore':true},
-			use:{},
-			icon:[11,7,'magixmod'],
-		};	
-		G.getDict('artisan').effects.push({type:'convert',from:{'Crown imperial':2},into:{'Orange dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Cyan rose':2},into:{'Cyan dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Himalayan blue poopy':2},into:{'Cyan dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Cockscomb':2},into:{'Red dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Red tulip':2},into:{'Red dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Green Zinnia':3},into:{'Green dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'cactus':2},into:{'Green dye':1,'Cactus spikes':3},every:5,mode:'Make dyes from flowers(Set 2)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Lime rose':2},into:{'Lime dye':1},every:5,mode:'Make dyes from flowers(Set 2)'});
-//Set 3
-		G.getDict('artisan').modes['Make dyes from flowers(Set 3)']={
-			name:'Make dyes from flowers(Set 3)',
-			desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail]. @Bonus: While crafting dyes out of [Sunflower] you will get its edible [Sunflower seeds] and a dye as usual.',
-			req:{'plant lore':true},
-			use:{},
-			icon:[11,7,'magixmod'],
-		};	
-		G.getDict('artisan').effects.push({type:'convert',from:{'Lime tulip':2},into:{'Lime dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Azure bluet':4},into:{'Light gray dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Daisy':2},into:{'Light gray dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Sunflower':1},into:{'Yellow dye':1,'Sunflower seeds':3},every:7,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Dandelion':2},into:{'Yellow dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Black lily':3},into:{'Black dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Black Hollyhock':2},into:{'Black dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Cattail':2},into:{'Brown dye':1},every:5,mode:'Make dyes from flowers(Set 3)'});
-//Set 4
-		G.getDict('artisan').modes['Make dyes from flowers(Set 4)']={
-			name:'Make dyes from flowers(Set 4)',
-			icon:[11,7,'magixmod'],
-			desc:'Your artisan will convert these flowers into dyes: [Flax],[Blue orchid],[White tulip],[Lily of the Valley],[Gray rose],[Gray tulip],[Brown flower].',
-			req:{'plant lore':true},
-			use:{},
-		};	
-		G.getDict('artisan').effects.push({type:'convert',from:{'Flax':3},into:{'Light blue dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Blue orchid':2},into:{'Light blue dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'White tulip':2},into:{'White dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Lily of the Valley':3},into:{'White dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Brown flower':2},into:{'Brown dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:5,mode:'Make dyes from flowers(Set 4)'});
-	//After researching Hunting II Artisans with Craft bows mode will now be able to craft Crossbows and ammo to it
-		G.getDict('artisan').effects.push({type:'convert',from:{'stick':3,'stone':2},into:{'Crossbow':1},every:5,req:{'Hunting II':true},mode:'bows'});
-		G.getDict('artisan').effects.push({type:'convert',from:{'lumber':1,'stone':25},into:{'Crossbow belt':20},every:5,req:{'Hunting II':true},mode:'bows'});
-//Bookcrafting
-		G.getDict('artisan').modes['Craftbook']={
-			name:'Craft book',
-			icon:[13,12,'magixmod'],
-			desc:'Your artisan will craft [Empty book,books].',
-			req:{'Bookcrafting':true},
-			use:{'stone tools':1},
-		};
-		G.getDict('artisan').effects.push({type:'convert',from:{'Paper':30,'hide':1},into:{'Empty book':1},every:7,mode:'Craftbook'});
-	//Kilns will be able to make glass out of sand
-		G.getDict('kiln').modes['Craftglass']={
-			name:'Craft glass',
-			icon:[4,8],
-			desc:'Your kiln will now use sand to make a glass.',
-			req:{'Crafting a glass':true},
-			use:{'stone tools':1},
-		};	
-		G.getDict('kiln').effects.push({type:'convert',from:{'sand':8},into:{'glass':2},every:5,mode:'Craftglass'});
-//Furnaces will be now able to smelt Cobalt, Nickel and Platinum
-		G.getDict('furnace').modes['Cobalt smelting']={
-			name:'Cobalt smelting',
-			icon:[14,0,'magixmod'],
-			desc:'Cast 1[Cobalt ingot] out of 8[Cobalt ore].',
-			req:{'Cobalt-working':true},
-			use:{'worker':2,'metal tools':2,'stone tools':1},
-		};	
-		G.getDict('furnace').effects.push({type:'convert',from:{'Cobalt ore':8},into:{'Cobalt ingot':1},every:5,mode:'Cobalt smelting'});
-		G.getDict('furnace').modes['nickel']={
-			name:'Nickel smelting',
-			icon:[10,9],
-			desc:'Cast 1[hard metal ingot] out of 6[nickel ore]s each.',
-			req:{'prospecting II':true,'nickel-working':true},
-			use:{'worker':2,'metal tools':2},
-		};	
-		G.getDict('furnace').effects.push({type:'convert',from:{'nickel ore':6},into:{'hard metal ingot':1},every:5,mode:'nickel'});
-		G.getDict('furnace').modes['platinum']={
-			name:'Platinum smelting',
-			icon:[3,11,'magixmod'],
-			desc:'Cast 1[platinum ingot] out of 5[platinum ore]s each.',
-			req:{'prospecting II':true,'platinum-working':true},
-			use:{'worker':2,'metal tools':2},
-		};	
-		G.getDict('furnace').effects.push({type:'convert',from:{'platinum ore':5},into:{'platinum ingot':1},every:5,mode:'platinum'});
-//Carving wooden statuettes
-		G.getDict('carver').modes['Carve wooden statuettes']={
-			name:'Carve wooden statuettes',
-			icon:[13,1,'magixmod'],
-			desc:'Your carver will now use carve statuettes out of [log].',
-			use:{'knapped tools':1},
-		};	
-		G.getDict('carver').effects.push({type:'convert',from:{'log':1},into:{'Wooden statuette':1,'Scobs':3},every:7,mode:'Carve wooden statuettes'});
-//Carver will be able to smash granite, diorite, andesite blocks and craft them
-		G.getDict('carver').modes['gdablockscraft']={
-			name:'Cut other stones',
-			icon:[3,12,'magixmod'],
-			desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',
-			use:{'knapped tools':1},
-			req:{'masonry':true},
-		};	
-		G.getDict('carver').effects.push({type:'convert',from:{'Various stones':9},into:{'Various cut stones':1},every:5,mode:'gdablockscraft'});
-		G.getDict('carver').modes['gdablockssmash']={
-			name:'Smash other stone blocks',
-			icon:[7,12,'magixmod'],
-			desc:'Your carver will smash a [Various cut stones,Various cut stone] into 9 [Various stones].',
-			use:{'knapped tools':1},
-			req:{'masonry':true},
-		};	
-		G.getDict('carver').effects.push({type:'convert',from:{'cut granite':1},into:{'Granite':9},every:5,mode:'gdablockssmash'});
-//While woodcutter cuts tree to grant logs
-		G.getDict('woodcutter').effects.push({type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1});
-//Weaving colored clothing
-		G.getDict('clothier').modes['Weave leather colored clothing']={
-			name:'Weave leather colored clothing',
-			icon:[13,0,'magixmod'],
-			desc:'Your clothier will now weave [leather] but colored clothing.',
-			req:{'weaving':true},
-			use:{'stone tools':1},
-		};	
-		G.getDict('clothier').effects.push({type:'convert',from:{'leather':2,'Dyes':3},into:{'Colored clothing':1},every:6,mode:'Weave leather colored clothing'});
 		G.getDict('clothier').modes['Weave fiber colored clothing']={
 			name:'Weave fiber colored clothing',
 			icon:[13,0,'magixmod'],
