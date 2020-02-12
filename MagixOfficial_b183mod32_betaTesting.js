@@ -3346,13 +3346,28 @@ autobuy(G.year)
 		icon:[14,18,'magixmod'],
 		cost:{'basic building materials':575},
 		upkeep:{'coal':2,'fire pit':0.1},
-		use:{'worker':10,'land':1,'Instructor':1},
+		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
 		req:{'<font color="maroon">Moderation</font>':true,'Factories I':true},
 		category:'crafting',
 		effects:[
 			{type:'convert',from:{'clay':400,'mud':275,'fire pit':1},into:{'pot':325},every:5},
 			{type:'convert',from:{'clay':400,'mud':275,'Dyes':45,'fire pit':1},into:{'Precious pot':305},every:10},
 			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
+		],
+	});
+		new G.Unit({
+		name:'Leather factory',
+		desc:'Does same thing as [clothier] on craft leather mode and [Drying rack] were. All 3 (2 modes of [clothier] and 1 unit) work all the time. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[15,18,'magixmod'],
+		cost:{'basic building materials':575},
+		upkeep:{'coal':2,'fire pit':0.1},
+		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
+		req:{'<font color="maroon">Moderation</font>':true,'Factories I':true},
+		category:'crafting',
+		effects:[	
+			{type:'convert',from:{'leather':20},into:{'Dried leather':20},every:7},
+			{type:'convert',from:{'hide':200,'water':1000,'salt':150,'log':15},into:{'leather':235},every:15},
+			{type:'convert',from:{'hide':200,'muddy water':1000,'herb':145},into:{'leather':235},every:20},
 		],
 	});
 		new G.Unit({
