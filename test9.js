@@ -7438,43 +7438,6 @@ new G.Unit({
 		],
 	});
 	//MAGIX
-	let gift =     new G.Tech({
-        name:'<font color="yellow">A gift from the Mausoleum</font>',
-        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
-        icon:[4,12,'magixmod',1,14],
-        cost:{},
-        req:{'tribalism':false}
-    });
-function checkMagic() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
-      G.gainTech(gift)
-      G.Message({
-        type: 'good',
-        text: '<font family="Comic Sans MS">Since you have built the Mausoleum it the past, you have access to magic!</font> :)',
-        icon: [4, 12, 6, 1, 'magixmod']
-      });
-    }
-
-}
- else if(G.achievByName['mausoleum'].won < 1){
-
-  G.Message({
-    type: 'bad',
-    text: '<font family="Comic Sans MS">Since you haven\'t built the Mausoleum it the past yet, so you don\'t have access to magic yet</font> :(',
-    icon: [3, 12, 6, 1, 'magixmod']
-  });
-
-}
-}
-checkMagic()
-const oldNewGame = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkMagic()
-  }
-})
 	new G.Tech({
 		name:'Wizardry',
 		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
@@ -9855,6 +9818,43 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
   apply: function(target, thisArg, args) {
     target(...args)
     checkDemoc()
+  }
+})
+	let gift =     new G.Tech({
+        name:'<font color="yellow">A gift from the Mausoleum</font>',
+        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
+        icon:[4,12,'magixmod',1,14],
+        cost:{},
+        req:{'tribalism':false}
+    });
+function checkMagic() {
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
+      G.gainTech(gift)
+      G.Message({
+        type: 'good',
+        text: '<font family="Comic Sans MS">Since you have built the Mausoleum it the past, you have access to magic!</font> :)',
+        icon: [4, 12, 6, 1, 'magixmod']
+      });
+    }
+
+}
+ else if(G.achievByName['mausoleum'].won < 1){
+
+  G.Message({
+    type: 'bad',
+    text: '<font family="Comic Sans MS">Since you haven\'t built the Mausoleum it the past yet, so you don\'t have access to magic yet</font> :(',
+    icon: [3, 12, 6, 1, 'magixmod']
+  });
+
+}
+}
+checkMagic()
+const oldNewGame = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkMagic()
   }
 })
 	/*=====================================================================================
