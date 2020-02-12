@@ -5520,7 +5520,7 @@ autobuy(G.year)
 		new G.Policy({
 		name:'Hovel of colours production rates',
 		desc:'You can change the rates of production for [Hovel of colours] . Remember the bigger rates the people will need to work harder and may become unhappy.',
-		icon:[23,18,'magixmod',20,18,'magixmod'],
+		icon:[23,18,'magixmod',19,18,'magixmod'],
 		cost:{'influence':125},
 		startMode:'1',
 		req:{'Production rates influence':true,'<font color="maroon">Caretaking</font>':true},
