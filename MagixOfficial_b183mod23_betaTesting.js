@@ -3165,21 +3165,21 @@ G = new Proxy(G, {
 autobuy(G.year)
 		new G.Tech({
 		name:'Cultural forces arise',
-		desc:'Makes [Fortress of cultural legacy] gather [culture] per tick.',
+		desc:'Makes [Fortress of cultural legacy] increase power of [culture,cultural units] per tick.',
 		icon:[22,17,'magixmod'], 
 		cost:{'insight':70,'Fortress construction point':200},
 		req:{'Cultural roots':true},
 	});
 		new G.Tech({
 		name:'Politic power rising up',
-		desc:'Makes [Pagoda of Democracy] gather [influence] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
+		desc:'Makes [Pagoda of Democracy] increase power [influence,influese gathering units] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
 		icon:[21,17,'magixmod'], 
 		cost:{'insight':25,'Pagoda construction point':200},
 		req:{'Political roots':true},
 	});
 		new G.Tech({
 		name:'Knowledgeable',
-		desc:'Makes [Complex of Dreamers] gather [insight] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
+		desc:'Makes [Complex of Dreamers] increase power of [insight,insight gatherers(dreamers)] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
 		icon:[23,17,'magixmod'], 
 		cost:{'Complex construction point':200},
 		effects:[
@@ -3307,6 +3307,13 @@ autobuy(G.year)
 		icon:[18,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5},
 		req:{'Moderated workstation planning':true,'<font color="maroon">Moderation</font>':true}
+	});
+		new G.Tech({
+		name:'Production rates influence',
+		desc:'Allows to control production expenditures for [Manufacture units I,Manufacture units] (if unlocked) or to [Factories I,Factories] (if unlocked)',
+		icon:[16,18,'magixmod'], 
+		cost:{'insight':750,'wisdom':5,'influence':175,'authority':10},
+		req:{'Second portal to new world':true}
 	});
 /////////////////////////////////////////////////////////////////////
 	//UNITS
@@ -5572,6 +5579,7 @@ autobuy(G.year)
 //2 path techs effects
 		G.getDict('furnace').effects.push({type:'mult',value:1.2,req:{'Improved furnace construction':true,'<font color="maroon">Moderation</font>':true}});
 		G.getDict('furnace').effects.push({type:'mult',value:1.1,req:{'Improved furnace construction':true,'<font color="maroon">Caretaking</font>':true}});
+	
 ////////////////////////////////////////////
 //Fixes copied out of heritage mod
 	G.fixTooltipIcons=function()
