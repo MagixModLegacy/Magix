@@ -5478,7 +5478,7 @@ autobuy(G.year)
 		icon:[23,18,'magixmod',14,18,'magixmod'],
 		cost:{'influence':125},
 		startMode:'1',
-		req:{'Production rates influence':true},
+		req:{'Production rates influence':true,'<font color="maroon">Moderation</font>':true},
 			modes:{
 			'0.5':{name:'0.5',desc:'[Factory of pots] produces 50% less than default.'},
 			'1':{name:'1',desc:'[Factory of pots] produces its normal rate.'},
@@ -5493,12 +5493,42 @@ autobuy(G.year)
 		icon:[23,18,'magixmod',15,18,'magixmod'],
 		cost:{'influence':125},
 		startMode:'1',
-		req:{'Production rates influence':true},
+		req:{'Production rates influence':true,'<font color="maroon">Moderation</font>':true},
 			modes:{
 			'0.5':{name:'0.5',desc:'[Leather factory] produces 50% less than default.'},
 			'1':{name:'1',desc:'[Leather factory] produces its normal rate.'},
 			'1.5':{name:'1.5',desc:'[Leather factory] produces 50% more than default.'},
 			'2':{name:'2',desc:'[Leather factory] produces 100% more than default. People may become unhappy'},
+		},
+		category:'prod',
+	});
+		new G.Policy({
+		name:'Hut of potters production rates',
+		desc:'You can change the rates of production for [Hut of potters] . Remember the bigger rates the people will need to work harder and may become unhappy.',
+		icon:[23,18,'magixmod',20,18,'magixmod'],
+		cost:{'influence':125},
+		startMode:'1',
+		req:{'Production rates influence':true,'<font color="maroon">Caretaking</font>':true},
+			modes:{
+			'0.5':{name:'0.5',desc:'[Hut of potters] produces 50% less than default.'},
+			'1':{name:'1',desc:'[Hut of potters] produces its normal rate.'},
+			'1.5':{name:'1.5',desc:'[Hut of potters] produces 50% more than default.'},
+			'2':{name:'2',desc:'[Hut of potters] produces 100% more than default. People may become unhappy'},
+		},
+		category:'prod',
+	});
+		new G.Policy({
+		name:'Hovel of colours production rates',
+		desc:'You can change the rates of production for [Hovel of colours] . Remember the bigger rates the people will need to work harder and may become unhappy.',
+		icon:[23,18,'magixmod',20,18,'magixmod'],
+		cost:{'influence':125},
+		startMode:'1',
+		req:{'Production rates influence':true,'<font color="maroon">Caretaking</font>':true},
+			modes:{
+			'0.5':{name:'0.5',desc:'[Hovel of colours] produces 50% less than default.'},
+			'1':{name:'1',desc:'[Hovel of colours] produces its normal rate.'},
+			'1.5':{name:'1.5',desc:'[Hovel of colours] produces 50% more than default.'},
+			'2':{name:'2',desc:'[Hovel of colours] produces 100% more than default. People may become unhappy'},
 		},
 		category:'prod',
 	});
