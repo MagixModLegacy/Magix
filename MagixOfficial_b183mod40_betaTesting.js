@@ -3403,6 +3403,7 @@ autobuy(G.year)
 		{type:'mult',value:0.5,req:{'Hovel of colours production rates':0.5}},
 		{type:'mult',value:1.5,req:{'Hovel of colours production rates':1.5}},
 		{type:'mult',value:2,req:{'Hovel of colours production rates':2}},
+		{type:'mult',value:1.25,req:{'God\'s trait #5 Colored life':true}},
 		],
 	});
 		new G.Unit({
@@ -3421,6 +3422,7 @@ autobuy(G.year)
 			{type:'mult',value:0.5,req:{'Hut of potters production rates':0.5}},
 			{type:'mult',value:1.5,req:{'Hut of potters production rates':1.5}},
 			{type:'mult',value:2,req:{'Hut of potters production rates':2}},
+			{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
 		],
 	});
 		new G.Unit({
@@ -3439,6 +3441,7 @@ autobuy(G.year)
 			{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
 			{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
 			{type:'mult',value:2,req:{'Factory of pots production rates':2}},
+			{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
 		],
 	});
 		new G.Unit({
