@@ -85,6 +85,11 @@ G.props['fastTicksOnResearch']=150;
 		'The air carries a peculiar smell today.',
 		'Wild scents flow in from elsewhere.',
 		'The dust is oppressive.',
+		'Wind blows from the north',
+		'Secrets await',
+		'Discover unknown',
+		'A morning fog welcomes you',
+		
 		'An eerie glow from above illuminates the night.',
 		'Distant lands lay undisturbed.'
 	];
@@ -463,6 +468,7 @@ G.writeMSettingButton=function(obj)
 							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
 							else G.lose('faith',1,'rituals');
 						}
+					}
 					var rituals=['harvest rituals for flowers'];
 					for (var i in rituals)
 					{
@@ -473,6 +479,7 @@ G.writeMSettingButton=function(obj)
 							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
 							else G.lose('influence',1,'rituals');
 						}
+					}
 					var rituals=['Crafting & farm rituals'];
 					for (var i in rituals)
 					{
@@ -485,7 +492,7 @@ G.writeMSettingButton=function(obj)
 						}
 					}
 				}
-			}
+			
 				
 				
 				var productionMult=G.doFunc('production multiplier',1);
