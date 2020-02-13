@@ -464,12 +464,6 @@ G.writeMSettingButton=function(obj)
 							else G.lose('faith',1,'rituals');
 						}
 					}
-				}
-				if (me.amount>0)
-			{
-				//note : we also sneak in some stuff unrelated to population here
-
-				if (tick%50==0)
 				{
 					var rituals=['harvest rituals for flowers'];
 					for (var i in rituals)
@@ -482,8 +476,6 @@ G.writeMSettingButton=function(obj)
 							else G.lose('influence',1,'rituals');
 						}
 					}
-				}
-				if (tick%50==0)
 				{
 					var rituals=['Crafting & farm rituals'];
 					for (var i in rituals)
