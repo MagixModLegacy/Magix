@@ -465,12 +465,46 @@ G.writeMSettingButton=function(obj)
 						}
 					}
 				}
+				if (me.amount>0)
+			{
+				//note : we also sneak in some stuff unrelated to population here
+
+				if (tick%50==0)
+				{
+					var rituals=['harvest rituals for flowers'];
+					for (var i in rituals)
+					{
+						if (G.checkPolicy(rituals[i])=='on')
+						{
+							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+							else G.lose('faith',1,'rituals');
+							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+							else G.lose('influence',1,'rituals');
+						}
+					}
+				}
+				if (tick%50==0)
+				{
+					var rituals=['Crafting & farm rituals'];
+					for (var i in rituals)
+					{
+						if (G.checkPolicy(rituals[i])=='on')
+						{
+							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+							else G.lose('faith',15,'rituals');
+							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+							else G.lose('influence',15,'rituals');
+						}
+					}
+				}
+				
 				
 				var productionMult=G.doFunc('production multiplier',1);
 				
 				var deathUnhappinessMult=1;
 				if (G.has('fear of death')) deathUnhappinessMult*=2;
 				if (G.has('belief in the afterlife')) deathUnhappinessMult/=2;
+				if (G.has('Hope of revenant abandoning')) deathUnhappinessMult/=2;
 				if (tick%3==0 && G.checkPolicy('disable eating')=='off')
 				{
 					//drink water
@@ -2949,42 +2983,7 @@ G.writeMSettingButton=function(obj)
 		partOf:'population',
 		meta:true,
 		tick:function(me,tick)
-		{
-			//this.displayName=G.getName('inhabs');
-			
-			if (me.amount>0)
-			{
-				//note : we also sneak in some stuff unrelated to population here
-
-				if (tick%50==0)
-				{
-					var rituals=['harvest rituals for flowers'];
-					for (var i in rituals)
-					{
-						if (G.checkPolicy(rituals[i])=='on')
-						{
-							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('faith',1,'rituals');
-							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('influence',1,'rituals');
-						}
-					}
-				}
-				if (tick%50==0)
-				{
-					var rituals=['Crafting & farm rituals'];
-					for (var i in rituals)
-					{
-						if (G.checkPolicy(rituals[i])=='on')
-						{
-							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('faith',15,'rituals');
-							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('influence',15,'rituals');
-						}
-					}
-				}
-				
+		{	
 				var productionMult=G.doFunc('production multiplier',1);
 				
 				var deathUnhappinessMult=1;
