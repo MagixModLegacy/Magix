@@ -4620,7 +4620,7 @@ G.writeMSettingButton=function(obj)
 		//require:{'worker':3,'stone tools':3},
 		effects:[
 			{type:'provide',what:{'added material storage':4000}},
-			{type:'provide',what:{'added material storage':1000},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
 			{type:'waste',chance:0.001/1000}
 		],
 		req:{'stockpiling':true,'construction':true},
