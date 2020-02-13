@@ -4692,21 +4692,23 @@ G.writeMSettingButton=function(obj)
 				}
 			},mode:'undertaker'},
 			{type:'function',func:function(me){
-				var wiggleRoom=6;
+				var wiggleRoom=10;
 				var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
-				if (toMake>0 && G.canBuyUnitByName('house',toMake))
+				var toMake=me.amount-me.idle;
+				if (homeless>0 && toMake>0 && G.canBuyUnitByName('house',toMake))
 				{
 					G.buyUnitByName('Blockhouse',toMake,true);
 				}
 			},mode:'blockhouser'},
-				{type:'function',func:function(me){
+			{type:'function',func:function(me){
 				var wiggleRoom=10;
 				var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
-				if (toMake>0 && G.canBuyUnitByName('house',toMake))
+				var toMake=me.amount-me.idle;
+				if (homeless>0 && toMake>0 && G.canBuyUnitByName('house',toMake))
 				{
 					G.buyUnitByName('Brick house with a silo',toMake,true);
 				}
-			},mode:'blockhouser'},
+			},mode:'brickhouser'},
 		],
 		limitPer:{'land':100},
 		req:{'city planning':true},
