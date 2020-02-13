@@ -463,8 +463,6 @@ G.writeMSettingButton=function(obj)
 							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
 							else G.lose('faith',1,'rituals');
 						}
-					}
-				{
 					var rituals=['harvest rituals for flowers'];
 					for (var i in rituals)
 					{
@@ -475,8 +473,6 @@ G.writeMSettingButton=function(obj)
 							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
 							else G.lose('influence',1,'rituals');
 						}
-					}
-				{
 					var rituals=['Crafting & farm rituals'];
 					for (var i in rituals)
 					{
@@ -501,7 +497,7 @@ G.writeMSettingButton=function(obj)
 				{
 					//drink water
 					var toConsume=0;
-					var weights={'baby':0.1,'child':0.3,'adult':0.5,'elder':0.5,'sick':0.4,'wounded':0.4};
+					var weights={'baby':0.1,'child':0.3,'adult':0.5,'elder':0.5,'sick':0.4,'wounded':0.4,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
 					for (var i in weights)
 					{toConsume+=G.getRes(i).amount*weights[i];}
 					var rations=G.checkPolicy('water rations');
@@ -522,7 +518,7 @@ G.writeMSettingButton=function(obj)
 							var toDie=(lacking/5)*0.05;
 							if (G.year<1) toDie/=5;//less deaths in the first year
 							var died=0;
-							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3};//the elderly are the first to starve off
+							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
 							var sum=0;for (var i in weights){sum+=weights[i];}for (var i in weights){weights[i]/=sum;}//normalize
 							for (var i in weights){var ratio=(G.getRes(i).amount/me.amount);weights[i]=ratio+(1-ratio)*weights[i];}
 							for (var i in weights)
@@ -540,7 +536,7 @@ G.writeMSettingButton=function(obj)
 					var happinessAdd=0;
 					if (G.has('culture of moderation')) {consumeMult*=0.85;happinessAdd-=0.1;}
 					else if (G.has('joy of eating')) {consumeMult*=1.15;happinessAdd+=0.1;}
-					var weights={'baby':0.2,'child':0.5,'adult':1,'elder':1,'sick':0.75,'wounded':0.75};
+					var weights={'baby':0.2,'child':0.5,'adult':1,'elder':1,'sick':0.75,'wounded':0.75,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
 					for (var i in weights)
 					{toConsume+=G.getRes(i).amount*weights[i];}
 					var rations=G.checkPolicy('food rations');
@@ -565,7 +561,7 @@ G.writeMSettingButton=function(obj)
 							var toDie=(lacking/5)*0.05;
 							if (G.year<1) toDie/=5;//less deaths in the first year
 							var died=0;
-							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3};//the elderly are the first to starve off
+							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
 							var sum=0;for (var i in weights){sum+=weights[i];}for (var i in weights){weights[i]/=sum;}//normalize
 							for (var i in weights){var ratio=(G.getRes(i).amount/me.amount);weights[i]=ratio+(1-ratio)*weights[i];}
 							for (var i in weights)
@@ -701,7 +697,7 @@ G.writeMSettingButton=function(obj)
 						if (G.year<5) toChange*=0.5;//less wounds the first 5 years
 						if (me.amount<=15) toChange*=0.5;
 						var changed=0;
-						var weights={'baby':2,'child':1.5,'adult':1,'elder':2};
+						var weights={'baby':2,'child':1.5,'adult':1,'elder':2,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5};
 						if (G.checkPolicy('child workforce')=='on') weights['child']*=3;
 						if (G.checkPolicy('elder workforce')=='on') weights['elder']*=3;
 						if (G.year<5) weights['adult']=0;//adults don't get wounded the first 5 years
