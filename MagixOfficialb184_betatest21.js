@@ -89,7 +89,6 @@ G.props['fastTicksOnResearch']=150;
 		'Secrets await',
 		'Discover unknown',
 		'A morning fog welcomes you',
-		
 		'An eerie glow from above illuminates the night.',
 		'Distant lands lay undisturbed.'
 	];
@@ -7123,6 +7122,9 @@ new G.Unit({
 		desc:'<span style="color: ##FF0900">Unlocks sheet of buildings which can be only built in new dimension.</span>',
 		icon:[9,0,'magixmod'], 
 		cost:{'insight':4,'Plain Island emblem':1},
+		effects:[
+			{type:'hide res',what:['Plain Island emblem']},
+		],
 		req:{'<span style="color: #E0CE00">Plain island portal</span>':true},
 	});
 		new G.Tech({
@@ -7428,6 +7430,9 @@ new G.Unit({
 		desc:'After your people heard [The God\'s call] your wizards with help of full of faith people figured out a way to acrivate portal to the Paradise at the top of their latest wonder.',
 		icon:[20,3,'magixmod'], //WIP
 		cost:{'insight':1595,'culture':300,'Mana':2500,'influence':70,'spirituality':50,'population':1000},
+		effects:[
+			{type:'hide res',what:['Plain Island emblem']}
+		],
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true,'First portal to new world':true,'The God\'s call':true,'monument-building II':true},
 	});
 		new G.Tech({
