@@ -3724,7 +3724,7 @@ G.writeMSettingButton=function(obj)
 	UNITS
 	=======================================================================================*/
 	G.unitCategories.push(
-		{id:'debug',name:'Debug'},
+		{id:'debug',name:'<font color="#1f4f22"Debug</font>'},
 		{id:'housing',name:'Housing'},
 		{id:'civil',name:'Civil'},
 		{id:'crafting',name:'Crafting'},
@@ -3735,7 +3735,7 @@ G.writeMSettingButton=function(obj)
 		{id:'spiritual',name:'Spiritual'},
 		{id:'exploration',name:'Exploration'},
 		{id:'storage',name:'Storage'},
-		{id:'wonder',name:'Wonders'},
+		{id:'wonder',name:'<font color="#ab20a2">Wonders</font>'},
 		{id:'dimensions',name:'Portals'},
 		{id:'seasonal',name:'<span style="color:#7fffd4">Seasonal</span>'},
 		{id:'plainisleunit',name:'Plain Island'},
