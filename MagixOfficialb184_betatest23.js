@@ -379,7 +379,12 @@ G.writeMSettingButton=function(obj)
 			'main':{
 				name:'<span style "color: #DA4F37">Essentials</span>',
 				base:[],
-				side:['population','worker','happiness','health','land','coin','Land of the Plain Island','Land of the Paradise'],
+				side:['population','worker','happiness','health','coin'],
+		},
+			'terr':{
+				name:'Territory',
+				base:['land'],
+				side:['tl'],
 		},
 			'demog':{
 				name:'<span style "color: #0DA42B">Demographics</span>',
@@ -832,6 +837,13 @@ G.writeMSettingButton=function(obj)
 		icon:[13,4],
 		displayUsed:true,
 	});
+		new G.Res({
+		name:'tl',
+		displayName:'Total land',
+		desc:'This is the total land your people discovered from all worlds people discovered this run.',
+		icon:[23,18,'magixmod'],
+		meta:true,
+	});
 	new G.Res({
 		name:'housing',
 		desc:'Each [housing,Housing spot] accommodates one [population,Person].//Beyond the 15 people a nomad tribe can support, your population will only grow if you have empty housing.//Homelessness (having less housing than population) will lead to unhappiness and disease.//The number on the left is how much housing is occupied, while the number on the right is how much housing room you have in total.',
@@ -846,6 +858,8 @@ G.writeMSettingButton=function(obj)
 		desc:'Each tile of territory you own grants you some [land] (100 per fully-explored non-ocean tile, by default) upon which you can construct buildings. If for some reason you find yourself with less land than your buildings are using, some of them will start to slowly crumble away.//The number on the left is how much land is occupied, while the number on the right is how much land you have in total.',
 		icon:[14,4],
 		displayUsed:true,
+		partOf:'tl',
+		category:'terr',
 		tick:function(me)
 		{
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
@@ -1733,12 +1747,14 @@ G.writeMSettingButton=function(obj)
 		desc:'The land you got from activating a portal to Plain Island. Place for new buildings.',
 		icon:[7,0,'magixmod'],
 		displayUsed:true,
+		category:'terr'
 	});
 		new G.Res({
 		name:'Land of the Paradise',
 		desc:'The land you got from activating a portal to the Paradise. Place for new buildings.',
 		icon:[20,4,'magixmod'],
 		displayUsed:true,
+		category:'terr'
 	});
 		new G.Res({
 		name:'Fire essence',
