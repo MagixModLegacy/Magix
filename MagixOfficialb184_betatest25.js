@@ -859,7 +859,6 @@ G.writeMSettingButton=function(obj)
 		icon:[14,4],
 		displayUsed:true,
 		partOf:'tl',
-		category:'terr',
 		tick:function(me)
 		{
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
