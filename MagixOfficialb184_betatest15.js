@@ -8329,7 +8329,7 @@ autobuy(G.year)
 		new G.Policy({
 		name:'Factory of pots production rates',
 		desc:'You can change the rates of production for [Factory of pots] . Remember the bigger rates the people will need to work harder and may become unhappy.',
-		icon:[23,18,'magixmod',14,18,'magixmod'],
+		icon:[24,18,'magixmod',14,18,'magixmod'],
 		cost:{'influence':125},
 		startMode:'1',
 		req:{'Production rates influence':true,'<font color="maroon">Moderation</font>':true},
@@ -8344,7 +8344,7 @@ autobuy(G.year)
 		new G.Policy({
 		name:'Leather factory production rates',
 		desc:'You can change the rates of production for [Leather factory] . Remember the bigger rates the people will need to work harder and may become unhappy.',
-		icon:[23,18,'magixmod',15,18,'magixmod'],
+		icon:[24,18,'magixmod',15,18,'magixmod'],
 		cost:{'influence':125},
 		startMode:'1',
 		req:{'Production rates influence':true,'<font color="maroon">Moderation</font>':true},
@@ -8359,7 +8359,7 @@ autobuy(G.year)
 		new G.Policy({
 		name:'Hut of potters production rates',
 		desc:'You can change the rates of production for [Hut of potters] . Remember the bigger rates the people will need to work harder and may become unhappy.',
-		icon:[23,18,'magixmod',20,18,'magixmod'],
+		icon:[24,18,'magixmod',20,18,'magixmod'],
 		cost:{'influence':125},
 		startMode:'1',
 		req:{'Production rates influence':true,'<font color="maroon">Caretaking</font>':true},
@@ -8374,7 +8374,7 @@ autobuy(G.year)
 		new G.Policy({
 		name:'Hovel of colours production rates',
 		desc:'You can change the rates of production for [Hovel of colours] . Remember the bigger rates the people will need to work harder and may become unhappy.',
-		icon:[23,18,'magixmod',19,18,'magixmod'],
+		icon:[24,18,'magixmod',19,18,'magixmod'],
 		cost:{'influence':125},
 		startMode:'1',
 		req:{'Production rates influence':true,'<font color="maroon">Caretaking</font>':true},
