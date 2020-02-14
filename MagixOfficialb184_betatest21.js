@@ -43,10 +43,10 @@ G.props['fastTicksOnResearch']=150;
 		if (G.on)
 		{
 			var str='';
-			str+='It is now the year '+(G.year+1)+'.<br>';
+			str+='It is now the year </b>'+(G.year+1)+'.<br></b>';
 			str+='Report for last year :<br>';
-			str+='&bull; Births : '+B(G.getRes('born this year').amount)+'<br>';
-			str+='&bull; Deaths : '+B(G.getRes('died this year').amount)+'<br>';
+			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
+			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
@@ -85,12 +85,14 @@ G.props['fastTicksOnResearch']=150;
 		'The air carries a peculiar smell today.',
 		'Wild scents flow in from elsewhere.',
 		'The dust is oppressive.',
-		'Wind blows from the north',
-		'Secrets await',
-		'Discover unknown',
-		'A morning fog welcomes you',
+		'Wind blows from the north.',
+		'Secrets await.',
+		'Discover unknown.',
+		'A morning fog welcomes you.',
 		'An eerie glow from above illuminates the night.',
-		'Distant lands lay undisturbed.'
+		'Distant lands lay undisturbed.',
+		'<b>Magic awaits.</b>',
+		'A cool breeze is blowing.'
 	];
 	
 	shuffle(G.props['new day lines']);
