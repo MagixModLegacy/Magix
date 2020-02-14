@@ -3795,7 +3795,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'gather',what:{'insight':0.1}},
 			{type:'gather',what:{'insight':0.05},req:{'symbolism':true}},
-			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}}
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.05,req:{'Knowledgeable':true}}
 		],
 		req:{'speech':true},
 		category:'discovery',
@@ -3813,7 +3814,8 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',what:{'culture':0.1}},
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
-			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}}
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
 		],
 		req:{'oral tradition':true},
 		category:'cultural',
@@ -4330,7 +4332,8 @@ G.writeMSettingButton=function(obj)
 		upkeep:{'coin':0.5},
 		effects:[
 			{type:'gather',what:{'influence':0.1}},
-			{type:'gather',what:{'influence':0.05},req:{'code of law':true}}
+			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
+			{type:'mult',value:1.05,req:{'Politic power rising up':true}}
 		],
 		limitPer:{'population':100},
 		req:{'chieftains':true},
@@ -4346,7 +4349,8 @@ G.writeMSettingButton=function(obj)
 		upkeep:{'coin':0.75},
 		effects:[
 			{type:'gather',what:{'influence':0.2}},
-			{type:'gather',what:{'influence':0.05},req:{'code of law':true}}
+			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
+			{type:'mult',value:1.05,req:{'Politic power rising up':true}}
 		],
 		limitPer:{'population':500},
 		req:{'clans':true},
@@ -5513,7 +5517,8 @@ new G.Unit({
 			{type:'gather',what:{'Painting':0.008}},
 			{type:'gather',what:{'culture':0.03},req:{'symbolism':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
-			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}}
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
 		],
 		req:{'oral tradition':true,'artistic thinking':true},
 		category:'cultural',
@@ -5717,6 +5722,7 @@ new G.Unit({
 			{type:'mult',value:1.31,req:{'artistic thinking':true}},
 			{type:'mult',value:1.21,req:{'wisdom rituals':'on'}},
 			{type:'convert',from:{'Paper':21},into:{'Poet\'s notes':1},every:11,req:{'Bookwriting':true}},
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
 		],
 		req:{'oral tradition':true,'Poetry':true},
 		category:'cultural',
