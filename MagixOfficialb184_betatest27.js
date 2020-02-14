@@ -3724,7 +3724,7 @@ G.writeMSettingButton=function(obj)
 	UNITS
 	=======================================================================================*/
 	G.unitCategories.push(
-		{id:'debug',name:'<font color="#1f4f22"Debug</font>'},
+		{id:'debug',name:'<font color="#1f4f22">Debug</font>'},
 		{id:'housing',name:'Housing'},
 		{id:'civil',name:'Civil'},
 		{id:'crafting',name:'Crafting'},
