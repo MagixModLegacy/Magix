@@ -1747,6 +1747,7 @@ G.writeMSettingButton=function(obj)
 		desc:'The land you got from activating a portal to Plain Island. Place for new buildings.',
 		icon:[7,0,'magixmod'],
 		displayUsed:true,
+		partOf:'tl',
 		category:'terr'
 	});
 		new G.Res({
@@ -1754,7 +1755,8 @@ G.writeMSettingButton=function(obj)
 		desc:'The land you got from activating a portal to the Paradise. Place for new buildings.',
 		icon:[20,4,'magixmod'],
 		displayUsed:true,
-		category:'terr'
+		category:'terr',
+		partOf:'tl'
 	});
 		new G.Res({
 		name:'Fire essence',
