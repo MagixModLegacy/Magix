@@ -7147,9 +7147,6 @@ new G.Unit({
 		desc:'<span style="color: ##FF0900">Unlocks sheet of buildings which can be only built in new dimension.</span>',
 		icon:[9,0,'magixmod'], 
 		cost:{'insight':4,'Plain Island emblem':1},
-		effects:[
-			{type:'hide res',what:['Plain Island emblem']},
-		],
 		req:{'<span style="color: #E0CE00">Plain island portal</span>':true},
 	});
 		new G.Tech({
@@ -7164,6 +7161,9 @@ new G.Unit({
 		desc:'Provides even better use of the Plain Island. You may build now few cemetries which consume much more [Land of the Plain Island], but they can store more corpses.',
 		icon:[1,6,'magixmod'], 
 		cost:{'insight':65},
+		effects:[
+			{type:'hide res',what:['Plain Island emblem']},
+		],
 		req:{'<span style="color: #E0CE00">Plain island portal</span>':true,'<span style="color: ##FF0900">Plain island building</span>':true},
 	});
 		new G.Tech({
@@ -7455,9 +7455,6 @@ new G.Unit({
 		desc:'After your people heard [The God\'s call] your wizards with help of full of faith people figured out a way to acrivate portal to the Paradise at the top of their latest wonder.',
 		icon:[20,3,'magixmod'], //WIP
 		cost:{'insight':1595,'culture':300,'Mana':2500,'influence':70,'spirituality':50,'population':1000},
-		effects:[
-			{type:'hide res',what:['Plain Island emblem']}
-		],
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true,'First portal to new world':true,'The God\'s call':true,'monument-building II':true},
 	});
 		new G.Tech({
@@ -7506,6 +7503,9 @@ new G.Unit({
 		desc:'Due to 7th essence discovered [Wizard Complex] has a need to build up new tower specially for new essence.@More housing and since now [Wizard Complex] will use more [Mana] just to craft new essence too.',
 		icon:[20,8,'magixmod'], 
 		cost:{'insight':695},
+		effects:[
+			{type:'hide res',what:['Paradise emblem']},
+		],
 		req:{'7th essence':true,'Wizard complex':true},
 	});
 		new G.Tech({
