@@ -9975,7 +9975,6 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 			}
 		}
 		return lvl;
-	}
 }
 });
 
