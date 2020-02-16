@@ -115,6 +115,24 @@ G.props['fastTicksOnResearch']=150;
 		' undecillion',
 		' duodecillion',
 		' tredecillion',
+		' quattuordecillion',
+		' quindecillion',
+		' sexdecillion',
+		' septendecillion',
+		' octodecillion',
+		' novemdecillion',
+		' vigintillion',
+		' unvigintillion',
+		' duovigintillion',
+		' trevigintillion',
+		' quattuorvigintillion',
+		' quinvigintillion',
+		' sexviginitillion',
+		' septenvigintillion',
+		' octovigintillion',
+		' novemvigintillion',
+		' trigintillion',
+		' untrigintillion',
 	]),
 	formatEveryThirdPower([
 		'k',
@@ -130,9 +148,39 @@ G.props['fastTicksOnResearch']=150;
 		'Dc',
 		'Ud',
 		'Dd',
-		'Td'
+		'Td',
+		'Qad',
+		'Qid',
+		'Sxd',
+		'Spd',
+		'Od',
+		'Nd',
+		'V',
+		'Uv',
+		'Dv',
+		'Tv',
+		'Qav',
+		'Qiv',
+		'Sxv',
+		'Spv',
+		'Ov',
+		'Nv',
+		'Tg',
+		'Utg'
 	])
 ];
+function Beautify(value,floats)
+{
+	var negative=(value<0);
+	var decimal='';
+	if (Math.abs(value)<1000 && floats>0) decimal='.'+(value.toFixed(floats).toString()).split('.')[1];
+	value=Math.floor(Math.abs(value));
+	var formatter=numberFormatters[2];
+	var output=formatter(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+	if (output=='0') negative=false;
+	return negative?'-'+output:output+decimal;
+}
+var B=Beautify;
 	G.funcs['new day']=function()
 	{
 		if (G.on)
