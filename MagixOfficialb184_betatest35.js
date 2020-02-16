@@ -95,7 +95,44 @@ G.props['fastTicksOnResearch']=150;
 		'A cool breeze is blowing.'
 	];
 	
+	
 	shuffle(G.props['new day lines']);
+	var numberFormatters =
+[
+	rawFormatter,
+	formatEveryThirdPower([
+		' thousand',
+		' million',
+		' billion',
+		' trillion',
+		' quadrillion',
+		' quintillion',
+		' sextillion',
+		' septillion',
+		' octillion',
+		' nonillion',
+		' decillion',
+		' undecillion',
+		' duodecillion',
+		' tredecillion',
+	]),
+	formatEveryThirdPower([
+		'k',
+		'M',
+		'B',
+		'T',
+		'Qa',
+		'Qi',
+		'Sx',
+		'Sp',
+		'Oc',
+		'No',
+		'Dc',
+		'Ud',
+		'Dd',
+		'Td'
+	])
+];
 	G.funcs['new day']=function()
 	{
 		if (G.on)
@@ -3101,6 +3138,7 @@ G.writeMSettingButton=function(obj)
 		let u3popup = false
 		let u4popup = false
 		let u5popup = false
+		let finalupopup = false
 		new G.Res({
 		name:'wounded child alchemist',
 		desc:'[Alchemists] may get [wounded,wounded] due to work injuries. They do not [worker,work] but may slowly get better over time.',
@@ -3131,6 +3169,10 @@ G.writeMSettingButton=function(obj)
 				if (G.year>=14 && G.year<=18 && !u5popup){
        				 G.Message({text:'A huge cavern starts to show while braves continued digging down. They run away to you... empopwered weirdly by these souls. Another lightning essence creature paralyses you and water essence creatures started behaving insane. Is this greeting from new world?</br><b><font color="silver">Alright '+G.getName('ruler')+' ...</br>Call your soul and make it go...</br>Right to the world</br>The Under...World</font></b>',icon:[4,19,'magixmod']});
 				u5popup = true
+				}
+				if (G.year>=17 && G.year<=21 && !finalupopup){
+					G.middleText('Now ascend through Underworld to continue unlocking new world.')
+				finalupopup = true
 				}
 		},
 	});
