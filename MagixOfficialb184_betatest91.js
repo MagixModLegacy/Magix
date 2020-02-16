@@ -12,6 +12,9 @@ G.props['fastTicksOnResearch']=150;
 	{
 		var str=
 		'<b>Your tribe :</b><div class="thingBox">'+
+		 if (G.achievByName['Sacrificed for culture'].won >= 0 && G.achievByName['Democration'].won >= 0 && G.achievByName['Insight-ly'].won >= 0 && G.achievByName['"In the underworld"'].won >= 0)
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x6</div>','6 Adults')+
+		else return
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
