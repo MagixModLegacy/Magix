@@ -3130,11 +3130,11 @@ G.writeMSettingButton=function(obj)
 				u4popup = true
 				}
 				if (G.year>=14 && G.year<=18 && !u5popup){
-       				 G.Message({text:'A huge cavern starts to show while braves continued digging down. They run away to you... empopwered weirdly by these souls. Another lightning essence creature paralyses you and water essence creatures started behaving insane. Is this greeting from new world?</br><b><font color="silver">Alright '+G.getName('ruler')+' ...</br>Call your soul and make it go...</br>Right to the world</br>The Under...World</font></b>',icon:[4,19,'magixmod']});
+       				 G.Message({text:'A huge cavern starts to show while braves continued digging down. They run away to you... empowered weirdly by these souls. Another lightning essence creature paralyses you and water essence creatures started behaving insane. Is this greeting from new world?</br><b><font color="silver">Alright '+G.getName('ruler')+' ...</br>Call your soul and make it go...</br>Right to the world</br>The Under...world</font></b>',icon:[4,19,'magixmod']});
 				u5popup = true
 				}
 				if (G.year>=17 && G.year<=21 && !finalupopup){
-					G.middleText('<font color="fuschia">Now ascend through Underworld to continue unlocking new world.</font>')
+					G.middleText('<font color="fuschia">Now ascend through Underworld to continue unlocking the new world.</font>')
 				finalupopup = true
 				}
 		},
