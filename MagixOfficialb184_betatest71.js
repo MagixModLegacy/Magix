@@ -8,6 +8,200 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
+function formatEveryThirdPower(notations)
+{
+	return function (value)
+	{
+		var base = 0,
+		notationValue = '';
+		if (value >= 1000 && isFinite(value))
+		{
+			value /= 1000;
+			while(Math.round(value) >= 1000)
+			{
+				value /= 1000;
+				base++;
+			}
+			if (base > notations.length) {return 'Inf';} else {notationValue = notations[base];}
+		}
+		return ( Math.round(value * 10) / 10 ) + notationValue;
+	};
+}
+
+function rawFormatter(value) {return Math.round(value * 1000) / 1000;}
+	var numberFormatters =
+[
+	rawFormatter,
+	formatEveryThirdPower([
+		' thousand',
+		' million',
+		' billion',
+		' trillion',
+		' quadrillion',
+		' quintillion',
+		' sextillion',
+		' septillion',
+		' octillion',
+		' nonillion',
+		' decillion',
+		' undecillion',
+		' duodecillion',
+		' tredecillion',
+		' quattuordecillion',
+		' quindecillion',
+		' sexdecillion',
+		' septendecillion',
+		' octodecillion',
+		' novemdecillion',
+		' vigintillion',
+		' unvigintillion',
+		' duovigintillion',
+		' trevigintillion',
+		' quattuorvigintillion',
+		' quinvigintillion',
+		' sexviginitillion',
+		' septenvigintillion',
+		' octovigintillion',
+		' novemvigintillion',
+		' trigintillion',
+		' untrigintillion',
+	]),
+	formatEveryThirdPower([
+		'k',
+		'M',
+		'B',
+		'T',
+		'Qa',
+		'Qi',
+		'Sx',
+		'Sp',
+		'Oc',
+		'No',
+		'Dc',
+		'Ud',
+		'Dd',
+		'Td',
+		'Qad',
+		'Qid',
+		'Sxd',
+		'Spd',
+		'Od',
+		'Nd',
+		'V',
+		'Uv',
+		'Dv',
+		'Tv',
+		'Qav',
+		'Qiv',
+		'Sxv',
+		'Spv',
+		'Ov',
+		'Nv',
+		'Tg',
+		'Utg',
+		'Dtg',
+		'Ttg',
+		'Qatg',
+		'Qitg',
+		'Sxtg',
+		'Sptg',
+		'Otg',
+		'Ntg',
+		'Qua',
+		'Uqa',
+		'Dqa',
+		'Tqa',
+		'Qaqa',
+		'Qiqa',
+		'Sxqa',
+		'Spqa',
+		'Oqa',
+		'Nqa',
+		'Qia',
+		'Uqi',
+		'Dqi',
+		'Tqi',
+		'Qaqi',
+		'Qiqi',
+		'Sxqi',
+		'Spqi',
+		'Oqi',
+		'Nqi',
+		'Sxa',
+		'Usx',
+		'Dsx',
+		'Tsx',
+		'Qasx',
+		'Qisx',
+		'Sxsx',
+		'Spsx',
+		'Osx',
+		'Nsx',
+		'Spa',
+		'Usp',
+		'Dsp',
+		'Tsp',
+		'Qasp',
+		'Qisp',
+		'Sxsp',
+		'Spsp',
+		'Osp',
+		'Nsp',
+		'Ogt',
+		'Uog',
+		'Dog',
+		'Tog',
+		'Qaog',
+		'Qiog',
+		'Sxog',
+		'Spog',
+		'Oog',
+		'Nog',
+		'Ngt',
+		'Ungt',
+		'Dngt',
+		'Tngt',
+		'Qangt',
+		'Qingt',
+		'Sxngt',
+		'Spngt',
+		'Ongt',
+		'Nngt',
+		'Ct',
+		'Uct',
+		'Dct',
+		'Tct',
+		'Qact',
+		'Qict',
+		'Sxct',
+		'Spct',
+		'OCt',
+		'Nct',
+		'Dct',
+		'UdCt',
+		'DdCt',
+		'TdCt',
+		'QaCt',
+		'QiCt',
+		'SxCt',
+		'SpCt',
+		'OcCt',
+		'NoCt',
+		'VCt'
+	])
+];
+function Beautify(value,floats)
+{
+	var negative=(value<0);
+	var decimal='';
+	if (Math.abs(value)<1000 && floats>0) decimal='.'+(value.toFixed(floats).toString()).split('.')[1];
+	value=Math.floor(Math.abs(value));
+	var formatter=numberFormatters[2];
+	var output=formatter(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+	if (output=='0') negative=false;
+	return negative?'-'+output:output+decimal;
+}
+var B=Beautify;
 	
 	G.funcs['new game blurb']=function()
 	{
