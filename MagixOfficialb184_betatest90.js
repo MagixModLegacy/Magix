@@ -6449,7 +6449,7 @@ new G.Unit({
   		new G.Unit({
 		name:'Underworld',
 		desc:'Underworld',
-		wonder:'UW',
+		wonder:'"In the underworld"',
 		icon:[8,5,'magixmod'],
 		wideIcon:[7,5,'magixmod'],
 		cost:{},
@@ -9425,7 +9425,7 @@ autobuy(G.year)
 		wideIcon:[7,5,'magixmod'],
 		icon:[9,5,'magixmod'],
 		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with The [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
-		fromWonder:'UW',
+		fromWonder:'"In the underworld"',
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:15},
