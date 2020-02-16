@@ -97,6 +97,27 @@ G.props['fastTicksOnResearch']=150;
 	
 	
 	shuffle(G.props['new day lines']);
+function formatEveryThirdPower(notations)
+{
+	return function (value)
+	{
+		var base = 0,
+		notationValue = '';
+		if (value >= 1000 && isFinite(value))
+		{
+			value /= 1000;
+			while(Math.round(value) >= 1000)
+			{
+				value /= 1000;
+				base++;
+			}
+			if (base > notations.length) {return 'Inf';} else {notationValue = notations[base];}
+		}
+		return ( Math.round(value * 10) / 10 ) + notationValue;
+	};
+}
+
+function rawFormatter(value) {return Math.round(value * 1000) / 1000;}
 	var numberFormatters =
 [
 	rawFormatter,
