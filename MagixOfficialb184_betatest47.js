@@ -3219,7 +3219,7 @@ G.writeMSettingButton=function(obj)
 				u5popup = true
 				}
 				if (G.year>=17 && G.year<=21 && !finalupopup){
-					G.middleText('Now ascend through Underworld to continue unlocking new world.')
+					G.middleText('<font color="fuschia">Now ascend through Underworld to continue unlocking new world.</font>')
 				finalupopup = true
 				}
 		},
