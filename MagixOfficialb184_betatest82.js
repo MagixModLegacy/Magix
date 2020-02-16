@@ -9748,5 +9748,16 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
 		}
 		return lvl;
 	}
-}
+}	
 });
+	new G.Map=function(type,w,h,seed)
+	{
+		//create a new unpopulated map with specified type, width and height, with an optional seed
+		this.type=1;//type : 0=main, 1=space, 2=moon, 3=other planet
+		this.w=32;
+		this.h=32;
+		this.computedPlayerRes=[];
+		this.tilesByOwner=[0];//lists of tiles indexed by civs owning them ([0]=unexplored)
+		this.territoryByOwner=[15];//total amount of explored owned tile percents across all tiles owned by a given civ
+		this.seed=seed||makeSeed(6);
+	};
