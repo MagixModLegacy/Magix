@@ -6429,6 +6429,22 @@ new G.Unit({
 		req:{'monument-building':true,'Political roots':true},
 		category:'political',
 	});
+  		new G.Unit({
+		name:'Underworld',
+		desc:'Underworld',
+		wonder:'UW',
+		icon:[8,5,'magixmod'],
+		wideIcon:[7,5,'magixmod'],
+		cost:{},
+		costPerStep:{},
+		steps:1111,
+		messageOnStart:'Your people started digging down right into core of the mortal world. The deeper they mine the warmer it is there. What can be inside the new world?',
+		finalStepCost:{},
+		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
+		use:{'land':1},
+		req:{},
+		category:'dimensions',
+	});
 	
 	
 	/*=====================================================================================
