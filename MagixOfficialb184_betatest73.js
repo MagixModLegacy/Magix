@@ -8,6 +8,86 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
+
+function l(what) {return document.getElementById(what);}
+function choose(arr) {return arr[Math.floor(Math.random()*arr.length)];}
+function randomFloor(x) {if ((x%1)<Math.random()) return Math.floor(x); else return Math.ceil(x);}
+String.prototype.replaceAll=function(search,replacement)
+{var target=this;return target.replace(new RegExp(search,'g'),replacement);};
+function AddEvent(html_element,event_name,event_function)
+{
+	if(html_element.attachEvent) html_element.attachEvent("on" + event_name, function() {event_function.call(html_element);});
+	else if(html_element.addEventListener) html_element.addEventListener(event_name, event_function, false);
+}
+function addHover(el,className)
+{
+	AddEvent(el,'mouseover',function(className){return function(e){e.target.classList.add(className);};}(className));
+	AddEvent(el,'mouseout',function(className){return function(e){e.target.classList.remove(className);};}(className));
+}
+
+function addCSSRule(sheet, selector, rules, index)
+{
+	if("insertRule" in sheet) sheet.insertRule(selector + "{" + rules + "}", index);
+	else if("addRule" in sheet)	sheet.addRule(selector, rules, index);
+}
+
+function shuffle(array) {
+    var tmp, current, top = array.length;
+
+    if(top) while(--top) {
+        current = Math.floor(Math.random() * (top + 1));
+        tmp = array[current];
+        array[current] = array[top];
+        array[top] = tmp;
+    }
+    return array;
+}
+
+function addObjects(obj1,obj2)
+{
+	var out={};
+	for (var i in obj1)
+	{out[i]=obj1[i];}
+	for (var i in obj2)
+	{
+		if (!out[i]) out[i]=0;
+		out[i]+=obj2[i];
+	}
+	return out;
+}
+
+function isEmpty(obj)
+{
+	return (Object.keys(obj).length === 0 && obj.constructor === Object);
+}
+
+function byteCount(s){return encodeURI(s).split(/%..|./).length-1;}
+//also see : http://code.stephenmorley.org/javascript/finding-the-memory-usage-of-objects/
+
+function decodeEntities(string){
+	var elem=document.createElement('div');
+	elem.innerHTML=string;
+	return elem.textContent;
+}
+
+function b64EncodeUnicode(str){
+	return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+		return String.fromCharCode('0x' + p1);
+	}));
+}
+function b64DecodeUnicode(str){
+	return decodeURIComponent(atob(str).split('').map(function(c) {
+		return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+	}).join(''));
+}
+
+function triggerAnim(element,anim)
+{
+	if (!element) return;
+	element.classList.remove(anim);
+	void element.offsetWidth;
+	element.classList.add(anim);
+}
 function formatEveryThirdPower(notations)
 {
 	return function (value)
