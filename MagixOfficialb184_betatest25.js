@@ -3114,7 +3114,7 @@ G.writeMSettingButton=function(obj)
 				madeThanks4playmesg = true
 				}
 				if (G.year>=10 && G.year<=14 && !u1popup){
-       				 G.Message({text:'As your people keep digging down they start to feel more warm but not overheat yet. It mostly warms you. It feels like some soul from not known earlier world want to say something.</br> <b><font color="aqua">You are the one</br>Who wasn\'t done</br>Those people seek new worlds...</br>...and new odds</font></b>',icon:[0,19,'magixmod']});
+       				 G.Message({text:'As your people keep digging down they start to feel more warm but not overheat yet. It mostly warms you. It feels like some soul from not known earlier world wants to say something.</br> <b><font color="aqua">You are the one</br>Who wasn\'t done</br>Those people seek new worlds...</br>...and new odds</font></b>',icon:[0,19,'magixmod']});
 				u1popup = true
 				}
 				if (G.year>=11 && G.year<=15 && !u2popup){
@@ -3122,11 +3122,11 @@ G.writeMSettingButton=function(obj)
 				u2popup = true
 				}
 				if (G.year>=12 && G.year<=16 && !u3popup){
-       				 G.Message({text:'You see wizards using magic to cool down the warmth so people can continue digging down for new world. Dark voices yells and makes feared civils near you. This doesn\'t seem well.</br><b><font color="teal">You want to see fear...</br>Please don\'t show me even one your tear...</br>You hear...</br>I yell so you are fear.</font></b>',icon:[2,19,'magixmod']});
+       				 G.Message({text:'You see wizards using magic to cool down the warmth so people can continue digging down for new world. Dark voices yell and make civils feared near you. This doesn\'t seem well.</br><b><font color="teal">You want to see fear...</br>Please don\'t show me even one your tear...</br>You hear...</br>I yell so you are fear.</font></b>',icon:[2,19,'magixmod']});
 				u3popup = true
 				}
 				if (G.year>=13 && G.year<=17 && !u4popup){
-       				 G.Message({text:'Out of nowhere people yell and run away in panic except small group of braves who still dig down. Souls start behave weird... or you just don\'t understand them yet</br><b><font color="red">Don\'t let the Gods</br>Send there his crowds</br>Danger for people abounds</br>and forbidden are becoming crowds</font></b>',icon:[3,19,'magixmod']});
+       				 G.Message({text:'Out of nowhere people yell and run away in panic except small group of braves who still dig down. Souls start behave weird... or you just don\'t understand them yet.</br><b><font color="red">Don\'t let the Gods</br>Send there his crowds</br>Danger for people abounds</br>and forbidden are becoming crowds</font></b>',icon:[3,19,'magixmod']});
 				u4popup = true
 				}
 				if (G.year>=14 && G.year<=18 && !u5popup){
