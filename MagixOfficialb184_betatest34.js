@@ -3096,6 +3096,7 @@ G.writeMSettingButton=function(obj)
 	});
 	//To make recovery not like wounded child alch becomes adult alch
 		let madeThanks4playmesg = false
+		let u1popup = false
 		new G.Res({
 		name:'wounded child alchemist',
 		desc:'[Alchemists] may get [wounded,wounded] due to work injuries. They do not [worker,work] but may slowly get better over time.',
@@ -3106,6 +3107,10 @@ G.writeMSettingButton=function(obj)
 				if (G.year>=149 && G.year<=158 && !madeThanks4playmesg){
        				 G.Message({type:'important',text:'<span style="color= aqua">Seems like you are doing preety well. It is been 150 years since you started magic adventure with Magix additions. Thank you for playing with this expansion. Your playing makes mod better and motivates for future updates. <br> <b> -> </b>Remember mod is still getting bigger and gets more content. This means someday the mod may be unavaiable to play for while. If you will lose progress due to update we are sorry. Anyway keep enjoying this adventure... <br> </span><b>Farewell</b>',icon:[24,1,'magixmod']});
 				madeThanks4playmesg = true
+				}
+				if (G.year>=10 && G.year<=14 && !u1popup){
+       				 G.Message({text:'As your people keep digging down they start to feel more warm but not overheat yet. It mostly warms you. It feels like some soul from not known earlier world want to say something.</br> <b><font color="aqua">You are the one</br>Who wasn\'t done</br>Those people seek new worlds...</br>...and new odds</font></b>',icon:[0,19,'magixmod']});
+				u1popup = true
 				}
 		},
 	});
