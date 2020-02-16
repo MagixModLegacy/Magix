@@ -9424,7 +9424,7 @@ autobuy(G.year)
 		name:'"In the underworld"',
 		wideIcon:[7,5,'magixmod'],
 		icon:[9,5,'magixmod'],
-		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain [Sacrificed for culture], [Insight-ly] and [Democration] you will start each next game with The [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain [Deadly, revenantic] in addition.',
+		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with The [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
 		fromWonder:'UW',
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
