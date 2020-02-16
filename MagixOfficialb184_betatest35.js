@@ -3097,6 +3097,10 @@ G.writeMSettingButton=function(obj)
 	//To make recovery not like wounded child alch becomes adult alch
 		let madeThanks4playmesg = false
 		let u1popup = false
+		let u2popup = false
+		let u3popup = false
+		let u4popup = false
+		let u5popup = false
 		new G.Res({
 		name:'wounded child alchemist',
 		desc:'[Alchemists] may get [wounded,wounded] due to work injuries. They do not [worker,work] but may slowly get better over time.',
@@ -3111,6 +3115,22 @@ G.writeMSettingButton=function(obj)
 				if (G.year>=10 && G.year<=14 && !u1popup){
        				 G.Message({text:'As your people keep digging down they start to feel more warm but not overheat yet. It mostly warms you. It feels like some soul from not known earlier world want to say something.</br> <b><font color="aqua">You are the one</br>Who wasn\'t done</br>Those people seek new worlds...</br>...and new odds</font></b>',icon:[0,19,'magixmod']});
 				u1popup = true
+				}
+				if (G.year>=11 && G.year<=15 && !u2popup){
+       				 G.Message({text:'People continue digging down and another souls want to tell you few things and green soul seemed like Nature essence creation has bitten you. People complain for warmth.<b><font color="fuschia">The world you want to meet</br>Will not give all it has right before your feet</br>Danger for people abounds</br>and forbidden will become crowds</font></b>',icon:[1,19,'magixmod']});
+				u2popup = true
+				}
+				if (G.year>=12 && G.year<=16 && !u3popup){
+       				 G.Message({text:'You see wizards using magic to cool down the warmth so people can continue digging down for new world. Dark voices yells and makes feared civils near you. This doesn\'t seem well.<b><font color="teal">You want to see fear...</br>Please don\'t show me even one your tear...</br>You hear...</br>I yell so you are fear.</font></b>',icon:[2,19,'magixmod']});
+				u3popup = true
+				}
+				if (G.year>=13 && G.year<=17 && !u4popup){
+       				 G.Message({text:'Out of nowhere people yell and run away in panic except small group of braves who still dig down. Souls start behave weird... or you just don\'t understand them yet<b><font color="red">Don\'t let the Gods</br>Send there his crowds</br>Danger for people abounds</br>and forbidden are becoming crowds</font></b>',icon:[3,19,'magixmod']});
+				u4popup = true
+				}
+				if (G.year>=14 && G.year<=18 && !u5popup){
+       				 G.Message({text:'A huge cavern starts to show while braves continued digging down. They run away to you... empopwered weirdly by these souls. Another lightning essence creature paralyses you and water essence creatures started behaving insane. Is this greeting from new world?<b><font color="silver">Alright '+G.getName('ruler')+' ...</br>Call your soul and make it go...</br>Right to the world</br>The Under...World</font></b>',icon:[4,19,'magixmod']});
+				u5popup = true
 				}
 		},
 	});
