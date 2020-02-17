@@ -6493,7 +6493,7 @@ new G.Unit({
 		costPerStep:{'Dark essence':150,'basic building materials':150,'gem block':1,'population':3,'Mana':3000,'New world point':-1},
 		steps:1111,
 		messageOnStart:'Your people started digging down right into core of the mortal world. The deeper they mine the warmer it is there. What can be inside the new world?',
-		finalStepCost:{'population':2500,'gem block':500,'gold block':50,'New world point':389},
+		finalStepCost:{'population':2500,'gem block':500,'gold block':50,'New world point':-389},
 		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
 		use:{'land':1,'worker':35,'metal tools':35,'armor set':35},
 		category:'guard',
