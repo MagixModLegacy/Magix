@@ -3769,7 +3769,7 @@ G.writeMSettingButton=function(obj)
 	});
 		let UnderworldMESG = false
 		new G.Res({
-		name:'Paradise emblem',
+		name:'Underworld emblem',
 		desc:'A thing you will get after entering the Underworld. Needed to unlock further researching. A pass for further things and more adventures. You can obtain only one Emblem of this type. <b>@You brought plagues for discoveries. Fine. I hope you won\'t regret this choice later.<b>',
 		icon:[13,19,'magixmod'],
 		startWith:0,
