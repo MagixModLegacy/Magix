@@ -9598,6 +9598,31 @@ G.NewGameConfirm = new Proxy(oldNewGame4, {
     checkUnd()
   }
 })
+let gifUA =  new G.Tech({
+        name:'<font color: ##a8654f>The Underworld\'s Ascendant</font>',
+        desc:'You managed to do few other feats to attract new things. And you attracted: @ +1 [adult] . This is [adult,The Underworld\'s Ascendant] .',
+        icon:[15,19,'magixmod'],
+        cost:{},
+	effects:[
+		{type:'provide res',what:{'adult':1}},
+	],
+        req:{'tribalism':false}
+    });
+function checkUA() {
+  if (G.achievByName['"In the underworld"'].won) {
+    if (G.achievByName['"In the underworld"'].won >= 0 && G.achievByName['Democration'].won >= 0 && G.achievByName['Sacrificed for culture'].won >= 0 && G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color: ##a8654f>The Underworld\'s Ascendant</font>')) {
+      G.gainTech(gifUA)
+    }
+}
+}
+checkUA()
+const oldNewGame5 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame5, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkUA()
+  }
+})
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
