@@ -6368,7 +6368,7 @@ new G.Unit({
     		effects:[
     		],
     		use:{'land':1},
-    		req:{'A feeling from the Underworld':true},
+    		req:{'A feeling from the Underworld':true,'Third passage to new world':true},
     		limitPer:{'land':100000000000000},//It is something like max 1
     		category:'dimensions',
 	});
@@ -6471,7 +6471,7 @@ new G.Unit({
 		finalStepCost:{'population':2500,'gem block':500,'gold block':50},
 		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
 		use:{'land':1,'worker':35,'metal tools':35,'armor set':35},
-		req:{'A gift from the Underworld':false},
+		req:{'A feeling from the Underworld':false,'Third passage to new world':true},
 		category:'dimensions',
 	});
 	
@@ -7886,6 +7886,13 @@ autobuy(G.year)
 		cost:{'insight':795,'wisdom':5,'influence':175,'authority':10},
 		req:{'Second portal to new world':true,'Better influence & authority':true}
 	});
+		new G.Tech({
+		name:'Third passage to new world',
+		desc:'May unlocking mysterious [New world] begin',
+		icon:[12,19,'magixmod'], 
+		cost:{'insight':795,'wisdom':5,'influence':175,'authority':10,'spirituality':25},
+		req:{'An opposite side of belief':true}
+	});
 	
 	/*=====================================================================================
 	TRAITS
@@ -8214,6 +8221,14 @@ autobuy(G.year)
 		chance:475,
 		req:{'Will to know more':true},
 		category:'knowledge',
+	});
+		new G.Trait({
+		name:'An opposite side of belief',
+		desc:'Religious people are repeating that there a opposite of the God they have encountered in Paradise exists.',
+		icon:[11,19,'magixmod'],
+		cost:{'spirituality':10,'faith':200},
+		chance:375,
+		req:{'Paradise crafting':true}
 	});
 	
 	/*=====================================================================================
@@ -9569,15 +9584,15 @@ let gifUnd =  new G.Tech({
         req:{'tribalism':false}
     });
 function checkUnd() {
-  if (G.achievByName['"In the underworld'].won) {
-    if (G.achievByName['"In the underworld'].won >= 0 && G.hasNot('A feeling from the Underworld')) {
+  if (G.achievByName['"In the underworld"'].won) {
+    if (G.achievByName['"In the underworld"'].won >= 0 && G.hasNot('A feeling from the Underworld')) {
       G.gainTech(gifUnd)
     }
 }
 }
 checkUnd()
-const oldNewGame3 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame3, {
+const oldNewGame4 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame4, {
   apply: function(target, thisArg, args) {
     target(...args)
     checkUnd()
