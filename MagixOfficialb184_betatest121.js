@@ -6496,7 +6496,7 @@ new G.Unit({
 		finalStepCost:{'population':2500,'gem block':500,'gold block':50,'New world point':-389},
 		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
 		use:{'land':1,'worker':35,'metal tools':35,'armor set':35},
-		category:'guard',
+		category:'dimensions',
 		req:{'A feeling from the Underworld':false,'Third passage to new world':true}
 	});
 	
@@ -6512,8 +6512,9 @@ new G.Unit({
 		{id:'religion',name:'Religious'},
 		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
 		{id:'long',name:'Long-term'},//you can only have so many traits with this category; if the player gains a new "long" trait, the oldest "long" trait is removed
-		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'}
-	);
+		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'},
+		{id:'devils',name:'<span style="color="red">Devil\'s traits</span>'}
+	)
 	
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
@@ -7919,11 +7920,18 @@ autobuy(G.year)
 		req:{'An opposite side of belief':true}
 	});
 		new G.Tech({
-		name:'Underworld building',
+		name:'Underworld building 1/2',
+		desc:'Allows to build some stuff in Underworld. Starts attracting 6 random <font color="red><b>Devil\'s traits</b></font>',
+		icon:[14,19,'magixmod'], 
+		cost:{'insight':100,'New world point':400},
+		req:{'Third passage to new world':true,'A feeling from the Underworld':true}
+	});
+		new G.Tech({
+		name:'Underworld building 2/2',
 		desc:'Allows to build some stuff in Underworld.',
 		icon:[14,19,'magixmod'], 
-		cost:{'insight':100,'New world point':400,'Underworld emblem':1},
-		req:{'Third passage to new world':true,'A feeling from the Underworld':true}
+		cost:{'insight':100,'New world point':6,'Underworld emblem':1},
+		req:{'Third passage to new world':true,'A feeling from the Underworld':true,'Underwold building 1/2':true}
 	});
 	
 		
@@ -8270,10 +8278,236 @@ autobuy(G.year)
 		displayName:'Devil\'s trait #1 Lazy blacksmiths',
 		desc:'Rates of [blacksmith workshop]s production decreased by 5% at each mode. It involves its paradise version too.',
 		icon:[26,1,'magixmod'],
-		cost:{},
-		chance:375,
-		req:{'An ':true}
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt2':false,'dt3':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
 	});
+			new G.Trait({
+		name:'dt2',
+		displayName:'Devil\'s trait #2 Lazy firekeepers',
+		desc:'Rates of [firekeeper]s production decreased by 3% at each mode',
+		icon:[26,2,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt1':false,'dt3':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+		new G.Trait({
+		name:'dt3',
+		displayName:'Devil\'s trait #3 Lazy carvers',
+		desc:'Rates of [carver]s production decreased by 5% at each mode.',
+		icon:[26,3,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt1':false,'dt2':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+		new G.Trait({
+		name:'dt4',
+		displayName:'Devil\'s trait #4 Precious material unluck',
+		desc:'All gathering of [gold ore,gold] and [platinum ore,platinum] decreased by 5%',
+		icon:[26,4,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt5':false,'dt6':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt5',
+		displayName:'Devil\'s trait #5 Hard material decay',
+		desc:'All gathering of resources that are used to craft [hard metal ingot]s decreased by 5%',
+		icon:[26,5,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt4':false,'dt6':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt6',
+		displayName:'Devil\'s trait #1 Lazy blacksmiths',
+		desc:'All gathering of resources that are used to craft [soft metal ingot]s decreased by 5%',
+		icon:[26,6,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt4':false,'dt5':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+		new G.Trait({
+		name:'dt7',
+		displayName:'Devil\'s trait #7 Holy well drought',
+		desc:'[Holy well] gathers 10% less [Cloudy water] than usual.',
+		icon:[26,7,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt8':false,'dt9':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+		new G.Trait({
+		name:'dt8',
+		displayName:'Devil\'s trait #8 Plain Island wells drought',
+		desc:'[well of the Plain island] gathers 15% less [water] than usual.',
+		icon:[26,8,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt7':false,'dt9':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+		new G.Trait({
+		name:'dt9',
+		displayName:'Devil\'s trait #9 Nothing',
+		desc:'Damn... you got lucky. This devil\'s trait doesn\'t involve at any way and doesn\'t weaken anything.',
+		icon:[26,9,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt7':false,'dt8':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt10',
+		displayName:'Devil\'s trait #10 Clothing!!!',
+		desc:'Unhappiness from lack of clothing is doubled.',
+		icon:[26,10,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt11':false,'dt12':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt11',
+		displayName:'Devil\'s trait #11 Will of warmth',
+		desc:'Unhappiness from cold & darkness is doubled.',
+		icon:[26,11,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt10':false,'dt12':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt12',
+		displayName:'Devil\'s trait #12 Bury!!!',
+		desc:'Unhappiness from unburied corpses increased by 50%.',
+		icon:[26,12,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt10':false,'dt11':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt13',
+		displayName:'Devil\'s trait #13 Faith sapping',
+		desc:'Wipes away 0.5% of current [faith] amount.',
+		icon:[26,13,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt14':false,'dt15':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt14',
+		displayName:'Devil\'s trait #14 Influence sapping',
+		desc:'Wipes away 0.5% of current [influence] amount.',
+		icon:[26,14,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt13':false,'dt15':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt15',
+		displayName:'Devil\'s trait #15 Culture sapping',
+		desc:'Wipes away 0.5% of current [culture] amount.',
+		icon:[26,15,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt16',
+		displayName:'Devil\'s trait #16 Worse soothsaying',
+		desc:'Soothsayer gains 33% less [faith].',
+		icon:[26,16,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt17',
+		displayName:'Devil\'s trait #17 Uncuttable tree',
+		desc:'[woodcutter] gains 20% less [log,wood].',
+		icon:[26,17,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+			new G.Trait({
+		name:'dt18',
+		displayName:'Devil\'s trait #18 Insight blindness',
+		desc:'[dreamer]s gather 33% less [insight].',
+		icon:[26,18,'magixmod'],
+		cost:{'culture':100},
+		chance:150,
+		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		]
+		category:'devils'
+	});
+	
 	
 	/*=====================================================================================
 	POLICIES
