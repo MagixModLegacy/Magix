@@ -9576,8 +9576,8 @@ function checkUnd() {
 }
 }
 checkUnd()
-const oldNewGame1 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame1, {
+const oldNewGame3 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame3, {
   apply: function(target, thisArg, args) {
     target(...args)
     checkUnd()
