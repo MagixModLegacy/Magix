@@ -3767,6 +3767,20 @@ G.writeMSettingButton=function(obj)
 		},
 		category:'flowersanddyes',
 	});
+		let UnderworldMESG = false
+		new G.Res({
+		name:'Paradise emblem',
+		desc:'A thing you will get after entering the Underworld. Needed to unlock further researching. A pass for further things and more adventures. You can obtain only one Emblem of this type. <b>@You brought plagues for discoveries. Fine. I hope you won\'t regret this choice later.<b>',
+		icon:[13,19,'magixmod'],
+		startWith:0,
+		tick:function(me,tick)
+		{
+			if (me.amount>=1 && !UnderworldMESG){ 
+				G.Message({type:'cool',text:'<b>You and your people activated a way to the Underworld. Out of nowhere an Emblem appears behind you. It is hot in touch. Its red glowing only attract curses.</b></br> <font color="fuschia">So prepare to tame 6 Devil\'s traits in order to continue your adventure. Without it the Underworld won\'t allow you discover its secrets.',icon:[12,19,'magixmod']});
+				UnderworldMESG = true
+			}
+		},	
+		category:'main',
 	
 	/*=====================================================================================
 	UNITS
@@ -9585,7 +9599,6 @@ let gifUnd =  new G.Tech({
     });
 function checkUnd() {
   if (G.achievByName['"In the underworld"'].won) {
-if (G.year >= 15)
     if (G.achievByName['"In the underworld"'].won >= 0 && G.hasNot('A feeling from the Underworld')) {
       G.gainTech(gifUnd)
     }
