@@ -6497,6 +6497,7 @@ new G.Unit({
 		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
 		use:{'land':1,'worker':35,'metal tools':35,'armor set':35},
 		category:'guard',
+		req:{'tribalism':true}
 	});
 	
 	
