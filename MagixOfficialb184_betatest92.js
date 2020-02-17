@@ -6356,8 +6356,19 @@ new G.Unit({
 			{type:'provide',what:{'Paradise emblem':1}},
     		],
     		use:{'land':10},
-		messageOnStart:'You built a portal to Plain Island. It is big isle. On this island you may build houses , mines and other but not these one you built in your mortal world. You will unlock new category of buildings, a little bit better but limited housing. You may gain new minerals, who know maybe new food or anything else you did not see anytime earlier.',
     		req:{'Second portal to new world':true,'Belief in portals':true},
+    		limitPer:{'land':100000000000000},//It is something like max 1
+    		category:'dimensions',
+	});
+		new G.Unit({
+    		name:'<span style="color: #FF0000">Underworld</span>',
+    		desc:'Now you may enter right into the Underworld. A new creepy, unstable, dangerous world will become open for you',
+    		wideIcon:[7,5,'magixmod'],
+    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':95000,'Water essence':47500,'Dark essence':157500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':10750},
+    		effects:[
+    		],
+    		use:{'land':1},
+    		req:{'A feeling from the Underworld':true},
     		limitPer:{'land':100000000000000},//It is something like max 1
     		category:'dimensions',
 	});
@@ -6448,19 +6459,19 @@ new G.Unit({
 		category:'political',
 	});
   		new G.Unit({
-		name:'Underworld',
-		desc:'Underworld',
+		name:'New world',
+		desc:'Step by step digging will lead people to new world. You need to know that this won\'t be as safe as you thought it is. After finishing this step of activation you need to ascend by it.',
 		wonder:'"In the underworld"',
 		icon:[8,5,'magixmod'],
-		wideIcon:[7,5,'magixmod'],
-		cost:{},
-		costPerStep:{},
+		wideIcon:[6,19,'magixmod',7,5,'magixmod'],
+		cost:{'basic building materials':1500},
+		costPerStep:{'Dark essence':150,'basic building materials':150,'gem block':1,'population':3,'Mana':3000},
 		steps:1111,
 		messageOnStart:'Your people started digging down right into core of the mortal world. The deeper they mine the warmer it is there. What can be inside the new world?',
-		finalStepCost:{},
+		finalStepCost:{'population':2500,'gem block':500,'gold block':50},
 		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
-		use:{'land':1},
-		req:{},
+		use:{'land':1,'worker':35,'metal tools':35,'armor set':35},
+		req:{'A gift from the Underworld':false},
 		category:'dimensions',
 	});
 	
@@ -9548,6 +9559,28 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
   apply: function(target, thisArg, args) {
     target(...args)
     checkMagic()
+  }
+})
+let gifUnd =  new G.Tech({
+        name:'A feeling from the Underworld',
+        desc:'You feel some warmth. It is not usual warmth. A call from Underworld. @<b>Allows you to finalize Underworld unlocking',
+        icon:[8,12,9,5,'magixmod'],
+        cost:{},
+        req:{'tribalism':false}
+    });
+function checkUnd() {
+  if (G.achievByName['"In the underworld'].won) {
+    if (G.achievByName['"In the underworld'].won >= 0 && G.hasNot('A feeling from the Underworld')) {
+      G.gainTech(gifUnd)
+    }
+}
+}
+checkUnd()
+const oldNewGame1 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame1, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkUnd()
   }
 })
 	/*=====================================================================================
