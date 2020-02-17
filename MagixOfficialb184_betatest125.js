@@ -7921,7 +7921,7 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Underworld building 1/2',
-		desc:'Allows to build some stuff in Underworld. Starts attracting 6 random <font color="red><b>Devil\'s traits</b></font>',
+		desc:'Allows to build some stuff in Underworld. Starts attracting 6 random <font color="red"><b>Devil\'s traits</b></font>',
 		icon:[14,19,'magixmod'], 
 		cost:{'insight':100,'New world point':400},
 		req:{'Third passage to new world':true,'A feeling from the Underworld':true}
