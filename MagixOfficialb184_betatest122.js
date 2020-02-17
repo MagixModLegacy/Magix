@@ -8283,7 +8283,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt2':false,'dt3':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8296,7 +8296,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt1':false,'dt3':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 		new G.Trait({
@@ -8309,7 +8309,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt1':false,'dt2':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 		new G.Trait({
@@ -8322,7 +8322,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt5':false,'dt6':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8335,7 +8335,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt4':false,'dt6':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8348,7 +8348,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt4':false,'dt5':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 		new G.Trait({
@@ -8361,7 +8361,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt8':false,'dt9':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 		new G.Trait({
@@ -8374,7 +8374,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt7':false,'dt9':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 		new G.Trait({
@@ -8387,7 +8387,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt7':false,'dt8':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8400,7 +8400,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt11':false,'dt12':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8413,7 +8413,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt10':false,'dt12':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8426,7 +8426,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt10':false,'dt11':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8439,7 +8439,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt14':false,'dt15':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8452,7 +8452,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt13':false,'dt15':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8465,7 +8465,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8478,7 +8478,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8491,7 +8491,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 			new G.Trait({
@@ -8504,7 +8504,7 @@ autobuy(G.year)
 		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
-		]
+		],
 		category:'devils'
 	});
 	
