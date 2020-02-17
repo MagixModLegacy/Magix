@@ -9599,7 +9599,7 @@ G.NewGameConfirm = new Proxy(oldNewGame4, {
   }
 })
 let gifUA =  new G.Tech({
-        name:'<font color: ##a8654f>The Underworld\'s Ascendant</font>',
+        name:'<font color="##a8654f">The Underworld\'s Ascendant</font>',
         desc:'You managed to do few other feats to attract new things. And you attracted: @ +1 [adult] . This is [adult,The Underworld\'s Ascendant]',
         icon:[15,19,'magixmod'],
         cost:{},
