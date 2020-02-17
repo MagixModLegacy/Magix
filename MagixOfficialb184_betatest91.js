@@ -3178,6 +3178,7 @@ G.writeMSettingButton=function(obj)
 				var toSpoil=(G.getRes('metal weapons').amount*0.0001);G.lose(('metal weapons'),randomFloor(toSpoil),'decay');
 				var toSpoil=(G.getRes('armor set').amount*0.0001);G.lose(('armor set'),randomFloor(toSpoil),'decay');
 				var toSpoil=(G.getRes('Fishing net').amount*0.0002);G.lose(('Fishing net'),randomFloor(toSpoil),'decay');
+				var toSpoil=(G.getRes('Basic factory equipment').amount*0.0002);G.lose(('Basic factory equipment'),randomFloor(toSpoil),'decay');
 				}
 		},
 		visible:false,
