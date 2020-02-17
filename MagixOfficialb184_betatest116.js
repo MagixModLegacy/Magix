@@ -6496,7 +6496,7 @@ new G.Unit({
 		finalStepCost:{'population':2500,'gem block':500,'gold block':50,'New world point':389},
 		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
 		use:{'land':1,'worker':35,'metal tools':35,'armor set':35},
-		category:'dimensions',
+		category:'alchemy',
 	});
 	
 	
