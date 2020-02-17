@@ -6513,7 +6513,7 @@ new G.Unit({
 		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
 		{id:'long',name:'Long-term'},//you can only have so many traits with this category; if the player gains a new "long" trait, the oldest "long" trait is removed
 		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'},
-		{id:'devils',name:'<span style="color="red">Devil\'s traits</span>'}
+		{id:'devils',name:'<span style="color=red">Devil\'s traits</span>'}
 	)
 	
 	/*=====================================================================================
