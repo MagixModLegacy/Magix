@@ -9591,29 +9591,29 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
     checkMagic()
   }
 })
-let gifUnd =  new G.Tech({
+let gifUnde =  new G.Tech({
         name:'A feeling from the Underworld',
         desc:'You feel some warmth. It is not usual warmth. A call from Underworld. @<b>Allows you to finalize Underworld unlocking',
         icon:[8,12,9,5,'magixmod'],
         cost:{},
         req:{'tribalism':false}
     });
-function checkUnd() {
+function checkUnde() {
   if (G.achievByName['"In the underworld"'].won) {
     if (G.achievByName['"In the underworld"'].won >= 0 && G.hasNot('A feeling from the Underworld')){
-      G.gainTech(gifUnd)
+      G.gainTech(gifUnde)
     }
 }
 }
-checkUnd()
+checkUnde()
 const oldNewGame4 = G.NewGameConfirm.bind({})
 G.NewGameConfirm = new Proxy(oldNewGame4, {
   apply: function(target, thisArg, args) {
     target(...args)
-    checkUnd()
+    checkUnde()
   }
 })
-let gifUA =  new G.Tech({
+let gifUnA =  new G.Tech({
         name:'<font color="##a8654f">The Underworld\'s Ascendant</font>',
         desc:'You managed to do few other feats to attract new things. And you attracted: @ +1 [adult] . This is [adult,The Underworld\'s Ascendant]',
         icon:[15,19,'magixmod'],
@@ -9623,19 +9623,19 @@ let gifUA =  new G.Tech({
 	],
         req:{'tribalism':false}
     });
-function checkUA() {
+function checkUnA() {
   if (G.achievByName['"In the underworld"'].won) {
     if (G.achievByName['"In the underworld"'].won >= 0 && G.achievByName['Democration'].won >= 0 && G.achievByName['Sacrificed for culture'].won >= 0 && G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')) {
-      G.gainTech(gifUA)
+      G.gainTech(gifUnA)
     }
 }
 }
-checkUA()
+checkUnA()
 const oldNewGame5 = G.NewGameConfirm.bind({})
 G.NewGameConfirm = new Proxy(oldNewGame5, {
   apply: function(target, thisArg, args) {
     target(...args)
-    checkUA()
+    checkUnA()
   }
 })
 	/*=====================================================================================
