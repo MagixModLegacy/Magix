@@ -8340,7 +8340,7 @@ autobuy(G.year)
 	});
 			new G.Trait({
 		name:'dt6',
-		displayName:'Devil\'s trait #1 Lazy blacksmiths',
+		displayName:'Devil\'s trait #6 Soft metal decay',
 		desc:'All gathering of resources that are used to craft [soft metal ingot]s decreased by 5%',
 		icon:[26,6,'magixmod'],
 		cost:{'culture':100},
@@ -8354,7 +8354,7 @@ autobuy(G.year)
 		new G.Trait({
 		name:'dt7',
 		displayName:'Devil\'s trait #7 Holy well drought',
-		desc:'[Holy well] gathers 10% less [Cloudy water] than usual.',
+		desc:'[holy well] gathers 10% less [Cloudy water] than usual.',
 		icon:[26,7,'magixmod'],
 		cost:{'culture':100},
 		chance:150,
@@ -8367,7 +8367,7 @@ autobuy(G.year)
 		new G.Trait({
 		name:'dt8',
 		displayName:'Devil\'s trait #8 Plain Island wells drought',
-		desc:'[well of the Plain island] gathers 15% less [water] than usual.',
+		desc:'[well of the Plain Island] gathers 15% less [water] than usual.',
 		icon:[26,8,'magixmod'],
 		cost:{'culture':100},
 		chance:150,
