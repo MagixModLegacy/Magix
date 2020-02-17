@@ -6497,7 +6497,7 @@ new G.Unit({
 		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
 		use:{'land':1,'worker':35,'metal tools':35,'armor set':35},
 		category:'guard',
-		req:{'tribalism':true}
+		req:{'A feeling from the Underworld':false,'Third passage to new world':true}
 	});
 	
 	
@@ -7918,6 +7918,15 @@ autobuy(G.year)
 		cost:{'insight':795,'wisdom':5,'influence':175,'authority':10,'spirituality':25},
 		req:{'An opposite side of belief':true}
 	});
+		new G.Tech({
+		name:'Underworld building',
+		desc:'Allows to build some stuff in Underworld.',
+		icon:[14,19,'magixmod'], 
+		cost:{'insight':100,'New world point':400,'Underworld emblem':1},
+		req:{'Third passage to new world':true,'A feeling from the Underworld':true}
+	});
+	
+		
 	
 	/*=====================================================================================
 	TRAITS
@@ -8254,6 +8263,16 @@ autobuy(G.year)
 		cost:{'spirituality':10,'faith':200},
 		chance:375,
 		req:{'Paradise crafting':true}
+	});
+	//Devil 's traits
+		new G.Trait({
+		name:'dt1',
+		displayName:'Devil\'s trait #1 Lazy blacksmiths',
+		desc:'Rates of [blacksmith workshop]s production decreased by 5% at each mode. It involves its paradise version too.',
+		icon:[26,1,'magixmod'],
+		cost:{},
+		chance:375,
+		req:{'An ':true}
 	});
 	
 	/*=====================================================================================
@@ -9606,11 +9625,14 @@ let gifUnde =  new G.Tech({
         desc:'You feel some warmth. It is not usual warmth. A call from Underworld. @<b>Allows you to finalize Underworld unlocking',
         icon:[8,12,9,5,'magixmod'],
         cost:{},
+	effects:[
+		{type:'provide res',what:{'New world point':400}},
+	],	
         req:{'tribalism':false}
     });
 function checkUnde() {
   if (G.achievByName['"In the underworld"'].won) {
-    if (G.achievByName['"In the underworld"'].won >= 0 && G.hasNot('A feeling from the Underworld')){
+    if (G.achievByName['"In the underworld"'].won >= 0 && G.achievByName['Deadly, revenantic'].won >= 0 && G.hasNot('A feeling from the Underworld')){
       G.gainTech(gifUnde)
     }
 }
