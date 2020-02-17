@@ -7931,7 +7931,7 @@ autobuy(G.year)
 		desc:'Allows to build some stuff in Underworld.',
 		icon:[14,19,'magixmod'], 
 		cost:{'insight':100,'New world point':6,'Underworld emblem':1},
-		req:{'Third passage to new world':true,'A feeling from the Underworld':true,'Underwold building 1/2':true}
+		req:{'Third passage to new world':true,'A feeling from the Underworld':true,'Underworld building 1/2':true}
 	});
 	
 		
