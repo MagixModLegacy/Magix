@@ -9585,7 +9585,7 @@ let gifUnd =  new G.Tech({
     });
 function checkUnd() {
   if (G.achievByName['"In the underworld"'].won) {
-    if (G.achievByName['"In the underworld"'].won >= 0 && G.hasNot('A feeling from the Underworld')) {
+    if (G.achievByName['"In the underworld"'].won >= 0 && G.hasNot('A feeling from the Underworld') && G.year >= 15) {
       G.gainTech(gifUnd)
     }
 }
