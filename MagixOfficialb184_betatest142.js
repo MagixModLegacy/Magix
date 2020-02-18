@@ -7949,7 +7949,7 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Manufacture units I',
-		desc:'Unlocks [Hut of Potters] and [Hovel of colours]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [artisan]s on <b>Craft dyes set (1,2,3,4)</b> mode will become USELESS! They won\'t produce.</font> ',
+		desc:'Unlocks [Hut of potters] and [Hovel of colours]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [artisan]s on <b>Craft dyes set (1,2,3,4)</b> mode will become USELESS! They won\'t produce.</font> ',
 		icon:[17,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5,'stone':1365},//Stones are there to make tech at same level as Factories I
 		req:{'workstation planning':true,'Manufacturing':true}
@@ -8562,6 +8562,22 @@ autobuy(G.year)
 			{type:'provide res',what:{'New world point':1}},
 		],
 		category:'devils'
+	});
+		new G.Trait({
+		name:'test',
+		desc:'[dreamer]s gather 33% less [insight].',
+		icon:[26,18,'magixmod'],
+		cost:{},
+		chance:15,
+		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
+		effects:[
+			{type:'hide res',what:{'insight'}},
+			{type:'hide res',what:{'science'}},
+			{type:'hide res',what:{'culture'}},
+			{type:'hide res',what:{'faith'}},
+			{type:'hide res',what:{'influence'}},
+		],
+		category:'main'
 	});
 	
 	
