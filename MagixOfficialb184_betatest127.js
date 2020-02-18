@@ -504,6 +504,7 @@ G.writeMSettingButton=function(obj)
 				if (G.has('fear of death')) deathUnhappinessMult*=2;
 				if (G.has('belief in the afterlife')) deathUnhappinessMult/=2;
 				if (G.has('Hope of revenant abandoning')) deathUnhappinessMult/=2;
+				if (G.has('dt12')) deathUnhappinessMult*=1.5;
 				if (tick%3==0 && G.checkPolicy('disable eating')=='off')
 				{
 					//drink water
@@ -597,8 +598,14 @@ G.writeMSettingButton=function(obj)
 					G.gain('health',fulfilled*objects[i][1],'clothing');
 					leftout-=fulfilled;
 				}
-				G.gain('happiness',-leftout*0.15,'no clothing');
+				if (G.has('dt10')){
+				G.gain('happiness',-leftout*0.3,'no clothing'),
+				G.gain('health',-leftout*0.3,'no clothing');
+				else
+				G.gain('happiness',-leftout*0.15,'no clothing'),
 				G.gain('health',-leftout*0.15,'no clothing');
+				}
+					
 				
 				//fire
 				var objects={'fire pit':[10,0.1,0.1]};
@@ -612,8 +619,13 @@ G.writeMSettingButton=function(obj)
 					G.gain('health',fulfilled*objects[i][2],'warmth & light');
 					leftout-=fulfilled;
 				}
-				G.gain('happiness',-leftout*0.1,'cold & darkness');
+				if (G.has('dt11')){
+				G.gain('happiness',-leftout*0.2,'cold & darkness'),
+				G.gain('health',-leftout*0.2,'cold & darkness');
+				else
+				G.gain('happiness',-leftout*0.1,'cold & darkness'),
 				G.gain('health',-leftout*0.1,'cold & darkness');
+				}
 				
 				//homelessness
 				var homeless=Math.max(0,(me.amount)-G.getRes('housing').amount);
@@ -4017,7 +4029,8 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'log':1},into:{'Wooden statuette':1,'Scobs':3},every:7,mode:'wood statuettes'},
 			{type:'convert',from:{'Various stones':9},into:{'Various cut stones':1},every:5,mode:'gdablockscraft'},
 			{type:'convert',from:{'Various cut stones':1},into:{'Various stones':9},every:5,mode:'gdablockssmash'},
-			{type:'mult',value:1.2,req:{'ground stone tools':true}}
+			{type:'mult',value:1.2,req:{'ground stone tools':true}},
+			{type:'mult',value:0.95,req:{'dt3':true}}
 		],
 		req:{'carving':true},
 		category:'crafting',
@@ -4131,7 +4144,8 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'seafood':1,'fire pit':0.01},into:{'cooked seafood':1},every:1,repeat:5,mode:'cook'},
 			{type:'convert',from:{'meat':1,'salt':1,'fire pit':0.01},into:{'cured meat':2},every:1,repeat:10,mode:'cure'},
 			{type:'convert',from:{'seafood':1,'salt':1,'fire pit':0.01},into:{'cured seafood':2},every:1,repeat:10,mode:'cure'},
-			{type:'convert',from:{'Fire essence':1,'stick':13},into:{'fire pit':5},mode:'firesfromessence'}
+			{type:'convert',from:{'Fire essence':1,'stick':13},into:{'fire pit':5},mode:'firesfromessence'},
+			{type:'mult',value:0.97,req:{'dt2':true}}
 		],
 		req:{'fire-making':true},
 		category:'crafting',
@@ -4269,6 +4283,11 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',context:'mine',what:{'nickel ore':40},max:25,mode:'nickel'},
 			{type:'gather',context:'mine',what:{'Various stones':30},max:25,mode:'ostones'},
 			{type:'gather',context:'mine',what:{'Sulfur':35},max:51,req:{'Explosive crafting & mining':true}},
+			{type:'mult',value:0.95,req:{'dt4':true},mode:'gold'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'nickel'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50}
 		],
 		gizmos:true,
@@ -4304,6 +4323,12 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'Cobalt ore':8},into:{'Cobalt ingot':1},every:5,mode:'cobalt'},
 			{type:'convert',from:{'nickel ore':6},into:{'hard metal ingot':1},every:5,mode:'nickel'},
 			{type:'convert',from:{'platinum ore':5},into:{'platinum ingot':1},every:5,mode:'platinum'},
+			{type:'mult',value:0.95,req:{'dt4':true},mode:'gold'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'bronze'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'nickel'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -4339,6 +4364,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'},
 			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'},
 			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
+			{type:'mult',value:0.95,req:{'dt1':true}},
 			{type:'waste',chance:0.001/1000},
 			//TODO : better metal tools, weapons etc
 		],
@@ -5501,6 +5527,7 @@ new G.Unit({
 		use:{'Land of the Paradise':1},
 		effects:[
 			{type:'gather',what:{'Cloudy water':28}},
+			{type:'mult',value:0.9,req:{'dt7':true}},
 		],
 		category:'paradiseunit',
 		req:{'well-digging':true,'<span style="color: ##FF0900">Paradise building</span>':true},
@@ -5918,6 +5945,8 @@ new G.Unit({
 			{type:'gather',context:'mine',what:{'Sulfur':24},max:31,mode:'tin',req:{'Explosive crafting & mining':true}},
 			{type:'gather',context:'mine',what:{'Sulfur':24},max:31,mode:'copper',req:{'Explosive crafting & mining':true}},
 			{type:'gather',context:'mine',what:{'Sulfur':17},max:26,mode:'salt',req:{'Explosive crafting & mining':true}},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			//Collapsing chance
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine of Plain Island has collapsed, wounding its miners','mines of Plain Island collapsed, wounding their miners.'),chance:1/50}
 		],
@@ -5970,6 +5999,7 @@ new G.Unit({
 		use:{'Land of the Plain Island':1},
 		effects:[
 			{type:'gather',what:{'water':20}},
+			{type:'mult',value:0.85,req:{'dt8':true}},
 		],
 		category:'plainisleunit',
 		req:{'well-digging':true,'First portal to new world':true,'<span style="color: ##FF0900">Plain island building</span>':true},
@@ -6069,6 +6099,7 @@ new G.Unit({
 			{type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},every:3,repeat:1,mode:'metal weapon'},
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:3,repeat:1,mode:'hard metal armor'},
 			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':2},every:3,repeat:1,mode:'metal armor'},
+			{type:'mult',value:0.95,req:{'dt1':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
