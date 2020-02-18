@@ -1637,22 +1637,12 @@ G.writeMSettingButton=function(obj)
 				me.amount=Math.min(me.amount,limit);
 			}
 		};
-	var = hiddenif
-	new G.Res({
+		new G.Res({
 		name:'insight',
 		desc:'[insight] represents your people\'s ideas and random sparks of intuition.//'+limitDesc('[wisdom]')+'//Many technologies require insight to be researched.',
 		icon:[8,4],
 		category:'main',
 		limit:'wisdom',
-		hidden:hiddenif,
-		tick:function(me,tick)
-		{
-			if (G.has('construction')){
-				hiddenif=true
-			}else{
-				hiddenif=false
-			}
-		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
 	});
