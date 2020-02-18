@@ -601,7 +601,7 @@ G.writeMSettingButton=function(obj)
 				if (G.has('dt10')){
 				G.gain('happiness',-leftout*0.3,'no clothing'),
 				G.gain('health',-leftout*0.3,'no clothing');
-				else
+				}else{
 				G.gain('happiness',-leftout*0.15,'no clothing'),
 				G.gain('health',-leftout*0.15,'no clothing');
 				}
@@ -622,7 +622,7 @@ G.writeMSettingButton=function(obj)
 				if (G.has('dt11')){
 				G.gain('happiness',-leftout*0.2,'cold & darkness'),
 				G.gain('health',-leftout*0.2,'cold & darkness');
-				else
+				}else{
 				G.gain('happiness',-leftout*0.1,'cold & darkness'),
 				G.gain('health',-leftout*0.1,'cold & darkness');
 				}
