@@ -3919,7 +3919,8 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',what:{'insight':0.1}},
 			{type:'gather',what:{'insight':0.05},req:{'symbolism':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
-			{type:'mult',value:1.05,req:{'Knowledgeable':true}}
+			{type:'mult',value:1.05,req:{'Knowledgeable':true}},
+			{type:'mult',value:2/3,req:{'dt18':true}}
 		],
 		req:{'speech':true},
 		category:'discovery',
@@ -4422,6 +4423,7 @@ G.writeMSettingButton=function(obj)
 		},
 		effects:[
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
+			{type:'mult',value:0.8,req:{'dt17':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -4438,7 +4440,8 @@ G.writeMSettingButton=function(obj)
 		upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
-			{type:'gather',what:{'faith':0.05},req:{'symbolism':true}}
+			{type:'gather',what:{'faith':0.05},req:{'symbolism':true}},
+			{type:'mult',value:2/3,req:{'dt16':true}},
 		],
 		req:{'ritualism':true},
 		category:'spiritual',
