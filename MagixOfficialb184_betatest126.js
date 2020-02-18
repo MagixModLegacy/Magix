@@ -6391,6 +6391,7 @@ new G.Unit({
     		wideIcon:[7,5,'magixmod'],
     		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':95000,'Water essence':47500,'Dark essence':157500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':10750},
     		effects:[
+			{type:'provide',what:{'Underworld emblem':1}},
     		],
     		use:{'land':1},
     		req:{'A feeling from the Underworld':true,'Third passage to new world':true},
