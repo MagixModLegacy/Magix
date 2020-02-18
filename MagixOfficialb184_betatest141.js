@@ -871,15 +871,6 @@ G.writeMSettingButton=function(obj)
 		tick:function(me)
 		{
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
-			//me.amount=G.tiles;
-			//TODO : this stuff
-			/*
-				concept :
-					-each tile owned can be explored to 100%
-					-you get one land per explored percent per tile
-					-some techs also add a +10 etc bonus to the max of 100 land per full tile
-					-we need to setup a system to recalculate this when appropriate
-			*/
 		},
 		getDisplayAmount:function()
 		{
@@ -3825,6 +3816,14 @@ G.writeMSettingButton=function(obj)
 				}
 		},
 	});
+		new G.Res({
+		name:'Land of the Underworld',
+		desc:'The land you got from activating a portal to the Underworld. Place for new buildings.',
+		icon:[10,19,'magixmod'],
+		displayUsed:true,
+		partOf:'tl',
+		category:'terr'
+	});
 	
 	/*=====================================================================================
 	UNITS
@@ -6447,6 +6446,7 @@ new G.Unit({
     		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':95000,'Water essence':47500,'Dark essence':157500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':10750},
     		effects:[
 			{type:'provide',what:{'Underworld emblem':1}},
+			{type:'provide',what:{'Land of the Underworld':150}}
     		],
     		use:{'land':1},
     		req:{'A feeling from the Underworld':true,'Third passage to new world':true},
