@@ -1637,13 +1637,22 @@ G.writeMSettingButton=function(obj)
 				me.amount=Math.min(me.amount,limit);
 			}
 		};
-	
+	var = hiddenif
 	new G.Res({
 		name:'insight',
 		desc:'[insight] represents your people\'s ideas and random sparks of intuition.//'+limitDesc('[wisdom]')+'//Many technologies require insight to be researched.',
 		icon:[8,4],
 		category:'main',
 		limit:'wisdom',
+		hidden:hiddenif,
+		tick:function(me,tick)
+		{
+			if (G.has('construction')){
+				hiddenif=true
+			}else{
+				hiddenif=false
+			}
+		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
 	});
@@ -8562,22 +8571,6 @@ autobuy(G.year)
 			{type:'provide res',what:{'New world point':1}},
 		],
 		category:'devils'
-	});
-		new G.Trait({
-		name:'test',
-		desc:'[dreamer]s gather 33% less [insight].',
-		icon:[26,18,'magixmod'],
-		cost:{},
-		chance:15,
-		req:{},
-		effects:[
-			{type:'hide res',what:['insight']},
-			{type:'hide res',what:['science']},
-			{type:'hide res',what:['culture']},
-			{type:'hide res',what:['faith']},
-			{type:'hide res',what:['influence']},
-		],
-		category:'main'
 	});
 	
 	
