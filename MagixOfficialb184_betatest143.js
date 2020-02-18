@@ -8571,11 +8571,11 @@ autobuy(G.year)
 		chance:15,
 		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
 		effects:[
-			{type:'hide res',what:{'insight'}},
-			{type:'hide res',what:{'science'}},
-			{type:'hide res',what:{'culture'}},
-			{type:'hide res',what:{'faith'}},
-			{type:'hide res',what:{'influence'}},
+			{type:'hide res',what:['insight']},
+			{type:'hide res',what:['science']},
+			{type:'hide res',what:['culture']},
+			{type:'hide res',what:['faith']},
+			{type:'hide res',what:['influence']},
 		],
 		category:'main'
 	});
