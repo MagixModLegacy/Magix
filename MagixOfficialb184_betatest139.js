@@ -1685,6 +1685,13 @@ G.writeMSettingButton=function(obj)
 		icon:[10,4],
 		category:'main',
 		limit:'inspiration',
+		tick:function(me,tick)
+		{
+			if (G.has('dt15')){
+			var toSpoil=me.amount*0.005;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'culture sapping');
+			}
+		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
 	});
@@ -1701,6 +1708,13 @@ G.writeMSettingButton=function(obj)
 		icon:[7,4],
 		category:'main',
 		limit:'spirituality',
+		tick:function(me,tick)
+		{
+			if (G.has('dt13')){
+			var toSpoil=me.amount*0.005;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
+			}
+		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
 	});
@@ -1718,6 +1732,13 @@ G.writeMSettingButton=function(obj)
 		category:'main',
 		limit:'authority',
 		startWith:5,
+		tick:function(me,tick)
+		{
+			if (G.has('dt14')){
+			var toSpoil=me.amount*0.005;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'influence sapping');
+			}
+		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
 	});
