@@ -8569,7 +8569,7 @@ autobuy(G.year)
 		icon:[26,18,'magixmod'],
 		cost:{},
 		chance:15,
-		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
+		req:{},
 		effects:[
 			{type:'hide res',what:['insight']},
 			{type:'hide res',what:['science']},
