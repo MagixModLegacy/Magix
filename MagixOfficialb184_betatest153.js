@@ -8670,14 +8670,14 @@ autobuy(G.year)
 		chance:190,
 		req:{'Underworld building 2/2':true},
 		effects:[
-			{type:'show res',what:{'insight II'}},
-			{type:'show res',what:{'culture II'}},
-			{type:'show res',what:{'faith II'}},
-			{type:'show res',what:{'influence II'}},
-			{type:'provide res',what:{'wisdom II':50}},
-			{type:'provide res',what:{'inspiration II':30}},
-			{type:'provide res',what:{'spirituality II':5}},
-			{type:'provide res',what:{'authority II':5}},
+			{type:'show res',what:['insight II']},
+			{type:'show res',what:['culture II']},
+			{type:'show res',what:['faith II']},
+			{type:'show res',what:['influence II']},
+			{type:'provide res',what:['wisdom II':50]},
+			{type:'provide res',what:['inspiration II':30]},
+			{type:'provide res',what:['spirituality II':5]},
+			{type:'provide res',what:['authority II':5]},
 		],
 		category:'devils'
 	});
