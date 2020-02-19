@@ -3905,7 +3905,6 @@ G.writeMSettingButton=function(obj)
 		icon:[20,19,'magixmod'],
 		category:'main',
 		limit:'authority II',
-		startWith:5,
 		tick:function(me,tick)
 		{
 			if (G.has('dt14')){
