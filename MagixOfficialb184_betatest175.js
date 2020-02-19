@@ -7670,7 +7670,7 @@ new G.Unit({
 		desc:'@[mine]s can now dig in search of [nickel ore,Nickel] or focus to mine [Various stones] with 3x efficiency instead of any prospected mineral.',
 		icon:[11,12,'magixmod'],
 		cost:{'insight':270},
-		req:{'prospecting':true,'mining':true},
+		req:{'prospecting':true,'mining':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 	});
 		new G.Tech({
 		name:'quarrying II',
@@ -7702,7 +7702,7 @@ new G.Unit({
 		desc:'@unlocks [Paper-crafting shack]. There you can craft: <font color="red">papyrus</font> out of [Sugar cane], @<font color="red">pergamin</font> out of [hide] , [leather] , and <font color="red">common paper</font> out of [Bamboo] with help of secret non-magic recipe.<>',
 		icon:[18,12,'magixmod'],
 		cost:{'insight':480,'wisdom':5},
-		req:{'city planning':true},
+		req:{'city planning':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 		effects:[
 		],
 	});
