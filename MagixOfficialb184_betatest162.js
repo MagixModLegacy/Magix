@@ -6704,7 +6704,7 @@ new G.Unit({
 		if (G.has('Wizardry'))
 				{
 				me.choicesN=5
-				}else{
+				}else if(G.hasNot('Wizardry')){
 				me.choicesN=4
 				}
 		},
