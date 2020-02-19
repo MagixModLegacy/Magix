@@ -6699,15 +6699,7 @@ new G.Unit({
 	new G.ChooseBox({
 		name:'research box',
 		context:'tech',
-		choicesN:function(me,tick)
-		{
-		if (G.has('Wizardry'))
-				{
-				return choicesN=5
-				}else if(G.hasNot('Wizardry')){
-				return choicesN=4
-				}
-		},
+		choicesN:4,
 		getCosts:function()
 		{
 			if (G.hasNot('Eotm')){
