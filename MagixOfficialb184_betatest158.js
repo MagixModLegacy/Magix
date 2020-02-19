@@ -6702,8 +6702,14 @@ new G.Unit({
 		choicesN:4,
 		getCosts:function()
 		{
+			if (G.hasNot('Eotm')){
 			var cost=Math.floor(G.getRes('wisdom').amount*(0.025+0.05*this.roll));
 			return {'insight':cost};
+			}
+			if (G.has('Eotm')){
+			var cost=Math.floor(G.getRes('wisdom II').amount*(0.025+0.05*this.roll));
+			return {'insight II':cost};
+			}
 		},
 		getCardCosts:function(what)
 		{
