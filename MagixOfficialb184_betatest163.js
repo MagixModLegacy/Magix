@@ -6699,7 +6699,7 @@ new G.Unit({
 	new G.ChooseBox({
 		name:'research box',
 		context:'tech',
-		choicesN:function()
+		choicesN:function(me,tick)
 		{
 		if (G.has('Wizardry'))
 				{
