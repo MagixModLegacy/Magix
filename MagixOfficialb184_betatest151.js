@@ -1705,7 +1705,8 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
 			if (G.has('Wizardry')){
-			me.hidden=true
+			me.name='faith II'
+			me.icon=[17,19,'magixmod']
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
