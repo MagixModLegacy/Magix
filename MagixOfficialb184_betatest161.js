@@ -6700,12 +6700,14 @@ new G.Unit({
 		name:'research box',
 		context:'tech',
 		choicesN:function()
+		{
 		if (G.has('Wizardry'))
 				{
 				me.choicesN=5
 				}else{
 				me.choicesN=4
-				},
+				}
+		},
 		getCosts:function()
 		{
 			if (G.hasNot('Eotm')){
