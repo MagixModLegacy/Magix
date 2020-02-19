@@ -8,6 +8,36 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
+	<style>
+	#logoOverB
+{
+	animation:spin2 1s infinite ease-in-out;
+	font-size:25px;
+	background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/beta.png) no-repeat;
+	background-position:0px 0px;
+	background-size:100%;
+	width:91px;
+	height:31px;
+}
+@keyframes spin1
+{
+	0% {transform:rotateY(20deg);}
+	50% {transform:rotateY(-20deg);}
+	100% {transform:rotateY(20deg);}
+}
+@keyframes spin2
+{
+	0% {transform:rotateX(20deg);}
+	50% {transform:rotateX(-20deg);}
+	100% {transform:rotateX(20deg);}
+}
+@keyframes spin3
+{
+	0% {transform:rotate(-25deg);}
+	50% {transform:rotate(-15deg);}
+	100% {transform:rotate(-25deg);}
+}
+	</style>
 	G.funcs['new game blurb']=function()
 	{
 		var str=
