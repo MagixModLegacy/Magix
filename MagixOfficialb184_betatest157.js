@@ -8678,7 +8678,7 @@ autobuy(G.year)
 			{type:'provide res',what:{'spirituality II':5}},
 			{type:'provide res',what:{'authority II':5}},
 		],
-		category:'devils'
+		category:'main'
 	});
 	
 	
