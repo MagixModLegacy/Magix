@@ -6703,9 +6703,9 @@ new G.Unit({
 		{
 		if (G.has('Wizardry'))
 				{
-				me.choicesN=5
+				me.choicesN:5
 				}else if(G.hasNot('Wizardry')){
-				me.choicesN=4
+				me.choicesN:4
 				}
 		},
 		getCosts:function()
