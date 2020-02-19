@@ -1704,6 +1704,9 @@ G.writeMSettingButton=function(obj)
 			var toSpoil=me.amount*0.005;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
+			if (G.has('Wizardry')){
+			me.hidden:true
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
