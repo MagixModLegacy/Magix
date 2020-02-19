@@ -7334,7 +7334,7 @@ new G.Unit({
 		desc:'Can store food. Building made out of hard bricks. And in addition it will give a housing to your population',
 		icon:[5,2,'magixmod'],
 		cost:{'insight':45},
-		req:{'city planning':true,'cities':true,'construction':true},
+		req:{'city planning':true,'cities':true,'construction':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 	});
 		new G.Tech({
 		name:'Well of Mana',
