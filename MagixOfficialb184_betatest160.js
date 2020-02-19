@@ -6699,7 +6699,7 @@ new G.Unit({
 	new G.ChooseBox({
 		name:'research box',
 		context:'tech',
-		choicesN:funtion()
+		choicesN:function()
 		if (G.has('Wizardry'))
 				{
 				me.choicesN=5
