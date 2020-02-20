@@ -9148,7 +9148,13 @@ autobuy(G.year)
 		category:'seasonal',
 		hidden:true,
 	});
-	
+		new G.Tech({
+		name:'Test',
+		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
+		icon:[16,0,'seasonal'],
+		cost:{'insight II':35,'culture II':5},
+		req:{'Eotm':true},
+	});
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
