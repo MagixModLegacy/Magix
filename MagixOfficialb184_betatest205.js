@@ -6707,8 +6707,8 @@ new G.Unit({
 			return {'insight':cost};
 			}
 			if (G.has('Eotm')){
-			var cost=Math.floor(G.getRes('wisdom II').amount*(0.025+0.05*this.roll)) return {'insight II':cost});
-			var cost=Math.floor(G.getRes('education').amount*(0.2*this.roll)) return {'science':cost});
+			var cost=Math.floor(G.getRes('wisdom II').amount*(0.025+0.05*this.roll)), return {'insight II':cost};
+			var cost=Math.floor(G.getRes('education').amount*(0.2*this.roll)), return {'science':cost};
 			}
 		},
 		getCardCosts:function(what)
