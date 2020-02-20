@@ -8152,7 +8152,7 @@ autobuy(G.year)
 		{id:'faith',name:'Faith'},
 		{id:'education',name:'Education'},
 		{id:'Florists',name:'Florists gathering'},
-		{id:'education',name:'Education'},
+		{id:'Education',name:'Education'},
 		{id:'prod',name:'Production'}
 	);
 	
