@@ -34,6 +34,1102 @@
 		}
 	}
 	//Units for real
+new G.Unit({
+		name:'gatherer',
+		startWith:5,
+		desc:'@forages for basic [food], [water] and [archaic building materials,Various interesting things]<>A vital part of an early tribe, [gatherer]s venture in the wilderness to gather food, wood, and other things of note.',
+		icon:[0,2],
+		cost:{},
+		use:{'worker':1},
+		//upkeep:{'food':0.2},
+		//alternateUpkeep:{'food':'spoiled food'},
+		effects:[
+			{type:'gather',context:'gather',amount:2,max:4},//,multMax:{'leather pouches':1.1}//TODO
+			//{type:'gather',context:'gather',what:{'water':1,'muddy water':1},amount:1,max:3,req:{'gathering focus':'water'}},
+			{type:'gather',context:'gather',what:{'water':1,'muddy water':1},amount:1,max:3},
+			{type:'gather',context:'gather',what:{'herb':0.5,'fruit':0.5},amount:1,max:1,req:{'plant lore':true}},
+			{type:'addFree',what:{'worker':0.1},req:{'scavenging':true}},
+			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
+		],
+		req:{'tribalism':true},
+		category:'production',
+		priority:10,
+	});
+	
+	new G.Unit({
+		name:'dreamer',
+		desc:'@generates [insight] every now and then, which you can use to research early technologies<>A [dreamer] spends their time observing, thinking, and wondering why things are the way they are.',
+		icon:[1,2],
+		cost:{},
+		use:{'worker':1},
+		//upkeep:{'coin':0.2},
+		effects:[
+			{type:'gather',what:{'insight':0.1}},
+			{type:'gather',what:{'insight':0.05},req:{'symbolism':true}},
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.05,req:{'Knowledgeable':true}},
+			{type:'mult',value:2/3,req:{'dt18':true}}
+		],
+		req:{'speech':true},
+		category:'discovery',
+		priority:5,
+	});
+	
+	new G.Unit({
+		name:'storyteller',
+		desc:'@generates [culture] every now and then<>[storyteller]s gather the tribe around at nightfall to tell the tales of their ancestors.',
+		icon:[14,2],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.1},
+		effects:[
+			{type:'gather',what:{'culture':0.1}},
+			{type:'gather',what:{'culture':0.05},req:{'symbolism':true}},
+			{type:'mult',value:1.3,req:{'artistic thinking':true}},
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
+		],
+		req:{'oral tradition':true},
+		category:'cultural',
+	});
+	
+	new G.Unit({
+		name:'artisan',
+		desc:'@starts with the ability to turn [stone]s into [knapped tools]@gains more modes as technology progresses<>An [artisan] dedicates their life to crafting various little objects by hand.//Note : artisans will gain new modes of operation when you discover new technologies, such as crafting stone tools; you can press the button with 3 dots on the side of this unit to switch between those modes.',
+		icon:[6,2],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.1},
+		gizmos:true,
+		modes:{
+			'knap':{name:'Knap flint',icon:[0,9],desc:'Turn [stone]s into [knapped tools].'},
+			'knap bone':{name:'Knap bone',icon:[0,9,8,7],desc:'Turn [bone]s into [knapped tools].',req:{'bone-working':true}},
+			'stone tools':{name:'Craft stone tools',icon:[1,9],desc:'Turn [stone]s and [stick]s into [stone tools].',req:{'tool-making':true},use:{'knapped tools':1}},
+			'stone weapons':{name:'Craft stone weapons',icon:[5,9],desc:'Turn [stone]s and [stick]s into [stone weapons].',req:{'spears':true},use:{'knapped tools':1}},
+			'bows':{name:'Craft bows',icon:[6,9],desc:'Turn [stone]s and [stick]s into [bow]s.',req:{'bows':true},use:{'stone tools':1}},
+			'baskets':{name:'Weave baskets',icon:[14,7],desc:'Turn [stick]s into [basket]s.',req:{'basket-weaving':true},use:{'knapped tools':1}},
+			'craftwands':{name:'Craft wands',icon:[6,4,'magixmod'],desc:'Your artisan will craft tool used by wizards. It is not any junk tool.',req:{'Wizardry':true},use:{'stone tools':2}},
+			'craftink':{name:'Craft ink',icon:[18,6,'magixmod'],desc:'Your artisan will craft [Ink]. Will use water and [Black dye],[Blue dye] or [Brown dye].',req:{'Ink crafting':true}},
+			'craftnet':{name:'Craft fishing net',icon:[13,8,'magixmod'],desc:'Your artisan will craft [Fishing net]. Needs [Instructor] because net <b> must be strong. Will use [Dried leather] to make it stronger.',req:{'Fishing II':true},use:{'stone tools':2,'Instructor':1}},
+			'craftfirstaid':{name:'Craft first aid things',icon:[16,10,'magixmod'],desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',req:{'first aid':true}, use:{'stone tools':1}},
+			'dyes1':{name:'Make dyes from flowers(Set 1)',desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']},
+			'dyes2':{name:'Make dyes from flowers(Set 2)',desc:'Your artisan will convert these flowers into dyes: [Crown imperial],[Cyan rose],[Himalayan blue poopy],[Cockscomb],[Red tulip],[Green Zinnia],[cactus],[Lime rose]. @Bonus: While crafting dyes out of [cactus] you will get its spikes and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']}, 
+			'dyes3':{name:'Make dyes from flowers(Set 3)',desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail]. @Bonus: While crafting dyes out of [Sunflower] you will get its edible [Sunflower seeds] and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']},
+			'dyes4':{name:'Make dyes from flowers(Set 4)',icon:[11,7,'magixmod'],desc:'Your artisan will convert these flowers into dyes: [Flax],[Blue orchid],[White tulip],[Lily of the Valley],[Gray rose],[Gray tulip],[Brown flower].',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true}},
+			'craftbook':{name:'Craft book',icon:[13,12,'magixmod'],desc:'Your artisan will craft [Empty book,books].',req:{'Bookcrafting':true},use:{'stone tools':1}},
+		},
+		effects:[
+			{type:'convert',from:{'stone':1},into:{'knapped tools':1},every:5,mode:'knap'},
+			{type:'convert',from:{'bone':1},into:{'knapped tools':1},every:5,mode:'knap bone'},
+			{type:'convert',from:{'stick':1,'stone':1},into:{'stone tools':1},every:8,mode:'stone tools'},
+			{type:'convert',from:{'stick':1,'stone':1},into:{'stone weapons':1},every:8,mode:'stone weapons'},
+			{type:'convert',from:{'stick':1,'stone':1},into:{'bow':1},every:10,mode:'bows'},
+			{type:'convert',from:{'stick':15},into:{'basket':1},every:10,mode:'baskets'},
+			{type:'convert',from:{'stick':4,'stone':2},into:{'Wand':1},every:5,mode:'craftwands'},
+			{type:'convert',from:{'Black dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
+        		{type:'convert',from:{'Brown dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
+        		{type:'convert',from:{'Blue dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
+			{type:'convert',from:{'Thread':35,'Dried leather':1},into:{'Fishing net':1},every:5,mode:'craftnet'},
+			{type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'First aid things':1},every:5,mode:'craftfirstaid'},
+       			{type:'convert',from:{'Thread':0.5,'herb':1},into:{'First aid things':1},every:5,mode:'craftfirstaid'},
+       			{type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'First aid things':1},every:7,mode:'craftfirstaid'},
+			{type:'convert',from:{'Lavender':2},into:{'Purple dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Salvia':3},into:{'Magenta dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Bachelor\'s button':2},into:{'Blue dye':1},every:5,mode:'dyes1'},
+       			{type:'convert',from:{'Desert rose':2},into:{'Magenta dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Cosmos':2},into:{'Magenta dye':1},every:5,mode:'dyes1'},
+       			{type:'convert',from:{'Pink rose':3},into:{'Pink dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Pink tulip':2},into:{'Pink dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Coreopsis':2},into:{'Yellow dye':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Crown imperial':2},into:{'Orange dye':1},every:5,mode:'dyes2'},
+       			{type:'convert',from:{'Cyan rose':2},into:{'Cyan dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Himalayan blue poopy':2},into:{'Cyan dye':1},every:5,mode:'dyes2'},
+       			{type:'convert',from:{'Cockscomb':2},into:{'Red dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Red tulip':2},into:{'Red dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Green Zinnia':3},into:{'Green dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'cactus':2},into:{'Green dye':1,'Cactus spikes':3},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Lime rose':2},into:{'Lime dye':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Lime tulip':2},into:{'Lime dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Azure bluet':4},into:{'Light gray dye':1},every:5,mode:'dyes3'},
+       			{type:'convert',from:{'Daisy':2},into:{'Light gray dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Sunflower':1},into:{'Yellow dye':1,'Sunflower seeds':3},every:7,mode:'dyes3'},
+        		{type:'convert',from:{'Dandelion':2},into:{'Yellow dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Black lily':3},into:{'Black dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Black Hollyhock':2},into:{'Black dye':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Cattail':2},into:{'Brown dye':1},every:5,mode:'dyes3'},
+			{type:'convert',from:{'stick':3,'stone':2},into:{'Crossbow':1},every:5,req:{'Hunting II':true},mode:'bows'},
+        		{type:'convert',from:{'lumber':1,'stone':25},into:{'Crossbow belt':20},every:5,req:{'Hunting II':true},mode:'bows'},
+    			{type:'convert',from:{'Flax':3},into:{'Light blue dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Blue orchid':2},into:{'Light blue dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'White tulip':2},into:{'White dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Lily of the Valley':3},into:{'White dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Brown flower':2},into:{'Brown dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:5,mode:'dyes4'},
+       		 	{type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Paper':30,'hide':1},into:{'Empty book':1},every:7,mode:'craftbook'},
+			{type:'mult',value:1.2,req:{'ground stone tools':true}}
+		],
+		req:{'stone-knapping':true},
+		category:'crafting',
+	});
+		new G.Unit({
+		name:'carver',
+		desc:'@starts with the ability to turn [stone]s or [bone]s into [statuette]s@gains more modes as technology progresses<>A [carver] uses fine hand-crafting to produce goods out of wood, stone and bone.',
+		icon:[21,2],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.1},
+		gizmos:true,
+		modes:{
+			'stone statuettes':{name:'Carve stone statuettes',icon:[8,9],desc:'Turn [stone]s into [statuette]s.',use:{'knapped tools':1}},
+			'bone statuettes':{name:'Carve bone statuettes',icon:[8,9],desc:'Turn [bone]s into [statuette]s.',use:{'knapped tools':1}},
+			'cut stone':{name:'Cut stones',icon:[0,8],desc:'Slowly turn 10 [stone]s into 1 [cut stone].',req:{'masonry':true},use:{'stone tools':1}},
+			'smash cut stone':{name:'Smash stone blocks',icon:[2,6],desc:'Turn [cut stone]s into 9 [stone]s each.',req:{'quarrying':true},use:{'stone tools':1}},
+			'gem blocks':{name:'Carve gem blocks',icon:[7,9],desc:'Slowly turn 10 [gems] into 1 [gem block].',req:{'gem-cutting':true},use:{'stone tools':1}},
+			'wood statuettes':{name:'Carve wooden statuettes',icon:[13,1,'magixmod'],desc:'Your carver will now use carve statuettes out of [log].',use:{'knapped tools':1}},
+			'gdablockscraft':{name:'Cut other stones',icon:[3,12,'magixmod'],desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',use:{'knapped tools':1},req:{'masonry':true}},
+			'gdablockssmash':{name:'Smash other stone blocks',icon:[2,12,'magixmod'],desc:'Your carver will smash a [Various cut stones,Various cut stone] into 9 [Various stones].',use:{'knapped tools':1},req:{'masonry':true}},    
+		},
+		effects:[
+			{type:'convert',from:{'stone':1},into:{'statuette':1},every:5,mode:'stone statuettes'},
+			{type:'convert',from:{'bone':1},into:{'statuette':1},every:5,mode:'bone statuettes'},
+			{type:'convert',from:{'stone':10},into:{'cut stone':1},every:15,mode:'cut stone'},
+			{type:'convert',from:{'cut stone':1},into:{'stone':9},every:5,mode:'smash cut stone'},
+			{type:'convert',from:{'gems':10},into:{'gem block':1},every:15,mode:'gem blocks'},
+			{type:'convert',from:{'log':1},into:{'Wooden statuette':1,'Scobs':3},every:7,mode:'wood statuettes'},
+			{type:'convert',from:{'Various stones':9},into:{'Various cut stones':1},every:5,mode:'gdablockscraft'},
+			{type:'convert',from:{'Various cut stones':1},into:{'Various stones':9},every:5,mode:'gdablockssmash'},
+			{type:'mult',value:1.2,req:{'ground stone tools':true}},
+			{type:'mult',value:0.95,req:{'dt3':true}}
+		],
+		req:{'carving':true},
+		category:'crafting',
+	});
+	
+	new G.Unit({
+		name:'clothier',
+		desc:'@works with textiles, notably producing all kinds of clothes<>A [clothier] can make and use fabrics to keep your people clothed, and therefore warm and happy.',
+		icon:[19,2],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.2},
+		gizmos:true,
+		modes:{
+			'sew grass clothing':{name:'Sew grass clothing',icon:[15,7],desc:'Craft [primitive clothes] from 30 [herb]s each.',use:{'stone tools':1}},
+			'sew hide clothing':{name:'Sew hide clothing',icon:[15,7],desc:'Craft [primitive clothes] from 3 [hide]s each.',use:{'stone tools':1}},
+			'weave fiber clothing':{name:'Weave fiber clothing',icon:[16,7],desc:'Craft [basic clothes] from 50 [herb]s each.',use:{'stone tools':1},req:{'weaving':true}},//TODO : implement fibers
+			'weave leather clothing':{name:'Weave leather clothing',icon:[16,7],desc:'Craft [basic clothes] from 2 [leather] each.',use:{'stone tools':1},req:{'weaving':true,'leather-working':true}},
+			'make leather':{name:'Make leather',icon:[10,7],desc:'Produce [leather] from [hide]s, [water], [salt] and [log]s.',use:{'stone tools':1},req:{'leather-working':true,'Factories I':false}},
+			'cheap make leather':{name:'Make leather (cheap)',icon:[10,7],desc:'Slowly produce [leather] from [hide]s, [muddy water] and [herb]s.',use:{'stone tools':1},req:{'Factories I':false}},
+			'weave leather colored clothing':{name:'Weave leather colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave [leather] but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
+			'weave fiber colored clothing':{name:'Weave fiber colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave fiber but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
+			'dye already made clothing':{name:'Dye already made clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now dye already made [basic clothes] making them become[Colored clothing].',req:{'weaving':true},use:{'stone tools':1}},
+			'Craft thread':{name:'Craft thread',icon:[13,9,'magixmod'],desc:'Your clothier will now craft [Thread] out of [herb].',req:{'Sewing II':true},use:{'stone tools':1}}
+		},
+		effects:[
+			{type:'convert',from:{'hide':3},into:{'primitive clothes':1},every:8,mode:'sew hide clothing'},
+			{type:'convert',from:{'herb':30},into:{'primitive clothes':1},every:20,mode:'sew grass clothing'},
+			{type:'convert',from:{'leather':2},into:{'basic clothes':1},every:8,mode:'weave leather clothing'},
+			{type:'convert',from:{'herb':50},into:{'basic clothes':1},every:20,mode:'weave fiber clothing'},
+			{type:'convert',from:{'hide':1,'water':5,'salt':1,'log':0.1},into:{'leather':1},every:15,mode:'make leather'},
+			{type:'convert',from:{'hide':1,'muddy water':5,'herb':10},into:{'leather':1},every:30,mode:'cheap make leather'},
+			{type:'convert',from:{'leather':2,'Dyes':3},into:{'Colored clothing':1},every:6,mode:'weave leather colored clothing'},
+			{type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'weave fiber colored clothing'},
+			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
+			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'}
+		],
+		req:{'sewing':true},
+		category:'crafting',
+	});
+	
+	new G.Unit({
+		name:'hunter',
+		desc:'@hunts wild animals for [meat], [bone]s and [hide]s@may get wounded<>[hunter]s go out into the wilderness and come back days later covered in blood and the meat of a fresh kill.',
+		icon:[18,2],
+		cost:{},
+		use:{'worker':1},
+		//upkeep:{'coin':0.2},
+		gizmos:true,
+		modes:{
+			'endurance hunting':{name:'Endurance hunting',icon:[0,6],desc:'Hunt animals by simply running after them until they get exhausted.//Slow and tedious.'},
+			'spear hunting':{name:'Spear hunting',icon:[5,9],desc:'Hunt animals with spears.',use:{'stone weapons':1},req:{'spears':true}},
+			'bow hunting':{name:'Bow hunting',icon:[6,9],desc:'Hunt animals with bows.',use:{'bow':1},req:{'bows':true}},
+			'crossbow hunting':{name:'Crossbow hunting',icon:[13,6,'magixmod'],desc:'Hunt animals with crossbows.',req:{'Hunting II':true},use:{'Crossbow':1,'Crossbow belt':150}},
+		},
+		effects:[
+			{type:'gather',context:'hunt',amount:1,max:5,mode:'endurance hunting'},
+			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting'},
+			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},
+			{type:'gather',context:'hunt',amount:5,max:6,mode:'Crossbow hunting'},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30},
+			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
+		],
+		req:{'hunting':true},
+		category:'production',
+		priority:5,
+	});
+	new G.Unit({
+		name:'fisher',
+		desc:'@catches [seafood] from rivers and shores<>[fisher]s arm themselves with patience and whatever bait they can find, hoping to trick another creature into becoming dinner.',
+		icon:[17,2],
+		cost:{},
+		use:{'worker':1},
+		//upkeep:{'coin':0.2},
+		gizmos:true,
+		modes:{
+			'catch by hand':{name:'Catch by hand',icon:[0,6],desc:'Catch fish with nothing but bare hands.//Slow and tedious.'},
+			'spear fishing':{name:'Spear fishing',icon:[5,9],desc:'Catch fish with spears.',use:{'stone weapons':1},req:{'spears':true}},
+			'line fishing':{name:'Line fishing',icon:[5,9],desc:'Catch fish with fishing poles.',use:{'stone tools':1},req:{'fishing hooks':true}},
+			'net fishing':{name:'Net fishing',icon:[13,8,'magixmod'], desc:'Catch fish with [Fishing net].',req:{'Fishing II':true},use:{'Fishing net':1}},
+		},
+		effects:[
+			{type:'gather',context:'fish',amount:1,max:5,mode:'catch by hand'},
+			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
+			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
+			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'Net fishing'},
+			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
+		],
+		req:{'fishing':true},
+		category:'production',
+		priority:5,
+	});
+	new G.Unit({
+		name:'firekeeper',
+		desc:'@creates [fire pit]s from fuel@gains more fuel types as technology progresses@handles other fire-related tasks<>The [firekeeper] is tasked with starting and maintaining fires to keep the tribe warm.',
+		icon:[16,2],
+		cost:{},
+		use:{'worker':1},
+		staff:{'knapped tools':1},
+		upkeep:{'coin':0.1},
+		gizmos:true,
+		modes:{
+			'stick fires':{name:'Start fires from sticks',icon:[0,6,13,7],desc:'Craft [fire pit]s from 20 [stick]s each.'},
+			'cook':{name:'Cook',icon:[6,7,13,7],desc:'Turn [meat] and [seafood] into [cooked meat] and [cooked seafood] in the embers of [fire pit]s',req:{'cooking':true}},
+			'cure':{name:'Cure & smoke',icon:[11,6,12,6],desc:'Turn 1 [meat] or [seafood] into 2 [cured meat] or [cured seafood] using [salt] in the embers of [fire pit]s',req:{'curing':true}},
+			'firesfromessence':{name:'Set up fires out of its essence',icon:[0,2,'magixmod'], desc:'Craft 2[fire pit]s with use of: 1[Fire essence],13[stick]s',req:{'Wizard complex':true},use:{'Wand':1,'knapped tools':1}}
+		},
+		effects:[
+			{type:'convert',from:{'stick':20},into:{'fire pit':1},every:5,mode:'stick fires'},
+			{type:'convert',from:{'meat':1,'fire pit':0.01},into:{'cooked meat':1},every:1,repeat:5,mode:'cook'},
+			{type:'convert',from:{'seafood':1,'fire pit':0.01},into:{'cooked seafood':1},every:1,repeat:5,mode:'cook'},
+			{type:'convert',from:{'meat':1,'salt':1,'fire pit':0.01},into:{'cured meat':2},every:1,repeat:10,mode:'cure'},
+			{type:'convert',from:{'seafood':1,'salt':1,'fire pit':0.01},into:{'cured seafood':2},every:1,repeat:10,mode:'cure'},
+			{type:'convert',from:{'Fire essence':1,'stick':13},into:{'fire pit':5},mode:'firesfromessence'},
+			{type:'mult',value:0.97,req:{'dt2':true}}
+		],
+		req:{'fire-making':true},
+		category:'crafting',
+		priority:3,
+	});
+	
+	new G.Unit({
+		name:'potter',
+		desc:'@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt.',
+		icon:[20,2],
+		cost:{},
+		use:{'worker':1},
+		staff:{'stone tools':1},
+		upkeep:{'coin':0.2},
+		gizmos:true,
+		modes:{
+			'clay pots':{name:'Craft pots out of clay',icon:[1,7,13,5],desc:'Craft [pot]s from 3 [clay] each; requires [fire pit]s.'},
+			'mud pots':{name:'Craft pots out of mud',icon:[0,7,13,5],desc:'Craft [pot]s from 10 [mud] each; requires [fire pit]s.'},
+			'craft precious pots':{name:'Craft precious pots',icon:[15,8,'magixmod'],desc:'Your potter will craft [Precious pot] out of both [clay] and [mud].',req:{'Precious pottery':true},use:{'knapped tools':1,'stone tools':1,'Instructor':0.33}},
+			'craft potion pots':{name:'Craft potion pots',icon:[14,8,'magixmod'],desc:'Your potter will craft [Potion pot] out of both [clay] and [mud]. These pots do not provide additional [food storage].',req:{'Precious pottery':true},use:{'knapped tools':1,'stone tools':1,'Instructor':0.5}},    
+		},
+		effects:[
+			{type:'convert',from:{'clay':3,'fire pit':0.01},into:{'pot':1},every:3,repeat:2,mode:'clay pots'},
+			{type:'convert',from:{'mud':10,'fire pit':0.01},into:{'pot':1},every:6,mode:'mud pots'},
+			{type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'craft precious pots'},
+			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'}
+		],
+		req:{'pottery':true},
+		category:'crafting',
+	});
+		new G.Unit({
+		name:'kiln',
+		desc:'@processes goods with fire<>A [kiln] is an impressive edifice for those not yet accustomed to its roaring fire.',//TODO : desc
+		icon:[23,2],
+		cost:{'archaic building materials':50,'basic building materials':20},
+		use:{'land':1},
+		upkeep:{'log':0.5},
+		modes:{
+			'off':G.MODE_OFF,
+			'bricks':{name:'Fire bricks',icon:[3,8],desc:'Produce 10 [brick]s out of 1 [clay].',use:{'worker':1,'stone tools':1}},
+			'glass':{name:'Craft glass',icon:[4,8],desc:'Your kiln will now use sand to make a glass.',req:{'Crafting a glass':true},use:{'stone tools':1}},
+		},
+		effects:[
+			{type:'convert',from:{'clay':1},into:{'brick':10},every:5,mode:'bricks'},
+			{type:'convert',from:{'sand':3},into:{'glass':10},every:5,mode:'glass'},
+		],
+		gizmos:true,
+		req:{'masonry':true},
+		category:'crafting',
+	});
+	
+		new G.Unit({
+		name:'well',
+		desc:'@produces fresh [water], up to 20 per day<>The [well] is a steady source of drinkable water.',
+		icon:[25,3],
+		cost:{'stone':50,'archaic building materials':20},
+		use:{'land':1},
+		//require:{'worker':2,'stone tools':2},
+		//upkeep:{'coin':0.2},
+		effects:[
+			{type:'gather',what:{'water':20}},
+		],
+		category:'production',
+		req:{'well-digging':true},
+		limitPer:{'land':10},
+	});
+	
+	new G.Unit({
+		name:'digger',
+		desc:'@digs the soil for [mud] and [stone]<>[digger]s yield various materials that can be used for tool-making and rudimentary construction.',
+		icon:[7,2],
+		cost:{},
+		use:{'worker':1},
+		staff:{'knapped tools':1},
+		upkeep:{'coin':0.1},
+		effects:[
+			{type:'gather',context:'dig',amount:1,max:1},
+			{type:'gather',context:'dig',what:{'clay':5},max:1,req:{'pottery':true}}
+		],
+		req:{'digging':true},
+		category:'production',
+	});
+	new G.Unit({
+		name:'quarry',
+		desc:'@carves [cut stone] out of the ground@may find other minerals such as [limestone] and [marble]<>The [quarry] dismantles the ground we stand on so that our children may reach higher heights.',
+		icon:[22,3],
+		cost:{'archaic building materials':100},
+		use:{'land':4},
+		modes:{
+			'off':G.MODE_OFF,
+			'quarry':{name:'Quarry stone',icon:[0,8],desc:'Produce [cut stone] and other minerals.',use:{'worker':3,'stone tools':3}},
+			'advanced quarry':{name:'Advanced quarry stone',icon:[8,12,0,8],desc:'Produce [cut stone] and other minerals at a superior rate with metal tools.',use:{'worker':3,'metal tools':3}},
+			'quarryotherstones':{name:'Quarry other stones',icon:[3,12,'magixmod'],desc:'Strike the Earth for other than common [cut stone] stones.',req:{'quarrying II':true},use:{'worker':3,'metal tools':3}},
+		},
+		effects:[
+			{type:'gather',context:'quarry',amount:5,max:10,every:3,mode:'quarry'},
+			{type:'gather',context:'quarry',what:{'cut stone':1},max:5,notMode:'off'},
+			{type:'gather',context:'mine',amount:0.005,max:0.05,notMode:'off'},
+			{type:'gather',context:'quarry',amount:10,max:30,every:3,mode:'advanced quarry'},
+			{type:'gather',context:'quarry',what:{'Various cut stones':5},mode:'quarryotherstones'},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
+		],
+		gizmos:true,
+		req:{'quarrying':true},
+		category:'production',
+	});
+	new G.Unit({
+		name:'mine',
+		desc:'@extracts ores, [coal] and [stone] out of the ground@may occasionally collapse<>The workers in [mine]s burrow deep into the earth to provide all kinds of minerals.',
+		icon:[22,2],
+		cost:{'archaic building materials':100},
+		use:{'land':3},
+		//require:{'worker':3,'stone tools':3},
+		modes:{
+			'off':G.MODE_OFF,
+			'any':{name:'Any',icon:[8,8],desc:'Mine without focusing on specific ores.',use:{'worker':3,'stone tools':3}},
+			'coal':{name:'Coal',icon:[12,8],desc:'Mine for [coal] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'salt':{name:'Salt',icon:[11,7],desc:'Mine for [salt].',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'copper':{name:'Copper',icon:[9,8],desc:'Mine for [copper ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'tin':{name:'Tin',icon:[13,8],desc:'Mine for [tin ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'iron':{name:'Iron',icon:[10,8],desc:'Mine for [iron ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'gold':{name:'Gold',icon:[11,8],desc:'Mine for [gold ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'nickel':{name:'Nickel',icon:[9,12,'magixmod'],desc:'Mine for [nickel ore] with 5x efficiency.',req:{'prospecting II':true},use:{'worker':3,'metal tools':3}},
+			'ostones':{name:'Other stones',icon:[3,12,'magixmod'],desc:'Mine for other stones with 3x efficiency than common [stone].',req:{'prospecting II':true},use:{'worker':3,'metal tools':3}}
+		},
+		effects:[
+			{type:'gather',context:'mine',amount:10,max:30,mode:'any'},
+			{type:'gather',context:'mine',what:{'stone':10},max:30,notMode:'off'},
+			{type:'gather',context:'mine',what:{'coal':50},max:30,mode:'coal'},
+			{type:'gather',context:'mine',what:{'salt':50},max:30,mode:'salt'},
+			{type:'gather',context:'mine',what:{'copper ore':50},max:30,mode:'copper'},
+			{type:'gather',context:'mine',what:{'tin ore':50},max:30,mode:'tin'},
+			{type:'gather',context:'mine',what:{'iron ore':50},max:30,mode:'iron'},
+			{type:'gather',context:'mine',what:{'gold ore':50},max:30,mode:'gold'},
+			{type:'gather',context:'mine',what:{'nickel ore':40},max:25,mode:'nickel'},
+			{type:'gather',context:'mine',what:{'Various stones':30},max:25,mode:'ostones'},
+			{type:'gather',context:'mine',what:{'Sulfur':35},max:51,req:{'Explosive crafting & mining':true}},
+			{type:'mult',value:0.95,req:{'dt4':true},mode:'gold'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'nickel'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50}
+		],
+		gizmos:true,
+		req:{'mining':true},
+		category:'production',
+	});
+	new G.Unit({
+		name:'furnace',
+		desc:'@converts metal ores into ingots that can be used for further crafting<>The [furnace] is employed in various processes to extract the metal in raw ore, as well as for alloying those metals.',
+		icon:[24,2],
+		cost:{'basic building materials':100},
+		use:{'land':1},
+		upkeep:{'log':1},
+		modes:{
+			'off':G.MODE_OFF,
+			'copper':{name:'Copper smelting',icon:[9,9],desc:'Cast [soft metal ingot]s out of 5 [copper ore]s each.',use:{'worker':2,'stone tools':2},req:{}},
+			'tin':{name:'Tin smelting',icon:[9,9],desc:'Cast [soft metal ingot]s out of 10 [tin ore]s each.',use:{'worker':2,'stone tools':2},req:{}},
+			'iron':{name:'Iron smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 5 [iron ore]s each.',use:{'worker':2,'metal tools':2},req:{'iron-working':true}},
+			'gold':{name:'Gold smelting',icon:[11,9],desc:'Cast [precious metal ingot]s out of 5 [gold ore]s each.',use:{'worker':2,'metal tools':2},req:{'gold-working':true}},
+			'bronze':{name:'Bronze alloying',icon:[10,9],desc:'Cast [hard metal ingot]s out of 8 [copper ore]s and 2 [tin ore]s each.',use:{'worker':2,'metal tools':2},req:{'bronze-working':true}},
+			'steel':{name:'Steel alloying',icon:[12,9],desc:'Cast [strong metal ingot]s out of 19 [iron ore]s and 1 [coal] each.',use:{'worker':2,'metal tools':2},req:{'steel-making':true}},
+			'cobalt':{name:'Cobalt smelting',icon:[14,0,'magixmod'],desc:'Cast 1[Cobalt ingot] out of 8[Cobalt ore].',req:{'Cobalt-working':true},use:{'worker':2,'metal tools':2,'stone tools':1}},
+	  		'nickel':{name:'Nickel smelting',icon:[10,9],desc:'Cast 1[hard metal ingot] out of 6[nickel ore]s each.',req:{'prospecting II':true,'nickel-working':true},use:{'worker':2,'metal tools':2}},
+			'platinum':{name:'Platinum smelting',icon:[3,11,'magixmod'],desc:'Cast 1[platinum ingot] out of 5[platinum ore]s each.',req:{'prospecting II':true,'platinum-working':true},use:{'worker':2,'metal tools':2}},  
+			},
+		effects:[
+			{type:'convert',from:{'copper ore':5},into:{'soft metal ingot':1},repeat:3,mode:'copper'},
+			{type:'convert',from:{'tin ore':10},into:{'soft metal ingot':1},repeat:3,mode:'tin'},
+			{type:'convert',from:{'iron ore':5},into:{'hard metal ingot':1},repeat:3,mode:'iron'},
+			{type:'convert',from:{'gold ore':5},into:{'precious metal ingot':1},repeat:1,mode:'gold'},
+			{type:'convert',from:{'tin ore':2,'copper ore':8},into:{'hard metal ingot':1},repeat:3,mode:'bronze'},
+			{type:'convert',from:{'iron ore':19,'coal':1},into:{'strong metal ingot':1},repeat:1,mode:'steel'},
+			{type:'convert',from:{'Cobalt ore':8},into:{'Cobalt ingot':1},every:5,mode:'cobalt'},
+			{type:'convert',from:{'nickel ore':6},into:{'hard metal ingot':1},every:5,mode:'nickel'},
+			{type:'convert',from:{'platinum ore':5},into:{'platinum ingot':1},every:5,mode:'platinum'},
+			{type:'mult',value:0.95,req:{'dt4':true},mode:'gold'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'bronze'},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'nickel'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
+			{type:'waste',chance:0.001/1000},
+		],
+		gizmos:true,
+		req:{'smelting':true},
+		category:'crafting',
+	});
+	new G.Unit({
+		name:'blacksmith workshop',
+		desc:'@forges metal goods out of ingots<>The [blacksmith workshop,Blacksmith] takes the same pride in shaping the tool that tills as they do the sword that slays.',
+		icon:[26,2,25,2],
+		cost:{'basic building materials':100},
+		use:{'land':1},
+		//require:{'worker':2,'stone tools':2},
+		modes:{
+			'off':G.MODE_OFF,
+			'metal tools':{name:'Forge tools from soft metals',icon:[2,9],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
+			'hard metal tools':{name:'Forge tools from hard metals',icon:[2,9],desc:'Forge 3 [metal tools] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1},req:{}},
+			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true}},
+			'forgeweapon':{name:'Forge weapons out of soft metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 2[soft metal ingot]s each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},  
+			'forgeweaponhard':{name:'Forge weapons out of hard metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 1[hard metal ingot] each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
+			'forgearmor':{name:'Forge armor out of soft metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 8[soft metal ingot]s each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
+			'forgearmorhard':{name:'Forge armor out of hard metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 5[hard metal ingot] each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
+			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
+			'factgear':{name:'Forge factory equipment',icon:[9,18,'magixmod'],desc:'Forge [Basic factory equipment] out of 11[hard metal ingot]s each.',req:{'Advanced casting':true},use:{'worker':3,'metal tools':3,'Instructor':1}},
+		},
+		effects:[
+			{type:'convert',from:{'soft metal ingot':2},into:{'metal tools':1},repeat:3,mode:'metal tools'},
+			{type:'convert',from:{'hard metal ingot':1},into:{'metal tools':3},repeat:3,mode:'hard metal tools'},
+			{type:'convert',from:{'precious metal ingot':10},into:{'gold block':1},mode:'gold blocks'},
+			{type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},repeat:2,mode:'forgeweapon'},
+			{type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'forgeweaponhard'},
+			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':1},every:4,mode:'forgearmor'},
+			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'},
+			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'},
+			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
+			{type:'mult',value:0.95,req:{'dt1':true}},
+			{type:'waste',chance:0.001/1000},
+			//TODO : better metal tools, weapons etc
+		],
+		gizmos:true,
+		req:{'smelting':true},
+		category:'crafting',
+	});
+			
+	new G.Unit({
+		name:'woodcutter',
+		desc:'@cuts trees, producing [log]s<>[woodcutter]s turn forests into precious wood that can be used as fuel or construction materials.',
+		icon:[8,2],
+		cost:{},
+		use:{'worker':1},
+		staff:{'knapped tools':1},
+		upkeep:{'coin':0.1},
+		effects:[
+			{type:'gather',context:'chop',amount:1,max:1},
+			{type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1}
+		],
+		req:{'woodcutting':true},
+		category:'production',
+	});
+	new G.Unit({
+		name:'carpenter workshop',
+		desc:'@processes wood<>The [carpenter workshop,Carpenter] is equipped with all kinds of tools to coerce wood into more useful shapes.',
+		icon:[27,2,25,2],
+		cost:{'basic building materials':100},
+		use:{'land':1},
+		//require:{'worker':2,'stone tools':2},
+		modes:{
+			'off':G.MODE_OFF,
+			'lumber':{name:'Cut logs into lumber',icon:[1,8],desc:'Cut [log]s into 3 [lumber] each.',use:{'worker':1,'stone tools':1},req:{}},
+		},
+		effects:[
+			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
+			{type:'mult',value:0.8,req:{'dt17':true}},
+			{type:'waste',chance:0.001/1000},
+		],
+		gizmos:true,
+		req:{'carpentry':true},
+		category:'crafting',
+	});
+	
+	new G.Unit({
+		name:'soothsayer',
+		desc:'@generates [faith] and [happiness] every now and then<>[soothsayer]s tell the tales of the dead, helping tribespeople deal with grief.',
+		icon:[15,2],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.2},
+		effects:[
+			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
+			{type:'gather',what:{'faith':0.05},req:{'symbolism':true}},
+			{type:'mult',value:2/3,req:{'dt16':true}},
+		],
+		req:{'ritualism':true},
+		category:'spiritual',
+	});
+	new G.Unit({
+		name:'healer',
+		desc:'@uses [herb]s to heal the [sick] and the [wounded] slowly<>The [healer] knows the secrets of special plants that make illness stay away.',
+		icon:[23,3],
+		cost:{},
+		use:{'worker':1},
+		staff:{'knapped tools':1},
+		upkeep:{'coin':0.2},
+		effects:[
+			{type:'convert',from:{'sick':1,'herb':2.5},into:{'adult':1},chance:1/2,every:3},
+			{type:'convert',from:{'wounded':1,'herb':2.5},into:{'adult':1},chance:1/5,every:10},
+		],
+		req:{'healing':true},
+		category:'spiritual',
+		priority:5,
+	});
+	
+	new G.Unit({
+		name:'chieftain',
+		desc:'@generates [influence] every now and then<>The [chieftain] leads over a small group of people, guiding them in their decisions.',
+		icon:[18,3],
+		cost:{'food':50},
+		use:{'worker':1},
+		upkeep:{'coin':0.5},
+		effects:[
+			{type:'gather',what:{'influence':0.1}},
+			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
+			{type:'mult',value:1.05,req:{'Politic power rising up':true}}
+		],
+		limitPer:{'population':100},
+		req:{'chieftains':true},
+		category:'political',
+		priority:5,
+	});
+	new G.Unit({
+		name:'clan leader',
+		desc:'@generates [influence] every now and then<>The [clan leader] is followed by many, and is trusted with defending the honor and safety of their people.',
+		icon:[19,3],
+		cost:{'food':100},
+		use:{'worker':1},
+		upkeep:{'coin':0.75},
+		effects:[
+			{type:'gather',what:{'influence':0.2}},
+			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
+			{type:'mult',value:1.05,req:{'Politic power rising up':true}}
+		],
+		limitPer:{'population':500},
+		req:{'clans':true},
+		category:'political',
+		priority:5,
+	});
+	
+	new G.Unit({
+		name:'grave',
+		desc:'@provides 1 [burial spot], in which the [corpse,dead] are automatically interred one by one@graves with buried corpses decay over time, freeing up land for more graves<>A simple grave dug into the earth, where the dead may find rest.//Burying your dead helps prevent [health,disease] and makes your people slightly [happiness,happier].',
+		icon:[13,2],
+		cost:{},
+		use:{'land':1},
+		//require:{'worker':1,'knapped tools':1},
+		effects:[
+			{type:'provide',what:{'burial spot':1}},
+			//{type:'waste',chance:1/100,desired:true},
+			{type:'function',func:function(me){
+				var buried=G.getRes('burial spot').used;
+				if (buried>0 && G.getRes('burial spot').amount>=buried)
+				{
+					var toDie=Math.min(me.amount,randomFloor(buried*0.001));
+					me.targetAmount-=toDie;
+					G.wasteUnit(me,toDie);
+					G.getRes('burial spot').amount-=toDie;
+					G.getRes('burial spot').used-=toDie;
+				}
+			}}
+		],
+		req:{'burial':true},
+		category:'civil',
+	});
+	
+	new G.Unit({
+		name:'mud shelter',
+		desc:'@provides 3 [housing]<>Basic, frail dwelling in which a small family can live.',
+		icon:[9,2],
+		cost:{'mud':50},
+		use:{'land':1},
+		//require:{'worker':1,'knapped tools':1},
+		effects:[
+			{type:'provide',what:{'housing':3}},
+			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
+			{type:'waste',chance:1/1000}
+		],
+		req:{'sedentism':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'branch shelter',
+		desc:'@provides 3 [housing]<>Basic, very frail dwelling in which a small family can live.',
+		icon:[10,2],
+		cost:{'stick':50},
+		use:{'land':1},
+		//require:{'worker':1,'knapped tools':1},
+		effects:[
+			{type:'provide',what:{'housing':3}},
+			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
+			{type:'waste',chance:3/1000}
+		],
+		req:{'sedentism':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'hut',
+		desc:'@provides 5 [housing]<>Small dwelling built out of hardened mud and branches.',
+		icon:[11,2],
+		cost:{'archaic building materials':100},
+		use:{'land':1},
+		//require:{'worker':2,'stone tools':2},
+		effects:[
+			{type:'provide',what:{'housing':5}},
+			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
+			{type:'waste',chance:0.1/1000}
+		],
+		req:{'building':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'hovel',
+		desc:'@provides 8 [housing]<>A simple home for a family of villagers.',
+		icon:[20,3],
+		cost:{'basic building materials':75},
+		use:{'land':1},
+		//require:{'worker':2,'stone tools':2},
+		effects:[
+			{type:'provide',what:{'housing':8}},
+			{type:'provide',what:{'housing':0.5},req:{'God\'s trait #1 Housing':true}},
+			{type:'waste',chance:0.03/1000}
+		],
+		req:{'cities':true},
+		category:'housing',
+	});
+	new G.Unit({
+		name:'house',
+		desc:'@provides 10 [housing]<>A sturdy home built to last.',
+		icon:[21,3],
+		cost:{'basic building materials':100},
+		use:{'land':1},
+		//require:{'worker':3,'metal tools':3},
+		effects:[
+			{type:'provide',what:{'housing':10}},
+			{type:'provide',what:{'housing':0.125},req:{'Better house construction':true}},
+			{type:'waste',chance:0.01/1000}
+		],
+		req:{'construction':true},
+		category:'housing',
+	});
+	
+	new G.Unit({
+		name:'storage pit',
+		desc:'@provides 400 [food storage] and 400 [material storage]<>A simple hole in the ground, lined with stones.//Prevents some amount of food from perishing and some goods from being stolen, but may crumble away over time.',
+		icon:[12,2],
+		cost:{'archaic building materials':50},
+		use:{'land':2},
+		//require:{'worker':2,'knapped tools':2},
+		effects:[
+			{type:'provide',what:{'added food storage':400}},
+			{type:'provide',what:{'added material storage':400}},
+			{type:'provide',what:{'added food storage':80,'added material storage':80},req:{'Spell of capacity':true}},
+			{type:'waste',chance:0.8/1000}
+		],
+		req:{'stockpiling':true},
+		category:'storage',
+	});
+	new G.Unit({
+		name:'stockpile',
+		desc:'@provides 1000 [material storage]<>A simple building where resources are stored.//Slows material decay and deters theft somewhat, but may itself decay over time.',
+		icon:[22,4],
+		cost:{'archaic building materials':100},
+		use:{'land':2},
+		//require:{'worker':2,'stone tools':2},
+		effects:[
+			{type:'provide',what:{'added material storage':1000}},
+			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
+			{type:'waste',chance:0.1/1000}
+		],
+		req:{'stockpiling':true,'building':true},
+		category:'storage',
+	});
+	new G.Unit({
+		name:'warehouse',
+		desc:'@provides 4000 [material storage]<>A large building for storing materials. Staffed with two guards to prevent theft.',
+		icon:[25,4],
+		cost:{'basic building materials':500},
+		use:{'land':3},
+		staff:{'worker':2},
+		//require:{'worker':3,'stone tools':3},
+		effects:[
+			{type:'provide',what:{'added material storage':4000}},
+			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
+			{type:'waste',chance:0.001/1000}
+		],
+		req:{'stockpiling':true,'construction':true},
+		category:'storage',
+	});
+	new G.Unit({
+		name:'granary',
+		desc:'@provides 1000 [food storage]<>A grain storage building built on stilts to prevent pests from getting in.',
+		icon:[23,4],
+		cost:{'archaic building materials':50,'basic building materials':50,'pot':15},
+		use:{'land':2},
+		//require:{'worker':2,'stone tools':2},
+		effects:[
+			{type:'provide',what:{'added food storage':1000}},
+			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
+			{type:'waste',chance:0.01/1000}
+		],
+		req:{'stockpiling':true,'pottery':true},
+		category:'storage',
+	});
+	new G.Unit({
+		name:'barn',
+		desc:'@provides 4000 [food storage]<>A large wooden building for storing food. A worker manages the grain to prevent rot.',
+		icon:[24,4],
+		cost:{'basic building materials':500},
+		use:{'land':2},
+		staff:{'worker':1},
+		//require:{'worker':2,'stone tools':2},
+		effects:[
+			{type:'provide',what:{'added food storage':4000}},
+			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
+			{type:'waste',chance:0.001/1000}
+		],
+		req:{'stockpiling':true,'carpentry':true},
+		category:'storage',
+	});
+	
+	new G.Unit({
+		name:'architect',
+		desc:'@can be set to manage automatic building construction<>The [architect] is tasked with fulfilling your people\'s housing needs so that you don\'t have to worry about it too much.',
+		icon:[26,4],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.5},
+		gizmos:true,
+		modes:{
+			'off':G.MODE_OFF,
+			'house building':{name:'House building',icon:[21,3],desc:'Build [house]s as long as there is homelessness and the right materials are available.'},
+			'undertaker':{name:'Undertaker',icon:[13,2],desc:'Dig [grave]s as long as there are unburied corpses.'},
+			'blockhouser':{name:'Blockhouse building',icon:[9,1,'magixmod'],desc:'This architect will build more advanced [housing,housing] like [Blockhouse].',req:{'Architects knowledge':true,'city planning':true}},
+			'brickhouser':{name:'Brickhouse building',icon:[5,1,'magixmod'],desc:'This architect will build more useful housing like [Brick house with a silo]',req:{'Architects knowledge':true,'city planning':true}}
+		},
+		effects:[
+			{type:'function',func:function(me){
+				var wiggleRoom=10;
+				var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
+				var toMake=me.amount-me.idle;
+				if (homeless>0 && toMake>0 && G.canBuyUnitByName('house',toMake))
+				{
+					G.buyUnitByName('house',toMake,true);
+				}
+			},mode:'house building'},
+			{type:'function',func:function(me){
+				var wiggleRoom=5;
+				var toMake=Math.min(me.amount-me.idle,Math.max(0,(G.getRes('corpse').amount+wiggleRoom)-(G.getRes('burial spot').amount-G.getRes('burial spot').used)));
+				if (toMake>0 && G.canBuyUnitByName('house',toMake))
+				{
+					G.buyUnitByName('grave',toMake,true);
+				}
+			},mode:'undertaker'},
+			{type:'function',func:function(me){
+				var wiggleRoom=10;
+				var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
+				var toMake=me.amount-me.idle;
+				if (homeless>0 && toMake>0 && G.canBuyUnitByName('house',toMake))
+				{
+					G.buyUnitByName('Blockhouse',toMake,true);
+				}
+			},mode:'blockhouser'},
+			{type:'function',func:function(me){
+				var wiggleRoom=10;
+				var homeless=Math.max(0,(G.getRes('population').amount+wiggleRoom)-G.getRes('housing').amount);
+				var toMake=me.amount-me.idle;
+				if (homeless>0 && toMake>0 && G.canBuyUnitByName('house',toMake))
+				{
+					G.buyUnitByName('Brick house with a silo',toMake,true);
+				}
+			},mode:'brickhouser'},
+		],
+		limitPer:{'land':100},
+		req:{'city planning':true},
+		category:'civil',
+	});
+	
+	new G.Unit({
+		name:'lodge',
+		desc:'@NOTE : modes are disabled for now.@can be set to manage automatic recruitment for units such as [gatherer]s, [hunter]s or [woodcutter]s<>A [lodge] is where people of all professions gather to rest and store their tools.//Lodges let you automate your tribe somewhat; should a worker fall sick or die, they will be automatically replaced if a lodge is tasked for it.',
+		icon:[17,3],
+		cost:{'archaic building materials':50},
+		use:{'land':1},
+		//require:{'worker':1,'knapped tools':1},
+		//upkeep:{'coin':0.5},
+		gizmos:true,
+		modes:{
+			'off':G.MODE_OFF,
+			'gatherers':{name:'Gatherer\'s lodge',desc:'Hire [gatherer]s until there are 5 for each of this lodge.',req:{'tribalism':true}},
+			'hunters':{name:'Hunter\'s lodge',desc:'Hire [hunter]s until there are 5 for each of this lodge.',req:{'hunting':true}},
+			'fishers':{name:'Fisher\'s lodge',desc:'Hire [fisher]s until there are 5 for each of this lodge.',req:{'fishing':true}},
+			'diggers':{name:'Digger\'s lodge',desc:'Hire [digger]s until there are 5 for each of this lodge.',req:{'digging':true}},
+			'woodcutters':{name:'Woodcutter\'s lodge',desc:'Hire [woodcutter]s until there are 5 for each of this lodge.',req:{'woodcutting':true}},
+			'artisans':{name:'Artisan\'s lodge',desc:'Hire [artisan]s until there are 5 for each of this lodge.',req:{'stone-knapping':true}},
+		},
+		effects:[
+			/*{type:'function',func:function(me){
+					if (me.amount*5>G.getUnitAmount('gatherer')) G.buyUnitByName('gatherer',1,true);
+			},mode:'gatherers'},
+			{type:'function',func:function(me){
+					if (me.amount*5>G.getUnitAmount('hunter')) G.buyUnitByName('hunter',1,true);
+			},mode:'hunters'},
+			{type:'function',func:function(me){
+					if (me.amount*5>G.getUnitAmount('fisher')) G.buyUnitByName('fisher',1,true);
+			},mode:'fishers'},
+			{type:'function',func:function(me){
+					if (me.amount*5>G.getUnitAmount('digger')) G.buyUnitByName('digger',1,true);
+			},mode:'diggers'},
+			{type:'function',func:function(me){
+					if (me.amount*5>G.getUnitAmount('woodcutter')) G.buyUnitByName('woodcutter',1,true);
+			},mode:'woodcutters'},
+			{type:'function',func:function(me){
+					if (me.amount*5>G.getUnitAmount('artisan')) G.buyUnitByName('artisan',1,true);
+			},mode:'artisans'},*/
+		],
+		req:{'sedentism':true},
+		category:'civil',
+	});
+	new G.Unit({
+		name:'guild quarters',
+		desc:'@NOTE : modes are disabled for now.@can be set to manage automatic recruitment for units such as [blacksmith workshop]s or [carpenter workshop]s<>[guild quarters,Guilds] -that is, associations of people sharing the same profession- meet in these to share their craft and trade secrets.//They can coordinate the building of new workshops should the need arise.',
+		icon:[26,3,25,2],
+		cost:{'basic building materials':75},
+		use:{'land':1},
+		staff:{'worker':1},
+		//require:{'worker':2,'stone tools':2},
+		upkeep:{'coin':0.5},
+		gizmos:true,
+		modes:{
+			'off':G.MODE_OFF,
+			'potters':{name:'Potters\' guild',desc:'Hire [potter]s until there are 5 for each of this guild.',req:{'pottery':true}},
+			'carpenters':{name:'Carpenters\' guild',desc:'Build [carpenter workshop]s until there are 5 for each of this guild.',req:{'carpentry':true}},
+			'blacksmiths':{name:'Blacksmiths\' guild',desc:'Build [blacksmith workshop]s until there are 5 for each of this guild.',req:{'smelting':true}},
+		},
+		effects:[
+			/*{type:'function',func:function(me){
+					if (me.amount*5>G.getUnitAmount('potter')) G.buyUnitByName('potter',1,true);
+			},mode:'potters'},
+			{type:'function',func:function(me){
+					if (me.amount*5>G.getUnitAmount('carpenter workshop')) G.buyUnitByName('carpenter workshop',1,true);
+			},mode:'carpenters'},
+			{type:'function',func:function(me){
+					if (me.amount*5>G.getUnitAmount('blacksmith workshop')) G.buyUnitByName('blacksmith workshop',1,true);
+			},mode:'blacksmiths'}*/
+		],
+		req:{'guilds':true},
+		category:'civil',
+	});
+	
+	new G.Unit({
+		name:'wanderer',
+		desc:'@explores occupied tiles for [land]@cannot discover new tiles@may sometimes get lost<>[wanderer]s walk about in search of new places to settle, reporting what they saw when they come back.',
+		icon:[2,2],
+		cost:{'food':20},
+		use:{'worker':1},
+		effects:[
+			{type:'explore',explored:0.1,unexplored:0},
+			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','wanderer got lost','wanderers got lost'),chance:1/100}
+		],
+		req:{'speech':true},
+		category:'exploration',
+	});
+	new G.Unit({
+		name:'scout',
+		desc:'@discovers new tiles for [land]@cannot explore occupied tiles@may sometimes get lost<>[scout]s explore the world in search of new territories.',
+		icon:[24,3],
+		cost:{'food':100},
+		use:{'worker':1},
+		staff:{'stone tools':1},
+		effects:[
+			{type:'explore',explored:0,unexplored:0.01},
+			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','scout got lost','scouts got lost'),chance:1/300}
+		],
+		req:{'scouting':true},
+		category:'exploration',
+	});
+	
+	//wonders
+	
+	new G.Unit({
+		name:'mausoleum',
+		desc:'@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness.',
+		wonder:'mausoleum',
+		icon:[1,14],
+		wideIcon:[0,14],
+		cost:{'basic building materials':1000},
+		costPerStep:{'basic building materials':200,'precious building materials':20},
+		steps:100,
+		messageOnStart:'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches.',
+		finalStepCost:{'population':100},
+		finalStepDesc:'To complete the Mausoleum, 100 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.',
+		use:{'land':10},
+		//require:{'worker':10,'stone tools':10},
+		req:{'monument-building':true},
+		category:'wonder',
+	});
+	
+	//debug units
+	new G.Unit({
+		name:'auto nanny',
+		desc:'@generates 50 [fruit], 50 [cooked meat,Meat], and 100 [water]<>Keeps your people fed so you don\'t have to.//Powered by strange energies.',
+		icon:[4,2],
+		cost:{},
+		effects:[
+			{type:'gather',what:{'fruit':50,'cooked meat':50,'water':100}}
+		],
+		category:'debug',
+	});
+	new G.Unit({
+		name:'auto brain',
+		desc:'@generates 50 of [insight], [culture], [faith], [science] and [influence]<>Educates your people so you don\'t have to.//Powered by strange energies.',
+		icon:[5,2],
+		cost:{},
+		effects:[
+			{type:'gather',what:{'insight':50,'culture':50,'faith':50,'science':50,'influence':50}}
+		],
+		category:'debug',
+	});
+	//MAGIX
+new G.Unit({
+		name:'Hovel of colours',
+		desc:'Does same thing as [artisan] on <b>Craft dyes set (1,2,3,4)</b> was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[19,18,'magixmod'],
+		cost:{'basic building materials':975},
+		upkeep:{'fire pit':0.2},
+		use:{'worker':20,'land':1,'Instructor':2,'stone tools':25},
+		req:{'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true},
+		category:'crafting',
+		effects:[
+			({type:'convert',from:{'Lavender':2},into:{'Purple dye':10},every:2}),
+		({type:'convert',from:{'Salvia':6},into:{'Magenta dye':2},every:3}),
+		({type:'convert',from:{'Bachelor\'s button':6},into:{'Blue dye':2},every:2}),
+		({type:'convert',from:{'Desert rose':6},into:{'Magenta dye':2},every:3}),
+		({type:'convert',from:{'Cosmos':4},into:{'Magenta dye':2},every:2}),
+		({type:'convert',from:{'Pink rose':6},into:{'Pink dye':2},every:3}),
+		({type:'convert',from:{'Pink tulip':4},into:{'Pink dye':2},every:2}),
+		({type:'convert',from:{'Coreopsis':4},into:{'Yellow dye':2},every:3}),
+		({type:'convert',from:{'Crown imperial':4},into:{'Orange dye':2},every:2}),
+		({type:'convert',from:{'Cyan rose':4},into:{'Cyan dye':2},every:3}),
+		({type:'convert',from:{'Himalayan blue poopy':4},into:{'Cyan dye':2},every:3}),
+		({type:'convert',from:{'Cockscomb':4},into:{'Red dye':2},every:2}),
+		({type:'convert',from:{'Red tulip':4},into:{'Red dye':2},every:3}),
+		({type:'convert',from:{'Green Zinnia':6},into:{'Green dye':2},every:3}),
+		({type:'convert',from:{'cactus':4},into:{'Green dye':2,'Cactus spikes':4},every:3}),
+		({type:'convert',from:{'Lime rose':4},into:{'Lime dye':2},every:3}),
+		({type:'convert',from:{'Lime tulip':4},into:{'Lime dye':2},every:3}),
+		({type:'convert',from:{'Azure bluet':8},into:{'Light gray dye':2},every:3}),
+		({type:'convert',from:{'Daisy':4},into:{'Light gray dye':2},every:3}),
+		({type:'convert',from:{'Sunflower':2},into:{'Yellow dye':2,'Sunflower seeds':6},every:4}),
+		({type:'convert',from:{'Dandelion':4},into:{'Yellow dye':2},every:3}),
+		({type:'convert',from:{'Black lily':6},into:{'Black dye':2},every:3}),
+		({type:'convert',from:{'Black Hollyhock':4},into:{'Black dye':2},every:3}),
+		({type:'convert',from:{'Cattail':4},into:{'Brown dye':2},every:3}),
+		({type:'convert',from:{'Flax':3},into:{'Light blue dye':1},every:3}),
+		({type:'convert',from:{'Blue orchid':2},into:{'Light blue dye':1},every:3}),
+		({type:'convert',from:{'White tulip':2},into:{'White dye':1},every:3}),
+		({type:'convert',from:{'Lily of the Valley':3},into:{'White dye':1},every:3}),
+		({type:'convert',from:{'Brown flower':2},into:{'Brown dye':1},every:3}),
+		({type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:3}),
+		({type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:3}),
+			//Production influence
+		{type:'mult',value:0.5,req:{'Hovel of colours production rates':0.5}},
+		{type:'mult',value:1.5,req:{'Hovel of colours production rates':1.5}},
+		{type:'mult',value:2,req:{'Hovel of colours production rates':2}},
+		{type:'mult',value:1.25,req:{'God\'s trait #5 Colored life':true}},
+		],
+	});
+		new G.Unit({
+		name:'Hut of potters',
+		desc:'Does same thing as [potter] was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[20,18,'magixmod'],
+		cost:{'basic building materials':475,'archaic building materials':500},
+		upkeep:{'fire pit':0.2},
+		use:{'worker':20,'land':1,'Instructor':2,'stone tools':25},
+		req:{'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'clay':200,'mud':145,'fire pit':1},into:{'pot':113},every:2},
+			{type:'convert',from:{'clay':200,'mud':145,'Dyes':18,'fire pit':1},into:{'Precious pot':101},every:9},
+			{type:'convert',from:{'clay':120,'mud':95},into:{'Potion pot':90},every:4},
+			{type:'mult',value:0.5,req:{'Hut of potters production rates':0.5}},
+			{type:'mult',value:1.5,req:{'Hut of potters production rates':1.5}},
+			{type:'mult',value:2,req:{'Hut of potters production rates':2}},
+			{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
+		],
+	});
+		new G.Unit({
+		name:'Factory of pots',
+		desc:'Does same thing as [potter] was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[14,18,'magixmod'],
+		cost:{'basic building materials':775,'Basic factory equipment':400},
+		upkeep:{'coal':2,'fire pit':0.1},
+		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
+		req:{'<font color="maroon">Moderation</font>':true,'Factories I':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'clay':400,'mud':275,'fire pit':1},into:{'pot':325},every:5},
+			{type:'convert',from:{'clay':400,'mud':275,'Dyes':45,'fire pit':1},into:{'Precious pot':305},every:10},
+			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
+			{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
+			{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
+			{type:'mult',value:2,req:{'Factory of pots production rates':2}},
+			{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
+		],
+	});
+		new G.Unit({
+		name:'Leather factory',
+		desc:'Does same thing as [clothier] on craft leather mode and [Drying rack] were. All 3 (2 modes of [clothier] and 1 unit) work all the time. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[15,18,'magixmod'],
+		cost:{'basic building materials':775,'Basic factory equipment':400},
+		upkeep:{'coal':2,'fire pit':0.1},
+		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
+		req:{'<font color="maroon">Moderation</font>':true,'Factories I':true},
+		category:'crafting',
+		effects:[	
+			{type:'convert',from:{'leather':20},into:{'Dried leather':20},every:7},
+			{type:'convert',from:{'hide':200,'water':1000,'salt':150,'log':15},into:{'leather':235},every:15},
+			{type:'convert',from:{'hide':200,'muddy water':1000,'herb':145},into:{'leather':235},every:20},
+			{type:'mult',value:0.5,req:{'Leather factory production rates':0.5}},
+			{type:'mult',value:1.5,req:{'Leather factory production rates':1.5}},
+			{type:'mult',value:2,req:{'Leather factory production rates':2}},
+		],
+	});
 		new G.Unit({
 		name:';Cloudy water filter',
 		displayName:'Cloudy water filter',
@@ -42,7 +1138,7 @@
 		cost:{'basic building materials':275},
 		upkeep:{'coal':1,'Mana':1.5},
 		use:{'worker':1,'Land of the Paradise':1,'Industry point':1},
-		req:{'<font color="maroon">Moderation</font>':true,'Water filtering':true},
+		req:{'<font color="maroon">Moderation</font>':true,'Cloudy water filtering':true},
 		category:'paradiseunit',
 		effects:[
 			{type:'convert',from:{'Cloudy water':37},into:{'water':28,'cloud':2},every:1},
@@ -57,7 +1153,7 @@
 		cost:{'basic building materials':75},
 		upkeep:{'sand':1,'Mana':1},
 		use:{'worker':1,'Land of the Paradise':0.75,'Industry point':0.5},
-		req:{'<font color="maroon">Caretaking</font>':true,'Water filtering':true},
+		req:{'<font color="maroon">Caretaking</font>':true,'Cloudy water filtering':true},
 		category:'paradiseunit',
 		effects:[
 			{type:'convert',from:{'Cloudy water':15},into:{'water':14,'cloud':1},every:1},
@@ -603,6 +1699,7 @@
 		use:{'Land of the Paradise':1},
 		effects:[
 			{type:'gather',what:{'Cloudy water':28}},
+			{type:'mult',value:0.9,req:{'dt7':true}},
 		],
 		category:'paradiseunit',
 		req:{'well-digging':true,'<span style="color: ##FF0900">Paradise building</span>':true},
@@ -709,7 +1806,8 @@
 			{type:'gather',what:{'Painting':0.008}},
 			{type:'gather',what:{'culture':0.03},req:{'symbolism':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
-			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}}
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
 		],
 		req:{'oral tradition':true,'artistic thinking':true},
 		category:'cultural',
@@ -913,6 +2011,7 @@
 			{type:'mult',value:1.31,req:{'artistic thinking':true}},
 			{type:'mult',value:1.21,req:{'wisdom rituals':'on'}},
 			{type:'convert',from:{'Paper':21},into:{'Poet\'s notes':1},every:11,req:{'Bookwriting':true}},
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
 		],
 		req:{'oral tradition':true,'Poetry':true},
 		category:'cultural',
@@ -954,6 +2053,7 @@
 		//require:{'wizard':3},
 		effects:[
 			{type:'provide',what:{'housing':15}},
+			{type:'provide',what:{'housing':0.2},req:{'Better house construction':true}},
 			{type:'provide',what:{'food storage':65}},
 			{type:'waste',chance:0.0004/1000},
 		],
@@ -1017,6 +2117,8 @@
 			{type:'gather',context:'mine',what:{'Sulfur':24},max:31,mode:'tin',req:{'Explosive crafting & mining':true}},
 			{type:'gather',context:'mine',what:{'Sulfur':24},max:31,mode:'copper',req:{'Explosive crafting & mining':true}},
 			{type:'gather',context:'mine',what:{'Sulfur':17},max:26,mode:'salt',req:{'Explosive crafting & mining':true}},
+			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
+			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			//Collapsing chance
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine of Plain Island has collapsed, wounding its miners','mines of Plain Island collapsed, wounding their miners.'),chance:1/50}
 		],
@@ -1069,6 +2171,7 @@
 		use:{'Land of the Plain Island':1},
 		effects:[
 			{type:'gather',what:{'water':20}},
+			{type:'mult',value:0.85,req:{'dt8':true}},
 		],
 		category:'plainisleunit',
 		req:{'well-digging':true,'First portal to new world':true,'<span style="color: ##FF0900">Plain island building</span>':true},
@@ -1168,6 +2271,7 @@
 			{type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},every:3,repeat:1,mode:'metal weapon'},
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:3,repeat:1,mode:'hard metal armor'},
 			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':2},every:3,repeat:1,mode:'metal armor'},
+			{type:'mult',value:0.95,req:{'dt1':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -1344,6 +2448,7 @@
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'housing':6}},
+			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
 			{type:'waste',chance:0.13/1000}
 		],
 		req:{'building':true},
@@ -1479,8 +2584,21 @@
 			{type:'provide',what:{'Paradise emblem':1}},
     		],
     		use:{'land':10},
-		messageOnStart:'You built a portal to Plain Island. It is big isle. On this island you may build houses , mines and other but not these one you built in your mortal world. You will unlock new category of buildings, a little bit better but limited housing. You may gain new minerals, who know maybe new food or anything else you did not see anytime earlier.',
     		req:{'Second portal to new world':true,'Belief in portals':true},
+    		limitPer:{'land':100000000000000},//It is something like max 1
+    		category:'dimensions',
+	});
+		new G.Unit({
+    		name:'<span style="color: #FF0000">Underworld</span>',
+    		desc:'Now you may enter right into the Underworld. A new creepy, unstable, dangerous world will become open for you',
+    		wideIcon:[7,5,'magixmod'],
+    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':95000,'Water essence':47500,'Dark essence':157500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':10750},
+    		effects:[
+			{type:'provide',what:{'Underworld emblem':1}},
+			{type:'provide',what:{'Land of the Underworld':150}}
+    		],
+    		use:{'land':1},
+    		req:{'A feeling from the Underworld':true,'Third passage to new world':true},
     		limitPer:{'land':100000000000000},//It is something like max 1
     		category:'dimensions',
 	});
@@ -1570,6 +2688,23 @@
 		req:{'monument-building':true,'Political roots':true},
 		category:'political',
 	});
+  		new G.Unit({
+		name:'New world',
+		desc:'Step by step digging will lead people to new world. You need to know that this won\'t be as safe as you thought it is. After finishing this step of activation you need to ascend by it.',
+		wonder:'"In the underworld"',
+		icon:[8,5,'magixmod'],
+		wideIcon:[6,19,'magixmod',7,5,'magixmod'],
+		cost:{'basic building materials':1500},
+		costPerStep:{'Dark essence':150,'basic building materials':150,'gem block':1,'population':3,'Mana':3000,'New world point':-1},
+		steps:1111,
+		messageOnStart:'Your people started digging down right into core of the mortal world. The deeper they mine the warmer it is there. What can be inside the new world?',
+		finalStepCost:{'population':2500,'gem block':500,'gold block':50,'New world point':-389},
+		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
+		use:{'land':1,'worker':35,'metal tools':35,'armor set':35},
+		category:'dimensions',
+		req:{'A feeling from the Underworld':false,'Third passage to new world':true}
+	});
+	
 
 	//SEASONAL CONTENT//CONTENT WHICH WILL BE AVAILABLE FOR PLAYERS AT SOME TIME LIKE XMAS OR VALENTINE'S DAY
 	
