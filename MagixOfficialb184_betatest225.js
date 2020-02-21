@@ -8107,6 +8107,15 @@ autobuy(G.year)
 		],
 		req:{'Laws of physics(basic)':true,'Will to know more':true,'Underworld building 2/2':true},
 	});
+		new G.Tech({
+		name:'Even mo\' floorz',
+		desc:'[Blockhouse]s will have 7th & <b>8th</b> floor which allow to fit 20 more [population,People] per [Blockhouse] bringing its people capacity to 80.',
+		icon:[16,19,'magixmod'],
+		cost:{'insight II':30,'science':5,'culture II':5},
+		req:{'Laws of physics(intermediate)':true,'Mo\' floorz':true},
+		effects:[
+		],
+	});
 	
 		
 	
@@ -8691,7 +8700,6 @@ autobuy(G.year)
 			{type:'show res',what:['faith II']},
 			{type:'show res',what:['influence II']},
 			{type:'provide res',what:{'wisdom II':500}},
-			{type:'provide res',what:{'education':4}},
 			{type:'provide res',what:{'inspiration II':30}},
 			{type:'provide res',what:{'spirituality II':5}},
 			{type:'provide res',what:{'authority II':5}},
