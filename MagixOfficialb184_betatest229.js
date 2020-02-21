@@ -6505,11 +6505,11 @@ new G.Unit({
 			new G.Unit({
 		name:'Essential tank',
 		desc:'@The tank that can convert each 500 [insight] , [culture] , [faith] , [influence] into their second tiers. <>You can specify which essential the Tank will convert by using modes for this unit.',
-		icon:[27,19,'magixmod'],
+		icon:[26,19,'magixmod'],
 		cost:{'glass':500,'basic building materials':150},
 		req:{'Eotm':true},
 		use:{'worker':2,'land':1},
-		upkeep:{'mana':50},
+		upkeep:{'Mana':50},
 		limitPer:{'population':1e5},
 		category:'discovery',
 		gizmos:true,
