@@ -6034,6 +6034,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':50}},
 			{type:'provide',what:{'housing':10},req:{'Mo\' floorz':true}},
+			{type:'provide',what:{'housing':20},req:{'Even mo\' floorz':true}},
 			{type:'waste',chance:0.00001/1000},
 		],
 		req:{'construction II':true,'Concrete making':true},
@@ -6461,7 +6462,8 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Berries':15.3}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
-			{type:'mult',value:8,req:{'God\'s trait #2 Berry rush':true}}
+			{type:'mult',value:8,req:{'God\'s trait #2 Berry rush':true}},
+			{type:'mult',value:2,req:{'Berry masterry':true}}
 		],
 	});
 		new G.Unit({
