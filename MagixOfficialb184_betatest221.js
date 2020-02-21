@@ -8861,6 +8861,11 @@ autobuy(G.year)
 		cost:{'faith':1},
 		startMode:'off',
 		req:{'ritualism':true},
+		effects:[
+			{type:'function',func:function(){if (G.has('Eotm'))
+							me.mode='off'
+							me.icon=[8,12,23,19,'magixmod'}},
+		],
 		category:'faith',
 	});
 	
