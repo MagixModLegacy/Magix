@@ -8097,6 +8097,16 @@ autobuy(G.year)
 		cost:{'insight':100,'New world point':6,'Underworld emblem':1},
 		req:{'Third passage to new world':true,'A feeling from the Underworld':true,'Underworld building 1/2':true}
 	});
+		new G.Tech({
+		name:'Laws of physics(intermediate)',
+		desc:'Provides 5 [education] @People will understand thanks to this technology more reality they are supposed to live. The knowledge about [Laws of physics(basic),laws of physics] will go into more advanced stage.',
+		icon:[13,10,'magixmod'],
+		cost:{'insight':1500,'science':5,'culture':100},
+		effects:[
+			{type:'provide res',what:{'education':5}},
+		],
+		req:{'Laws of physics(basic)':true,'Will to know more':true,'Underworld building 2/2':true},
+	});
 	
 		
 	
