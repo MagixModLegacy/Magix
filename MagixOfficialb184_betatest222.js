@@ -10024,7 +10024,7 @@ function checkMagic() {
 
   G.Message({
     type: 'bad',
-    text: 'Building the Mausoleum in the past grants access to magic in the future. So the Mausoleum is your current goal.',
+    text: 'Building the Mausoleum in the past grants access to magic in the future.',
     icon: [3, 12, 6, 1, 'magixmod']
   });
 
