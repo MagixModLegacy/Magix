@@ -8120,7 +8120,7 @@ autobuy(G.year)
 		name:'Berry masterry',
 		desc:'Doubles efficiency of [Berry farm] . Compounds with previous multipliers.',
 		icon:[27,19,'magixmod'],
-		cost:{'insight II':34,'faith II':1},
+		cost:{'insight II':24,'faith II':1},
 		req:{'Eotm':true},
 		effects:[
 		],
