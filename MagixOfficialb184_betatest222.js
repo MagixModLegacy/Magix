@@ -8218,7 +8218,7 @@ autobuy(G.year)
 		desc:'<span style="color: #aaffff">After few years since you started crafting [Juices] you noticed your people make most <b>tasty juice<b> ever you drank. Since gaining this trait you\'ll get these bonuses: @Happiness caused by drinking juices boosted by 25%. @Health given by drinking juices boosted by 25%. @Due to these bonuses [Juices] will now need little bit more ingredients to craft. @[artisan of juice] has a small chance to craft 1 additional [Juices,juice]. </span>',
 		icon:[16,5,'magixmod'],
 		cost:{'Juices':6.5e3,'wisdom':25,'insight':30},
-		chance:6,//experimental
+		chance:6,
 		category:'knowledge',
 		req:{'Crafting a juice':true},
 	});
@@ -8227,7 +8227,7 @@ autobuy(G.year)
 		desc:'Your dreamers were thinking once how to make eating more healthy. Then they share its thoughts. Surprisingly they were right. People got healthier, feel better. @This trait makes [healer] generate health. People won\'t eat even more food so do not worry.',
 		icon:[16,7,'magixmod'],
 		cost:{'culture':150,'wisdom':25,'insight':100,'influence':10},
-		chance:120,//experimental
+		chance:120,
 		req:{'joy of eating':true,'Crafting a juice':true},
 	});
 		new G.Trait({
@@ -8255,10 +8255,6 @@ autobuy(G.year)
 		cost:{'insight':50,'culture':200,'inspiration':20,'authority':20,'spirituality':30,'faith':40},
 		chance:500,
 		req:{'belief in the afterlife':true},
-		tick:function(me,tick)
-		{
-			if (G.has('culture of the afterlife')) deathUnhappinessMult/=2;
-		},
 	});
 		new G.Trait({
 		name:'The God\'s call',
