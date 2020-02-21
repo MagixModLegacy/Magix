@@ -4016,7 +4016,8 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',what:{'insight':0.05},req:{'symbolism':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
 			{type:'mult',value:1.05,req:{'Knowledgeable':true}},
-			{type:'mult',value:2/3,req:{'dt18':true}}
+			{type:'mult',value:2/3,req:{'dt18':true}},
+			{type:'mult',value:0.1,req:{'Eotm':true}}
 		],
 		req:{'speech':true},
 		category:'discovery',
@@ -4035,7 +4036,8 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
-			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
+			{type:'mult',value:0.1,req:{'Eotm':true}}
 		],
 		req:{'oral tradition':true},
 		category:'cultural',
@@ -4569,7 +4571,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'gather',what:{'influence':0.1}},
 			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
-			{type:'mult',value:1.05,req:{'Politic power rising up':true}}
+			{type:'mult',value:1.05,req:{'Politic power rising up':true}},
+			{type:'mult',value:0.1,req:{'Eotm':true}}
 		],
 		limitPer:{'population':100},
 		req:{'chieftains':true},
@@ -4586,7 +4589,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'gather',what:{'influence':0.2}},
 			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
-			{type:'mult',value:1.05,req:{'Politic power rising up':true}}
+			{type:'mult',value:1.05,req:{'Politic power rising up':true}},
+			{type:'mult',value:0.1,req:{'Eotm':true}}
 		],
 		limitPer:{'population':500},
 		req:{'clans':true},
