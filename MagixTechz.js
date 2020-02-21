@@ -706,6 +706,112 @@ autobuy(G.year)
 		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
 		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
+		new G.Tech({
+		name:'Improved furnace construction',
+		desc:'People figured a way to make a [furnace] produce more at the same costs of run and upkeep. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [furnace]s will work 20% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [furnace]s will work 10% more efficient.',
+		icon:[1,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+		new G.Tech({
+		name:'Focused gathering',
+		desc:'[gatherer]s were always thinking that they can gather more. This tech is another chance for them. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [gatherer]s will gather 7.5% more. <>If they have chosen [<font color="maroon">Caretaking</font>] then [gatherer]s will work 12.5% more.',
+		icon:[2,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+		new G.Tech({
+		name:'Bigger fires',
+		desc:'[firekeeper]s figured out how to make bigger fires. They will need to use more [stick]s but most important thing is that there will be profit <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [firekeeper]s will work 5% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [firekeeper]s will work 8% more efficient.',
+		icon:[3,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+		new G.Tech({
+		name:'Motivation for artisans',
+		desc:'[artisan]\'s succesful work made him work harder and motivated. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [artisan]s will work 8% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [artisan]s will work 4% more efficient. <>Doesn\'t include [artisan of juice] and [Pyro-Artisan] !',
+		icon:[4,18,'magixmod'], 
+		cost:{'insight':1000},
+		req:{'culture of the afterlife':true}
+	});
+	//Back to normal :)
+		new G.Tech({
+		name:'Advanced casting',
+		desc:'[blacksmith workshop,Blacksmiths] will get taught to be more exact and better due to changing times. Now they may craft basic industry gear and other things which they wouldn\'t craft without this knowledge.',
+		icon:[5,18,'magixmod'], 
+		cost:{'insight':850},
+		req:{'smelting':true,'masonry':true,'monument-building II':true},
+	});
+		new G.Tech({
+		name:'Automation',
+		desc:'Moderation is a path where people are going for automation to produce more and do less. So people are figuring out the ways to automate production. This tech will be a light for moderated people.',
+		icon:[6,18,'magixmod'], 
+		cost:{'insight':1000,'wisdom':15,'inspiration':5,'culture':80,'influence':205},
+		req:{'Second portal to new world':true,'<font color="maroon">Moderation</font>':true}
+	});
+		new G.Tech({
+		name:'Manufacturing',
+		desc:'Caretaking is a path where people are going for live long and they do not care about production and automation. They rather manual working at all. This tech is a beginning of manufacture.',
+		icon:[7,18,'magixmod'], 
+		cost:{'insight':1000,'wisdom':15,'inspiration':10,'culture':75,'influence':205},
+		req:{'Second portal to new world':true,'<font color="maroon">Caretaking</font>':true}
+	});
+		new G.Tech({
+		name:'Moderated workstation planning',
+		desc:'People lead by [<font color="maroon">Moderation</font>] want exact plans of building. It leads to construct more advanced constructions that can work better than single [potter] for instance.',
+		icon:[11,18,'magixmod'], 
+		cost:{'insight':995,'wisdom':5},
+		req:{'Paradise crafting':true,'<font color="maroon">Moderation</font>':true,'Measuring system':true}
+	});
+		new G.Tech({
+		name:'workstation planning',
+		desc:'People lead by [<font color="maroon">Caretaking</font>] do not need exact plans of building. They are interested in how many people it needs and where components will be arranged without super exact descriptions.',
+		icon:[12,18,'magixmod'], 
+		cost:{'insight':995,'wisdom':5},
+		req:{'Paradise crafting':true,'<font color="maroon">Caretaking</font>':true,'Measuring system':true}
+	});
+		new G.Tech({
+		name:'Manufacture units I',
+		desc:'Unlocks [Hut of potters] and [Hovel of colours]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [artisan]s on <b>Craft dyes set (1,2,3,4)</b> mode will become USELESS! They won\'t produce.</font> ',
+		icon:[17,18,'magixmod'], 
+		cost:{'insight':750,'wisdom':5,'stone':1365},//Stones are there to make tech at same level as Factories I
+		req:{'workstation planning':true,'Manufacturing':true}
+	});
+		new G.Tech({
+		name:'Factories I',
+		desc:'Unlocks [Factory of pots] and [Leather factory]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [clothier]s on <b>Craft leather</b> and <b>Craft leather (cheap)</b> mode and [Drying rack]s will become USELESS! They won\'t produce.</font> ',
+		icon:[18,18,'magixmod'], 
+		cost:{'insight':750,'wisdom':5},
+		req:{'Moderated workstation planning':true,'<font color="maroon">Moderation</font>':true}
+	});
+		new G.Tech({
+		name:'Production rates influence',
+		desc:'Allows to control production expenditures for [Manufacture units I,Manufacture units] (if unlocked) or [Factories I,Factories] (if unlocked)',
+		icon:[16,18,'magixmod'], 
+		cost:{'insight':795,'wisdom':5,'influence':175,'authority':10},
+		req:{'Second portal to new world':true,'Better influence & authority':true}
+	});
+		new G.Tech({
+		name:'Third passage to new world',
+		desc:'May unlocking mysterious [New world] begin',
+		icon:[12,19,'magixmod'], 
+		cost:{'insight':795,'wisdom':5,'influence':175,'authority':10,'spirituality':25},
+		req:{'An opposite side of belief':true}
+	});
+		new G.Tech({
+		name:'Underworld building 1/2',
+		desc:'Allows to build some stuff in Underworld. Starts attracting 6 random <font color="red"><b>Devil\'s traits</b></font>',
+		icon:[14,19,'magixmod'], 
+		cost:{'insight':100,'New world point':400},
+		req:{'Third passage to new world':true,'A feeling from the Underworld':true}
+	});
+		new G.Tech({
+		name:'Underworld building 2/2',
+		desc:'Allows to build some stuff in Underworld.',
+		icon:[14,19,'magixmod'], 
+		cost:{'insight':100,'New world point':6,'Underworld emblem':1},
+		req:{'Third passage to new world':true,'A feeling from the Underworld':true,'Underworld building 1/2':true}
+	});
 //SEASONAL
 		new G.Tech({
 		name:'Firework launching',
