@@ -6503,8 +6503,8 @@ new G.Unit({
 		],
 	});
 			new G.Unit({
-		name:'Essential tank',
-		desc:'@The tank that can convert each 500 [insight] , [culture] , [faith] , [influence] into their second tiers. <>You can specify which essential the Tank will convert by using modes for this unit.',
+		name:'Essential conversion tank',
+		desc:'@A tank that converts 500 [insight],[culture],[faith] and [influence] into their respective second tiers.. <>You can specify which essential the Tank will convert by using modes for this unit.',
 		icon:[26,19,'magixmod'],
 		cost:{'glass':500,'basic building materials':150},
 		req:{'Eotm':true},
