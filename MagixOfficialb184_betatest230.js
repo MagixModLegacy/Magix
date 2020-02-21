@@ -6515,9 +6515,9 @@ new G.Unit({
 		gizmos:true,
 		modes:{
 			'insight':{name:'Insight to Insight II',icon:[18,19,'magixmod'],desc:'This tank will convert each 500 [insight] into 1 [insight II] '},
-			'culture':{name:'Culture to Culture II',icon:[20,19,'magixmod'],desc:'This tank will convert each 500 [culture] into 1 [culture II] '},
+			'culture':{name:'Culture to Culture II',icon:[19,19,'magixmod'],desc:'This tank will convert each 500 [culture] into 1 [culture II] '},
 			'faith':{name:'Faith to Faith II',icon:[17,19,'magixmod'],desc:'This tank will convert each 500 [faith] into 1 [faith II] '},
-			'influence':{name:'Influence to Influence II',icon:[21,19,'magixmod'],desc:'This tank will convert each 500 [influence] into 1 [influence II] '},
+			'influence':{name:'Influence to Influence II',icon:[20,19,'magixmod'],desc:'This tank will convert each 500 [influence] into 1 [influence II] '},
 		},
 		effects:[
 			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight'},
