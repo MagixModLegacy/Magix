@@ -8099,7 +8099,7 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Laws of physics(intermediate)',
-		desc:'Provides 5 [education] @People will understand thanks to this technology more reality they are supposed to live. The knowledge about [Laws of physics(basic),laws of physics] will go into more advanced stage.',
+		desc:'Provides 5 [education] @People\'s understanding of physics and anomalies in reality increases. Advances the [laws of physis,(basic),laws of physics] research.',
 		icon:[21,19,'magixmod'],
 		cost:{'insight':1008,'science':5,'culture':100},
 		effects:[
@@ -8109,10 +8109,19 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Even mo\' floorz',
-		desc:'[Blockhouse]s will have 7th & <b>8th</b> floor which allow to fit 20 more [population,People] per [Blockhouse] bringing its people capacity to 80.',
+		desc:'[Blockhouse]s will have a 7th and <b>8th</b> floor which will allow 20 more people per blockhouse, increasing it\'s total capacity to 80.',
 		icon:[16,19,'magixmod'],
 		cost:{'insight II':30,'science':5,'culture II':5},
 		req:{'Laws of physics(intermediate)':true,'Mo\' floorz':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Berry masterry',
+		desc:'Doubles efficiency of [Berry farm] . Compounds with previous multipliers.',
+		icon:[27,19,'magixmod'],
+		cost:{'insight II':34,'faith II':1},
+		req:{'Eotm':true},
 		effects:[
 		],
 	});
