@@ -6502,6 +6502,30 @@ new G.Unit({
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
 		],
 	});
+			new G.Unit({
+		name:'Essential tank',
+		desc:'@The tank that can convert each 500 [insight] , [culture] , [faith] , [influence] into their second tiers. <>You can specify which essential the Tank will convert by using modes for this unit.',
+		icon:[27,19,'magixmod'],
+		cost:{'glass':500,'basic building materials':150},
+		req:{'Eotm':true},
+		use:{'worker':2,'land':1},
+		upkeep:{'mana':50},
+		limitPer:{'population':1e5},
+		category:'discovery',
+		gizmos:true,
+		modes:{
+			'insight':{name:'Insight to Insight II',icon:[18,19,'magixmod'],desc:'This tank will convert each 500 [insight] into 1 [insight II] '},
+			'culture':{name:'Culture to Culture II',icon:[20,19,'magixmod'],desc:'This tank will convert each 500 [culture] into 1 [culture II] '},
+			'faith':{name:'Faith to Faith II',icon:[17,19,'magixmod'],desc:'This tank will convert each 500 [faith] into 1 [faith II] '},
+			'influence':{name:'Influence to Influence II',icon:[21,19,'magixmod'],desc:'This tank will convert each 500 [influence] into 1 [influence II] '},
+		},
+		effects:[
+			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight'},
+			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture'},
+			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith'},
+			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence'},
+		],
+	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
 		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
