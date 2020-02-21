@@ -10014,7 +10014,7 @@ function checkMagic() {
       G.gainTech(gift)
       G.Message({
         type: 'good',
-        text: '<font family="Comic Sans MS">Since you have built the Mausoleum it the past, you have access to magic!</font> :)',
+        text: 'Building the Mausoleum in the past has granted you access to magic! :)',
         icon: [4, 12, 6, 1, 'magixmod']
       });
     }
@@ -10024,7 +10024,7 @@ function checkMagic() {
 
   G.Message({
     type: 'bad',
-    text: '<font family="Comic Sans MS">Since you haven\'t built the Mausoleum it the past yet, so you don\'t have access to magic yet</font> :(',
+    text: 'Building the Mausoleum in the past grants access to magic in the future. So the Mausoleum is your current goal.',
     icon: [3, 12, 6, 1, 'magixmod']
   });
 
