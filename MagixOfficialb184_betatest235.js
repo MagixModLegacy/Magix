@@ -6730,20 +6730,14 @@ new G.Unit({
 		name:'research box',
 		context:'tech',
 		choicesN:4,
-		getCosts:function()
-		{
-			if (G.hasNot('Eotm')){
-			var cost=Math.floor(G.getRes('wisdom').amount*(0.025+0.05*this.roll));
-			return {'insight':cost};
-			}
-			if (G.has('Eotm')){
-			var name ='cost'
-			var name ='tech'
-			var cost=Math.floor(G.getRes('wisdom II').amount*(0.025+0.05*this.roll);
-			var tech=Math.floor(G.getRes('education').amount*(0.025+0.05*this.roll);
-			return {'insight II':cost,'science':tech}
-			}
-		},
+ 		 getCosts:function()
+        {
+            let calcCost = (name) => Math.floor(G.getRes(name).amount * (0.025 + this.roll * 0.05))
+            if (G.hasNot('Eotm')){
+              return { 'insight' : calcCost('insight') }
+            }
+            return { 'insight II' : calcCost('insight II'), 'science': calcCost('science') }
+        },
 		getCardCosts:function(what)
 		{
 			return what.cost;
