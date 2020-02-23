@@ -6730,13 +6730,13 @@ new G.Unit({
 		name:'research box',
 		context:'tech',
 		choicesN:4,
- 		 getCosts:function()
+getCosts:function()
         {
-            let calcCost = (name) => Math.floor(G.getRes(name).amount * (0.025 + this.roll * 0.05))
+            let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
             if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
             }
-            return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education') }
+            return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
         },
 		getCardCosts:function(what)
 		{
