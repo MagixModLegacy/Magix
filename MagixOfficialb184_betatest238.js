@@ -8735,7 +8735,7 @@ autobuy(G.year)
 			{type:'show res',what:['culture II']},
 			{type:'show res',what:['faith II']},
 			{type:'show res',what:['influence II']},
-			{type:'provide res',what:{'wisdom II':500}},
+			{type:'provide res',what:{'wisdom II':50}},
 			{type:'provide res',what:{'inspiration II':30}},
 			{type:'provide res',what:{'spirituality II':5}},
 			{type:'provide res',what:{'authority II':5}},
