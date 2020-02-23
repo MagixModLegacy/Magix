@@ -6734,9 +6734,9 @@ new G.Unit({
         {
             let calcCost = (name) => Math.floor(G.getRes(name).amount * (0.025 + this.roll * 0.05))
             if (G.hasNot('Eotm')){
-              return { 'insight' : calcCost('insight') }
+              return { 'insight' : calcCost('wisdom') }
             }
-            return { 'insight II' : calcCost('insight II'), 'science': calcCost('science') }
+            return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education') }
         },
 		getCardCosts:function(what)
 		{
