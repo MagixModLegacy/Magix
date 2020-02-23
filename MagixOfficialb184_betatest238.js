@@ -7900,7 +7900,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'Better papercrafting recipe',
-		desc:'Multiplies amount of [Paper] crafted in shacks by 40%. If you go into moderating culture you obtain additional 8%, while in joy path just 4%.',
+		desc:'Multiplies amount of [Paper] crafted in shacks by 40%. If you go into moderating culture you obtain additional 8%, while in caretaking path just 4%.',
 		icon:[8,12,14,12,'magixmod',21,15,'magixmod'], 
 		cost:{'insight':846,'wisdom':9},
 		req:{'papercrafting':true,'Poetry':true},
