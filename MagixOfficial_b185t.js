@@ -8119,14 +8119,14 @@ autobuy(G.year)
 		name:'Third passage to new world',
 		desc:'May unlocking mysterious [New world] begin',
 		icon:[12,19,'magixmod'], 
-		cost:{'insight':795,'wisdom':5,'influence':175,'authority':10,'spirituality':25},
+		cost:{'insight':785,'wisdom':5,'influence':175,'authority':10,'spirituality':25},
 		req:{'An opposite side of belief':true}
 	});
 		new G.Tech({
 		name:'Underworld building 1/2',
 		desc:'Allows to build some stuff in Underworld. Starts attracting 6 random <font color="red"><b>Devil\'s traits</b></font>',
 		icon:[14,19,'magixmod'], 
-		cost:{'insight':100,'New world point':400},
+		cost:{'insight':90,'New world point':400},
 		req:{'Third passage to new world':true,'A feeling from the Underworld':true}
 	});
 		new G.Tech({
