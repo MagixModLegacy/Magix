@@ -601,12 +601,12 @@ G.writeMSettingButton=function(obj)
 					G.gain('health',fulfilled*objects[i][1],'clothing');
 					leftout-=fulfilled;
 				}
-				if (G.has('dt10')){
-				G.gain('happiness',-leftout*0.3,'no clothing'),
-				G.gain('health',-leftout*0.3,'no clothing');
-				}else{
+				if (G.hasNot('dt10')){
 				G.gain('happiness',-leftout*0.15,'no clothing'),
 				G.gain('health',-leftout*0.15,'no clothing');
+				}else{
+				G.gain('happiness',-leftout*0.3,'no clothing'),
+				G.gain('health',-leftout*0.3,'no clothing');
 				}
 				
 				//fire
@@ -621,12 +621,12 @@ G.writeMSettingButton=function(obj)
 					G.gain('health',fulfilled*objects[i][2],'warmth & light');
 					leftout-=fulfilled;
 				}
-				if (G.has('dt11')){
-				G.gain('happiness',-leftout*0.2,'cold & darkness'),
-				G.gain('health',-leftout*0.2,'cold & darkness');
-				}else{
+				if (G.hasNot('dt11')){
 				G.gain('happiness',-leftout*0.1,'cold & darkness'),
 				G.gain('health',-leftout*0.1,'cold & darkness');
+				}else{
+				G.gain('happiness',-leftout*0.2,'cold & darkness'),
+				G.gain('health',-leftout*0.2,'cold & darkness');
 				}
 				
 				//homelessness
