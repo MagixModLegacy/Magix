@@ -1139,24 +1139,24 @@ G.writeMSettingButton=function(obj)
 			}
 			if (G.checkPolicy('Factory of pots production rates')=='2')
 			{
-				var toSpoil=me.amount*0.01;
+				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
 			}
 			if (G.checkPolicy('Hovel of colours production rates')=='2')
 			{
-				var toSpoil=me.amount*0.01;
+				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
 			}
 			if (G.checkPolicy('Hut of potters production rates')=='2')
 			{
-				var toSpoil=me.amount*0.01;
+				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
 			}
 			if (G.checkPolicy('Leather factory production rates')=='2')
 			{
-				var toSpoil=me.amount*0.01;
+				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
-			},
+			}
 		category:'food',
 	});
 	new G.Res({
