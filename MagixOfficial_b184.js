@@ -923,31 +923,7 @@ G.writeMSettingButton=function(obj)
 		icon:[3,4],
 		fractional:true,
 		tick:function(me,tick)
-			{
-			if (G.getRes('population').amount>0 && tick%2==0)
-			{
-				me.amount*=0.99;
-			}
-			if (G.checkPolicy('Factory of pots production rates')=='2')
-			{
-				var toSpoil=me.amount*0.01;
-				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
-			}
-			if (G.checkPolicy('Hovel of colours production rates')=='2')
-			{
-				var toSpoil=me.amount*0.01;
-				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
-			}
-			if (G.checkPolicy('Hut of potters production rates')=='2')
-			{
-				var toSpoil=me.amount*0.01;
-				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
-			}
-			if (G.checkPolicy('Leather factory production rates')=='2')
-			{
-				var toSpoil=me.amount*0.01;
-				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
-			}
+		{
 			if (G.getRes('population').amount>0 && tick%2==0)
 			{
 				me.amount*=0.99;
@@ -1170,6 +1146,26 @@ G.writeMSettingButton=function(obj)
 		startWith:250,
 		turnToByContext:{'eating':{'health':0.005,'happiness':-0.03},'decay':{'herb':0.2,'spoiled food':0.8}},
 		partOf:'food',
+			if (G.checkPolicy('Factory of pots production rates')=='2')
+			{
+				var toSpoil=G.getRes('happiness').amount*0.01;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+			}
+			if (G.checkPolicy('Hovel of colours production rates')=='2')
+			{
+				var toSpoil=G.getRes('happiness').amount*0.01;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+			}
+			if (G.checkPolicy('Hut of potters production rates')=='2')
+			{
+				var toSpoil=G.getRes('happiness').amount*0.01;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+			}
+			if (G.checkPolicy('Leather factory production rates')=='2')
+			{
+				var toSpoil=G.getRes('happiness').amount*0.01;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+			}
 		category:'food',
 	});
 	new G.Res({
