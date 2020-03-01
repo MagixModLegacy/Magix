@@ -1137,6 +1137,7 @@ G.writeMSettingButton=function(obj)
 			{
 				me.amount*=0.99;
 			}
+			//WOrking after hours
 			if (G.checkPolicy('Factory of pots production rates')=='2')
 			{
 				var toSpoil=G.getRes('happiness').amount*0.01;
