@@ -1146,6 +1146,7 @@ G.writeMSettingButton=function(obj)
 		startWith:250,
 		turnToByContext:{'eating':{'health':0.005,'happiness':-0.03},'decay':{'herb':0.2,'spoiled food':0.8}},
 		partOf:'food',
+		tick:function(me,tick){
 			if (G.checkPolicy('Factory of pots production rates')=='2')
 			{
 				var toSpoil=G.getRes('happiness').amount*0.01;
@@ -1166,6 +1167,7 @@ G.writeMSettingButton=function(obj)
 				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
 			}
+		},
 		category:'food',
 	});
 	new G.Res({
