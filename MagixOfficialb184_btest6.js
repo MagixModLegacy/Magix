@@ -4205,7 +4205,7 @@ G.writeMSettingButton=function(obj)
 			{type:'function',func:function(me){
 				if G.has('Eotm')
 					me.icon = [27,11,'magixmod']
-			}}
+			}};
 		],
 		req:{'sewing':true},
 		category:'crafting',
