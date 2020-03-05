@@ -3895,9 +3895,7 @@ G.writeMSettingButton=function(obj)
 			if(G.has('weaving II'))
 					G.getDict('clothier').icon = [27,11,'magixmod'];
 			if(G.has('Factories I')){
-					G.getDict('potter').displayName = 'Factory of pots',
-					G.getDict('potter').Name = 'Factory of POts',
-					G.getDict('potter').desc = 'TEST';
+					G.getDict('potter').icon = [28,2,'magixmod',20,2];
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
