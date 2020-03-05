@@ -3894,9 +3894,10 @@ G.writeMSettingButton=function(obj)
 			}
 			if(G.has('weaving II'))
 					G.getDict('clothier').icon = [27,11,'magixmod'];
-			if(G.has('Factories I'))
-					G.getDict('potter').name = 'Factory of pots';
+			if(G.has('Factories I')){
+					G.getDict('potter').name = 'Factory of pots',
 					G.getDict('potter').desc = 'TEST';
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
