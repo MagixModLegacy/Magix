@@ -8214,7 +8214,7 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'weaving II',
-		desc:'@[clothier]s, who work with fabric and can sew [hardened clothes] (with [Sewing III] ) Requirements for this clothing type are: pieces of [Dried leather] and bunch of [Thread]<>',
+		desc:'@[clothier]s, can sew [hardened clothes] (with [Sewing III] ) Requirements for this clothing type are: pieces of [Dried leather] and bunch of [Thread]<>',
 		icon:[27,9,'magixmod'],
 		cost:{'insight II':10,'insight':65},
 		req:{'weaving':true,'Sewing II':true},
