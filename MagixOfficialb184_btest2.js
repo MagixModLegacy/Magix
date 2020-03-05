@@ -3927,7 +3927,7 @@ G.writeMSettingButton=function(obj)
 	});
 		new G.Res({
 		name:'hardened clothes',
-		desc:'Sewn together from [dried leather] and embroidered with [Thread]s .//Each [population,Person] wearing clothing is slightly happier and healthier than while wearing [basic clothes] . People wearing this clothing feel more safe. Decays slower.'+clothesInfo,
+		desc:'Sewn together from [Dried leather] and embroidered with [Thread]s .//Each [population,Person] wearing clothing is slightly happier and healthier than while wearing [basic clothes] . People wearing this clothing feel more safe. Decays slower.'+clothesInfo,
 		icon:[choose([27,28]),choose([0,1]),'magixmod'],
 		category:'gear',
 		tick:function(me,tick)
@@ -8165,6 +8165,27 @@ autobuy(G.year)
 		cost:{'insight II':24,'faith II':1},
 		req:{'Eotm':true},
 		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Richer language',
+		desc:'Language they use for everyday life will become even more richer. Synonyms for basic words, neologisms and many more. This is some sign of wisdom isn\'t it? @provides 10 [wisdom II]',
+		icon:[27,7,'magixmod'],
+		cost:{'insight II':15},
+		req:{'Eotm':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+		],
+	});
+		new G.Tech({
+		name:'Improved rhetoric',
+		desc:'People will use more words while talking. They will do their best to make the language and vocabulary survive through next generations. @Provides 10 [wisdom II] @Provides 5 [inspiration II]',
+		icon:[27,7,'magixmod'],
+		cost:{'insight II':15},
+		req:{'Eotm':true,'Richer language':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':5}},
 		],
 	});
 	
