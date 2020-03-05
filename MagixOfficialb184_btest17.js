@@ -3895,8 +3895,8 @@ G.writeMSettingButton=function(obj)
 			if(G.has('weaving II'))
 					G.getDict('clothier').icon = [27,11,'magixmod'];
 			if(G.has('Factories I'))
-					G.getDict('Drying rack').category = '';
-					G.getDict('potter').category = '';
+					G.getDict('Drying rack').category = null;
+					G.getDict('potter').category = null;
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
