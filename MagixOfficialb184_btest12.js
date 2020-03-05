@@ -3892,6 +3892,8 @@ G.writeMSettingButton=function(obj)
 			var toSpoil=me.amount*0.0002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
+			if(G.has('weaving II'))
+					G.getDict('clothier').icon = [27,11,'magixmod'];
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -4202,10 +4204,6 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'weave fiber colored clothing'},
 			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
 			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
-			{type:'function',func:function(me){
-				if(G.has('weaving II'))
-					G.getDict('clothier').icon = [27,11,'magixmod'];
-			}};
 		],
 		req:{'sewing':true},
 		category:'crafting',
