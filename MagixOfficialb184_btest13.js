@@ -8204,7 +8204,7 @@ autobuy(G.year)
 		name:'weaving II',
 		desc:'@[clothier]s, who work with fabric and can sew [hardened clothes] (with [Sewing III] ) Requirements for this clothing type are: pieces of [Dried leather] and bunch of [Thread]<>',
 		icon:[27,9,'magixmod'],
-		cost:{'insight II':10},
+		cost:{'insight II':10,'insight':65},
 		req:{'weaving':true,'Sewing II':true},
 		effects:[
 		],
@@ -8213,7 +8213,7 @@ autobuy(G.year)
 		name:'Sewing III',
 		desc:'Upgrades sewing skills of your civilization. @[Clothier]s can craft [hardened clothes] while they learned how to weave better, longer-durable clothing.',
 		icon:[27,12,'magixmod'], 
-		cost:{'insight II':20},
+		cost:{'insight II':20,'insight':45},
 		req:{'Wizardry':true,'Sewing II':true,'weaving II':true,'Eotm':true},
 	});
 	
