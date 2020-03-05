@@ -3925,6 +3925,17 @@ G.writeMSettingButton=function(obj)
 		icon:[24,19,'magixmod'],
 		category:'main',
 	});
+		new G.Res({
+		name:'hardened clothes',
+		desc:'Sewn together from [dried leather] and embroidered with [Thread]s .//Each [population,Person] wearing clothing is slightly happier and healthier than while wearing [basic clothes] . People wearing this clothing feel more safe. Decays slower.'+clothesInfo,
+		icon:[choose([27,28]),choose([0,1]),'magixmod'],
+		category:'gear',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.0013;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
 	
 	/*=====================================================================================
 	UNITS
@@ -8117,14 +8128,14 @@ autobuy(G.year)
 		new G.Tech({
 		name:'Underworld building 1/2',
 		desc:'Allows to build some stuff in Underworld. Starts attracting 6 random <font color="red"><b>Devil\'s traits</b></font>',
-		icon:[14,19,'magixmod'], 
+		icon:[27,3,'magixmod',14,19,'magixmod'], 
 		cost:{'insight':90,'New world point':400},
 		req:{'Third passage to new world':true,'A feeling from the Underworld':true}
 	});
 		new G.Tech({
 		name:'Underworld building 2/2',
 		desc:'Allows to build some stuff in Underworld.',
-		icon:[14,19,'magixmod'], 
+		icon:[27,2,'magixmod',14,19,'magixmod'], 
 		cost:{'insight':100,'New world point':6,'Underworld emblem':1},
 		req:{'Third passage to new world':true,'A feeling from the Underworld':true,'Underworld building 1/2':true}
 	});
