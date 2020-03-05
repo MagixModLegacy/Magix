@@ -4203,9 +4203,8 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
 			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
 			{type:'function',func:function(me){
-				if G.has('Eotm')
 					G.getDict('clothier').icon = [27,11,'magixmod']
-			}};
+			},req:'weaving II':true};
 		],
 		req:{'sewing':true},
 		category:'crafting',
@@ -8201,6 +8200,22 @@ autobuy(G.year)
 		effects:[
 			{type:'provide res',what:{'authority II':3}},
 		],
+	});
+		new G.Tech({
+		name:'weaving II',
+		desc:'@[clothier]s, who work with fabric and can sew [hardened clothes] (with [Sewing III] ) Requirements for this clothing type are: pieces of [Dried leather] and bunch of [Thread]<>',
+		icon:[27,9,'magixmod'],
+		cost:{'insight II':10},
+		req:{'weaving':true,'Sewing II':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Sewing III',
+		desc:'Upgrades sewing skills of your civilization. @[Clothier]s can craft [hardened clothes] while they learned how to weave better, longer-durable clothing.',
+		icon:[27,12,'magixmod'], 
+		cost:{'insight II':20},
+		req:{'Wizardry':true,'Sewing II':true,'weaving II':true,'Eotm':true},
 	});
 	
 		
