@@ -4201,7 +4201,11 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'leather':2,'Dyes':3},into:{'Colored clothing':1},every:6,mode:'weave leather colored clothing'},
 			{type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'weave fiber colored clothing'},
 			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
-			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'}
+			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
+			{type:'function',func:function(me){
+				if G.has('Eotm')
+					me.icon = [27,11,'magixmod']
+			}}
 		],
 		req:{'sewing':true},
 		category:'crafting',
