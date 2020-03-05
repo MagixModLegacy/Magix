@@ -8172,7 +8172,7 @@ autobuy(G.year)
 		desc:'Language they use for everyday life will become even more richer. Synonyms for basic words, neologisms and many more. This is some sign of wisdom isn\'t it? @provides 10 [wisdom II]',
 		icon:[27,7,'magixmod'],
 		cost:{'insight II':15},
-		req:{'Eotm':true},
+		req:{'Eotm':true,'language':true},
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 		],
@@ -8180,12 +8180,22 @@ autobuy(G.year)
 		new G.Tech({
 		name:'Improved rhetoric',
 		desc:'People will use more words while talking. They will do their best to make the language and vocabulary survive through next generations. @Provides 10 [wisdom II] @Provides 5 [inspiration II]',
-		icon:[27,7,'magixmod'],
+		icon:[27,8,'magixmod'],
 		cost:{'insight II':15},
-		req:{'Eotm':true,'Richer language':true},
+		req:{'Eotm':true,'Richer language':true,'speech':true},
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'inspiration II':5}},
+		],
+	});
+		new G.Tech({
+		name:'code of law II',
+		desc:'The [code of law] will get more exact and more liberal. People will be full of hope if for example some burglar will rob them... this new [code of law] gives a hope that the burglar will be punished. @provides 3 [authority II]',
+		icon:[27,6,'magixmod'],
+		cost:{'insight II':5,'influence II':4,'culture II':6},
+		req:{'Eotm':true,'Richer language':true,'code of law':true},
+		effects:[
+			{type:'provide res',what:{'authority II':3}},
 		],
 	});
 	
