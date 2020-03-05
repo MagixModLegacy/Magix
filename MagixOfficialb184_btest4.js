@@ -8192,7 +8192,7 @@ autobuy(G.year)
 		name:'code of law II',
 		desc:'The [code of law] will get more exact and more liberal. People will be full of hope if for example some burglar will rob them... this new [code of law] gives a hope that the burglar will be punished. @provides 3 [authority II]',
 		icon:[27,6,'magixmod'],
-		cost:{'insight II':5,'influence II':4,'culture II':6},
+		cost:{'insight II':10,'influence II':4,'culture II':6},
 		req:{'Eotm':true,'Richer language':true,'code of law':true},
 		effects:[
 			{type:'provide res',what:{'authority II':3}},
