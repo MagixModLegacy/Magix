@@ -3896,6 +3896,7 @@ G.writeMSettingButton=function(obj)
 					G.getDict('clothier').icon = [27,11,'magixmod'];
 			if(G.has('Factories I')){
 					G.getDict('potter').displayName = 'Factory of pots',
+					G.getDict('potter').Name = 'Factory of POts',
 					G.getDict('potter').desc = 'TEST';
 			}
 		},
