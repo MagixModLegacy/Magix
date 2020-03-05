@@ -8213,7 +8213,7 @@ autobuy(G.year)
 		name:'Sewing III',
 		desc:'Upgrades sewing skills of your civilization. @[Clothier]s can craft [hardened clothes] while they learned how to weave better, longer-durable clothing.',
 		icon:[27,12,'magixmod'], 
-		cost:{'insight II':20,'insight':45},
+		cost:{'insight II':20,'insight':15},
 		req:{'Wizardry':true,'Sewing II':true,'weaving II':true,'Eotm':true},
 	});
 	
