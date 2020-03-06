@@ -3908,6 +3908,9 @@ G.writeMSettingButton=function(obj)
 			G.getDict('potter').upkeep ={},
 			G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia"> Due to obtaining [Manufacture units I] this unit becomes useless and won\'t produce anything, anymore.</font></b>'
 			}
+			if(G.has('ritualism II')){
+			G.getDict('soothsayer').icon = [28,3,'magixmod']
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
