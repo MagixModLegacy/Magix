@@ -6593,6 +6593,97 @@ new G.Unit({
 			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence'},
 		],
 	});
+		new G.Unit({
+		name:'Farm of smokers',
+		desc:'Smoker\'s "skin" and seeds he throws out while releasing another bunch of smoke into the sky. From this farm your people can gather [Fire essence] . ',
+		icon:[28,7,'magixmod'],
+		cost:{'Beet seeds':300,'Fire essence':1000,'herb':100},
+		req:{'Smokers & Windferns':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2},
+		upkeep:{'water':14,'Fire essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Fire essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of windferns',
+		desc:'From his white leaves you can find tiny grains that can fly away from your hand quickly. From this farm your people can gather [Wind essence] . ',
+		icon:[28,7,'magixmod'],
+		cost:{'Beet seeds':300,'Wind essence':1000,'herb':100},
+		req:{'Smokers & Windferns':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2},
+		upkeep:{'water':14,'Wind essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Wind essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of holy roses',
+		desc:'Holy rose\'s petals are radiating with a lot of light that can blind a farmer. Carefully gathered can be disenchanted allowing you to gather [Essence of the Holiness] . ',
+		icon:[28,4,'magixmod'],
+		cost:{'Beet seeds':300,'Essence of the Holiness':1000,'herb':100},
+		req:{'Holy roses farm':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2},
+		upkeep:{'water':14,'Essence of the Holiness':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Essence of the Holiness':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of watorchids',
+		desc:'This farm is muddy and wet due to enviroment that is required to start farming [Water essence]. Small pools of essenced droplets can be collected to bucket for instance and then be disenchanted. This is the way the people will gather [Water essence] . ',
+		icon:[28,10,'magixmod'],
+		cost:{'Beet seeds':300,'Water essence':1000,'herb':100},
+		req:{'Withering tulips & Watorchids':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2},
+		upkeep:{'water':21,'Water essence':1,'Mana':21},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Water essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of withering tulips',
+		desc:'These tulips darkens each torch a human holds. Farmers of these tulips don\'t want to share the way how do they collect [Dark essence] out of these flowers. ',
+		icon:[28,9,'magixmod'],
+		cost:{'Beet seeds':300,'Dark essence':1000,'herb':100},
+		req:{'Withering tulips & Watorchids':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2,'Wand':9},
+		upkeep:{'water':14,'Dark essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Dark essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of naturdaisies',
+		desc:'Naturdaisies are growing on big "trees" that can release these essenced beauties. Then people gathers them and disenchant them gaining [Nature essence] . ',
+		icon:[28,6,'magixmod'],
+		cost:{'Beet seeds':300,'Nature essence':1000,'herb':100},
+		req:{'Lightlily & Naturdaisy':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2,'Wand':9},
+		upkeep:{'water':14,'Nature essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Nature essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of lightlilies',
+		desc:'Lightlily is the one which leaves can have lightning shape. People are cautious because sometime especially while storms the flower gets electrified. But cutting stalk with main flower and disenchanting it allows people to gather [Lightning essence] . ',
+		icon:[28,5,'magixmod'],
+		cost:{'Beet seeds':300,'Lightning essence':1000,'herb':100},
+		req:{'Lightlily & Naturdaisy':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2,'Wand':9},
+		upkeep:{'water':14,'Lightning essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Lightning essence':11}},
+		],
+	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
 		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
@@ -8306,7 +8397,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Withering tulips & Watorchid',
+		name:'Withering tulips & Watorchids',
 		desc:'Unlocks new farms for Plain Island. At these farms you can farm [Dark essence] and [Water essence] out of plants that needs\'em . People gain their seeds, petals and then disenchant it gaining desired essence.',
 		icon:[27,15,'magixmod'],
 		cost:{'insight II':8,'faith II':1,'culture II':1},
