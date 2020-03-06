@@ -8235,7 +8235,7 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Magical soil',
-		desc:'People can craft a new type of soil using the one from Plain Island. On this new soil people will be able to plant a  magic plants that can gather [Magic essences] for you . Uses same land as other farms that were in Plain Island but this one except [water] upkeep has [Mana] and [Magic essences,essence that you are going to farm] .',
+		desc:'People can craft a new type of soil using the one from Plain Island. On this new soil people will be able to plant a  magic plants that can gather [Magic essences] for you . Uses same amount of [Land of the Plain Island,land] as other farms that were in Plain Island but this one except [water] upkeep has [Mana] and [Magic essences,essence that you are going to farm] .',
 		icon:[27,18,'magixmod'], 
 		cost:{'insight II':20},
 		req:{'Wizardry':true,'Eotm':true},
