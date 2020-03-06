@@ -496,6 +496,16 @@ G.writeMSettingButton=function(obj)
 							else G.lose('influence',15,'rituals');
 						}
 					}
+					if (G.has('ritualism II'))
+					var rituals=['wisdom rituals','flower rituals'];
+					for (var i in rituals)
+					{
+						if (G.checkPolicy(rituals[i])=='on')
+						{
+							if (G.getRes('faith II').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+							else G.lose('faith II',1,'rituals');
+						}
+					}
 				}			
 				
 				var productionMult=G.doFunc('production multiplier',1);
@@ -3922,6 +3932,11 @@ G.writeMSettingButton=function(obj)
 			G.getDict('wisdom rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [wisdom rituals,Wisdom ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
 			G.getDict('flower rituals').cost = {'land':100000}, //THE DISABLER
 			G.getDict('flower rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [flower rituals,Flower ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>People get sick slower and recover faster. Consumes 1 [faith II] every 20 days; will stop if you run out.'
+			}
+			//While evolution occurs flower and wisdom rituals disable automatically
+			if (G.has('Eotm') && G.hasNot('ritualism II')){
+				G.setPolicyModeByName('wisdom rituals','off');
+				G.setPolicyModeByName('flower rituals','off');
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
