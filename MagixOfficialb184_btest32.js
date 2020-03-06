@@ -8237,14 +8237,14 @@ autobuy(G.year)
 		name:'Magical soil',
 		desc:'People can craft a new type of soil using the one from Plain Island. On this new soil people will be able to plant a  magic plants that can gather [Magic essences] for you . Uses same amount of [Land of the Plain Island,land] as other farms that were in Plain Island but this one except [water] upkeep has [Mana] and [Magic essences,essence that you are going to farm] .',
 		icon:[27,18,'magixmod'], 
-		cost:{'insight II':20},
+		cost:{'insight II':15},
 		req:{'Wizardry':true,'Eotm':true},
 	});
 		new G.Tech({
 		name:'Seed-enchanting',
 		desc:'@unlocks new mode for [artisan] that allows him to enchant [Beet seeds,seeds] making them become [Essenced seeds,essenced] . Planting and taking care about them can make you plant magic plants that will help you gathering essences.',
 		icon:[27,17,'magixmod'], 
-		cost:{'insight II':20},
+		cost:{'insight II':15},
 		req:{'Eotm':true,'Magical soil':true},
 	});
 	
