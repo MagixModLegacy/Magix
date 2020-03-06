@@ -4244,7 +4244,7 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',context:'hunt',amount:1,max:5,mode:'endurance hunting'},
 			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting'},
 			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},
-			{type:'gather',context:'hunt',amount:5,max:6,mode:'Crossbow hunting'},
+			{type:'gather',context:'hunt',amount:5,max:6,mode:'crossbow hunting'},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
 		],
@@ -4270,7 +4270,7 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',context:'fish',amount:1,max:5,mode:'catch by hand'},
 			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
 			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
-			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'Net fishing'},
+			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'net fishing'},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
 		],
 		req:{'fishing':true},
