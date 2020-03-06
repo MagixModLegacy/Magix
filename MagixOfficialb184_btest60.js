@@ -6609,7 +6609,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Farm of windferns',
 		desc:'From his white leaves you can find tiny grains that can fly away from your hand quickly. From this farm your people can gather [Wind essence] . ',
-		icon:[28,7,'magixmod'],
+		icon:[28,8,'magixmod'],
 		cost:{'Beet seeds':300,'Wind essence':1000,'herb':100},
 		req:{'Smokers & Windferns':true},
 		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2},
