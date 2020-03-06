@@ -7489,6 +7489,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'Sewing II',
+		displayName:'Weaving II', //Correct
 		desc:'Upgrades sewing skills of your civilization. @Unlocks <b>Drying racks<b> to make [Dried leather] used to craft better quality clothing. @Now artisans can sew [Fishing net] and craft [Thread].',
 		icon:[13,5,'magixmod'], 
 		cost:{'insight':380,'wisdom':10},
@@ -8214,6 +8215,7 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'weaving II',
+		displayName:'Sewing II', //Correct
 		desc:'@[clothier]s, can sew [hardened clothes] (with [Sewing III] ) Requirements for this clothing type are: pieces of [Dried leather] and bunch of [Thread]<>',
 		icon:[27,9,'magixmod'],
 		cost:{'insight II':10,'insight':65},
@@ -8223,6 +8225,7 @@ autobuy(G.year)
 	});
 		new G.Tech({
 		name:'Sewing III',
+		displayName:'Weaving III', //Correct
 		desc:'Upgrades sewing skills of your civilization. @[Clothier]s can craft [hardened clothes] while they learned how to weave better, longer-durable clothing.',
 		icon:[27,12,'magixmod'], 
 		cost:{'insight II':20,'insight':20},
