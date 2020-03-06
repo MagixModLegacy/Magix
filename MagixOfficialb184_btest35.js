@@ -8240,21 +8240,21 @@ autobuy(G.year)
 		name:'Magical soil',
 		desc:'People can craft a new type of soil using the one from Plain Island. On this new soil people will be able to plant a  magic plants that can gather [Magic essences] for you . Uses same amount of [Land of the Plain Island,land] as other farms that were in Plain Island but this one except [water] upkeep has [Mana] and [Magic essences,essence that you are going to farm] .',
 		icon:[27,18,'magixmod'], 
-		cost:{'insight II':15},
+		cost:{'insight II':14,'science':1},
 		req:{'Wizardry':true,'Eotm':true},
 	});
 		new G.Tech({
 		name:'Seed-enchanting',
 		desc:'@unlocks new mode for [artisan] that allows him to enchant [Beet seeds,seeds] making them become [Essenced seeds,essenced] . Planting and taking care about them can make you plant magic plants that will help you gathering essences.',
 		icon:[27,17,'magixmod'], 
-		cost:{'insight II':15},
+		cost:{'insight II':14,'science':1},
 		req:{'Eotm':true,'Magical soil':true},
 	});
 		new G.Tech({
 		name:'ritualism II',
 		desc:'@provides 3 [spirituality II] @[wisdom rituals] and [flower rituals] can be activated again but these rituals will require [faith II] as upkeep and cost instead of [faith] <>Simple practices, eroded and polished by long time, turn into rites and traditions. Straight from the heart to the gods.',
 		icon:[27,5,'magixmod'],
-		cost:{'culture II':5,'faith II':2,'insight II':10,'influence II':2},
+		cost:{'culture II':5,'faith II':2,'insight II':10,'influence II':2,'faith':6},
 		req:{'oral tradition':true,'ritualism':true,'Eotm':true,'Improved rhetoric':true},
 		effects:[
 			{type:'provide res',what:{'spirituality II':3}},
