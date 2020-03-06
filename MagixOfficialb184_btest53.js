@@ -3913,7 +3913,7 @@ G.writeMSettingButton=function(obj)
 			G.getDict('wisdom rituals').cost = {'faith II':1},
 			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.'
 			}
-			if(G.has('Eotm')){
+			if(G.has('Eotm') && G.hasNot('ritualism II')){
 			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod']
 			G.getDict('wisdom rituals').cost = {'land':100000}
 			G.getDict('wisdom rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [wisdom rituals,Wisdom ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.'
