@@ -8228,10 +8228,24 @@ autobuy(G.year)
 		new G.Tech({
 		name:'Sewing III',
 		displayName:'Weaving III', //Correct
-		desc:'Upgrades sewing skills of your civilization. @[Clothier]s can craft [hardened clothes] while they learned how to weave better, longer-durable clothing.',
+		desc:'Upgrades sewing skills of your civilization. @[clothier]s can craft [hardened clothes] while they learned how to weave better, longer-durable clothing.',
 		icon:[27,12,'magixmod'], 
 		cost:{'insight II':20,'insight':20},
 		req:{'Wizardry':true,'Sewing II':true,'weaving II':true,'Eotm':true},
+	});
+		new G.Tech({
+		name:'Magical soil',
+		desc:'People can craft a new type of soil using the one from Plain Island. On this new soil people will be able to plant a  magic plants that can gather [Magic essences] for you . Uses same land as other farms that were in Plain Island but this one except [water] upkeep has [Mana] and [Magic essences,essence that you are going to farm] .',
+		icon:[27,18,'magixmod'], 
+		cost:{'insight II':20},
+		req:{'Wizardry':true,'Eotm':true},
+	});
+		new G.Tech({
+		name:'Seed-enchanting',
+		desc:'@unlocks new mode for [artisan] that allows him to enchant [Beet seeds,seeds] making them become [Essenced seeds,essenced] . Planting and taking care about them can make you plant magic plants that will help you gathering essences.',
+		icon:[27,17,'magixmod'], 
+		cost:{'insight II':20},
+		req:{'Eotm':true,'Magical soil':true},
 	});
 	
 		
