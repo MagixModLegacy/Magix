@@ -8309,7 +8309,7 @@ autobuy(G.year)
 		name:'Withering tulips & Watorchid',
 		desc:'Unlocks new farms for Plain Island. At these farms you can farm [Dark essence] and [Water essence] out of plants that needs\'em . People gain their seeds, petals and then disenchant it gaining desired essence.',
 		icon:[27,15,'magixmod'],
-		cost:{'insight II':12,'faith II':1,'culture II':2},
+		cost:{'insight II':8,'faith II':1,'culture II':1},
 		req:{'Magical soil':true},
 		effects:[
 		],
@@ -8327,7 +8327,7 @@ autobuy(G.year)
 		name:'Holy roses farm',
 		desc:'Unlocks [Essence of the Holiness] farm for Plain Island. There people plant a seeds of the <b>Holy rose</b> that grows and emitates some light (like a firefly). People gain their seeds, petals and then disenchant it gaining desired essence.',
 		icon:[27,16,'magixmod'],
-		cost:{'insight II':12,'faith II':1,'culture II':2},
+		cost:{'insight II':8,'faith II':1,'culture II':1},
 		req:{'Magical soil':true},
 		effects:[
 		],
