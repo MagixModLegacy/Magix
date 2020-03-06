@@ -3910,6 +3910,13 @@ G.writeMSettingButton=function(obj)
 			}
 			if(G.has('ritualism II')){
 			G.getDict('soothsayer').icon = [28,3,'magixmod']
+			G.getDict('wisdom rituals').cost = {'faith II':1},
+			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.'
+			}
+			if(G.has('Eotm')){
+			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod']
+			G.getDict('wisdom rituals').cost = {'land':100000}
+			G.getDict('wisdom rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [wisdom rituals,Wisdom ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.'
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -8258,6 +8265,15 @@ autobuy(G.year)
 		req:{'oral tradition':true,'ritualism':true,'Eotm':true,'Improved rhetoric':true},
 		effects:[
 			{type:'provide res',what:{'spirituality II':3}},
+		],
+	});
+		new G.Tech({
+		name:'Fertlizer for grain',
+		desc:'Multiplies efficiency of all [wheat,wheat-based] units like [Bakery] , [Wheat farm] and [Windmill] by 1.5 .',
+		icon:[27,4,'magixmod'],
+		cost:{'insight II':25},
+		req:{'Magical soil':true},
+		effects:[
 		],
 	});
 	
