@@ -8326,7 +8326,7 @@ autobuy(G.year)
 		new G.Tech({
 		name:'Holy roses farm',
 		desc:'Unlocks [Essence of the Holiness] farm for Plain Island. There people plant a seeds of the <b>Holy rose</b> that grows and emitates some light (like a firefly). People gain their seeds, petals and then disenchant it gaining desired essence.',
-		icon:[27,16,'magixmod'],
+		icon:[27,13,'magixmod'],
 		cost:{'insight II':8,'faith II':1,'culture II':1},
 		req:{'Magical soil':true},
 		effects:[
