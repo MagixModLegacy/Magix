@@ -4051,6 +4051,13 @@ G.writeMSettingButton=function(obj)
 			}
 		}
 	}
+	var clothiericon=function
+	{
+		if(G.has('weaving II'))
+		return [27,11,'magixmod']
+		else
+		return [19,2]
+	};
 	
 	new G.Unit({
 		name:'gatherer',
@@ -4232,7 +4239,7 @@ G.writeMSettingButton=function(obj)
 	new G.Unit({
 		name:'clothier',
 		desc:'@works with textiles, notably producing all kinds of clothes<>A [clothier] can make and use fabrics to keep your people clothed, and therefore warm and happy.',
-		icon:[19,2],
+		icon:clothiericon,
 		cost:{},
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
@@ -4262,9 +4269,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
 			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
 			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'},
-			{type:'function',func:function(me){
-				me.icon = [27,11,'magixmod'];
-				},req:{'weaving II':true}}],
+			],
 		req:{'sewing':true},
 		category:'crafting',
 	});
