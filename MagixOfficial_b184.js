@@ -8367,7 +8367,7 @@ autobuy(G.year)
 		desc:'@[clothier]s, can sew [hardened clothes] (with [Sewing III] ) Requirements for this clothing type are: pieces of [Dried leather] and bunch of [Thread]<>',
 		icon:[27,9,'magixmod'],
 		cost:{'insight II':10,'insight':65},
-		req:{'weaving':true,'Sewing II':true},
+		req:{'weaving':true,'Sewing II':true,'Eotm':true},
 		effects:[
 		],
 	});
