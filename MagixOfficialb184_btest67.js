@@ -3903,31 +3903,8 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
 			if(G.has('weaving II')){
-			G.getDict('clothier').icon = [27,11,'magixmod'];
-			G.getDict('clothier').modes = 'sew grass clothing'={name:'Sew grass clothing',icon:[15,7],desc:'Craft [primitive clothes] from 30 [herb]s each.',use:{'stone tools':1}},
-			'sew hide clothing'={name:'Sew hide clothing',icon:[15,7],desc:'Craft [primitive clothes] from 3 [hide]s each.',use:{'stone tools':1}},
-			'weave fiber clothing'={name:'Weave fiber clothing',icon:[16,7],desc:'Craft [basic clothes] from 50 [herb]s each.',use:{'stone tools':1},req:{'weaving':true}},//TODO : implement fibers
-			'weave leather clothing'={name:'Weave leather clothing',icon:[16,7],desc:'Craft [basic clothes] from 2 [leather] each.',use:{'stone tools':1},req:{'weaving':true,'leather-working':true}},
-			'make leather'={name:'Make leather',icon:[10,7],desc:'Produce [leather] from [hide]s, [water], [salt] and [log]s.',use:{'stone tools':1},req:{'leather-working':true,'Factories I':false}},
-			'cheap make leather'={name:'Make leather (cheap)',icon:[10,7],desc:'Slowly produce [leather] from [hide]s, [muddy water] and [herb]s.',use:{'stone tools':1},req:{'Factories I':false}},
-			'weave leather colored clothing'={name:'Weave leather colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave [leather] but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
-			'weave fiber colored clothing'={name:'Weave fiber colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave fiber but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
-			'dye already made clothing'={name:'Dye already made clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now dye already made [basic clothes] making them become[Colored clothing].',req:{'weaving':true},use:{'stone tools':1}},
-			'Craft thread'={name:'Craft thread',icon:[13,9,'magixmod'],desc:'Your clothier will now craft [Thread] out of [herb].',req:{'Sewing II':true},use:{'stone tools':1}},
-			'weave hardened clothes'={name:'Weave hardened clothes',icon:[choose([27,28]),choose([0,1]),'magixmod'],desc:'Craft [hardened clothes] out of [Dried leather] and [thread].',req:{'Sewing III':true,'Weaving II':true},use:{'stone tools':1}},
-		G.getDict('clothier').effects:[
-			{type:'convert',from:{'hide':3},into:{'primitive clothes':1},every:8,mode:'sew hide clothing'},
-			{type:'convert',from:{'herb':30},into:{'primitive clothes':1},every:20,mode:'sew grass clothing'},
-			{type:'convert',from:{'leather':2},into:{'basic clothes':1},every:8,mode:'weave leather clothing'},
-			{type:'convert',from:{'herb':50},into:{'basic clothes':1},every:20,mode:'weave fiber clothing'},
-			{type:'convert',from:{'hide':1,'water':5,'salt':1,'log':0.1},into:{'leather':1},every:15,mode:'make leather'},
-			{type:'convert',from:{'hide':1,'muddy water':5,'herb':10},into:{'leather':1},every:30,mode:'cheap make leather'},
-			{type:'convert',from:{'leather':2,'Dyes':3},into:{'Colored clothing':1},every:6,mode:'weave leather colored clothing'},
-			{type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'weave fiber colored clothing'},
-			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
-			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
-			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'},
-		]},
+				G.getDict('clothier').icon = [27,11,'magixmod']
+			},
 			if(G.has('Factories I')){
 					G.getDict('potter').icon = [28,2,'magixmod',20,2],
 					G.getDict('potter').gizmos = false,
