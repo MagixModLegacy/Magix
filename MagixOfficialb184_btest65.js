@@ -4249,7 +4249,8 @@ G.writeMSettingButton=function(obj)
 			'weave leather colored clothing':{name:'Weave leather colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave [leather] but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
 			'weave fiber colored clothing':{name:'Weave fiber colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave fiber but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
 			'dye already made clothing':{name:'Dye already made clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now dye already made [basic clothes] making them become[Colored clothing].',req:{'weaving':true},use:{'stone tools':1}},
-			'Craft thread':{name:'Craft thread',icon:[13,9,'magixmod'],desc:'Your clothier will now craft [Thread] out of [herb].',req:{'Sewing II':true},use:{'stone tools':1}}
+			'Craft thread':{name:'Craft thread',icon:[13,9,'magixmod'],desc:'Your clothier will now craft [Thread] out of [herb].',req:{'Sewing II':true},use:{'stone tools':1}},
+			'weave hardened clothes':{name:'Weave hardened clothes',icon:[choose([27,28]),choose([0,1]),'magixmod'],desc:'Craft [hardened clothes] out of [Dried leather] and [thread].',req:{'Sewing III':true,'Weaving II':true},use:{'stone tools':1}}
 		},
 		effects:[
 			{type:'convert',from:{'hide':3},into:{'primitive clothes':1},every:8,mode:'sew hide clothing'},
@@ -4262,6 +4263,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'weave fiber colored clothing'},
 			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
 			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
+			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'},
 		],
 		req:{'sewing':true},
 		category:'crafting',
