@@ -3902,6 +3902,9 @@ G.writeMSettingButton=function(obj)
 			var toSpoil=me.amount*0.0002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
+			if(G.has('weaving II')){
+					G.getDict('clothier').icon = [27,11,'magixmod'],
+			}
 			if(G.has('Factories I')){
 					G.getDict('potter').icon = [28,2,'magixmod',20,2],
 					G.getDict('potter').gizmos = false,
@@ -4051,13 +4054,6 @@ G.writeMSettingButton=function(obj)
 			}
 		}
 	}
-	var clothiericon=function
-	{
-		if(G.has('weaving II'))
-		return [27,11,'magixmod']
-		else
-		return [19,2]
-	};
 	
 	new G.Unit({
 		name:'gatherer',
@@ -4239,7 +4235,7 @@ G.writeMSettingButton=function(obj)
 	new G.Unit({
 		name:'clothier',
 		desc:'@works with textiles, notably producing all kinds of clothes<>A [clothier] can make and use fabrics to keep your people clothed, and therefore warm and happy.',
-		icon:clothiericon,
+		icon:[19,2],
 		cost:{},
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
