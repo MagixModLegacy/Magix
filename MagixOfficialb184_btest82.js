@@ -597,7 +597,7 @@ G.writeMSettingButton=function(obj)
 				}
 				
 				//clothing
-				var objects={'hardened clothes':[0.17,0.17],'Colored clothing':[0.1,0.1]'basic clothes':[0.1,0.1],'primitive clothes':[0,0]};
+				var objects={'hardened clothes':[0.17,0.17],'Colored clothing':[0.1,0.1],'basic clothes':[0.1,0.1],'primitive clothes':[0,0]};
 				var leftout=me.amount;
 				var prev=leftout;
 				var fulfilled=0;
