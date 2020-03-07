@@ -4263,7 +4263,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
 			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'},
 			{type:'function',func:function(me){
-				G.unitByName('clothier').icon = [27,11,'magixmod'];
+				me.icon = [27,11,'magixmod'];
 				},req:{'weaving II':true}}],
 		req:{'sewing':true},
 		category:'crafting',
