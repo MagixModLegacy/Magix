@@ -3904,7 +3904,7 @@ G.writeMSettingButton=function(obj)
 			}
 			if(G.has('weaving II')){
 				G.getDict('clothier').icon = [27,11,'magixmod']
-			},
+			}
 			if(G.has('Factories I')){
 					G.getDict('potter').icon = [28,2,'magixmod',20,2],
 					G.getDict('potter').gizmos = false,
