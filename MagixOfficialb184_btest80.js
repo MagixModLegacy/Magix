@@ -3903,7 +3903,7 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
 			if(G.has('weaving II')){
-					G.getDict('clothier').icon = [27,11,'magixmod'],
+					G.getDict('clothier').icon = [27,11,'magixmod']
 			}
 			if(G.has('Factories I')){
 					G.getDict('potter').icon = [28,2,'magixmod',20,2],
