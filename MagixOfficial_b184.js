@@ -590,7 +590,7 @@ G.writeMSettingButton=function(obj)
 				}
 				
 				//clothing
-				var objects={'basic clothes':[0.1,0.1],'primitive clothes':[0,0]};
+				var objects={'hardened clothes':[0.17,0.17],'Colored clothing':[0.1,0.1],'basic clothes':[0.1,0.1],'primitive clothes':[0,0]};
 				var leftout=me.amount;
 				var prev=leftout;
 				var fulfilled=0;
@@ -1149,22 +1149,22 @@ G.writeMSettingButton=function(obj)
 		tick:function(me,tick){
 			if (G.checkPolicy('Factory of pots production rates')=='2')
 			{
-				var toSpoil=G.getRes('happiness').amount*0.01;
+				var toSpoil=G.getRes('happiness').amount*0.001;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
 			}
 			if (G.checkPolicy('Hovel of colours production rates')=='2')
 			{
-				var toSpoil=G.getRes('happiness').amount*0.01;
+				var toSpoil=G.getRes('happiness').amount*0.001;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
 			}
 			if (G.checkPolicy('Hut of potters production rates')=='2')
 			{
-				var toSpoil=G.getRes('happiness').amount*0.01;
+				var toSpoil=G.getRes('happiness').amount*0.001;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
 			}
 			if (G.checkPolicy('Leather factory production rates')=='2')
 			{
-				var toSpoil=G.getRes('happiness').amount*0.01;
+				var toSpoil=G.getRes('happiness').amount*0.001;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
 			}
 		},
@@ -3897,6 +3897,43 @@ G.writeMSettingButton=function(obj)
 			var toSpoil=me.amount*0.0002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
+						if(G.has('weaving II')){
+					G.getDict('clothier').icon = [27,11,'magixmod']
+			}
+			if(G.has('Factories I')){
+					G.getDict('potter').icon = [28,2,'magixmod',20,2],
+					G.getDict('potter').gizmos = false,
+					G.getDict('potter').upkeep ={},
+					G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia">Due to obtaining [Factories I] this unit becomes useless and won\'t produce anything, anymore.</font></b>',
+					G.getDict('Drying rack').icon = [28,2,'magixmod',13,3,'magixmod'],
+					G.getDict('Drying rack').desc = '@This small rack may dry [leather] making it become [Dried leather]. [Dried leather] is used to make even harder clothing, which decays much slower. </br><b><font color="fuschia"> Due to obtaining [Factories I] this unit becomes useless and won\'t produce anything, anymore.</font></b>'
+			}
+			if(G.has('Manufacture units I')){
+			G.getDict('potter').icon = [28,2,'magixmod',20,2],
+			G.getDict('potter').gizmos = false,
+			G.getDict('potter').upkeep ={},
+			G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia"> Due to obtaining [Manufacture units I] this unit becomes useless and won\'t produce anything, anymore.</font></b>'
+			}
+			if(G.has('ritualism II')){
+			G.getDict('soothsayer').icon = [28,3,'magixmod']
+			G.getDict('wisdom rituals').cost = {'faith II':1},
+			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod'],
+			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
+			G.getDict('flower rituals').cost = {'faith II':1},
+			G.getDict('flower rituals').desc = 'People get sick slower and recover faster. Consumes 1 [faith II] every 20 days; will stop if you run out.'
+			}
+			if(G.has('Eotm') && G.hasNot('ritualism II')){
+			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod']
+			G.getDict('wisdom rituals').cost = {'land':100000}, //THE DISABLER
+			G.getDict('wisdom rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [wisdom rituals,Wisdom ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
+			G.getDict('flower rituals').cost = {'land':100000}, //THE DISABLER
+			G.getDict('flower rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [flower rituals,Flower ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>People get sick slower and recover faster. Consumes 1 [faith II] every 20 days; will stop if you run out.'
+			}
+			//While evolution occurs flower and wisdom rituals disable automatically
+			if (G.has('Eotm') && G.hasNot('ritualism II')){
+				G.setPolicyModeByName('wisdom rituals','off');
+				G.setPolicyModeByName('flower rituals','off');
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -3929,6 +3966,28 @@ G.writeMSettingButton=function(obj)
 		hidden:true,
 		icon:[24,19,'magixmod'],
 		category:'main',
+	});
+		new G.Res({
+		name:'hardened clothes',
+		desc:'Sewn together from [Dried leather] and embroidered with [Thread]s .//Each [population,Person] wearing clothing is slightly happier and healthier than while wearing [basic clothes] . People wearing this clothing feel more safe. Decays slower.'+clothesInfo,
+		icon:[choose([27,28]),choose([0,1]),'magixmod'],
+		category:'gear',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.0013;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
+		new G.Res({
+		name:'Essenced seeds',
+		desc:'The creation that uses [Magic essences] + [Mana] + [Beet seeds,seeds] . Can be used to start farming magic flowers that will allow you to gather even more essences.',
+		icon:[27,10,'magixmod'],
+		category:'misc',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.008;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 	
 	/*=====================================================================================
@@ -4023,7 +4082,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'gather',what:{'insight':0.1}},
 			{type:'gather',what:{'insight':0.05},req:{'symbolism':true}},
-			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
+			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
 			{type:'mult',value:1.05,req:{'Knowledgeable':true}},
 			{type:'mult',value:2/3,req:{'dt18':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}}
@@ -4044,7 +4104,8 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',what:{'culture':0.1}},
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
-			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
+			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
 			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}}
 		],
@@ -4076,6 +4137,7 @@ G.writeMSettingButton=function(obj)
 			'dyes3':{name:'Make dyes from flowers(Set 3)',desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail]. @Bonus: While crafting dyes out of [Sunflower] you will get its edible [Sunflower seeds] and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']},
 			'dyes4':{name:'Make dyes from flowers(Set 4)',icon:[11,7,'magixmod'],desc:'Your artisan will convert these flowers into dyes: [Flax],[Blue orchid],[White tulip],[Lily of the Valley],[Gray rose],[Gray tulip],[Brown flower].',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true}},
 			'craftbook':{name:'Craft book',icon:[13,12,'magixmod'],desc:'Your artisan will craft [Empty book,books].',req:{'Bookcrafting':true},use:{'stone tools':1}},
+			'enchseeds':{name:'Enchant seeds',icon:[27,10,'magixmod'],desc:'Enchant [Beet seeds,seeds] using [Magic essences] and [Mana]. These seeds can be useful to start essence farms',req:{'Seed-enchanting':true},use:{'Wand':1}},
 		},
 		effects:[
 			{type:'convert',from:{'stone':1},into:{'knapped tools':1},every:5,mode:'knap'},
@@ -4126,6 +4188,7 @@ G.writeMSettingButton=function(obj)
         		{type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:5,mode:'dyes4'},
        		 	{type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:5,mode:'dyes4'},
         		{type:'convert',from:{'Paper':30,'hide':1},into:{'Empty book':1},every:7,mode:'craftbook'},
+			{type:'convert',from:{'Beet seeds':1,'Berry seeds':1},into:{'Essenced seeds':1},every:7,mode:'enchseeds'},
 			{type:'mult',value:1.2,req:{'ground stone tools':true}}
 		],
 		req:{'stone-knapping':true},
@@ -4183,7 +4246,8 @@ G.writeMSettingButton=function(obj)
 			'weave leather colored clothing':{name:'Weave leather colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave [leather] but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
 			'weave fiber colored clothing':{name:'Weave fiber colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave fiber but colored clothing.',req:{'weaving':true},use:{'stone tools':1}},
 			'dye already made clothing':{name:'Dye already made clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now dye already made [basic clothes] making them become[Colored clothing].',req:{'weaving':true},use:{'stone tools':1}},
-			'Craft thread':{name:'Craft thread',icon:[13,9,'magixmod'],desc:'Your clothier will now craft [Thread] out of [herb].',req:{'Sewing II':true},use:{'stone tools':1}}
+			'Craft thread':{name:'Craft thread',icon:[13,9,'magixmod'],desc:'Your clothier will now craft [Thread] out of [herb].',req:{'Sewing II':true},use:{'stone tools':1}},
+			'weave hardened clothes':{name:'Weave hardened clothes',icon:[choose([27,28]),choose([0,1]),'magixmod'],desc:'Craft [hardened clothes] out of [Dried leather] and [Thread].',req:{'Sewing III':true,'weaving II':true},use:{'stone tools':1}},
 		},
 		effects:[
 			{type:'convert',from:{'hide':3},into:{'primitive clothes':1},every:8,mode:'sew hide clothing'},
@@ -4195,7 +4259,8 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'leather':2,'Dyes':3},into:{'Colored clothing':1},every:6,mode:'weave leather colored clothing'},
 			{type:'convert',from:{'herb':52,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'weave fiber colored clothing'},
 			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
-			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'}
+			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
+			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'}
 		],
 		req:{'sewing':true},
 		category:'crafting',
@@ -4219,7 +4284,7 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',context:'hunt',amount:1,max:5,mode:'endurance hunting'},
 			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting'},
 			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},
-			{type:'gather',context:'hunt',amount:5,max:6,mode:'Crossbow hunting'},
+			{type:'gather',context:'hunt',amount:5,max:6,mode:'crossbow hunting'},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
 		],
@@ -4245,7 +4310,7 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',context:'fish',amount:1,max:5,mode:'catch by hand'},
 			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
 			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
-			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'Net fishing'},
+			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'net fishing'},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
 		],
 		req:{'fishing':true},
@@ -5181,6 +5246,7 @@ new G.Unit({
 		upkeep:{'log':0.6},
 		effects:[
 			{type:'convert',from:{'flour':18},into:{'bread':6},every:4,repeat:3},
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
 		],
 		req:{'Baking':true},
 		category:'crafting',
@@ -5196,6 +5262,7 @@ new G.Unit({
 		category:'production',
 		effects:[
 			{type:'convert',from:{'wheat':6,'water':1},into:{'flour':5},every:3,repeat:2},
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
 		],
 	});
 		new G.Unit({
@@ -5209,7 +5276,8 @@ new G.Unit({
 		category:'production',
 		effects:[
 			{type:'gather',context:'gather',what:{'wheat':230}},
-			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
 		],
 	});
 		new G.Unit({
@@ -6540,6 +6608,97 @@ new G.Unit({
 			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture'},
 			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith'},
 			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence'},
+		],
+	});
+	new G.Unit({
+		name:'Farm of smokers',
+		desc:'Smoker\'s "skin" and seeds he throws out while releasing another bunch of smoke into the sky. From this farm your people can gather [Fire essence] . ',
+		icon:[28,7,'magixmod'],
+		cost:{'Essenced seeds':300,'Fire essence':1000,'herb':100},
+		req:{'Smokers & Windferns':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2},
+		upkeep:{'water':14,'Fire essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Fire essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of windferns',
+		desc:'From his white leaves you can find tiny grains that can fly away from your hand quickly. From this farm your people can gather [Wind essence] . ',
+		icon:[28,8,'magixmod'],
+		cost:{'Essenced seeds':300,'Wind essence':1000,'herb':100},
+		req:{'Smokers & Windferns':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2},
+		upkeep:{'water':14,'Wind essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Wind essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of holy roses',
+		desc:'Holy rose\'s petals are radiating with a lot of light that can blind a farmer. Carefully gathered can be disenchanted allowing you to gather [Essence of the Holiness] . ',
+		icon:[28,4,'magixmod'],
+		cost:{'Essenced seeds':300,'Essence of the Holiness':1000,'herb':100},
+		req:{'Holy roses farm':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2},
+		upkeep:{'water':14,'Essence of the Holiness':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Essence of the Holiness':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of watorchids',
+		desc:'This farm is muddy and wet due to enviroment that is required to start farming [Water essence]. Small pools of essenced droplets can be collected to bucket for instance and then be disenchanted. This is the way the people will gather [Water essence] . ',
+		icon:[28,10,'magixmod'],
+		cost:{'Essenced seeds':300,'Water essence':1000,'herb':100},
+		req:{'Withering tulips & Watorchids':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2},
+		upkeep:{'water':21,'Water essence':1,'Mana':21},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Water essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of withering tulips',
+		desc:'These tulips darkens each torch a human holds. Farmers of these tulips don\'t want to share the way how do they collect [Dark essence] out of these flowers. ',
+		icon:[28,9,'magixmod'],
+		cost:{'Essenced seeds':300,'Dark essence':1000,'herb':100},
+		req:{'Withering tulips & Watorchids':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2,'Wand':9},
+		upkeep:{'water':14,'Dark essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Dark essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of naturdaisies',
+		desc:'Naturdaisies are growing on big "trees" that can release these essenced beauties. Then people gathers them and disenchant them gaining [Nature essence] . ',
+		icon:[28,6,'magixmod'],
+		cost:{'Essenced seeds':300,'Nature essence':1000,'herb':100},
+		req:{'Lightlily & Naturdaisy':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2,'Wand':9},
+		upkeep:{'water':14,'Nature essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Nature essence':11}},
+		],
+	});
+		new G.Unit({
+		name:'Farm of lightlilies',
+		desc:'Lightlily is the one which leaves can have lightning shape. People are cautious because sometime especially while storms the flower gets electrified. But cutting stalk with main flower and disenchanting it allows people to gather [Lightning essence] . ',
+		icon:[28,5,'magixmod'],
+		cost:{'Essenced seeds':300,'Lightning essence':1000,'herb':100},
+		req:{'Lightlily & Naturdaisy':true},
+		use:{'worker':8,'Land of the Plain Island':15,'Instructor':2,'Wand':9},
+		upkeep:{'water':14,'Lightning essence':1,'Mana':7},
+		category:'plainisleunit',
+		effects:[
+			{type:'gather',context:'gather',what:{'Lightning essence':11}},
 		],
 	});
 	G.legacyBonuses.push(
@@ -8123,14 +8282,14 @@ autobuy(G.year)
 		new G.Tech({
 		name:'Underworld building 1/2',
 		desc:'Allows to build some stuff in Underworld. Starts attracting 6 random <font color="red"><b>Devil\'s traits</b></font>',
-		icon:[14,19,'magixmod'], 
+		icon:[27,3,'magixmod',14,19,'magixmod'], 
 		cost:{'insight':90,'New world point':400},
 		req:{'Third passage to new world':true,'A feeling from the Underworld':true}
 	});
 		new G.Tech({
 		name:'Underworld building 2/2',
 		desc:'Allows to build some stuff in Underworld.',
-		icon:[14,19,'magixmod'], 
+		icon:[27,2,'magixmod',14,19,'magixmod'], 
 		cost:{'insight':100,'New world point':6,'Underworld emblem':1},
 		req:{'Third passage to new world':true,'A feeling from the Underworld':true,'Underworld building 1/2':true}
 	});
@@ -8159,6 +8318,133 @@ autobuy(G.year)
 		icon:[27,19,'magixmod'],
 		cost:{'insight II':24,'faith II':1},
 		req:{'Eotm':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'Berry masterry',
+		desc:'Doubles efficiency of [Berry farm] . Compounds with previous multipliers.',
+		icon:[27,19,'magixmod'],
+		cost:{'insight II':24,'faith II':1},
+		req:{'Eotm':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Richer language',
+		desc:'Language they use for everyday life will become even more richer. Synonyms for basic words, neologisms and many more. This is some sign of wisdom isn\'t it? @provides 10 [wisdom II]',
+		icon:[27,7,'magixmod'],
+		cost:{'insight II':15},
+		req:{'Eotm':true,'language':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+		],
+	});
+		new G.Tech({
+		name:'Improved rhetoric',
+		desc:'People will use more words while talking. They will do their best to make the language and vocabulary survive through next generations. @Provides 10 [wisdom II] @Provides 5 [inspiration II]',
+		icon:[27,8,'magixmod'],
+		cost:{'insight II':15},
+		req:{'Eotm':true,'Richer language':true,'speech':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':5}},
+		],
+	});
+		new G.Tech({
+		name:'code of law II',
+		desc:'The [code of law] will get more exact and more liberal. People will be full of hope if for example some burglar will rob them... this new [code of law] gives a hope that the burglar will be punished. @provides 3 [authority II]',
+		icon:[27,6,'magixmod'],
+		cost:{'insight II':10,'influence II':4,'culture II':6},
+		req:{'Eotm':true,'Richer language':true,'code of law':true},
+		effects:[
+			{type:'provide res',what:{'authority II':3}},
+		],
+	});
+		new G.Tech({
+		name:'weaving II',
+		displayName:'Sewing II', //Correct
+		desc:'@[clothier]s, can sew [hardened clothes] (with [Sewing III] ) Requirements for this clothing type are: pieces of [Dried leather] and bunch of [Thread]<>',
+		icon:[27,9,'magixmod'],
+		cost:{'insight II':10,'insight':65},
+		req:{'weaving':true,'Sewing II':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Sewing III',
+		displayName:'Weaving III', //Correct
+		desc:'Upgrades sewing skills of your civilization. @[clothier]s can craft [hardened clothes] while they learned how to weave better, longer-durable clothing.',
+		icon:[27,12,'magixmod'], 
+		cost:{'insight II':20,'insight':20},
+		req:{'Wizardry':true,'Sewing II':true,'weaving II':true,'Eotm':true},
+	});
+		new G.Tech({
+		name:'Magical soil',
+		desc:'People can craft a new type of soil using the one from Plain Island. On this new soil people will be able to plant a  magic plants that can gather [Magic essences] for you . Uses same amount of [Land of the Plain Island,land] as other farms that were in Plain Island but this one except [water] upkeep has [Mana] and [Magic essences,essence that you are going to farm] .',
+		icon:[27,18,'magixmod'], 
+		cost:{'insight II':14,'science':1},
+		req:{'Wizardry':true,'Eotm':true},
+	});
+		new G.Tech({
+		name:'Seed-enchanting',
+		desc:'@unlocks new mode for [artisan] that allows him to enchant [Beet seeds,seeds] making them become [Essenced seeds,essenced] . Planting and taking care about them can make you plant magic plants that will help you gathering essences.',
+		icon:[27,17,'magixmod'], 
+		cost:{'insight II':14,'science':1},
+		req:{'Eotm':true,'Magical soil':true},
+	});
+		new G.Tech({
+		name:'ritualism II',
+		desc:'@provides 3 [spirituality II] @[wisdom rituals] and [flower rituals] can be activated again but these rituals will require [faith II] as upkeep and cost instead of [faith] <>Simple practices, eroded and polished by long time, turn into rites and traditions. Straight from the heart to the gods.',
+		icon:[27,5,'magixmod'],
+		cost:{'culture II':5,'faith II':2,'insight II':10,'influence II':2,'faith':6},
+		req:{'oral tradition':true,'ritualism':true,'Eotm':true,'Improved rhetoric':true},
+		effects:[
+			{type:'provide res',what:{'spirituality II':3}},
+		],
+	});
+		new G.Tech({
+		name:'Fertlizer for grain',
+		desc:'Multiplies efficiency of all [wheat,wheat-based] units like [Bakery] , [Wheat farm] and [Windmill] by 1.5 .',
+		icon:[27,4,'magixmod'],
+		cost:{'insight II':30},
+		req:{'Magical soil':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Smokers & Windferns',
+		desc:'Unlocks new farms for Plain Island. At these farms you can farm [Fire essence] and [Wind essence] out of plants that needs\'em . People gain their seeds, petals and then disenchant it gaining desired essence.',
+		icon:[27,16,'magixmod'],
+		cost:{'insight II':12,'faith II':1,'culture II':2},
+		req:{'Magical soil':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Withering tulips & Watorchids',
+		desc:'Unlocks new farms for Plain Island. At these farms you can farm [Dark essence] and [Water essence] out of plants that needs\'em . People gain their seeds, petals and then disenchant it gaining desired essence.',
+		icon:[27,15,'magixmod'],
+		cost:{'insight II':8,'faith II':1,'culture II':1},
+		req:{'Magical soil':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Lightlily & Naturdaisy',
+		desc:'Unlocks new farms for Plain Island. On them you can farm [Lightning essence] and [Nature essence] out of plants that needs\'em . People gain their seeds, petals and then disenchant it gaining desired essence.',
+		icon:[27,14,'magixmod'],
+		cost:{'insight II':12,'faith II':1,'culture II':2},
+		req:{'Magical soil':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Holy roses farm',
+		desc:'Unlocks [Essence of the Holiness] farm for Plain Island. There people plant a seeds of the <b>Holy rose</b> that grows and emitates some light (like a firefly). People gain their seeds, petals and then disenchant it gaining desired essence.',
+		icon:[27,13,'magixmod'],
+		cost:{'insight II':8,'faith II':1,'culture II':1},
+		req:{'Magical soil':true},
 		effects:[
 		],
 	});
