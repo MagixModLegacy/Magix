@@ -10241,16 +10241,16 @@ autobuy(G.year)
 			{type:'addFastTicksOnResearch',amount:15},
 		],
 	});
-		new G.Achiev({
-		tier:2,
-		name:'<font color="DA4f37">Mausoleum eternal</font>',
-		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought. <b>Evolve mausoleum to stage 10/10 then ascend by it 11th time to unlock this massive fast tick bonus</b>',
-		fromUnit:'mausoleum',
-		effects:[
-			{type:'addFastTicksOnStart',amount:2000},
-			{type:'addFastTicksOnResearch',amount:150}
-		],
-	});
+		//new G.Achiev({
+		//tier:2,
+		//name:'<font color="DA4f37">Mausoleum eternal</font>',
+		//desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought. <b>Evolve mausoleum to stage 10/10 then ascend by it 11th time to unlock this massive fast tick bonus</b>',
+		//fromUnit:'mausoleum',
+		//effects:[
+		//	{type:'addFastTicksOnStart',amount:2000},
+		//	{type:'addFastTicksOnResearch',amount:150}
+		//],
+	//});
 	/*============================================================================================
 	SPECIAL ACHIEVEMENTS EFFECTS
 	===========================================================================================*/
