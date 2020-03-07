@@ -4264,7 +4264,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'},
 			{type:'function',func:function(me){
 				G.getDict('clothier').icon = [27,11,'magixmod'];
-				},req:{'weaving II':true}}l
+				},req:{'weaving II':true}}
 		],
 		req:{'sewing':true},
 		category:'crafting',
