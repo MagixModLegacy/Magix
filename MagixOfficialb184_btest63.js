@@ -3982,6 +3982,17 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 	});
+		new G.Res({
+		name:'Essenced seeds',
+		desc:'The creation that uses [Magic essences] + [Mana] + [Beet seeds,seeds] . Can be used to start farming magic flowers that will allow you to gather even more essences.',
+		icon:[27,10,'magixmod'],
+		category:'misc',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.008;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
 	
 	/*=====================================================================================
 	UNITS
@@ -4075,7 +4086,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'gather',what:{'insight':0.1}},
 			{type:'gather',what:{'insight':0.05},req:{'symbolism':true}},
-			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
+			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
 			{type:'mult',value:1.05,req:{'Knowledgeable':true}},
 			{type:'mult',value:2/3,req:{'dt18':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}}
@@ -4096,7 +4108,8 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',what:{'culture':0.1}},
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
-			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
+			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
+			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
 			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}}
 		],
@@ -5232,6 +5245,7 @@ new G.Unit({
 		upkeep:{'log':0.6},
 		effects:[
 			{type:'convert',from:{'flour':18},into:{'bread':6},every:4,repeat:3},
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
 		],
 		req:{'Baking':true},
 		category:'crafting',
@@ -5247,6 +5261,7 @@ new G.Unit({
 		category:'production',
 		effects:[
 			{type:'convert',from:{'wheat':6,'water':1},into:{'flour':5},every:3,repeat:2},
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
 		],
 	});
 		new G.Unit({
@@ -5260,7 +5275,8 @@ new G.Unit({
 		category:'production',
 		effects:[
 			{type:'gather',context:'gather',what:{'wheat':230}},
-			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
 		],
 	});
 		new G.Unit({
