@@ -4259,11 +4259,11 @@ G.writeMSettingButton=function(obj)
 			'Weave leather clothing':{name:'Weave leather clothing',icon:[16,7],desc:'Craft [basic clothes] from 2 [leather] each.',use:{'stone tools':1},req:{'Sewing III':true,'Weaving II':true}},
 			'Make leather':{name:'Make leather',icon:[10,7],desc:'Produce [leather] from [hide]s, [water], [salt] and [log]s.',use:{'stone tools':1},req:{'Sewing III':true,'Weaving II':true,'Factories I':false}},
 			'Cheap make leather':{name:'Make leather (cheap)',icon:[10,7],desc:'Slowly produce [leather] from [hide]s, [muddy water] and [herb]s.',use:{'stone tools':1},req:{'Factories I':false}},
-			'Weave leather colored clothing':{name:'Weave leather colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave [leather] but colored clothing.',req:{'Sewing III':true,'Weaving II':true,use:{'stone tools':1}},
+			'Weave leather colored clothing':{name:'Weave leather colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave [leather] but colored clothing.',req:{'Sewing III':true,'Weaving II':true},use:{'stone tools':1}},
 			'Weave fiber colored clothing':{name:'Weave fiber colored clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now weave fiber but colored clothing.',req:{'Sewing III':true,'Weaving II':true},use:{'stone tools':1}},
 			'Dye already made clothing':{name:'Dye already made clothing',icon:[13,0,'magixmod'],desc:'Your clothier will now dye already made [basic clothes] making them become[Colored clothing].',req:{'Sewing III':true,'Weaving II':true},use:{'stone tools':1}},
 			'CRaft thread':{name:'Craft thread',icon:[13,9,'magixmod'],desc:'Your clothier will now craft [Thread] out of [herb].',req:{'Sewing III':true,'Weaving II':true},use:{'stone tools':1}},
-			'Weave hardened clothes':{name:'Weave hardened clothes',icon:[choose([27,28]),choose([0,1]),'magixmod'],desc:'Craft [hardened clothes] out of [Dried leather] and [thread].',req:{'Sewing III':true,'Weaving II':true},use:{'stone tools':1}}
+			'Weave hardened clothes':{name:'Weave hardened clothes',icon:[choose([27,28]),choose([0,1]),'magixmod'],desc:'Craft [hardened clothes] out of [Dried leather] and [thread].',req:{'Sewing III':true,'Weaving II':true},use:{'stone tools':1}},
 		},
 		effects:[
 			{type:'convert',from:{'hide':3},into:{'primitive clothes':1},every:8,mode:'sew hide clothing'},
@@ -4293,7 +4293,6 @@ G.writeMSettingButton=function(obj)
 		req:{'sewing':true},
 		category:'crafting',
 	});
-	
 	new G.Unit({
 		name:'hunter',
 		desc:'@hunts wild animals for [meat], [bone]s and [hide]s@may get wounded<>[hunter]s go out into the wilderness and come back days later covered in blood and the meat of a fresh kill.',
