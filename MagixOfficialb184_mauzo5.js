@@ -10457,7 +10457,7 @@ function MauzoEvolutionStage() {
 	G.getDict('mausoleum').use = {'land':10},
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
-}
+}}
  else if(G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
 	    G.getDict('mausoleum').wideIcon = [3,0,'mauzo']
 	    G.getDict('mausoleum').icon = [4,0,'mauzo']
@@ -10472,7 +10472,7 @@ function MauzoEvolutionStage() {
 	G.getDict('mausoleum').use = {'land':10},
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
-}
+}}
  else if(G.achievByName['mausoleum'].won > 2 && G.achievByName['mausoleum'].won < 4 ) {
 	    G.getDict('mausoleum').wideIcon = [6,0,'mauzo']
 	    G.getDict('mausoleum').icon = [7,0,'mauzo']
@@ -10487,7 +10487,7 @@ function MauzoEvolutionStage() {
 	G.getDict('mausoleum').use = {'land':10},
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
-}
+}}
  else if(G.achievByName['mausoleum'].won > 3 && G.achievByName['mausoleum'].won < 5 ) {
 	    G.getDict('mausoleum').wideIcon = [9,0,'mauzo']
 	    G.getDict('mausoleum').icon = [10,0,'mauzo']
