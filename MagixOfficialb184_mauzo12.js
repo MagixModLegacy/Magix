@@ -10441,7 +10441,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
   }
 })
 	///////////////////////////////////Mausoleum Eternal/////////////////////////////////////////
-/*/function MauzoEvolutionStage1() {
+function MauzoEvolutionStage1() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 0 && G.achievByName['mausoleum'].won < 2 ) {
 	    G.getDict('mausoleum').wideIcon = [0,0,'mauzo'],
@@ -10466,7 +10466,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
     MauzoEvolutionStage1()
   }
 })
-function MauzoEvolutionStage2() {
+/*/function MauzoEvolutionStage2() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
 	    G.getDict('mausoleum').wideIcon = [3,0,'mauzo'],
