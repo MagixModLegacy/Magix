@@ -10443,7 +10443,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	///////////////////////////////////Mausoleum Eternal/////////////////////////////////////////
 function MauzoEvolutionStage() {
   if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 0 && G.achievByName['mausoleum'].won < 2 )) {
+    if (G.achievByName['mausoleum'].won > 0 && G.achievByName['mausoleum'].won < 2 ) {
 	    G.getDict('mausoleum').wideIcon = [0,0,'mauzo']
 	    G.getDict('mausoleum').icon = [1,0,'mauzo']
 	    G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 1 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>',
@@ -10458,7 +10458,7 @@ function MauzoEvolutionStage() {
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
 }
- else if(G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 )) {
+ else if(G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
 	    G.getDict('mausoleum').wideIcon = [3,0,'mauzo']
 	    G.getDict('mausoleum').icon = [4,0,'mauzo']
 	    G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 2 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>',
@@ -10473,7 +10473,7 @@ function MauzoEvolutionStage() {
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
 }
- else if(G.achievByName['mausoleum'].won > 2 && G.achievByName['mausoleum'].won < 4 )) {
+ else if(G.achievByName['mausoleum'].won > 2 && G.achievByName['mausoleum'].won < 4 ) {
 	    G.getDict('mausoleum').wideIcon = [6,0,'mauzo']
 	    G.getDict('mausoleum').icon = [7,0,'mauzo']
 	    G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 3 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>',
@@ -10488,7 +10488,7 @@ function MauzoEvolutionStage() {
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
 }
- else if(G.achievByName['mausoleum'].won > 3 && G.achievByName['mausoleum'].won < 5 )) {
+ else if(G.achievByName['mausoleum'].won > 3 && G.achievByName['mausoleum'].won < 5 ) {
 	    G.getDict('mausoleum').wideIcon = [9,0,'mauzo']
 	    G.getDict('mausoleum').icon = [10,0,'mauzo']
 	    G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 4 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>',
