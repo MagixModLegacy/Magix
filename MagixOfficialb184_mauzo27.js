@@ -10455,6 +10455,7 @@ function MauzoEvolutionStage1() {
     G.getDict('mausoleum').finalStepCost = {'population':200};
     G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 200 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
     G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
   }
 };
 MauzoEvolutionStage1()
@@ -10479,6 +10480,7 @@ function MauzoEvolutionStage2() {
     G.getDict('mausoleum').finalStepCost = {'population':300};
     G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 300 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
     G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
   }
 };
 MauzoEvolutionStage2()
@@ -10503,6 +10505,7 @@ function MauzoEvolutionStage3() {
     G.getDict('mausoleum').finalStepCost = {'population':400};
     G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 400 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
     G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
   }
 };
 MauzoEvolutionStage3()
