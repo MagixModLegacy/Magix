@@ -10472,7 +10472,6 @@ function MauzoEvolutionStage2() {
         G.getDict('mausoleum').wideIcon = [3,0,'mauzo'];
         G.getDict('mausoleum').icon = [4,0,'mauzo'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 2 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    }
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':1400};
     G.getDict('mausoleum').costPerStep = {'basic building materials':230,'precious building materials':30};
