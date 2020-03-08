@@ -10465,7 +10465,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
     target(...args)
     MauzoEvolutionStage1()
   }
-})
+}})
 function MauzoEvolutionStage2() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
@@ -10490,7 +10490,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
     target(...args)
     MauzoEvolutionStage2()
   }
-})
+}})
 function MauzoEvolutionStage3() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 2 && G.achievByName['mausoleum'].won < 4 ) {
@@ -10515,7 +10515,7 @@ G.NewGameConfirm = new Proxy(oldNewGame, {
     target(...args)
     MauzoEvolutionStage3()
   }
-})
+}})
  
 
 	/*=====================================================================================
