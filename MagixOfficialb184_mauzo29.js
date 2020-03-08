@@ -10513,7 +10513,7 @@ const oldNewGameM3 = G.NewGameConfirm.bind({})
 G.NewGameConfirm = new Proxy(oldNewGameM3, {
   apply: function(target, thisArg, args) {
     target(...args)
-    MauzoEvolutionStage2()
+    MauzoEvolutionStage3()
   }
 })
 function MauzoEvolutionStage4() {
@@ -10543,7 +10543,7 @@ G.NewGameConfirm = new Proxy(oldNewGameM4, {
 })
 function MauzoEvolutionStage5() {
   if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 2 && G.achievByName['mausoleum'].won < 4 ) {
+    if (G.achievByName['mausoleum'].won > 4 && G.achievByName['mausoleum'].won < 6 ) {
         G.getDict('mausoleum').wideIcon = [12,0,'mauzo'];
         G.getDict('mausoleum').icon = [13,0,'mauzo'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 5 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
