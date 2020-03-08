@@ -4,7 +4,7 @@ author:'pelletsstarPL',
 desc:'Magic! Magic!. Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
 manifest:'ModManifest.js',
-sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
+sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','mauzo':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/mauzo.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
@@ -10260,16 +10260,18 @@ autobuy(G.year)
 			{type:'addFastTicksOnResearch',amount:15},
 		],
 	});
-		//new G.Achiev({
-		//tier:2,
-		//name:'<font color="DA4f37">Mausoleum eternal</font>',
-		//desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought. <b>Evolve mausoleum to stage 10/10 then ascend by it 11th time to unlock this massive fast tick bonus</b>',
-		//fromUnit:'mausoleum',
-		//effects:[
-		//	{type:'addFastTicksOnStart',amount:2000},
-		//	{type:'addFastTicksOnResearch',amount:150}
-		//],
-	//});
+		new G.Achiev({
+		tier:2,
+		wideIcon:[27,0,'mauzo'],
+		icon:[27,1,'mauzo'],
+		name:'<font color="DA4f37">Mausoleum eternal</font>',
+		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve mausoleum to stage 10/10 then ascend by it 11th time to unlock this massive fast tick bonus. @In addition obtaining this achievement doubles chance to occur [belief in the afterlife] in each next run after obtaining this achievement.</b>',
+		fromUnit:'mausoleum',
+		effects:[
+			{type:'addFastTicksOnStart',amount:2000},
+			{type:'addFastTicksOnResearch',amount:150}
+		],
+	});
 	/*============================================================================================
 	SPECIAL ACHIEVEMENTS EFFECTS
 	===========================================================================================*/
