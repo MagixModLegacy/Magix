@@ -10457,7 +10457,6 @@ function MauzoEvolutionStage1() {
 	G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5},
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
-    }
 }
 MauzoEvolutionStage1()
 const oldNewGame = G.NewGameConfirm.bind({})
@@ -10483,7 +10482,6 @@ function MauzoEvolutionStage2() {
 	G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5},
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
-    }
 }
 MauzoEvolutionStage2()
 const oldNewGame = G.NewGameConfirm.bind({})
@@ -10509,7 +10507,6 @@ function MauzoEvolutionStage3() {
 	G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5},
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
-}
 }
 MauzoEvolutionStage3()
 const oldNewGame = G.NewGameConfirm.bind({})
