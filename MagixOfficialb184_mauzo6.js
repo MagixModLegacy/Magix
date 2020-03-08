@@ -10444,8 +10444,8 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 function MauzoEvolutionStage() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 0 && G.achievByName['mausoleum'].won < 2 ) {
-	    G.getDict('mausoleum').wideIcon = [0,0,'mauzo']
-	    G.getDict('mausoleum').icon = [1,0,'mauzo']
+	    G.getDict('mausoleum').wideIcon = [0,0,'mauzo'],
+	    G.getDict('mausoleum').icon = [1,0,'mauzo'],
 	    G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 1 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>',
 	G.getDict('mausoleum').wonder = 'mausoleum',
 	G.getDict('mausoleum').cost = {'basic building materials':1200},
@@ -10457,10 +10457,10 @@ function MauzoEvolutionStage() {
 	G.getDict('mausoleum').use = {'land':10},
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
-}}
+}
  else if(G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
-	    G.getDict('mausoleum').wideIcon = [3,0,'mauzo']
-	    G.getDict('mausoleum').icon = [4,0,'mauzo']
+	    G.getDict('mausoleum').wideIcon = [3,0,'mauzo'],
+	    G.getDict('mausoleum').icon = [4,0,'mauzo'],
 	    G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 2 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>',
 	G.getDict('mausoleum').wonder = 'mausoleum',
 	G.getDict('mausoleum').cost = {'basic building materials':1400},
