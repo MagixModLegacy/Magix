@@ -10458,7 +10458,6 @@ function MauzoEvolutionStage1() {
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
     }
-    }
 }
 MauzoEvolutionStage1()
 const oldNewGame = G.NewGameConfirm.bind({})
@@ -10485,7 +10484,6 @@ function MauzoEvolutionStage2() {
 	G.getDict('mausoleum').req = {'monument-building':true},
 	G.getDict('mausoleum').category = 'wonder',
     }
-}
 }
 MauzoEvolutionStage2()
 const oldNewGame = G.NewGameConfirm.bind({})
