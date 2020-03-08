@@ -10461,8 +10461,8 @@ function MauzoEvolutionStage1() {
   }
 };
 MauzoEvolutionStage1()
-const oldNewGame = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame, {
+const oldNewGameM1 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameM1, {
   apply: function(target, thisArg, args) {
     target(...args)
     MauzoEvolutionStage1()
