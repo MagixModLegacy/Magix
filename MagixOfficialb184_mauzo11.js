@@ -10265,7 +10265,7 @@ autobuy(G.year)
 		wideIcon:[27,0,'mauzo'],
 		icon:[28,0,'mauzo'],
 		name:'<font color="DA4f37">Mausoleum eternal</font>',
-		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve mausoleum to stage 10/10 then ascend by it 11th time to unlock this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
+		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve mausoleum to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
 		fromUnit:'mausoleum',
 		effects:[
 			{type:'addFastTicksOnStart',amount:2000},
