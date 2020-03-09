@@ -3081,7 +3081,7 @@ G.writeMSettingButton=function(obj)
     G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
     }
   }
-};
+}};
 		}
 	});
 		new G.Res({
