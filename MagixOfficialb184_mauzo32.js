@@ -10458,14 +10458,6 @@ function MauzoEvolutionStage1() {
     }
   }
 };
-MauzoEvolutionStage1()
-const oldNewGameM1 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM1, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage1()
-  }
-})
 function MauzoEvolutionStage2() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
