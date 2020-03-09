@@ -10441,6 +10441,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
   }
 })
 	///////////////////////////////////Mausoleum Eternal/////////////////////////////////////////
+	function MauzoEvolutionStage1() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 0 && G.achievByName['mausoleum'].won < 2 ) {
         G.getDict('mausoleum').wideIcon = [0,0,'mauzo'];
@@ -10455,7 +10456,16 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
     G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 200 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
     G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
     }
-  };
+  }
+};
+MauzoEvolutionStage1()
+const oldNewGameM1 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameM1, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    MauzoEvolutionStage1()
+  }
+})
 function MauzoEvolutionStage2() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
