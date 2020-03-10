@@ -3804,11 +3804,6 @@ G.writeMSettingButton=function(obj)
 		{
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		}
-		const audioPole = new Audio("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav"){
-		G.setPolicyMode = function (){
- 		 audioPole.play()
-		}
 		},
 		category:'flowersanddyes',
 	});
@@ -4080,6 +4075,12 @@ G.writeMSettingButton=function(obj)
 		hidden:true,
 		icon:[10,5],
 		category:'main',
+		tick:function()
+		{ //While policy will switch the sound will be played
+		const audioPole = new Audio("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav"){
+		G.setPolicyMode = function (){
+ 		 audioPole.play()
+		}
 	});
 	
 	new G.Res({
