@@ -3974,7 +3974,7 @@ G.writeMSettingButton=function(obj)
 		category:'gear',
 		tick:function(me,tick)
 		{
-			var toSpoil=me.amount*0.0013;
+			var toSpoil=me.amount*0.00003;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 	});
