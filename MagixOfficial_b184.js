@@ -8987,7 +8987,7 @@ autobuy(G.year)
 		icon:[26,16,'magixmod'],
 		cost:{'culture':100},
 		chance:150,
-		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
+		req:{'Underworld building 1/2':true,'dt17':false,'dt18':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
 		],
@@ -9000,7 +9000,7 @@ autobuy(G.year)
 		icon:[26,17,'magixmod'],
 		cost:{'culture':100},
 		chance:150,
-		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
+		req:{'Underworld building 1/2':true,'dt16':false,'dt18':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
 		],
@@ -9013,7 +9013,7 @@ autobuy(G.year)
 		icon:[26,18,'magixmod'],
 		cost:{'culture':100},
 		chance:150,
-		req:{'Underworld building 1/2':true,'dt13':false,'dt14':false},
+		req:{'Underworld building 1/2':true,'dt16':false,'dt17':false},
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
 		],
