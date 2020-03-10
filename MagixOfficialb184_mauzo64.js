@@ -193,27 +193,6 @@ G.props['fastTicksOnResearch']=150;
         return true;
     }
 	/////////////////////////
-	G.setPolicyMode=function(me,mode)
-	{
-		//free old mode uses, and assign new mode uses
-		var oldMode=me.mode;
-		var newMode=mode;
-		if (oldMode==newMode) return;
-		//G.undoUse(oldMode.use,me.amount);
-		//G.doUse(newMode.use,me.amount);
-		me.mode=mode;
-		var audioPole = new Audio("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav")
-		G.setPolicyMode = function (){
- 		 audioPole.play()
-		}
-		if (me.mode.effects) G.applyKnowEffects(me.mode,false,true);
-		if (G.getSetting('animations')) triggerAnim(me.l,'plop');
-		if (me.binary)
-		{
-			if (mode.id=='off') me.l.classList.add('off');
-			else me.l.classList.remove('off');
-		}
-	}
 //Fixes copied out of heritage mod
 	G.fixTooltipIcons=function()
 	{
@@ -4099,10 +4078,6 @@ G.writeMSettingButton=function(obj)
 		category:'main',
 		tick:function(me,tick)
 		{ //While policy will switch the sound will be played
-		var audioPole = new Audio("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav")
-		G.setPolicyMode = function (){
- 		 audioPole.play()
-		}
 		}
 	});
 	
