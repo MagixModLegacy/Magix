@@ -8297,7 +8297,7 @@ autobuy(G.year)
 		name:'Laws of physics(intermediate)',
 		desc:'Provides 5 [education] @People\'s understanding of physics and anomalies in reality increases. Advances the [Laws of physics(basic),laws of physics] research.',
 		icon:[21,19,'magixmod'],
-		cost:{'insight':1008,'science':5,'culture':100},
+		cost:{'insight':1009,'science':4,'culture':100},
 		effects:[
 			{type:'provide res',what:{'education':5}},
 		],
@@ -8313,15 +8313,6 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Berry masterry',
-		desc:'Doubles efficiency of [Berry farm] . Compounds with previous multipliers.',
-		icon:[27,19,'magixmod'],
-		cost:{'insight II':24,'faith II':1},
-		req:{'Eotm':true},
-		effects:[
-		],
-	});
-	new G.Tech({
 		name:'Berry masterry',
 		desc:'Doubles efficiency of [Berry farm] . Compounds with previous multipliers.',
 		icon:[27,19,'magixmod'],
