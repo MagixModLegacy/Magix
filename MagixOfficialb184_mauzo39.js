@@ -2226,6 +2226,21 @@ G.writeMSettingButton=function(obj)
 		icon:[17,7,'magixmod'],
 		category:'main',
 		displayUsed:true,
+		tick:function(me,tick){
+					if (G.checkPolicy('mausoleum stage')=='1'){
+	G.getDict('mausoleum').wideIcon = [0,0,'mauzo'];
+        G.getDict('mausoleum').icon = [1,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 1 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = 'mausoleum';
+    G.getDict('mausoleum').cost = {'basic building materials':1200};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':215,'precious building materials':25};
+    G.getDict('mausoleum').steps = 110;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
+    G.getDict('mausoleum').finalStepCost = {'population':200};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 200 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+   G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+		}
+		}
 	});
 		new G.Res({
 		name:'First aid things',
@@ -9356,6 +9371,24 @@ autobuy(G.year)
 		req:{'rules of food':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 		category:'food',
 	});
+		new G.Policy({ //Required to make new mausoleum system working as it is supposed to.
+		name:'mausoleum stage',
+		icon:[1,14],
+		startMode:'0',
+		modes:{
+			'0':{},
+			'1':{},
+			'2':{},
+			'3':{},
+			'4':{},
+			'5':{},
+			'6':{},
+			'7':{},
+			'8':{},
+			'9':{},
+			'10':{},
+		},
+	});
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //SEASONAL CONTENT//CONTENT WHICH WILL BE AVAILABLE FOR PLAYERS AT SOME TIME LIKE XMAS OR VALENTINE'S DAY
 //////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -10444,17 +10477,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	function MauzoEvolutionStage1(tick) {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 0 && G.achievByName['mausoleum'].won < 2 ) {
-        G.getDict('mausoleum').wideIcon = [0,0,'mauzo'];
-        G.getDict('mausoleum').icon = [1,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 1 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = 'mausoleum';
-    G.getDict('mausoleum').cost = {'basic building materials':1200};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':215,'precious building materials':25};
-    G.getDict('mausoleum').steps = 110;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
-    G.getDict('mausoleum').finalStepCost = {'population':200};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 200 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-   G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+	G.setPolicyModeByName('mausoleum stage','1');
     }
   }
 };
