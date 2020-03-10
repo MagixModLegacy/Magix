@@ -4066,7 +4066,7 @@ G.writeMSettingButton=function(obj)
 			if (G.has('dt15')){
 			var toSpoil=me.amount*0.0002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'culture sapping');
-			}
+			}	
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -4078,6 +4078,11 @@ G.writeMSettingButton=function(obj)
 		category:'main',
 		tick:function(me,tick)
 		{ //While policy will switch the sound will be played
+			const audioPole = new Audio("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav")
+			//code//
+			G.setPolicyMode = function(me,mode){
+ 			 audioPole.play()
+			}
 		}
 	});
 	
