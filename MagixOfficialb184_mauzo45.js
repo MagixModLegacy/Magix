@@ -2245,6 +2245,168 @@ G.writeMSettingButton=function(obj)
     G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 200 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.'
    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5}
 		}
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
+	    			  G.setPolicyModeByName('mausoleum stage','2');
+		  }
+		}
+		if (G.checkPolicy('mausoleum stage')=='2'){
+        G.getDict('mausoleum').wideIcon = [3,0,'mauzo'];
+        G.getDict('mausoleum').icon = [4,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 2 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = 'mausoleum';
+    G.getDict('mausoleum').cost = {'basic building materials':1400};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':230,'precious building materials':30};
+    G.getDict('mausoleum').steps = 120;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
+    G.getDict('mausoleum').finalStepCost = {'population':300};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 300 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won > 2 && G.achievByName['mausoleum'].won < 4 ) {
+	    			  G.setPolicyModeByName('mausoleum stage','3');
+		  }
+		}
+		if (G.checkPolicy('mausoleum stage')=='3'){
+        G.getDict('mausoleum').wideIcon = [6,0,'mauzo'];
+        G.getDict('mausoleum').icon = [7,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 2 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = 'mausoleum';
+    G.getDict('mausoleum').cost = {'basic building materials':1600};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':245,'precious building materials':35};
+    G.getDict('mausoleum').steps = 130;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
+    G.getDict('mausoleum').finalStepCost = {'population':400};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 400 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won > 3 && G.achievByName['mausoleum'].won < 5 ) {
+	    	    			  G.setPolicyModeByName('mausoleum stage','4');
+		  }
+		}
+		if (G.checkPolicy('mausoleum stage')=='4'){
+        G.getDict('mausoleum').wideIcon = [9,0,'mauzo'];
+        G.getDict('mausoleum').icon = [10,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 4 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = 'mausoleum';
+    G.getDict('mausoleum').cost = {'basic building materials':1800};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':260,'precious building materials':40};
+    G.getDict('mausoleum').steps = 140;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
+    G.getDict('mausoleum').finalStepCost = {'population':500};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 500 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won > 4 && G.achievByName['mausoleum'].won < 6 ) {
+	    	    			  G.setPolicyModeByName('mausoleum stage','5');
+		  }
+		}
+		if (G.checkPolicy('mausoleum stage')=='5'){
+        G.getDict('mausoleum').wideIcon = [12,0,'mauzo'];
+        G.getDict('mausoleum').icon = [13,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 5 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = 'mausoleum';
+    G.getDict('mausoleum').cost = {'basic building materials':2000};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':275,'precious building materials':45};
+    G.getDict('mausoleum').steps = 150;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
+    G.getDict('mausoleum').finalStepCost = {'population':600};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 600 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won > 5 && G.achievByName['mausoleum'].won < 7 ) {
+	    	    			  G.setPolicyModeByName('mausoleum stage','6');
+		  }
+		}
+		if (G.checkPolicy('mausoleum stage')=='6'){
+        G.getDict('mausoleum').wideIcon = [15,0,'mauzo'];
+        G.getDict('mausoleum').icon = [16,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 6 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = 'mausoleum';
+    G.getDict('mausoleum').cost = {'basic building materials':2200};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':290,'precious building materials':50,'Mana':40};
+    G.getDict('mausoleum').steps = 160;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
+    G.getDict('mausoleum').finalStepCost = {'population':700};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 700 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won > 6 && G.achievByName['mausoleum'].won < 8 ) {
+	    	    			  G.setPolicyModeByName('mausoleum stage','7');
+		  }
+		}
+		if (G.checkPolicy('mausoleum stage')=='7'){
+        G.getDict('mausoleum').wideIcon = [18,0,'mauzo'];
+        G.getDict('mausoleum').icon = [19,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 7 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = 'mausoleum';
+    G.getDict('mausoleum').cost = {'basic building materials':2400};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':305,'precious building materials':55,'Mana':60};
+    G.getDict('mausoleum').steps = 170;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
+    G.getDict('mausoleum').finalStepCost = {'population':800};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 800 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won > 7 && G.achievByName['mausoleum'].won < 9 ) {
+	    	    			  G.setPolicyModeByName('mausoleum stage','8');
+		  }
+		}
+		if (G.checkPolicy('mausoleum stage')=='8'){
+        G.getDict('mausoleum').wideIcon = [21,0,'mauzo'];
+        G.getDict('mausoleum').icon = [22,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 8 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = 'mausoleum';
+    G.getDict('mausoleum').cost = {'basic building materials':2600};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':320,'precious building materials':60,'Mana':75,'gem block':1};
+    G.getDict('mausoleum').steps = 180;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be even more massive. It was so huge last time.';
+    G.getDict('mausoleum').finalStepCost = {'population':900};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 900 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won > 8 && G.achievByName['mausoleum'].won < 10 ) {
+	    	    			  G.setPolicyModeByName('mausoleum stage','9');
+		  }
+		}
+		if (G.checkPolicy('mausoleum stage')=='9'){
+        G.getDict('mausoleum').wideIcon = [24,0,'mauzo'];
+        G.getDict('mausoleum').icon = [25,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 9 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = 'mausoleum';
+    G.getDict('mausoleum').cost = {'basic building materials':2800};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':320,'precious building materials':65,'Mana':80,'gem block':1,'Magic essences':50};
+    G.getDict('mausoleum').steps = 190;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive. It was so huge last time.';
+    G.getDict('mausoleum').finalStepCost = {'population':1000};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 1000 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won > 9) {
+	    	    			  G.setPolicyModeByName('mausoleum stage','10');
+		  }
+		}
+		if (G.checkPolicy('mausoleum stage')=='10'){
+        G.getDict('mausoleum').wideIcon = [27,0,'mauzo'];
+        G.getDict('mausoleum').icon = [28,0,'mauzo'];
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to <b>Final stage (10 of 10)</b>. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+    G.getDict('mausoleum').wonder = '<font color="DA4f37">Mausoleum eternal</font>';
+    G.getDict('mausoleum').cost = {'basic building materials':3000};
+    G.getDict('mausoleum').costPerStep = {'basic building materials':335,'precious building materials':70,'Mana':90,'gem block':2,'Magic essences':150};
+    G.getDict('mausoleum').steps = 200;
+    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive. It was no huge anymore. People say that The Mausoleum got collosal.';
+    G.getDict('mausoleum').finalStepCost = {'population':1100};
+    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 1100 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
+    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
+    }
 		}
 	});
 		new G.Res({
@@ -10477,234 +10639,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
     target(...args)
     checkUnA()
   }
-})
-	///////////////////////////////////Mausoleum Eternal/////////////////////////////////////////
-function MauzoEvolutionStage2(tick) {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
-        G.getDict('mausoleum').wideIcon = [3,0,'mauzo'];
-        G.getDict('mausoleum').icon = [4,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 2 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = 'mausoleum';
-    G.getDict('mausoleum').cost = {'basic building materials':1400};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':230,'precious building materials':30};
-    G.getDict('mausoleum').steps = 120;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
-    G.getDict('mausoleum').finalStepCost = {'population':300};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 300 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
-    }
-  }
-};
-MauzoEvolutionStage2()
-const oldNewGameM2 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM2, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage2()
-  }
-})
-function MauzoEvolutionStage3() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 2 && G.achievByName['mausoleum'].won < 4 ) {
-        G.getDict('mausoleum').wideIcon = [6,0,'mauzo'];
-        G.getDict('mausoleum').icon = [7,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 3 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = 'mausoleum';
-    G.getDict('mausoleum').cost = {'basic building materials':1600};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':245,'precious building materials':35};
-    G.getDict('mausoleum').steps = 130;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
-    G.getDict('mausoleum').finalStepCost = {'population':400};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 400 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
-    }
-  }
-};
-MauzoEvolutionStage3()
-const oldNewGameM3 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM3, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage3()
-  }
-})
-function MauzoEvolutionStage4() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 3 && G.achievByName['mausoleum'].won < 5 ) {
-        G.getDict('mausoleum').wideIcon = [9,0,'mauzo'];
-        G.getDict('mausoleum').icon = [10,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 4 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = 'mausoleum';
-    G.getDict('mausoleum').cost = {'basic building materials':1800};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':260,'precious building materials':40};
-    G.getDict('mausoleum').steps = 140;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
-    G.getDict('mausoleum').finalStepCost = {'population':500};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 500 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
-    }
-  }
-};
-MauzoEvolutionStage4()
-const oldNewGameM4 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM4, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage4()
-  }
-})
-function MauzoEvolutionStage5() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 4 && G.achievByName['mausoleum'].won < 6 ) {
-        G.getDict('mausoleum').wideIcon = [12,0,'mauzo'];
-        G.getDict('mausoleum').icon = [13,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 5 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = 'mausoleum';
-    G.getDict('mausoleum').cost = {'basic building materials':2000};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':275,'precious building materials':45};
-    G.getDict('mausoleum').steps = 150;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
-    G.getDict('mausoleum').finalStepCost = {'population':600};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 600 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
-    }
-  }
-};
-MauzoEvolutionStage5()
-const oldNewGameM5 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM5, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage5()
-  }
-})
-function MauzoEvolutionStage6() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 5 && G.achievByName['mausoleum'].won < 7 ) {
-        G.getDict('mausoleum').wideIcon = [15,0,'mauzo'];
-        G.getDict('mausoleum').icon = [16,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 6 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = 'mausoleum';
-    G.getDict('mausoleum').cost = {'basic building materials':2200};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':290,'precious building materials':50,'Mana':40};
-    G.getDict('mausoleum').steps = 160;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
-    G.getDict('mausoleum').finalStepCost = {'population':700};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 700 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
-    }
-  }
-};
-MauzoEvolutionStage6()
-const oldNewGameM6 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM6, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage6()
-  }
-})
-function MauzoEvolutionStage7() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 6 && G.achievByName['mausoleum'].won < 8 ) {
-        G.getDict('mausoleum').wideIcon = [18,0,'mauzo'];
-        G.getDict('mausoleum').icon = [19,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 7 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = 'mausoleum';
-    G.getDict('mausoleum').cost = {'basic building materials':2400};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':305,'precious building materials':55,'Mana':60};
-    G.getDict('mausoleum').steps = 170;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive.';
-    G.getDict('mausoleum').finalStepCost = {'population':800};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 800 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
-    }
-  }
-};
-MauzoEvolutionStage7()
-const oldNewGameM7 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM7, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage7()
-  }
-})
-function MauzoEvolutionStage8() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 7 && G.achievByName['mausoleum'].won < 9 ) {
-        G.getDict('mausoleum').wideIcon = [21,0,'mauzo'];
-        G.getDict('mausoleum').icon = [22,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 8 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = 'mausoleum';
-    G.getDict('mausoleum').cost = {'basic building materials':2600};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':320,'precious building materials':60,'Mana':75,'gem block':1};
-    G.getDict('mausoleum').steps = 180;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be even more massive. It was so huge last time.';
-    G.getDict('mausoleum').finalStepCost = {'population':900};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 900 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
-    }
-  }
-};
-MauzoEvolutionStage8()
-const oldNewGameM8 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM8, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage8()
-  }
-})
-function MauzoEvolutionStage9() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 8 && G.achievByName['mausoleum'].won < 10 ) {
-        G.getDict('mausoleum').wideIcon = [24,0,'mauzo'];
-        G.getDict('mausoleum').icon = [25,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 9 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = 'mausoleum';
-    G.getDict('mausoleum').cost = {'basic building materials':2800};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':320,'precious building materials':65,'Mana':80,'gem block':1,'Magic essences':50};
-    G.getDict('mausoleum').steps = 190;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive. It was so huge last time.';
-    G.getDict('mausoleum').finalStepCost = {'population':1000};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 1000 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
-    }
-  }
-};
-MauzoEvolutionStage9()
-const oldNewGameM9 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM9, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage9()
-  }
-})
-function MauzoEvolutionStage10() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 9) {
-        G.getDict('mausoleum').wideIcon = [27,0,'mauzo'];
-        G.getDict('mausoleum').icon = [28,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to <b>Final stage (10 of 10)</b>. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
-    G.getDict('mausoleum').wonder = '<font color="DA4f37">Mausoleum eternal</font>';
-    G.getDict('mausoleum').cost = {'basic building materials':3000};
-    G.getDict('mausoleum').costPerStep = {'basic building materials':335,'precious building materials':70,'Mana':90,'gem block':2,'Magic essences':150};
-    G.getDict('mausoleum').steps = 200;
-    G.getDict('mausoleum').messageOnStart = 'You begin the construction of the Mausoleum. Its towering mass already dominates the city, casting fear and awe wherever its shadow reaches. This time the Mausoleum will be more massive. It was no huge anymore. People say that The Mausoleum got collosal.';
-    G.getDict('mausoleum').finalStepCost = {'population':1100};
-    G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 1100 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
-    G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
-    }
-  }
-};
-MauzoEvolutionStage10()
-const oldNewGameM10 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM10, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage10()
-  }
-})
- 
+}) 
 
 	/*=====================================================================================
 	MAP GENERATOR
