@@ -2227,6 +2227,11 @@ G.writeMSettingButton=function(obj)
 		category:'main',
 		displayUsed:true,
 		tick:function(me,tick){
+		if (G.achievByName['mausoleum'].won) {
+  		  if (G.achievByName['mausoleum'].won > 0 && G.achievByName['mausoleum'].won < 2 ) {
+			  G.setPolicyModeByName('mausoleum stage','1');
+		  }
+		}
 					if (G.checkPolicy('mausoleum stage')=='1'){
 	G.getDict('mausoleum').wideIcon = [0,0,'mauzo']
         G.getDict('mausoleum').icon = [1,0,'mauzo']
@@ -10474,14 +10479,6 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
   }
 })
 	///////////////////////////////////Mausoleum Eternal/////////////////////////////////////////
-	function MauzoEvolutionStage1() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won > 0 && G.achievByName['mausoleum'].won < 2 ) {
-	G.setPolicyModeByName('mausoleum stage','1');
-    }
-  }
-};
-MauzoEvolutionStage1();
 function MauzoEvolutionStage2(tick) {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
