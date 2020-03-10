@@ -3804,6 +3804,9 @@ G.writeMSettingButton=function(obj)
 		{
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		}
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech.wav');
+			audio.play();
 		},
 		category:'flowersanddyes',
 	});
