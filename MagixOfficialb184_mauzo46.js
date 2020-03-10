@@ -2407,6 +2407,9 @@ G.writeMSettingButton=function(obj)
     G.getDict('mausoleum').finalStepDesc = 'To complete the Mausoleum, 1100 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.';
     G.getDict('mausoleum').use = {'land':10,'worker':5,'metal tools':5};
     }
+	if (G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won) {
+    if (G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won > 0) {
+	    G.getDict('belief in the afterlife').chance = 5;
 		}
 	});
 		new G.Res({
