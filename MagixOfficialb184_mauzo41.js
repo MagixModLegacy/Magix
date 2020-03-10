@@ -10481,7 +10481,6 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
     }
   }
 };
-MauzoEvolutionStage1()
 function MauzoEvolutionStage2(tick) {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
