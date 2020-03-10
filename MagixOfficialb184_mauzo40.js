@@ -10474,7 +10474,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
   }
 })
 	///////////////////////////////////Mausoleum Eternal/////////////////////////////////////////
-	function MauzoEvolutionStage1(tick) {
+	function MauzoEvolutionStage1() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 0 && G.achievByName['mausoleum'].won < 2 ) {
 	G.setPolicyModeByName('mausoleum stage','1');
@@ -10482,13 +10482,6 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
   }
 };
 MauzoEvolutionStage1()
-const oldNewGameM1 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameM1, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    MauzoEvolutionStage1()
-  }
-})
 function MauzoEvolutionStage2(tick) {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won > 1 && G.achievByName['mausoleum'].won < 3 ) {
