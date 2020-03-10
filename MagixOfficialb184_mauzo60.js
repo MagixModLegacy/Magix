@@ -4077,7 +4077,7 @@ G.writeMSettingButton=function(obj)
 		category:'main',
 		tick:function(me,tick)
 		{ //While policy will switch the sound will be played
-		const audioPole = new Audio("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav")
+		let audioPole = new Audio("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav")
 		G.setPolicyMode = function (){
  		 audioPole.play()
 		}
