@@ -181,11 +181,6 @@ G.props['fastTicksOnResearch']=150;
 		}
 		return mult;
 	}
-	
-			if (G.setPolicyMode()) {
-			var audioPole = new Audio("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav")
- 			 audioPole.play()
-			}
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
 	G.hasNot=function(what)
