@@ -7130,7 +7130,7 @@ getCosts:function()
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseOption-'+index+'-'+this.id),l('techBox').children[0]);
 			l('techBox').children[0].classList.add('popIn');
-			play 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech.wav'
+			G.play: 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech.wav'
 		},
 		onReroll:function()
 		{
