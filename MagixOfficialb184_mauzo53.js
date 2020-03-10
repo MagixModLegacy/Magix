@@ -7138,6 +7138,8 @@ getCosts:function()
 			this.roll+=1;
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseIgniter-'+this.id),l('chooseBox-'+this.id));
+			var audioReroll = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/TechReroll.wav');
+			audioReroll.play();
 		},
 		onTick:function()
 		{
