@@ -182,7 +182,7 @@ G.props['fastTicksOnResearch']=150;
 		return mult;
 	}
 	
-			if G.setPolicyMode() {
+			if (G.setPolicyMode()) {
 			var audioPole = new Audio("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav")
  			 audioPole.play()
 			}
