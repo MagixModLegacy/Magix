@@ -8322,6 +8322,15 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
+		name:'Berry masterry',
+		desc:'Doubles efficiency of [Berry farm] . Compounds with previous multipliers.',
+		icon:[27,19,'magixmod'],
+		cost:{'insight II':24,'faith II':1},
+		req:{'Eotm':true,'tribalism':false},
+		effects:[
+		],
+	});
+		new G.Tech({
 		name:'Richer language',
 		desc:'Language they use for everyday life will become even more richer. Synonyms for basic words, neologisms and many more. This is some sign of wisdom isn\'t it? @provides 10 [wisdom II]',
 		icon:[27,7,'magixmod'],
