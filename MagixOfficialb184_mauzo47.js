@@ -2410,6 +2410,8 @@ G.writeMSettingButton=function(obj)
 	if (G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won) {
     if (G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won > 0) {
 	    G.getDict('belief in the afterlife').chance = 5;
+   		  }
+		 }
 		}
 	});
 		new G.Res({
