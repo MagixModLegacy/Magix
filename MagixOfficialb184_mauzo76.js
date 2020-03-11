@@ -2283,7 +2283,7 @@ G.writeMSettingButton=function(obj)
 		if (G.checkPolicy('mausoleum stage')=='3'){
         G.getDict('mausoleum').wideIcon = [6,0,'mauzo'];
         G.getDict('mausoleum').icon = [7,0,'mauzo'];
-        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 2 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
+        G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 3 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':1600};
     G.getDict('mausoleum').costPerStep = {'basic building materials':245,'precious building materials':35};
