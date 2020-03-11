@@ -7148,7 +7148,7 @@ getCosts:function()
 			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 			{
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech.wav');
-			audio.play();
+			audio.play(); 
 			}
 		},
 		onReroll:function()
