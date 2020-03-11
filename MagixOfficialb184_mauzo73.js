@@ -1080,6 +1080,9 @@ G.writeMSettingButton=function(obj)
 				var spent=G.lose('water',randomFloor(toSpoil),'decay');
 				G.gain('muddy water',randomFloor(spent),'decay');
 			}
+			if (G.checkPolicy('Toggle SFX')=='off'){
+				
+			 }
 		},
 	});
 	new G.Res({
@@ -9241,7 +9244,8 @@ autobuy(G.year)
 		{id:'education',name:'Education'},
 		{id:'Florists',name:'Florists gathering'},
 		{id:'education',name:'Education'},
-		{id:'prod',name:'Production'}
+		{id:'prod',name:'Production'},
+		{id:'mag',name:'Magix utilities'}
 	);
 	
 	new G.Policy({
@@ -9569,7 +9573,16 @@ autobuy(G.year)
 			'10':{},
 		},
 	});
-///////////////////////////////////////////////////////////////////////////////////////////////////
+		new G.Policy({
+		name:'Toggle SFX',
+		desc:'Disable/Enable sounds from technology: obtaining, rerolling choices.',
+		icon:[29,0'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{},
+		category:'mag',
+	});
+	///////////////////////////////////////////////////////////////////////////////////////////////////
 //SEASONAL CONTENT//CONTENT WHICH WILL BE AVAILABLE FOR PLAYERS AT SOME TIME LIKE XMAS OR VALENTINE'S DAY
 //////////////////////////////////////////////////////////////////////////////////////////////////////	
 	//NEW YEAR 'S EVE//
