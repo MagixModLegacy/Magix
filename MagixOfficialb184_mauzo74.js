@@ -1172,6 +1172,10 @@ G.writeMSettingButton=function(obj)
 				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
 			}
+			if (G.checkPolicy('Toggle SFX')=='off') //Toggle SFX
+			{
+				G.getDict('Toggle SFX').icon = [29,1,'magixmod'];
+			}
 		},
 		category:'food',
 	});
@@ -7137,16 +7141,22 @@ getCosts:function()
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseOption-'+index+'-'+this.id),l('techBox').children[0]);
 			l('techBox').children[0].classList.add('popIn');
+			if (G.checkPolicy('Toggle SFX')=='n') //Toggle SFX
+			{
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech.wav');
 			audio.play();
+			}
 		},
 		onReroll:function()
 		{
 			this.roll+=1;
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseIgniter-'+this.id),l('chooseBox-'+this.id));
+			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
 			var audioReroll = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/TechReroll.wav');
 			audioReroll.play();
+			}
 		},
 		onTick:function()
 		{
@@ -9576,7 +9586,7 @@ autobuy(G.year)
 		new G.Policy({
 		name:'Toggle SFX',
 		desc:'Disable/Enable sounds from technology: obtaining, rerolling choices.',
-		icon:[29,0'magixmod'],
+		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{},
