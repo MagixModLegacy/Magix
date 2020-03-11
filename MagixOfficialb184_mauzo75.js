@@ -1176,6 +1176,10 @@ G.writeMSettingButton=function(obj)
 			{
 				G.getDict('Toggle SFX').icon = [29,1,'magixmod'];
 			}
+			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+				G.getDict('Toggle SFX').icon = [29,0,'magixmod'];
+			}
 		},
 		category:'food',
 	});
