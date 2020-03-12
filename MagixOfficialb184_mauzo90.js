@@ -8,9 +8,9 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
+	if (G.achievByName['Sacrificed for culture'].won > 0){
 	G.funcs['new game blurb']=function()
 	{   
-		if (G.achievByName['Sacrificed for culture'].won > 0){
 		var str=
 		'<b>Your tribe :</b><div class="thingBox">'+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
@@ -23,10 +23,8 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. They call you :</div>';
 		return str;
-		
-		}
-		if (G.achievByName['Sacrificed for culture'].won = 0){
-		var str1=
+	}else{
+		var str=
 		'<b>Your tribe :</b><div class="thingBox">'+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
@@ -36,8 +34,7 @@ G.props['fastTicksOnResearch']=150;
 		'</div>'+
 		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. They call you :</div>';
-		return str1;
-		}
+		return str;
 	}
 	
 	G.funcs['new game']=function()
