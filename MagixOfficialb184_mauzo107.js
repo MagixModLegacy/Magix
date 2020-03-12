@@ -154,7 +154,7 @@ G.props['fastTicksOnResearch']=150;
 	{
 		var str='';
 		str+='<div class="fancyText shadowed">'+
-		'<div class="barred infoTitle">The land of '+G.getName('civ')+'</div>'+
+		'<font color="aqua"><div class="barred infoTitle">The land of '+G.getName('civ')+' </font></div>'+
 		'<div class="barred">ruler : '+G.getName('ruler')+'</div>';
 		var toParse='';
 		var pop=G.getRes('population').amount;
