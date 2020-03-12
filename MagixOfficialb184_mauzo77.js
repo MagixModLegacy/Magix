@@ -122,6 +122,11 @@ G.props['fastTicksOnResearch']=150;
 							G.doCost(me.cost,1);
 							G.gainTrait(me);
 							G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon});
+							if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+							{
+								var audio = new Audio('https://youtu.be/LnMhJU6RsYU');
+								audio.play(); 
+							}
 						}
 					}
 				}
