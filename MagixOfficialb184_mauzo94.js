@@ -8,7 +8,6 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
-	if (G.achievByName['Sacrificed for culture'].won > 0){
 	G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -23,21 +22,6 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. They call you :</div>';
 		return str;
-	}else{
-	G.funcs['new game blurb']=function()
-	{
-		var str=
-		'<b>Your tribe :</b><div class="thingBox">'+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x250</div>','250 Herbs')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
-		'</div>'+
-		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
-		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. They call you :</div>';
-		return str;
-	}
 	}
 	
 	G.funcs['new game']=function()
