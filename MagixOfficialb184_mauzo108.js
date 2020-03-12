@@ -51,7 +51,7 @@ G.props['fastTicksOnResearch']=150;
 		if (G.on)
 		{
 			var str='';
-			str+='It is now the year </b>'+(G.year+1)+'.<br></b>';
+			str+='It is now the year <b>'+(G.year+1)+'.<br></b>';
 			str+='Report for last year :<br>';
 			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
 			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
