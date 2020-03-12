@@ -25,7 +25,9 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. They call you :</div>';
 		return str;
 		}
-		}else{
+		}
+		if (G.achievByName['Sacrificed for culture'].won){
+		if (G.achievByName['Sacrificed for culture'].won = 0){
 		var str=
 		'<b>Your tribe :</b><div class="thingBox">'+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
@@ -37,6 +39,7 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. They call you :</div>';
 		return str;
+		}
 		}
 	}
 	
