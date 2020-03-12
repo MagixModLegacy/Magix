@@ -124,7 +124,7 @@ G.props['fastTicksOnResearch']=150;
 							G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon});
 							if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 							{
-								var audio = new Audio('https://youtu.be/LnMhJU6RsYU');
+								var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTrait.mp3');
 								audio.play(); 
 							}
 						}
