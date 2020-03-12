@@ -11,7 +11,7 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['new game blurb']=function()
 	{   
 		var str=
-		'<font color="fuschia">Magix mod has been loaded.</font>'+
+		'<font color="fuschia">Magix mod has been loaded succesfully. <b>: )</b></font>'+
 		'<b>Your tribe :</b><div class="thingBox">'+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
