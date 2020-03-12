@@ -10,6 +10,7 @@ func:function(){
 G.props['fastTicksOnResearch']=150;
 	G.funcs['new game blurb']=function()
 	{   
+		if (G.achievByName['Sacrificed for culture'].won){
 		if (G.achievByName['Sacrificed for culture'].won > 0){
 		var str=
 		'<b>Your tribe :</b><div class="thingBox">'+
@@ -23,6 +24,7 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. They call you :</div>';
 		return str;
+		}
 		}else{
 		var str=
 		'<b>Your tribe :</b><div class="thingBox">'+
