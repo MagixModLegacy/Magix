@@ -9603,7 +9603,7 @@ autobuy(G.year)
 	});
 		new G.Policy({
 		name:'Toggle SFX',
-		desc:'Disable/Enable sounds from <ol type="circle"><li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li></ol>',
+		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li>',
 		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
