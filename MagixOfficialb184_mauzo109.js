@@ -4,7 +4,7 @@ author:'pelletsstarPL',
 desc:'Magic! Magic!. Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
 manifest:'ModManifest.js',
-sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','mauzo':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/mauzo.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
+sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
@@ -2259,8 +2259,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 					if (G.checkPolicy('mausoleum stage')=='1'){
-	G.getDict('mausoleum').wideIcon = [0,0,'mauzo']
-        G.getDict('mausoleum').icon = [1,0,'mauzo']
+	G.getDict('mausoleum').wideIcon = [0,20,'magixmod']
+        G.getDict('mausoleum').icon = [1,20,'magixmod']
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 1 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>'
     G.getDict('mausoleum').wonder = 'mausoleum'
     G.getDict('mausoleum').cost = {'basic building materials':1200}
@@ -2277,8 +2277,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 		if (G.checkPolicy('mausoleum stage')=='2'){
-        G.getDict('mausoleum').wideIcon = [3,0,'mauzo'];
-        G.getDict('mausoleum').icon = [4,0,'mauzo'];
+        G.getDict('mausoleum').wideIcon = [3,20,'magixmod'];
+        G.getDict('mausoleum').icon = [4,20,'magixmod'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 2 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':1400};
@@ -2295,8 +2295,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 		if (G.checkPolicy('mausoleum stage')=='3'){
-        G.getDict('mausoleum').wideIcon = [6,0,'mauzo'];
-        G.getDict('mausoleum').icon = [7,0,'mauzo'];
+        G.getDict('mausoleum').wideIcon = [6,20,'magixmod'];
+        G.getDict('mausoleum').icon = [7,20,'magixmod'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 3 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':1600};
@@ -2313,8 +2313,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 		if (G.checkPolicy('mausoleum stage')=='4'){
-        G.getDict('mausoleum').wideIcon = [9,0,'mauzo'];
-        G.getDict('mausoleum').icon = [10,0,'mauzo'];
+        G.getDict('mausoleum').wideIcon = [9,20,'magixmod'];
+        G.getDict('mausoleum').icon = [10,20,'magixmod'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 4 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':1800};
@@ -2331,8 +2331,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 		if (G.checkPolicy('mausoleum stage')=='5'){
-        G.getDict('mausoleum').wideIcon = [12,0,'mauzo'];
-        G.getDict('mausoleum').icon = [13,0,'mauzo'];
+        G.getDict('mausoleum').wideIcon = [12,20,'magixmod'];
+        G.getDict('mausoleum').icon = [13,20,'magixmod'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 5 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':2000};
@@ -2349,8 +2349,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 		if (G.checkPolicy('mausoleum stage')=='6'){
-        G.getDict('mausoleum').wideIcon = [15,0,'mauzo'];
-        G.getDict('mausoleum').icon = [16,0,'mauzo'];
+        G.getDict('mausoleum').wideIcon = [15,20,'magixmod'];
+        G.getDict('mausoleum').icon = [16,20,'magixmod'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 6 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':2200};
@@ -2367,8 +2367,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 		if (G.checkPolicy('mausoleum stage')=='7'){
-        G.getDict('mausoleum').wideIcon = [18,0,'mauzo'];
-        G.getDict('mausoleum').icon = [19,0,'mauzo'];
+        G.getDict('mausoleum').wideIcon = [18,20,'magixmod'];
+        G.getDict('mausoleum').icon = [19,20,'magixmod'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 7 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':2400};
@@ -2385,8 +2385,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 		if (G.checkPolicy('mausoleum stage')=='8'){
-        G.getDict('mausoleum').wideIcon = [21,0,'mauzo'];
-        G.getDict('mausoleum').icon = [22,0,'mauzo'];
+        G.getDict('mausoleum').wideIcon = [21,20,'magixmod'];
+        G.getDict('mausoleum').icon = [22,20,'magixmod'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 8 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':2600};
@@ -2403,8 +2403,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 		if (G.checkPolicy('mausoleum stage')=='9'){
-        G.getDict('mausoleum').wideIcon = [24,0,'mauzo'];
-        G.getDict('mausoleum').icon = [25,0,'mauzo'];
+        G.getDict('mausoleum').wideIcon = [24,20,'magixmod'];
+        G.getDict('mausoleum').icon = [25,20,'magixmod'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to level 9 of 10. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = 'mausoleum';
     G.getDict('mausoleum').cost = {'basic building materials':2800};
@@ -2421,8 +2421,8 @@ G.writeMSettingButton=function(obj)
 		  }
 		}
 		if (G.checkPolicy('mausoleum stage')=='10'){
-        G.getDict('mausoleum').wideIcon = [27,0,'mauzo'];
-        G.getDict('mausoleum').icon = [28,0,'mauzo'];
+        G.getDict('mausoleum').wideIcon = [27,20,'magixmod'];
+        G.getDict('mausoleum').icon = [28,20,'magixmod'];
         G.getDict('mausoleum').desc ='@leads to the <b>Mausoleum Victory</b><>A mystical monument where the dead lie.//A temple housing a tomb deep under its rocky platform, the Mausoleum stands tall, its eternal shadow forever reminding your people of your greatness. <font color="yellow">@The Mausoleum is evolved to <b>Final stage (10 of 10)</b>. Continue evolving up to unlock a special achievement. You can evolve up the Mausoleum to next stage by ascending with Mausoleum at the stage you currently are.</font>';
     G.getDict('mausoleum').wonder = '<font color="DA4f37">Mausoleum eternal</font>';
     G.getDict('mausoleum').cost = {'basic building materials':3000};
@@ -9603,7 +9603,7 @@ autobuy(G.year)
 	});
 		new G.Policy({
 		name:'Toggle SFX',
-		desc:'Disable/Enable sounds from technology: obtaining, rerolling choices.',
+		desc:'Disable/Enable sounds from <ol type="circle"><li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li></ol>',
 		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
@@ -10516,8 +10516,8 @@ autobuy(G.year)
 	});
 		new G.Achiev({
 		tier:2,
-		wideIcon:[27,0,'mauzo'],
-		icon:[28,0,'mauzo'],
+		wideIcon:[27,0,'magixmod'],
+		icon:[28,0,'magixmod'],
 		name:'<font color="DA4f37">Mausoleum eternal</font>',
 		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve [mausoleum] to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
 		fromWonder:'<font color="DA4f37">Mausoleum eternal</font>',
