@@ -49,7 +49,7 @@ G.props['fastTicksOnResearch']=150;
 		if (G.on)
 		{
 			var str='';
-			str+='It is now the year <bb>'+(G.year+1)+'</b>.<br>';
+			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
 			str+='Report for last year :<br>';
 			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
 			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
@@ -4415,8 +4415,8 @@ G.writeMSettingButton=function(obj)
 			'smash cut stone':{name:'Smash stone blocks',icon:[2,6],desc:'Turn [cut stone]s into 9 [stone]s each.',req:{'quarrying':true},use:{'stone tools':1}},
 			'gem blocks':{name:'Carve gem blocks',icon:[7,9],desc:'Slowly turn 10 [gems] into 1 [gem block].',req:{'gem-cutting':true},use:{'stone tools':1}},
 			'wood statuettes':{name:'Carve wooden statuettes',icon:[13,1,'magixmod'],desc:'Your carver will now use carve statuettes out of [log].',use:{'knapped tools':1}},
-			'gdablockscraft':{name:'Cut other stones',icon:[3,12,'magixmod'],desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',use:{'knapped tools':1},req:{'masonry':true}},
-			'gdablockssmash':{name:'Smash other stone blocks',icon:[2,12,'magixmod'],desc:'Your carver will smash a [Various cut stones,Various cut stone] into 9 [Various stones].',use:{'knapped tools':1},req:{'masonry':true}},    
+			'gdablockscraft':{name:'Cut other stones',icon:[2,12,'magixmod'],desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',use:{'knapped tools':1},req:{'masonry':true}},
+			'gdablockssmash':{name:'Smash other stone blocks',icon:[3,12,'magixmod'],desc:'Your carver will smash a [Various cut stones,Various cut stone] into 9 [Various stones].',use:{'knapped tools':1},req:{'masonry':true}},    
 		},
 		effects:[
 			{type:'convert',from:{'stone':1},into:{'statuette':1},every:5,mode:'stone statuettes'},
