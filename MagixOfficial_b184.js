@@ -8538,7 +8538,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Berry masterry',
+		name:'Berry mastery',
 		desc:'Doubles efficiency of [Berry farm] . Compounds with previous multipliers.',
 		icon:[27,19,'magixmod'],
 		cost:{'insight II':24,'faith II':1},
