@@ -9590,8 +9590,8 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		new G.Tech({
 		name:'focused scouting',
 		desc:'@[scout] and [wanderer] are smarter by discovering new techniques of exploring. May make exploring safer<>This tech will allow to explore further worlds with same units. At the moment useless because there is no 2nd map but applies new icons for both [scout] and [wanderer] .',
-		icon:[11,21,'magixmod'],
-		cost:{'insight II':15},
+		icon:[10,21,'magixmod'],
+		cost:{'insight II':15,'insight':35},
 		req:{'tool-making':true,'Richer language':true,'well-digging':true},
 		effects:[
 		],
