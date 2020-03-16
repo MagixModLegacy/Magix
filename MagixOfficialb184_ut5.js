@@ -4022,7 +4022,6 @@ G.writeMSettingButton=function(obj)
 			if (G.has('Underworld building 2/2')){
 			me.hidden=true
 			}
-		}
 		},	
 		category:'main',
 	});
