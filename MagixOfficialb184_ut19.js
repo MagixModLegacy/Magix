@@ -5307,6 +5307,16 @@ G.writeMSettingButton=function(obj)
 		],
 		category:'debug',
 	});
+		new G.Unit({
+		name:'auto brain tier 2',
+		desc:'@generates 50 of [insight II], [culture II], [faith II] and [influence II]<>Educates your people so you don\'t have to.//Powered by strange energies.',
+		icon:[22,21,'magixmod'],
+		cost:{},
+		effects:[
+			{type:'gather',what:{'insight II ':50,'culture II ':50,'faith II':50,'influence II':50}}
+		],
+		category:'debug',
+	});
 	//MAGIX
 new G.Unit({
 		name:'Hovel of colours',
