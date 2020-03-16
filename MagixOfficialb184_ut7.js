@@ -9578,7 +9578,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'guilds unite',
 		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters]<>NOTE : useless for now... but applies new icons to [lodge] , [guild quarters]',
 		icon:[29,8,'magixmod'],
-		cost:{'insight II':20},
+		cost:{'insight II':20,'culture II':10,'influence II':5},
 		req:{'cities':true,'construction II':true,'code of law II':true},
 		effects:[
 		],
