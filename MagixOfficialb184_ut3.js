@@ -2187,6 +2187,10 @@ G.writeMSettingButton=function(obj)
                 G.Message({type:'good',text:'<b>You and your people activated passage to Plain Island. Out of portal an Emblem falls and hits on rock. Big rectangular portal shines and you can see what is beyond it. You come through and notice there are flat plains. Now it is time for more discoveries and build there some stuff.</b>',icon:[8,3,'magixmod']});
                 madeUnlockMessage = true
             }
+			if (G.has('Plain island building')){
+			me.hidden=true
+			}
+		},
         },
         category:'main',
     });
@@ -2834,6 +2838,10 @@ G.writeMSettingButton=function(obj)
 				G.Message({type:'good',text:'<b>You and your people activated passage to Paradise. Out of portal an Emblem fall and hits next to your feet. Big golden portal shines and you can see what is beyond it. You come through and notice there is perfect heat to live. Now it is time for more discoveries.</b>',icon:[8,4,'magixmod']});
 				madeUnlockMessageP = true
 			}
+			if (G.has('Paradise building')){
+			me.hidden=true
+			}
+		},
 		},	
 		category:'main',
 
@@ -4013,6 +4021,10 @@ G.writeMSettingButton=function(obj)
 				G.Message({type:'cool',text:'<b>You and your people activated a way to the Underworld. Out of nowhere an Emblem appears behind you. It is hot in touch. Its red glowing only attract curses.</b></br> <font color="fuschia">So prepare to tame 6 Devil\'s traits in order to continue your adventure. Without it the Underworld won\'t allow you discover its secrets.',icon:[12,19,'magixmod']});
 				UnderworldMESG = true
 			}
+			if (G.has('Underworld building 2/2')){
+			me.hidden=true
+			}
+		}
 		},	
 		category:'main',
 	});
