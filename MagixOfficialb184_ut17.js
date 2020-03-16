@@ -4182,8 +4182,8 @@ G.writeMSettingButton=function(obj)
 			if(G.has('cozy building')){
 			G.getDict('hut').icon = [28,12,'magixmod']
 			G.getDict('hovel').icon = [28,11,'magixmod']
-			G.getDict('mud shelter').icon = [29,13,'magixmod']
-			G.getDict('house').icon = [29,14,'magixmod']
+			G.getDict('mud shelter').icon = [28,13,'magixmod']
+			G.getDict('house').icon = [28,14,'magixmod']
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -9624,7 +9624,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'symbolism II',
 		desc:'@increases [symbolism] bonus from 50 to 70%. Still boost has the same targets as it had before.',
 		icon:[29,6,'magixmod'],
-		cost:{'culture II':20,'insight II':10},
+		cost:{'culture II':15,'insight II':10},
 		req:{'oral tradition':true,'ritualism II':true,'Improved rhetoric':true,'Richer language':true},
 		effects:[
 		],
@@ -9643,7 +9643,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'cozier building',
 		desc:'@people except setting up a chimney started thinking about having some decor near their houses. <>Makes buildings look even more nice. Better icons for basic housing.',
 		icon:[29,4,'magixmod'],
-		cost:{'insight II':25,'culture II':5},
+		cost:{'insight II':25,'culture II':5,'insight':10},
 		req:{'cozy building':true,'focused scouting':true,'<font color="maroon">Caretaking</font>':true},
 		effects:[
 		],
