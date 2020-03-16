@@ -9258,7 +9258,306 @@ autobuy(G.year)
 		],
 		category:'main'
 	});
+	//Seasonal New year
+		new G.Tech({
+		name:'Firework crafting',
+		desc:'@unlocks [Artisan of new year].',
+		icon:[0,0,'seasonal'],
+		cost:{'insight':30},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},
+	});
+		new G.Tech({
+		name:'Firework launching',
+		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
+		icon:[17,0,'seasonal'],
+		cost:{'insight':70},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true},
+	});
+		new G.Tech({
+		name:'Dark essenced fireworks',
+		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
+		icon:[16,0,'seasonal'],
+		cost:{'insight':400},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true},
+	});
+	//Special techs from achievements and their functions
+	/*============================================================================================
+	SPECIAL ACHIEVEMENTS EFFECTS
+	===========================================================================================*/
+
+	let gif =  new G.Tech({
+        name:'<font color=" ##00C000">Artistic gray cells</font>',
+        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
+        icon:[4,12,'magixmod',6,12,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'inspiration':3}},
+			{type:'provide res',what:{'culture':3}},
+		],
+        req:{'tribalism':false}
+    	});
+	function checkCultu() {
+  	if (G.achievByName['Sacrificed for culture'].won) {
+    	if (G.achievByName['Sacrificed for culture'].won >= 0 && G.hasNot('<font color=" ##00C000">Artistic gray cells</font>')) {
+     	 G.gainTech(gif)
+    	}
+	}
+	}
+	checkCultu()
+	const oldNewGame3 = G.NewGameConfirm.bind({})
+	G.NewGameConfirm = new Proxy(oldNewGame3, {
+ 	 apply: function(target, thisArg, args) {
+   	 target(...args)
+   	 checkCultu()
+ 	 }
+	})
+let gifI =  new G.Tech({
+        name:'<font color="aqua">Genius feeling</font>',
+        desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
+        icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'insight':6}},
+		],
+        req:{'tribalism':false}
+    });
+function checkDream() {
+  if (G.achievByName['Insight-ly'].won) {
+    if (G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="aqua">Genius feeling</font>')) {
+      G.gainTech(gifI)
+    }
+}
+}
+checkDream()
+const oldNewGame2 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame2, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkDream()
+  }
+})
+let gifD =  new G.Tech({
+        name:'<font color="fuschia">Authority of the ancestor</font>',
+        desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
+        icon:[4,12,'magixmod',6,13,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'authority':1}},
+			{type:'provide res',what:{'influence':1}},
+		],
+        req:{'tribalism':false}
+    });
+function checkDemoc() {
+  if (G.achievByName['Democration'].won) {
+    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="fuschia">Authority of the ancestor</font>')) {
+      G.gainTech(gifD)
+    }
+}
+}
+checkDemoc()
+const oldNewGame1 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame1, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkDemoc()
+  }
+})
+	let gift =     new G.Tech({
+        name:'<font color="yellow">A gift from the Mausoleum</font>',
+        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
+        icon:[4,12,'magixmod',1,14],
+        cost:{},
+        req:{'tribalism':false}
+    });
+function checkMagic() {
+  if (G.achievByName['mausoleum'].won) {
+    if (G.achievByName['mausoleum'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
+      G.gainTech(gift)
+      G.Message({
+        type: 'good',
+        text: 'Building the Mausoleum in the past has granted you access to magic! :)',
+        icon: [4, 12, 6, 1, 'magixmod']
+      });
+    }
+
+}
+ else if(G.achievByName['mausoleum'].won < 1){
+
+  G.Message({
+    type: 'bad',
+    text: 'Building the Mausoleum in the past grants access to magic in the future.',
+    icon: [3, 12, 6, 1, 'magixmod']
+  });
+
+}
+}
+checkMagic()
+const oldNewGame = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkMagic()
+  }
+})
+let gifUnde =  new G.Tech({
+        name:'A feeling from the Underworld',
+        desc:'You feel some warmth. It is not usual warmth. A call from Underworld. @<b>Allows you to finalize Underworld unlocking',
+        icon:[8,12,9,5,'magixmod'],
+        cost:{},
+	effects:[
+		{type:'provide res',what:{'New world point':400}},
+	],	
+        req:{'tribalism':false}
+    });
+function checkUnde() {
+  if (G.achievByName['"In the underworld"'].won) {
+    if (G.achievByName['"In the underworld"'].won >= 0 && G.achievByName['Deadly, revenantic'].won >= 0 && G.hasNot('A feeling from the Underworld')){
+      G.gainTech(gifUnde)
+    }
+}
+}
+checkUnde()
+const oldNewGame4 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame4, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkUnde()
+  }
+})
+let gifUnA =  new G.Tech({
+        name:'<font color="##a8654f">The Underworld\'s Ascendant</font>',
+        desc:'You managed to do few other feats to attract new things. And you attracted: @ +1 [adult] . This is [adult,The Underworld\'s Ascendant]',
+        icon:[15,19,'magixmod'],
+        cost:{},
+	effects:[
+		{type:'provide res',what:{'adult':1}},
+	],
+        req:{'tribalism':false}
+    });
+function checkUnA() {
+  if (G.achievByName['"In the underworld"'].won) {
+    if (G.achievByName['"In the underworld"'].won >= 0 && G.achievByName['Democration'].won >= 0 && G.achievByName['Sacrificed for culture'].won >= 0 && G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')) {
+      G.gainTech(gifUnA)
+    }
+}
+}
+checkUnA()
+const oldNewGame5 = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGame5, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkUnA()
+  }
+}) 
+
+	/*=====================================================================================
+	ACHIEVEMENTS
+	=======================================================================================*/
 	
+	G.legacyBonuses.push(
+		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
+		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
+	);
+	
+	//do NOT remove or reorder achievements or saves WILL get corrupted
+	
+	new G.Achiev({
+		tier:0,
+		name:'mausoleum',
+		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
+		fromUnit:'mausoleum',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300*3},
+			{type:'addFastTicksOnResearch',amount:150}
+		],
+	});
+//Temple achiev
+		new G.Achiev({
+		tier:1,
+		name:'Heavenly',
+		wideIcon:[0,11,'magixmod'],
+		icon:[1,11,'magixmod'],
+		desc:'Your soul has been sent to Paradise as archangel with power of top Temple tower in an beautiful stone monument the purpose of which takes root in a pure religious thought.',
+		fromWonder:'Heavenly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+	});
+//skull achiev
+		new G.Achiev({
+		tier:1,
+		name:'Deadly, revenantic',
+		wideIcon:[0,16,'magixmod'],
+		icon:[1,16,'magixmod'],
+		desc:'You escaped and your soul got escorted right into the world of Underwold... you may discover it sometime.',
+		fromWonder:'Deadly, revenantic',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+	});
+
+		new G.Achiev({
+		tier:0,
+		name:'Sacrificed for culture',
+		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
+		icon:[6,12,'magixmod'],
+		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Democration',
+		wideIcon:[5,13,'magixmod'],
+		icon:[6,13,'magixmod'],
+		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
+		fromWonder:'Democration',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Insight-ly',
+		wideIcon:[choose([0,3,6]),17,'magixmod'],
+		icon:[choose([1,4,7]),17,'magixmod'],
+		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+		new G.Achiev({
+		tier:1,
+		name:'"In the underworld"',
+		wideIcon:[7,5,'magixmod'],
+		icon:[9,5,'magixmod'],
+		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
+		fromWonder:'"In the underworld"',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:15},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		wideIcon:[27,0,'magixmod'],
+		icon:[28,0,'magixmod'],
+		name:'<font color="DA4f37">Mausoleum eternal</font>',
+		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve [mausoleum] to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
+		fromWonder:'<font color="DA4f37">Mausoleum eternal</font>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:2000},
+			{type:'addFastTicksOnResearch',amount:175}
+		],
+	});
 	
 	/*=====================================================================================
 	POLICIES
@@ -9646,13 +9945,6 @@ autobuy(G.year)
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
-		new G.Tech({
-		name:'Firework crafting',
-		desc:'@unlocks [Artisan of new year].',
-		icon:[0,0,'seasonal'],
-		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},
-	});
 		new G.Res({
 		name:'Blue firework',
 		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky/',
@@ -9677,13 +9969,6 @@ autobuy(G.year)
 		category:'seasonal',
 		hidden:true,
 	});
-		new G.Tech({
-		name:'Firework launching',
-		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
-		icon:[17,0,'seasonal'],
-		cost:{'insight':70},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true},
-	});
 		new G.Unit({
 		name:'Firework launching guy',
 		desc:'There the guy launches fireworks right up into the sky. Generates happiness by itself and for every firework bunch launched up into the sky.',
@@ -9700,17 +9985,9 @@ autobuy(G.year)
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
-		new G.Tech({
-		name:'Dark essenced fireworks',
-		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
-		icon:[16,0,'seasonal'],
-		cost:{'insight':400},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true},
-	});
 		new G.Res({
 		name:'Dark Blue Firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight./',
-		icon:[5,0,'seasonal'],
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight./',		icon:[5,0,'seasonal'],
 		tick:function(me,tick)
 		{
 			var toSpoil=me.amount*0.009;
@@ -10417,283 +10694,6 @@ autobuy(G.year)
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
-	
-	/*=====================================================================================
-	ACHIEVEMENTS
-	=======================================================================================*/
-	
-	G.legacyBonuses.push(
-		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
-		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
-	);
-	
-	//do NOT remove or reorder achievements or saves WILL get corrupted
-	
-	new G.Achiev({
-		tier:0,
-		name:'mausoleum',
-		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
-		fromUnit:'mausoleum',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300*3},
-			{type:'addFastTicksOnResearch',amount:150}
-		],
-	});
-//Temple achiev
-		new G.Achiev({
-		tier:1,
-		name:'Heavenly',
-		wideIcon:[0,11,'magixmod'],
-		icon:[1,11,'magixmod'],
-		desc:'Your soul has been sent to Paradise as archangel with power of top Temple tower in an beautiful stone monument the purpose of which takes root in a pure religious thought.',
-		fromWonder:'Heavenly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300},
-			{type:'addFastTicksOnResearch',amount:25}	
-		],
-	});
-//skull achiev
-		new G.Achiev({
-		tier:1,
-		name:'Deadly, revenantic',
-		wideIcon:[0,16,'magixmod'],
-		icon:[1,16,'magixmod'],
-		desc:'You escaped and your soul got escorted right into the world of Underwold... you may discover it sometime.',
-		fromWonder:'Deadly, revenantic',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300},
-			{type:'addFastTicksOnResearch',amount:25}	
-		],
-	});
-
-		new G.Achiev({
-		tier:0,
-		name:'Sacrificed for culture',
-		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
-		icon:[6,12,'magixmod'],
-		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
-		fromWonder:'Insight-ly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		name:'Democration',
-		wideIcon:[5,13,'magixmod'],
-		icon:[6,13,'magixmod'],
-		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
-		fromWonder:'Democration',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		name:'Insight-ly',
-		wideIcon:[choose([0,3,6]),17,'magixmod'],
-		icon:[choose([1,4,7]),17,'magixmod'],
-		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
-		fromWonder:'Insight-ly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-	});
-		new G.Achiev({
-		tier:1,
-		name:'"In the underworld"',
-		wideIcon:[7,5,'magixmod'],
-		icon:[9,5,'magixmod'],
-		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
-		fromWonder:'"In the underworld"',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:15},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		wideIcon:[27,0,'magixmod'],
-		icon:[28,0,'magixmod'],
-		name:'<font color="DA4f37">Mausoleum eternal</font>',
-		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve [mausoleum] to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
-		fromWonder:'<font color="DA4f37">Mausoleum eternal</font>',
-		effects:[
-			{type:'addFastTicksOnStart',amount:2000},
-			{type:'addFastTicksOnResearch',amount:175}
-		],
-	});
-	/*============================================================================================
-	SPECIAL ACHIEVEMENTS EFFECTS
-	===========================================================================================*/
-
-	let gif =  new G.Tech({
-        name:'<font color=" ##00C000">Artistic gray cells</font>',
-        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
-        icon:[4,12,'magixmod',6,12,'magixmod'],
-        cost:{},
-	effects:[
-			{type:'provide res',what:{'inspiration':3}},
-			{type:'provide res',what:{'culture':3}},
-		],
-        req:{'tribalism':false}
-    	});
-	function checkCultu() {
-  	if (G.achievByName['Sacrificed for culture'].won) {
-    	if (G.achievByName['Sacrificed for culture'].won >= 0 && G.hasNot('<font color=" ##00C000">Artistic gray cells</font>')) {
-     	 G.gainTech(gif)
-    	}
-	}
-	}
-	checkCultu()
-	const oldNewGame3 = G.NewGameConfirm.bind({})
-	G.NewGameConfirm = new Proxy(oldNewGame3, {
- 	 apply: function(target, thisArg, args) {
-   	 target(...args)
-   	 checkCultu()
- 	 }
-	})
-let gifI =  new G.Tech({
-        name:'<font color="aqua">Genius feeling</font>',
-        desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
-        icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
-        cost:{},
-	effects:[
-			{type:'provide res',what:{'insight':6}},
-		],
-        req:{'tribalism':false}
-    });
-function checkDream() {
-  if (G.achievByName['Insight-ly'].won) {
-    if (G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="aqua">Genius feeling</font>')) {
-      G.gainTech(gifI)
-    }
-}
-}
-checkDream()
-const oldNewGame2 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame2, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkDream()
-  }
-})
-let gifD =  new G.Tech({
-        name:'<font color="fuschia">Authority of the ancestor</font>',
-        desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
-        icon:[4,12,'magixmod',6,13,'magixmod'],
-        cost:{},
-	effects:[
-			{type:'provide res',what:{'authority':1}},
-			{type:'provide res',what:{'influence':1}},
-		],
-        req:{'tribalism':false}
-    });
-function checkDemoc() {
-  if (G.achievByName['Democration'].won) {
-    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="fuschia">Authority of the ancestor</font>')) {
-      G.gainTech(gifD)
-    }
-}
-}
-checkDemoc()
-const oldNewGame1 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame1, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkDemoc()
-  }
-})
-	let gift =     new G.Tech({
-        name:'<font color="yellow">A gift from the Mausoleum</font>',
-        desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
-        icon:[4,12,'magixmod',1,14],
-        cost:{},
-        req:{'tribalism':false}
-    });
-function checkMagic() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
-      G.gainTech(gift)
-      G.Message({
-        type: 'good',
-        text: 'Building the Mausoleum in the past has granted you access to magic! :)',
-        icon: [4, 12, 6, 1, 'magixmod']
-      });
-    }
-
-}
- else if(G.achievByName['mausoleum'].won < 1){
-
-  G.Message({
-    type: 'bad',
-    text: 'Building the Mausoleum in the past grants access to magic in the future.',
-    icon: [3, 12, 6, 1, 'magixmod']
-  });
-
-}
-}
-checkMagic()
-const oldNewGame = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkMagic()
-  }
-})
-let gifUnde =  new G.Tech({
-        name:'A feeling from the Underworld',
-        desc:'You feel some warmth. It is not usual warmth. A call from Underworld. @<b>Allows you to finalize Underworld unlocking',
-        icon:[8,12,9,5,'magixmod'],
-        cost:{},
-	effects:[
-		{type:'provide res',what:{'New world point':400}},
-	],	
-        req:{'tribalism':false}
-    });
-function checkUnde() {
-  if (G.achievByName['"In the underworld"'].won) {
-    if (G.achievByName['"In the underworld"'].won >= 0 && G.achievByName['Deadly, revenantic'].won >= 0 && G.hasNot('A feeling from the Underworld')){
-      G.gainTech(gifUnde)
-    }
-}
-}
-checkUnde()
-const oldNewGame4 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame4, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkUnde()
-  }
-})
-let gifUnA =  new G.Tech({
-        name:'<font color="##a8654f">The Underworld\'s Ascendant</font>',
-        desc:'You managed to do few other feats to attract new things. And you attracted: @ +1 [adult] . This is [adult,The Underworld\'s Ascendant]',
-        icon:[15,19,'magixmod'],
-        cost:{},
-	effects:[
-		{type:'provide res',what:{'adult':1}},
-	],
-        req:{'tribalism':false}
-    });
-function checkUnA() {
-  if (G.achievByName['"In the underworld"'].won) {
-    if (G.achievByName['"In the underworld"'].won >= 0 && G.achievByName['Democration'].won >= 0 && G.achievByName['Sacrificed for culture'].won >= 0 && G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')) {
-      G.gainTech(gifUnA)
-    }
-}
-}
-checkUnA()
-const oldNewGame5 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame5, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkUnA()
-  }
-}) 
 
 	/*=====================================================================================
 	MAP GENERATOR
