@@ -2190,7 +2190,6 @@ G.writeMSettingButton=function(obj)
 			if (G.has('Plain island building')){
 			me.hidden=true
 			}
-		},
         },
         category:'main',
     });
@@ -2841,7 +2840,6 @@ G.writeMSettingButton=function(obj)
 			if (G.has('Paradise building')){
 			me.hidden=true
 			}
-		},
 		},	
 		category:'main',
 
@@ -4166,6 +4164,10 @@ G.writeMSettingButton=function(obj)
 			if (G.has('Eotm') && G.hasNot('ritualism II')){
 				G.setPolicyModeByName('wisdom rituals','off');
 				G.setPolicyModeByName('flower rituals','off');
+			}
+			if(G.has('ritualism II')){
+			G.getDict('lodge').icon = [29,9,'magixmod']
+			G.getDict('guild quarters').icon = [25,2,28,15,'magixmod']
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -8793,6 +8795,7 @@ autobuy(G.year)
 	
 	/*=====================================================================================
 	TRAITS
+	These are like techs. And that makes'em have same id set as techs
 	=======================================================================================*/
 	//chances are evaluated every day and represent how many years (on average) it takes to randomly discover them once they fulfill the requirements
 	
@@ -9568,7 +9571,19 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
     target(...args)
     checkUnA()
   }
-}) 	
+})
+	/*======================================
+	Another TECHZ
+	=======================================*/
+		new G.Tech({
+		name:'guilds unite',
+		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters]<>NOTE : useless for now... but applies new icons to [lodge] , [guild quarters]',
+		icon:[29,8,'magixmod'],
+		cost:{'insight II':20},
+		req:{'cities':true,'construction II':true,'code of law II':true},
+		effects:[
+		],
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
