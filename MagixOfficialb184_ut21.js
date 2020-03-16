@@ -4559,7 +4559,7 @@ G.writeMSettingButton=function(obj)
 		modes:{
 			'catch by hand':{name:'Catch by hand',icon:[0,6],desc:'Catch fish with nothing but bare hands.//Slow and tedious.'},
 			'spear fishing':{name:'Spear fishing',icon:[5,9],desc:'Catch fish with spears.',use:{'stone weapons':1},req:{'spears':true}},
-			'line fishing':{name:'Line fishing',icon:[5,9],desc:'Catch fish with fishing poles.',use:{'stone tools':1},req:{'fishing hooks':true}},
+			'line fishing':{name:'Line fishing',icon:[7,21,'magixmod'],desc:'Catch fish with fishing poles.',use:{'stone tools':1},req:{'fishing hooks':true}},
 			'net fishing':{name:'Net fishing',icon:[13,8,'magixmod'], desc:'Catch fish with [Fishing net].',req:{'Fishing II':true},use:{'Fishing net':1}},
 		},
 		effects:[
@@ -9665,6 +9665,17 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		effects:[
 		],
 		chance:3,
+	});
+		new G.Tech({
+		name:'Maths(upper-intermediate)',
+		desc:'Provides 5 [education] and 20 [wisdom II] @Expands maths knowledge of scholars by: integrals (basic) , calculus (basic) , strongs and polynomials.',
+		icon:[8,21,'magixmod'],
+		cost:{'insight II':50,'science':8,'culture II':12},
+		effects:[
+			{type:'provide res',what:{'education':5}},
+			{type:'provide res',what:{'wisdom II':20}},
+		],
+		req:{'Laws of physics(intermediate)':true,'Will to know more':true,'symbolism II':true},
 	});
 	/*=====================================================================================
 	POLICIES
