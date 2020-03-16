@@ -4172,6 +4172,10 @@ G.writeMSettingButton=function(obj)
 			G.getDict('wanderer').icon = [11,21,'magixmod']
 			G.getDict('scout').icon = [12,21,'magixmod']
 			}
+			if(G.has('bigger kilns')){
+			G.getDict('kiln').icon = [28,19,'magixmod']
+			G.getDict('Kiln').icon = [20,21,'magixmod']
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -9596,6 +9600,16 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		effects:[
 		],
 		chance:2,
+	});
+		new G.Tech({
+		name:'bigger kilns',
+		desc:'@People can build bigger [kiln]s that are more efficient. <>Increases efficiency of all [Kiln] types by additive 150% but doubles upkeep of this unit.',
+		icon:[21,21,'magixmod'],
+		cost:{'insight II':15},
+		req:{'Improved rhetoric':true,'Construction II':true,'masonry':true,'weaving II':true},
+		effects:[
+		],
+		chance:4,
 	});
 	/*=====================================================================================
 	POLICIES
