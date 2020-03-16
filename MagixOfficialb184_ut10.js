@@ -4166,7 +4166,7 @@ G.writeMSettingButton=function(obj)
 			}
 			if(G.has('ritualism II')){
 			G.getDict('lodge').icon = [29,9,'magixmod']
-			G.getDict('guild quarters').icon = [28,15,'magixmod']
+			G.getDict('guild quarters').icon = [28,15,'magixmod',25,2]
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
