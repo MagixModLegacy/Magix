@@ -9675,7 +9675,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 			{type:'provide res',what:{'education':5}},
 			{type:'provide res',what:{'wisdom II':30}},
 		],
-		req:{'Laws of physics(intermediate)':true,'Will to know more':true,'symbolism II':true,'Intermediate maths':true},
+		req:{'Laws of physics(intermediate)':true,'Will to know more':true,'symbolism II':true,'Intermediate maths':true,'Flour-crafting':true},
 	});
 	/*=====================================================================================
 	POLICIES
