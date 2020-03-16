@@ -5313,7 +5313,7 @@ G.writeMSettingButton=function(obj)
 		icon:[22,21,'magixmod'],
 		cost:{},
 		effects:[
-			{type:'gather',what:{'insight II ':50,'culture II ':50,'faith II':50,'influence II':50}}
+			{type:'gather',what:{'insight II':50,'culture II':50,'faith II':50,'influence II':50}}
 		],
 		category:'debug',
 	});
