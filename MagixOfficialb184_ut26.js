@@ -9670,7 +9670,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'Maths(upper-intermediate)',
 		desc:'Provides 5 [education] and 30 [wisdom II] @Expands maths knowledge of scholars by: integrals (basic) , calculus (basic) , strongs and polynomials.',
 		icon:[8,21,'magixmod'],
-		cost:{'insight II':50,'science':8,'culture II':12},
+		cost:{'insight II':50,'science':8,'culture II':12,'insight':255},
 		effects:[
 			{type:'provide res',what:{'education':5}},
 			{type:'provide res',what:{'wisdom II':30}},
