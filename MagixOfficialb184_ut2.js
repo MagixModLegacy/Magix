@@ -7109,6 +7109,114 @@ new G.Unit({
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes3',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes4',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 ////////////////////////////////////////////
+		/*=====================================================================================
+	ACHIEVEMENTS
+	=======================================================================================*/
+	
+	G.legacyBonuses.push(
+		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
+		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
+	);
+	
+	//do NOT remove or reorder achievements or saves WILL get corrupted
+	
+	new G.Achiev({
+		tier:0,
+		name:'mausoleum',
+		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
+		fromUnit:'mausoleum',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300*3},
+			{type:'addFastTicksOnResearch',amount:150}
+		],
+	});
+//Temple achiev
+		new G.Achiev({
+		tier:1,
+		name:'Heavenly',
+		wideIcon:[0,11,'magixmod'],
+		icon:[1,11,'magixmod'],
+		desc:'Your soul has been sent to Paradise as archangel with power of top Temple tower in an beautiful stone monument the purpose of which takes root in a pure religious thought.',
+		fromWonder:'Heavenly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+	});
+//skull achiev
+		new G.Achiev({
+		tier:1,
+		name:'Deadly, revenantic',
+		wideIcon:[0,16,'magixmod'],
+		icon:[1,16,'magixmod'],
+		desc:'You escaped and your soul got escorted right into the world of Underwold... you may discover it sometime.',
+		fromWonder:'Deadly, revenantic',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+	});
+
+		new G.Achiev({
+		tier:0,
+		name:'Sacrificed for culture',
+		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
+		icon:[6,12,'magixmod'],
+		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Democration',
+		wideIcon:[5,13,'magixmod'],
+		icon:[6,13,'magixmod'],
+		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
+		fromWonder:'Democration',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Insight-ly',
+		wideIcon:[choose([0,3,6]),17,'magixmod'],
+		icon:[choose([1,4,7]),17,'magixmod'],
+		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+	});
+		new G.Achiev({
+		tier:1,
+		name:'"In the underworld"',
+		wideIcon:[7,5,'magixmod'],
+		icon:[9,5,'magixmod'],
+		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
+		fromWonder:'"In the underworld"',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:15},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		wideIcon:[27,0,'magixmod'],
+		icon:[28,0,'magixmod'],
+		name:'<font color="DA4f37">Mausoleum eternal</font>',
+		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve [mausoleum] to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
+		fromWonder:'<font color="DA4f37">Mausoleum eternal</font>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:2000},
+			{type:'addFastTicksOnResearch',amount:175}
+		],
+	});
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
@@ -9448,117 +9556,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
     target(...args)
     checkUnA()
   }
-}) 
-
-	/*=====================================================================================
-	ACHIEVEMENTS
-	=======================================================================================*/
-	
-	G.legacyBonuses.push(
-		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
-		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
-	);
-	
-	//do NOT remove or reorder achievements or saves WILL get corrupted
-	
-	new G.Achiev({
-		tier:0,
-		name:'mausoleum',
-		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
-		fromUnit:'mausoleum',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300*3},
-			{type:'addFastTicksOnResearch',amount:150}
-		],
-	});
-//Temple achiev
-		new G.Achiev({
-		tier:1,
-		name:'Heavenly',
-		wideIcon:[0,11,'magixmod'],
-		icon:[1,11,'magixmod'],
-		desc:'Your soul has been sent to Paradise as archangel with power of top Temple tower in an beautiful stone monument the purpose of which takes root in a pure religious thought.',
-		fromWonder:'Heavenly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300},
-			{type:'addFastTicksOnResearch',amount:25}	
-		],
-	});
-//skull achiev
-		new G.Achiev({
-		tier:1,
-		name:'Deadly, revenantic',
-		wideIcon:[0,16,'magixmod'],
-		icon:[1,16,'magixmod'],
-		desc:'You escaped and your soul got escorted right into the world of Underwold... you may discover it sometime.',
-		fromWonder:'Deadly, revenantic',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300},
-			{type:'addFastTicksOnResearch',amount:25}	
-		],
-	});
-
-		new G.Achiev({
-		tier:0,
-		name:'Sacrificed for culture',
-		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
-		icon:[6,12,'magixmod'],
-		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
-		fromWonder:'Insight-ly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		name:'Democration',
-		wideIcon:[5,13,'magixmod'],
-		icon:[6,13,'magixmod'],
-		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
-		fromWonder:'Democration',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		name:'Insight-ly',
-		wideIcon:[choose([0,3,6]),17,'magixmod'],
-		icon:[choose([1,4,7]),17,'magixmod'],
-		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
-		fromWonder:'Insight-ly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-	});
-		new G.Achiev({
-		tier:1,
-		name:'"In the underworld"',
-		wideIcon:[7,5,'magixmod'],
-		icon:[9,5,'magixmod'],
-		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
-		fromWonder:'"In the underworld"',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:15},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		wideIcon:[27,0,'magixmod'],
-		icon:[28,0,'magixmod'],
-		name:'<font color="DA4f37">Mausoleum eternal</font>',
-		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve [mausoleum] to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
-		fromWonder:'<font color="DA4f37">Mausoleum eternal</font>',
-		effects:[
-			{type:'addFastTicksOnStart',amount:2000},
-			{type:'addFastTicksOnResearch',amount:175}
-		],
-	});
-	
+}) 	
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
