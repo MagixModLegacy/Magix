@@ -4164,9 +4164,13 @@ G.writeMSettingButton=function(obj)
 				G.setPolicyModeByName('wisdom rituals','off');
 				G.setPolicyModeByName('flower rituals','off');
 			}
-			if(G.has('ritualism II')){
+			if(G.has('guilds unite')){
 			G.getDict('lodge').icon = [29,9,'magixmod']
 			G.getDict('guild quarters').icon = [28,15,'magixmod',25,2]
+			}
+			if(G.has('focused scouting')){
+			G.getDict('wanderer').icon = [11,21,'magixmod']
+			G.getDict('scout').icon = [12,21,'magixmod']
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -9582,6 +9586,16 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		req:{'cities':true,'construction II':true,'code of law II':true},
 		effects:[
 		],
+	});
+		new G.Tech({
+		name:'focused scouting',
+		desc:'@[scout] and [wanderer] are smarter by discovering new techniques of exploring. May make exploring safer<>This tech will allow to explore further worlds with same units. At the moment useless because there is no 2nd map but applies new icons for both [scout] and [wanderer] .',
+		icon:[11,21,'magixmod'],
+		cost:{'insight II':15},
+		req:{'tool-making':true,'Richer language':true,'well-digging':true},
+		effects:[
+		],
+		chance:2,
 	});
 	/*=====================================================================================
 	POLICIES
