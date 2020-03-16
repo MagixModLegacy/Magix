@@ -4185,6 +4185,13 @@ G.writeMSettingButton=function(obj)
 			G.getDict('mud shelter').icon = [28,13,'magixmod']
 			G.getDict('house').icon = [28,14,'magixmod']
 			}
+			if(G.has('cozier building')){
+			G.getDict('hut').icon = [29,10,'magixmod']
+			G.getDict('hovel').icon = [29,11,'magixmod']
+			G.getDict('mud shelter').icon = [29,12,'magixmod']
+			G.getDict('house').icon = [29,14,'magixmod']
+			G.getDict('branch shelter').icon = [29,13,'magixmod']
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -9625,7 +9632,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		desc:'@increases [symbolism] bonus from 50 to 70%. Still boost has the same targets as it had before.',
 		icon:[29,6,'magixmod'],
 		cost:{'culture II':15,'insight II':10},
-		req:{'oral tradition':true,'ritualism II':true,'Improved rhetoric':true,'Richer language':true},
+		req:{'oral tradition':true,'ritualism II':true,'Improved rhetoric':true,'Richer language':true,'symbolism':true},
 		effects:[
 		],
 	});
