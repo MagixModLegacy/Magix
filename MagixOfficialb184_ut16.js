@@ -4176,6 +4176,15 @@ G.writeMSettingButton=function(obj)
 			G.getDict('kiln').icon = [28,19,'magixmod']
 			G.getDict('Kiln').icon = [20,21,'magixmod']
 			}
+			if(G.has('symbolism II')){
+			G.getDict('storyteller').icon = [29,7,'magixmod']
+			}
+			if(G.has('cozy building')){
+			G.getDict('hut').icon = [28,12,'magixmod']
+			G.getDict('hovel').icon = [28,11,'magixmod']
+			G.getDict('mud shelter').icon = [29,13,'magixmod']
+			G.getDict('house').icon = [29,14,'magixmod']
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -9610,6 +9619,35 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		effects:[
 		],
 		chance:4,
+	});
+		new G.Tech({
+		name:'symbolism II',
+		desc:'@increases [symbolism] bonus from 50 to 70%. Still boost has the same targets as it had before.',
+		icon:[29,6,'magixmod'],
+		cost:{'culture II':20,'insight II':10},
+		req:{'oral tradition':true,'ritualism II':true,'Improved rhetoric':true,'Richer language':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'cozy building',
+		desc:'@people now want to be warm using fire. Always some solution for cold nights if people living inside have no clothing. People adds chimneys to their huts, hovels, and houses. Some archaic shelters got a improvement. <>This tech just changes icons of basic housing. But it can do more than just housing providing sometime.',
+		icon:[29,3,'magixmod'],
+		cost:{'insight II':20},
+		req:{'sedentism':true,'tool-making':true,'focused scouting':true},
+		effects:[
+		],
+		chance:3,
+	});
+		new G.Tech({
+		name:'cozier building',
+		desc:'@people except setting up a chimney started thinking about having some decor near their houses. <>Makes buildings look even more nice. Better icons for basic housing.',
+		icon:[29,4,'magixmod'],
+		cost:{'insight II':25,'culture II':5},
+		req:{'cozy building':true,'focused scouting':true,'<font color="maroon">Caretaking</font>':true},
+		effects:[
+		],
+		chance:3,
 	});
 	/*=====================================================================================
 	POLICIES
