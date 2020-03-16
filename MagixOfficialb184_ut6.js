@@ -2187,7 +2187,7 @@ G.writeMSettingButton=function(obj)
                 G.Message({type:'good',text:'<b>You and your people activated passage to Plain Island. Out of portal an Emblem falls and hits on rock. Big rectangular portal shines and you can see what is beyond it. You come through and notice there are flat plains. Now it is time for more discoveries and build there some stuff.</b>',icon:[8,3,'magixmod']});
                 madeUnlockMessage = true
             }
-			if (G.has('Plain island building')){
+			if (G.has('<span style="color: ##FF0900">Plain island building</span>')){
 			me.hidden=true
 			}
         },
@@ -2837,7 +2837,7 @@ G.writeMSettingButton=function(obj)
 				G.Message({type:'good',text:'<b>You and your people activated passage to Paradise. Out of portal an Emblem fall and hits next to your feet. Big golden portal shines and you can see what is beyond it. You come through and notice there is perfect heat to live. Now it is time for more discoveries.</b>',icon:[8,4,'magixmod']});
 				madeUnlockMessageP = true
 			}
-			if (G.has('Paradise building')){
+			if (G.has('<span style="color: ##FF0900">Paradise building</span>')){
 			me.hidden=true
 			}
 		},	
