@@ -9695,7 +9695,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'Paradise housing',
 		desc:'Unlocks housing which is unique for the Paradise. Each of the types is limited at some way. Paradise is not like Plain Island a spot where you can build as much housing as you wish because Paradise isn\'t and never will be totally yours. <>Unlocks: [Treehouse] , [Cozy lodge] , [hardened house] , [angelic hut] . Paradise is lush world so your people do not need to construct chimneys for their houses at all.',
 		icon:[1,21,'magixmod'],
-		cost:{'insight II':70},
+		cost:{'insight II':70,'insight':55},
 		req:{'<span style="color: ##FF0900">Paradise building</span>':true,'Paradise housing conceptions':true,'cozy building':true},
 	});
 	/*=====================================================================================
