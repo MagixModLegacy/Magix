@@ -9689,7 +9689,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		desc:'This technology doesn\'t unlock new housing for Paradise yet. But in the future you will obtain similar technology that finally will unlock for you new neat housing. <>Paradise housing is limited like: 1 Paradise hovel per 100 of something. God doesn\'t want his homeland to be filled with houses and look like it does at your mortal world.',
 		icon:[0,21,'magixmod'],
 		cost:{'insight':1000,'culture':390,'inspiration':16},
-		req:{'Paradise building':true},
+		req:{'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 	/*=====================================================================================
 	POLICIES
