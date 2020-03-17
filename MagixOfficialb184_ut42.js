@@ -9702,7 +9702,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'Science blessing',
 		desc:'[Guru] generates 50% more science & insight.',
 		icon:[29,5,'magixmod'],
-		cost:{'insight II':15,'science':5},
+		cost:{'insight II':15,'science':5,'Mana':435},
 		req:{'Laws of physics(intermediate)':true,'Ambrosium treeplanting':true,'Faithful cloudy water filtering':true,'Farm of wheat':true},
 	});
 	/*=====================================================================================
