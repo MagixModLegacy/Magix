@@ -9632,7 +9632,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		desc:'@People can build bigger [kiln]s that are more efficient. <>Increases efficiency of all [Kiln] types by additive 150% but doubles upkeep of this unit. <>In additions this tech changes their visual look.',
 		icon:[21,21,'magixmod'],
 		cost:{'insight II':15},
-		req:{'Improved rhetoric':true,'construction II':true,'masonry':true,'weaving II':true},
+		req:{'Improved rhetoric':true,'construction II':true,'masonry':true,'weaving II':true,'prospecting II':true},
 		effects:[
 		],
 		chance:4,
