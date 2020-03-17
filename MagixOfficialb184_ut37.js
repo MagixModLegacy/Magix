@@ -9698,6 +9698,13 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		cost:{'insight II':70,'insight':55},
 		req:{'<span style="color: ##FF0900">Paradise building</span>':true,'Paradise housing conceptions':true,'cozy building':true},
 	});
+		new G.Tech({
+		name:'Science blessing',
+		desc:'[Guru] generates 50% more science & insight.',
+		icon:[29,5,'magixmod'],
+		cost:{'insight II':15,'science':5},
+		req:{'Laws of physics(intermediate)':true,'Ambrosium treeplanting':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
