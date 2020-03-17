@@ -8604,7 +8604,7 @@ autobuy(G.year)
 		name:'Advanced casting',
 		desc:'[blacksmith workshop,Blacksmiths] will get taught to be more exact and better due to changing times. Now they may craft basic industry gear and other things which they wouldn\'t craft without this knowledge.',
 		icon:[5,18,'magixmod'], 
-		cost:{'insight':850},
+		cost:{'insight':830},
 		req:{'smelting':true,'masonry':true,'monument-building II':true},
 	});
 		new G.Tech({
