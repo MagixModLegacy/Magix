@@ -9677,6 +9677,20 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		],
 		req:{'Laws of physics(intermediate)':true,'Will to know more':true,'symbolism II':true,'Intermediate maths':true,'Proportion':true},
 	});
+		new G.Tech({
+		name:'Fires from logs',
+		desc:'[firekeeper] can start fires out of [log]s. <>',
+		icon:[9,21,'magixmod',23,1],
+		cost:{'insight II':10},
+		req:{'Eotm':true},
+	});
+		new G.Tech({
+		name:'Paradise housing conceptions',
+		desc:'This technology doesn\'t unlock new housing for Paradise yet. But in the future you will obtain similar technology that finally will unlock for you new neat housing. <>Paradise housing is limited like: 1 Paradise hovel per 100 of something. God doesn\'t want his homeland to be filled with houses and look like it does at your mortal world.',
+		icon:[0,21,'magixmod'],
+		cost:{'insight':1000},
+		req:{'Paradise building':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
