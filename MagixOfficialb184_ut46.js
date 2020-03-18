@@ -6974,6 +6974,58 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Lightning essence':11}},
 		],
 	});
+		new G.Unit({
+		name:'Treehouse',
+		desc:'@provides 3 [housing]<>Small pied-a-terre built inside one of paradise trees.',
+		icon:[6,21,'magixmod'],
+		cost:{'lumber':150},
+		use:{'Land of the Paradise':0.33},
+		limitPer:{'land':15,'population':100},
+		effects:[
+			{type:'provide',what:{'housing':3}},
+		],
+		req:{'Paradise housing':true},
+		category:'paradiseunit',
+	});
+		new G.Unit({
+		name:'Cozy lodge',
+		desc:'@provides 5 [housing]<>Small live that is cozy and everyone feels safe inside it.',
+		icon:[3,21,'magixmod'],
+		cost:{'basic building materials':150},
+		use:{'Land of the Paradise':1},
+		limitPer:{'land':50,'population':110},
+		effects:[
+			{type:'provide',what:{'housing':5}},
+		],
+		req:{'Paradise housing':true},
+		category:'paradiseunit',
+	});
+		new G.Unit({
+		name:'Cozy paradise hut',
+		desc:'@provides 6 [housing]<>Small dwelling that is cozy and place where your people can lead calm and happy life.',
+		icon:[2,21,'magixmod'],
+		cost:{'basic building materials':200},
+		use:{'Land of the Paradise':1},
+		limitPer:{'land':70,'population':120},
+		effects:[
+			{type:'provide',what:{'housing':6}},
+		],
+		req:{'Paradise housing':true},
+		category:'paradiseunit',
+	});
+		new G.Unit({
+		name:'hardened house',
+		desc:'@provides 16 [housing]<>Huge house that can fit 2 even 3 families at the same time. Due to its capacity it is far more limited type of housing. Inside of this [hardened house] people feel safe and they probably will never even thinking about moving away from this house to huts or lodges.',
+		icon:[4,21,'magixmod'],
+		cost:{'basic building materials':1200,'glass':5},
+		use:{'Land of the Paradise':1},
+		limitPer:{'land':200,'population':400},
+		effects:[
+			{type:'provide',what:{'housing':16}},
+		],
+		req:{'Paradise housing':true},
+		category:'paradiseunit',
+	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
 		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
@@ -9701,7 +9753,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	});
 		new G.Tech({
 		name:'Paradise housing',
-		desc:'Unlocks housing which is unique for the Paradise. Each of the types is limited at some way. Paradise is not like Plain Island a spot where you can build as much housing as you wish because Paradise isn\'t and never will be totally yours. <>Unlocks: [Treehouse] , [Cozy lodge] , [hardened house] , [angelic hut] . Paradise is lush world so your people do not need to construct chimneys for their houses at all.',
+		desc:'Unlocks housing which is unique for the Paradise. Each of the types is limited at some way. Paradise is not like Plain Island a spot where you can build as much housing as you wish because Paradise isn\'t and never will be totally yours. <>Unlocks: [Treehouse] , [Cozy lodge] , [hardened house] , [Cozy paradise hut] . Paradise is lush world so your people do not need to construct chimneys for their houses at all.',
 		icon:[1,21,'magixmod'],
 		cost:{'insight II':70,'insight':55},
 		req:{'<span style="color: ##FF0900">Paradise building</span>':true,'Paradise housing conceptions':true,'cozy building':true},
