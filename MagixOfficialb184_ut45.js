@@ -4589,7 +4589,7 @@ G.writeMSettingButton=function(obj)
 			'cook':{name:'Cook',icon:[6,7,13,7],desc:'Turn [meat] and [seafood] into [cooked meat] and [cooked seafood] in the embers of [fire pit]s',req:{'cooking':true}},
 			'cure':{name:'Cure & smoke',icon:[11,6,12,6],desc:'Turn 1 [meat] or [seafood] into 2 [cured meat] or [cured seafood] using [salt] in the embers of [fire pit]s',req:{'curing':true}},
 			'firesfromessence':{name:'Set up fires out of its essence',icon:[0,2,'magixmod'], desc:'Craft 2[fire pit]s with use of: 1[Fire essence],13[stick]s',req:{'Wizard complex':true},use:{'Wand':1,'knapped tools':1}},
-			'log fires':{name:'Start fires from logs',icon:[21,9,'magixmod'],desc:'Craft [fire pit]s from 2 [log]s each.',req:{'Fires from logs':true}},
+			'log fires':{name:'Start fires from logs',icon:[9,21,'magixmod'],desc:'Craft [fire pit]s from 2 [log]s each.',req:{'Fires from logs':true}},
 		},
 		effects:[
 			{type:'convert',from:{'stick':20},into:{'fire pit':1},every:5,mode:'stick fires'},
