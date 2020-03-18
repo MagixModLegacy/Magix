@@ -4339,7 +4339,8 @@ G.writeMSettingButton=function(obj)
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'insight':0.1}},
-			{type:'gather',what:{'insight':0.05},req:{'symbolism':true}},
+			{type:'gather',what:{'insight':0.05},req:{'symbolism':true,'symbolism II':false}},
+			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
 			{type:'mult',value:1.05,req:{'Knowledgeable':true}},
@@ -4360,7 +4361,8 @@ G.writeMSettingButton=function(obj)
 		upkeep:{'coin':0.1},
 		effects:[
 			{type:'gather',what:{'culture':0.1}},
-			{type:'gather',what:{'culture':0.05},req:{'symbolism':true}},
+			{type:'gather',what:{'culture':0.05},req:{'symbolism':true,'symbolism II':false}},
+			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
@@ -4586,10 +4588,12 @@ G.writeMSettingButton=function(obj)
 			'stick fires':{name:'Start fires from sticks',icon:[0,6,13,7],desc:'Craft [fire pit]s from 20 [stick]s each.'},
 			'cook':{name:'Cook',icon:[6,7,13,7],desc:'Turn [meat] and [seafood] into [cooked meat] and [cooked seafood] in the embers of [fire pit]s',req:{'cooking':true}},
 			'cure':{name:'Cure & smoke',icon:[11,6,12,6],desc:'Turn 1 [meat] or [seafood] into 2 [cured meat] or [cured seafood] using [salt] in the embers of [fire pit]s',req:{'curing':true}},
-			'firesfromessence':{name:'Set up fires out of its essence',icon:[0,2,'magixmod'], desc:'Craft 2[fire pit]s with use of: 1[Fire essence],13[stick]s',req:{'Wizard complex':true},use:{'Wand':1,'knapped tools':1}}
+			'firesfromessence':{name:'Set up fires out of its essence',icon:[0,2,'magixmod'], desc:'Craft 2[fire pit]s with use of: 1[Fire essence],13[stick]s',req:{'Wizard complex':true},use:{'Wand':1,'knapped tools':1}},
+			'log fires':{name:'Start fires from logs',icon:[21,9,'magixmod'],desc:'Craft [fire pit]s from 2 [log]s each.',req:{'Fires from logs':true}},
 		},
 		effects:[
 			{type:'convert',from:{'stick':20},into:{'fire pit':1},every:5,mode:'stick fires'},
+			{type:'convert',from:{'log':2},into:{'fire pit':1},every:5,mode:'log fires'},
 			{type:'convert',from:{'meat':1,'fire pit':0.01},into:{'cooked meat':1},every:1,repeat:5,mode:'cook'},
 			{type:'convert',from:{'seafood':1,'fire pit':0.01},into:{'cooked seafood':1},every:1,repeat:5,mode:'cook'},
 			{type:'convert',from:{'meat':1,'salt':1,'fire pit':0.01},into:{'cured meat':2},every:1,repeat:10,mode:'cure'},
@@ -4641,6 +4645,7 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'convert',from:{'clay':1},into:{'brick':10},every:5,mode:'bricks'},
 			{type:'convert',from:{'sand':3},into:{'glass':10},every:5,mode:'glass'},
+			{type:'mult',value:1.5,req:{'bigger kilns':true}},
 		],
 		gizmos:true,
 		req:{'masonry':true},
@@ -4868,7 +4873,8 @@ G.writeMSettingButton=function(obj)
 		upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
-			{type:'gather',what:{'faith':0.05},req:{'symbolism':true}},
+			{type:'gather',what:{'faith':0.05},req:{'symbolism':true,'symbolism II':false}},
+			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 		],
 		req:{'ritualism':true},
@@ -5788,6 +5794,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',what:{'insight':0.3}},
 			{type:'gather',what:{'science':0.00005}},
+			{type:'mult',value:1.5,req:{'Science blessing':true}},
 		],
 		req:{'God\'s trait #3 Science^2':true},
 		category:'discovery',
@@ -5876,6 +5883,7 @@ new G.Unit({
 		effects:[
 			{type:'convert',from:{'clay':1},into:{'brick':10},every:5,mode:'bricks'},
 			{type:'convert',from:{'sand':8},into:{'glass':2},every:5,mode:'glass'},
+			{type:'mult',value:1.5,req:{'bigger kilns':true}},
 		],
 		gizmos:true,
 		req:{'masonry':true,'<span style="color: ##FF0900">Paradise building</span>':true,'Paradise crafting':true},
