@@ -9705,6 +9705,22 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		cost:{'insight II':15,'science':5,'Mana':435},
 		req:{'Laws of physics(intermediate)':true,'Ambrosium treeplanting':true,'Faithful cloudy water filtering':true,'Farm of wheat':true},
 	});
+		new G.Trait({
+		name:'God\'s trait #6 Fertile essences farms',
+		desc:'All essence farms are making 50% more essences at the same upkeep. Bigger, healthier flowers can radiate stronger with essences.',
+		icon:[5,21,'magixmod'],
+		cost:{'insight II':25,'faith II':3,'culture II':4},
+		chance:80,
+		req:{'Magical soil':true},
+		category:'gods'
+	});
+		new G.Tech({
+		name:'Music',
+		desc:'People now can use music as one of cultural heritage pillars. May make musicians appear into your people\'s reality.',
+		icon:[29,17,'magixmod'],
+		cost:{'insight II':15,'culture II':25},
+		req:{'symbolism II':true,'ritualism II':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
