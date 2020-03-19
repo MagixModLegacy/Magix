@@ -158,6 +158,7 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="barred">ruler : '+G.getName('ruler')+'</div>';
 		var toParse='';
 		var pop=G.getRes('population').amount;
+		var technologiesam=G.techN
 		if (pop>0)
 		{
 			toParse+='Population : <b>'+B(pop)+' [population,'+G.getName((pop==1?'inhab':'inhabs'))+']</b>//';
@@ -167,6 +168,9 @@ G.props['fastTicksOnResearch']=150;
 			var stat=G.getRes('health').amount/pop;
 			var text='unknown';if (stat<=-200) text='dreadful'; else if (stat<=-100) text='sickly'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='good'; else if (stat<=200) text='gleaming'; else if (stat>=200) text='examplary';
 			toParse+='Health : <b>'+text+'</b>//';
+			var stat= G.techN;
+			var text='none';if (stat>=20) text='archaic'; else if (stat>=85) text='almost-medieval'; else if (stat>=130) text='medieval'; else if (stat>=200) text='primarily decent'; else if (stat>=250) text='decent'; else if (stat>=325) text='primarily advanced'; else if (stat>=400) text='advanced'; else if (stat>=500) text='advanced and educated';
+			toParse+='Technological progress stage: <b>'+text+'</b>//';
 		}
 		else toParse+='All '+G.getName('inhabs')+' have died out.';
 		str+=G.parse(toParse);
@@ -7356,7 +7360,7 @@ new G.Unit({
 		tier:0,
 		icon:[25,21,'magixmod'],
 		name:'Metropoly',
-		desc:'Manage to get 500k people in one run.',
+		desc:'Manage to get 500k [population,people] in one run.',
 		effects:[
 			{type:'addFastTicksOnStart',amount:25},
 			{type:'addFastTicksOnResearch',amount:5}
