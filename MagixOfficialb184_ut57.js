@@ -4196,7 +4196,7 @@ G.writeMSettingButton=function(obj)
 			G.achievByName['Level up'].won = 1
 			G.middleText('- Completed <font color="aqua">Level up</font> achievement -')
 			}
-			if(G.TechsN >= 150 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
+			if(G.techsN >= 150 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
 			G.achievByName['Apprentice'].won = 1
 			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
 			}
