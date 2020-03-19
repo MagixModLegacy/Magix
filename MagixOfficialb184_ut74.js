@@ -9871,6 +9871,34 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		cost:{'insight II':15,'culture II':25},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true},
 	});
+		new G.Tech({
+		name:'More experienced healers',
+		desc:'All [healer]s are more efficient. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [healer]s will work 3% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [healer]s will work 9% more efficient.',
+		icon:[14,21,'magixmod'], 
+		cost:{'insight II':50,'science':5},
+		req:{'bigger kilns':true}
+	});
+		new G.Tech({
+		name:'Better kiln construction',
+		desc:'All [kiln]s are more efficient. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [kiln]s will work 10% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [kiln]s will work 5% more efficient.',
+		icon:[15,21,'magixmod'], 
+		cost:{'insight II':50,'science':5},
+		req:{'bigger kilns':true}
+	});
+		new G.Tech({
+		name:'Inspirated carvers',
+		desc:'[carver]s are more efficient. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [carver]s will work 3% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [carver]s will work 6% more efficient.',
+		icon:[16,21,'magixmod'], 
+		cost:{'insight II':50,'science':5},
+		req:{'bigger kilns':true}
+	});
+		new G.Tech({
+		name:'Mo\' concrete',
+		desc:'[Concrete making shack]s are more efficient. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [Concrete making shack]s will work 20% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [Concrete making shack]s will work 5% more efficient.',
+		icon:[17,21,'magixmod'], 
+		cost:{'insight II':50,'science':5},
+		req:{'bigger kilns':true}
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
