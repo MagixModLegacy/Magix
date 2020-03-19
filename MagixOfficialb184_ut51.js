@@ -4194,6 +4194,7 @@ G.writeMSettingButton=function(obj)
 			}
 			if(G.has('Eotm')){ //Level up achievement
 			G.achievByName['Level up'].won = 1
+			G.middleText('- Completed <b>Level up</b> achievement -')
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
