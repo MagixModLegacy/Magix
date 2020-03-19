@@ -9918,7 +9918,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'More capacious racks',
 		desc:'[Drying rack] is thrice as efficient.',
 		icon:[18,21,'magixmod'], 
-		cost:{'insight II': 25},
+		cost:{'insight II': 25,'insight':5},
 		req:{'<font color="maroon">Caretaking</font>':true,'Magical soil':true}
 	});
 		new G.Tech({
