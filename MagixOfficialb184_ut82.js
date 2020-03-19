@@ -4207,7 +4207,7 @@ G.writeMSettingButton=function(obj)
 			}
 			if(G.has('Moderated carpentry')){
 			G.getDict('carpenter workshop').icon = [28,16,'magixmod',25,2]
-			G.getDict('Carpenter workshop').icon = [28,17,'magixmod',19,13,'magixmod']
+			G.getDict('Carpenter workshop').icon = [28,17,'magixmod',20,14,'magixmod']
 			}
 			if(G.has('Eotm') && G.achievByName['Level up'].won == 0){ //Level up achievement
 			G.achievByName['Level up'].won = 1
@@ -4265,6 +4265,17 @@ G.writeMSettingButton=function(obj)
 		name:'Essenced seeds',
 		desc:'The creation that uses [Magic essences] + [Mana] + [Beet seeds,seeds] . Can be used to start farming magic flowers that will allow you to gather even more essences.',
 		icon:[27,10,'magixmod'],
+		category:'misc',
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.008;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
+		new G.Res({
+		name:'oil',
+		desc:'[oil] is a flammable liquid hydrocarbon mixture. Mixtures labelled naphtha have been produced from natural gas condensates, petroleum distillates, and the distillation of coal tar and peat. Can be used as fuel in the future',
+		icon:[9,6],
 		category:'misc',
 		tick:function(me,tick)
 		{
