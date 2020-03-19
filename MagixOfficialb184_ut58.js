@@ -5331,6 +5331,16 @@ G.writeMSettingButton=function(obj)
 		],
 		category:'debug',
 	});
+		new G.Unit({
+		name:'auto wizard',
+		desc:'@gathers 150 [Magic essences] and 150 [Mana] .',
+		icon:[24,21,'magixmod'],
+		cost:{},
+		effects:[
+			{type:'gather',what:{'Magic essences':150,'Mana':150}}
+		],
+		category:'debug',
+	});
 	//MAGIX
 new G.Unit({
 		name:'Hovel of colours',
@@ -7341,7 +7351,7 @@ new G.Unit({
 	});
 		new G.Achiev({
 		tier:0,
-		icon:[22,21,'magixmod'],
+		icon:[23,21,'magixmod'],
 		name:'Apprentice',
 		desc:'Get 150 or more technologies in single run.',
 	});
