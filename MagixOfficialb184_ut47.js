@@ -7324,6 +7324,13 @@ new G.Unit({
 			{type:'addFastTicksOnResearch',amount:175}
 		],
 	});
+		new G.Achiev({
+		tier:1,
+		icon:[25,19,'magixmod'],
+		name:'Level up',
+		desc:'Obtain [Eotm] trait during the run. This trait unlocks second tier of [insight] , [culture] , [faith] and [influence] which are required for further researches.',
+		fromTrait:'Eotm',
+	});
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
