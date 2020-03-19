@@ -4213,6 +4213,10 @@ G.writeMSettingButton=function(obj)
 			G.achievByName['Level up'].won = 1
 			G.middleText('- Completed <font color="aqua">Level up</font> achievement -')
 			}
+			if(G.has('dt9') && G.achievByName['Lucky 9'].won == 0){ //Level up achievement
+			G.achievByName['Lucky 9'].won = 1
+			G.middleText('- Completed <font color="red">Lucky 9</font> achievement -')
+			}
 			if(G.techN >= 150 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
 			G.achievByName['Apprentice'].won = 1
 			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
@@ -7440,6 +7444,12 @@ new G.Unit({
 		name:'Apprentice',
 		desc:'Get 150 or more technologies in a single run.',
 	});
+		new G.Achiev({
+		tier:1,
+		icon:[26,9,'magixmod'],
+		name:'Lucky 9',
+		desc:'Obtain the [dt9] .',
+	});
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
@@ -9901,7 +9911,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'Music instruments',
 		desc:'Artisans craft for [musician] instruments at order. <>Note: It doesn\'t add new mode. In fact it just unlocks [musician]',
 		icon:[29,18,'magixmod'],
-		cost:{'insight II':15,'culture II':25},
+		cost:{'insight II':10,'culture II':25},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true},
 	});
 		new G.Tech({
