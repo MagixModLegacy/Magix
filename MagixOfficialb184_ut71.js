@@ -4180,6 +4180,8 @@ G.writeMSettingButton=function(obj)
 			if(G.has('bigger kilns')){
 			G.getDict('kiln').icon = [28,19,'magixmod']
 			G.getDict('Kiln').icon = [20,21,'magixmod']
+			G.getDict('kiln').upkeep = {'log':1}
+			G.getDict('Kiln').upkeep = {'log':1}
 			}
 			if(G.has('symbolism II')){
 			G.getDict('storyteller').icon = [29,7,'magixmod']
@@ -5243,10 +5245,10 @@ G.writeMSettingButton=function(obj)
 			'blacksmiths':{name:'Blacksmiths\' guild',desc:'Build [blacksmith workshop]s until there are 5 for each of this guild.',req:{'smelting':true}},
 		},
 		effects:[
-			/*{type:'function',func:function(me){
+			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('potter')) G.buyUnitByName('potter',1,true);
 			},mode:'potters'},
-			{type:'function',func:function(me){
+			/*{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('carpenter workshop')) G.buyUnitByName('carpenter workshop',1,true);
 			},mode:'carpenters'},
 			{type:'function',func:function(me){
