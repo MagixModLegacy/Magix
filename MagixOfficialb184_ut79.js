@@ -4667,7 +4667,7 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'sand':3},into:{'glass':10},every:5,mode:'glass'},
 			{type:'mult',value:1.5,req:{'bigger kilns':true}},
 			{type:'mult',value:1.1,req:{'Better kiln construction':true,'<font color="maroon">Moderation</font>':true}},
-			{type:'mult',value:1.05,req:{'Better kiln construcion':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.05,req:{'Better kiln construction':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		gizmos:true,
 		req:{'masonry':true},
@@ -7171,7 +7171,7 @@ new G.Unit({
 //Revenants trait wonder. People want to send these corpses right into its coils
 		new G.Unit({
 		name:'The Skull of Wild Death',
-		desc:'@leads to the <b>Deadly escape</b><>A big skull shaped construcion with fire roaring inside dedicated to bloodthirsty [<span style="color: red">Revenants</span>] assaulting your world.//A realm around it is a burial for them. Home of [wild corpse] . There they can burn and in the terrain around buried. Per each step you will perform building it you will grant big amount of [burial spot] . <i>Let these corpses go into their rightenous home</i>',
+		desc:'@leads to the <b>Deadly escape</b><>A big skull shaped construction with fire roaring inside dedicated to bloodthirsty [<span style="color: red">Revenants</span>] assaulting your world.//A realm around it is a burial for them. Home of [wild corpse] . There they can burn and in the terrain around buried. Per each step you will perform building it you will grant big amount of [burial spot] . <i>Let these corpses go into their rightenous home</i>',
 		wonder:'Deadly, revenantic',
 		icon:[1,16,'magixmod'],
 		wideIcon:[0,16,'magixmod'],
