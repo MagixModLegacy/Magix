@@ -5206,24 +5206,43 @@ G.writeMSettingButton=function(obj)
 			'artisans':{name:'Artisan\'s lodge',desc:'Hire [artisan]s until there are 5 for each of this lodge.',req:{'stone-knapping':true}},
 		},
 		effects:[
-			/*{type:'function',func:function(me){
+			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('gatherer')) G.buyUnitByName('gatherer',1,true);
-			},mode:'gatherers'},
+			},mode:'gatherers',req:{'guilds unite':false}},
 			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('hunter')) G.buyUnitByName('hunter',1,true);
-			},mode:'hunters'},
+			},mode:'hunters',req:{'guilds unite':false}},
 			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('fisher')) G.buyUnitByName('fisher',1,true);
-			},mode:'fishers'},
+			},mode:'fishers',req:{'guilds unite':false}},
 			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('digger')) G.buyUnitByName('digger',1,true);
-			},mode:'diggers'},
+			},mode:'diggers',req:{'guilds unite':false}},
 			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('woodcutter')) G.buyUnitByName('woodcutter',1,true);
-			},mode:'woodcutters'},
+			},mode:'woodcutters',req:{'guilds unite':false}},
 			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('artisan')) G.buyUnitByName('artisan',1,true);
-			},mode:'artisans'},*/
+			},mode:'artisans',req:{'guilds unite':false}},
+			//At guilds unite
+			{type:'function',func:function(me){
+					if (me.amount*100>G.getUnitAmount('gatherer')) G.buyUnitByName('gatherer',1,true);
+			},mode:'gatherers',req:{'guilds unite':true}},
+			{type:'function',func:function(me){
+					if (me.amount*100>G.getUnitAmount('hunter')) G.buyUnitByName('hunter',1,true);
+			},mode:'hunters',req:{'guilds unite':true}},
+			{type:'function',func:function(me){
+					if (me.amount*100>G.getUnitAmount('fisher')) G.buyUnitByName('fisher',1,true);
+			},mode:'fishers',req:{'guilds unite':true}},
+			{type:'function',func:function(me){
+					if (me.amount*100>G.getUnitAmount('digger')) G.buyUnitByName('digger',1,true);
+			},mode:'diggers',req:{'guilds unite':true}},
+			{type:'function',func:function(me){
+					if (me.amount*100>G.getUnitAmount('woodcutter')) G.buyUnitByName('woodcutter',1,true);
+			},mode:'woodcutters',req:{'guilds unite':true}},
+			{type:'function',func:function(me){
+					if (me.amount*100>G.getUnitAmount('artisan')) G.buyUnitByName('artisan',1,true);
+			},mode:'artisans',req:{'guilds unite':true}},
 		],
 		req:{'sedentism':true},
 		category:'civil',
@@ -5248,12 +5267,12 @@ G.writeMSettingButton=function(obj)
 			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('potter')) G.buyUnitByName('potter',1,true);
 			},mode:'potters'},
-			/*{type:'function',func:function(me){
+			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('carpenter workshop')) G.buyUnitByName('carpenter workshop',1,true);
 			},mode:'carpenters'},
 			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('blacksmith workshop')) G.buyUnitByName('blacksmith workshop',1,true);
-			},mode:'blacksmiths'}*/
+			},mode:'blacksmiths'}
 		],
 		req:{'guilds':true},
 		category:'civil',
@@ -9717,7 +9736,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	=======================================*/
 		new G.Tech({
 		name:'guilds unite',
-		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters]<>NOTE : useless for now... but applies new icons to [lodge] , [guild quarters]',
+		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 5 to 100. <>Applies new icons to [lodge] , [guild quarters]',
 		icon:[29,8,'magixmod'],
 		cost:{'insight II':20,'culture II':10,'influence II':5},
 		req:{'cities':true,'construction II':true,'code of law II':true},
