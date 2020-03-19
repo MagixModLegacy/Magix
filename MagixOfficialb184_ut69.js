@@ -169,7 +169,7 @@ G.props['fastTicksOnResearch']=150;
 			var text='unknown';if (stat<=-200) text='dreadful'; else if (stat<=-100) text='sickly'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='good'; else if (stat<=200) text='gleaming'; else if (stat>=200) text='examplary';
 			toParse+='Health : <b>'+text+'</b>//';
 			var stat= G.techN;
-			var text='pre-archaic';if (stat >= 20) text='archaic'; else if (stat >= 85) text='almost-medieval'; else if (stat>=130) text='medieval'; else if (stat>=200) text='primarily decent'; else if (stat>=250) text='decent'; else if (stat>=325) text='primarily advanced'; else if (stat>=400) text='advanced'; else if (stat>=500) text='advanced and educated';
+			var text='pre-archaic';if (stat >= 20) text='archaic'; else if (stat >= 25) text='almost-medieval'; else if (stat>=130) text='medieval'; else if (stat>=200) text='primarily decent'; else if (stat>=250) text='decent'; else if (stat>=325) text='primarily advanced'; else if (stat>=400) text='advanced'; else if (stat>=500) text='advanced and educated';
 			toParse+='Technological progress stage: <b>'+text+'</b>//';
 		}
 		else toParse+='All '+G.getName('inhabs')+' have died out.';
