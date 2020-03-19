@@ -770,6 +770,10 @@ G.writeMSettingButton=function(obj)
 				}
 			}
 			else if (G.T>0) {G.GameOver();}
+			if (me.amount >= 500000 && G.achievByName['Metropoly'].won == 0){ //Apprentice achievement
+			G.achievByName['Metropoly'].won = 1
+			G.middleText('- Completed <font color="green">Metropoly</font> achievement -')
+			}
 		},
 	});
 	new G.Res({
@@ -5333,11 +5337,11 @@ G.writeMSettingButton=function(obj)
 	});
 		new G.Unit({
 		name:'auto wizard',
-		desc:'@gathers 150 [Magic essences] and 150 [Mana] .',
+		desc:'@gathers 105 [Magic essences] and 150 [Mana] .',
 		icon:[24,21,'magixmod'],
 		cost:{},
 		effects:[
-			{type:'gather',what:{'Magic essences':150,'Mana':150}}
+			{type:'gather',what:{'Fire essence':15,'Water essence':15,'Wind essence':15,'Lightning essence':15,'Dark essence':15,'Nature essence':15,'Essence of the Holiness':15,'Mana':150}}
 		],
 		category:'debug',
 	});
@@ -7347,13 +7351,16 @@ new G.Unit({
 		icon:[25,19,'magixmod'],
 		name:'Level up',
 		desc:'Obtain [Eotm] trait during the run. This trait unlocks second tier of [insight] , [culture] , [faith] and [influence] which are required for further researches.',
-		fromTrait:'Eotm',
 	});
 		new G.Achiev({
 		tier:0,
-		icon:[23,21,'magixmod'],
-		name:'Apprentice',
-		desc:'Get 150 or more technologies in single run.',
+		icon:[25,21,'magixmod'],
+		name:'Metropoly',
+		desc:'Manage to get 500k people in one run.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:25},
+			{type:'addFastTicksOnResearch',amount:5}
+		],
 	});
 	/*=====================================================================================
 	TECHS
