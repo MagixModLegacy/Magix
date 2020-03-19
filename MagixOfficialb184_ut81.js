@@ -4205,6 +4205,10 @@ G.writeMSettingButton=function(obj)
 			if(G.has('Oil-digging')){
 			G.getDict('quarry').icon = [19,21,'magixmod']
 			}
+			if(G.has('Moderated carpentry')){
+			G.getDict('carpenter workshop').icon = [28,16,'magixmod',25,2]
+			G.getDict('Carpenter workshop').icon = [28,17,'magixmod',19,13,'magixmod']
+			}
 			if(G.has('Eotm') && G.achievByName['Level up'].won == 0){ //Level up achievement
 			G.achievByName['Level up'].won = 1
 			G.middleText('- Completed <font color="aqua">Level up</font> achievement -')
