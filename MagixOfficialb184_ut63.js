@@ -7362,6 +7362,12 @@ new G.Unit({
 			{type:'addFastTicksOnResearch',amount:5}
 		],
 	});
+		new G.Achiev({
+		tier:0,
+		icon:[23,21,'magixmod'],
+		name:'Apprentice',
+		desc:'Get 150 or more technologies in a single run.',
+	});
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
