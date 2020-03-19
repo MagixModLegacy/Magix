@@ -6758,7 +6758,7 @@ new G.Unit({
 		effects:[
 			{type:'waste',chance:0.001/1000},
 			{type:'convert',from:{'leather':5},into:{'Dried leather':5},every:20},
-			{type:'mult',value:2,req:{'More capable racks':true}},
+			{type:'mult',value:2,req:{'More capacious racks':true}},
 		],
 		req:{'Sewing II':true},
 		category:'crafting',
@@ -9915,7 +9915,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		req:{'bigger kilns':true}
 	});
 		new G.Tech({
-		name:'More capable racks',
+		name:'More capacious racks',
 		desc:'[Drying rack] is thrice as efficient.',
 		icon:[18,21,'magixmod'], 
 		cost:{'insight II': 25},
