@@ -4193,7 +4193,7 @@ G.writeMSettingButton=function(obj)
 			G.getDict('branch shelter').icon = [29,13,'magixmod']
 			}
 			if(G.has('Eotm')){ //Level up achievement
-			G.gainAchiev('Level up')
+			G.achievByName['Level up'].won = 1
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
