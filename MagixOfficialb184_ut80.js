@@ -4202,6 +4202,9 @@ G.writeMSettingButton=function(obj)
 			if(G.has('Music instruments')){
 			G.getDict('storyteller').limitPer = {'population':400}
 			}
+			if(G.has('Oil-digging')){
+			G.getDict('quarry').icon = [19,21,'magixmod']
+			}
 			if(G.has('Eotm') && G.achievByName['Level up'].won == 0){ //Level up achievement
 			G.achievByName['Level up'].won = 1
 			G.middleText('- Completed <font color="aqua">Level up</font> achievement -')
@@ -9923,10 +9926,31 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	});
 		new G.Tech({
 		name:'Oil-digging',
-		desc:'[quarry,quarries] can dig for [oil] that can be used in the future as fuel.',
+		desc:'[quarry,Quarries] can dig for [oil] that can be used in the future as fuel.',
 		icon:[29,2,'magixmod'], 
 		cost:{'insight II': 25,'insight':30},
 		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true}
+	});
+		new G.Tech({
+		name:'Bigger factory racks',
+		desc:'[Leather factory,Leather factories] dry twice as much [leather] without [happiness] harm.',
+		icon:[29,19,'magixmod'], 
+		cost:{'insight II': 25,'insight':30},
+		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true}
+	});
+		new G.Tech({
+		name:'Next-to house berrybushes',
+		desc:'[house]s can now gather [Berries] from bushes that people plant next to their houses.',
+		icon:[29,15,'magixmod'], 
+		cost:{'insight II': 10},
+		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'Cozier building':true}
+	});
+		new G.Tech({
+		name:'Moderated carpentry',
+		desc:'[carpenter workshop] is more expensive but its production is multiplied by 2.25 . <>Applies visual changes to Paradise and normal [carpenter workshop]s <>Boosts both types. ',
+		icon:[29,16,'magixmod'], 
+		cost:{'insight II': 10},
+		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true,'Oil-digging':true}
 	});
 	/*=====================================================================================
 	POLICIES
