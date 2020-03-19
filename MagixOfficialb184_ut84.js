@@ -7449,6 +7449,10 @@ new G.Unit({
 		icon:[26,9,'magixmod'],
 		name:'Lucky 9',
 		desc:'Obtain the [dt9] .',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5}
+		],
 	});
 	/*=====================================================================================
 	TECHS
