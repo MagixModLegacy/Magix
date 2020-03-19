@@ -4499,7 +4499,9 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'Various stones':9},into:{'Various cut stones':1},every:5,mode:'gdablockscraft'},
 			{type:'convert',from:{'Various cut stones':1},into:{'Various stones':9},every:5,mode:'gdablockssmash'},
 			{type:'mult',value:1.2,req:{'ground stone tools':true}},
-			{type:'mult',value:0.95,req:{'dt3':true}}
+			{type:'mult',value:0.95,req:{'dt3':true}},
+			{type:'mult',value:1.03,req:{'Inspirated carvers':true,'<font color="maroon">Moderation</font>':true}},
+			{type:'mult',value:1.06,req:{'Inspirated carvers':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		req:{'carving':true},
 		category:'crafting',
@@ -4664,6 +4666,8 @@ G.writeMSettingButton=function(obj)
 			{type:'convert',from:{'clay':1},into:{'brick':10},every:5,mode:'bricks'},
 			{type:'convert',from:{'sand':3},into:{'glass':10},every:5,mode:'glass'},
 			{type:'mult',value:1.5,req:{'bigger kilns':true}},
+			{type:'mult',value:1.1,req:{'Better kiln construction':true,'<font color="maroon">Moderation</font>':true}},
+			{type:'mult',value:1.05,req:{'Better kiln construcion':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		gizmos:true,
 		req:{'masonry':true},
@@ -4909,6 +4913,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'convert',from:{'sick':1,'herb':2.5},into:{'adult':1},chance:1/2,every:3},
 			{type:'convert',from:{'wounded':1,'herb':2.5},into:{'adult':1},chance:1/5,every:10},
+			{type:'mult',value:1.03,req:{'More experienced healers':true,'<font color="maroon">Moderation</font>':true}},
+			{type:'mult',value:1.06,req:{'More experienced healers':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		req:{'healing':true},
 		category:'spiritual',
@@ -5931,6 +5937,8 @@ new G.Unit({
 			{type:'convert',from:{'clay':1},into:{'brick':10},every:5,mode:'bricks'},
 			{type:'convert',from:{'sand':8},into:{'glass':2},every:5,mode:'glass'},
 			{type:'mult',value:1.5,req:{'bigger kilns':true}},
+			{type:'mult',value:1.1,req:{'Better kiln construction':true,'<font color="maroon">Moderation</font>':true}},
+			{type:'mult',value:1.05,req:{'Better kiln construction':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		gizmos:true,
 		req:{'masonry':true,'<span style="color: ##FF0900">Paradise building</span>':true,'Paradise crafting':true},
@@ -6124,6 +6132,8 @@ new G.Unit({
 			{type:'convert',from:{'sick':1,'Essenced herb syrup':0.15,'Herb syrup':1},into:{'adult':1,'health':0.44},chance:4/10,every:10},
 			{type:'convert',from:{'drunk':1,'Essenced herb syrup':0.25,'Herb syrup':0.9},into:{'adult':1,'health':0.44},chance:3/10,every:10},
 			{type:'gather',context:'gather',what:{'health':0.1},req:{'Nutrition':true}},
+			{type:'mult',value:1.03,req:{'More experienced healers':true,'<font color="maroon">Moderation</font>':true}},
+			{type:'mult',value:1.09,req:{'More experienced healers':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		req:{'healing':true,'Healing with brews':true},
 		category:'spiritual',
@@ -6419,6 +6429,8 @@ new G.Unit({
 		use:{'land':1,'worker':1},
 		effects:[
 			{type:'convert',from:{'water':8,'limestone':2},into:{'concrete':2},every:7},
+			{type:'mult',value:1.2,req:{'Mo\' concrete':true,'<font color="maroon">Moderation</font>':true}},
+			{type:'mult',value:1.05,req:{'Mo\' concrete':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		req:{'construction':true,'Concrete making':true},
 		category:'crafting',
@@ -6746,6 +6758,7 @@ new G.Unit({
 		effects:[
 			{type:'waste',chance:0.001/1000},
 			{type:'convert',from:{'leather':5},into:{'Dried leather':5},every:20},
+			{type:'mult',value:2,req:{'More capable racks':true}},
 		],
 		req:{'Sewing II':true},
 		category:'crafting',
@@ -6842,6 +6855,8 @@ new G.Unit({
 			{type:'convert',from:{'wounded alchemist':1,'herb':2.5,'First aid things':1,'Medicament brews':0.3},into:{'Alchemist':1,'health':0.44},chance:4/10,every:10},
 			{type:'convert',from:{'wounded child alchemist':1,'herb':2.5,'First aid things':1,'Medicament brews':0.3},into:{'Child alchemist':1,'health':0.44},chance:4/10,every:10},
 			{type:'gather',context:'gather',what:{'health':0.1},req:{'Nutrition':true}},
+			{type:'mult',value:1.03,req:{'More experienced healers':true,'<font color="maroon">Moderation</font>':true}},
+			{type:'mult',value:1.09,req:{'More experienced healers':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		req:{'healing':true,'first aid':true},
 		category:'spiritual',
@@ -9898,6 +9913,20 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		icon:[17,21,'magixmod'], 
 		cost:{'insight II':50,'science':5},
 		req:{'bigger kilns':true}
+	});
+		new G.Tech({
+		name:'More capable racks',
+		desc:'[Drying rack] is thrice as efficient.',
+		icon:[18,21,'magixmod'], 
+		cost:{'insight II': 25},
+		req:{'<font color="maroon">Caretaking</font>':true,'Magical soil':true}
+	});
+		new G.Tech({
+		name:'Oil-digging',
+		desc:'[quarry,quarries] can dig for [oil] that can be used in the future as fuel.',
+		icon:[29,2,'magixmod'], 
+		cost:{'insight II': 25,'insight':30},
+		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true}
 	});
 	/*=====================================================================================
 	POLICIES
