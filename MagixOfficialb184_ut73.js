@@ -4199,6 +4199,9 @@ G.writeMSettingButton=function(obj)
 			G.getDict('house').icon = [29,14,'magixmod']
 			G.getDict('branch shelter').icon = [29,13,'magixmod']
 			}
+			if(G.has('Music instruments')){
+			G.getDict('storyteller').limitPer = {'population':400}
+			}
 			if(G.has('Eotm') && G.achievByName['Level up'].won == 0){ //Level up achievement
 			G.achievByName['Level up'].won = 1
 			G.middleText('- Completed <font color="aqua">Level up</font> achievement -')
@@ -5206,7 +5209,7 @@ G.writeMSettingButton=function(obj)
 			'artisans':{name:'Artisan\'s lodge',desc:'Hire [artisan]s until there are 5 for each of this lodge.',req:{'stone-knapping':true}},
 		},
 		effects:[
-			{type:'function',func:function(me){
+		/*{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('gatherer')) G.buyUnitByName('gatherer',1,true);
 			},mode:'gatherers',req:{'guilds unite':false}},
 			{type:'function',func:function(me){
@@ -5242,7 +5245,7 @@ G.writeMSettingButton=function(obj)
 			},mode:'woodcutters',req:{'guilds unite':true}},
 			{type:'function',func:function(me){
 					if (me.amount*100>G.getUnitAmount('artisan')) G.buyUnitByName('artisan',1,true);
-			},mode:'artisans',req:{'guilds unite':true}},
+			},mode:'artisans',req:{'guilds unite':true}},*/
 		],
 		req:{'sedentism':true},
 		category:'civil',
@@ -5264,7 +5267,7 @@ G.writeMSettingButton=function(obj)
 			'blacksmiths':{name:'Blacksmiths\' guild',desc:'Build [blacksmith workshop]s until there are 5 for each of this guild.',req:{'smelting':true}},
 		},
 		effects:[
-			{type:'function',func:function(me){
+			/*{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('potter')) G.buyUnitByName('potter',1,true);
 			},mode:'potters'},
 			{type:'function',func:function(me){
@@ -5272,7 +5275,7 @@ G.writeMSettingButton=function(obj)
 			},mode:'carpenters'},
 			{type:'function',func:function(me){
 					if (me.amount*5>G.getUnitAmount('blacksmith workshop')) G.buyUnitByName('blacksmith workshop',1,true);
-			},mode:'blacksmiths'}
+			},mode:'blacksmiths'}*/
 		],
 		req:{'guilds':true},
 		category:'civil',
@@ -7069,6 +7072,20 @@ new G.Unit({
 		],
 		req:{'Paradise housing':true},
 		category:'paradiseunit',
+	});
+		new G.Unit({
+		name:'musician',
+		desc:'@generates [culture] every now and then<>[musician]s gather the tribe around at nightfall to sing and play songs that people know and give fun to people.',
+		icon:[28,18,'magixmod'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.1},
+		limitPer:{'population':400},
+		effects:[
+			{type:'gather',what:{'culture':0.1}},
+		],
+		req:{'oral tradition':true,'Music instruments':true},
+		category:'cultural',
 	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
@@ -9846,6 +9863,13 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		icon:[29,17,'magixmod'],
 		cost:{'insight II':15,'culture II':25},
 		req:{'symbolism II':true,'ritualism II':true},
+	});
+		new G.Tech({
+		name:'Music instruments',
+		desc:'Artisans craft for [musician] instruments at order. <>Note: It doesn\'t add new mode. In fact it just unlocks [musician]',
+		icon:[29,18,'magixmod'],
+		cost:{'insight II':15,'culture II':25},
+		req:{'symbolism II':true,'ritualism II':true,'Music':true},
 	});
 	/*=====================================================================================
 	POLICIES
