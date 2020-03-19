@@ -4192,7 +4192,7 @@ G.writeMSettingButton=function(obj)
 			G.getDict('house').icon = [29,14,'magixmod']
 			G.getDict('branch shelter').icon = [29,13,'magixmod']
 			}
-			if(G.has('Eotm' && G.achievByName['Level up'].won = 0)){ //Level up achievement
+			if(G.has('Eotm') && G.achievByName['Level up'].won = 0){ //Level up achievement
 			G.achievByName['Level up'].won = 1
 			G.middleText('- Completed <font color="aqua">Level up</font> achievement -')
 			}
