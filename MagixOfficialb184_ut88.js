@@ -9979,7 +9979,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	});
 		new G.Tech({
 		name:'Next-to house berrybushes',
-		desc:'[house]s can now gather [Berries] from bushes that people plant next to their houses.',
+		desc:'People who live in [house]s can now gather [Berries] from bushes that they plant next to their houses.',
 		icon:[29,15,'magixmod'], 
 		cost:{'insight II': 10},
 		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'Cozier building':true}
