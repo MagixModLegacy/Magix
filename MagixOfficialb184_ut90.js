@@ -5300,7 +5300,7 @@ G.writeMSettingButton=function(obj)
 			'potters':{name:'Potters\' guild',desc:'Hire [potter]s until there are 5 for each of this guild.',req:{'pottery':true}},
 			'carpenters':{name:'Carpenters\' guild',desc:'Build [carpenter workshop]s until there are 5 for each of this guild.',req:{'carpentry':true}},
 			'blacksmiths':{name:'Blacksmiths\' guild',desc:'Build [blacksmith workshop]s until there are 5 for each of this guild.',req:{'smelting':true}},
-			'thief hunters':{name:'Thief hunters\' guild',desc:'Hire [thief hunters]s until there are 25 for each of this guild.',req:{'guilds unite':true,'Battling thieves':true}},
+			'thief hunters':{name:'Thief hunters\' guild',desc:'Hire [Thief hunter]s until there are 25 for each of this guild.',req:{'guilds unite':true,'Battling thieves':true}},
 		},
 		effects:[
 			/*{type:'function',func:function(me){
