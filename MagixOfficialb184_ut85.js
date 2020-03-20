@@ -4207,7 +4207,11 @@ G.writeMSettingButton=function(obj)
 			}
 			if(G.has('Moderated carpentry')){
 			G.getDict('carpenter workshop').icon = [28,16,'magixmod',25,2]
+			G.getDict('carpenter workshop').use = {'land':1,'worker':2}
+			G.getDict('carpenter workshop').cost = {'basic building materials':100,'Basic factory equipment':3}
 			G.getDict('Carpenter workshop').icon = [28,17,'magixmod',20,14,'magixmod']
+			G.getDict('carpenter workshop').use = {'Land of the Paradise':1,'worker':2}
+			G.getDict('carpenter workshop').cost = {'basic building materials':150,'Basic factory equipment':3}
 			}
 			if(G.has('Eotm') && G.achievByName['Level up'].won == 0){ //Level up achievement
 			G.achievByName['Level up'].won = 1
@@ -4745,6 +4749,7 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',context:'mine',amount:0.005,max:0.05,notMode:'off'},
 			{type:'gather',context:'quarry',amount:10,max:30,every:3,mode:'advanced quarry'},
 			{type:'gather',context:'quarry',what:{'Various cut stones':5},mode:'quarryotherstones'},
+			{type:'gather',context:'quarry',what:{'oil':7},req:{'Oil-digging':true}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
 		],
 		gizmos:true,
@@ -4901,6 +4906,7 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
 			{type:'mult',value:0.8,req:{'dt17':true}},
+			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -5495,7 +5501,8 @@ new G.Unit({
 		req:{'<font color="maroon">Moderation</font>':true,'Factories I':true},
 		category:'crafting',
 		effects:[	
-			{type:'convert',from:{'leather':20},into:{'Dried leather':20},every:7},
+			{type:'convert',from:{'leather':20},into:{'Dried leather':20},every:7,req:{'Bigger factory racks':false}},
+			{type:'convert',from:{'leather':40},into:{'Dried leather':40},every:7,req:{'Bigger factory racks':true}},
 			{type:'convert',from:{'hide':200,'water':1000,'salt':150,'log':15},into:{'leather':235},every:15},
 			{type:'convert',from:{'hide':200,'muddy water':1000,'herb':145},into:{'leather':235},every:20},
 			{type:'mult',value:0.5,req:{'Leather factory production rates':0.5}},
@@ -6624,6 +6631,8 @@ new G.Unit({
 		},
 		effects:[
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
+			{type:'mult',value:0.8,req:{'dt17':true}},
+			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
