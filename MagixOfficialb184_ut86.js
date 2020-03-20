@@ -4207,11 +4207,11 @@ G.writeMSettingButton=function(obj)
 			}
 			if(G.has('Moderated carpentry')){
 			G.getDict('carpenter workshop').icon = [28,16,'magixmod',25,2]
-			G.getDict('carpenter workshop').use = {'land':1,'worker':2}
+			G.getDict('carpenter workshop').use = {'land':1,'worker':1}
 			G.getDict('carpenter workshop').cost = {'basic building materials':100,'Basic factory equipment':3}
 			G.getDict('Carpenter workshop').icon = [28,17,'magixmod',20,14,'magixmod']
-			G.getDict('carpenter workshop').use = {'Land of the Paradise':1,'worker':2}
-			G.getDict('carpenter workshop').cost = {'basic building materials':150,'Basic factory equipment':3}
+			G.getDict('Carpenter workshop').use = {'Land of the Paradise':1,'worker':1}
+			G.getDict('Carpenter workshop').cost = {'basic building materials':150,'Basic factory equipment':3}
 			}
 			if(G.has('Eotm') && G.achievByName['Level up'].won == 0){ //Level up achievement
 			G.achievByName['Level up'].won = 1
