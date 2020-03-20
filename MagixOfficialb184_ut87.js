@@ -5082,6 +5082,7 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'provide',what:{'housing':10}},
 			{type:'provide',what:{'housing':0.125},req:{'Better house construction':true}},
+			{type:'gather',what:{'Berries':1},req:{'Next-to house berrybushes':true}},
 			{type:'waste',chance:0.01/1000}
 		],
 		req:{'construction':true},
