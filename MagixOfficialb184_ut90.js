@@ -9811,7 +9811,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	=======================================*/
 		new G.Tech({
 		name:'guilds unite',
-		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 5 to 100. <>Applies new icons to [lodge] , [guild quarters]',
+		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 5 to 100. <>NOTE: Useless for now but applies new icons to [lodge] , [guild quarters]',
 		icon:[29,8,'magixmod'],
 		cost:{'insight II':20,'culture II':10,'influence II':5},
 		req:{'cities':true,'construction II':true,'code of law II':true},
