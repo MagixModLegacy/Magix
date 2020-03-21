@@ -4749,7 +4749,7 @@ G.writeMSettingButton=function(obj)
 			{type:'gather',context:'mine',amount:0.005,max:0.05,notMode:'off'},
 			{type:'gather',context:'quarry',amount:10,max:30,every:3,mode:'advanced quarry'},
 			{type:'gather',context:'quarry',what:{'Various cut stones':5},mode:'quarryotherstones'},
-			{type:'gather',context:'quarry',what:{'oil':7},req:{'Oil-digging':true}},
+			{type:'gather',context:'quarry',what:{'oil':13},req:{'Oil-digging':true}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
 		],
 		gizmos:true,
