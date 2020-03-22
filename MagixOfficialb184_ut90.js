@@ -8907,6 +8907,13 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
+		name:'Moderated carpentry',
+		desc:'[carpenter workshop] is more expensive but its production is multiplied by 2.25 . <>Applies visual changes to Paradise and normal [carpenter workshop]s <>Boosts both types. ',
+		icon:[29,16,'magixmod'], 
+		cost:{'insight II': 10},
+		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true,'Oil-digging':true}
+	});
+		new G.Tech({
 		name:'Richer language',
 		desc:'Language they use for everyday life will become even more richer. Synonyms for basic words, neologisms and many more. This is some sign of wisdom isn\'t it? @provides 10 [wisdom II]',
 		icon:[27,7,'magixmod'],
@@ -9984,13 +9991,6 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		icon:[29,15,'magixmod'], 
 		cost:{'insight II': 10},
 		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'Cozier building':true}
-	});
-		new G.Tech({
-		name:'Moderated carpentry',
-		desc:'[carpenter workshop] is more expensive but its production is multiplied by 2.25 . <>Applies visual changes to Paradise and normal [carpenter workshop]s <>Boosts both types. ',
-		icon:[29,16,'magixmod'], 
-		cost:{'insight II': 10},
-		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true,'Oil-digging':true}
 	});
 	/*=====================================================================================
 	POLICIES
