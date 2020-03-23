@@ -6989,6 +6989,7 @@ new G.Unit({
 		category:'plainisleunit',
 		effects:[
 			{type:'gather',context:'gather',what:{'Fire essence':11}},
+			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 		],
 	});
 		new G.Unit({
@@ -7002,6 +7003,7 @@ new G.Unit({
 		category:'plainisleunit',
 		effects:[
 			{type:'gather',context:'gather',what:{'Wind essence':11}},
+			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 		],
 	});
 		new G.Unit({
@@ -7015,6 +7017,7 @@ new G.Unit({
 		category:'plainisleunit',
 		effects:[
 			{type:'gather',context:'gather',what:{'Essence of the Holiness':11}},
+			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 		],
 	});
 		new G.Unit({
@@ -7028,6 +7031,7 @@ new G.Unit({
 		category:'plainisleunit',
 		effects:[
 			{type:'gather',context:'gather',what:{'Water essence':11}},
+			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 		],
 	});
 		new G.Unit({
@@ -7041,6 +7045,7 @@ new G.Unit({
 		category:'plainisleunit',
 		effects:[
 			{type:'gather',context:'gather',what:{'Dark essence':11}},
+			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 		],
 	});
 		new G.Unit({
@@ -7054,6 +7059,7 @@ new G.Unit({
 		category:'plainisleunit',
 		effects:[
 			{type:'gather',context:'gather',what:{'Nature essence':11}},
+			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 		],
 	});
 		new G.Unit({
@@ -7067,6 +7073,7 @@ new G.Unit({
 		category:'plainisleunit',
 		effects:[
 			{type:'gather',context:'gather',what:{'Lightning essence':11}},
+			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 		],
 	});
 		new G.Unit({
@@ -9990,7 +9997,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		desc:'People who live in [house]s can now gather [Berries] from bushes that they plant next to their houses.',
 		icon:[29,15,'magixmod'], 
 		cost:{'insight II': 10},
-		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'Cozier building':true}
+		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'cozier building':true}
 	});
 	/*=====================================================================================
 	POLICIES
