@@ -10244,7 +10244,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		icon:[8,12,11,8,'magixmod'],
 		cost:{'faith':1,'influence':3},
 		startMode:'off',
-		req:{'ritualism':true},
+		req:{'ritualism':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 		category:'faith',
 	});
 		new G.Policy({
@@ -10294,7 +10294,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		icon:[0,7,'magixmod'],
 		cost:{'influence':15},
 		startMode:'off',
-		req:{'plant lore':true},
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 		category:'Florists',
 	});
 		new G.Policy({
