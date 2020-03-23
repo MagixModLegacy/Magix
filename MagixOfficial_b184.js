@@ -9990,7 +9990,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		desc:'People who live in [house]s can now gather [Berries] from bushes that they plant next to their houses.',
 		icon:[29,15,'magixmod'], 
 		cost:{'insight II': 10},
-		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'Cozier building':true}
+		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'cozier building':true}
 	});
 	/*=====================================================================================
 	POLICIES
