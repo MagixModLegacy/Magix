@@ -4496,7 +4496,7 @@ G.writeMSettingButton=function(obj)
         		{type:'convert',from:{'Paper':30,'hide':1},into:{'Empty book':1},every:7,mode:'craftbook'},
 			{type:'mult',value:1.2,req:{'ground stone tools':true}},
 			{type:'mult',value:1.08,req:{'Motivation for artisans':true,'<font color="maroon">Moderation</font>':true}},
-			{type:'mult',value:1.04,req:{'Motivations for artisans':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.04,req:{'Motivation for artisans':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		req:{'stone-knapping':true},
 		category:'crafting',
