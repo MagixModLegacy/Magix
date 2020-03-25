@@ -4494,6 +4494,7 @@ G.writeMSettingButton=function(obj)
         		{type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:5,mode:'dyes4'},
        		 	{type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:5,mode:'dyes4'},
         		{type:'convert',from:{'Paper':30,'hide':1},into:{'Empty book':1},every:7,mode:'craftbook'},
+			{type:'convert',from:{'Magic essences':2,'Beet seeds':1,'Mana':0.5},into:{'Essenced seeds':1},every:7,mode:'enchseeds'},
 			{type:'mult',value:1.2,req:{'ground stone tools':true}},
 			{type:'mult',value:1.08,req:{'Motivation for artisans':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.04,req:{'Motivation for artisans':true,'<font color="maroon">Caretaking</font>':true}},
