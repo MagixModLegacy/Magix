@@ -508,8 +508,8 @@ G.writeMSettingButton=function(obj)
 						{
 							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
 							else G.lose('faith',15,'rituals');
-							//if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							//else G.lose('influence',15,'rituals');
+							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+							else G.lose('influence',15,'rituals');
 						}
 					}
 					if (G.has('ritualism II'))
@@ -4512,8 +4512,8 @@ G.writeMSettingButton=function(obj)
 			'smash cut stone':{name:'Smash stone blocks',icon:[2,6],desc:'Turn [cut stone]s into 9 [stone]s each.',req:{'quarrying':true},use:{'stone tools':1}},
 			'gem blocks':{name:'Carve gem blocks',icon:[7,9],desc:'Slowly turn 10 [gems] into 1 [gem block].',req:{'gem-cutting':true},use:{'stone tools':1}},
 			'wood statuettes':{name:'Carve wooden statuettes',icon:[13,1,'magixmod'],desc:'Your carver will now use carve statuettes out of [log].',use:{'knapped tools':1}},
-			'gdablockscraft':{name:'Cut other stones',icon:[3,12,'magixmod'],desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',use:{'knapped tools':1},req:{'masonry':true}},
-			'gdablockssmash':{name:'Smash other stone blocks',icon:[2,12,'magixmod'],desc:'Your carver will smash a [Various cut stones,Various cut stone] into 9 [Various stones].',use:{'knapped tools':1},req:{'masonry':true}},    
+			'gdablockscraft':{name:'Cut other stones',icon:[2,12,'magixmod'],desc:'Your carver will craft one [Various cut stones,Various cut stone] out of 9 [Various stones] each.',use:{'knapped tools':1},req:{'masonry':true}},
+			'gdablockssmash':{name:'Smash other stone blocks',icon:[3,12,'magixmod'],desc:'Your carver will smash a [Various cut stones,Various cut stone] into 9 [Various stones].',use:{'knapped tools':1},req:{'masonry':true}},    
 		},
 		effects:[
 			{type:'convert',from:{'stone':1},into:{'statuette':1},every:5,mode:'stone statuettes'},
@@ -6414,7 +6414,7 @@ new G.Unit({
 		icon:[3,3,'magixmod'],
 		cost:{'basic building materials':12500,'precious building materials':3000},
 		use:{'land':9},
-		upkeep:{'Mana':37},
+		upkeep:{'Mana':36},
 		req:{'construction':true,'Wizard towers':true,'Wizard wisdom':true,'Well of Mana':true,'Wizard complex':true},
 		//require:{'wizard':30},
 		effects:[
