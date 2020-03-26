@@ -2949,7 +2949,7 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.0008;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-			/*============================================================================
+	/*============================================================================
 	THEMES
 	============================================================================*/
 		if (G.checkPolicy('Theme changer')=='green'){
@@ -2976,6 +2976,48 @@ if (!document.getElementById(cssId))
     link.rel  = 'stylesheet';
     link.type = 'text/css';
     link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/BlueTheme/bluetheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+					if (G.checkPolicy('Theme changer')=='red'){
+		var cssId = 'redthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/RedTheme/redtheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+						if (G.checkPolicy('Theme changer')=='gray'){
+		var cssId = 'graythemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GrayTheme/graytheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+					if (G.checkPolicy('Theme changer')=='cyan'){
+		var cssId = 'cyanthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/CyanTheme/cyantheme.css';
     link.media = 'all';
     head.appendChild(link);
 }
