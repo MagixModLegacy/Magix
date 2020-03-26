@@ -4217,7 +4217,7 @@ G.writeMSettingButton=function(obj)
 			G.achievByName['Level up'].won = 1
 			G.middleText('- Completed <font color="aqua">Level up</font> achievement -')
 			}
-			if(G.has('dt9') && G.achievByName['Lucky 9'].won == 0){ //Level up achievement
+			if(G.has('dt9') && G.achievByName['Lucky 9'].won == 0){ //Lucky 9 achievement
 			G.achievByName['Lucky 9'].won = 1
 			G.middleText('- Completed <font color="red">Lucky 9</font> achievement -')
 			}
@@ -4225,7 +4225,7 @@ G.writeMSettingButton=function(obj)
 			G.achievByName['Apprentice'].won = 1
 			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
 			}
-			if(G.traitsN >= 30 && G.achievByName['Traitsman'].won == 0){ //Apprentice achievement
+			if(G.traitN >= 30 && G.achievByName['Traitsman'].won == 0){ //Traitsman achievement
 			G.achievByName['Traitsman'].won = 1
 			G.middleText('- Completed <font color="lime">Traitsman</font> achievement -')
 			}
