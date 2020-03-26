@@ -1219,6 +1219,13 @@ if (!document.getElementById(cssId))
 		icon:[4,7],
 		turnToByContext:{'eating':{'health':0.02,'happiness':0.01},'decay':{'spoiled food':1}},
 		partOf:'food',
+		tick:function(me,tick)
+		{
+			if (G.achievByName['Experienced'].won == 1)
+			{
+				me.startWith==100;
+			}
+		},
 		category:'food',
 	});
 	new G.Res({
@@ -7589,6 +7596,26 @@ new G.Unit({
 		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is.',
 		effects:[
 			{type:'addFastTicksOnStart',amount:100},
+			{type:'addFastTicksOnResearch',amount:10}
+		],
+	});
+		new G.Achiev({
+		tier:0,
+		icon:[29,21,'magixmod'],
+		name:'Experienced',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: +100 [fruit]s at start of each next game</b>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+			{type:'addFastTicksOnResearch',amount:10}
+		],
+	});
+		new G.Achiev({
+		tier:1,
+		icon:[29,22,'magixmod'],
+		name:'Smart',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:10}
 		],
 	});
