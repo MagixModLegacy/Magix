@@ -4317,6 +4317,9 @@ if (!document.getElementById(cssId))
 			G.achievByName['Extremely smart'].won = 1
 			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -')
 			}
+			if(G.achievByName['Smart'].won == 1){ 
+			G.getDict('<font color="orange">Smaller but efficient</font>').req == {'sedentism':true};
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -10164,22 +10167,16 @@ G.NewGameConfirm = new Proxy(oldNewGameFruit, {
     CheckFruitzextra()
   }
 })
-	let know1 =  new G.Trait({
+	new G.Trait({
         name:'<font color="orange">Smaller but efficient</font>',
         desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
         icon:[28,23,'magixmod'],
         cost:{},
 	effects:[
 		],
-        req:{'tribalism':false}
+        req:{'tribalism':false},
+	category:'knowledge'
     });
-function know1Check() {
-  if (G.achievByName['Smart'].won) {
-    if (G.achievByName['Smart'].won >= 0 && G.hasNot('<font color="orange">Smaller but efficient</font>') && G.has('sedentism')) {
-      G.gainTech(know1)
-    }
-}
-}
 	let themetech =  new G.Tech({
         name:'<font color="orange">Life has its theme</font>',
         desc:'From now you can change game theme :) ',
