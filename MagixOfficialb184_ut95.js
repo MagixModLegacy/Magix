@@ -4225,6 +4225,10 @@ G.writeMSettingButton=function(obj)
 			G.achievByName['Apprentice'].won = 1
 			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
 			}
+			if(G.traitsN >= 30 && G.achievByName['Traitsman'].won == 0){ //Apprentice achievement
+			G.achievByName['Traitsman'].won = 1
+			G.middleText('- Completed <font color="lime">Traitsman</font> achievement -')
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
