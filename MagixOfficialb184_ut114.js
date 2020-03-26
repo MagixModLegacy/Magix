@@ -386,7 +386,7 @@ G.writeMSettingButton=function(obj)
 		'</div>';
 		return str;
 	}
-var cssId = 'betaCss';  // you could encode the css path itself to generate id..
+var cssId = 'betaCss';  
 if (!document.getElementById(cssId))
 {
     var head  = document.getElementsByTagName('head')[0];
@@ -398,6 +398,20 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+	if (G.checkPolicy('Theme changer')=='on'){
+		var cssId = 'greenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GreenTheme/greentheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+	}
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
@@ -10393,6 +10407,15 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
+		req:{},
+		category:'mag',
+	});
+		new G.Policy({
+		name:'Theme changer',
+		desc:'Switch theme if you wish',
+		icon:[29,0,'magixmod'],
+		cost:{},
+		startMode:'off',
 		req:{},
 		category:'mag',
 	});
