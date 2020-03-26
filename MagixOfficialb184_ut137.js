@@ -1219,14 +1219,6 @@ if (!document.getElementById(cssId))
 		icon:[4,7],
 		turnToByContext:{'eating':{'health':0.02,'happiness':0.01},'decay':{'spoiled food':1}},
 		partOf:'food',
-		startWith:0,
-		tick:function(me,tick)
-		{
-			if (G.achievByName['Experienced'].won > 1)
-			{
-				me.startWith==100;
-			}
-		},
 		category:'food',
 	});
 	new G.Res({
@@ -7594,7 +7586,7 @@ new G.Unit({
 		tier:2,
 		icon:[27,21,'magixmod'],
 		name:'Extremely smart',
-		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is.',
+		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing <font color="DA4f37">Mausoleum eternal</font> unlocks you [Theme changer] .',
 		effects:[
 			{type:'addFastTicksOnStart',amount:100},
 			{type:'addFastTicksOnResearch',amount:10}
@@ -10147,6 +10139,55 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		cost:{'insight II': 10},
 		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'cozier building':true}
 	});
+	let fruitzextra =  new G.Tech({
+        name:'<font color="lime">Fruit supplies</font>',
+        desc:'Obtaining [Experienced] made you getting extra 100 [fruit]s . Wish your people having good taste :) ',
+        icon:[4,12,'magixmod',28,22,'magixmod'],
+        cost:{},
+	effects:[
+			{type:'provide res',what:{'fruit':100}},
+		],
+        req:{'tribalism':false}
+    });
+function CheckFruitzextra() {
+  if (G.achievByName['Experienced'].won) {
+    if (G.achievByName['Experienced'].won >= 0 && G.hasNot('<font color="lime">Fruit supplies</font>')) {
+      G.gainTech(fruitzextra)
+    }
+}
+}
+CheckFruitzextra()
+const oldNewGameFruit = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameFruit, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    CheckFruitzextra()
+  }
+})
+	let themetech =  new G.Tech({
+        name:'<font color="orange">Life has its theme</font>',
+        desc:'From now you can change game theme :) ',
+        icon:[4,12,'magixmod',29,23,'magixmod'],
+        cost:{},
+	effects:[
+		],
+        req:{'tribalism':false}
+    });
+function CheckThemetech() {
+  if (G.achievByName['Extremely smart'].won) {
+    if (G.achievByName['Extremely smart'].won >= 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 0 && G.hasNot('<font color="orange">Life has its theme</font>')) {
+      G.gainTech(themetech)
+    }
+}
+}
+CheckThemetech()
+const oldNewGameThemeTech = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    CheckThemetech()
+  }
+})
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
