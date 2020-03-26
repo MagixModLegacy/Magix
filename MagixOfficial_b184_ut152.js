@@ -4317,7 +4317,7 @@ if (!document.getElementById(cssId))
 			G.achievByName['Extremely smart'].won = 1
 			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -')
 			}
-			if(G.achievByName['Smart'].won == 1){ 
+			if(G.achievByName['Smart'].won > 0){ 
 			G.getDict('<font color="orange">Smaller but efficient</font>').req = {'sedentism':true};
 			}
 		},
