@@ -1219,6 +1219,7 @@ if (!document.getElementById(cssId))
 		icon:[4,7],
 		turnToByContext:{'eating':{'health':0.02,'happiness':0.01},'decay':{'spoiled food':1}},
 		partOf:'food',
+		startWith:0,
 		tick:function(me,tick)
 		{
 			if (G.achievByName['Experienced'].won == 1)
