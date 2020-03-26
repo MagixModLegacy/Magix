@@ -2975,10 +2975,11 @@ if (!document.getElementById(cssId))
     link.id   = cssId;
     link.rel  = 'stylesheet';
     link.type = 'text/css';
-    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/defaulttheme.css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/DefaultTheme/defaulttheme.css';
     link.media = 'all';
     head.appendChild(link);
 }
+					}
 				if (G.checkPolicy('Theme changer')=='blue'){
 		var cssId = 'bluethemeCss';  
 if (!document.getElementById(cssId))
