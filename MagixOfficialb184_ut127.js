@@ -2952,7 +2952,7 @@ if (!document.getElementById(cssId))
 			/*============================================================================
 	THEMES
 	============================================================================*/
-		if (G.checkPolicy('Theme changer')=='green' && !G.checkPolicy('Theme changer')=='default' && !G.checkPolicy('Theme changer')=='blue'){
+		if (G.checkPolicy('Theme changer')=='green'){
 		var cssId = 'greenthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -2966,7 +2966,7 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
-					if (G.checkPolicy('Theme changer')=='default' && !G.checkPolicy('Theme changer')=='green' && !G.checkPolicy('Theme changer')=='blue'){
+					if (G.checkPolicy('Theme changer')=='default'){
 		var cssId = 'defaultthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -2980,7 +2980,7 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 					}
-				if (G.checkPolicy('Theme changer')=='blue' && !G.checkPolicy('Theme changer')=='default' && !G.checkPolicy('Theme changer')=='green'){
+				if (G.checkPolicy('Theme changer')=='blue'){
 		var cssId = 'bluethemeCss';  
 if (!document.getElementById(cssId))
 {
