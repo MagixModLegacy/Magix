@@ -7586,7 +7586,7 @@ new G.Unit({
 		tier:2,
 		icon:[27,21,'magixmod'],
 		name:'Extremely smart',
-		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing <font color="DA4f37">Mausoleum eternal</font> unlocks you [Theme changer] .',
+		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing [<font color="DA4f37">Mausoleum eternal</font>] unlocks you [Theme changer] .',
 		effects:[
 			{type:'addFastTicksOnStart',amount:100},
 			{type:'addFastTicksOnResearch',amount:10}
