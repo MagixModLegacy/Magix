@@ -4318,7 +4318,7 @@ if (!document.getElementById(cssId))
 			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -')
 			}
 			if(G.achievByName['Smart'].won == 1){ 
-			G.getDict('<font color="orange">Smaller but efficient</font>').req == {'sedentism':true};
+			G.getDict('<font color="orange">Smaller but efficient</font>').req = {'sedentism':true};
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
