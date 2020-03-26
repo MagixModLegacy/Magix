@@ -1222,7 +1222,7 @@ if (!document.getElementById(cssId))
 		startWith:0,
 		tick:function(me,tick)
 		{
-			if (G.achievByName['Experienced'].won == 1)
+			if (G.achievByName['Experienced'].won > 1)
 			{
 				me.startWith==100;
 			}
