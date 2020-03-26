@@ -10209,7 +10209,7 @@ G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
     });
 function Checksmall() {
   if (G.achievByName['Smart'].won) {
-    if (G.achievByName['Smart'].won >= 0)) {
+    if (G.achievByName['Smart'].won >= 0){
       G.gainTrait(Smartrait)
     }
 }
