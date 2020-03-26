@@ -2952,7 +2952,7 @@ if (!document.getElementById(cssId))
 			/*============================================================================
 	THEMES
 	============================================================================*/
-		if (G.checkPolicy('Theme changer')=='on'){
+		if (G.checkPolicy('Theme changer')=='green'){
 		var cssId = 'greenthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -2965,6 +2965,34 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+		}
+					if (G.checkPolicy('Theme changer')=='default'){
+		var cssId = 'defaultthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/defaulttheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+				if (G.checkPolicy('Theme changer')=='blue'){
+		var cssId = 'bluethemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/BlueTheme/bluetheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
 		}
 		},
 		category:'alchemypotions',
@@ -10418,8 +10446,13 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		desc:'Switch theme if you wish',
 		icon:[29,0,'magixmod'],
 		cost:{},
-		startMode:'off',
+		startMode:'default',
 		req:{},
+		modes:{
+			'default':{name:'Default',desc:'Switches theme to default'},
+			'green':{name:'Green',desc:'Switches to green theme.'},
+			'blue':{name:'Blue',desc:'Switches to blue theme.'},
+		},
 		category:'mag',
 	});
 	///////////////////////////////////////////////////////////////////////////////////////////////////
