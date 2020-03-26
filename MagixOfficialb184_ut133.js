@@ -10499,7 +10499,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		new G.Policy({
 		name:'Theme changer',
 		desc:'Switch theme if you wish',
-		icon:[29,0,'magixmod'],
+		icon:[28,21,'magixmod'],
 		cost:{},
 		startMode:'default',
 		req:{},
