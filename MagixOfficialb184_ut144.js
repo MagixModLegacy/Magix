@@ -10175,7 +10175,8 @@ G.NewGameConfirm = new Proxy(oldNewGameFruit, {
 	effects:[
 		],
         req:{'tribalism':false},
-	category:'knowledge'
+	category:'knowledge',
+	chance:1,
     });
 	let themetech =  new G.Tech({
         name:'<font color="orange">Life has its theme</font>',
