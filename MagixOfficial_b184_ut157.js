@@ -4325,6 +4325,10 @@ if (!document.getElementById(cssId))
 			G.getDict('branch shelter').use = {'land':0.9}
 			G.getDict('Brick house with a silo').use = {'land':0.9}
 			}
+			if(G.achievByName['mausoleum'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.achievByName['Metropoly'].won >= 1 && G.achievByName['Apprentice'].won >= 1 && G.achievByName['Experienced'].won == 0){ //Experienced
+			G.achievByName['Experienced'].won == 1
+			G.middleText('- Achievements tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>')
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
