@@ -10215,8 +10215,8 @@ function Checksmall() {
 }
 }
 Checksmall()
-const oldNewGameThemeTech = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
+const oldNewGameSmall = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameSmall, {
   apply: function(target, thisArg, args) {
     target(...args)
     Checksmall()
