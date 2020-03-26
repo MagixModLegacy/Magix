@@ -4230,7 +4230,7 @@ G.writeMSettingButton=function(obj)
 			G.middleText('- Completed <font color="lime">Traitsman</font> achievement -')
 			}
 			if((G.getRes('insight II').amount) == (G.getRes('wisdom II').amount) && G.achievByName['Extremely smart'].won == 0){; //Extremely smart achievement
-			G.achievByName['Extemely smart'].won = 1
+			G.achievByName['Extremely smart'].won = 1
 			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -')
 			}
 		},
