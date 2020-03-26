@@ -10180,6 +10180,30 @@ function know1Check() {
     }
 }
 }
+	let themetech =  new G.Tech({
+        name:'<font color="orange">Life has its theme</font>',
+        desc:'From now you can change game theme :) ',
+        icon:[4,12,'magixmod',29,23,'magixmod'],
+        cost:{},
+	effects:[
+		],
+        req:{'tribalism':false}
+    });
+function CheckThemetech() {
+  if (G.achievByName['Extremely smart'].won) {
+    if (G.achievByName['Extremely smart'].won >= 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 0 && G.hasNot('<font color="orange">Life has its theme</font>')) {
+      G.gainTech(themetech)
+    }
+}
+}
+CheckThemetech()
+const oldNewGameThemeTech = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    CheckThemetech()
+  }
+})
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
