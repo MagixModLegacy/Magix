@@ -10164,30 +10164,22 @@ G.NewGameConfirm = new Proxy(oldNewGameFruit, {
     CheckFruitzextra()
   }
 })
-	let themetech =  new G.Tech({
-        name:'<font color="orange">Life has its theme</font>',
-        desc:'From now you can change game theme :) ',
-        icon:[4,12,'magixmod',29,23,'magixmod'],
+	let know1 =  new G.Trait({
+        name:'<font color="orange">Smaller but efficient</font>',
+        desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
+        icon:[28,23,'magixmod'],
         cost:{},
 	effects:[
 		],
         req:{'tribalism':false}
     });
-function CheckThemetech() {
-  if (G.achievByName['Extremely smart'].won) {
-    if (G.achievByName['Extremely smart'].won >= 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 0 && G.hasNot('<font color="orange">Life has its theme</font>')) {
-      G.gainTech(themetech)
+function know1Check() {
+  if (G.achievByName['Smart'].won) {
+    if (G.achievByName['Smart'].won >= 0 && G.hasNot('<font color="orange">Smaller but efficient</font>') && G.has('sedentism')) {
+      G.gainTech(know1)
     }
 }
 }
-CheckThemetech()
-const oldNewGameThemeTech = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    CheckThemetech()
-  }
-})
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
