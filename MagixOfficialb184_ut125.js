@@ -2994,7 +2994,6 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
-		}
 		},
 		category:'alchemypotions',
 	});
