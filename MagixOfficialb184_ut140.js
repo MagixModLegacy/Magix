@@ -10543,7 +10543,6 @@ G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
 		desc:'Switch theme if you wish',
 		icon:[28,21,'magixmod'],
 		cost:{},
-		startMode:'default',
 		req:{'<font color="orange">Life has its theme</font>':true},
 		modes:{
 			'default':{name:'Default',desc:'Switches theme to default',icon:[4,22,'magixmod']},
