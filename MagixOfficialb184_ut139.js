@@ -10141,7 +10141,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	});
 	let fruitzextra =  new G.Tech({
         name:'<font color="lime">Fruit supplies</font>',
-        desc:'Obtaining [Experienced] made you getting extra 100 [fruit]s . Wish your people having good taste :) ',
+        desc:'Obtaining <font color="red">Experienced</font> made you getting extra 100 [fruit]s . Wish your people having good taste :) ',
         icon:[4,12,'magixmod',28,22,'magixmod'],
         cost:{},
 	effects:[
@@ -10544,7 +10544,7 @@ G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
 		icon:[28,21,'magixmod'],
 		cost:{},
 		startMode:'default',
-		req:{},
+		req:{'<font color="orange">Life has its theme</font>':true},
 		modes:{
 			'default':{name:'Default',desc:'Switches theme to default',icon:[4,22,'magixmod']},
 			'green':{name:'Green',desc:'Switches to green theme.',icon:[3,22,'magixmod']},
