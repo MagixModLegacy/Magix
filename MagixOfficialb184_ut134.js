@@ -10504,12 +10504,12 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		startMode:'default',
 		req:{},
 		modes:{
-			'default':{name:'Default',desc:'Switches theme to default'},
-			'green':{name:'Green',desc:'Switches to green theme.'},
-			'blue':{name:'Blue',desc:'Switches to blue theme.'},
-			'red':{name:'Red',desc:'Switches to red theme.'},
-			'cyan':{name:'Cyan',desc:'Switches to cyan theme.'},
-			'gray':{name:'Gray',desc:'Switches to gray theme.'},
+			'default':{name:'Default',desc:'Switches theme to default',icon:[4,22,'magixmod']},
+			'green':{name:'Green',desc:'Switches to green theme.',icon:[3,22,'magixmod']},
+			'blue':{name:'Blue',desc:'Switches to blue theme.',icon:[2,22,'magixmod']},
+			'red':{name:'Red',desc:'Switches to red theme.',icon:[0,22,'magixmod']},
+			'cyan':{name:'Cyan',desc:'Switches to cyan theme.',icon:[5,22,'magixmod']},
+			'gray':{name:'Gray',desc:'Switches to gray theme.',icon:[1,22,'magixmod']},
 		},
 		category:'mag',
 	});
