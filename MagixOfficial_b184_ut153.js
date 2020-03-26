@@ -4317,8 +4317,13 @@ if (!document.getElementById(cssId))
 			G.achievByName['Extremely smart'].won = 1
 			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -')
 			}
-			if(G.achievByName['Smart'].won > 0){ 
-			G.getDict('<font color="orange">Smaller but efficient</font>').req = {'sedentism':true};
+			if(G.has('<font color="orange">Smart but efficient</font>')){
+			G.getDict('hut').use = {'land':0.9}
+			G.getDict('hovel').use = {'land':0.9}
+			G.getDict('house').use = {'land':0.9}
+			G.getDict('mud shelter').use = {'land':0.9}
+			G.getDict('branch shelter').use = {'land':0.9}
+			G.getDict('Brick house with a silo').use = {'land':0.9}
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -10167,17 +10172,6 @@ G.NewGameConfirm = new Proxy(oldNewGameFruit, {
     CheckFruitzextra()
   }
 })
-	new G.Trait({
-        name:'<font color="orange">Smaller but efficient</font>',
-        desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
-        icon:[28,23,'magixmod'],
-        cost:{},
-	effects:[
-		],
-        req:{'tribalism':false},
-	category:'knowledge',
-	chance:1,
-    });
 	let themetech =  new G.Tech({
         name:'<font color="orange">Life has its theme</font>',
         desc:'From now you can change game theme :) ',
@@ -10200,6 +10194,32 @@ G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
   apply: function(target, thisArg, args) {
     target(...args)
     CheckThemetech()
+  }
+})
+	let Smartrait =  	new G.Trait({
+        name:'<font color="orange">Smaller but efficient</font>',
+        desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
+        icon:[28,23,'magixmod'],
+        cost:{},
+	effects:[
+		],
+        req:{'tribalism':false},
+	category:'knowledge',
+	chance:1,
+    });
+function Checksmall() {
+  if (G.achievByName['Smart'].won) {
+    if (G.achievByName['Smart'].won >= 0)) {
+      G.gainTrait(Smartrait)
+    }
+}
+}
+Checksmall()
+const oldNewGameThemeTech = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    Checksmall()
   }
 })
 	/*=====================================================================================
