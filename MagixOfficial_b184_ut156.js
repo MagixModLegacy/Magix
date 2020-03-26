@@ -4317,7 +4317,7 @@ if (!document.getElementById(cssId))
 			G.achievByName['Extremely smart'].won = 1
 			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -')
 			}
-			if(G.has('<font color="orange">Smart but efficient</font>')){
+			if(G.has('<font color="orange">Smaller but efficient</font>')){
 			G.getDict('hut').use = {'land':0.9}
 			G.getDict('hovel').use = {'land':0.9}
 			G.getDict('house').use = {'land':0.9}
