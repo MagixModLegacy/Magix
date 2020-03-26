@@ -4229,6 +4229,10 @@ G.writeMSettingButton=function(obj)
 			G.achievByName['Traitsman'].won = 1
 			G.middleText('- Completed <font color="lime">Traitsman</font> achievement -')
 			}
+			if((G.getRes('population').amount) == (G.getRes('wisdom II').amount) && G.achievByName['Extremely smart'].won == 0){; //Extremely smart achievement
+			G.achievByName['Extemely smart'].won = 1
+			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -')
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -7485,13 +7489,23 @@ new G.Unit({
 			{type:'addFastTicksOnResearch',amount:5}
 		],
 	});
-			new G.Achiev({
+		new G.Achiev({
 		tier:1,
 		icon:[26,21,'magixmod'],
 		name:'Traitsman',
 		desc:'Make your tribe attract 30 traits.',
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		icon:[27,21,'magixmod'],
+		name:'Extremely smart',
+		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+			{type:'addFastTicksOnResearch',amount:10}
 		],
 	});
 	/*=====================================================================================
