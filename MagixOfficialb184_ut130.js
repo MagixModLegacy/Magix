@@ -10438,6 +10438,9 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 			'default':{name:'Default',desc:'Switches theme to default'},
 			'green':{name:'Green',desc:'Switches to green theme.'},
 			'blue':{name:'Blue',desc:'Switches to blue theme.'},
+			'red':{name:'Red',desc:'Switches to red theme.'},
+			'cyan':{name:'Cyan',desc:'Switches to cyan theme.'},
+			'gray':{name:'Gray',desc:'Switches to gray theme.'},
 		},
 		category:'mag',
 	});
