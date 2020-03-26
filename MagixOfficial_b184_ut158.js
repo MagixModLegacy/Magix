@@ -4326,8 +4326,12 @@ if (!document.getElementById(cssId))
 			G.getDict('Brick house with a silo').use = {'land':0.9}
 			}
 			if(G.achievByName['mausoleum'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.achievByName['Metropoly'].won >= 1 && G.achievByName['Apprentice'].won >= 1 && G.achievByName['Experienced'].won == 0){ //Experienced
-			G.achievByName['Experienced'].won == 1
-			G.middleText('- Achievements tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>')
+			G.achievByName['Experienced'].won = 1
+			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>')
+			}
+			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0){ //Experienced
+			G.achievByName['Smart'].won = 1
+			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>')
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
