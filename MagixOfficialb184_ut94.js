@@ -7481,6 +7481,15 @@ new G.Unit({
 			{type:'addFastTicksOnResearch',amount:5}
 		],
 	});
+			new G.Achiev({
+		tier:1,
+		icon:[26,21,'magixmod'],
+		name:'Traitsman',
+		desc:'Make your tribe attract 30 traits.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+		],
+	});
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
