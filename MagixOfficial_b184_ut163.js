@@ -3074,7 +3074,7 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick)
 		{
 				if (G.year>=9 && !backupmesg){
-       				 G.Message({type:'important',text:'<b>Don\'t forget to backup your save!</b><br>If you don\'t want to lose your save you can always backup it. Click <b>Settings</b> tab then <b>Save to file</b> button. It will download a file with your save that you can load if your save ever got lost.',icon:[27,22,'magixmod']});
+       				 G.Message({type:'important',text:'<b>Don\'t forget to backup your save!</b><br>If you don\'t want to lose your save you can always backup it. Click <b>Settings</b> tab then <b>Save to file</b> button. It will download a file with your save that you can load if your curent save ever got lost.',icon:[27,22,'magixmod']});
 				backupmesg = true
 				}
 				if (G.year>=999 && G.year<=1005 && !milleniummesg){
