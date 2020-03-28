@@ -2206,6 +2206,11 @@ if (!document.getElementById(cssId))
 			if (G.has('<span style="color: ##FF0900">Plain island building</span>')){
 			me.hidden=true
 			}
+			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audioPlEmblem = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedEmblem.mp3');
+			audioPlEmblem.play();
+			}
         },
         category:'main',
     });
@@ -2855,6 +2860,11 @@ if (!document.getElementById(cssId))
 			}
 			if (G.has('<span style="color: ##FF0900">Paradise building</span>')){
 			me.hidden=true
+			}
+			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audioPaEmblem = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedEmblem.mp3');
+			audioPaEmblem.play();
 			}
 		},	
 		category:'main',
@@ -4123,6 +4133,11 @@ if (!document.getElementById(cssId))
 			}
 			if (G.has('Underworld building 2/2')){
 			me.hidden=true
+			}
+			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audioUnEmblem = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedEmblem.mp3');
+			audioUnEmblem.play();
 			}
 		},	
 		category:'main',
@@ -10586,7 +10601,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	});
 		new G.Policy({
 		name:'Toggle SFX',
-		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li>',
+		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li>',
 		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
