@@ -1570,7 +1570,7 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.005;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-			if (G.year>=8999 && G.year<=9001) 
+			if (G.year>=8999 && G.year<=9001 && G.day=10) 
 			{
 					var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/EasterEgg.mp3');
 					audio.play(); 
