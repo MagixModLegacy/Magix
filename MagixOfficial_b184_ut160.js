@@ -3053,12 +3053,25 @@ if (!document.getElementById(cssId))
 		category:'main',
 	});
 //Essence limits which can be increased by buying storages for essences
+		let backupmesg
+		let milleniummesg
 		new G.Res({
 		name:'fire essence limit',
 		desc:'The bigger limit the more essence.',
 		icon:[0,2,'magixmod'],
 		hidden:true,
 		category:'main',
+		tick:function(me,tick)
+		{
+				if (G.year>=9 && !backupmesg){
+       				 G.Message({type:'important',text:'<b>Don\'t forget to backup your save!</b><br>If you don\'t want to lose your save you can always backup it. Click <b>Settings</b> tab then <b>Save to file</b> button. It will download a file with your save that you can load if your save ever got lost.',icon:[27,22,'magixmod']});
+				backupmesg = true
+				}
+				if (G.year>=999 && && G.year<=1005 && !milleniummesg){
+       				 G.Message({type:'good',text:'Woah! It\'s been <b>1 thousand</b> years since your tribe started their existence. Your playing supports mod author and motivates for further updates. <br><b>Thank you ;)</b> <br><font color="lime"><tt>Continue enjoying Magix expansion.</tt></font>',icon:[27,23,'magixmod']});
+				milleniummesg = true
+				}
+		},
 	});
 		new G.Res({
 		name:'water essence limit',
