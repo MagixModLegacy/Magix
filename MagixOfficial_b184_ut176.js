@@ -10310,7 +10310,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		name:'Essential conversion tank overclock I',
 		desc:'@[Essential conversion tank] can convert essentials 10% more often. People overclock these tanks',
 		icon:[6,22,'magixmod'], 
-		cost:{'insight II':80},
+		cost:{'insight II':80,'insight':344},
 		req:{'Maths(upper-intermediate)':true,'God\'s trait #6 Fertile essences farms':true,'monument-building':true,'construction':true}
 	});
 
