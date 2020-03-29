@@ -4374,11 +4374,12 @@ if (!document.getElementById(cssId))
 			G.getDict('Church').icon = [24,23,'magixmod']
 			G.getDict('grave').use = {'land':0.7}
 			G.getDict('grave').icon = [24,22,'magixmod']
+			G.getDict('grave').desc ='@provides 3 [burial spot], in which the [corpse,dead] are automatically interred one by one@graves with buried corpses decay over time, freeing up land for more graves<>A simple grave dug into the earth, where the dead may find rest.//Burying your dead helps prevent [health,disease] and makes your people slightly [happiness,happier].'
 			}
 			if(G.has('Glory')){
 			G.getDict('chieftain').icon = [22,23,'magixmod']
 			G.getDict('Mediator').limitPer = {'population':4000}
-			G.getDict('clan leader').icon = [25,24,'magixmod']
+			G.getDict('clan leader').icon = [25,23,'magixmod']
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
