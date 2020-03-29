@@ -60,7 +60,11 @@ G.props['fastTicksOnResearch']=150;
 			G.Message({type:'important',text:str,icon:[0,3]});
 			
 			//influence trickle
+			if(G.has('Glory')){
+				if (G.getRes('influence').amount<=G.getRes('authority').amount-2)G.gain('influence',2);
+			}else{
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
+			}
 		}
 	}
 	
@@ -3079,7 +3083,7 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick)
 		{
 				if (G.year>=9 && !backupmesg){
-       				 G.Message({type:'important',text:'<b>Don\'t forget to backup your save!</b><br>If you don\'t want to lose your save you can always backup it. Click <b>Settings</b> tab then <b>Save to file</b> button. It will download a file with your save that you can load if your curent save ever got lost.',icon:[27,22,'magixmod']});
+       				 G.Message({type:'important',text:'<b>Don\'t forget to backup your save!</b><br>If you don\'t want to lose your save you can always backup it. Click <b>Settings</b> tab then <b>Save to file</b> button. It will download a file with your save that you can load if your curent save ever got lost.',icon:[choose([25,26,27]),22,'magixmod']});
 				backupmesg = true
 				}
 				if (G.year>=999 && G.year<=1005 && !milleniummesg){
@@ -4365,6 +4369,16 @@ if (!document.getElementById(cssId))
 			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0){ //Experienced
 			G.achievByName['Smart'].won = 1
 			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>')
+			}
+			if(G.has('Spiritual piety')){
+			G.getDict('Church').icon = [24,23,'magixmod']
+			G.getDict('grave').use = {'land':0.7}
+			G.getDict('grave').icon = [24,22,'magixmod']
+			}
+			if(G.has('Glory')){
+			G.getDict('chieftain').icon = [22,23,'magixmod']
+			G.getDict('Mediator').limitPer = {'population':4000}
+			G.getDict('clan leader').icon = [25,24,'magixmod']
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -6605,7 +6619,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Concrete making shack',
 		desc:'Allows to make you concrete using some [limestone] and [water].',
-		icon:[26,3,25,2],
+		icon:[23,22,'magixmod',25,2],
 		cost:{'basic building materials':1000},
 		use:{'land':1,'worker':1},
 		effects:[
@@ -10263,6 +10277,26 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
     Checksmall()
   }
 })
+		new G.Tech({
+		name:'Glory',
+		desc:'@provides 7 [authority II] @Increases efficiency of [chieftain] and [clan leader] by 10% @Applies visual changes for [chieftain] and [clan leader] . @You gain yearly 2 [influence] instead of 1',
+		icon:[23,23,'magixmod'], 
+		cost:{'influence II': 5,'insight II':50,'culture II':20},
+		effects:[
+			{type:'provide res',what:{'authority II':7}},
+		],
+		req:{'code of law II':true}
+	});
+		new G.Tech({
+		name:'Spiritual piety',
+		desc:'@provides 7 [spirituality II] @Increases [faith] gains of [Church] by 30% @Applies visual changes for [grave] and [Church] . @One [grave] provides 3 [burial spot]s and uses 0.7 instead of 1 [land] .',
+		icon:[26,23,'magixmod'], 
+		cost:{'faith II': 5,'insight II':50,'culture II':20},
+		effects:[
+			{type:'provide res',what:{'spirituality II':7}},
+		],
+		req:{'ritualism II':true,'ritualism':true,'God\'s trait #6 Fertile essences farms':true}
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
