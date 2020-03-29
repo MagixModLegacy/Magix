@@ -6087,6 +6087,7 @@ new G.Unit({
 		upkeep:{'food':0.2},
 		effects:[
 			{type:'gather',what:{'happiness':0.1}},
+			{type:'gather',what:{'influence':0.01}},
 		],
 		use:{'worker':1},
 		req:{'Better influence & authority':true},
@@ -6428,7 +6429,6 @@ new G.Unit({
 			{type:'gather',what:{'Water essence':2}},
 	],
 		req:{'construction':true,'Wizard towers':true,'Wizard wisdom':true,'Well of Mana':true},
-		//require:{'wizard':3},
 		category:'housing',
 		limitPer:{'land':2},
 	});
@@ -10284,7 +10284,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 })
 		new G.Tech({
 		name:'Glory',
-		desc:'@provides 7 [authority II] @Increases efficiency of [chieftain] and [clan leader] by 10% @Applies visual changes for [chieftain] and [clan leader] . @You gain yearly 2 [influence] instead of 1',
+		desc:'@provides 7 [authority II] @Increases efficiency of [chieftain] and [clan leader] by 10% @Applies visual changes for [chieftain] and [clan leader] . @You gain yearly 2 [influence] instead of 1. @[Mediator] can gather [influence] but becomes more limited.',
 		icon:[23,23,'magixmod'], 
 		cost:{'influence II': 5,'insight II':50,'culture II':20},
 		effects:[
