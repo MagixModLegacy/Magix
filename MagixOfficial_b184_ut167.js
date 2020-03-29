@@ -3581,6 +3581,25 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			//Theme changer fix
+			if (G.checkPolicy('Theme changer')=='default'){
+				G.getDict('Theme changer').startMode == 'default'
+			}
+			if (G.checkPolicy('Theme changer')=='green'){
+				G.getDict('Theme changer').startMode == 'green'
+			}
+			if (G.checkPolicy('Theme changer')=='blue'){
+				G.getDict('Theme changer').startMode == 'blue'
+			}
+			if (G.checkPolicy('Theme changer')=='red'){
+				G.getDict('Theme changer').startMode == 'red'
+			}
+			if (G.checkPolicy('Theme changer')=='cyan'){
+				G.getDict('Theme changer').startMode == 'cyan'
+			}
+			if (G.checkPolicy('Theme changer')=='gray'){
+				G.getDict('Theme changer').startMode == 'gray'
+			}
 		},
 		category:'flowersanddyes',
 	});//4
