@@ -7141,10 +7141,14 @@ new G.Unit({
 			'influence':{name:'Influence to Influence II',icon:[20,19,'magixmod'],desc:'This tank will convert each 500 [influence] into 1 [influence II] '},
 		},
 		effects:[
-			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight'},
-			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture'},
-			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith'},
-			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence'},
+			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'insight':500},into:{'insight II':1},every:9,mode:'insight',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'culture':500},into:{'culture II':1},every:9,mode:'culture',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'faith':500},into:{'faith II':1},every:9,mode:'faith',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}},
 		],
 	});
 		new G.Unit({
@@ -10302,6 +10306,14 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		],
 		req:{'ritualism II':true,'ritualism':true,'God\'s trait #6 Fertile essences farms':true}
 	});
+		new G.Tech({
+		name:'Essential conversion tank overclock I',
+		desc:'@[Essential conversion tank] can convert essentials 10% more often. People overclock these tanks',
+		icon:[6,22,'magixmod'], 
+		cost:{'insight II':80},
+		req:{'Maths(upper-intermediate)':true,'God\'s trait #6 Fertile essences farms':true}
+	});
+
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
