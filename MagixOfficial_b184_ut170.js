@@ -5125,7 +5125,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'influence':0.1}},
 			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
 			{type:'mult',value:1.05,req:{'Politic power rising up':true}},
-			{type:'mult',value:0.1,req:{'Eotm':true}}
+			{type:'mult',value:0.1,req:{'Eotm':true}},
+			{type:'mult',value:1.1,req:{'Glory':true}}
 		],
 		limitPer:{'population':100},
 		req:{'chieftains':true},
@@ -5143,7 +5144,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'influence':0.2}},
 			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
 			{type:'mult',value:1.05,req:{'Politic power rising up':true}},
-			{type:'mult',value:0.1,req:{'Eotm':true}}
+			{type:'mult',value:0.1,req:{'Eotm':true}},
+			{type:'mult',value:1.1,req:{'Glory':true}}
 		],
 		limitPer:{'population':500},
 		req:{'clans':true},
@@ -5159,7 +5161,8 @@ if (!document.getElementById(cssId))
 		use:{'land':1},
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
-			{type:'provide',what:{'burial spot':1}},
+			{type:'provide',what:{'burial spot':1},req:{'Spiritual piety':false}},
+			{type:'provide',what:{'burial spot':3},req:{'Spiritual piety':true}},
 			//{type:'waste',chance:1/100,desired:true},
 			{type:'function',func:function(me){
 				var buried=G.getRes('burial spot').used;
@@ -6533,7 +6536,8 @@ new G.Unit({
 		use:{'land':1,'worker':2},
 		req:{'churches':true},
 		effects:[
-			{type:'gather',what:{'faith':0.03}},
+			{type:'gather',what:{'faith':0.03},req:{'Spiritual piety':false}},
+			{type:'gather',what:{'faith':0.039},req:{'Spiritual piety':true}},
 			{type:'gather',what:{'spirituality':0.00000001}},
 			{type:'waste',chance:0.01/1000}
 	],
