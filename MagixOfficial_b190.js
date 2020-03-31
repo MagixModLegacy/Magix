@@ -405,7 +405,7 @@ G.writeMSettingButton=function(obj)
 	G.tabs.push({
 			name:'PvP',
 			id:'pvp',
-			popup:true,
+			popup:false,
 			addClass:'right',
 			desc:'Requires 10Gb ethernet to join the Neverending Legacy PvP server. <>Send your tribe to fight other tribes and salvage their resources. Source of Glory points. (currently in pre-alpha)'
 		});
