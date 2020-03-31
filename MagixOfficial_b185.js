@@ -58,6 +58,8 @@ G.props['fastTicksOnResearch']=150;
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
+			var Duckaudio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/AFools/Duck.mp3');
+			Duckaudio.play();
 			
 			//influence trickle
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
@@ -65,31 +67,33 @@ G.props['fastTicksOnResearch']=150;
 	}
 	
 	G.props['new day lines']=[
-		'Creatures are lurking.',
+		'A boomer has thrown a boomerang.',
 		'Danger abounds.',
 		'Wild beasts are on the prowl.',
 		'Large monsters roam, unseen.',
 		'This is a cold night.',
 		'No sound but the low hum of a gray sky.',
-		'The darkness is terrifying.',
-		'Clouds twist in complicated shapes.',
+		'The darkness is giving a hope.',
+		'Clouds twist in shape of a sheep.',
 		'It is raining.',
-		'Dark birds caw ominously in the distance.',
-		'There is a storm on the horizon.',
-		'The night is unforgiving.',
-		'Creatures crawl in the shadows.',
+		'It is laughing.',
+		'Dark birds laugh ominously in the distance.',
+		'There is a sandstorm on the horizon.',
+		'The night is forgiving.',
+		'Creatures hug in the shadows.',
 		'A stream burbles quietly nearby.',
 		'In the distance, a prey falls to a pack of beasts.',
-		'An unexplained sound echoes on the horizon.',
+		'An explained laugh echoes on the horizon.',
 		'Everything stands still in the morning air.',
 		'A droning sound fills the sky.',
 		'The night sky sparkles, its mysteries unbroken.',
-		'Dry bones crack and burst underfoot.',
+		'Bruhtherer has yelled loud <b>Bruh!</b>.',
 		'Wild thorns scratch the ankles.',
-		'Something howls in the distance.',
+		'A teenager has created a meme.',
+		'A boomer yells <b>OOF!</b> loudly.',
 		'Strange ashes snow down slowly from far away.',
 		'A blood-curdling wail is heard.',
-		'Unknown creatures roll and scurry in the dirt.',
+		'A new meme has been created.',
 		'The air carries a peculiar smell today.',
 		'Wild scents flow in from elsewhere.',
 		'The dust is oppressive.',
@@ -482,7 +486,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Your [population] represents everyone living under your rule. These are the people that look to you for protection, survival, and glory.',
 		meta:true,
 		visible:true,
-		icon:[0,3],
+		icon:[1,1,'seasonal'],
 		tick:function(me,tick)
 		{
 			//this.displayName=G.getName('inhabs');
@@ -669,7 +673,7 @@ G.writeMSettingButton=function(obj)
 				var homeless=Math.max(0,(me.amount)-G.getRes('housing').amount);
 				if (G.has('sedentism') && me.amount>15 && homeless>0)
 				{
-					if (tick%10==0) G.Message({type:'bad',mergeId:'homeless',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person is':'people are')+' homeless.<br>Homelessness with more than 15 population leads to lower birth rates.';},args:{n:homeless},replaceOnly:true,icon:[12,4]});
+					if (tick%10==0) G.Message({type:'bad',mergeId:'homeless',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person is':'people are')+' homeless.<br>Homelessness with more than 15 population leads to lower birth rates.';},args:{n:homeless},replaceOnly:true,icon:[3,2,'seasonal']});
 				}
 				
 				//age
@@ -681,7 +685,7 @@ G.writeMSettingButton=function(obj)
 						G.gain('corpse',n,'old age');
 						G.lose('elder',n,'old age');
 						G.gain('happiness',-n*5*deathUnhappinessMult,'death');
-						if (n>0) G.Message({type:'bad',mergeId:'diedAge',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died of old age.';},args:{n:n},icon:[13,4]});
+						if (n>0) G.Message({type:'bad',mergeId:'diedAge',textFunc:function(args){return B(args.n)+' '+(args.n==1?'boomer':'boomers')+' died of old age.';},args:{n:n},icon:[13,4]});
 						
 						G.getRes('died this year').amount+=n;
 					}
@@ -709,7 +713,7 @@ G.writeMSettingButton=function(obj)
 						var n=randomFloor(G.getRes('adult').amount*0.0003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
 						var n=randomFloor(G.getRes('elder').amount*0.00003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
 						G.getRes('born this year').amount+=born;
-						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});
+						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,1,'seasonal']});
 					}
 					
 					//health (diseases and wounds)
@@ -734,7 +738,7 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('sick',changed,'disease');
-						if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});
+						if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[7,1,'seasonal']});
 					}
 					//sickness : death and recovery
 					var sickMortality=0.005;
@@ -765,7 +769,7 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('wounded',changed,'accident');
-						if (changed>0) G.Message({type:'bad',mergeId:'gotWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' got wounded.';},args:{n:changed},icon:[7,3]});
+						if (changed>0) G.Message({type:'bad',mergeId:'gotWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' got wounded.';},args:{n:changed},icon:[8,1,'seasonal']});
 					}
 					//wounds : death and recovery
 					var woundMortality=0.005;
@@ -795,7 +799,7 @@ G.writeMSettingButton=function(obj)
 		startWith:0,
 		visible:true,
 		partOf:'population',
-		icon:[2,3],
+		icon:[3,1,'seasonal'],
 	});
 	new G.Res({
 		name:'child',
@@ -803,7 +807,7 @@ G.writeMSettingButton=function(obj)
 		startWith:2,
 		visible:true,
 		partOf:'population',
-		icon:[3,3],
+		icon:[4,1,'seasonal'],
 	});
 	new G.Res({
 		name:'adult',
@@ -811,27 +815,29 @@ G.writeMSettingButton=function(obj)
 		startWith:5,
 		visible:true,
 		partOf:'population',
-		icon:[4,3],
+		icon:[5,1,'seasonal'],
 	});
 	new G.Res({
 		name:'elder',
+		displayName:'boomer',
 		desc:'[adult,Adults] that grow old are [elder,Elders].//Elders may end up [corpse,dying] of old age.//Elders do not count as [worker,Workers], unless special measures are in place.',
 		startWith:1,
 		visible:true,
 		partOf:'population',
-		icon:[5,3],
+		icon:[6,1,'seasonal'],
 	});
 	new G.Res({
 		name:'sick',
+		displayName:'COVID-19 infected',
 		desc:'[adult,People] can fall [sick,sick] when your [health] levels are too low. They do not [worker,work], but may be healed over time.',
 		partOf:'population',
-		icon:[6,3],
+		icon:[7,1,'seasonal'],
 	});
 	new G.Res({
 		name:'wounded',
 		desc:'[adult,People] may get [wounded,wounded] due to work injuries, or from war. They do not [worker,work], but may slowly get better over time.',
 		partOf:'population',
-		icon:[7,3],
+		icon:[8,1,'seasonal'],
 	});
 	new G.Res({
 		name:'corpse',
@@ -898,7 +904,7 @@ G.writeMSettingButton=function(obj)
 	new G.Res({
 		name:'housing',
 		desc:'Each [housing,Housing spot] accommodates one [population,Person].//Beyond the 15 people a nomad tribe can support, your population will only grow if you have empty housing.//Homelessness (having less housing than population) will lead to unhappiness and disease.//The number on the left is how much housing is occupied, while the number on the right is how much housing room you have in total.',
-		icon:[12,4],
+		icon:[3,2,'seasonal'],
 		getDisplayAmount:function()
 		{
 			return B(Math.min(this.displayedAmount,G.getRes('population').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
@@ -924,7 +930,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Your [worker,Workforce] is the part of your [population] that is ready to work.//The number on the left is how many are currently being employed, while the number on the right is your total amount of workers.',
 		startWith:0,
 		visible:true,
-		icon:[1,3],
+		icon:[2,1,'seasonal'],
 		displayUsed:true,
 		tick:function(me,tick)
 		{
@@ -3280,7 +3286,7 @@ G.writeMSettingButton=function(obj)
 		new G.Res({
 		name:'Instructor',
 		desc:'Instructor can teach people any thing. Can teach alchemy or many other. If he will become [elder], he will retire.//The number on the left is how many are currently being employed, while the number on the right is your total amount of instructors.',
-		icon:[12,6,'magixmod'],
+		icon:[0,3,'seasonal'],
 		partOf:'population',
 		category:'demog',
 		displayUsed:true,
@@ -3297,7 +3303,7 @@ G.writeMSettingButton=function(obj)
 		new G.Res({
 		name:'Alchemists',//There is something more :)
 		desc:'This stat shows all alchemists you currently have in total(children + adult alchemists).//The number on the left is how many are currently being employed, while the number on the right is your total amount of alchemists.',
-		icon:[12,8,'magixmod'],
+		icon:[0,5,'seasonal'],
 		partOf:'population',
 		meta:true,
 		tick:function(me,tick)
@@ -3307,7 +3313,7 @@ G.writeMSettingButton=function(obj)
 		new G.Res({
 		name:'Alchemist',
 		desc:'Adult alchemist. Can be hired to special category of jobs same as his younger version. While he will at [elder] age he will retire.//The number on the left is how many are currently being employed, while the number on the right is your total amount of adult alchemists.',
-		icon:[12,5,'magixmod'],
+		icon:[0,2,'seasonal'],
 		partOf:'Alchemists',
 		displayUsed:true,
 		tick:function(me,tick)
@@ -3319,7 +3325,7 @@ G.writeMSettingButton=function(obj)
 		new G.Res({
 		name:'Child alchemist',
 		desc:'Younger alchemist. Can be hired to special category of jobs but chance for accidents will grow. Soon he will grow to [Alchemist].//The number on the left is how many are currently being employed, while the number on the right is your total amount of child alchemists.',
-		icon:[12,7,'magixmod'],
+		icon:[0,4,'seasonal'],
 		partOf:'Alchemists',
 		displayUsed:true,
 		tick:function(me,tick)
@@ -3332,7 +3338,7 @@ G.writeMSettingButton=function(obj)
 		name:'drunk',
 		desc:'[adult,People] may get [drunk] due to drinking too much alcohol brews. They do not [worker,work], but may slowly get better over time. Common healer cannot aid with it. Unhealed by any (except) default [healer] alcohol sickness will lead [drunk,drunken] people to death. ',
 		partOf:'population',
-		icon:[17,0,'magixmod'],
+		icon:[1,2,'seasonal'],
 		tick:function(me,tick)
 		{
 			var n=randomFloor(G.getRes('Wine').amount*0.009);G.gain('drunk',n,'alcohol drinking');G.lose('adult',n,'alcohol drinking');G.lose('Wine',n,'drinking');
@@ -3383,7 +3389,7 @@ G.writeMSettingButton=function(obj)
 		new G.Res({
 		name:'thief',
 		desc:'[thief,Thieves] are unhappy adults who commit crimes to show their unhappiness. Even 200% [happiness] won\'t decrease their spawn rate to zero. They can: @steal resources @wound and even <b>kill [population,people]</b>',
-		icon:[23,0,'magixmod'],
+		icon:[2,2,'seasonal'],
 		category:'demog',
 		partOf:'population',
 		tick:function(me,tick)
@@ -4366,9 +4372,10 @@ G.writeMSettingButton=function(obj)
 	
 	new G.Unit({
 		name:'gatherer',
+		displayName:'bruhterer',
 		startWith:5,
-		desc:'@forages for basic [food], [water] and [archaic building materials,Various interesting things]<>A vital part of an early tribe, [gatherer]s venture in the wilderness to gather food, wood, and other things of note.',
-		icon:[0,2],
+		desc:'@forages for basic [food], [water] and [archaic building materials,Various interesting things]<>A vital part of an early tribe, [gatherer]s venture in the wilderness to gather food, wood, and other things of note. <>Whispers <b>Bruh</b> word over time!',
+		icon:[0,1,'seasonal'],
 		cost:{},
 		use:{'worker':1},
 		//upkeep:{'food':0.2},
@@ -6193,7 +6200,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Fire wizard tower',
 		desc:'@provides 33 [housing]<>A tower for 30 citizens and 3 wizards. Gathers [Fire essence] by consuming mana.',
-		icon:[2,4,'magixmod'],
+		icon:[13,1,'seasonal'],
 		cost:{'basic building materials':1000,'precious building materials':100},
 		use:{'land':1},
 		upkeep:{'Mana':6},
@@ -6272,7 +6279,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Water wizard tower',
 		desc:'@provides 33 [housing]<>A tower for 30 citizens and 3 wizards. Gathers [Water essence] by consuming mana.',
-		icon:[0,4,'magixmod'],
+		icon:[11,1,'seasonal'],
 		cost:{'basic building materials':1000,'precious building materials':100},
 		use:{'land':1},
 		upkeep:{'Mana':6},
@@ -6288,7 +6295,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Dark wizard tower',
 		desc:'@provides 33 [housing]<>A tower for 30 citizens and 3 wizards. Gathers [Dark essence] by consuming mana.',
-		icon:[1,4,'magixmod'],
+		icon:[12,1,'seasonal'],
 		cost:{'basic building materials':1000,'precious building materials':100,},
 		use:{'land':1},
 		upkeep:{'Mana':6},
@@ -6304,7 +6311,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Nature wizard tower',
 		desc:'@provides 33 [housing]<>A tower for 30 citizens and 3 wizards. Gathers [Nature essence] by consuming mana.',
-		icon:[3,4,'magixmod'],
+		icon:[14,1,'seasonal'],
 		cost:{'basic building materials':1000,'precious building materials':100,},
 		use:{'land':1},
 		upkeep:{'Mana':6},
@@ -6319,7 +6326,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Lightning wizard tower',
 		desc:'@provides 33 [housing]<>A tower for 30 citizens and 3 wizards. Gathers [Lightning essence] by consuming mana.',
-		icon:[5,4,'magixmod'],
+		icon:[16,1,'seasonal'],
 		cost:{'basic building materials':1000,'precious building materials':100,},
 		use:{'land':1},
 		upkeep:{'Mana':6},
@@ -6351,7 +6358,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Wind wizard tower',
 		desc:'@provides 33 [housing]<>A tower for 30 citizens and 3 wizards. Gathers [Wind essence] by consuming mana.',
-		icon:[4,4,'magixmod'],
+		icon:[15,1,'seasonal'],
 		cost:{'basic building materials':1000,'precious building materials':100,},
 		use:{'land':1},
 		upkeep:{'Mana':6},
@@ -6367,7 +6374,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Holy wizard tower',
 		desc:'@provides 33 [housing]<>A tower for 30 citizens and 3 wizards. Gathers [Essence of the Holiness] by consuming mana.',
-		icon:[20,7,'magixmod'],
+		icon:[9,1,'seasonal'],
 		cost:{'basic building materials':750,'precious building materials':350},
 		use:{'land':1},
 		upkeep:{'Mana':6},
@@ -6432,7 +6439,7 @@ new G.Unit({
 		new G.Unit({
 		name:'Wizard Complex',
 		desc:'@provides 690 [housing]<>A towers for 660 citizens and 30 wizards. Gathers all type of essences three times better than usual tower and consuming same mana. May provide more housing with further researches.',
-		icon:[3,3,'magixmod'],
+		icon:[10,1,'seasonal'],
 		cost:{'basic building materials':12500,'precious building materials':3000},
 		use:{'land':9},
 		upkeep:{'Mana':36},
@@ -7171,7 +7178,7 @@ new G.Unit({
 		new G.Unit({
     		name:'<span style="color: #E0CE00">Plain island portal</span>',
     		desc:'@opens a portal to a huge <b>Plain Island</b>A creation made of ideas of wizards and dreams of population more exactly kids.//A Dream comes real. You will grant +25000 max land upon activation of portal',
-    		wideIcon:[7,3,'magixmod'],
+    		wideIcon:[17,2,'seasonal'],
     		cost:{'precious building materials':5000,'insight':1500,'faith':100,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750},
     		effects:[
     			{type:'provide',what:{'Land of the Plain Island':25000}},
@@ -7186,7 +7193,7 @@ new G.Unit({
 		new G.Unit({
     		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
     		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 paradise land at your own but you <b>must</b> follow some of God\'s rules.',
-    		wideIcon:[7,4,'magixmod'],
+    		wideIcon:[17,3,'seasonal'],
     		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4},
     		effects:[
     			{type:'provide',what:{'Land of the Paradise':26500}},
@@ -7611,7 +7618,7 @@ getCosts:function()
 	new G.Tech({
 		name:'language',
 		desc:'@provides 30 [inspiration]@provides 30 [wisdom]<>[language] improves on [speech] by combining complex grammar with a rich vocabulary, allowing for better communication and the first signs of culture.',
-		icon:[2,1],
+		icon:[19,1,'seasonal'],
 		cost:{'insight':10},
 		req:{'speech':true},
 		effects:[
@@ -7907,7 +7914,7 @@ getCosts:function()
 	new G.Tech({
 		name:'fire-making',
 		desc:'@unlocks [firekeeper]s<>Fire keeps you warm and makes animal attacks much less frequent.',
-		icon:[16,1],
+		icon:[17,1,'seasonal'],
 		cost:{'insight':15},
 		req:{'stone-knapping':true},
 		effects:[
@@ -8087,7 +8094,7 @@ getCosts:function()
 	new G.Tech({
 		name:'pottery',
 		desc:'@unlocks [potter]s, which produce goods such as [pot]s out of [clay] and [mud]@unlocks [granary,Granaries] (with [stockpiling])@[digger]s find more [clay]<>',
-		icon:[28,6],
+		icon:[16,2,'seasonal'],
 		cost:{'insight':20},
 		req:{'fire-making':true,'digging':true,'tool-making':true},
 		effects:[
@@ -8944,7 +8951,7 @@ autobuy(G.year)
 		new G.Tech({
 		name:'Richer language',
 		desc:'Language they use for everyday life will become even more richer. Synonyms for basic words, neologisms and many more. This is some sign of wisdom isn\'t it? @provides 10 [wisdom II]',
-		icon:[27,7,'magixmod'],
+		icon:[18,1,'seasonal'],
 		cost:{'insight II':15},
 		req:{'Eotm':true,'language':true},
 		effects:[
@@ -10019,6 +10026,13 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		icon:[29,15,'magixmod'], 
 		cost:{'insight II': 10},
 		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'cozier building':true}
+	});
+		new G.Tech({
+		name:'World War III',
+		desc:'People think about World War III in modern style.    ;) ',
+		icon:[16,3,'seasonal'], 
+		cost:{'insight': 100},
+		req:{'cities':true}
 	});
 	/*=====================================================================================
 	POLICIES
