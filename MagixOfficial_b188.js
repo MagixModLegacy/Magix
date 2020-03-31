@@ -402,6 +402,7 @@ G.writeMSettingButton=function(obj)
     	link.media = 'all';
     	head.appendChild(link);
 	}
+	if(G.has('sedentism')){
 	G.tabs.push({
 			name:'PvP',
 			id:'pvp',
@@ -409,6 +410,9 @@ G.writeMSettingButton=function(obj)
 			addClass:'right',
 			desc:'Requires 10Gb ethernet to join the Neverending Legacy PvP server. <>Send your tribe to fight other tribes and salvage their resources. Source of Glory points. (currently in pre-alpha)'
 		});
+		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
+		G.buildTabs();
+	}
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
