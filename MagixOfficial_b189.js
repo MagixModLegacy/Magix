@@ -402,7 +402,6 @@ G.writeMSettingButton=function(obj)
     	link.media = 'all';
     	head.appendChild(link);
 	}
-	if(G.has('sedentism')){
 	G.tabs.push({
 			name:'PvP',
 			id:'pvp',
@@ -412,7 +411,7 @@ G.writeMSettingButton=function(obj)
 		});
 		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
 		G.buildTabs();
-	}
+	
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
