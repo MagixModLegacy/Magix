@@ -523,8 +523,6 @@ if (!document.getElementById(cssId))
 						{
 							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
 							else G.lose('faith',15,'rituals');
-							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('influence',15,'rituals');
 						}
 					}
 					if (G.has('ritualism II'))
