@@ -528,13 +528,15 @@ if (!document.getElementById(cssId))
 						}
 					}
 					if (G.has('ritualism II'))
-					var rituals=['wisdom rituals','flower rituals'];
-					for (var i in rituals)
 					{
-						if (G.checkPolicy(rituals[i])=='on')
+						var rituals=['wisdom rituals','flower rituals'];
+						for (var i in rituals)
 						{
-							if (G.getRes('faith II').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('faith II',1,'rituals');
+							if (G.checkPolicy(rituals[i])=='on')
+							{
+								if (G.getRes('faith II').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+								else G.lose('faith II',1,'rituals');
+							}
 						}
 					}
 				}			
