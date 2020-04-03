@@ -7125,7 +7125,7 @@ new G.Unit({
 	});
 			new G.Unit({
 		name:'Essential conversion tank',
-		desc:'@A tank that converts 500 [insight],[culture],[faith] and [influence] into their respective second tiers.. <>You can specify which essential the Tank will convert by using modes for this unit.',
+		desc:'@A tank that converts 500 [insight],[culture],[faith] and [influence] into their respective second tiers.. <>You can specify which essential the Tank will convert by using modes for this unit. Can only cause convertion when you have more than 600 of an [insight,Essential] .',
 		icon:[26,19,'magixmod'],
 		cost:{'glass':500,'basic building materials':150},
 		req:{'Eotm':true},
@@ -7146,15 +7146,43 @@ new G.Unit({
                   return  {type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight',req:{'Essential conversion tank overclock I':false}}
                 }
 }},
-			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture',req:{'Essential conversion tank overclock I':false}},
-			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith',req:{'Essential conversion tank overclock I':false}},
-			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence',req:{'Essential conversion tank overclock I':false}},
-			{type:'convert',from:{'insight':500},into:{'insight II':1},every:9,mode:'insight',req:{'Essential conversion tank overclock I':true}},
-			{type:'convert',from:{'culture':500},into:{'culture II':1},every:9,mode:'culture',req:{'Essential conversion tank overclock I':true}},
-			{type:'convert',from:{'faith':500},into:{'faith II':1},every:9,mode:'faith',req:{'Essential conversion tank overclock I':true}},
-			{type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}},
-		],
-	});
+			{type:'function',func:function(me){
+                if(G.getRes('culture').amount>=600){
+                  return  {type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture',req:{'Essential conversion tank overclock I':false}}
+                }
+}},
+			{type:'function',func:function(me){
+                if(G.getRes('faith').amount>=600){
+                  return  {type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith',req:{'Essential conversion tank overclock I':false}}
+                }
+}},
+			{type:'function',func:function(me){
+                if(G.getRes('influence').amount>=600){
+                  return  {type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence',req:{'Essential conversion tank overclock I':false}}
+                }
+}},
+			{type:'function',func:function(me){
+                if(G.getRes('insight').amount>=600){
+                  return  {type:'convert',from:{'insight':500},into:{'insight II':1},every:9,mode:'insight',req:{'Essential conversion tank overclock I':true}}
+                }
+}},
+						{type:'function',func:function(me){
+                if(G.getRes('culture').amount>=600){
+                  return  {type:'convert',from:{'culture':500},into:{'culture II':1},every:9,mode:'culture',req:{'Essential conversion tank overclock I':true}}
+                }
+}},
+					{type:'function',func:function(me){
+                if(G.getRes('faith').amount>=600){
+                  return  {type:'convert',from:{'faith':500},into:{'faith II':1},every:9,mode:'faith',req:{'Essential conversion tank overclock I':true}}
+                }
+}},
+			{type:'function',func:function(me){
+                if(G.getRes('influence').amount>=600){
+                  return  {type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}}
+                }
+		}}
+		]
+		}});
 		new G.Unit({
 		name:'Farm of smokers',
 		desc:'Smoker\'s "skin" and seeds he throws out while releasing another bunch of smoke into the sky. From this farm your people can gather [Fire essence] . ',
