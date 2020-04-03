@@ -521,7 +521,7 @@ if (!document.getElementById(cssId))
 					{
 						if (G.checkPolicy(rituals[i])=='on')
 						{
-							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+							if (G.getRes('faith').amount<=14) G.setPolicyModeByName(rituals[i],'off');
 							else G.lose('faith',15,'rituals');
 						}
 					}
