@@ -521,10 +521,8 @@ if (!document.getElementById(cssId))
 					{
 						if (G.checkPolicy(rituals[i])=='on')
 						{
-							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+							if (G.getRes('faith').amount<=14) G.setPolicyModeByName(rituals[i],'off');
 							else G.lose('faith',15,'rituals');
-							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('influence',15,'rituals');
 						}
 					}
 					if (G.has('ritualism II'))
@@ -7143,7 +7141,11 @@ new G.Unit({
 			'influence':{name:'Influence to Influence II',icon:[20,19,'magixmod'],desc:'This tank will convert each 500 [influence] into 1 [influence II] '},
 		},
 		effects:[
-			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight',req:{'Essential conversion tank overclock I':false}},
+			{type:'function',func:function(me)
+                if(G.getRes('insight').amount>=600){
+                  return  {type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight',req:{'Essential conversion tank overclock I':false}}
+                }
+},
 			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture',req:{'Essential conversion tank overclock I':false}},
 			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith',req:{'Essential conversion tank overclock I':false}},
 			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence',req:{'Essential conversion tank overclock I':false}},
