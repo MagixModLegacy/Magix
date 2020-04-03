@@ -7163,7 +7163,7 @@ new G.Unit({
 }},
 			{type:'function',func:function(me){
                 if(G.getRes('insight').amount>=600){
-                  return  {type:'convert',from:{'insight':500},into:{'insight II':1},every:9,mode:'insight',req:{'Essential conversion tank overclock I':true}}
+                  return  spent=G.lose('insight',500,'conversion');G.gain('insight II',1,'Conversion tank');
                 }
 }},
 						{type:'function',func:function(me){
