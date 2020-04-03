@@ -7141,46 +7141,14 @@ new G.Unit({
 			'influence':{name:'Influence to Influence II',icon:[20,19,'magixmod'],desc:'This tank will convert each 500 [influence] into 1 [influence II] '},
 		},
 		effects:[
-			{type:'function',func:function(me){
-                if(G.getRes('insight').amount>=600){
-                  return  {type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight',req:{'Essential conversion tank overclock I':false}}
-                }
-}},
-			{type:'function',func:function(me){
-                if(G.getRes('culture').amount>=600){
-                  return  {type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture',req:{'Essential conversion tank overclock I':false}}
-                }
-}},
-			{type:'function',func:function(me){
-                if(G.getRes('faith').amount>=600){
-                  return  {type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith',req:{'Essential conversion tank overclock I':false}}
-                }
-}},
-			{type:'function',func:function(me){
-                if(G.getRes('influence').amount>=600){
-                  return  {type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence',req:{'Essential conversion tank overclock I':false}}
-                }
-}},
-			{type:'function',func:function(me){
-                if(G.getRes('insight').amount>=600){
-                  var conv=G.lose('insight',500,'conversion');G.gain('insight II',1,'Conversion tank');
-                }
-}},
-						{type:'function',func:function(me){
-                if(G.getRes('culture').amount>=600){
-                  return  {type:'convert',from:{'culture':500},into:{'culture II':1},every:9,mode:'culture',req:{'Essential conversion tank overclock I':true}}
-                }
-}},
-					{type:'function',func:function(me){
-                if(G.getRes('faith').amount>=600){
-                  return  {type:'convert',from:{'faith':500},into:{'faith II':1},every:9,mode:'faith',req:{'Essential conversion tank overclock I':true}}
-                }
-}},
-			{type:'function',func:function(me){
-                if(G.getRes('influence').amount>=600){
-                  return  {type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}}
-                }
-}}
+			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'insight':500},into:{'insight II':1},every:9,mode:'insight',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'culture':500},into:{'culture II':1},every:9,mode:'culture',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'faith':500},into:{'faith II':1},every:9,mode:'faith',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}},
 		]
 		});
 		new G.Unit({
