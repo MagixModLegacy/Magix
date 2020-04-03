@@ -7180,9 +7180,9 @@ new G.Unit({
                 if(G.getRes('influence').amount>=600){
                   return  {type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}}
                 }
-		}}
+}}
 		]
-		}});
+		});
 		new G.Unit({
 		name:'Farm of smokers',
 		desc:'Smoker\'s "skin" and seeds he throws out while releasing another bunch of smoke into the sky. From this farm your people can gather [Fire essence] . ',
