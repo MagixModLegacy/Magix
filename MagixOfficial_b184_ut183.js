@@ -7255,7 +7255,7 @@ new G.Unit({
 		icon:[6,21,'magixmod'],
 		cost:{'lumber':150},
 		use:{'Land of the Paradise':0.33},
-		limitPer:{'land':8,'population':100},
+		limitPer:{'land':2,'population':100},
 		effects:[
 			{type:'provide',what:{'housing':3}},
 		],
@@ -7268,7 +7268,7 @@ new G.Unit({
 		icon:[3,21,'magixmod'],
 		cost:{'basic building materials':150},
 		use:{'Land of the Paradise':1},
-		limitPer:{'land':40,'population':110},
+		limitPer:{'land':10,'population':110},
 		effects:[
 			{type:'provide',what:{'housing':5}},
 		],
@@ -7281,7 +7281,7 @@ new G.Unit({
 		icon:[2,21,'magixmod'],
 		cost:{'basic building materials':200},
 		use:{'Land of the Paradise':1},
-		limitPer:{'land':60,'population':120},
+		limitPer:{'land':15,'population':120},
 		effects:[
 			{type:'provide',what:{'housing':6}},
 		],
@@ -7294,7 +7294,7 @@ new G.Unit({
 		icon:[4,21,'magixmod'],
 		cost:{'basic building materials':1200,'glass':5},
 		use:{'Land of the Paradise':1},
-		limitPer:{'land':150,'population':400},
+		limitPer:{'land':37,'population':400},
 		effects:[
 			{type:'provide',what:{'housing':16}},
 		],
