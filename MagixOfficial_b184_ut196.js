@@ -11587,7 +11587,7 @@ G.createMaps=function()//when creating a new game
 		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
 	}
 	
-	new G.Map(0,20,24);//main world map
+	new G.Map(0,20,24);//extra
 		
 		//set starting tile by ranking all land tiles by score and picking one
 		var goodTiles=[];
@@ -11613,6 +11613,7 @@ G.createMaps=function()//when creating a new game
 		tile=G.currentMap.tiles[tile[0]][tile[1]];
 		tile.owner=1;
 		tile.explored=10/100;//create one tile, a tenth of it explored
+		var lvl=G.doFuncWithArgs('create map',[w,h]);
 		
 		G.updateMapForOwners(G.currentMap);
 		
