@@ -11071,9 +11071,6 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			{type:'freshwater',min:0.5,max:1.5},
 		],
 	});
-	new G.Map(0,48,48)({
-		lvl=0
-	)};
 	/*=====================================================================================
 	GOODS
 	=======================================================================================*/
@@ -11471,7 +11468,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
-	G.funcs['create map']=function(w,h)
+	G.funcs['create map']=function(w=48,h=48)
 	{
 		//generate basic geography using Conway's Game of Life (rule : births from 4 to 9 neighbors, survival from 6 to 9 neighbors)
 		
@@ -11490,7 +11487,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			
 			//init map
 			var lvl=[];
-			for (var x=0;x<w;x++)
+			for (var x=0;x<;x++)
 			{
 				lvl[x]=[];
 				for (var y=0;y<h;y++)
