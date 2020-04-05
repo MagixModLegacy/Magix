@@ -11466,7 +11466,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	});
 G.createMaps=function()//when creating a new game
 	{
-		G.currentMap=new G.Map(0,115,115);//main world map
+		G.currentMap=new G.Map(0,135,135);//main world map
 		
 		//set starting tile by ranking all land tiles by score and picking one
 		var goodTiles=[];
