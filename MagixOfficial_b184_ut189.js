@@ -11431,6 +11431,128 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
 		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;//test
 	
+G.createMaps=function()//when creating a new game
+	{
+		G.currentMap=new G.Map(0,72,72);//main world map
+		
+		//set starting tile by ranking all land tiles by score and picking one
+		var goodTiles=[];
+		for (var x=1;x<G.currentMap.w-1;x++)
+		{
+			for (var y=1;y<G.currentMap.h-1;y++)
+			{
+				var land=G.currentMap.tiles[x][y].land;
+				if (!land.ocean) goodTiles.push([x,y,(land.score||0)+Math.random()*2]);
+			}
+		}
+		goodTiles.sort(function(a,b){return b[2]-a[2]});
+		var tile=0;
+		if (G.startingType==2) tile=choose(goodTiles);//just drop me wherever
+		else
+		{
+			var ind=0;
+			if (G.startingType==1) ind=Math.floor((0.85+Math.random()*0.15)*goodTiles.length);//15% worst
+			//ind=Math.floor((0.3+Math.random()*0.4)*goodTiles.length);//30% to 70% average
+			else ind=Math.floor((Math.random()*0.15)*goodTiles.length);//15% nicest
+			tile=goodTiles[ind];
+		}
+		tile=G.currentMap.tiles[tile[0]][tile[1]];
+		tile.owner=1;
+		tile.explored=10/100;//create one tile, a tenth of it explored
+		
+		G.updateMapForOwners(G.currentMap);
+		
+		G.updateMapDisplay();
+		G.centerMap(G.currentMap);
+	}
+	G.centerMap=function(map)
+	{
+		//center the map on the average of explored tiles
+		var ts=16;
+		var x1=0,y1=0,x2=map.w,y2=map.h;
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (map.tiles[x][y].explored>0) {x1=Math.max(x,x1);y1=Math.max(y,y1);x2=Math.min(x,x2);y2=Math.min(y,y2);}
+			}
+		}
+		var px=Math.floor((x2+x1)/2)+0.5;
+		var py=Math.floor((y2+y1)/2)+0.5;
+		G.mapOffXT=-(px*G.mapZoomT)*ts;
+		G.mapOffYT=-(py*G.mapZoomT)*ts;
+	}
+	G.mapToRedraw=false;
+	G.redrawMap=function(map)
+	{
+		G.mapToRedraw=false;
+		var ts=16;
+		var c=G.renderMap(map);
+		var ctx=l('mapCanvas').getContext('2d');
+		ctx.clearRect(0,0,map.w*ts,map.h*ts);
+		ctx.drawImage(c,0,0);
+	}
+	G.mapToRefresh=false;
+	G.refreshMap=function(map)
+	{
+		G.mapToRefresh=false;
+		G.computeOwnedRes(map,1);
+	}
+	
+	G.getRandomTile=function(map)
+	{
+		return map.tiles[Math.floor(Math.random()*map.w)][Math.floor(Math.random()*map.h)];
+	}
+	
+	G.getRandomLandGoods=function(land)
+	{
+		var goods=[];
+		for (var i in land.goods)
+		{
+			var me=land.goods[i];
+			var chance=1;if (typeof me.chance!=='undefined') chance=me.chance;
+			var min=1;var max=1;
+			if (typeof me.amount!=='undefined') min=me.amount;max=min;
+			if (typeof me.min!=='undefined') min=me.min;
+			if (typeof me.max!=='undefined') max=me.max;
+			if (Math.random()<chance)
+			{
+				var type='';if (Array.isArray(me.type)) type=choose(me.type); else type=me.type;
+				if (!goods[type]) goods[type]=0;
+				goods[type]+=Math.random()*(max-min)+min;
+			}
+		}
+		return goods;
+	}
+	
+	G.getResFromGoods=function(goods)//turn a list of goods into their associated resources
+	{
+		var res=[];
+		for (var i in goods)
+		{
+			var me=G.getGoods(i);
+			var mult=goods[i]*(me.mult||1);
+			for (var ii in me.res)
+			{
+				for (var iii in me.res[ii])
+				{
+					if (!res[ii]) res[ii]=[];
+					if (!res[ii][iii]) res[ii][iii]=0;
+					res[ii][iii]+=me.res[ii][iii]*mult;
+				}
+			}
+		}
+		return res;
+	}
+	
+	G.getLandIconBG=function(land)
+	{
+		return 'url(img/terrain.png),url(img/terrain.png)';
+	}
+	G.getLandIconBGpos=function(land)
+	{
+		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
+	}
 	/*=====================================================================================
 	TILE EFFECTS
 	=======================================================================================*/
@@ -11468,7 +11590,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
-	G.funcs['create map']=function(w=48,h=48)
+	G.funcs['create map']=function(w,h)
 	{
 		//generate basic geography using Conway's Game of Life (rule : births from 4 to 9 neighbors, survival from 6 to 9 neighbors)
 		
