@@ -11487,7 +11487,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			
 			//init map
 			var lvl=[];
-			for (var x=0;x<;x++)
+			for (var x=0;x<w;x++)
 			{
 				lvl[x]=[];
 				for (var y=0;y<h;y++)
@@ -11694,5 +11694,5 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		}
 		return lvl;
 	}
-}	
+}
 });
