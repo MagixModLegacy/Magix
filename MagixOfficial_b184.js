@@ -3470,6 +3470,7 @@ if (!document.getElementById(cssId))
 		},
 		category:'demog',
 	});
+		let easter = false
 		let madeThievesWarn = false
 		new G.Res({
 		name:'wounded alchemist',
@@ -3480,6 +3481,10 @@ if (!document.getElementById(cssId))
 				if (G.year>=89 && G.year<=101 && !madeThievesWarn){
        				 G.Message({type:'bad',text:'<b><span style="color: #FFA500">Beware of thievery!</span></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <span style "color= aqua">Happiness</span> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
 				madeThievesWarn = true
+				}
+				if (G.year>=1 && !easter){
+       				 G.middleText('- Happy Easter! -')
+				easter = true
 				}
 		},
 		icon:[21,2,'magixmod'],
