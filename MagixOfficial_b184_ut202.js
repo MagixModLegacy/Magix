@@ -4375,6 +4375,7 @@ if (!document.getElementById(cssId))
 			G.getDict('mud shelter').use = {'land':0.9}
 			G.getDict('branch shelter').use = {'land':0.9}
 			G.getDict('Brick house with a silo').use = {'land':0.9}
+			G.getDict('bamboo hut').use = {'land':0.9}
 			}
 			if(G.achievByName['mausoleum'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.achievByName['Metropoly'].won >= 1 && G.achievByName['Apprentice'].won >= 1 && G.achievByName['Experienced'].won == 0){ //Experienced
 			G.achievByName['Experienced'].won = 1
@@ -7692,7 +7693,7 @@ new G.Unit({
 		tier:1,
 		icon:[29,22,'magixmod'],
 		name:'Smart',
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
 		effects:[
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:10}
@@ -10276,7 +10277,7 @@ G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
 })
 	let Smartrait =  	new G.Trait({
         name:'<font color="orange">Smaller but efficient</font>',
-        desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
+        desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
         icon:[28,23,'magixmod'],
         cost:{},
 	effects:[
