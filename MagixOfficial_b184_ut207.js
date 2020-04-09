@@ -4405,6 +4405,7 @@ if (!document.getElementById(cssId))
 			G.getDict('eat raw meat and fish').cost = {'influence II':2}
 			G.getDict('drink spoiled juice').cost = {'influence II':4}
 			G.getDict('child workforce').cost = {'influence II':3}
+			G.getDict('drink cloudy water').cost = {'influence II':3}
 			G.getDict('elder workforce').cost = {'influence II':3}
 			G.getDict('Gather roses').cost = {'influence II':1}
 			G.getDict('Hovel of colours production rates').cost = {'influence II':5}
