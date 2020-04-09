@@ -522,10 +522,21 @@ if (!document.getElementById(cssId))
 					{
 						if (G.checkPolicy(rituals[i])=='on')
 						{
-							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('faith',1,'rituals');
-							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('influence',1,'rituals');
+							if (G.hasNot('Policy revaluation')){
+								if ((G.getRes('faith').amount<=0) || (G.getRes('influence').amount<=0)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith',1,'rituals')
+								G.lose('influence',1,'rituals')
+								}
+							}else{
+								if ((G.getRes('faith II').amount<=0) || (G.getRes('influence II').amount<=0)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith II',0.1,'rituals')
+								G.lose('influence II',0.05,'rituals')
+								}
+							}
 						}
 					}
 					var rituals=['Crafting & farm rituals'];
