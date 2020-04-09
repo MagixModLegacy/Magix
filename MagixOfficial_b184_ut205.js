@@ -4403,8 +4403,7 @@ if (!document.getElementById(cssId))
 			G.getDict('drink muddy water').cost = {'influence II':2}
 			G.getDict('insects as food').cost = {'influence II':2}
 			G.getDict('eat raw meat and fish').cost = {'influence II':2}
-			G.getDict('drink spoiled juices').cost = {'influence II':4}
-			G.getDict('drink spoiled juices').cost = {'influence II':2}
+			G.getDict('drink spoiled juice').cost = {'influence II':4}
 			G.getDict('child workforce').cost = {'influence II':3}
 			G.getDict('elder workforce').cost = {'influence II':3}
 			G.getDict('gather roses').cost = {'influence II':1}
