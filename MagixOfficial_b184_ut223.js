@@ -4466,7 +4466,7 @@ if (!document.getElementById(cssId))
 			{
 			G.getDict('explosive mine').icon = [20,23,'magixmod']
 			}
-			if(G.has('Magic adept').amount >= 1e6 && G.achievByName['Man of essences'].won == 0){ //Man of essences achievement
+			if(G.has('Magic adept') && G.achievByName['Man of essences'].won == 0){ //Man of essences achievement
 			G.achievByName['Man of essences'].won = 1
 			G.middleText('- Completed <font color="indigo">Man of essences</font> achievement -')
 			}
