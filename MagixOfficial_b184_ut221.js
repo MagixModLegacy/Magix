@@ -4466,6 +4466,10 @@ if (!document.getElementById(cssId))
 			{
 			G.getDict('explosive mine').icon = [20,23,'magixmod']
 			}
+			if(G.getRes('Magic essences').amount >= 1e6 && G.achievByName['Man of essences'].won == 0){ //Man of essences achievement
+			G.achievByName['Man of essences'].won = 1
+			G.middleText('- Completed <font color="indigo">Man of essences</font> achievement -')
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -7769,6 +7773,15 @@ new G.Unit({
 			{type:'addFastTicksOnResearch',amount:10}
 		],
 	});
+		new G.Achiev({
+		tier:2,
+		icon:[12,22,'magixmod'],
+		name:'Man of essences',
+		desc:'Obtain [Magic adept] trait. Manage to get 1M [Magic essences]. //Obtaining it may unlock a new wonder.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:40},
+		],
+	});
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
@@ -10429,6 +10442,15 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		icon:[21,23,'magixmod'], 
 		cost:{'insight II':45,'culture II':15,'faith II':3,'influence II':2,'Mana':1365,'science':2},
 		req:{'Policy revaluation':true,'Magical soil':true}
+	});
+		new G.Trait({
+		name:'Magic adept',
+		desc:'May unlock a new wonder. This trait is a reward for getting over 1 million of [Magic essences] . //Good job :)',
+		icon:[12,22,'magixmod'],
+		cost:{'Magic essences':1e6},
+		chance:45,
+		req:{'Eotm':true},
+		category:'main'
 	});
 	/*=====================================================================================
 	POLICIES
