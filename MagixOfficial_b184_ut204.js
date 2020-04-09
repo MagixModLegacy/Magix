@@ -4396,6 +4396,24 @@ if (!document.getElementById(cssId))
 			G.getDict('Mediator').limitPer = {'population':4000}
 			G.getDict('clan leader').icon = [25,23,'magixmod']
 			}
+			if(G.has('Policy revaluation')){
+			G.getDict('food rations').cost = {'influence II':3}
+			G.getDict('water rations').cost = {'influence II':3}
+			G.getDict('eat spoiled food').cost = {'influence II':2}
+			G.getDict('drink muddy water').cost = {'influence II':2}
+			G.getDict('insects as food').cost = {'influence II':2}
+			G.getDict('eat raw meat and fish').cost = {'influence II':2}
+			G.getDict('drink spoiled juices').cost = {'influence II':4}
+			G.getDict('drink spoiled juices').cost = {'influence II':2}
+			G.getDict('child workforce').cost = {'influence II':3}
+			G.getDict('elder workforce').cost = {'influence II':3}
+			G.getDict('gather roses').cost = {'influence II':1}
+			G.getDict('Hovel of colours production rates').cost = {'influence II':5}
+			G.getDict('Hut of potters production rates').cost = {'influence II':5}
+			G.getDict('Leather factory production rates').cost = {'influence II':5}
+			G.getDict('Factory of pots production rates').cost = {'influence II':5}
+			G.getDict('population control').cost = {'influence II':5}
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -10329,9 +10347,9 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		req:{'Maths(upper-intermediate)':true,'God\'s trait #6 Fertile essences farms':true,'monument-building':true,'construction':true}
 	});
 			new G.Trait({
-		name:'Policy revaulation',
-		desc:'All policies from now has cost with [influence II] instead of [influence] . Required for future technologies and keep people listen you. All policies (not including rituals) <b>switches to their default modes!</b> But... <b>all</b> rituals now costs and require [faith II] . @But don\'t worry. They won\'t consume that much like [wisdom rituals] or [flower rituals] .',
-		icon:[26,18,'magixmod'],
+		name:'Policy revaluation',
+		desc:'All policies from now has cost with [influence II] instead of [influence] . Required for future technologies and keep people listen you. </b> But... <b>all</b> rituals now costs and require [faith II] . @But don\'t worry. They won\'t consume that much like [wisdom rituals] or [flower rituals] .',
+		icon:[1,23,'magixmod'],
 		cost:{'insight II':15,'culture II':15,'influence II':5},
 		chance:45,
 		req:{'code of law II':true,'ritualism II':true,'symbolism II':true,'Glory':true},
