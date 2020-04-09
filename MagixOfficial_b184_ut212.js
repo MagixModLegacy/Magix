@@ -544,8 +544,21 @@ if (!document.getElementById(cssId))
 					{
 						if (G.checkPolicy(rituals[i])=='on')
 						{
-							if (G.getRes('faith').amount<=14) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('faith',15,'rituals');
+							if (G.hasNot('Policy revaluation')){
+								if ((G.getRes('faith').amount<=0) || (G.getRes('influence').amount<=0)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith',15,'rituals')
+								G.lose('influence',15,'rituals')
+								}
+							}else{
+								if ((G.getRes('faith II').amount<=0) || (G.getRes('influence II').amount<=0)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith II',0.1,'rituals')
+								G.lose('influence II',0.05,'rituals')
+								}
+							}
 						}
 					}
 					if (G.has('ritualism II'))
@@ -4443,7 +4456,7 @@ if (!document.getElementById(cssId))
 			G.getDict('harvest rituals for flowers').cost = {'faith II':1}
 			G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
 			G.getDict('Crafting & farm rituals').cost = {'faith II':1}
-			G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II every 200 days] & 1 [influence II] every 400 days; will stop if you run out.'
+			G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
