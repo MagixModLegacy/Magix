@@ -10423,6 +10423,13 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		cost:{'insight II':50,'science':2,'insight':204},
 		req:{'Policy revaluation':true,'<font color="maroon">Caretaking</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Moderation</font>':false,'Improved furnace construction':true,'symbolism':true}
 	});
+		new G.Tech({
+		name:'Nutrious magical soil',
+		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] .',
+		icon:[21,23,'magixmod'], 
+		cost:{'insight II':45,'culture II':15,'faith II':3,'influence II':2,'Mana':1332},
+		req:{'Policy revaluation':true,'Magical soil':true}
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
