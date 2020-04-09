@@ -4458,6 +4458,14 @@ if (!document.getElementById(cssId))
 			G.getDict('Crafting & farm rituals').cost = {'faith II':1}
 			G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
 			}
+			if(G.has('Mining strategy'))
+			{
+			G.getDict('mine').icon = [18,23,'magixmod']
+			}
+			if(G.has('Safer explosive usage'))
+			{
+			G.getDict('explosive mine').icon = [20,23,'magixmod']
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -7218,14 +7226,14 @@ new G.Unit({
 			'influence':{name:'Influence to Influence II',icon:[20,19,'magixmod'],desc:'This tank will convert each 500 [influence] into 1 [influence II] '},
 		},
 		effects:[
-			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight'},
-			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture'},
-			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith'},
-			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence'},
-			//{type:'convert',from:{'insight':500},into:{'insight II':1},every:9,mode:'insight',req:{'Essential conversion tank overclock I':true}},
-			//{type:'convert',from:{'culture':500},into:{'culture II':1},every:9,mode:'culture',req:{'Essential conversion tank overclock I':true}},
-			//{type:'convert',from:{'faith':500},into:{'faith II':1},every:9,mode:'faith',req:{'Essential conversion tank overclock I':true}},
-			//{type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight',req:{'Essential conversion tank overclock I'false}},
+			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture',req:{'Essential conversion tank overclock I'false}},
+			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith',req:{'Essential conversion tank overclock I'false}},
+			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence',req:{'Essential conversion tank overclock I'false}},
+			{type:'convert',from:{'insight':500},into:{'insight II':1},every:9,mode:'insight',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'culture':500},into:{'culture II':1},every:9,mode:'culture',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'faith':500},into:{'faith II':1},every:9,mode:'faith',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}},
 		]
 		});
 		new G.Unit({
@@ -10400,6 +10408,20 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		effects:[
 			{type:'provide res',what:{'New world point':1}},
 		],
+	});
+		new G.Tech({
+		name:'Mining strategy',
+		desc:'Decreases accident rate at [mine] . @Increases efficiency of [mine] by 5%. @Applies visual change to [mine] icon.',
+		icon:[17,23,'magixmod'], 
+		cost:{'insight II':50},
+		req:{'Policy revaluation':true,'<font color="maroon">Moderation</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Caretaking</font>':false}
+	});
+		new G.Tech({
+		name:'Safer explosive usage',
+		desc:'Decreases accident rate at [explosive mine] by 3%. @Increases efficiency of [explosive mine] by 5%. @Applies visual change to [explosive mine] icon.',
+		icon:[17,23,'magixmod'], 
+		cost:{'insight II':50},
+		req:{'Policy revaluation':true,'<font color="maroon">Caretaking</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Moderation</font>':false}
 	});
 	/*=====================================================================================
 	POLICIES
