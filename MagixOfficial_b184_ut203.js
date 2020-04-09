@@ -10328,7 +10328,17 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		cost:{'insight II':80,'insight':344},
 		req:{'Maths(upper-intermediate)':true,'God\'s trait #6 Fertile essences farms':true,'monument-building':true,'construction':true}
 	});
-
+			new G.Trait({
+		name:'Policy revaulation',
+		desc:'All policies from now has cost with [influence II] instead of [influence] . Required for future technologies and keep people listen you. All policies (not including rituals) <b>switches to their default modes!</b> But... <b>all</b> rituals now costs and require [faith II] . @But don\'t worry. They won\'t consume that much like [wisdom rituals] or [flower rituals] .',
+		icon:[26,18,'magixmod'],
+		cost:{'insight II':15,'culture II':15,'influence II':5},
+		chance:45,
+		req:{'code of law II':true,'ritualism II':true,'symbolism II':true,'Glory':true},
+		effects:[
+			{type:'provide res',what:{'New world point':1}},
+		],
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -10696,6 +10706,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		},
 		category:'mag',
 	});
+	
 	///////////////////////////////////////////////////////////////////////////////////////////////////
 //SEASONAL CONTENT//CONTENT WHICH WILL BE AVAILABLE FOR PLAYERS AT SOME TIME LIKE XMAS OR VALENTINE'S DAY
 //////////////////////////////////////////////////////////////////////////////////////////////////////	
