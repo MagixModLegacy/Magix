@@ -10413,14 +10413,14 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		name:'Mining strategy',
 		desc:'Decreases accident rate at [mine] . @Increases efficiency of [mine] by 5%. @Applies visual change to [mine] icon.',
 		icon:[17,23,'magixmod'], 
-		cost:{'insight II':50},
+		cost:{'insight II':50,'science':2,'insight':204},
 		req:{'Policy revaluation':true,'<font color="maroon">Moderation</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Caretaking</font>':false,'Improved furnace construction':true,'symbolism':true}
 	});
 		new G.Tech({
 		name:'Safer explosive usage',
 		desc:'Decreases accident rate at [explosive mine] by 3%. @Increases efficiency of [explosive mine] by 5%. @Applies visual change to [explosive mine] icon.',
 		icon:[19,23,'magixmod'], 
-		cost:{'insight II':50},
+		cost:{'insight II':50,'science':2,'insight':204},
 		req:{'Policy revaluation':true,'<font color="maroon">Caretaking</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Moderation</font>':false,'Improved furnace construction':true,'symbolism':true}
 	});
 	/*=====================================================================================
