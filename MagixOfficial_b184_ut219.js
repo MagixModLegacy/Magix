@@ -10427,7 +10427,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		name:'Nutrious magical soil',
 		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] .',
 		icon:[21,23,'magixmod'], 
-		cost:{'insight II':45,'culture II':15,'faith II':3,'influence II':2,'Mana':1332},
+		cost:{'insight II':45,'culture II':15,'faith II':3,'influence II':2,'Mana':1330,'science':2},
 		req:{'Policy revaluation':true,'Magical soil':true}
 	});
 	/*=====================================================================================
