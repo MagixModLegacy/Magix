@@ -496,13 +496,25 @@ if (!document.getElementById(cssId))
 				//policy ticks
 				if (tick%50==0)
 				{
-					var rituals=['fertility rituals','harvest rituals','flower rituals','wisdom rituals'];
-					for (var i in rituals)
-					{
-						if (G.checkPolicy(rituals[i])=='on')
+					if (G.hasNot('Policy revaluation')){
+						var rituals=['fertility rituals','harvest rituals','flower rituals','wisdom rituals'];
+						for (var i in rituals)
 						{
-							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('faith',1,'rituals');
+							if (G.checkPolicy(rituals[i])=='on')
+							{
+								if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+								else G.lose('faith',1,'rituals');
+							}
+						}
+					}else{
+						var rituals=['fertility rituals','harvest rituals'];
+						for (var i in rituals)
+						{
+							if (G.checkPolicy(rituals[i])=='on')
+							{
+								if (G.getRes('faith II').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+								else G.lose('faith II',0.1,'rituals');
+							}
 						}
 					}
 					var rituals=['harvest rituals for flowers'];
