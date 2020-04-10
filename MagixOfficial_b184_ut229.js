@@ -4471,7 +4471,7 @@ if (!document.getElementById(cssId))
 			G.middleText('- Completed <font color="indigo">Man of essences</font> achievement -')
 			}
 			if(G.has('Master mana-making')){
-			G.getDict('Mana maker').icon = [4,23,'magixmod']
+			G.getDict('Mana maker').icon = [4,24,'magixmod']
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -10459,7 +10459,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		new G.Tech({
 		name:'Master mana-making',
 		desc:'[Mana maker] works 4x as efficient due to new technologies of crafting mana the smart people created for them. @Applies visual change to [Mana maker] .',
-		icon:[3,23,'magixmod'], 
+		icon:[3,24,'magixmod'], 
 		cost:{'insight II':90,'culture II':15},
 		req:{'Policy revaluation':true,'Magical soil':true}
 	});
