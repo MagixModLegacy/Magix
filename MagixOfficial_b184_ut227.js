@@ -6505,6 +6505,7 @@ new G.Unit({
 		//require:{'wizard':3},
 		effects:[
 			{type:'gather',what:{'Mana':20}},
+			{type:'mult',value:4,req:{'Master mana-making':true}},
         ],
 		category:'discovery',
 		limitPer:{'population':4000},
