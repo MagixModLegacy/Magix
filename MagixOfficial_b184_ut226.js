@@ -4470,6 +4470,9 @@ if (!document.getElementById(cssId))
 			G.achievByName['Man of essences'].won = 1
 			G.middleText('- Completed <font color="indigo">Man of essences</font> achievement -')
 			}
+			if(G.has('Master mana-making')){
+			G.getDict('Mana maker').icon = [4,23,'magixmod']
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -10437,7 +10440,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		req:{'Policy revaluation':true,'<font color="maroon">Caretaking</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Moderation</font>':false,'Improved furnace construction':true,'symbolism':true}
 	});
 		new G.Tech({
-		name:'Nutrious magical soil',
+		name:'Nutritious magical soil',
 		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] .',
 		icon:[21,23,'magixmod'], 
 		cost:{'insight II':45,'culture II':15,'faith II':3,'influence II':2,'Mana':1365,'science':2},
@@ -10451,6 +10454,13 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		chance:45,
 		req:{'Eotm':true},
 		category:'main'
+	});
+		new G.Tech({
+		name:'Master mana-making',
+		desc:'[Mana maker] works 4x as efficient due to new technologies of crafting mana the smart people created for them. @Applies visual change to [Mana maker] .',
+		icon:[3,23,'magixmod'], 
+		cost:{'insight II':90},
+		req:{'Policy revaluation':true,'Magical soil':true}
 	});
 	/*=====================================================================================
 	POLICIES
