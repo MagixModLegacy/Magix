@@ -3077,8 +3077,8 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
-			if (G.checkPolicy('Theme changer')=='purple'){
-		var cssId = 'purplethemeCss';  
+			if (G.checkPolicy('Theme changer')=='indigo'){
+		var cssId = 'indigothemeCss';  
 if (!document.getElementById(cssId))
 {
     var head  = document.getElementsByTagName('head')[0];
@@ -3086,7 +3086,7 @@ if (!document.getElementById(cssId))
     link.id   = cssId;
     link.rel  = 'stylesheet';
     link.type = 'text/css';
-    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PurpleTheme/purpletheme.css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PurpleTheme/indigotheme.css';
     link.media = 'all';
     head.appendChild(link);
 }
@@ -10815,7 +10815,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			'red':{name:'Red',desc:'Switches to red theme.',icon:[0,22,'magixmod']},
 			'cyan':{name:'Cyan',desc:'Switches to cyan theme.',icon:[5,22,'magixmod']},
 			'gray':{name:'Gray',desc:'Switches to gray theme.',icon:[1,22,'magixmod']},
-			'purple':{name:'Purple',desc:'Switches to purple theme. Reward for <b>Magical victory</b> achievement.',req:{'sedentism':true}},
+			'indigo':{name:'Indigo',desc:'Switches to indigo theme. Reward for <b>Magical victory</b> achievement.',req:{'sedentism':true}},
 		},
 		category:'mag',
 	});
