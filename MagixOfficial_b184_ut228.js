@@ -10460,7 +10460,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		name:'Master mana-making',
 		desc:'[Mana maker] works 4x as efficient due to new technologies of crafting mana the smart people created for them. @Applies visual change to [Mana maker] .',
 		icon:[3,23,'magixmod'], 
-		cost:{'insight II':90},
+		cost:{'insight II':90,'culture II':15},
 		req:{'Policy revaluation':true,'Magical soil':true}
 	});
 	/*=====================================================================================
