@@ -4473,9 +4473,6 @@ if (!document.getElementById(cssId))
 			if(G.has('Master mana-making')){
 			G.getDict('Mana maker').icon = [4,24,'magixmod']
 			}
-			if(G.has('Magical presence')){
-			G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
-			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -10527,6 +10524,7 @@ function checkMagicalAchiev() {
   if (G.achievByName['Magical'].won) {
     if (G.achievByName['Magical'].won >= 0 && G.hasNot('Magical presence')){
       G.gainTech(MagicalAchiev)
+			G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
     }
 }
 }
