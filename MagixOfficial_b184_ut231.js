@@ -5047,7 +5047,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'nickel'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50}
+			{type:'mult',value:1.05,req:{'Mining strategy':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Mining strategy':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}}
 		],
 		gizmos:true,
 		req:{'mining':true},
@@ -6036,7 +6038,9 @@ new G.Unit({
 		},
 		effects:[
 			{type:'gather',context:'mine',amount:28,max:64,mode:'on'},
-			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:7/50}
+			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:7/50,req:{'Safer explosive usage':false}},
+			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:6/51.5,req:{'Safer explosive usage':true}},
+			{type:'mult',value:1.05,req:{'Safer explosive usage':true}}
 		],
 		gizmos:true,
 		req:{'mining':true,'Intelligent blasting':true},
@@ -7256,6 +7260,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Fire essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7270,6 +7275,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Wind essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7284,6 +7290,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Essence of the Holiness':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7298,6 +7305,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Water essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7312,6 +7320,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Dark essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7326,6 +7335,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Nature essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7340,6 +7350,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Lightning essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7569,8 +7580,8 @@ new G.Unit({
 		costPerStep:{'Mana':25000,'Magic essences':500,'precious building materials':100,'basic building materials':1000,'concrete':5,'strong metal ingot':75},
 		steps:200,
 		messageOnStart:'Your people who worships magic , wizardry and believe in power of the essences started building a wonder that will be related to the believements. <br>Will magic award your and your people\'s hard work?',
-		finalStepCost:{'population':2500,'gem block':500,'gold block':50,'New world point':-389},
-		finalStepDesc:'To complete this step a 50k [Fire essence,F.e.] , [Dark essence,D.e.] , [Nature essence,N.e] , [Lightning essence,L.e.] and any other must be sacrificed and many other resources.',
+		finalStepCost:{'population':500,'Fire essence':5e4,'Lightning essence':5e4,'Dark essence':5e4,'Wind essence':5e4,'Nature essence:'5e4,'Water essence':5e4,'Essence of the Holiness':5e4},
+		finalStepDesc:'To complete this step a 50k [Fire essence,F.e.] , [Dark essence,D.e.] , [Nature essence,N.e] , [Lightning essence,L.e.] and other [Magic essences,Essences] must be sacrificed and many other resources in order to make magic being cultivated for long time.',
 		use:{'land':15},
 		category:'wonder',
 		req:{'Magic adept':true}
