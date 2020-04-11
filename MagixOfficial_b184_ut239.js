@@ -4506,8 +4506,10 @@ if (!document.getElementById(cssId))
 		icon:[24,19,'magixmod'],
 		category:'main',
 	});
-	if(G.has('Magical presence')){//It was rolling an icon every tick so i slide in this code right there
-	G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
+	function{
+		if(G.has('Magical presence')){//It was rolling an icon every tick so i slide in this code right there
+		G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
+		}
 	}
 		new G.Res({
 		name:'hardened clothes',
