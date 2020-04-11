@@ -4506,11 +4506,7 @@ if (!document.getElementById(cssId))
 		icon:[24,19,'magixmod'],
 		category:'main',
 	});
-	function{
-		if(G.has('Magical presence')){//It was rolling an icon every tick so i slide in this code right there
-		G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
-		}
-	}
+		let RollGathererIcon = false
 		new G.Res({
 		name:'hardened clothes',
 		desc:'Sewn together from [Dried leather] and embroidered with [Thread]s .//Each [population,Person] wearing clothing is slightly happier and healthier than while wearing [basic clothes] . People wearing this clothing feel more safe. Decays slower.'+clothesInfo,
@@ -4520,6 +4516,11 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.00009;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		if(G.has('Magical presence') && !RollGathererIcon){//It was rolling an icon every tick so i slide in this code right there
+		G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
+		RollGathererIcon = true
+		}
+	}
 		},
 	});
 		new G.Res({
