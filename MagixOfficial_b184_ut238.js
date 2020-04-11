@@ -4506,6 +4506,9 @@ if (!document.getElementById(cssId))
 		icon:[24,19,'magixmod'],
 		category:'main',
 	});
+	if(G.has('Magical presence')){//It was rolling an icon every tick so i slide in this code right there
+	G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
+	}
 		new G.Res({
 		name:'hardened clothes',
 		desc:'Sewn together from [Dried leather] and embroidered with [Thread]s .//Each [population,Person] wearing clothing is slightly happier and healthier than while wearing [basic clothes] . People wearing this clothing feel more safe. Decays slower.'+clothesInfo,
@@ -10524,7 +10527,6 @@ function checkMagicalAchiev() {
   if (G.achievByName['Magical'].won) {
     if (G.achievByName['Magical'].won >= 0 && G.hasNot('Magical presence')){
       G.gainTech(MagicalAchiev)
-			G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
     }
 }
 }
@@ -10899,7 +10901,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'red':{name:'Red',desc:'Switches to red theme.',icon:[0,22,'magixmod']},
 			'cyan':{name:'Cyan',desc:'Switches to cyan theme.',icon:[5,22,'magixmod']},
 			'gray':{name:'Gray',desc:'Switches to gray theme.',icon:[1,22,'magixmod']},
-			'indigo':{name:'Indigo',desc:'Switches to indigo theme. Reward for <b>Magical victory</b> achievement.',req:{'sedentism':true}},
+			'indigo':{name:'Indigo',desc:'Switches to indigo theme. Reward for <b>Magical victory</b> achievement.',req:{'Magical presence':true}},
 		},
 		category:'mag',
 	});
