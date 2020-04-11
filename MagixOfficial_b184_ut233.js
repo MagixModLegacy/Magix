@@ -6444,6 +6444,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Fire essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 		],
 		req:{'construction':true,'Wizard towers':true,'Wizard wisdom':true,'Well of Mana':true},
 		category:'housing',
@@ -6524,6 +6525,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Water essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		req:{'construction':true,'Wizard towers':true,'Wizard wisdom':true,'Well of Mana':true},
 		category:'housing',
@@ -6541,6 +6543,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Dark essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -6556,6 +6559,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Nature essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -6571,7 +6575,8 @@ new G.Unit({
 		//require:{'wizard':3},
 		effects:[
 			{type:'provide',what:{'housing':33}},
-			{type:'gather',what:{'Lightning essence':2}}
+			{type:'gather',what:{'Lightning essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -6604,6 +6609,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Wind essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -6620,6 +6626,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Essence of the Holiness':2.15}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -10503,6 +10510,31 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		cost:{'insight II':90,'culture II':15},
 		req:{'Policy revaluation':true,'Magical soil':true}
 	});
+	let MagicalAchiev =  new G.Tech({
+        name:'Magical presence',
+	displayName:'<font color="silver">Magical presence</font>',
+        desc:'You feel some weird stuff inside of your body. Sometime it is warm, sometime makes you feel weird but later you don\'t feel any weird things that this presence has made. @Increases efficiency of all [Water wizard tower,Wizard towers] by 5% without increasing [Mana] upkeep. @Unlocks you new theme (check [Theme changer]).',
+        icon:[2,24,'magixmod'],
+        cost:{},
+	effects:[
+	],	
+        req:{'tribalism':false}
+    });
+function checkMagicalAchiev() {
+  if (G.achievByName['Magical'].won) {
+    if (G.achievByName['Magical'].won >= 0 && G.hasNot('Magical presence')){
+      G.gainTech(MagicalAchiev)
+    }
+}
+}
+MagicalAchiev()
+const oldNewGameMagical = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameMagical, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    MagicalAchiev()
+  }
+})
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
