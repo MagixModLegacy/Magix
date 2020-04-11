@@ -10514,7 +10514,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
         name:'Magical presence',
 	displayName:'<font color="silver">Magical presence</font>',
         desc:'You feel some weird stuff inside of your body. Sometime it is warm, sometime makes you feel weird but later you don\'t feel any weird things that this presence has made. @Increases efficiency of all [Water wizard tower,Wizard towers] by 5% without increasing [Mana] upkeep. @Unlocks you new theme (check [Theme changer]).',
-        icon:[2,24,'magixmod'],
+        icon:[4,12,'magixmod',2,24,'magixmod'],
         cost:{},
 	effects:[
 	],	
