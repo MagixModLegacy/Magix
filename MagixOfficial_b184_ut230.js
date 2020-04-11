@@ -7558,6 +7558,23 @@ new G.Unit({
 		category:'dimensions',
 		req:{'A feeling from the Underworld':false,'Third passage to new world':true}
 	});
+	  	new G.Unit({
+		name:'Fortress of magicians',
+		displayName:'<font color="yellow">Fortress of magicians</font>',
+		desc:'Leads to <b>Magical victory</b> //A wonder that represents wisdom and power of your [Wizard]s and whole [Magic essences,Magic]. //Built at tall mountain, filled wih magic in one word it is essenced.',
+		wonder:'Magical',
+		icon:[10,22,'magixmod'],
+		wideIcon:[9,22,'magixmod'],
+		cost:{'basic building materials':1500},
+		costPerStep:{'Mana':25000,'Magic essences':500,'precious building materials':100,'basic building materials':1000,'concrete':5,'strong metal ingot':75},
+		steps:200,
+		messageOnStart:'Your people who worships magic , wizardry and believe in power of the essences started building a wonder that will be related to the believements. <br>Will magic award your and your people\'s hard work?',
+		finalStepCost:{'population':2500,'gem block':500,'gold block':50,'New world point':-389},
+		finalStepDesc:'To complete this step a 50k [Fire essence,F.e.] , [Dark essence,D.e.] , [Nature essence,N.e] , [Lightning essence,L.e.] and any other must be sacrificed and many other resources.',
+		use:{'land':15},
+		category:'wonder',
+		req:{'Magic adept':true}
+	});
 	
 	
 	/*=====================================================================================
@@ -7784,6 +7801,18 @@ new G.Unit({
 		desc:'Obtain [Magic adept] trait. Manage to get 1M [Magic essences]. //Obtaining it may unlock a new wonder.',
 		effects:[
 			{type:'addFastTicksOnStart',amount:40},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		name:'Magical',
+		wideIcon:[9,22,'magixmod'],
+		icon:[10,22,'magixmod'],
+		desc:'<b>You decided to sacrifice yourself for magic.</br>You decided that putting yourself at coffin that there was lying will attract some glory.</br>You were right</b> //This achievement will: @Unlock you a new theme @Increase effect of <b>Wizard towers</b> by 5% without increasing their upkeep cost.',
+		fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:15},
 		],
 	});
 	/*=====================================================================================
