@@ -10530,12 +10530,12 @@ function checkMagicalAchiev() {
     }
 }
 }
-MagicalAchiev()
+checkMagicalAchiev()
 const oldNewGameMagical = G.NewGameConfirm.bind({})
 G.NewGameConfirm = new Proxy(oldNewGameMagical, {
   apply: function(target, thisArg, args) {
     target(...args)
-    MagicalAchiev()
+    checkMagicalAchiev()
   }
 })
 	/*=====================================================================================
