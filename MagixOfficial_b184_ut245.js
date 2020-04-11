@@ -4520,7 +4520,6 @@ if (!document.getElementById(cssId))
 		G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
 		RollGathererIcon = true
 		}
-	}
 		},
 	});
 		new G.Res({
