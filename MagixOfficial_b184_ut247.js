@@ -7431,6 +7431,21 @@ new G.Unit({
 		req:{'oral tradition':true,'Music instruments':true},
 		category:'cultural',
 	});
+		new G.Unit({
+		name:'Fishers & hunters camp',
+		desc:'@An camp where [hunter]s and [fisher]s come.  //There they train and learn to be better at their job. //One [Fishers & hunters camp] can associate up to 800 [worker]s divided into 400 [hunter]s and 400 [fisher]s. //[hunter]s that work at this camp has very low chance for being a victim of an accident. //It may be more expensive but it can gather you a lot of [food] .',
+		icon:[5,23,'magixmod'],
+		wideIcon:[3,23,'magixmod'],
+		cost:{'basic building materials':4850,'food':2500,'Paper':3000},
+		use:{'worker':800,'Instructor':50,'land':40,'armor set':400,'Fishing net':400,'metal weapons':400,'stone weapons':200,'Crossbow':400,'Crossbow belt':60000,'bow':500},
+		upkeep:{'food':75,'fire pit':2},
+		limitPer:{'population':40000,'land':2500},
+		effects:[
+			{type:'gather',what:{'culture':0.1}},
+		],
+		req:{'Hunters & fishers unification':true},
+		category:'production',
+	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
 		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
@@ -10474,9 +10489,6 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		cost:{'insight II':15,'culture II':15,'influence II':5},
 		chance:45,
 		req:{'code of law II':true,'ritualism II':true,'symbolism II':true,'Glory':true},
-		effects:[
-			{type:'provide res',what:{'New world point':1}},
-		],
 	});
 		new G.Tech({
 		name:'Mining strategy',
@@ -10560,6 +10572,16 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[6,23,'magixmod'],
 		cost:{'insight II':80,'science':5},
 		req:{'hunting III':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			]
+	});
+		new G.Tech({
+		name:'An armor for Hunter',
+		desc:'@Let the [hunter] have an armor!. //In fact this tech just leads to more advanced improvements for [hunter] .',
+		icon:[14,24,'magixmod'],
+		cost:{'insight II':80,'science':5},
+		req:{'hunting III':true},
 	});
 		new G.Tech({
 		name:'Fisher\'s smartness',
@@ -10573,7 +10595,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'Merges [fisher] and [hunter] into one unit. //[hunter]s accident rate is decreased even more but hired [hunter]s require an [armor set] . //<font color="fuschia">Note: Obtaining this tech will merge powers of [hunter] and [fisher] into one unit. Merged units become useless (they icon gets slashed) and will gather no longer. Only new unit caused by merging will do that what they were doing before. New unit becomes much more expensive and limited but it is much more efficient.</font>',
 		icon:[2,23,'magixmod'],
 		cost:{'insight II':55,'science':5},
-		req:{'fishing III':true,'hunting III':true,'Fisher\'s smartness':true,'Hunter\'s coordination':true},
+		req:{'fishing III':true,'hunting III':true,'Fisher\'s smartness':true,'Hunter\'s coordination':true,'An armor for Hunter':true},
 		chance:15
 	});
 	/*=====================================================================================
