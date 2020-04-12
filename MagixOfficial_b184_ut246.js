@@ -7831,7 +7831,7 @@ new G.Unit({
 		name:'Magical',
 		wideIcon:[9,22,'magixmod'],
 		icon:[10,22,'magixmod'],
-		desc:'<b>You decided to sacrifice yourself for magic.</br>You decided that putting yourself at coffin that there was lying will attract some glory.</br>You were right</b> //This achievement will: @Unlock you a new theme @Increase effect of <b>Wizard towers</b> by 5% without increasing their upkeep cost.',
+		desc:'<b>You decided to sacrifice yourself for magic.</br>You decided that putting yourself at coffin that there was lying will attract some glory.</br>You were right</b> //This achievement will: @Unlock you a new theme @Increase effect of <b>Wizard towers</b> by 5% without increasing their upkeep cost. //This achievement will unlock you way further technologies such like [hunting III] or [fishing III] .',
 		fromWonder:'Magical',
 		effects:[
 			{type:'addFastTicksOnStart',amount:150},
@@ -10540,6 +10540,42 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
     checkMagicalAchiev()
   }
 })
+		new G.Tech({
+		name:'hunting III',
+		desc:'@[hunter]s become more coordinated. This tech decreases amount of accidents where a victim becomes [hunter] .',
+		icon:[8,22,'magixmod'],
+		cost:{'insight II':65,'science':2,'influence II':3},
+		req:{'Political revaluation':true,'Magical presence':true,'fishing II':true},
+	});
+		new G.Tech({
+		name:'fishing III',
+		desc:'This tech may unlock something that truly will make [fisher] become better.',
+		icon:[7,22,'magixmod'],
+		cost:{'insight II':65,'science':3,'culture II':2},
+		req:{'Political revaluation':true,'Magical presence':true,'hunting III':true},
+	});
+		new G.Tech({
+		name:'Hunter\'s coordination',
+		desc:'@Decreases value of [hunter]s accidents even more. Requires small amount of food as an upkeep. @Increases [wisdom II] by 10.',
+		icon:[6,23,'magixmod'],
+		cost:{'insight II':80,'science':5},
+		req:{'hunting III':true},
+	});
+		new G.Tech({
+		name:'Fisher\'s smartness',
+		desc:'[fisher]s is twice as efficient but as an upkeep he requires some food. //Fisher knows how to lure different types of fishes.',
+		icon:[0,23,'magixmod'],
+		cost:{'insight II':55,'science':5},
+		req:{'fishing III':true},
+	});
+			new G.Tech({
+		name:'Hunters & fishers unification',
+		desc:'Merges [fisher] and [hunter] into one unit. //[hunter]s accident rate is decreased even more but hired [hunter]s require an [armor set] . //<font color="fuschia">Note: Obtaining this tech will merge powers of [hunter] and [fisher] into one unit. Merged units become useless (they icon gets slashed) and will gather no longer. Only new unit caused by merging will do that what they were doing before. New unit becomes much more expensive and limited but it is much more efficient.</font>',
+		icon:[2,23,'magixmod'],
+		cost:{'insight II':55,'science':5},
+		req:{'fishing III':true,'hunting III':true,'Fisher\'s smartness':true,'Hunter\'s coordination':true},
+		chance:15
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
