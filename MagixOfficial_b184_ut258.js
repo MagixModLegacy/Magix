@@ -7802,7 +7802,7 @@ new G.Unit({
 		tier:0,
 		icon:[23,21,'magixmod'],
 		name:'Apprentice',
-		desc:'Get 150 or more technologies in a single run.',
+		desc:'Get 100 or more technologies in a single run.',
 	});
 		new G.Achiev({
 		tier:1,
