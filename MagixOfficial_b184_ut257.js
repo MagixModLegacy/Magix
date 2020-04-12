@@ -4394,7 +4394,6 @@ if (!document.getElementById(cssId))
 			}
 			if(G.techN >= 100 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
 			G.achievByName['Apprentice'].won = 1
-			G.getDict('Familiar').tier = 1
 			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
 			}
 			if(G.techN >= 200 && G.achievByName['Familiar'].won == 0){ //Apprentice achievement
@@ -7877,6 +7876,7 @@ new G.Unit({
 	});
 			new G.Achiev({
 		icon:[16,24,'magixmod'],
+		tier:1,
 		name:'Familiar',
 		desc:'Get 200 or more technologies in a single run.',
 	});
