@@ -10675,10 +10675,21 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'Burial wormhole 1/2',
-		desc:'People start thinking about using magic especially [Dark essence,dark one] to get rid of corpses without harming reputation. //One of them said that if we have at least 2 portals why won\'t we make some smaller worlds just for burying these [corpses] ?',
+		desc:'People start thinking about using magic especially [Dark essence,dark one] to get rid of corpses without harming reputation. //One of them said that if we have at least 2 portals why won\'t we make some smaller worlds just for burying these [corpse]s ?',
 		icon:[27,3,'magixmod',22,22,'magixmod'],
-		cost:{'insight II':100,'science':6,'faith II':4},
+		cost:{'insight II':100,'science':6,'faith II':4,'influence II':5},
 		req:{'Magical presence':true,'Mo \'wine':true},
+	});
+		new G.Tech({
+		name:'Doctrine of the dark wormhole 1/5',
+		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about conception of making a small plane where the [corpse]s will lie in the way that will allow to fit over millions of [corpse]s. //Your [Wizard]s seem really impressed reading and forwarding the doctrine.',
+		icon:[21,22,'magixmod',16,22,'magixmod'],
+		cost:{'insight II':100,'science':6,'faith II':4,'influence II':5},
+		req:{'Burial wormhole 1/2':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':2}},
+			]
 	});
 	/*=====================================================================================
 	POLICIES
