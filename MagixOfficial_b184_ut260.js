@@ -10647,17 +10647,24 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'Supreme fast filtering',
-		desc:'[Water filter;]s perform conversion twice as often doubling efficiency.',
+		desc:'[Water filter]s perform conversion twice as often doubling efficiency.',
 		icon:[5,24,'magixmod'],
-		cost:{'insight II':40},
+		cost:{'insight II':60},
 		req:{'Hunters & fishers unification':true},
 	});
 		new G.Tech({
 		name:'Supreme cloudy fast filtering',
-		desc:'[Cloudy water filter;]s perform conversion twice as often doubling efficiency.',
+		desc:'[Cloudy water filter]s perform conversion twice as often doubling efficiency.',
 		icon:[6,24,'magixmod'],
-		cost:{'insight II':50},
+		cost:{'insight II':80},
 		req:{'Hunters & fishers unification':true,'Supreme fast filtering':true},
+	});
+		new G.Tech({
+		name:'Improved alchemy techniques',
+		desc:'[Basic brewing stand] becomes thrice as efficient.',
+		icon:[16,23,'magixmod'],
+		cost:{'insight II':65,'science':7,'culture II':23},
+		req:{'Camp-cooking':true},
 	});
 	/*=====================================================================================
 	POLICIES
