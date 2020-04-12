@@ -10709,7 +10709,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Doctrine of the dark wormhole 3/5',
 		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is filled with informations about stability of things like that. Wormholes, portals must be stable. If anybody would enter unstable world nobody knows what would happen to him. //Your [Wizard]s feel goosebumps.',
 		icon:[19,22,'magixmod',15,22,'magixmod'],
-		cost:{'insight II':105,'science':7,'faith II':4,'influence II':5,'culture II':10,'wisdom':50},
+		cost:{'insight II':105,'science':7,'faith II':4,'influence II':5,'culture II':10,'wisdom':50,'insight':44},
 		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true,'Doctrine of the dark wormhole 2/5':true},
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
