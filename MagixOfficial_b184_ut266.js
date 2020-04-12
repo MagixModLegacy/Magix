@@ -6993,6 +6993,7 @@ new G.Unit({
 			{type:'convert',from:{'Potion pot':1,'water':0.75,'muddy water':0.05,'herb':0.1},into:{'mundane water pot':1},every:4,mode:'mundanewater'},
 			{type:'convert',from:{'Potion pot':1,'water':0.8,'salt':0.2,'herb':0.1},into:{'salted water pot':1},every:4,mode:'saltwater'},
 			{type:'convert',from:{'Potion pot':1,'water':0.8,'salt':0.02,'fire pit':0.12},into:{'Bubbling water pot':1},every:4,mode:'bubblingwater'},
+			{type:'mult',value:3,req:{'Science blessing':true}},
 		],
 		category:'alchemy',
 	});
@@ -7005,6 +7006,7 @@ new G.Unit({
 		use:{'Alchemy zone':0.5,'Alchemist':1},
 		effects:[
 			{type:'convert',from:{'mundane water pot':0.75,'water':0.2,'Bubbling water pot':0.25},into:{'Alcohol pot':1},every:4},
+			{type:'mult',value:3,req:{'Science blessing':true}},
 		],
 		category:'alchemy',
 	});
@@ -7040,6 +7042,7 @@ new G.Unit({
 		effects:[
 			{type:'convert',from:{'Alcohol pot':0.1,'water':0.7,'mundane water pot':0.15,'fruit':0.6,'Sweet water pot':0.25},into:{'Wine':1},every:4,mode:'wine'},
 			{type:'convert',from:{'Alcohol pot':0.5,'mundane water pot':0.3,'Bubbling water pot':0.05,'water':0.15},into:{'Pot of vodka':1},every:5,mode:'vodka'},
+			{type:'mult',value:3,req:{'Science blessing':true}},
 		],
 		category:'alchemy',
 	});
@@ -10669,7 +10672,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'Mo \'wine',
-		desc:'[Alcohol brewing stand] and [Alcohol drinks brewing stand] becomes thrice as efficient.',
+		desc:'[Alcohol brewing stand] and [Alcohol drinks brewing stand] become thrice as efficient.',
 		icon:[15,23,'magixmod'],
 		cost:{'insight II':80,'science':5},
 		req:{'Improved alchemy techniques':true},
