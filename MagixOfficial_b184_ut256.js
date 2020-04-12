@@ -4392,9 +4392,14 @@ if (!document.getElementById(cssId))
 			G.achievByName['Lucky 9'].won = 1
 			G.middleText('- Completed <font color="red">Lucky 9</font> achievement -')
 			}
-			if(G.techN >= 150 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
+			if(G.techN >= 100 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
 			G.achievByName['Apprentice'].won = 1
+			G.getDict('Familiar').tier = 1
 			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
+			}
+			if(G.techN >= 200 && G.achievByName['Familiar'].won == 0){ //Apprentice achievement
+			G.achievByName['Familiar'].won = 1
+			G.middleText('- Completed <font color="lime">Familiar</font> achievement -')
 			}
 			if(G.traitN >= 30 && G.achievByName['Traitsman'].won == 0){ //Traitsman achievement
 			G.achievByName['Traitsman'].won = 1
@@ -7869,6 +7874,11 @@ new G.Unit({
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:15},
 		],
+	});
+			new G.Achiev({
+		icon:[16,24,'magixmod'],
+		name:'Familiar',
+		desc:'Get 200 or more technologies in a single run.',
 	});
 	/*=====================================================================================
 	TECHS
