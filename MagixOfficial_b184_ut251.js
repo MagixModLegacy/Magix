@@ -10615,7 +10615,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[15,24,'magixmod'],
 		cost:{'insight II':100},
 		req:{'Hunters & fishers unification':true},
-		chance:65
+		chance:65,
 		category:'knowledge'
 	});
 	/*=====================================================================================
