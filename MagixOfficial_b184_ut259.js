@@ -5810,6 +5810,7 @@ new G.Unit({
 			{type:'convert',from:{'Cloudy water':37},into:{'water':28,'cloud':2},every:1},
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
 			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+			{type:'mult',value:2,req:{'Supreme cloudy fast filtering':true}},
 		],
 	});
 		new G.Unit({
@@ -5825,6 +5826,7 @@ new G.Unit({
 			{type:'convert',from:{'Cloudy water':15},into:{'water':14,'cloud':1},every:1},
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
 			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+			{type:'mult',value:2,req:{'Supreme cloudy fast filtering':true}},
 		],
 	});
 		new G.Unit({
@@ -5842,6 +5844,7 @@ new G.Unit({
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
 			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
 			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+			{type:'mult',value:2,req:{'Supreme fast filtering':true}},
 		],
 	});
 		new G.Unit({
@@ -5858,6 +5861,7 @@ new G.Unit({
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
 			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
 			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+			{type:'mult',value:2,req:{'Supreme fast filtering':true}},
 		],
 	});
 		new G.Unit({
@@ -10640,6 +10644,20 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[1,24,'magixmod'],
 		cost:{'insight II':100,'culture II':20,'insight':46},
 		req:{'Hunters & fishers unification':true,'Next-to house berrybushes':true},
+	});
+		new G.Tech({
+		name:'Supreme fast filtering',
+		desc:'[Water filter;]s perform conversion twice as often doubling efficiency.',
+		icon:[5,24,'magixmod'],
+		cost:{'insight II':40},
+		req:{'Hunters & fishers unification':true},
+	});
+		new G.Tech({
+		name:'Supreme cloudy fast filtering',
+		desc:'[Cloudy water filter;]s perform conversion twice as often doubling efficiency.',
+		icon:[6,24,'magixmod'],
+		cost:{'insight II':50},
+		req:{'Hunters & fishers unification':true,'Supreme fast filtering':true},
 	});
 	/*=====================================================================================
 	POLICIES
