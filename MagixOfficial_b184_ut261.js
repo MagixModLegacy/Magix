@@ -10666,6 +10666,20 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':65,'science':7,'culture II':23},
 		req:{'Camp-cooking':true},
 	});
+		new G.Tech({
+		name:'Mo \'wine',
+		desc:'[Alcohol brewing stand] and [Alcohol drinks brewing stand] becomes thrice as efficient.',
+		icon:[15,23,'magixmod'],
+		cost:{'insight II':80,'science':5},
+		req:{'Improved alchemy techniques':true},
+	});
+		new G.Tech({
+		name:'Burial wormhole 1/2',
+		desc:'People start thinking about using magic especially [Dark essence,dark one] to get rid of corpses without harming reputation. //One of them said that if we have at least 2 portals why won\'t we make some smaller worlds just for burying these [corpses] ?',
+		icon:[27,3,'magixmod',22,22,'magixmod'],
+		cost:{'insight II':100,'science':6,'faith II':4},
+		req:{'Magical presence':true,'Mo \'wine':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
