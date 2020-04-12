@@ -7441,7 +7441,9 @@ new G.Unit({
 		upkeep:{'food':75,'fire pit':2},
 		limitPer:{'population':40000,'land':2500},
 		effects:[
-			{type:'gather',what:{'culture':0.1}},
+			{type:'gather',context:'fish',amount:445,max:611},
+			{type:'gather',context:'hunt',amount:445,max:611},
+			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
 		],
 		req:{'Hunters & fishers unification':true},
 		category:'production',
