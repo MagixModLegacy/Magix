@@ -10702,7 +10702,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'inspiration II':2}},
 			],
-		category:'knowledge'
+		category:'knowledge',
 		chance:40
 	});
 			new G.Tech({
