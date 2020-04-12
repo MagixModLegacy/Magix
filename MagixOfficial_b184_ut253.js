@@ -10580,7 +10580,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'fishing III',
 		desc:'This tech may unlock something that truly will make [fisher] become better.',
 		icon:[7,22,'magixmod'],
-		cost:{'insight II':65,'science':3,'culture II':2,'insight':25},
+		cost:{'insight II':65,'science':3,'culture II':2,'insight':15},
 		req:{'Political revaluation':true,'Magical presence':true,'hunting III':true},
 	});
 		new G.Tech({
@@ -10604,7 +10604,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Fisher\'s smartness',
 		desc:'[fisher]s is twice as efficient but as an upkeep he requires some food. //Fisher knows how to lure different types of fishes.',
 		icon:[0,23,'magixmod'],
-		cost:{'insight II':55,'science':5},
+		cost:{'insight II':45,'science':5},
 		req:{'fishing III':true},
 	});
 			new G.Tech({
