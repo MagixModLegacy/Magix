@@ -4861,7 +4861,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting'},
 			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},
 			{type:'gather',context:'hunt',amount:5,max:6,mode:'crossbow hunting'},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30,req:{'hunting III':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/38,req:{'hunting III':true,'An armor for Hunter':true,'Hunters & fishers unification':false}},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
 			{type:'mult',value:0,req:{'Hunters & fishers unification':true}},
 		],
@@ -10686,6 +10687,30 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[21,22,'magixmod',16,22,'magixmod'],
 		cost:{'insight II':100,'science':6,'faith II':4,'influence II':5,'culture II':10},
 		req:{'Burial wormhole 1/2':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':2}},
+			]
+	});
+		new G.Trait({
+		name:'Doctrine of the dark wormhole 2/5',
+		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine. //<font color="silver">Mod dev\'s note: ik wormhole seems futuristic.</font>',
+		icon:[20,22,'magixmod',16,22,'magixmod'],
+		cost:{'insight II':105,'science':6,'faith II':4,'influence II':5,'culture II':15,'wisdom':100},
+		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':2}},
+			],
+		category:'knowledge'
+		chance:40
+	});
+			new G.Tech({
+		name:'Doctrine of the dark wormhole 3/5',
+		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is filled with informations about stability of things like that. Wormholes, portals must be stable. If anybody would enter unstable world nobody knows what would happen to him. //Your [Wizard]s feel goosebumps.',
+		icon:[19,22,'magixmod',15,22,'magixmod'],
+		cost:{'insight II':105,'science':7,'faith II':4,'influence II':5,'culture II':10,'wisdom':50},
+		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true,'Doctrine of the dark wormhole 2/5':true},
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'inspiration II':2}},
