@@ -10567,14 +10567,14 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'hunting III',
 		desc:'@[hunter]s become more coordinated. This tech decreases amount of accidents where a victim becomes [hunter] .',
 		icon:[8,22,'magixmod'],
-		cost:{'insight II':65,'science':2,'influence II':3},
+		cost:{'insight II':65,'science':2,'influence II':3,'insight':25},
 		req:{'Political revaluation':true,'Magical presence':true,'Fishing II':true},
 	});
 		new G.Tech({
 		name:'fishing III',
 		desc:'This tech may unlock something that truly will make [fisher] become better.',
 		icon:[7,22,'magixmod'],
-		cost:{'insight II':65,'science':3,'culture II':2},
+		cost:{'insight II':65,'science':3,'culture II':2,'insight':25},
 		req:{'Political revaluation':true,'Magical presence':true,'hunting III':true},
 	});
 		new G.Tech({
@@ -10608,6 +10608,15 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':55,'science':5},
 		req:{'fishing III':true,'hunting III':true,'Fisher\'s smartness':true,'Hunter\'s coordination':true,'An armor for Hunter':true},
 		chance:15
+	});
+		new G.Trait({
+		name:'Camp-cooking',
+		desc:'Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able ',
+		icon:[15,24,'magixmod'],
+		cost:{'insight II':100},
+		req:{'Hunters & fishers unification':true},
+		chance:65
+		category:'knowledge'
 	});
 	/*=====================================================================================
 	POLICIES
