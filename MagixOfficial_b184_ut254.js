@@ -7458,7 +7458,7 @@ new G.Unit({
 			{type:'gather',context:'hunt',amount:1433,max:2111},
 			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
 			{type:'mult',value:1.35,req:{'harvest rituals':'on'}},
-			{type:'convert',from:{'meat':3,'seafood':2},into:{'cooked meat':3,'seafood':2},every:2,req:{'Camp-cooking':true}},
+			{type:'convert',from:{'meat':4,'seafood':3},into:{'cooked meat':4,'seafood':3},every:2,req:{'Camp-cooking':true}},
 		],
 		req:{'Hunters & fishers unification':true},
 		category:'production',
@@ -10611,7 +10611,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Hunters & fishers unification',
 		desc:'Merges [fisher] and [hunter] into one unit. //[hunter]s accident rate is decreased even more but hired [hunter]s require an [armor set] . //<font color="fuschia">Note: Obtaining this tech will merge powers of [hunter] and [fisher] into one unit. Merged units become useless (they icon gets slashed) and will gather no longer. Only new unit caused by merging will do that what they were doing before. New unit becomes much more expensive and limited but it is much more efficient.</font>',
 		icon:[2,23,'magixmod'],
-		cost:{'insight II':55,'science':5},
+		cost:{'insight II':55,'science':5,'insight':95},
 		req:{'fishing III':true,'hunting III':true,'Fisher\'s smartness':true,'Hunter\'s coordination':true,'An armor for Hunter':true},
 		chance:15
 	});
