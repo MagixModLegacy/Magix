@@ -10628,7 +10628,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Fertile bushes',
 		desc:'[house]s and their berrybushes are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :)',
 		icon:[1,24,'magixmod'],
-		cost:{'insight II':100},
+		cost:{'insight II':100,'culture II':20,'insight':46},
 		req:{'Hunters & fishers unification':true,'Next-to house berrybushes':true},
 	});
 	/*=====================================================================================
