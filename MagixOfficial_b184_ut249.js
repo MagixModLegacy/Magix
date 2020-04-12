@@ -4473,6 +4473,12 @@ if (!document.getElementById(cssId))
 			if(G.has('Master mana-making')){
 			G.getDict('Mana maker').icon = [4,24,'magixmod']
 			}
+			if(G.has('Hunters & fishers unification'))
+			{
+			G.getDict('harvest rituals').desc = 'Improves [gatherer], efficiency by 20% and [Fishers & hunters camp] by 35%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
+			G.getDict('hunter').icon = [28,2,'magixmod',18,2]
+			G.getDict('fisher').icon = [28,2,'magixmod',17,2]
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -4848,7 +4854,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},
 			{type:'gather',context:'hunt',amount:5,max:6,mode:'crossbow hunting'},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30},
-			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
+			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
+			{type:'mult',value:0,req:{'Hunters & fishers unification':true}},
 		],
 		req:{'hunting':true},
 		category:'production',
@@ -4873,7 +4880,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
 			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
 			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'net fishing'},
-			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
+			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
+			{type:'mult',value:0,req:{'Hunters & fishers unification':true}},
 		],
 		req:{'fishing':true},
 		category:'production',
@@ -7441,9 +7449,10 @@ new G.Unit({
 		upkeep:{'food':75,'fire pit':2},
 		limitPer:{'population':40000,'land':2500},
 		effects:[
-			{type:'gather',context:'fish',amount:445,max:611},
-			{type:'gather',context:'hunt',amount:445,max:611},
+			{type:'gather',context:'fish',amount:1433,max:2111},
+			{type:'gather',context:'hunt',amount:1433,max:2111},
 			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
+			{type:'mult',value:1.35,req:{'harvest rituals':'on'}},
 		],
 		req:{'Hunters & fishers unification':true},
 		category:'production',
@@ -10559,7 +10568,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'@[hunter]s become more coordinated. This tech decreases amount of accidents where a victim becomes [hunter] .',
 		icon:[8,22,'magixmod'],
 		cost:{'insight II':65,'science':2,'influence II':3},
-		req:{'Political revaluation':true,'Magical presence':true,'fishing II':true},
+		req:{'Political revaluation':true,'Magical presence':true,'Fishing II':true},
 	});
 		new G.Tech({
 		name:'fishing III',
