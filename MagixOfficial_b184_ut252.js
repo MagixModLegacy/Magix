@@ -4479,6 +4479,10 @@ if (!document.getElementById(cssId))
 			G.getDict('hunter').icon = [28,2,'magixmod',18,2]
 			G.getDict('fisher').icon = [28,2,'magixmod',17,2]
 			}
+			if(G.has('Camp-cooking'))
+			{
+			G.getDict('Fishers & hunters camp').upkeep = {'food':75,'fire pit':3}
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -5358,6 +5362,7 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'housing':10}},
 			{type:'provide',what:{'housing':0.125},req:{'Better house construction':true}},
 			{type:'gather',what:{'Berries':1},req:{'Next-to house berrybushes':true}},
+			{type:'gather',what:{'Berries':0.2},req:{'Fertile bushes':true}},
 			{type:'waste',chance:0.01/1000}
 		],
 		req:{'construction':true},
@@ -7453,6 +7458,7 @@ new G.Unit({
 			{type:'gather',context:'hunt',amount:1433,max:2111},
 			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
 			{type:'mult',value:1.35,req:{'harvest rituals':'on'}},
+			{type:'convert',from:{'meat':3,'seafood':2},into:{'cooked meat':3,'seafood':2},every:2,req:{'Camp-cooking':true}},
 		],
 		req:{'Hunters & fishers unification':true},
 		category:'production',
@@ -10617,6 +10623,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		req:{'Hunters & fishers unification':true},
 		chance:65,
 		category:'knowledge'
+	});
+			new G.Tech({
+		name:'Fertile bushes',
+		desc:'[house]s and their berrybushes are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :)',
+		icon:[1,24,'magixmod'],
+		cost:{'insight II':100},
+		req:{'Hunters & fishers unification':true,'Next-to house berrybushes':true},
 	});
 	/*=====================================================================================
 	POLICIES
