@@ -11223,7 +11223,15 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	{
 		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
 	}
-	var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
+	G.LoadResources=function()
+	{
+		var resources=[
+			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
+			'img/blot.png',
+			'img/iconSheet.png?v=1'
+		];
+		var loader=new PicLoader(resources,function(){G.Init();});//load all resources then init the game when done
+	}
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
