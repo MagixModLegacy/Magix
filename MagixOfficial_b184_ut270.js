@@ -11443,6 +11443,17 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		image:13,
 		score:8,
 	});
+		new G.Land({
+		name:'swamplands',
+		goods:[
+			{type:['swampflowers'],amount:3},
+			{type:'jungle fruits',chance:1},
+			{type:'grass',chance:1},
+			{type:'rocky substrate'},
+		],
+		image:9,
+		score:8,
+	});
 	
 	//TODO : all the following
 	new G.Land({
@@ -11852,6 +11863,65 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		},
 		mult:5,
 	});
+		new G.Goods({
+		name:'swampflowers',
+		desc:'Swampflowers like cattail are common goods that can be found in swamps.',
+		icon:[7,23,'magixmod'],
+		res:{
+			'flowers':{'Cattail':1,'Blue orchid':1,'Daisy':0.25},
+			'gather':{'muddy water':1}
+		},
+		mult:5,
+	});
+		new G.Goods({
+		name:'rb1',
+		displayName:'Rosebush',
+		desc:'A bush filled with [Pink rose,Roses] . [Cockscomb] can be found in them too.',
+		icon:[8,23,'magixmod'],
+		res:{
+			'flowers':{'Cockscomb':0.5,'Cyan rose':1,'Gray rose':1},
+		},
+		mult:3,
+	});
+			new G.Goods({
+		name:'rb2',
+		displayName:'Rosebush',
+		desc:'A bush filled with [Lime rose,Roses] . Rarely [Salvia] can be found there.',
+		icon:[9,23,'magixmod'],
+		res:{
+			'flowers':{'Lime rose':1,'Pink rose':1,'Salvia':0.25},
+		},
+		mult:3,
+	});
+		new G.Goods({
+		name:'vfb1',
+		displayName:'Various flowers bush',
+		desc:'Various types of flowers can be found in this bush.',
+		icon:[10,23,'magixmod'],
+		res:{
+			'flowers':{'Brown flower':0.75,'Bachelor\'s button':0.75,'Coreopsis':0.75,'Cosmos':0.75,'Flax':1},
+		},
+		mult:3,
+	});
+		new G.Goods({
+		name:'vfb2',
+		displayName:'Various flowers bush',
+		desc:'Various types of flowers can be found in this bush.',
+		icon:[10,23,'magixmod'],
+		res:{
+			'flowers':{'Green zinnia':0.75,'Azure bluet':0.75,'Black Hollyhock':0.75,'Sunflower':1,'Himalayan blue poopy':0.75},
+		},
+		mult:3,
+	});
+		new G.Goods({
+		name:'bush of tulips',
+		desc:'This bush contains a lot of [White tulip,Tulips].',
+		icon:[10,23,'magixmod'],
+		res:{
+			'flowers':{'Gray tulip':1,'Red tulip':1,'Pink tulip':1,'Lime tulip':1,'White tulip':1},
+		},
+		mult:3,
+	});
 		G.getDict('grass').res['gather']['vegetable']=0.001;
 		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
 		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
@@ -12088,7 +12158,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 				{
 					if (landTile=='ocean') biomes.push('arctic ocean');
 					else if (wetTile<0.25) biomes.push('ice desert');
-					else if (wetTile>0.5) biomes.push('boreal forest');
+					else if (wetTile>0.5 && wetTile<0.8) biomes.push('boreal forest');
+					else if (wetTile>0.8) biomes.push('swamplands');
 					else biomes.push('tundra');
 				}
 				else if (tempTile>1.1)
