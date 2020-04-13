@@ -7478,7 +7478,7 @@ new G.Unit({
     		effects:[
     			{type:'provide',what:{'burial spot':2.1e6}},
     		],
-    		use:{'Land of the Underworld':10},
+    		use:{'land':10},
     		req:{'Burial wormhole 2/2':true},
     		limitPer:{'land':3000,'population':50000},
     		category:'plainisleunit',
