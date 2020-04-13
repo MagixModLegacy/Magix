@@ -11471,7 +11471,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		}
 		return goods;
 	}
-	
 	G.getResFromGoods=function(goods)//turn a list of goods into their associated resources
 	{
 		var res=[];
@@ -11491,49 +11490,9 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		}
 		return res;
 	}
-	
 	G.getLandIconBGpos=function(land)
 	{
 		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
-	}
-	G.initMap=function()
-	{
-		G.mapVisible=0;
-		G.mapW=16;
-		G.mapH=16;
-		G.mapOffX=0;
-		G.mapOffY=0;
-		G.mapOffXT=0;
-		G.mapOffYT=0;
-		G.mapZoom=0.01;
-		G.mapZoomT=2;
-		G.mouseDragFromX=0;
-		G.mouseDragFromY=0;
-		G.mouseDragFrom=0;
-		G.mapIsDisplayingTooltip=false;
-		G.mapSelectingTileX=-1;
-		G.mapSelectingTileY=-1;
-		G.mapEditWithLand=0;
-		G.editMode=0;
-		G.inspectingTile=0;
-		G.tilesToRender=[];
-		
-		var div=l('tileEditButton');
-		if (div && G.land[G.mapEditWithLand])
-		{
-			div.style.background=G.getLandIconBG(G.land[G.mapEditWithLand]);
-			div.style.backgroundPosition=G.getLandIconBGpos(G.land[G.mapEditWithLand]);
-		}
-	}
-	G.showMap=function()
-	{
-		G.mapVisible=true;
-		l('mapSection').style.display='block';
-	}
-	G.hideMap=function()
-	{
-		G.mapVisible=false;
-		l('mapSection').style.display='none';
 	}
 	G.buildMapDisplay=function()
 	{
