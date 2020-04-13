@@ -10601,14 +10601,14 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'@[hunter]s become more coordinated. This tech decreases amount of accidents where a victim becomes [hunter] .',
 		icon:[8,22,'magixmod'],
 		cost:{'insight II':65,'science':2,'influence II':3,'insight':25},
-		req:{'Political revaluation':true,'Magical presence':true,'Fishing II':true},
+		req:{'Policy revaluation':true,'Magical presence':true,'Fishing II':true},
 	});
 		new G.Tech({
 		name:'fishing III',
 		desc:'This tech may unlock something that truly will make [fisher] become better.',
 		icon:[7,22,'magixmod'],
 		cost:{'insight II':65,'science':3,'culture II':2,'insight':15},
-		req:{'Political revaluation':true,'Magical presence':true,'hunting III':true},
+		req:{'Policy revaluation':true,'Magical presence':true,'hunting III':true},
 	});
 		new G.Tech({
 		name:'Hunter\'s coordination',
