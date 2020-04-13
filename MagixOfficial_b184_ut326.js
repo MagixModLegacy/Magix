@@ -8,7 +8,25 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
-G.modsByName[mod.name]=mod;
+G.AddData=function(obj)
+	{
+		//function called by mods
+		var mod=G.modsByScript[document.currentScript.id];
+		for (var i in obj)
+		{
+			mod[i]=obj[i];
+		}
+		if (!mod['name'] && !mod['func'])
+		{mod.error='This mod is lacking a name and a function.';}
+		else if (!mod['name']) {mod.error='This mod is lacking a name.';}
+		else if (mod['name'].slice(-1)=='*') {mod.error='This mod\'s name cannot end with *.';}
+		else if (!mod['func']) {mod.error='This mod is lacking a function.';}
+		else
+		{
+			mod.executed=true;
+			G.modsByName[mod.name]=mod;
+		}
+	}
 	G.funcs['new game blurb']=function()
 	{   
 		var str=
