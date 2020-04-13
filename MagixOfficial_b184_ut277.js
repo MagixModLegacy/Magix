@@ -11458,6 +11458,15 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'grass',chance:3},
 			{type:'rocky substrate'},
 		],
+		image:14,
+		score:8,
+	});
+			new G.Land({
+		name:'lavender fields',
+		goods:[
+			{type:['swampflowers'],amount:1},
+			{type:'grass',chance:4},
+		],
 		image:15,
 		score:8,
 	});
@@ -12186,7 +12195,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 				{
 					if (landTile=='ocean') biomes.push('ocean');
 					else if (wetTile<0.25) biomes.push('shrubland');
-					else if (wetTile>0.5) biomes.push('forest');
+					else if (wetTile>0.5 && wetTile<0.6) biomes.push('forest');
+					else if (wetTile>0.6) biomes.push('lavender fields');
 					else biomes.push('prairie');
 				}
 				if (biomes.length==0) biomes.push('prairie');
