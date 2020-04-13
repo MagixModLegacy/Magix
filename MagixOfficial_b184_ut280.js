@@ -11232,6 +11232,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		];
 		var loader=new PicLoader(resources,function(){G.Init();});//load all resources then init the game when done
 	}
+	var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
