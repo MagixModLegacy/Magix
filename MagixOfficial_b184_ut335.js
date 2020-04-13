@@ -3555,6 +3555,40 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');G.gain('adult',(toCalm),'calmdown');
 			var toNeut=me.amount*0.001;
 			var spent=G.lose(me.name,randomFloor(toNeut),'neutralized by civillian');//Civillian banishes a person from your civilization then
+			function someTick(){
+  const thieves = G.getDict("thief")
+  const chances = [
+    {
+      type: "steal",
+      below: 0.6
+    },
+    {
+      type: "hurt",
+      below: 0.9
+    },
+    {
+      type: "nothing",
+      below: 1
+    }
+  ]
+  const chance = Math.random()
+  let action
+  //Find what to do
+  for(let i = 0; !action; i++){
+    if(chance < chances[i].below)
+      action = chances[i].type
+  }
+  //Execute
+    switch(action){
+      case "steal":
+        G.lose("archaic building materials", thieves.amount, "stolen")
+        break
+      case "hurt":
+        G.lose("adult", thieves.amount, "thieves hurting people")
+        G.gain("wounded", thieves.amount, "thieves hurtinh people")
+        break
+  }
+}
 		}
 	});
 	//To make recovery not like wounded child alch becomes adult alch
