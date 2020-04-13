@@ -10741,7 +10741,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Burial wormhole 2/2',
 		desc:'Unlocks [Dark wormhole] . Massive burial spot bonus but requires upkeep(in [Mana] and [Dark essence]). Dark powers like death and fear. Corpses look scary and spooky. It keeps wormhole stable. ',
 		icon:[27,2,'magixmod',22,22,'magixmod'],
-		cost:{'insight II':140,'science':10,'culture II':40},
+		cost:{'insight II':140,'science':10,'culture II':40,'insight':95},
 		req:{'Doctrine of the dark wormhole 5/5':true,'Master mana-making':true},
 	});
 	/*=====================================================================================
