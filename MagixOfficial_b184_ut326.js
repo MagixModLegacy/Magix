@@ -8,25 +8,6 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
-G.AddData=function(obj)
-	{
-		//function called by mods
-		var mod=G.modsByScript[document.currentScript.id];
-		for (var i in obj)
-		{
-			mod[i]=obj[i];
-		}
-		if (!mod['name'] && !mod['func'])
-		{mod.error='This mod is lacking a name and a function.';}
-		else if (!mod['name']) {mod.error='This mod is lacking a name.';}
-		else if (mod['name'].slice(-1)=='*') {mod.error='This mod\'s name cannot end with *.';}
-		else if (!mod['func']) {mod.error='This mod is lacking a function.';}
-		else
-		{
-			mod.executed=true;
-			G.modsByName[mod.name]=mod;
-		}
-	}
 	G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -4480,20 +4461,6 @@ if (!document.getElementById(cssId))
 				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
 				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
 				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
-				if(G.modsByName['Laws Of Food'].loaded==false || G.ModLoaded('Laws Of Food Free Version')==false){//Interaction with laws of food mod!
-				}else if(G.modsByName['Laws Of Food'].loaded==true || G.ModLoaded('Laws Of Food Free Version')==true){
-					G.getDict('eat herbs').cost = {'influence II':2}
-					G.getDict('eat raw meat').cost = {'influence II':2}
-					G.getDict('eat cooked meat').cost = {'influence II':2}
-					G.getDict('eat cured meat').cost = {'influence II':2}
-					G.getDict('eat raw seafood').cost = {'influence II':2}
-					G.getDict('eat cooked seafood').cost = {'influence II':2}
-					G.getDict('eat cured seafood').cost = {'influence II':2}
-					G.getDict('eat cooked meat and cooked seafood').cost = {'influence II':2}
-					G.getDict('eat cured meat and cured seafood').cost = {'influence II':2}
-					G.getDict('eat fruit').cost = {'influence II':2}
-					G.getDict('eat bread').cost = {'influence II':2}
-				}
 			}
 			if(G.has('Mining strategy'))
 			{
