@@ -7110,7 +7110,7 @@ new G.Unit({
 		category:'production',
 		effects:[
 		
-			{type:'gather',context:'flowers',amount:2,max:4},
+			{type:'gather',context:'flowers',amount:0.4,max:1.4},
 			{type:'mult',value:1.05,req:{'harvest rituals for flowers':'on'}},
 			{type:'convert',from:{'Paper':12,'Ink':3},into:{'Florist\'s notes':1},every:11,req:{'Notewriting':true},chance:1/95},
 		],
