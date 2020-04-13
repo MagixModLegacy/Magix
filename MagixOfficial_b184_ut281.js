@@ -12227,8 +12227,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 				{
 					if (landTile=='ocean') biomes.push('ocean');
 					else if (wetTile<0.25) biomes.push('shrubland');
-					else if (wetTile>0.5 && wetTile<0.72) biomes.push('forest');
-					else if (wetTile>0.72) biomes.push('lavender fields');
+					else if (wetTile>0.5 && wetTile<0.74) biomes.push('forest');
+					else if (wetTile>0.74) biomes.push('lavender fields');
 					else biomes.push('prairie');
 				}
 				if (biomes.length==0) biomes.push('prairie');
