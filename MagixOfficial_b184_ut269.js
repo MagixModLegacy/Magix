@@ -10635,7 +10635,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Trait({
 		name:'Camp-cooking',
-		desc:'Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able ',
+		desc:'Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able to cook some [cooked meat,meat] for you.',
 		icon:[15,24,'magixmod'],
 		cost:{'insight II':100},
 		req:{'Hunters & fishers unification':true},
