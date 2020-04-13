@@ -10697,7 +10697,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Trait({
 		name:'Doctrine of the dark wormhole 2/5',
-		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine. //<font color="silver">Mod dev\'s note: ik wormhole seems futuristic.</font>',
+		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine.',
 		icon:[20,22,'magixmod',16,22,'magixmod'],
 		cost:{'insight II':105,'science':6,'faith II':4,'influence II':5,'culture II':15,'wisdom':100},
 		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true},
@@ -10717,6 +10717,29 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'inspiration II':2}},
+			]
+	});
+		new G.Trait({
+		name:'Doctrine of the dark wormhole 4/5',
+		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine describes ways of keeping the wormhole active. It is important thing too because if it will run out of power a tons of corpses will explode out of wormhole and people will be really, really mad. //Your [Wizard]s know exactly how big problem will occur if wormhole will run out of power. ',
+		icon:[18,22,'magixmod',15,22,'magixmod'],
+		cost:{'insight II':130,'science':7,'faith II':4,'influence II':5,'culture II':27},
+		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 3/5':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':2}},
+			],
+		category:'knowledge',
+		chance:60
+	});
+		new G.Tech({
+		name:'Doctrine of the dark wormhole 5/5',
+		desc:'Provides 7 [inspiration II] . //This part of doctrine is about miscellanneous related to the wormhole. //Your [Wizard]s feel secure. They may start thinking about running first dark wormhole.',
+		icon:[17,22,'magixmod',14,22,'magixmod'],
+		cost:{'insight II':140,'science':7,'faith II':3,'influence II':5,'culture II':30,'wisdom':50},
+		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true,'Doctrine of the dark wormhole 2/5':true,'Doctrine of the dark wormhole 3/5':true,'Doctrine of the dark wormhole 4/5':true},
+		effects:[
+			{type:'provide res',what:{'inspiration II':7}},
 			]
 	});
 	/*=====================================================================================
