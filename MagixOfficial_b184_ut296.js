@@ -7472,7 +7472,7 @@ new G.Unit({
 	});
 		new G.Unit({
     		name:'Dark wormhole',
-    		desc:'@opens a portal to a huge <b>Plain Island</b>A creation made of ideas of wizards and dreams of population more exactly kids.//A Dream comes real. You will grant +25000 max land upon activation of portal',
+    		desc:'',
     		icon:[13,22,'magixmod'],
     		cost:{},
     		effects:[
@@ -7480,8 +7480,8 @@ new G.Unit({
     		],
     		use:{'Land of the Underworld':10},
     		req:{'Burial wormhole 2/2':true},
-    		limitPer:{'land':3000,'population':50000},//It is something like max 1
-    		category:'civil',
+    		limitPer:{'land':3000,'population':50000},
+    		category:'plainisleunit',
 	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
