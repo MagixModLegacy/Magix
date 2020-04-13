@@ -11223,6 +11223,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	{
 		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
 	}
+	var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
@@ -12195,8 +12196,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 				{
 					if (landTile=='ocean') biomes.push('ocean');
 					else if (wetTile<0.25) biomes.push('shrubland');
-					else if (wetTile>0.5 && wetTile<0.6) biomes.push('forest');
-					else if (wetTile>0.6) biomes.push('lavender fields');
+					else if (wetTile>0.5 && wetTile<0.72) biomes.push('forest');
+					else if (wetTile>0.72) biomes.push('lavender fields');
 					else biomes.push('prairie');
 				}
 				if (biomes.length==0) biomes.push('prairie');
