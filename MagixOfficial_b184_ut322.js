@@ -4474,6 +4474,7 @@ if (!document.getElementById(cssId))
 					G.getDict('eat fruit').cost = {'influence II':2}
 					G.getDict('eat bread').cost = {'influence II':2}
 				}else{
+					return 0
 				}
 			}
 			if(G.has('Mining strategy'))
