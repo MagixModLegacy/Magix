@@ -11467,6 +11467,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['swampflowers'],amount:1},
 			{type:'grass',chance:3},
 			{type:'rocky substrate'},
+			{type:'crocodiles',min:0.2,max:0.8},
 		],
 		image:14,
 		score:8,
@@ -11474,8 +11475,11 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			new G.Land({
 		name:'lavender fields',
 		goods:[
-			{type:['swampflowers'],amount:1},
-			{type:'grass',chance:4},
+			{type:['lavender'],amount:1},
+			{type:'grass',min:2,max:4},
+			{type:'rocky substrate'},
+			{type:'foxes',min:0.2,max:0.8},
+			{type:'wild rabbits',chance:0.07},
 		],
 		image:15,
 		score:8,
@@ -11948,6 +11952,24 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'flowers':{'Gray tulip':1,'Red tulip':1,'Pink tulip':1,'Lime tulip':1,'White tulip':1},
 		},
 		mult:3,
+	});
+		new G.Goods({
+		name:'crocodiles',
+		desc:'Crocodiles are large semiaquatic reptiles that live throughout the tropics especially swamplands. Source of [meat] and [leather] .',
+		icon:[17,24,'magixmod'],
+		res:{
+			'hunt':{'leather':1,'meat':2},
+		},
+		mult:2,
+	});
+		new G.Goods({
+		name:'lavender',
+		desc:'Nice flower that has relaxing smell and can be used in aromatherapy. Except [Lavender] you may find many other types of [Flowers].',
+		icon:[0,9,'magixmod'],
+		res:{
+			'flowers':{'Lavender':4,'Dianella':0.2,'Black lily':0.35},
+		},
+		mult:1,
 	});
 		G.getDict('grass').res['gather']['vegetable']=0.001;
 		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
