@@ -11216,6 +11216,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		category:'seasonal',
 		hidden:true,
 	});
+	/*=======================================
+	Icon sheet for custom land tiles
+	=======================================*/
+	G.getLandIconBG=function(land)
+	{
+		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
+	}
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
@@ -11451,7 +11458,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'grass',chance:3},
 			{type:'rocky substrate'},
 		],
-		image:9,
+		image:15,
 		score:8,
 	});
 	
