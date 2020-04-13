@@ -11915,7 +11915,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'Various types of flowers can be found in this bush.',
 		icon:[10,23,'magixmod'],
 		res:{
-			'flowers':{'Green zinnia':0.75,'Azure bluet':0.75,'Black Hollyhock':0.75,'Sunflower':1,'Himalayan blue poopy':0.75},
+			'flowers':{'Green Zinnia':0.75,'Azure bluet':0.75,'Black Hollyhock':0.75,'Sunflower':1,'Himalayan blue poopy':0.75},
 		},
 		mult:3,
 	});
