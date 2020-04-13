@@ -10736,7 +10736,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Doctrine of the dark wormhole 5/5',
 		desc:'Provides 7 [inspiration II] . //This part of doctrine is about miscellanneous related to the wormhole. //Your [Wizard]s feel secure. They may start thinking about running first dark wormhole.',
 		icon:[17,22,'magixmod',14,22,'magixmod'],
-		cost:{'insight II':140,'science':7,'faith II':3,'influence II':5,'culture II':30,'wisdom':50},
+		cost:{'insight II':140,'science':7,'faith II':3,'influence II':5,'culture II':30,'wisdom':50,'insight':335},
 		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true,'Doctrine of the dark wormhole 2/5':true,'Doctrine of the dark wormhole 3/5':true,'Doctrine of the dark wormhole 4/5':true},
 		effects:[
 			{type:'provide res',what:{'inspiration II':7}},
