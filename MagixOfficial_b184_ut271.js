@@ -11267,6 +11267,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['oak','birch'],chance:0.5,min:0.1,max:0.4},
 			{type:'berry bush',chance:0.9},
 			{type:'grass',amount:2},
+			{type:'vfb1',chance:0.2},
+			{type:'vfb2',chance:0.05},
 			{type:['wild rabbits','stoats'],chance:0.9},
 			{type:['foxes'],chance:0.5,amount:0.5},
 			{type:['wolves','bears'],chance:0.2,amount:0.5},
@@ -11309,6 +11311,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'berry bush',chance:0.6},
 			{type:'forest mushrooms',chance:0.8},
 			{type:'grass'},
+			{type:'rb1',chance:0.5},
+			{type:'rb2',chance:0.5},
 			{type:['wild rabbits','stoats'],chance:0.2},
 			{type:['foxes'],chance:0.2,amount:0.2},
 			{type:['wolves','bears'],chance:0.5,min:0.5,max:1},
@@ -11372,6 +11376,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['fir tree'],amount:3},
 			{type:'berry bush',chance:0.9},
 			{type:'forest mushrooms',chance:0.4},
+			{type:'rb1',chance:0.5},
+			{type:'rb2',chance:0.5},
 			{type:'grass'},
 			{type:['wild rabbits','stoats'],chance:0.2},
 			{type:['wolves'],chance:0.5,min:0.5,max:1},
@@ -11446,9 +11452,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		new G.Land({
 		name:'swamplands',
 		goods:[
-			{type:['swampflowers'],amount:3},
-			{type:'jungle fruits',chance:1},
-			{type:'grass',chance:1},
+			{type:['swampflowers'],amount:1},
+			{type:'grass',chance:3},
 			{type:'rocky substrate'},
 		],
 		image:9,
@@ -11523,6 +11528,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	G.contextNames['dig']='Digging';
 	G.contextNames['mine']='Mining';
 	G.contextNames['quarry']='Quarrying';
+	G.contextNames['flowers']='Flowers';
 	
 	//plants
 	new G.Goods({
