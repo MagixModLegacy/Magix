@@ -8,6 +8,7 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
+G.modsByName=[];
 	G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -4461,7 +4462,7 @@ if (!document.getElementById(cssId))
 				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
 				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
 				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
-				if (G.modsByName['Laws Of Food'].loaded==false || G.ModLoaded('Laws Of Food Free Version')==false){//Interaction with laws of food mod!
+				if(G.modsByName['Laws Of Food'].loaded==false || G.ModLoaded('Laws Of Food Free Version')==false){//Interaction with laws of food mod!
 				}else if(G.modsByName['Laws Of Food'].loaded==true || G.ModLoaded('Laws Of Food Free Version')==true){
 					G.getDict('eat herbs').cost = {'influence II':2}
 					G.getDict('eat raw meat').cost = {'influence II':2}
