@@ -910,7 +910,7 @@ if (!document.getElementById(cssId))
 				graves.used-=toExhume;
 				G.gain('corpse',toExhume,'not enough burial spots');
 			}
-			
+			//Normally
 			var toSpoil=me.amount*0.001;
 			var spent=G.lose('corpse',randomFloor(toSpoil),'decay');
 			
@@ -919,7 +919,12 @@ if (!document.getElementById(cssId))
 			if (G.has('belief in revenants')) unhappiness*=2;
 			G.gain('happiness',-me.amount*unhappiness,'corpses');
 			G.gain('health',-me.amount*0.02,'corpses');
-		},
+			//Corpse decay trait: Normal decay still works and each dark wormhole can increase rate of corpses that will get decayed(?)
+			if(G.has('Corpse decay')){
+			var toSpoil=me.amount*0.001*(G.getRes('corpsedecaypoint').amount);
+			var spent=G.lose('corpse',randomFloor(toSpoil),'dark decay');
+			}
+		},	
 	});
 	new G.Res({
 		name:'burial spot',
@@ -4618,6 +4623,9 @@ if (!document.getElementById(cssId))
 		category:'seasonal',
 		hidden:true,
 	});
+		new G.Res({
+		name:'corpsedecaypoint',
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -7536,6 +7544,7 @@ new G.Unit({
     		cost:{'gem block':4,'precious building materials':5e3},
     		effects:[
     			{type:'provide',what:{'burial spot':2.4e7}},
+			{type:'provide',what:{'corpsedecaypoint':1}},
     		],
 		upkeep:{'Dark essence':30,'Mana':90,'Magic essences':1},
     		use:{'Land of the Underworld':10,'worker':5,'Instructor':3},
