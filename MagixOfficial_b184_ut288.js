@@ -7470,6 +7470,20 @@ new G.Unit({
 		req:{'Hunters & fishers unification':true},
 		category:'production',
 	});
+		new G.Unit({
+    		name:'Dark wormhole',
+    		desc:'@opens a portal to a huge <b>Plain Island</b>A creation made of ideas of wizards and dreams of population more exactly kids.//A Dream comes real. You will grant +25000 max land upon activation of portal',
+    		icon:[13,22,'magixmod'],
+    		cost:{},
+    		effects:[
+    			{type:'provide',what:{'burial spot':22095300}},
+    		],
+    		use:{'Land of the Underworld':10},
+		messageOnStart:'<b><font color="purple">A Dark Wormhole has been activated</font></b>.',
+    		req:{'First portal to new world':true,'Belief in portals':true},
+    		limitPer:{'land':3000,'population':50000},//It is something like max 1
+    		category:'civil',
+	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
 		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
