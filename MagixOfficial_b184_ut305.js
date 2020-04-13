@@ -4462,6 +4462,17 @@ if (!document.getElementById(cssId))
 				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
 				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
 				if (G.ModLoaded('https://adrthegamedev.github.io/LawsOfFood/lawsoffood.js') || G.ModLoaded ('https://adrthegamedev.github.io/LawsOfFood/lawsoffoodfree.js')){//Interaction with laws of food mod!
+					G.getDict('eat herbs').cost = {'influence II':2}
+					G.getDict('eat raw meat').cost = {'influence II':2}
+					G.getDict('eat cooked meat').cost = {'influence II':2}
+					G.getDict('eat cured meat').cost = {'influence II':2}
+					G.getDict('eat raw seafood').cost = {'influence II':2}
+					G.getDict('eat cooked seafood').cost = {'influence II':2}
+					G.getDict('eat cured seafood').cost = {'influence II':2}
+					G.getDict('eat cooked meat and cooked seafood').cost = {'influence II':2}
+					G.getDict('eat cured meat and cured seafood').cost = {'influence II':2}
+					G.getDict('eat fruit').cost = {'influence II':2}
+					G.getDict('eat bread').cost = {'influence II':2}
 				}
 			}
 			if(G.has('Mining strategy'))
