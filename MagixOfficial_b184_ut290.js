@@ -7476,7 +7476,7 @@ new G.Unit({
     		icon:[13,22,'magixmod'],
     		cost:{},
     		effects:[
-    			{type:'provide',what:{'burial spot':22095300}},
+    			{type:'provide',what:{'burial spot':2.1e7}},
     		],
     		use:{'Land of the Underworld':10},
     		req:{'Burial wormhole 2/2':true},
