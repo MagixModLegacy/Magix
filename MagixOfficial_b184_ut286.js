@@ -10737,6 +10737,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'provide res',what:{'inspiration II':7}},
 			]
 	});
+		new G.Tech({
+		name:'Burial wormhole 2/2',
+		desc:'Unlocks [Dark wormhole] . Massive burial spot bonus but requires upkeep(in [Mana] and [Dark essence]). Dark powers like death and fear. Corpses look scary and spooky. It keeps wormhole stable. ',
+		icon:[27,2,'magixmod',22,22,'magixmod'],
+		cost:{'insight II':140,'science':10,'culture II':40},
+		req:{'Doctrine of the dark wormhole 5/5':true,'Master mana-making':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -11663,6 +11670,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[6,10],
 		res:{
 			'gather':{'fruit':1,'herb':3},
+			'flowers':{'cactus':1,'Crown imperial':0.25,req:{'plant lore':true}},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
@@ -11936,7 +11944,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'Various types of flowers can be found in this bush.',
 		icon:[10,23,'magixmod'],
 		res:{
-			'flowers':{'Brown flower':0.75,'Bachelor\'s button':0.75,'Coreopsis':0.75,'Cosmos':0.75,'Flax':1},
+			'flowers':{'Brown flower':0.75,'Bachelor\'s button':0.75,'Coreopsis':0.75,'Cosmos':0.75,'Flax':1,'Dandelion':0.1},
 		},
 		mult:3,
 	});
@@ -11953,7 +11961,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		new G.Goods({
 		name:'bush of tulips',
 		desc:'This bush contains a lot of [White tulip,Tulips].',
-		icon:[10,23,'magixmod'],
+		icon:[12,23,'magixmod'],
 		res:{
 			'flowers':{'Gray tulip':1,'Red tulip':1,'Pink tulip':1,'Lime tulip':1,'White tulip':1},
 		},
