@@ -4558,7 +4558,66 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 	});
-	
+	new G.Res({
+		name:'Blue firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky/',
+		icon:[2,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'Orange firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky.',
+		icon:[1,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		
+		new G.Res({
+		name:'Dark Blue Firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight./',		icon:[5,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'Dark Orange Firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight.',
+		icon:[4,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'Firecracker',
+		desc:'Firecrackers are fireworks but without thread.',
+		icon:[3,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -7651,7 +7710,55 @@ new G.Unit({
 		category:'wonder',
 		req:{'Magic adept':true}
 	});
-	
+	//Seasonal content units
+	new G.Unit({
+		name:'Artisan of new year',
+		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] to finish it up.',
+		icon:[19,0,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'Thread':0.30,'Paper':0.3},
+		effects:[
+			{type:'gather',what:{'Blue firework':1.25}},
+			{type:'gather',what:{'Orange firework':1.25}},
+			{type:'gather',what:{'Firecracker':1}}
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+		//limitPer:{'land':40},
+	});
+		new G.Unit({
+		name:'Artisan of new year (dark)',
+		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
+		icon:[19,0,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
+		effects:[
+			{type:'gather',what:{'Dark Blue Firework':1.25}},
+			{type:'gather',what:{'Dark Orange Firework':1.25}},
+			{type:'gather',what:{'Firecracker':1}}
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+		//limitPer:{'land':40},
+	});
+new G.Unit({
+		name:'Firework launching guy',
+		desc:'There the guy launches fireworks right up into the sky. Generates happiness by itself and for every firework bunch launched up into the sky.',
+		icon:[18,0,'seasonal'],
+		cost:{'food':10},
+		use:{'worker':1,'land':1},
+		effects:[
+			{type:'convert',from:{'Orange firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Blue firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+		//limitPer:{'land':40},
+	});
 	
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -11141,119 +11248,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'indigo':{name:'Indigo',desc:'Switches to indigo theme. Reward for <b>Magical victory</b> achievement.',req:{'Magical presence':true}},
 		},
 		category:'mag',
-	});
-	
-	///////////////////////////////////////////////////////////////////////////////////////////////////
-//SEASONAL CONTENT//CONTENT WHICH WILL BE AVAILABLE FOR PLAYERS AT SOME TIME LIKE XMAS OR VALENTINE'S DAY
-//////////////////////////////////////////////////////////////////////////////////////////////////////	
-	//NEW YEAR 'S EVE//
-		new G.Unit({
-		name:'Artisan of new year',
-		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] to finish it up.',
-		icon:[19,0,'seasonal'],
-		cost:{},
-		use:{'worker':1},
-		upkeep:{'Thread':0.30,'Paper':0.3},
-		effects:[
-			{type:'gather',what:{'Blue firework':1.25}},
-			{type:'gather',what:{'Orange firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
-		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Unit({
-		name:'Artisan of new year (dark)',
-		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
-		icon:[19,0,'seasonal'],
-		cost:{},
-		use:{'worker':1},
-		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
-		effects:[
-			{type:'gather',what:{'Dark Blue Firework':1.25}},
-			{type:'gather',what:{'Dark Orange Firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
-		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Res({
-		name:'Blue firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky/',
-		icon:[2,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Res({
-		name:'Orange firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky.',
-		icon:[1,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Unit({
-		name:'Firework launching guy',
-		desc:'There the guy launches fireworks right up into the sky. Generates happiness by itself and for every firework bunch launched up into the sky.',
-		icon:[18,0,'seasonal'],
-		cost:{'food':10},
-		use:{'worker':1,'land':1},
-		effects:[
-			{type:'convert',from:{'Orange firework':1},into:{'happiness':75},every:2,context:'launching'},
-			{type:'convert',from:{'Blue firework':1},into:{'happiness':75},every:2,context:'launching'},
-			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
-			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
-		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Res({
-		name:'Dark Blue Firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight./',		icon:[5,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Res({
-		name:'Dark Orange Firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight.',
-		icon:[4,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Res({
-		name:'Firecracker',
-		desc:'Firecrackers are fireworks but without thread.',
-		icon:[3,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
+	});	
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
