@@ -8,7 +8,7 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
-G.modsByName=[];
+G.modsByName[mod.name]=mod;
 	G.funcs['new game blurb']=function()
 	{   
 		var str=
