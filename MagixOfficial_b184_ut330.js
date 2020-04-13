@@ -11492,10 +11492,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		return res;
 	}
 	
-	G.getLandIconBG=function(land)
-	{
-		return 'url(img/terrain.png),url(img/terrain.png)';
-	}
 	G.getLandIconBGpos=function(land)
 	{
 		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
