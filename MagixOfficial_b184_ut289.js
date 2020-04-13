@@ -7479,8 +7479,7 @@ new G.Unit({
     			{type:'provide',what:{'burial spot':22095300}},
     		],
     		use:{'Land of the Underworld':10},
-		messageOnStart:'<b><font color="purple">A Dark Wormhole has been activated</font></b>.',
-    		req:{'First portal to new world':true,'Belief in portals':true},
+    		req:{'Burial wormhole 2/2':true},
     		limitPer:{'land':3000,'population':50000},//It is something like max 1
     		category:'civil',
 	});
