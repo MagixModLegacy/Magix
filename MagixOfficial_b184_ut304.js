@@ -4437,30 +4437,32 @@ if (!document.getElementById(cssId))
 			G.getDict('clan leader').icon = [25,23,'magixmod']
 			}
 			if(G.has('Policy revaluation')){
-			G.getDict('food rations').cost = {'influence II':3}
-			G.getDict('water rations').cost = {'influence II':3}
-			G.getDict('eat spoiled food').cost = {'influence II':2}
-			G.getDict('drink muddy water').cost = {'influence II':2}
-			G.getDict('insects as food').cost = {'influence II':2}
-			G.getDict('eat raw meat and fish').cost = {'influence II':2}
-			G.getDict('drink spoiled juice').cost = {'influence II':4}
-			G.getDict('child workforce').cost = {'influence II':3}
-			G.getDict('drink cloudy water').cost = {'influence II':3}
-			G.getDict('elder workforce').cost = {'influence II':3}
-			G.getDict('Gather roses').cost = {'influence II':1}
-			G.getDict('Hovel of colours production rates').cost = {'influence II':5}
-			G.getDict('Hut of potters production rates').cost = {'influence II':5}
-			G.getDict('Leather factory production rates').cost = {'influence II':5}
-			G.getDict('Factory of pots production rates').cost = {'influence II':5}
-			G.getDict('population control').cost = {'influence II':5}
-			G.getDict('fertility rituals').cost = {'faith II':1}
-			G.getDict('fertility rituals').desc = 'Improves birth rate by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
-			G.getDict('harvest rituals').cost = {'faith II':1}
-			G.getDict('harvest rituals').desc = 'Improves [gatherer], [hunter] and [fisher] efficiency by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
-			G.getDict('harvest rituals for flowers').cost = {'faith II':1}
-			G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
-			G.getDict('Crafting & farm rituals').cost = {'faith II':1}
-			G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
+				G.getDict('food rations').cost = {'influence II':3}
+				G.getDict('water rations').cost = {'influence II':3}
+				G.getDict('eat spoiled food').cost = {'influence II':2}
+				G.getDict('drink muddy water').cost = {'influence II':2}
+				G.getDict('insects as food').cost = {'influence II':2}
+				G.getDict('eat raw meat and fish').cost = {'influence II':2}
+				G.getDict('drink spoiled juice').cost = {'influence II':4}
+				G.getDict('child workforce').cost = {'influence II':3}
+				G.getDict('drink cloudy water').cost = {'influence II':3}
+				G.getDict('elder workforce').cost = {'influence II':3}
+				G.getDict('Gather roses').cost = {'influence II':1}
+				G.getDict('Hovel of colours production rates').cost = {'influence II':5}
+				G.getDict('Hut of potters production rates').cost = {'influence II':5}
+				G.getDict('Leather factory production rates').cost = {'influence II':5}
+				G.getDict('Factory of pots production rates').cost = {'influence II':5}
+				G.getDict('population control').cost = {'influence II':5}
+				G.getDict('fertility rituals').cost = {'faith II':1}
+				G.getDict('fertility rituals').desc = 'Improves birth rate by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
+				G.getDict('harvest rituals').cost = {'faith II':1}
+				G.getDict('harvest rituals').desc = 'Improves [gatherer], [hunter] and [fisher] efficiency by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
+				G.getDict('harvest rituals for flowers').cost = {'faith II':1}
+				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
+				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
+				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
+				if (G.ModLoaded('https://adrthegamedev.github.io/LawsOfFood/lawsoffood.js') || G.ModLoaded ('https://adrthegamedev.github.io/LawsOfFood/lawsoffoodfree.js')){//Interaction with laws of food mod!
+				}
 			}
 			if(G.has('Mining strategy'))
 			{
