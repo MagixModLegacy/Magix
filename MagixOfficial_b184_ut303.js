@@ -11701,7 +11701,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[6,10],
 		res:{
 			'gather':{'fruit':1,'herb':3},
-			'flowers':{'cactus':1,'Crown imperial':0.25,req:{'plant lore':true}},
+			'flowers':{'cactus':1,'Crown imperial':0.25},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
