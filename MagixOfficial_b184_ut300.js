@@ -7472,16 +7472,17 @@ new G.Unit({
 	});
 		new G.Unit({
     		name:'Dark wormhole',
-    		desc:'',
+    		desc:'A wormhole built in the depths of the Underworld where darkness is everywhere. The wormhole provides over 20M[burial spot] but requires upkeep. It just looks cheap. Furthermore the [Dark wormhole] may get new abilities.',
     		icon:[13,22,'magixmod'],
-    		cost:{},
+    		cost:{'gem block':4,'precious building materials':5e3},
     		effects:[
-    			{type:'provide',what:{'burial spot':2.1e7}},
+    			{type:'provide',what:{'burial spot':2.4e7}},
     		],
-    		use:{'Land of the Underworld':10},
+		upkeep:{'Dark essence':30,'Mana':90,'Magic essences':1},
+    		use:{'Land of the Underworld':10,'worker':5,'Instructor':3},
     		req:{'Burial wormhole 2/2':true},
     		limitPer:{'land':3000,'population':50000},
-    		category:'plainisleunit',
+    		category:'civil',
 	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
@@ -10756,6 +10757,23 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[27,2,'magixmod',22,22,'magixmod'],
 		cost:{'insight II':140,'science':10,'culture II':40,'insight':95},
 		req:{'Doctrine of the dark wormhole 5/5':true,'Master mana-making':true},
+	});
+		new G.Trait({
+		name:'Corpse decay',
+		desc:'<b>Wormhole you opened...<br>ejects [corpse]s<br>before people...<br>bury them<br>decreasing usage of...<br>the [burial spot] .</b>',
+		icon:[7,24,'magixmod'],
+		cost:{'insight II':125,'Dark essence':2.5e4,'culture II':25,'influence II':3},
+		req:{'Burial wormhole 2/2':true,'Doctrine of the dark wormhole 5/5':true},
+		effects:[
+			],
+		chance:200
+	});
+		new G.Tech({
+		name:'Liberating darkness',
+		desc:'[The Skull of Wild Death] now can generate [Dark essence] for you... <br>but...<br> more [wild corpse]s will appear',//2 do wild corpses!!!
+		icon:[8,24,'magixmod'],
+		cost:{'insight II':140,'science':5,'faith II':5},
+		req:{'Doctrine of the dark wormhole 5/5':true,'Master mana-making':true,'Hope of revenant abandoning':true},
 	});
 	/*=====================================================================================
 	POLICIES
