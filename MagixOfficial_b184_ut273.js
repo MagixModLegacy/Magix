@@ -7109,13 +7109,8 @@ new G.Unit({
 		use:{'worker':1},
 		category:'production',
 		effects:[
-			{type:'gather',context:'gather',what:{'cactus':1,'Pink tulip':1,'Salvia':1},amount:1,max:3},
-			{type:'gather',context:'gather',what:{'Lime rose':1,'Pink rose':1,'Gray rose':1,'Cyan rose':1,'Desert rose':1},amount:1,max:3,req:{'plant lore':true,'Gather roses':'on'}},
-			{type:'gather',context:'gather',what:{'Green Zinnia':1,'Sunflower':1},amount:1,max:1,req:{'plant lore':true}},
-			{type:'gather',context:'gather',what:{'Lavender':1},amount:1,max:2,req:{'plant lore':true}},
-			{type:'gather',context:'gather',what:{'Brown flower':1},amount:1,max:1,req:{'plant lore':true}},
-			{type:'gather',context:'gather',what:{'Daisy':1},amount:1,max:1,req:{'plant lore':true}},
-			{type:'gather',context:'gather',what:{'Bachelor\'s button':1,'Black lily':1},amount:1,max:1,req:{'plant lore':true}},	
+		
+			{type:'gather',context:'flowers',amount:2,max:4},
 			{type:'mult',value:1.05,req:{'harvest rituals for flowers':'on'}},
 			{type:'convert',from:{'Paper':12,'Ink':3},into:{'Florist\'s notes':1},every:11,req:{'Notewriting':true},chance:1/95},
 		],
