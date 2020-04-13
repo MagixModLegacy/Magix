@@ -4461,7 +4461,7 @@ if (!document.getElementById(cssId))
 				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
 				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
 				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
-				if (G.ModLoaded('Laws Of Food')==true || G.ModLoaded('Laws Of Food Free Version')==true){//Interaction with laws of food mod!
+				if (G.ModLoaded('Laws Of Food','https://adrthegamedev.github.io/LawsOfFood/lawsoffood.js')==true || G.ModLoaded('Laws Of Food Free Version')==true){//Interaction with laws of food mod!
 					G.getDict('eat herbs').cost = {'influence II':2}
 					G.getDict('eat raw meat').cost = {'influence II':2}
 					G.getDict('eat cooked meat').cost = {'influence II':2}
