@@ -10772,7 +10772,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Liberating darkness',
 		desc:'[The Skull of Wild Death] now can generate [Dark essence] for you... <br>but...<br> more [wild corpse]s will appear',//2 do wild corpses!!!
 		icon:[8,24,'magixmod'],
-		cost:{'insight II':140,'science':5,'faith II':5},
+		cost:{'insight II':140,'science':5,'faith II':5,'Mana':511},
 		req:{'Doctrine of the dark wormhole 5/5':true,'Master mana-making':true,'Hope of revenant abandoning':true},
 	});
 	/*=====================================================================================
