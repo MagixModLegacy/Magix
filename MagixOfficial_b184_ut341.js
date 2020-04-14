@@ -11552,8 +11552,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			new G.Land({
 		name:'lavender fields',
 		goods:[
-			{type:['lavender'],amount:1},
-			{type:'grass',min:0.5,max:1},
+			{type:['lavender'],amount:1.5},
+			{type:'grass',min:0.75,max:1.1},
 			{type:'rocky substrate'},
 			{type:'foxes',min:0.2,max:0.8},
 			{type:'wolves',min:0.1,max:0.75,chance:3},
