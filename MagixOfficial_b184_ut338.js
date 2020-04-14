@@ -3638,7 +3638,7 @@ if (!document.getElementById(cssId))
         G.gain("wounded", thieves.amount, "thieves hurtinh people")
         break
   }
-}
+},
 		visible:false,
 	});//1
 		new G.Res({
