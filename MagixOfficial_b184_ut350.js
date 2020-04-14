@@ -11567,7 +11567,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['jacaranda'],min:0.5,max:1.5},
 		],
 		icon:[3,0,'magixmod'],
-		image:15,
+		//image:15,
 		score:3,
 	});
 	
