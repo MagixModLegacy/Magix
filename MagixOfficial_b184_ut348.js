@@ -11546,7 +11546,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'rocky substrate'},
 			{type:'crocodiles',min:0.2,max:0.8},
 			{type:'deer',min:0.1,max:0.9,chance:0.9},
-			{type:['willow'],amount:2.3},
+			{type:['willow'],amount:2},
 			{type:['willow','mangrove'],chance:0.6},
 		],
 		image:14,
@@ -11561,7 +11561,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'foxes',min:0.2,max:0.8},
 			{type:'wolves',min:0.1,max:0.75,chance:3},
 			{type:'wild rabbits',chance:0.9,min:0.3,max:0.6},
-			{type:['jacaranda'],min:0.75,max:1.45},
+			{type:['jacaranda'],min:0.5,max:1.5},
 		],
 		image:15,
 		score:3,
@@ -12090,7 +12090,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;//test
 	new G.Goods({
 		name:'jacaranda',
-		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b>and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
+		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b> and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
 		icon:[19,24,'magixmod'],
 		res:{
 			'chop':{'log':2,'stick':4},
