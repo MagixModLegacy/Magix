@@ -11566,6 +11566,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'wild rabbits',chance:0.9,min:0.3,max:0.6},
 			{type:['jacaranda'],min:0.5,max:1.5},
 		],
+		icon:[3,0,'magixmod'],
 		image:15,
 		score:3,
 	});
