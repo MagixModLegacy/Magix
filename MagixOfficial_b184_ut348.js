@@ -12064,7 +12064,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Goods({
 		name:'mangrove',
-		desc:'Similar to [willow], the [mangrove,Millow tree] tends to grow in lush, wet climates and can be chopped for [log]s and harvested for [stick]s.',
+		desc:'Similar to [willow], the [mangrove,Mangrove tree] tends to grow in lush, wet climates and can be chopped for [log]s and harvested for [stick]s.',
 		icon:[18,24,'magixmod'],
 		res:{
 			'chop':{'log':2,'stick':5},
