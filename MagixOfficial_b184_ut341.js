@@ -922,7 +922,7 @@ if (!document.getElementById(cssId))
 			//Corpse decay trait: Normal decay still works and each dark wormhole can increase rate of corpses that will get decayed(?)
 			if(G.has('Corpse decay')){
 			var toSpoil=me.amount*0.002*(G.getRes('corpsedecaypoint').amount);
-			var spent=G.lose('corpse',randomFloor(toSpoil),'dark decay');
+			var spent=G.lose('corpse',randomFloor(toSpoil),'Dark wormhole\' ability(Corpse decay)');
 			}
 		},	
 	});
