@@ -11546,7 +11546,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'rocky substrate'},
 			{type:'crocodiles',min:0.2,max:0.8},
 			{type:'deer',min:0.1,max:0.9,chance:0.9},
-			{type:['willow','mangrove'],amount:2.3},
+			{type:['willow'],amount:2.3},
 			{type:['willow','mangrove'],chance:0.6},
 		],
 		image:14,
@@ -11561,6 +11561,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'foxes',min:0.2,max:0.8},
 			{type:'wolves',min:0.1,max:0.75,chance:3},
 			{type:'wild rabbits',chance:0.9,min:0.3,max:0.6},
+			{type:['jacaranda'],amount:1.5},
 		],
 		image:15,
 		score:3,
@@ -12048,7 +12049,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		mult:2,
 	});
 		new G.Goods({
-		name:'wilow',
+		name:'willow',
 		desc:'The [willow,Willow tree] tends to grow in lush, wet climates and can be chopped for [log]s and harvested for [stick]s.',
 		icon:[20,24,'magixmod'],
 		res:{
