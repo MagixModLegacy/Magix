@@ -12035,10 +12035,11 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Goods({
 		name:'crocodiles',
-		desc:'Crocodiles are large semiaquatic reptiles that live throughout the tropics especially swamplands. Source of [meat] and [leather] .',
+		desc:'Crocodiles are large semiaquatic reptiles that live throughout the tropics especially swamplands. Source of [meat] and [leather] .//Carcasses can sometimes be gathered for [spoiled food].',
 		icon:[17,24,'magixmod'],
 		res:{
 			'hunt':{'leather':1,'meat':2},
+			'gather':{'spoiled food':1},
 		},
 		mult:2,
 	});
