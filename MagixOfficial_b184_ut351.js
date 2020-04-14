@@ -11553,7 +11553,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['willow','mangrove'],chance:0.6},
 		],
 		image:14,
-		score:3,
+		score:5,
 	});
 			new G.Land({
 		name:'lavender fields',
