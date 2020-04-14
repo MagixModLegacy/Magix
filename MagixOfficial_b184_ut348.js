@@ -11561,7 +11561,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'foxes',min:0.2,max:0.8},
 			{type:'wolves',min:0.1,max:0.75,chance:3},
 			{type:'wild rabbits',chance:0.9,min:0.3,max:0.6},
-			{type:['jacaranda'],amount:1.5},
+			{type:['jacaranda'],min:0.75,max:1.45},
 		],
 		image:15,
 		score:3,
@@ -12091,7 +12091,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	new G.Goods({
 		name:'jacaranda',
 		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b>and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
-		icon:[20,24,'magixmod'],
+		icon:[19,24,'magixmod'],
 		res:{
 			'chop':{'log':2,'stick':4},
 			'gather':{'stick':1},
