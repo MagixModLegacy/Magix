@@ -10313,7 +10313,10 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
         icon:[4,12,'magixmod',1,14],
         cost:{},
-        req:{'tribalism':false}
+        req:{'tribalism':false},
+	effects:[
+			{type:'show context',what:['flowers']},
+		],
     });
 function checkMagic() {
   if (G.achievByName['mausoleum'].won) {
