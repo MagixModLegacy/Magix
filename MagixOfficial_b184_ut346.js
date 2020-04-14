@@ -11546,6 +11546,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'rocky substrate'},
 			{type:'crocodiles',min:0.2,max:0.8},
 			{type:'deer',min:0.1,max:0.9,chance:0.9},
+			{type:['willow','mangrove'],amount:2.3},
+			{type:['willow','mangrove'],chance:0.6},
 		],
 		image:14,
 		score:3,
@@ -11984,6 +11986,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		},
 		mult:5,
 	});
+	//Magix goods
 		new G.Goods({
 		name:'rb1',
 		displayName:'Rosebush',
@@ -12033,6 +12036,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		},
 		mult:3,
 	});
+	//Swamplands
 		new G.Goods({
 		name:'crocodiles',
 		desc:'Crocodiles are large semiaquatic reptiles that live throughout the tropics especially swamplands. Source of [meat] and [leather] .//Carcasses can sometimes be gathered for [spoiled food].',
@@ -12043,6 +12047,29 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		},
 		mult:2,
 	});
+		new G.Goods({
+		name:'wilow',
+		desc:'The [willow,Willow tree] tends to grow in lush, wet climates and can be chopped for [log]s and harvested for [stick]s.',
+		icon:[20,24,'magixmod'],
+		res:{
+			'chop':{'log':2,'stick':4},
+			'gather':{'stick':1},
+		},
+		affectedBy:['deforestation'],
+		mult:5,
+	});
+		new G.Goods({
+		name:'mangrove',
+		desc:'Similar to [willow], the [mangrove,Millow tree] tends to grow in lush, wet climates and can be chopped for [log]s and harvested for [stick]s.',
+		icon:[18,24,'magixmod'],
+		res:{
+			'chop':{'log':2,'stick':5},
+			'gather':{'stick':1.1},
+		},
+		affectedBy:['deforestation'],
+		mult:5,
+	});
+	//Lavender fields
 		new G.Goods({
 		name:'lavender',
 		desc:'Nice flower that has relaxing smell and can be used in aromatherapy. Except [Lavender] you may find many other types of [Flowers].',
@@ -12060,7 +12087,17 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
 		G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
 		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;//test
-	
+	new G.Goods({
+		name:'jacaranda',
+		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b>and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
+		icon:[20,24,'magixmod'],
+		res:{
+			'chop':{'log':2,'stick':4},
+			'gather':{'stick':1},
+		},
+		affectedBy:['deforestation'],
+		mult:5,
+	});
 	/*=====================================================================================
 	TILE EFFECTS
 	=======================================================================================*/
