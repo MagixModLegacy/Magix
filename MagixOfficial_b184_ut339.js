@@ -3632,10 +3632,11 @@ if (!document.getElementById(cssId))
     switch(action){
       case "steal":
         G.lose("archaic building materials", thieves.amount, "stolen")
+	G.lose("basic building materials", thieves.amount*0.1, "stolen")
         break
       case "hurt":
-        G.lose("adult", thieves.amount, "thieves hurting people")
-        G.gain("wounded", thieves.amount, "thieves hurtinh people")
+        G.lose("adult", thieves.amount*0.75, "thieves hurting people")
+        G.gain("wounded", thieves.amount*0.75, "thieves hurting people")
         break
   }
 },
