@@ -11252,7 +11252,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Policy({
 		name:'Gather roses',
-		desc:'Makes florist start gathering all types of rose.',
+		desc:'Makes florist start gathering all types of rose. //Due to last update this policy will be replaced some time with new one.',
 		icon:[0,7,'magixmod'],
 		cost:{'influence':15},
 		startMode:'off',
