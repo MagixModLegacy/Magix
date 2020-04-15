@@ -10683,7 +10683,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	});
 			new G.Trait({
 		name:'Policy revaluation',
-		desc:'All policies from now has cost with [influence II] instead of [influence] . Required for future technologies and keep people listen you. </b> But... <b>all</b> rituals now costs and require [faith II] . @But don\'t worry. They won\'t consume that much like [wisdom rituals] or [flower rituals] .',
+		desc:'All policies since now cost with [influence II] instead of [influence] . Required for future technologies and to keep people listening to you. </b> But... <b>all</b> rituals now costs and require [faith II] . @But don\'t worry. They won\'t consume that much like [wisdom rituals] or [flower rituals] .',
 		icon:[1,23,'magixmod'],
 		cost:{'insight II':15,'culture II':15,'influence II':5},
 		chance:45,
@@ -10921,7 +10921,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		req:{'Burial wormhole 2/2':true,'Doctrine of the dark wormhole 5/5':true},
 		effects:[
 			],
-		chance:200
+		chance:90
 	});
 		new G.Tech({
 		name:'Liberating darkness',
@@ -10929,6 +10929,26 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[8,24,'magixmod'],
 		cost:{'insight II':140,'science':5,'faith II':5,'Mana':511},
 		req:{'Doctrine of the dark wormhole 5/5':true,'Master mana-making':true,'Hope of revenant abandoning':true},
+	});
+		new G.Trait({
+		name:'Beer recipe',
+		desc:'Increases [happiness] a bit. People had created secret recipe for a tasty beer. //In fact more [drunk,drunken] people will appear in your tribe. Make sure you hired [Syrup healer]s and you have some [Medicament brews].',
+		icon:[13,23,'magixmod'],
+		cost:{'insight II':135},
+		req:{'Mo \'wine':true},
+		effects:[
+			],
+		chance:200
+	});
+		new G.Tech({
+		name:'Conveyor conception',
+		desc:'People lead by [Automation] think about automating movement of produced things so they wouldn\'t have to move it by using their hands and they would focus more on work increasing efficiency of their [Factories I,Factories].',
+		icon:[13,23,'magixmod'],
+		cost:{'insight II':135},
+		req:{'Mo \'wine':true},
+		effects:[
+			],
+		chance:10
 	});
 	/*=====================================================================================
 	POLICIES
