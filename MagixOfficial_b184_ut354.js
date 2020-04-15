@@ -10943,9 +10943,9 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		new G.Tech({
 		name:'Conveyor conception',
 		desc:'People lead by [Automation] think about automating movement of produced things so they wouldn\'t have to move it by using their hands and they would focus more on work increasing efficiency of their [Factories I,Factories].',
-		icon:[13,23,'magixmod'],
+		icon:[0,24,'magixmod'],
 		cost:{'insight II':135},
-		req:{'Mo \'wine':true},
+		req:{'Policy revaluation':true,'<font color="maroon">Moderation</font>':true},
 		effects:[
 			],
 		chance:10
