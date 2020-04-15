@@ -4952,10 +4952,11 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		gizmos:true,
 		modes:{
-			'endurance hunting':{name:'Endurance hunting',icon:[0,6],desc:'Hunt animals by simply running after them until they get exhausted.//Slow and tedious.'},
-			'spear hunting':{name:'Spear hunting',icon:[5,9],desc:'Hunt animals with spears.',use:{'stone weapons':1},req:{'spears':true}},
-			'bow hunting':{name:'Bow hunting',icon:[6,9],desc:'Hunt animals with bows.',use:{'bow':1},req:{'bows':true}},
-			'crossbow hunting':{name:'Crossbow hunting',icon:[13,6,'magixmod'],desc:'Hunt animals with crossbows.',req:{'Hunting II':true},use:{'Crossbow':1,'Crossbow belt':150}},
+			'endurance hunting':{name:'Endurance hunting',icon:[0,6],desc:'Hunt animals by simply running after them until they get exhausted.//Slow and tedious.',req:{'Hunters & fishers unification':false}},
+			'spear hunting':{name:'Spear hunting',icon:[5,9],desc:'Hunt animals with spears.',use:{'stone weapons':1},req:{'spears':true,'Hunters & fishers unification':false}},
+			'bow hunting':{name:'Bow hunting',icon:[6,9],desc:'Hunt animals with bows.',use:{'bow':1},req:{'bows':true,'Hunters & fishers unification':false}},
+			'crossbow hunting':{name:'Crossbow hunting',icon:[13,6,'magixmod'],desc:'Hunt animals with crossbows.',req:{'Hunting II':true,'Hunters & fishers unification':false},use:{'Crossbow':1,'Crossbow belt':150}},
+			'disabled':{name:'Disabled',icon:[1,0,'magixmod'],desc:'Unit disabled by [Hunters & fishers unification] .',req:{'Hunters & fishers unification':true}},
 		},
 		effects:[
 			{type:'gather',context:'hunt',amount:1,max:5,mode:'endurance hunting'},
@@ -4980,10 +4981,11 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		gizmos:true,
 		modes:{
-			'catch by hand':{name:'Catch by hand',icon:[0,6],desc:'Catch fish with nothing but bare hands.//Slow and tedious.'},
-			'spear fishing':{name:'Spear fishing',icon:[5,9],desc:'Catch fish with spears.',use:{'stone weapons':1},req:{'spears':true}},
-			'line fishing':{name:'Line fishing',icon:[7,21,'magixmod'],desc:'Catch fish with fishing poles.',use:{'stone tools':1},req:{'fishing hooks':true}},
-			'net fishing':{name:'Net fishing',icon:[13,8,'magixmod'], desc:'Catch fish with [Fishing net].',req:{'Fishing II':true},use:{'Fishing net':1}},
+			'catch by hand':{name:'Catch by hand',icon:[0,6],desc:'Catch fish with nothing but bare hands.//Slow and tedious.',req:{'Hunters & fishers unification':false}},
+			'spear fishing':{name:'Spear fishing',icon:[5,9],desc:'Catch fish with spears.',use:{'stone weapons':1},req:{'spears':true,'Hunters & fishers unification':false}},
+			'line fishing':{name:'Line fishing',icon:[7,21,'magixmod'],desc:'Catch fish with fishing poles.',use:{'stone tools':1},req:{'fishing hooks':true,'Hunters & fishers unification':false}},
+			'net fishing':{name:'Net fishing',icon:[13,8,'magixmod'], desc:'Catch fish with [Fishing net].',req:{'Fishing II':true,'Hunters & fishers unification':false},use:{'Fishing net':1}},
+			'disabled':{name:'Disabled',icon:[1,0,'magixmod'],desc:'Unit disabled by [Hunters & fishers unification] .',req:{'Hunters & fishers unification':true}},
 		},
 		effects:[
 			{type:'gather',context:'fish',amount:1,max:5,mode:'catch by hand'},
