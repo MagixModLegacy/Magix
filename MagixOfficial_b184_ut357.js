@@ -1968,6 +1968,11 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.0001;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			if(G.has('Liberating darkness')){
+				if(me.amount < G.getRes('dark essence limit').amount){
+					G.gain(me.name,20,'The Skull');
+				}
+			}
 		},
 		whenGathered:researchWhenGathered,
 		limit:'dark essence limit',
