@@ -3508,6 +3508,9 @@ if (!document.getElementById(cssId))
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkMortality),'drunk');G.gain('corpse',n,'alcohol sickness');changed+=n;
 			G.getRes('died this year').amount+=changed;
 			if (changed>0) G.Message({type:'bad',mergeId:'diedDrunk',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from alcohol sickness.';},args:{n:changed},icon:[5,4]});
+			if (G.has('Beer recipe')){ //Spawning rate from Beer recipe trait
+ 		   var n = G.getRes('adult').amount * 0.000015
+  		  G.gain('drunk',n,'Beer');
 		},
 		category:'demog',
 	});
