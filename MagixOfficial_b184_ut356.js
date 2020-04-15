@@ -3511,6 +3511,7 @@ if (!document.getElementById(cssId))
 			if (G.has('Beer recipe')){ //Spawning rate from Beer recipe trait
  		   var n = G.getRes('adult').amount * 0.000015
   		  G.gain('drunk',n,'Beer');
+			}
 		},
 		category:'demog',
 	});
