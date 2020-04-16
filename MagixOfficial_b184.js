@@ -496,13 +496,25 @@ if (!document.getElementById(cssId))
 				//policy ticks
 				if (tick%50==0)
 				{
-					var rituals=['fertility rituals','harvest rituals','flower rituals','wisdom rituals'];
-					for (var i in rituals)
-					{
-						if (G.checkPolicy(rituals[i])=='on')
+					if (G.hasNot('Policy revaluation')){
+						var rituals=['fertility rituals','harvest rituals','flower rituals','wisdom rituals'];
+						for (var i in rituals)
 						{
-							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('faith',1,'rituals');
+							if (G.checkPolicy(rituals[i])=='on')
+							{
+								if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+								else G.lose('faith',1,'rituals');
+							}
+						}
+					}else{
+						var rituals=['fertility rituals','harvest rituals'];
+						for (var i in rituals)
+						{
+							if (G.checkPolicy(rituals[i])=='on')
+							{
+								if (G.getRes('faith II').amount<=0) G.setPolicyModeByName(rituals[i],'off');
+								else G.lose('faith II',0.1,'rituals');
+							}
 						}
 					}
 					var rituals=['harvest rituals for flowers'];
@@ -510,10 +522,21 @@ if (!document.getElementById(cssId))
 					{
 						if (G.checkPolicy(rituals[i])=='on')
 						{
-							if (G.getRes('faith').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('faith',1,'rituals');
-							if (G.getRes('influence').amount<=0) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('influence',1,'rituals');
+							if (G.hasNot('Policy revaluation')){
+								if ((G.getRes('faith').amount<=0) || (G.getRes('influence').amount<=0)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith',1,'rituals')
+								G.lose('influence',1,'rituals')
+								}
+							}else{
+								if ((G.getRes('faith II').amount<=0) || (G.getRes('influence II').amount<=0)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith II',0.1,'rituals')
+								G.lose('influence II',0.05,'rituals')
+								}
+							}
 						}
 					}
 					var rituals=['Crafting & farm rituals'];
@@ -521,8 +544,21 @@ if (!document.getElementById(cssId))
 					{
 						if (G.checkPolicy(rituals[i])=='on')
 						{
-							if (G.getRes('faith').amount<=14) G.setPolicyModeByName(rituals[i],'off');
-							else G.lose('faith',15,'rituals');
+							if (G.hasNot('Policy revaluation')){
+								if ((G.getRes('faith').amount<=0) || (G.getRes('influence').amount<=0)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith',15,'rituals')
+								G.lose('influence',15,'rituals')
+								}
+							}else{
+								if ((G.getRes('faith II').amount<=0) || (G.getRes('influence II').amount<=0)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith II',0.1,'rituals')
+								G.lose('influence II',0.05,'rituals')
+								}
+							}
 						}
 					}
 					if (G.has('ritualism II'))
@@ -874,7 +910,7 @@ if (!document.getElementById(cssId))
 				graves.used-=toExhume;
 				G.gain('corpse',toExhume,'not enough burial spots');
 			}
-			
+			//Normally
 			var toSpoil=me.amount*0.001;
 			var spent=G.lose('corpse',randomFloor(toSpoil),'decay');
 			
@@ -883,7 +919,12 @@ if (!document.getElementById(cssId))
 			if (G.has('belief in revenants')) unhappiness*=2;
 			G.gain('happiness',-me.amount*unhappiness,'corpses');
 			G.gain('health',-me.amount*0.02,'corpses');
-		},
+			//Corpse decay trait: Normal decay still works and each dark wormhole can increase rate of corpses that will get decayed(?)
+			if(G.has('Corpse decay')){
+			var toSpoil=me.amount*0.002*(G.getRes('corpsedecaypoint').amount);
+			var spent=G.lose('corpse',randomFloor(toSpoil),'Dark wormhole\' ability(Corpse decay)');
+			}
+		},	
 	});
 	new G.Res({
 		name:'burial spot',
@@ -1927,6 +1968,11 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.0001;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			if(G.has('Liberating darkness')){
+				if(me.amount < G.getRes('dark essence limit').amount){
+					G.gain(me.name,20,'The Skull');
+				}
+			}
 		},
 		whenGathered:researchWhenGathered,
 		limit:'dark essence limit',
@@ -3041,6 +3087,20 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
+			if (G.checkPolicy('Theme changer')=='indigo'){
+		var cssId = 'indigothemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/IndigoTheme/indigotheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
 		},
 		category:'alchemypotions',
 	});
@@ -3453,6 +3513,10 @@ if (!document.getElementById(cssId))
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkMortality),'drunk');G.gain('corpse',n,'alcohol sickness');changed+=n;
 			G.getRes('died this year').amount+=changed;
 			if (changed>0) G.Message({type:'bad',mergeId:'diedDrunk',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from alcohol sickness.';},args:{n:changed},icon:[5,4]});
+			if (G.has('Beer recipe')){ //Spawning rate from Beer recipe trait
+ 		   var n = G.getRes('adult').amount * 0.000015
+  		  G.gain('drunk',n,'Beer');
+			}
 		},
 		category:'demog',
 	});
@@ -3470,7 +3534,6 @@ if (!document.getElementById(cssId))
 		},
 		category:'demog',
 	});
-		let easter = false
 		let madeThievesWarn = false
 		new G.Res({
 		name:'wounded alchemist',
@@ -3481,10 +3544,6 @@ if (!document.getElementById(cssId))
 				if (G.year>=89 && G.year<=101 && !madeThievesWarn){
        				 G.Message({type:'bad',text:'<b><span style="color: #FFA500">Beware of thievery!</span></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <span style "color= aqua">Happiness</span> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
 				madeThievesWarn = true
-				}
-				if (G.year>=1 && !easter){
-       				 G.middleText('- Happy Easter! -')
-				easter = true
 				}
 		},
 		icon:[21,2,'magixmod'],
@@ -3555,6 +3614,41 @@ if (!document.getElementById(cssId))
 		icon:[11,7,'magixmod'],
 		partOf:'misc materials',
 		meta:true,
+		tick:function(me,tick){
+  const thieves = G.getDict("thief")//I slide in thieves stealing ability ;)
+  const chances = [
+    {
+      type: "steal",
+      below: 0.6
+    },
+    {
+      type: "hurt",
+      below: 0.9
+    },
+    {
+      type: "nothing",
+      below: 1
+    }
+  ]
+  const chance = Math.random()
+  let action
+  //Find what to do
+  for(let i = 0; !action; i++){
+    if(chance < chances[i].below)
+      action = chances[i].type
+  }
+  //Execute
+    switch(action){
+      case "steal":
+        G.lose("archaic building materials", thieves.amount, "stolen")
+	G.lose("basic building materials", thieves.amount*0.1, "stolen")
+        break
+      case "hurt":
+        G.lose("adult", thieves.amount*0.75, "thieves hurting people")
+        G.gain("wounded", thieves.amount*0.75, "thieves hurting people")
+        break
+  }
+},
 		visible:false,
 	});//1
 		new G.Res({
@@ -4347,9 +4441,13 @@ if (!document.getElementById(cssId))
 			G.achievByName['Lucky 9'].won = 1
 			G.middleText('- Completed <font color="red">Lucky 9</font> achievement -')
 			}
-			if(G.techN >= 150 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
+			if(G.techN >= 100 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
 			G.achievByName['Apprentice'].won = 1
 			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
+			}
+			if(G.techN >= 200 && G.achievByName['Familiar'].won == 0){ //Apprentice achievement
+			G.achievByName['Familiar'].won = 1
+			G.middleText('- Completed <font color="lime">Familiar</font> achievement -')
 			}
 			if(G.traitN >= 30 && G.achievByName['Traitsman'].won == 0){ //Traitsman achievement
 			G.achievByName['Traitsman'].won = 1
@@ -4366,12 +4464,13 @@ if (!document.getElementById(cssId))
 			G.getDict('mud shelter').use = {'land':0.9}
 			G.getDict('branch shelter').use = {'land':0.9}
 			G.getDict('Brick house with a silo').use = {'land':0.9}
+			G.getDict('bamboo hut').use = {'land':0.9}
 			}
 			if(G.achievByName['mausoleum'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.achievByName['Metropoly'].won >= 1 && G.achievByName['Apprentice'].won >= 1 && G.achievByName['Experienced'].won == 0){ //Experienced
 			G.achievByName['Experienced'].won = 1
 			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>')
 			}
-			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0){ //Experienced
+			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0 && G.achievByName['Familiar'].won == 1){ //Experienced
 			G.achievByName['Smart'].won = 1
 			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>')
 			}
@@ -4386,6 +4485,57 @@ if (!document.getElementById(cssId))
 			G.getDict('Mediator').limitPer = {'population':4000}
 			G.getDict('clan leader').icon = [25,23,'magixmod']
 			}
+			if(G.has('Policy revaluation')){
+				G.getDict('food rations').cost = {'influence II':3}
+				G.getDict('water rations').cost = {'influence II':3}
+				G.getDict('eat spoiled food').cost = {'influence II':2}
+				G.getDict('drink muddy water').cost = {'influence II':2}
+				G.getDict('insects as food').cost = {'influence II':2}
+				G.getDict('eat raw meat and fish').cost = {'influence II':2}
+				G.getDict('drink spoiled juice').cost = {'influence II':4}
+				G.getDict('child workforce').cost = {'influence II':3}
+				G.getDict('drink cloudy water').cost = {'influence II':3}
+				G.getDict('elder workforce').cost = {'influence II':3}
+				G.getDict('Gather roses').cost = {'influence II':1}
+				G.getDict('Hovel of colours production rates').cost = {'influence II':5}
+				G.getDict('Hut of potters production rates').cost = {'influence II':5}
+				G.getDict('Leather factory production rates').cost = {'influence II':5}
+				G.getDict('Factory of pots production rates').cost = {'influence II':5}
+				G.getDict('population control').cost = {'influence II':5}
+				G.getDict('fertility rituals').cost = {'faith II':1}
+				G.getDict('fertility rituals').desc = 'Improves birth rate by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
+				G.getDict('harvest rituals').cost = {'faith II':1}
+				G.getDict('harvest rituals').desc = 'Improves [gatherer], [hunter] and [fisher] efficiency by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
+				G.getDict('harvest rituals for flowers').cost = {'faith II':1}
+				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
+				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
+				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
+			}
+			if(G.has('Mining strategy'))
+			{
+			G.getDict('mine').icon = [18,23,'magixmod']
+			}
+			if(G.has('Safer explosive usage'))
+			{
+			G.getDict('explosive mine').icon = [20,23,'magixmod']
+			}
+			if(G.has('Magic adept') && G.achievByName['Man of essences'].won == 0){ //Man of essences achievement
+			G.achievByName['Man of essences'].won = 1
+			G.middleText('- Completed <font color="indigo">Man of essences</font> achievement -')
+			}
+			if(G.has('Master mana-making')){
+			G.getDict('Mana maker').icon = [4,24,'magixmod']
+			}
+			if(G.has('Hunters & fishers unification'))
+			{
+			G.getDict('harvest rituals').desc = 'Improves [gatherer], efficiency by 20% and [Fishers & hunters camp] by 35%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
+			G.getDict('hunter').icon = [28,2,'magixmod',18,2]
+			G.getDict('fisher').icon = [28,2,'magixmod',17,2]
+			}
+			if(G.has('Camp-cooking'))
+			{
+			G.getDict('Fishers & hunters camp').upkeep = {'food':75,'fire pit':3}
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -4396,7 +4546,6 @@ if (!document.getElementById(cssId))
 		icon:[22,19,'magixmod'],
 		category:'main',
 	});
-	
 	new G.Res({
 		name:'influence II',
 		desc:'[influence II] is generated by power structures.//'+limitDesc('[authority II]')+'//Influence is required to enact most policies or remove traits. This is higher tier essential. <><font color="aqua">You need to know that each 500 [influence] can be converted into 1 [influence II] point.</font>',
@@ -4419,6 +4568,7 @@ if (!document.getElementById(cssId))
 		icon:[24,19,'magixmod'],
 		category:'main',
 	});
+		let RollGathererIcon = false
 		new G.Res({
 		name:'hardened clothes',
 		desc:'Sewn together from [Dried leather] and embroidered with [Thread]s .//Each [population,Person] wearing clothing is slightly happier and healthier than while wearing [basic clothes] . People wearing this clothing feel more safe. Decays slower.'+clothesInfo,
@@ -4428,6 +4578,10 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.00009;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		if(G.has('Magical presence') && !RollGathererIcon){//It was rolling an icon every tick so i slide in this code right there
+		G.getDict('gatherer').icon = [choose([9,10,11,12,13]),24,'magixmod']
+		RollGathererIcon = true
+		}
 		},
 	});
 		new G.Res({
@@ -4452,7 +4606,69 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 	});
-	
+	new G.Res({
+		name:'Blue firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky/',
+		icon:[2,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'Orange firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky.',
+		icon:[1,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		
+		new G.Res({
+		name:'Dark Blue Firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight./',		icon:[5,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'Dark Orange Firework',
+		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight.',
+		icon:[4,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'Firecracker',
+		desc:'Firecrackers are fireworks but without thread.',
+		icon:[3,0,'seasonal'],
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.009;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		category:'seasonal',
+		hidden:true,
+	});
+		new G.Res({
+		name:'corpsedecaypoint',
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -4745,18 +4961,21 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		gizmos:true,
 		modes:{
-			'endurance hunting':{name:'Endurance hunting',icon:[0,6],desc:'Hunt animals by simply running after them until they get exhausted.//Slow and tedious.'},
-			'spear hunting':{name:'Spear hunting',icon:[5,9],desc:'Hunt animals with spears.',use:{'stone weapons':1},req:{'spears':true}},
-			'bow hunting':{name:'Bow hunting',icon:[6,9],desc:'Hunt animals with bows.',use:{'bow':1},req:{'bows':true}},
-			'crossbow hunting':{name:'Crossbow hunting',icon:[13,6,'magixmod'],desc:'Hunt animals with crossbows.',req:{'Hunting II':true},use:{'Crossbow':1,'Crossbow belt':150}},
+			'endurance hunting':{name:'Endurance hunting',icon:[0,6],desc:'Hunt animals by simply running after them until they get exhausted.//Slow and tedious.',req:{'Hunters & fishers unification':false}},
+			'spear hunting':{name:'Spear hunting',icon:[5,9],desc:'Hunt animals with spears.',use:{'stone weapons':1},req:{'spears':true,'Hunters & fishers unification':false}},
+			'bow hunting':{name:'Bow hunting',icon:[6,9],desc:'Hunt animals with bows.',use:{'bow':1},req:{'bows':true,'Hunters & fishers unification':false}},
+			'crossbow hunting':{name:'Crossbow hunting',icon:[13,6,'magixmod'],desc:'Hunt animals with crossbows.',req:{'Hunting II':true,'Hunters & fishers unification':false},use:{'Crossbow':1,'Crossbow belt':150}},
+			'disabled':{name:'Disabled',icon:[1,0,'magixmod'],desc:'Unit disabled by [Hunters & fishers unification] .',req:{'Hunters & fishers unification':true}},
 		},
 		effects:[
 			{type:'gather',context:'hunt',amount:1,max:5,mode:'endurance hunting'},
 			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting'},
 			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},
 			{type:'gather',context:'hunt',amount:5,max:6,mode:'crossbow hunting'},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30},
-			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30,req:{'hunting III':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/38,req:{'hunting III':true,'An armor for Hunter':true,'Hunters & fishers unification':false}},
+			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
+			{type:'mult',value:0,req:{'Hunters & fishers unification':true}},
 		],
 		req:{'hunting':true},
 		category:'production',
@@ -4771,17 +4990,19 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		gizmos:true,
 		modes:{
-			'catch by hand':{name:'Catch by hand',icon:[0,6],desc:'Catch fish with nothing but bare hands.//Slow and tedious.'},
-			'spear fishing':{name:'Spear fishing',icon:[5,9],desc:'Catch fish with spears.',use:{'stone weapons':1},req:{'spears':true}},
-			'line fishing':{name:'Line fishing',icon:[7,21,'magixmod'],desc:'Catch fish with fishing poles.',use:{'stone tools':1},req:{'fishing hooks':true}},
-			'net fishing':{name:'Net fishing',icon:[13,8,'magixmod'], desc:'Catch fish with [Fishing net].',req:{'Fishing II':true},use:{'Fishing net':1}},
+			'catch by hand':{name:'Catch by hand',icon:[0,6],desc:'Catch fish with nothing but bare hands.//Slow and tedious.',req:{'Hunters & fishers unification':false}},
+			'spear fishing':{name:'Spear fishing',icon:[5,9],desc:'Catch fish with spears.',use:{'stone weapons':1},req:{'spears':true,'Hunters & fishers unification':false}},
+			'line fishing':{name:'Line fishing',icon:[7,21,'magixmod'],desc:'Catch fish with fishing poles.',use:{'stone tools':1},req:{'fishing hooks':true,'Hunters & fishers unification':false}},
+			'net fishing':{name:'Net fishing',icon:[13,8,'magixmod'], desc:'Catch fish with [Fishing net].',req:{'Fishing II':true,'Hunters & fishers unification':false},use:{'Fishing net':1}},
+			'disabled':{name:'Disabled',icon:[1,0,'magixmod'],desc:'Unit disabled by [Hunters & fishers unification] .',req:{'Hunters & fishers unification':true}},
 		},
 		effects:[
 			{type:'gather',context:'fish',amount:1,max:5,mode:'catch by hand'},
 			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
 			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
 			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'net fishing'},
-			{type:'mult',value:1.2,req:{'harvest rituals':'on'}}
+			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
+			{type:'mult',value:0,req:{'Hunters & fishers unification':true}},
 		],
 		req:{'fishing':true},
 		category:'production',
@@ -4960,7 +5181,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'nickel'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50}
+			{type:'mult',value:1.05,req:{'Mining strategy':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Mining strategy':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}}
 		],
 		gizmos:true,
 		req:{'mining':true},
@@ -5256,6 +5479,7 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'housing':10}},
 			{type:'provide',what:{'housing':0.125},req:{'Better house construction':true}},
 			{type:'gather',what:{'Berries':1},req:{'Next-to house berrybushes':true}},
+			{type:'gather',what:{'Berries':0.2},req:{'Fertile bushes':true}},
 			{type:'waste',chance:0.01/1000}
 		],
 		req:{'construction':true},
@@ -5699,6 +5923,7 @@ new G.Unit({
 			{type:'convert',from:{'Cloudy water':37},into:{'water':28,'cloud':2},every:1},
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
 			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+			{type:'mult',value:2,req:{'Supreme cloudy fast filtering':true}},
 		],
 	});
 		new G.Unit({
@@ -5714,6 +5939,7 @@ new G.Unit({
 			{type:'convert',from:{'Cloudy water':15},into:{'water':14,'cloud':1},every:1},
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
 			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+			{type:'mult',value:2,req:{'Supreme cloudy fast filtering':true}},
 		],
 	});
 		new G.Unit({
@@ -5731,6 +5957,7 @@ new G.Unit({
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
 			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
 			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+			{type:'mult',value:2,req:{'Supreme fast filtering':true}},
 		],
 	});
 		new G.Unit({
@@ -5747,6 +5974,7 @@ new G.Unit({
 			{type:'mult',value:1.75,req:{'Filtering with better quality':true}},
 			{type:'mult',value:1.75,req:{'Non-magical filters improvement':true}},
 			{type:'mult',value:1.75,req:{'Magical filtering way':true}},
+			{type:'mult',value:2,req:{'Supreme fast filtering':true}},
 		],
 	});
 		new G.Unit({
@@ -5949,7 +6177,9 @@ new G.Unit({
 		},
 		effects:[
 			{type:'gather',context:'mine',amount:28,max:64,mode:'on'},
-			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:7/50}
+			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:7/50,req:{'Safer explosive usage':false}},
+			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:6/51.5,req:{'Safer explosive usage':true}},
+			{type:'mult',value:1.05,req:{'Safer explosive usage':true}}
 		],
 		gizmos:true,
 		req:{'mining':true,'Intelligent blasting':true},
@@ -6353,6 +6583,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Fire essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 		],
 		req:{'construction':true,'Wizard towers':true,'Wizard wisdom':true,'Well of Mana':true},
 		category:'housing',
@@ -6418,6 +6649,7 @@ new G.Unit({
 		//require:{'wizard':3},
 		effects:[
 			{type:'gather',what:{'Mana':20}},
+			{type:'mult',value:4,req:{'Master mana-making':true}},
         ],
 		category:'discovery',
 		limitPer:{'population':4000},
@@ -6432,6 +6664,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Water essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		req:{'construction':true,'Wizard towers':true,'Wizard wisdom':true,'Well of Mana':true},
 		category:'housing',
@@ -6449,6 +6682,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Dark essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -6464,6 +6698,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Nature essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -6479,7 +6714,8 @@ new G.Unit({
 		//require:{'wizard':3},
 		effects:[
 			{type:'provide',what:{'housing':33}},
-			{type:'gather',what:{'Lightning essence':2}}
+			{type:'gather',what:{'Lightning essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -6512,6 +6748,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Wind essence':2}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -6528,6 +6765,7 @@ new G.Unit({
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Essence of the Holiness':2.15}},
+			{type:'mult',value:1.05,req:{'Magical presence':true}}
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -6867,6 +7105,7 @@ new G.Unit({
 			{type:'convert',from:{'Potion pot':1,'water':0.75,'muddy water':0.05,'herb':0.1},into:{'mundane water pot':1},every:4,mode:'mundanewater'},
 			{type:'convert',from:{'Potion pot':1,'water':0.8,'salt':0.2,'herb':0.1},into:{'salted water pot':1},every:4,mode:'saltwater'},
 			{type:'convert',from:{'Potion pot':1,'water':0.8,'salt':0.02,'fire pit':0.12},into:{'Bubbling water pot':1},every:4,mode:'bubblingwater'},
+			{type:'mult',value:3,req:{'Science blessing':true}},
 		],
 		category:'alchemy',
 	});
@@ -6879,6 +7118,7 @@ new G.Unit({
 		use:{'Alchemy zone':0.5,'Alchemist':1},
 		effects:[
 			{type:'convert',from:{'mundane water pot':0.75,'water':0.2,'Bubbling water pot':0.25},into:{'Alcohol pot':1},every:4},
+			{type:'mult',value:3,req:{'Science blessing':true}},
 		],
 		category:'alchemy',
 	});
@@ -6914,6 +7154,7 @@ new G.Unit({
 		effects:[
 			{type:'convert',from:{'Alcohol pot':0.1,'water':0.7,'mundane water pot':0.15,'fruit':0.6,'Sweet water pot':0.25},into:{'Wine':1},every:4,mode:'wine'},
 			{type:'convert',from:{'Alcohol pot':0.5,'mundane water pot':0.3,'Bubbling water pot':0.05,'water':0.15},into:{'Pot of vodka':1},every:5,mode:'vodka'},
+			{type:'mult',value:3,req:{'Science blessing':true}},
 		],
 		category:'alchemy',
 	});
@@ -6980,13 +7221,8 @@ new G.Unit({
 		use:{'worker':1},
 		category:'production',
 		effects:[
-			{type:'gather',context:'gather',what:{'cactus':1,'Pink tulip':1,'Salvia':1},amount:1,max:3},
-			{type:'gather',context:'gather',what:{'Lime rose':1,'Pink rose':1,'Gray rose':1,'Cyan rose':1,'Desert rose':1},amount:1,max:3,req:{'plant lore':true,'Gather roses':'on'}},
-			{type:'gather',context:'gather',what:{'Green Zinnia':1,'Sunflower':1},amount:1,max:1,req:{'plant lore':true}},
-			{type:'gather',context:'gather',what:{'Lavender':1},amount:1,max:2,req:{'plant lore':true}},
-			{type:'gather',context:'gather',what:{'Brown flower':1},amount:1,max:1,req:{'plant lore':true}},
-			{type:'gather',context:'gather',what:{'Daisy':1},amount:1,max:1,req:{'plant lore':true}},
-			{type:'gather',context:'gather',what:{'Bachelor\'s button':1,'Black lily':1},amount:1,max:1,req:{'plant lore':true}},	
+		
+			{type:'gather',context:'flowers',amount:0.4,max:1.4},
 			{type:'mult',value:1.05,req:{'harvest rituals for flowers':'on'}},
 			{type:'convert',from:{'Paper':12,'Ink':3},into:{'Florist\'s notes':1},every:11,req:{'Notewriting':true},chance:1/95},
 		],
@@ -7130,7 +7366,7 @@ new G.Unit({
 	});
 			new G.Unit({
 		name:'Essential conversion tank',
-		desc:'@A tank that converts 500 [insight],[culture],[faith] and [influence] into their respective second tiers.. <>You can specify which essential the Tank will convert by using modes for this unit.',
+		desc:'@A tank that converts 500 [insight],[culture],[faith] and [influence] into their respective second tiers.. <>You can specify which essential the Tank will convert by using modes for this unit. Can only cause convertion when you have more than 600 of an [insight,Essential] .',
 		icon:[26,19,'magixmod'],
 		cost:{'glass':500,'basic building materials':150},
 		req:{'Eotm':true},
@@ -7146,16 +7382,16 @@ new G.Unit({
 			'influence':{name:'Influence to Influence II',icon:[20,19,'magixmod'],desc:'This tank will convert each 500 [influence] into 1 [influence II] '},
 		},
 		effects:[
-			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight'},
-			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture'},
-			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith'},
-			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence'},
-			//{type:'convert',from:{'insight':500},into:{'insight II':1},every:9,mode:'insight',req:{'Essential conversion tank overclock I':true}},
-			//{type:'convert',from:{'culture':500},into:{'culture II':1},every:9,mode:'culture',req:{'Essential conversion tank overclock I':true}},
-			//{type:'convert',from:{'faith':500},into:{'faith II':1},every:9,mode:'faith',req:{'Essential conversion tank overclock I':true}},
-			//{type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}},
-		],
-	});
+			{type:'convert',from:{'insight':500},into:{'insight II':1},every:10,mode:'insight',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'culture':500},into:{'culture II':1},every:10,mode:'culture',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'faith':500},into:{'faith II':1},every:10,mode:'faith',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'influence':500},into:{'influence II':1},every:10,mode:'influence',req:{'Essential conversion tank overclock I':false}},
+			{type:'convert',from:{'insight':500},into:{'insight II':1},every:9,mode:'insight',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'culture':500},into:{'culture II':1},every:9,mode:'culture',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'faith':500},into:{'faith II':1},every:9,mode:'faith',req:{'Essential conversion tank overclock I':true}},
+			{type:'convert',from:{'influence':500},into:{'influence II':1},every:9,mode:'influence',req:{'Essential conversion tank overclock I':true}},
+		]
+		});
 		new G.Unit({
 		name:'Farm of smokers',
 		desc:'Smoker\'s "skin" and seeds he throws out while releasing another bunch of smoke into the sky. From this farm your people can gather [Fire essence] . ',
@@ -7168,6 +7404,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Fire essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7182,6 +7419,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Wind essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7196,6 +7434,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Essence of the Holiness':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7210,6 +7449,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Water essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7224,6 +7464,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Dark essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7238,6 +7479,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Nature essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7252,6 +7494,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'Lightning essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
+			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7319,6 +7562,40 @@ new G.Unit({
 		],
 		req:{'oral tradition':true,'Music instruments':true},
 		category:'cultural',
+	});
+		new G.Unit({
+		name:'Fishers & hunters camp',
+		desc:'@An camp where [hunter]s and [fisher]s come.  //There they train and learn to be better at their job. //One [Fishers & hunters camp] can associate up to 800 [worker]s divided into 400 [hunter]s and 400 [fisher]s. //[hunter]s that work at this camp has very low chance for being a victim of an accident. //It may be more expensive but it can gather you a lot of [food] .',
+		icon:[5,23,'magixmod'],
+		wideIcon:[3,23,'magixmod'],
+		cost:{'basic building materials':4850,'food':2500,'Paper':3000},
+		use:{'worker':800,'Instructor':50,'land':40,'armor set':400,'Fishing net':400,'metal weapons':400,'stone weapons':200,'Crossbow':400,'Crossbow belt':60000,'bow':500},
+		upkeep:{'food':75,'fire pit':2},
+		limitPer:{'population':40000,'land':2500},
+		effects:[
+			{type:'gather',context:'fish',amount:1433,max:2111},
+			{type:'gather',context:'hunt',amount:1433,max:2111},
+			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
+			{type:'mult',value:1.35,req:{'harvest rituals':'on'}},
+			{type:'convert',from:{'meat':4,'seafood':3},into:{'cooked meat':4,'seafood':3},every:2,req:{'Camp-cooking':true}},
+		],
+		req:{'Hunters & fishers unification':true},
+		category:'production',
+	});
+		new G.Unit({
+    		name:'Dark wormhole',
+    		desc:'A wormhole built in the depths of the Underworld where darkness is everywhere. The wormhole provides over 20M[burial spot] but requires upkeep. It just looks cheap. Furthermore the [Dark wormhole] may get new abilities.',
+    		icon:[13,22,'magixmod'],
+    		cost:{'gem block':4,'precious building materials':5e3},
+    		effects:[
+    			{type:'provide',what:{'burial spot':2.4e7}},
+			{type:'provide',what:{'corpsedecaypoint':1}},
+    		],
+		upkeep:{'Dark essence':30,'Mana':90,'Magic essences':1},
+    		use:{'Land of the Underworld':10,'worker':5,'Instructor':3},
+    		req:{'Burial wormhole 2/2':true},
+    		limitPer:{'land':3000,'population':50000},
+    		category:'civil',
 	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
@@ -7470,7 +7747,72 @@ new G.Unit({
 		category:'dimensions',
 		req:{'A feeling from the Underworld':false,'Third passage to new world':true}
 	});
-	
+	  	new G.Unit({
+		name:'Fortress of magicians',
+		displayName:'<font color="yellow">Fortress of magicians</font>',
+		desc:'Leads to <b>Magical victory</b> //A wonder that represents wisdom and power of your [Wizard]s and whole [Magic essences,Magic]. //Built at tall mountain, filled wih magic in one word it is essenced.',
+		wonder:'Magical',
+		icon:[10,22,'magixmod'],
+		wideIcon:[9,22,'magixmod'],
+		cost:{'basic building materials':1500},
+		costPerStep:{'Mana':25000,'Magic essences':500,'precious building materials':100,'basic building materials':1000,'concrete':5,'strong metal ingot':75},
+		steps:200,
+		messageOnStart:'Your people who worships magic , wizardry and believe in power of the essences started building a wonder that will be related to the believements. <br>Will magic award your and your people\'s hard work?',
+		finalStepCost:{'population':500,'Fire essence':5e4,'Lightning essence':5e4,'Dark essence':5e4,'Wind essence':5e4,'Nature essence':5e4,'Water essence':5e4,'Essence of the Holiness':5e4},
+		finalStepDesc:'To complete this step a 50k [Fire essence,F.e.] , [Dark essence,D.e.] , [Nature essence,N.e] , [Lightning essence,L.e.] and other [Magic essences,Essences] must be sacrificed and many other resources in order to make magic being cultivated for long time.',
+		use:{'land':15},
+		category:'wonder',
+		req:{'Magic adept':true}
+	});
+	//Seasonal content units
+	new G.Unit({
+		name:'Artisan of new year',
+		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] to finish it up.',
+		icon:[19,0,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'Thread':0.30,'Paper':0.3},
+		effects:[
+			{type:'gather',what:{'Blue firework':1.25}},
+			{type:'gather',what:{'Orange firework':1.25}},
+			{type:'gather',what:{'Firecracker':1}}
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+		//limitPer:{'land':40},
+	});
+		new G.Unit({
+		name:'Artisan of new year (dark)',
+		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
+		icon:[19,0,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
+		effects:[
+			{type:'gather',what:{'Dark Blue Firework':1.25}},
+			{type:'gather',what:{'Dark Orange Firework':1.25}},
+			{type:'gather',what:{'Firecracker':1}}
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+		//limitPer:{'land':40},
+	});
+new G.Unit({
+		name:'Firework launching guy',
+		desc:'There the guy launches fireworks right up into the sky. Generates happiness by itself and for every firework bunch launched up into the sky.',
+		icon:[18,0,'seasonal'],
+		cost:{'food':10},
+		use:{'worker':1,'land':1},
+		effects:[
+			{type:'convert',from:{'Orange firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Blue firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
+			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
+		],
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		category:'seasonal',
+		//limitPer:{'land':40},
+	});
 	
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -7638,7 +7980,7 @@ new G.Unit({
 		tier:0,
 		icon:[23,21,'magixmod'],
 		name:'Apprentice',
-		desc:'Get 150 or more technologies in a single run.',
+		desc:'Get 100 or more technologies in a single run.',
 	});
 		new G.Achiev({
 		tier:1,
@@ -7683,11 +8025,38 @@ new G.Unit({
 		tier:1,
 		icon:[29,22,'magixmod'],
 		name:'Smart',
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
 		effects:[
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:10}
 		],
+	});
+		new G.Achiev({
+		tier:2,
+		icon:[12,22,'magixmod'],
+		name:'Man of essences',
+		desc:'Obtain [Magic adept] trait. Manage to get 1M [Magic essences]. //Obtaining it may unlock a new wonder.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:40},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		name:'Magical',
+		wideIcon:[9,22,'magixmod'],
+		icon:[10,22,'magixmod'],
+		desc:'<b>You decided to sacrifice yourself for magic.</br>You decided that putting yourself at coffin that there was lying will attract some glory.</br>You were right</b> //This achievement will: @Unlock you a new theme @Increase effect of <b>Wizard towers</b> by 5% without increasing their upkeep cost. //This achievement will unlock you way further technologies such like [hunting III] or [fishing III] .',
+		fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:15},
+		],
+	});
+			new G.Achiev({
+		icon:[16,24,'magixmod'],
+		tier:1,
+		name:'Familiar',
+		desc:'Get 200 or more technologies in a single run.',
 	});
 	/*=====================================================================================
 	TECHS
@@ -9955,7 +10324,10 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
         icon:[4,12,'magixmod',1,14],
         cost:{},
-        req:{'tribalism':false}
+        req:{'tribalism':false},
+	effects:[
+			{type:'show context',what:['flowers']},
+		],
     });
 function checkMagic() {
   if (G.achievByName['mausoleum'].won) {
@@ -10267,7 +10639,7 @@ G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
 })
 	let Smartrait =  	new G.Trait({
         name:'<font color="orange">Smaller but efficient</font>',
-        desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
+        desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
         icon:[28,23,'magixmod'],
         cost:{},
 	effects:[
@@ -10313,12 +10685,280 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	});
 		new G.Tech({
 		name:'Essential conversion tank overclock I',
-		desc:'@[Essential conversion tank] can convert essentials 10% more often. People overclock these tanks. //Note: This technology is causing bug with rituals making \'em auto disable even when you have enough faith to keep them. This tech doesn\'t do anything and will be replaced with other one at next update.',
+		desc:'@[Essential conversion tank] can convert essentials 10% more often. People overclock these tanks. //Note: This technology is causing bug with rituals making \'em auto disable even when you have enough faith to keep them. This tech doesn\'t do anything and will be replaced with other one at next update',
 		icon:[6,22,'magixmod'], 
 		cost:{'insight II':80,'insight':344},
 		req:{'Maths(upper-intermediate)':true,'God\'s trait #6 Fertile essences farms':true,'monument-building':true,'construction':true}
 	});
-
+			new G.Trait({
+		name:'Policy revaluation',
+		desc:'All policies since now cost with [influence II] instead of [influence] . Required for future technologies and to keep people listening to you. </b> But... <b>all</b> rituals now costs and require [faith II] . @But don\'t worry. They won\'t consume that much like [wisdom rituals] or [flower rituals] .',
+		icon:[1,23,'magixmod'],
+		cost:{'insight II':15,'culture II':15,'influence II':5},
+		chance:45,
+		req:{'code of law II':true,'ritualism II':true,'symbolism II':true,'Glory':true},
+	});
+		new G.Tech({
+		name:'Mining strategy',
+		desc:'Decreases accident rate at [mine] . @Increases efficiency of [mine] by 5%. @Applies visual change to [mine] icon.',
+		icon:[17,23,'magixmod'], 
+		cost:{'insight II':50,'science':2,'insight':204},
+		req:{'Policy revaluation':true,'<font color="maroon">Moderation</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Caretaking</font>':false,'Improved furnace construction':true,'symbolism':true}
+	});
+		new G.Tech({
+		name:'Safer explosive usage',
+		desc:'Decreases accident rate at [explosive mine] by 3%. @Increases efficiency of [explosive mine] by 5%. @Applies visual change to [explosive mine] icon.',
+		icon:[19,23,'magixmod'], 
+		cost:{'insight II':50,'science':2,'insight':204},
+		req:{'Policy revaluation':true,'<font color="maroon">Caretaking</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Moderation</font>':false,'Improved furnace construction':true,'symbolism':true}
+	});
+		new G.Tech({
+		name:'Nutritious magical soil',
+		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] .',
+		icon:[21,23,'magixmod'], 
+		cost:{'insight II':45,'culture II':15,'faith II':3,'influence II':2,'Mana':1365,'science':2},
+		req:{'Policy revaluation':true,'Magical soil':true}
+	});
+		new G.Trait({
+		name:'Magic adept',
+		desc:'May unlock a new wonder. This trait is a reward for getting over 1 million of [Magic essences] . //Good job :)',
+		icon:[12,22,'magixmod'],
+		cost:{'Magic essences':1e6},
+		chance:45,
+		req:{'Eotm':true},
+		category:'main'
+	});
+		new G.Tech({
+		name:'Master mana-making',
+		desc:'[Mana maker] works 4x as efficient due to new technologies of crafting mana the smart people created for them. @Applies visual change to [Mana maker] .',
+		icon:[3,24,'magixmod'], 
+		cost:{'insight II':90,'culture II':15},
+		req:{'Policy revaluation':true,'Magical soil':true}
+	});
+	let MagicalAchiev =  new G.Tech({
+        name:'Magical presence',
+	displayName:'<font color="silver">Magical presence</font>',
+        desc:'You feel some weird stuff inside of your body. Sometime it is warm, sometime makes you feel weird but later you don\'t feel any weird things that this presence has made. @Increases efficiency of all [Water wizard tower,Wizard towers] by 5% without increasing [Mana] upkeep. @Unlocks you new theme (check [Theme changer]).',
+        icon:[4,12,'magixmod',2,24,'magixmod'],
+        cost:{},
+	effects:[
+	],	
+        req:{'tribalism':false}
+    });
+function checkMagicalAchiev() {
+  if (G.achievByName['Magical'].won) {
+    if (G.achievByName['Magical'].won >= 0 && G.hasNot('Magical presence')){
+      G.gainTech(MagicalAchiev)
+    }
+}
+}
+checkMagicalAchiev()
+const oldNewGameMagical = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameMagical, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkMagicalAchiev()
+  }
+})
+		new G.Tech({
+		name:'hunting III',
+		desc:'@[hunter]s become more coordinated. This tech decreases amount of accidents where a victim becomes [hunter] .',
+		icon:[8,22,'magixmod'],
+		cost:{'insight II':65,'science':2,'influence II':3,'insight':25},
+		req:{'Policy revaluation':true,'Magical presence':true,'Fishing II':true},
+	});
+		new G.Tech({
+		name:'fishing III',
+		desc:'This tech may unlock something that truly will make [fisher] become better.',
+		icon:[7,22,'magixmod'],
+		cost:{'insight II':65,'science':3,'culture II':2,'insight':15},
+		req:{'Policy revaluation':true,'Magical presence':true,'hunting III':true},
+	});
+		new G.Tech({
+		name:'Hunter\'s coordination',
+		desc:'@Decreases value of [hunter]s accidents even more. Requires small amount of food as an upkeep. @Increases [wisdom II] by 10.',
+		icon:[6,23,'magixmod'],
+		cost:{'insight II':80,'science':5},
+		req:{'hunting III':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			]
+	});
+		new G.Tech({
+		name:'An armor for Hunter',
+		desc:'@Let the [hunter] have an armor!. //In fact this tech just leads to more advanced improvements for [hunter] .',
+		icon:[14,24,'magixmod'],
+		cost:{'insight II':80,'science':5},
+		req:{'hunting III':true},
+	});
+		new G.Tech({
+		name:'Fisher\'s smartness',
+		desc:'[fisher]s is twice as efficient but as an upkeep he requires some food. //Fisher knows how to lure different types of fishes.',
+		icon:[0,23,'magixmod'],
+		cost:{'insight II':45,'science':5},
+		req:{'fishing III':true},
+	});
+			new G.Tech({
+		name:'Hunters & fishers unification',
+		desc:'Merges [fisher] and [hunter] into one unit. //[hunter]s accident rate is decreased even more but hired [hunter]s require an [armor set] . //<font color="fuschia">Note: Obtaining this tech will merge powers of [hunter] and [fisher] into one unit. Merged units become useless (they icon gets slashed) and will gather no longer. Only new unit caused by merging will do that what they were doing before. New unit becomes much more expensive and limited but it is much more efficient.</font>',
+		icon:[2,23,'magixmod'],
+		cost:{'insight II':55,'science':5,'insight':95},
+		req:{'fishing III':true,'hunting III':true,'Fisher\'s smartness':true,'Hunter\'s coordination':true,'An armor for Hunter':true},
+		chance:15
+	});
+		new G.Trait({
+		name:'Camp-cooking',
+		desc:'Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able to cook some [cooked meat,meat] for you.',
+		icon:[15,24,'magixmod'],
+		cost:{'insight II':100},
+		req:{'Hunters & fishers unification':true},
+		chance:65,
+		category:'knowledge'
+	});
+			new G.Tech({
+		name:'Fertile bushes',
+		desc:'[house]s and their berrybushes are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :)',
+		icon:[1,24,'magixmod'],
+		cost:{'insight II':100,'culture II':20,'insight':46},
+		req:{'Hunters & fishers unification':true,'Next-to house berrybushes':true},
+	});
+		new G.Tech({
+		name:'Supreme fast filtering',
+		desc:'[Water filter]s perform conversion twice as often doubling efficiency.',
+		icon:[5,24,'magixmod'],
+		cost:{'insight II':60},
+		req:{'Hunters & fishers unification':true},
+	});
+		new G.Tech({
+		name:'Supreme cloudy fast filtering',
+		desc:'[Cloudy water filter]s perform conversion twice as often doubling efficiency.',
+		icon:[6,24,'magixmod'],
+		cost:{'insight II':80},
+		req:{'Hunters & fishers unification':true,'Supreme fast filtering':true},
+	});
+		new G.Tech({
+		name:'Improved alchemy techniques',
+		desc:'[Basic brewing stand] becomes thrice as efficient.',
+		icon:[16,23,'magixmod'],
+		cost:{'insight II':65,'science':7,'culture II':23},
+		req:{'Camp-cooking':true},
+	});
+		new G.Tech({
+		name:'Mo \'wine',
+		desc:'[Alcohol brewing stand] and [Alcohol drinks brewing stand] become thrice as efficient.',
+		icon:[15,23,'magixmod'],
+		cost:{'insight II':80,'science':5},
+		req:{'Improved alchemy techniques':true},
+	});
+		new G.Tech({
+		name:'Burial wormhole 1/2',
+		desc:'People start thinking about using magic especially [Dark essence,dark one] to get rid of corpses without harming reputation. //One of them said that if we have at least 2 portals why won\'t we make some smaller worlds just for burying these [corpse]s ?',
+		icon:[27,3,'magixmod',22,22,'magixmod'],
+		cost:{'insight II':100,'science':6,'faith II':4,'influence II':5},
+		req:{'Magical presence':true,'Mo \'wine':true},
+	});
+		new G.Tech({
+		name:'Doctrine of the dark wormhole 1/5',
+		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about conception of making a small plane where the [corpse]s will lie in the way that will allow to fit over millions of [corpse]s. //Your [Wizard]s seem really impressed reading and forwarding the doctrine.',
+		icon:[21,22,'magixmod',16,22,'magixmod'],
+		cost:{'insight II':100,'science':6,'faith II':4,'influence II':5,'culture II':10},
+		req:{'Burial wormhole 1/2':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':2}},
+			]
+	});
+		new G.Trait({
+		name:'Doctrine of the dark wormhole 2/5',
+		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine.',
+		icon:[20,22,'magixmod',16,22,'magixmod'],
+		cost:{'insight II':105,'science':6,'faith II':4,'influence II':5,'culture II':15,'wisdom':100},
+		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':2}},
+			],
+		category:'knowledge',
+		chance:40
+	});
+			new G.Tech({
+		name:'Doctrine of the dark wormhole 3/5',
+		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is filled with informations about stability of things like that. Wormholes, portals must be stable. If anybody would enter unstable world nobody knows what would happen to him. //Your [Wizard]s feel goosebumps.',
+		icon:[19,22,'magixmod',15,22,'magixmod'],
+		cost:{'insight II':105,'science':7,'faith II':4,'influence II':5,'culture II':10,'wisdom':50,'insight':44},
+		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true,'Doctrine of the dark wormhole 2/5':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':2}},
+			]
+	});
+		new G.Trait({
+		name:'Doctrine of the dark wormhole 4/5',
+		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine describes ways of keeping the wormhole active. It is important thing too because if it will run out of power a tons of corpses will explode out of wormhole and people will be really, really mad. //Your [Wizard]s know exactly how big problem will occur if wormhole will run out of power. ',
+		icon:[18,22,'magixmod',15,22,'magixmod'],
+		cost:{'insight II':130,'science':7,'faith II':4,'influence II':5,'culture II':27},
+		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 3/5':true},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'inspiration II':2}},
+			],
+		category:'knowledge',
+		chance:60
+	});
+		new G.Tech({
+		name:'Doctrine of the dark wormhole 5/5',
+		desc:'Provides 7 [inspiration II] . //This part of doctrine is about miscellanneous related to the wormhole. //Your [Wizard]s feel secure. They may start thinking about running first dark wormhole.',
+		icon:[17,22,'magixmod',14,22,'magixmod'],
+		cost:{'insight II':140,'science':7,'faith II':3,'influence II':5,'culture II':30,'wisdom':50,'insight':310},
+		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true,'Doctrine of the dark wormhole 2/5':true,'Doctrine of the dark wormhole 3/5':true,'Doctrine of the dark wormhole 4/5':true},
+		effects:[
+			{type:'provide res',what:{'inspiration II':7}},
+			]
+	});
+		new G.Tech({
+		name:'Burial wormhole 2/2',
+		desc:'Unlocks [Dark wormhole] . Massive burial spot bonus but requires upkeep(in [Mana] and [Dark essence]). Dark powers like death and fear. Corpses look scary and spooky. It keeps wormhole stable. ',
+		icon:[27,2,'magixmod',22,22,'magixmod'],
+		cost:{'insight II':140,'science':10,'culture II':40,'insight':95},
+		req:{'Doctrine of the dark wormhole 5/5':true,'Master mana-making':true},
+	});
+		new G.Trait({
+		name:'Corpse decay',
+		desc:'<b>Wormhole you opened...<br>ejects [corpse]s<br>before people...<br>bury them<br>decreasing usage of...<br>the [burial spot] .</b>',
+		icon:[7,24,'magixmod'],
+		cost:{'insight II':125,'Dark essence':2.5e4,'culture II':25,'influence II':3},
+		req:{'Burial wormhole 2/2':true,'Doctrine of the dark wormhole 5/5':true},
+		effects:[
+			],
+		chance:90
+	});
+		new G.Tech({
+		name:'Liberating darkness',
+		desc:'[The Skull of Wild Death] now can generate [Dark essence] for you... <br>but...<br> more [wild corpse]s will appear',//2 do wild corpses!!!
+		icon:[8,24,'magixmod'],
+		cost:{'insight II':140,'science':5,'faith II':5,'Mana':511},
+		req:{'Doctrine of the dark wormhole 5/5':true,'Master mana-making':true,'Hope of revenant abandoning':true},
+	});
+		new G.Trait({
+		name:'Beer recipe',
+		desc:'Increases [happiness] a bit. People had created secret recipe for a tasty beer. //In fact more [drunk,drunken] people will appear in your tribe. Make sure you hired [Syrup healer]s and you have some [Medicament brews].',
+		icon:[13,23,'magixmod'],
+		cost:{'insight II':135},
+		req:{'Mo \'wine':true},
+		effects:[
+			],
+		chance:200
+	});
+		new G.Tech({
+		name:'Conveyor conception',
+		desc:'People lead by [Automation] think about automating movement of produced things so they wouldn\'t have to move it by using their hands and they would focus more on work increasing efficiency of their [Factories I,Factories].',
+		icon:[0,24,'magixmod'],
+		cost:{'insight II':135},
+		req:{'Policy revaluation':true,'<font color="maroon">Moderation</font>':true},
+		effects:[
+			],
+		chance:10
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -10617,7 +11257,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	});
 		new G.Policy({
 		name:'Gather roses',
-		desc:'Makes florist start gathering all types of rose.',
+		desc:'Makes florist start gathering all types of rose. //Due to last update this policy will be replaced some time with new one.',
 		icon:[0,7,'magixmod'],
 		cost:{'influence':15},
 		startMode:'off',
@@ -10682,120 +11322,26 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			'red':{name:'Red',desc:'Switches to red theme.',icon:[0,22,'magixmod']},
 			'cyan':{name:'Cyan',desc:'Switches to cyan theme.',icon:[5,22,'magixmod']},
 			'gray':{name:'Gray',desc:'Switches to gray theme.',icon:[1,22,'magixmod']},
+			'indigo':{name:'Indigo',desc:'Switches to indigo theme. Reward for <b>Magical victory</b> achievement.',req:{'Magical presence':true}},
 		},
 		category:'mag',
-	});
-	///////////////////////////////////////////////////////////////////////////////////////////////////
-//SEASONAL CONTENT//CONTENT WHICH WILL BE AVAILABLE FOR PLAYERS AT SOME TIME LIKE XMAS OR VALENTINE'S DAY
-//////////////////////////////////////////////////////////////////////////////////////////////////////	
-	//NEW YEAR 'S EVE//
-		new G.Unit({
-		name:'Artisan of new year',
-		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] to finish it up.',
-		icon:[19,0,'seasonal'],
-		cost:{},
-		use:{'worker':1},
-		upkeep:{'Thread':0.30,'Paper':0.3},
-		effects:[
-			{type:'gather',what:{'Blue firework':1.25}},
-			{type:'gather',what:{'Orange firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
-		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Unit({
-		name:'Artisan of new year (dark)',
-		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
-		icon:[19,0,'seasonal'],
-		cost:{},
-		use:{'worker':1},
-		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
-		effects:[
-			{type:'gather',what:{'Dark Blue Firework':1.25}},
-			{type:'gather',what:{'Dark Orange Firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
-		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Res({
-		name:'Blue firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky/',
-		icon:[2,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Res({
-		name:'Orange firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky.',
-		icon:[1,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Unit({
-		name:'Firework launching guy',
-		desc:'There the guy launches fireworks right up into the sky. Generates happiness by itself and for every firework bunch launched up into the sky.',
-		icon:[18,0,'seasonal'],
-		cost:{'food':10},
-		use:{'worker':1,'land':1},
-		effects:[
-			{type:'convert',from:{'Orange firework':1},into:{'happiness':75},every:2,context:'launching'},
-			{type:'convert',from:{'Blue firework':1},into:{'happiness':75},every:2,context:'launching'},
-			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
-			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
-		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Res({
-		name:'Dark Blue Firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight./',		icon:[5,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Res({
-		name:'Dark Orange Firework',
-		desc:'Happy new year and launch up this firework into the sky. Provides happiness per each firework launched into the sky. Provides happiness per each firework launched into the sky. This is [Dark essence,dark essenced] firework so it can unleash its spectacular show at daylight.',
-		icon:[4,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
-		new G.Res({
-		name:'Firecracker',
-		desc:'Firecrackers are fireworks but without thread.',
-		icon:[3,0,'seasonal'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
-	});
+	});	
+	/*=======================================
+	Icon sheet for custom land tiles
+	=======================================*/
+	G.getLandIconBG=function(land)
+	{
+		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
+	}
+	G.LoadResources=function()
+	{
+		var resources=[
+			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
+			'img/blot.png',
+			'img/iconSheet.png?v=1'
+		];
+		var loader=new PicLoader(resources,function(){G.Init();});//load all resources then init the game when done
+	}
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
@@ -10842,6 +11388,8 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			{type:['oak','birch'],chance:0.5,min:0.1,max:0.4},
 			{type:'berry bush',chance:0.9},
 			{type:'grass',amount:2},
+			{type:'vfb1',chance:0.2},
+			{type:'vfb2',chance:0.05},
 			{type:['wild rabbits','stoats'],chance:0.9},
 			{type:['foxes'],chance:0.5,amount:0.5},
 			{type:['wolves','bears'],chance:0.2,amount:0.5},
@@ -10863,6 +11411,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			{type:'dead tree',amount:0.5},
 			{type:'berry bush',chance:0.2},
 			{type:'grass',amount:1.5},
+			{type:'vfb1',chance:0.5},
 			{type:['wild rabbits','stoats'],chance:0.6},
 			{type:['foxes'],chance:0.4,amount:0.3},
 			{type:['wolves','bears'],chance:0.1,amount:0.2},
@@ -10884,6 +11433,9 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			{type:'berry bush',chance:0.6},
 			{type:'forest mushrooms',chance:0.8},
 			{type:'grass'},
+			{type:'rb1',chance:0.5},
+			{type:'rb2',chance:0.5},
+			{type:'bush of tulips',chance:0.5,min:0.3,max:0.9},
 			{type:['wild rabbits','stoats'],chance:0.2},
 			{type:['foxes'],chance:0.2,amount:0.2},
 			{type:['wolves','bears'],chance:0.5,min:0.5,max:1},
@@ -10947,6 +11499,8 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			{type:['fir tree'],amount:3},
 			{type:'berry bush',chance:0.9},
 			{type:'forest mushrooms',chance:0.4},
+			{type:'rb1',chance:0.5},
+			{type:'rb2',chance:0.5},
 			{type:'grass'},
 			{type:['wild rabbits','stoats'],chance:0.2},
 			{type:['wolves'],chance:0.5,min:0.5,max:1},
@@ -11018,6 +11572,34 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		image:13,
 		score:8,
 	});
+		new G.Land({
+		name:'swamplands',
+		goods:[
+			{type:['swampflowers'],amount:1},
+			{type:'grass',chance:3},
+			{type:'rocky substrate'},
+			{type:'crocodiles',min:0.2,max:0.8},
+			{type:'deer',min:0.1,max:0.9,chance:0.9},
+			{type:['willow'],amount:2},
+			{type:['willow','mangrove'],chance:0.6},
+		],
+		image:14,
+		score:5,
+	});
+			new G.Land({
+		name:'lavender fields',
+		goods:[
+			{type:['lavender'],amount:2},
+			{type:'grass',min:0.75,max:1.1},
+			{type:'rocky substrate'},
+			{type:'foxes',min:0.2,max:0.8},
+			{type:'wolves',min:0.1,max:0.75,chance:3},
+			{type:'wild rabbits',chance:0.9,min:0.3,max:0.6},
+			{type:['jacaranda'],min:0.5,max:1.5},
+		],
+		image:15,
+		score:3,
+	});
 	
 	//TODO : all the following
 	new G.Land({
@@ -11076,7 +11658,6 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 			{type:'freshwater',min:0.5,max:1.5},
 		],
 	});
-	
 	/*=====================================================================================
 	GOODS
 	=======================================================================================*/
@@ -11088,6 +11669,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	G.contextNames['dig']='Digging';
 	G.contextNames['mine']='Mining';
 	G.contextNames['quarry']='Quarrying';
+	G.contextNames['flowers']='Flowers';
 	
 	//plants
 	new G.Goods({
@@ -11191,6 +11773,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		icon:[6,10],
 		res:{
 			'gather':{'fruit':1,'herb':3},
+			'flowers':{'cactus':1,'Crown imperial':0.25},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
@@ -11428,6 +12011,109 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		},
 		mult:5,
 	});
+		new G.Goods({
+		name:'swampflowers',
+		desc:'Swampflowers like cattail are common goods that can be found in swamps.',
+		icon:[7,23,'magixmod'],
+		res:{
+			'flowers':{'Cattail':1,'Blue orchid':1,'Daisy':0.25},
+			'gather':{'muddy water':1}
+		},
+		mult:5,
+	});
+	//Magix goods
+		new G.Goods({
+		name:'rb1',
+		displayName:'Rosebush',
+		desc:'A bush filled with [Pink rose,Roses] . [Cockscomb] can be found in them too.',
+		icon:[8,23,'magixmod'],
+		res:{
+			'flowers':{'Cockscomb':0.5,'Cyan rose':1,'Gray rose':1},
+		},
+		mult:3,
+	});
+			new G.Goods({
+		name:'rb2',
+		displayName:'Rosebush',
+		desc:'A bush filled with [Lime rose,Roses] . Rarely [Salvia] can be found there.',
+		icon:[9,23,'magixmod'],
+		res:{
+			'flowers':{'Lime rose':1,'Pink rose':1,'Salvia':0.25},
+		},
+		mult:3,
+	});
+		new G.Goods({
+		name:'vfb1',
+		displayName:'Various flowers bush',
+		desc:'Various types of flowers can be found in this bush.',
+		icon:[10,23,'magixmod'],
+		res:{
+			'flowers':{'Brown flower':0.75,'Bachelor\'s button':0.75,'Coreopsis':0.75,'Cosmos':0.75,'Flax':1,'Dandelion':0.1},
+		},
+		mult:3,
+	});
+		new G.Goods({
+		name:'vfb2',
+		displayName:'Various flowers bush',
+		desc:'Various types of flowers can be found in this bush.',
+		icon:[10,23,'magixmod'],
+		res:{
+			'flowers':{'Green Zinnia':0.75,'Azure bluet':0.75,'Black Hollyhock':0.75,'Sunflower':1,'Himalayan blue poopy':0.75},
+		},
+		mult:3,
+	});
+		new G.Goods({
+		name:'bush of tulips',
+		desc:'This bush contains a lot of [White tulip,Tulips].',
+		icon:[12,23,'magixmod'],
+		res:{
+			'flowers':{'Gray tulip':1,'Red tulip':1,'Pink tulip':1,'Lime tulip':1,'White tulip':1},
+		},
+		mult:3,
+	});
+	//Swamplands
+		new G.Goods({
+		name:'crocodiles',
+		desc:'Crocodiles are large semiaquatic reptiles that live throughout the tropics especially swamplands. Source of [meat] and [leather] .//Carcasses can sometimes be gathered for [spoiled food].',
+		icon:[17,24,'magixmod'],
+		res:{
+			'hunt':{'leather':1,'meat':2},
+			'gather':{'spoiled food':1},
+		},
+		mult:2,
+	});
+		new G.Goods({
+		name:'willow',
+		desc:'The [willow,Willow tree] tends to grow in lush, wet climates and can be chopped for [log]s and harvested for [stick]s.',
+		icon:[20,24,'magixmod'],
+		res:{
+			'chop':{'log':2,'stick':4},
+			'gather':{'stick':1},
+		},
+		affectedBy:['deforestation'],
+		mult:5,
+	});
+		new G.Goods({
+		name:'mangrove',
+		desc:'Similar to [willow], the [mangrove,Mangrove tree] tends to grow in lush, wet climates and can be chopped for [log]s and harvested for [stick]s.',
+		icon:[18,24,'magixmod'],
+		res:{
+			'chop':{'log':2,'stick':5},
+			'gather':{'stick':1.1},
+		},
+		affectedBy:['deforestation'],
+		mult:5,
+	});
+	//Lavender fields
+		new G.Goods({
+		name:'lavender',
+		desc:'Nice flower that has relaxing smell and can be used in aromatherapy. Except [Lavender] you may find many other types of [Flowers].',
+		icon:[0,9,'magixmod'],
+		res:{
+			'flowers':{'Lavender':4,'Dianella':0.2,'Black lily':0.35},
+		},
+		mult:1,
+	});
 		G.getDict('grass').res['gather']['vegetable']=0.001;
 		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
 		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
@@ -11436,7 +12122,17 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
 		G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
 		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;//test
-	
+	new G.Goods({
+		name:'jacaranda',
+		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b> and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
+		icon:[19,24,'magixmod'],
+		res:{
+			'chop':{'log':2,'stick':4},
+			'gather':{'stick':1},
+		},
+		affectedBy:['deforestation'],
+		mult:5,
+	});
 	/*=====================================================================================
 	TILE EFFECTS
 	=======================================================================================*/
@@ -11470,7 +12166,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
-
+	
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
@@ -11664,7 +12360,8 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 				{
 					if (landTile=='ocean') biomes.push('arctic ocean');
 					else if (wetTile<0.25) biomes.push('ice desert');
-					else if (wetTile>0.5) biomes.push('boreal forest');
+					else if (wetTile>0.5 && wetTile<0.75) biomes.push('boreal forest');
+					else if (wetTile>0.75) biomes.push('swamplands');
 					else biomes.push('tundra');
 				}
 				else if (tempTile>1.1)
@@ -11683,7 +12380,8 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 				{
 					if (landTile=='ocean') biomes.push('ocean');
 					else if (wetTile<0.25) biomes.push('shrubland');
-					else if (wetTile>0.5) biomes.push('forest');
+					else if (wetTile>0.5 && wetTile<0.74) biomes.push('forest');
+					else if (wetTile>0.74) biomes.push('lavender fields');
 					else biomes.push('prairie');
 				}
 				if (biomes.length==0) biomes.push('prairie');
@@ -11700,5 +12398,5 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		}
 		return lvl;
 	}
-}	
+}
 });
