@@ -7222,7 +7222,7 @@ new G.Unit({
 		category:'production',
 		effects:[
 		
-			{type:'gather',context:'flowers',amount:0.4,max:1.4},
+			{type:'gather',context:'flowers',amount:0.1,max:0.4},
 			{type:'mult',value:1.05,req:{'harvest rituals for flowers':'on'}},
 			{type:'convert',from:{'Paper':12,'Ink':3},into:{'Florist\'s notes':1},every:11,req:{'Notewriting':true},chance:1/95},
 		],
@@ -12077,7 +12077,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'Crocodiles are large semiaquatic reptiles that live throughout the tropics especially swamplands. Source of [meat] and [leather] .//Carcasses can sometimes be gathered for [spoiled food].',
 		icon:[17,24,'magixmod'],
 		res:{
-			'hunt':{'leather':1,'meat':2},
+			'hunt':{'leather':0.5,'meat':2},
 			'gather':{'spoiled food':1},
 		},
 		mult:2,
