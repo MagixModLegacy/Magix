@@ -8035,7 +8035,7 @@ new G.Unit({
 		tier:2,
 		icon:[12,22,'magixmod'],
 		name:'Man of essences',
-		desc:'Obtain [Magic adept] trait. Manage to get 1M [Magic essences]. //Obtaining it may unlock a new wonder.',
+		desc:'Obtain [Magic adept] trait. Manage to get 2.1M [Magic essences]. //Obtaining it may unlock a new wonder.',
 		effects:[
 			{type:'addFastTicksOnStart',amount:40},
 		],
@@ -10723,7 +10723,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		name:'Magic adept',
 		desc:'May unlock a new wonder. This trait is a reward for getting over 1 million of [Magic essences] . //Good job :)',
 		icon:[12,22,'magixmod'],
-		cost:{'Magic essences':1e6},
+		cost:{'Magic essences':2100000},
 		chance:45,
 		req:{'Eotm':true},
 		category:'main'
