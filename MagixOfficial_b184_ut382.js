@@ -10416,7 +10416,7 @@ let gifUnA =  new G.Tech({
     });
 function checkUnA() {
   if (G.achievByName['"In the underworld"'].won) {
-    if (G.achievByName['"In the underworld"'].won > 0 && G.achievByName['Democration'].won > 0 && G.achievByName['Sacrificed for culture'].won > 0 && G.achievByName['Insight-ly'].won > 0 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')) {
+    if (G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')) {
       G.gainTech(gifUnA)
     }
 }
