@@ -12148,11 +12148,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
-	G.funcs['new game blurb']=function()
-	{   
-	var cultres=if(G.achievByName['Sacrificed by culture'].won>0){
+		let cultres = false
+		if(G.achievByName['Sacrificed by culture'].won>0){
+		cultres=true
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('culture'))+'"></div><div class="freelabel">x3</div>','3 Culture & Inspiration')+
 	}
+	G.funcs['new game blurb']=function()
+	{   
 		var str=
 		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
 		'<b>Your tribe :</b><div class="thingBox">'+
