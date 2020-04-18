@@ -12152,7 +12152,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		if(G.achievByName['Sacrificed by culture'].won>0){
 		cultres=true
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('culture'))+'"></div><div class="freelabel">x3</div>','3 Culture & Inspiration')+
-	}
+	};
 	G.funcs['new game blurb']=function()
 	{   
 		var str=
