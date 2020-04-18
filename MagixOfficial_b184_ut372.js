@@ -7,6 +7,18 @@ manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
+	/*=====================================================================================
+	BIG MIDDLE TEXT PATCH
+	=======================================================================================*/
+	G.middleText=function(text,slow)
+	{
+		l('middleText').innerHTML='<div class="showUp" style="text-align:center;position:absolute;bottom:16px;width:100%;">'+text+'</div>';
+		//l('middleText').innerHTML='<div class="fullCenteredOuter" style="height:100%;"><div class="fullCenteredInner" style="text-align:center;">'+text+'</div></div>';
+		triggerAnim(l('middleText'),'slowFadeOut');
+		if (slow) l('middleText').style.animationDuration='5s';
+		else l('middleText').style.animationDuration='1.5s';
+	}
+//===========================
 G.fps=45;
 G.props['fastTicksOnResearch']=150;
 	
