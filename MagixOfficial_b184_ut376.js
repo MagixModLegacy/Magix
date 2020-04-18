@@ -11347,7 +11347,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'img/blot.png',
 			'img/iconSheet.png?v=1'
 		];
-		var loader=new PicLoader(resources,function(){G.Init();});//load all resources then init the game when done
+	}
 	
 	/*=====================================================================================
 	LANDS
