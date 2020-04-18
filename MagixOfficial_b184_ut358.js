@@ -8,24 +8,6 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
 G.props['fastTicksOnResearch']=150;
-	G.funcs['new game blurb']=function()
-	{   
-		var str=
-		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
-		'<b>Your tribe :</b><div class="thingBox">'+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x250</div>','250 Herbs')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
-		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('culture'))+'"></div><div class="freelabel">x3</div>','3 Culture & Inspiration')+
-		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
-		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+
-		'</div>'+
-		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
-		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
-		return str;
-	}
 	
 	G.funcs['new game']=function()
 	{
@@ -12166,7 +12148,26 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
-	
+	G.funcs['new game blurb']=function()
+	{   
+		var str=
+		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
+		'<b>Your tribe :</b><div class="thingBox">'+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x250</div>','250 Herbs')+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
+		if (G.achievByName['Sacrificed for culture'].won >= 0){
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('culture'))+'"></div><div class="freelabel">x3</div>','3 Culture & Inspiration')+
+		}
+		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
+		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+
+		'</div>'+
+		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
+		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
+		return str;
+	}
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
