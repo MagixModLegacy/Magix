@@ -7,21 +7,26 @@ manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
-	/*=====================================================================================
-	BIG MIDDLE TEXT PATCH
-	=======================================================================================*/
-	G.middleText=function(text,slow)
-	{
-		l('middleText').innerHTML='<div class="showUp" style="text-align:center;position:absolute;bottom:16px;width:100%;">'+text+'</div>';
-		//l('middleText').innerHTML='<div class="fullCenteredOuter" style="height:100%;"><div class="fullCenteredInner" style="text-align:center;">'+text+'</div></div>';
-		triggerAnim(l('middleText'),'slowFadeOut');
-		if (slow) l('middleText').style.animationDuration='5s';
-		else l('middleText').style.animationDuration='1.5s';
-	}
 //===========================
 G.fps=45;
 G.props['fastTicksOnResearch']=150;
-	
+		G.funcs['new game blurb']=function()
+	{   
+		var str=
+		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
+		'<b>Your tribe :</b><div class="thingBox">'+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x250</div>','250 Herbs')+
+		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
+		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
+		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+
+		'</div>'+
+		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
+		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
+		return str;
+	}
 	G.funcs['new game']=function()
 	{
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
@@ -4287,7 +4292,7 @@ if (!document.getElementById(cssId))
 				u5popup = true
 				}
 				if (me.amount ==1500 && G.hasNot('A feeling from the Underworld') && !finalupopup){
-					G.middleText('<font color="fuschia">Now ascend through Underworld to continue unlocking the new world.</font>',slow)
+					G.middleText('<font color="fuschia">Now ascend through Underworld to continue unlocking the new world.</font>')
 				finalupopup = true
 				}
 		},
@@ -4470,11 +4475,11 @@ if (!document.getElementById(cssId))
 			}
 			if(G.achievByName['mausoleum'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.achievByName['Metropoly'].won >= 1 && G.achievByName['Apprentice'].won >= 1 && G.achievByName['Experienced'].won == 0){ //Experienced
 			G.achievByName['Experienced'].won = 1
-			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>',slow)
+			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>')
 			}
 			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0 && G.achievByName['Familiar'].won == 1){ //Experienced
 			G.achievByName['Smart'].won = 1
-			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>',slow)
+			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>')
 			}
 			if(G.has('Spiritual piety')){
 			G.getDict('Church').icon = [24,23,'magixmod']
@@ -11343,7 +11348,73 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'img/iconSheet.png?v=1'
 		];
 		var loader=new PicLoader(resources,function(){G.Init();});//load all resources then init the game when done
+		var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 	}
+	var c=document.createElement('canvas');c.width=totalw*2;c.height=totalh*2;//sea
+		var ctx=c.getContext('2d');
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var land=map.tiles[x][y].land;
+					if (land.ocean)
+					{
+						Math.seedrandom(map.seed+'-seaColor-'+x+'/'+y);
+						var px=land.image;var py=0;
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
+					}
+				}
+			}
+		}
+		ctx.globalCompositeOperation='destination-over';//bleed
+		ctx.drawImage(c,1,0);
+		ctx.drawImage(c,-1,0);
+		ctx.drawImage(c,0,-1);
+		ctx.drawImage(c,0,1);
+		ctx.globalCompositeOperation='source-over';//blur
+		ctx.globalAlpha=0.25;
+		ctx.drawImage(c,2,0);
+		ctx.drawImage(c,-2,0);
+		ctx.drawImage(c,0,-2);
+		ctx.drawImage(c,0,2);
+		var imgSea=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	MICROCOLORS took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		var c=document.createElement('canvas');c.width=totalw*2;c.height=totalh*2;//land
+		var ctx=c.getContext('2d');
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var land=map.tiles[x][y].land;
+					if (!land.ocean)
+					{
+						Math.seedrandom(map.seed+'-landColor-'+x+'/'+y);
+						var px=land.image;var py=0;
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
+					}
+				}
+			}
+		}
+		ctx.globalCompositeOperation='destination-over';//bleed
+		ctx.drawImage(c,1,0);
+		ctx.drawImage(c,-1,0);
+		ctx.drawImage(c,0,-1);
+		ctx.drawImage(c,0,1);
+		var imgLand=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	LAND COLORS took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
@@ -12166,24 +12237,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
-
-	G.funcs['new game blurb']=function()
-	{   
-		var str=
-		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
-		'<b>Your tribe :</b><div class="thingBox">'+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('adult'))+'"></div><div class="freelabel">x5</div>','5 Adults')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x250</div>','250 Herbs')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
-		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
-		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+
-		'</div>'+
-		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
-		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
-		return str;
-	}
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
