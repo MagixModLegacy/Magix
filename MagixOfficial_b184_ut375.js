@@ -11348,75 +11348,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'img/iconSheet.png?v=1'
 		];
 		var loader=new PicLoader(resources,function(){G.Init();});//load all resources then init the game when done
-		var totalw=map.w;//x2-x1;
-		var totalh=map.h;
-		var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
-	}
-	var c=document.createElement('canvas');c.width=totalw*2;c.height=totalh*2;//sea
-		var ctx=c.getContext('2d');
-		for (var x=0;x<map.w;x++)
-		{
-			for (var y=0;y<map.h;y++)
-			{
-				if (x>=x1 && x<x2 && y>=y1 && y<y2)
-				{
-					var land=map.tiles[x][y].land;
-					if (land.ocean)
-					{
-						Math.seedrandom(map.seed+'-seaColor-'+x+'/'+y);
-						var px=land.image;var py=0;
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
-					}
-				}
-			}
-		}
-		ctx.globalCompositeOperation='destination-over';//bleed
-		ctx.drawImage(c,1,0);
-		ctx.drawImage(c,-1,0);
-		ctx.drawImage(c,0,-1);
-		ctx.drawImage(c,0,1);
-		ctx.globalCompositeOperation='source-over';//blur
-		ctx.globalAlpha=0.25;
-		ctx.drawImage(c,2,0);
-		ctx.drawImage(c,-2,0);
-		ctx.drawImage(c,0,-2);
-		ctx.drawImage(c,0,2);
-		var imgSea=c;
-		if (breakdown) toDiv.appendChild(c);
-		if (verbose) {console.log('	MICROCOLORS took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
-		
-		var c=document.createElement('canvas');c.width=totalw*2;c.height=totalh*2;//land
-		var ctx=c.getContext('2d');
-		for (var x=0;x<map.w;x++)
-		{
-			for (var y=0;y<map.h;y++)
-			{
-				if (x>=x1 && x<x2 && y>=y1 && y<y2)
-				{
-					var land=map.tiles[x][y].land;
-					if (!land.ocean)
-					{
-						Math.seedrandom(map.seed+'-landColor-'+x+'/'+y);
-						var px=land.image;var py=0;
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
-					}
-				}
-			}
-		}
-		ctx.globalCompositeOperation='destination-over';//bleed
-		ctx.drawImage(c,1,0);
-		ctx.drawImage(c,-1,0);
-		ctx.drawImage(c,0,-1);
-		ctx.drawImage(c,0,1);
-		var imgLand=c;
-		if (breakdown) toDiv.appendChild(c);
-		if (verbose) {console.log('	LAND COLORS took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+	
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
