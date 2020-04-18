@@ -11345,7 +11345,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		var resources=[
 			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
 			'img/blot.png',
-			'img/iconSheet.png?v=1'
+			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png'
 		];
 	}
 	
