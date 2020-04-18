@@ -4530,6 +4530,12 @@ if (!document.getElementById(cssId))
 					G.getDict('eat fruit').cost = {'influence II':2}
 					G.getDict('eat bread').cost = {'influence II':2}
 				}
+					if(G.modsByName['Market']){ //Interaction with Market.
+					G.getDict('extended food catalog').cost = {'influence II':5}
+					G.getDict('extended archaic catalog').cost = {'influence II':5}
+					G.getDict('extended basic catalog').cost = {'influence II':5}
+					G.getDict('extended precious catalog').cost = {'influence II':5}
+				}
 			}
 			if(G.has('Mining strategy'))
 			{
