@@ -12102,8 +12102,12 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('freshwater').res['gather']['Sugar cane']=0.000000004;
 		G.getDict('rocky substrate').res['mine']['Various stones']=0.075;
 		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
+		if (G.has('prospecting II')){
 		G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
-		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;//test
+		}
+		if (G.has('quarrying II')){
+		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;
+		}
 	new G.Goods({
 		name:'jacaranda',
 		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b> and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
@@ -12148,11 +12152,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
-		let cultres = false
-		if(G.achievByName['Sacrificed by culture'].won>0){
-		cultres=true
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('culture'))+'"></div><div class="freelabel">x3</div>','3 Culture & Inspiration')+
-	};
+
 	G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -12163,7 +12163,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x250</div>','250 Herbs')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
-		cultres
 		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
 		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+
 		'</div>'+
