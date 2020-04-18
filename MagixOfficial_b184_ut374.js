@@ -11348,6 +11348,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'img/iconSheet.png?v=1'
 		];
 		var loader=new PicLoader(resources,function(){G.Init();});//load all resources then init the game when done
+		var totalw=map.w;//x2-x1;
+		var totalh=map.h;
 		var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 	}
 	var c=document.createElement('canvas');c.width=totalw*2;c.height=totalh*2;//sea
