@@ -6,7 +6,8 @@ engineVersion:1,
 manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
-//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
+//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
+G.fps=45;
 G.props['fastTicksOnResearch']=150;
 	
 	G.funcs['new game']=function()
@@ -2985,6 +2986,13 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.0008;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			//Platinum and nickel patch
+				if (G.has('prospecting II')){
+					G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
+				}
+				if (G.has('quarrying II')){
+					G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;
+				}
 		},
 		category:'alchemypotions',
 	});
@@ -4267,7 +4275,7 @@ if (!document.getElementById(cssId))
 				u5popup = true
 				}
 				if (me.amount ==1500 && G.hasNot('A feeling from the Underworld') && !finalupopup){
-					G.middleText('<font color="fuschia">Now ascend through Underworld to continue unlocking the new world.</font>')
+					G.middleText('<font color="fuschia">Now ascend through Underworld to continue unlocking the new world.</font>',slow)
 				finalupopup = true
 				}
 		},
@@ -4450,11 +4458,11 @@ if (!document.getElementById(cssId))
 			}
 			if(G.achievByName['mausoleum'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.achievByName['Metropoly'].won >= 1 && G.achievByName['Apprentice'].won >= 1 && G.achievByName['Experienced'].won == 0){ //Experienced
 			G.achievByName['Experienced'].won = 1
-			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>')
+			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>',slow)
 			}
 			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0 && G.achievByName['Familiar'].won == 1){ //Experienced
 			G.achievByName['Smart'].won = 1
-			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>')
+			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>',slow)
 			}
 			if(G.has('Spiritual piety')){
 			G.getDict('Church').icon = [24,23,'magixmod']
@@ -10703,7 +10711,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	});
 		new G.Trait({
 		name:'Magic adept',
-		desc:'May unlock a new wonder. This trait is a reward for getting over 1 million of [Magic essences] . //Good job :)',
+		desc:'May unlock a new wonder. This trait is a reward for getting over 2 million of [Magic essences] . //Good job :)',
 		icon:[12,22,'magixmod'],
 		cost:{'Magic essences':2100000},
 		chance:45,
@@ -12102,12 +12110,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('freshwater').res['gather']['Sugar cane']=0.000000004;
 		G.getDict('rocky substrate').res['mine']['Various stones']=0.075;
 		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
-		if (G.has('prospecting II')){
-		G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
-		}
-		if (G.has('quarrying II')){
-		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;
-		}
 	new G.Goods({
 		name:'jacaranda',
 		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b> and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
