@@ -11472,7 +11472,7 @@ G.getDict('market_sell').modes['mode name']={
   name:'tt',
   icon:[],
   desc:'ttte',
-  req:{'extended essences catalog':true}
+  req:{'extended essences catalog':'on'}
 };
 G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
 			}}
