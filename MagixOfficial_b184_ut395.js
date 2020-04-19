@@ -4580,6 +4580,11 @@ if (!document.getElementById(cssId))
 					G.getDict('market_sell').icon=[28,24,'magixmod',30,24,'magixmod']
 				}
 			}
+			//3rd party achievement's code
+			if(G.modsByName['Market mod'] || G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version'] || G.modsByName['Coal mod'] && G.achievByName['3rd party'].won==0){
+			G.achievByName['3rd party'].won == 1
+			G.middleText('- Completed <font color="pink">3rd party</font> achievement -')
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -8108,11 +8113,7 @@ new G.Unit({
 		name:'3rd party',
 		desc:'Play magix and some other mod. //<b>Note: You will gain achievement only if you will play with one extra or more the NEL mods that you can find in Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
 	});
-	//3rd party achievement's code
-	if(G.modsByName['Market mod'] || G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version'] || G.modsByName['Coal mod'] && G.achievByName['3rd party'].won==0){
-			G.achievByName['3rd party'].won == 1
-			G.middleText('- Completed <font color="pink">3rd party</font> achievement -')
-			}
+	
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
