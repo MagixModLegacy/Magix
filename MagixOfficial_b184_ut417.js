@@ -4148,7 +4148,6 @@ if (!document.getElementById(cssId))
 			mode:'lightning essence'
 		});
 		}
-		}
 		},
 		category:'flowersanddyes',
 	});//32
