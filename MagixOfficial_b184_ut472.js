@@ -11467,6 +11467,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+G.NewGame=function(doneLoading){
 if(G.has('Essence trading')){
 G.get('market_sell').modes['dark essence']={
   name:'Dark essence',
@@ -11475,7 +11476,7 @@ G.get('market_sell').modes['dark essence']={
   req:{'extended essences catalog':'on'}
 };
 G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
-			}}
+}}}
 		}
 
 	/*=======================================
