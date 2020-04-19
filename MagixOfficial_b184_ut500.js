@@ -11882,7 +11882,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'iceberg',
 		goods:[
 			{type:'snow cover',min:0.4,max:3},
-			{type:'ice',amount:2},
+			{type:'ice',min:2,max:3.5},
 			{type:'seals',min:0.05,max:1,chance:0.2},
 			{type:'saltwater fish',min:0.05,max:0.3,chance:0.01},
 			{type:'freshwater',amount:0.75},
