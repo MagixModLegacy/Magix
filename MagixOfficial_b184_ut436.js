@@ -4574,17 +4574,11 @@ if (!document.getElementById(cssId))
 					G.getDict('market_buy').use={'worker':3,'land':1}
 					G.getDict('market_sell').use={'worker':3,'land':1}
 				}
-				if(G.has('Backshift') && G.hasNot('Essence trading')){
+				if(G.has('Backshift')){
 					G.getDict('bazaar_buy').icon=[29,24,'magixmod',26,24,'magixmod']
 					G.getDict('bazaar_sell').icon=[28,24,'magixmod',26,24,'magixmod']
 					G.getDict('market_buy').icon=[29,24,'magixmod',27,24,'magixmod']
 					G.getDict('market_sell').icon=[28,24,'magixmod',27,24,'magixmod']
-				}
-				if(G.has('Essence trading')){
-					G.getDict('bazaar_buy').icon=[29,24,'magixmod',30,23,'magixmod']
-					G.getDict('bazaar_sell').icon=[28,24,'magixmod',30,23,'magixmod']
-					G.getDict('market_buy').icon=[29,24,'magixmod',30,24,'magixmod']
-					G.getDict('market_sell').icon=[28,24,'magixmod',30,24,'magixmod']
 					G.getDict('trader_buy').icon=[29,24,'magixmod',30,18,'magixmod']
 					G.getDict('trader_sell').icon=[28,24,'magixmod',30,18,'magixmod']
 				}
@@ -7873,7 +7867,30 @@ new G.Unit({
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
-	
+	if(G.modsByName['Market mod']){
+		new G.Unit({
+		name:'essence_market_sell',
+		displayName:'Essence market',
+		desc:'Has similar functionality like [market_buy] but this market trades only with resources related to magic. Trades in bigger than normal bulks',
+		icon:[30,24,'magixmod'],
+		cost:{'basic building materials':100},
+		use:{'worker':3,'land':1},
+		modes:{
+			'mana':{name:'Mana',icon:[2,3,'magixmod'],desc:'Trades 200 [Mana] for some [market_coin] '},
+			'fire':{name:'F.e',icon:[0,2,'magixmod'],desc:'Trades 200 [Fire essence] for some [market_coin] '},
+			'wind':{name:'Wi.e',icon:[1,1,'magixmod'],desc:'Trades 200 [Wind essence] for some [market_coin] '},
+			'dark':{name:'D.e',icon:[1,3,'magixmod'],desc:'Trades 200 [Dark essence] for some [market_coin] '},
+			'wate':{name:'W.e',icon:[0,1,'magixmod'],desc:'Trades 200 [Water essence] for some [market_coin] '},
+			'ligh':{name:'L.e',icon:[0,3,'magixmod'],desc:'Trades 200 [Lightning essence] for some [market_coin] '},
+			'natu':{name:'N.e',icon:[1,2,'magixmod'],desc:'Trades 200 [Nature essence] for some [market_coin] '},
+			'holy':{name:'H.e',icon:[20,6,'magixmod'],desc:'Trades 200 [Essence of the holiness] for some [market_coin] '},
+		},
+		effects:[
+		],
+		req:{'Essence trading':true},
+		category:'market_category'
+	});
+	}
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -11029,7 +11046,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		if(G.modsByName['Market mod']){
 		new G.Tech({
 		name:'Essence trading',
-		desc:'[trader_buy] , [bazaar_buy] and [market_buy] now may trade with [Magic essences].',
+		desc:'Unlocks [magical_market_sell,Magical markets].',
 		icon:[22,24,'magixmod'],
 		cost:{'insight II':8,'faith II':1,'culture II':1},
 		req:{'Eotm':true},
@@ -11452,127 +11469,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
             category: 'trading_policies',
         });
 	}
-		if(G.modsByName['Market mod']){
-		G.getDict('market_sell').modes.push['dark essence']={
-			name:'D.e',
-			icon:[1,3,'magixmod'],
-			desc:'Trade with [Dark essence].',
-			req:{'extended essences catalog':'on'}
-		};
-		G.getDict('market_sell').effects.push({
-			type:'convert',
-			from:{
-				'Dark essence':150,
-			},
-			into:{
-				'market_coin':1
-			},
-			every:4,
-			mode:'dark essence'
-		});
-			G.getDict('market_sell').modes['wind essence']={
-			name:'Wi.e',
-			icon:[1,1,'magixmod'],
-			desc:'Trade with [Wind essence].',
-			req:{'extended essences catalog':'on'}
-		};
-		G.getDict('market_sell').effects.push({
-			type:'convert',
-			from:{
-				'Wind essence':150,
-			},
-			into:{
-				'market_coin':1
-			},
-			every:4,
-			mode:'wind essence'
-		});
-			G.getDict('market_sell').modes['fire essence']={
-			name:'F.e',
-			icon:[0,2,'magixmod'],
-			desc:'Trade with [fire essence].',
-			req:{'extended essences catalog':'on'}
-		};
-		G.getDict('market_sell').effects.push({
-			type:'convert',
-			from:{
-				'Fire essence':150,
-			},
-			into:{
-				'market_coin':1
-			},
-			every:4,
-			mode:'fire essence'
-		});
-			G.getDict('market_sell').modes['water essence']={
-			name:'W.e',
-			icon:[0,1,'magixmod'],
-			desc:'Trade with [Water essence].',
-			req:{'extended essences catalog':'on'}
-		};
-		G.getDict('market_sell').effects.push({
-			type:'convert',
-			from:{
-				'Water essence':150,
-			},
-			into:{
-				'market_coin':1
-			},
-			every:4,
-			mode:'water essence'
-		});
-			G.getDict('market_sell').modes['holy essence']={
-			name:'H.e',
-			icon:[20,6,'magixmod'],
-			desc:'Trade with [Essence of the Holiness].',
-			req:{'extended essences catalog':'on'}
-		};
-		G.getDict('market_sell').effects.push({
-			type:'convert',
-			from:{
-				'Essence of the Holiness':150,
-			},
-			into:{
-				'market_coin':1
-			},
-			every:4,
-			mode:'holy essence'
-		});
-			G.getDict('market_sell').modes['nature essence']={
-			name:'N.e',
-			icon:[1,2,'magixmod'],
-			desc:'Trade with [Nature essence].',
-			req:{'extended essences catalog':'on'}
-		};
-		G.getDict('market_sell').effects.push({
-			type:'convert',
-			from:{
-				'Nature essence':150,
-			},
-			into:{
-				'market_coin':1
-			},
-			every:4,
-			mode:'nature essence'
-		});
-			G.getDict('market_sell').modes['lightning essence']={
-			name:'L.e',
-			icon:[0,3,'magixmod'],
-			desc:'Trade with [Lightning essence].',
-			req:{'extended essences catalog':'on'}
-		};
-		G.getDict('market_sell').effects.push({
-			type:'convert',
-			from:{
-				'Lightning essence':150,
-			},
-			into:{
-				'market_coin':1
-			},
-			every:4,
-			mode:'lightning essence'
-		});
-		}
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
