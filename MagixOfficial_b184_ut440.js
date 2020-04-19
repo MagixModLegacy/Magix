@@ -7899,7 +7899,7 @@ G.getDict('market_sell').modes['mode name']={
   desc:'ttte',
   req:{}
 };
-G.getDict('market_sell').effects.push({type:'convert',from:{'fruit:1'},into:{'stone:1'},mode:'mode name'});
+G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
 }
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
