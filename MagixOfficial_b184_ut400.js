@@ -11032,7 +11032,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'[bazaar_buy,Bazaars] and [market_buy,Markets] work 50% more efficient but requires another [worker] .',
 		icon:[30,22,'magixmod'],
 		cost:{'insight':997,'culture':3},
-		req:{'Ingredient crafting':true},
+		req:{'ingredient crafting':true},
 		effects:[
 		],	
 	});
