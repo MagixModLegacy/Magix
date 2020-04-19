@@ -8118,7 +8118,7 @@ new G.Unit({
 		icon:[23,24,'magixmod'],
 		tier:0,
 		name:'3rd party',
-		desc:'Play magix and some other mod. //<b>Note: You will gain achievement only if you will play with one extra or more the NEL mods that you can find in Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
+		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
 	});
 	
 	/*=====================================================================================
