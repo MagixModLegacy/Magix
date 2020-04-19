@@ -7892,7 +7892,7 @@ new G.Unit({
 		category:'market_category'
 	});
 	}
-	if(G.modsByName['Market mod']){
+	if(G.modsByName['Market mod'] && G.has('tribalism')){
 	G.get('market_sell').modes['mode name']={
   name:'tt',
   icon:[],
