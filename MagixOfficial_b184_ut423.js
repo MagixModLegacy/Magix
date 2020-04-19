@@ -11069,7 +11069,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 			}
 		}
-	function()
+	function(markets)
 	{
 	if(G.modsByName['Market mod']){
 		G.getDict('market_sell').modes['dark essence']={
