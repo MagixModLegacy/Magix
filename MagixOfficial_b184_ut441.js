@@ -7893,7 +7893,8 @@ new G.Unit({
 	});
 	}
 	if(G.modsByName['Market mod']){
-G.getDict('market_sell').modes['mode name']={
+G.getDict(G.modsByName['Market mod']){
+	G.getDict('market_sell').modes['mode name']={
   name:'tt',
   icon:[],
   desc:'ttte',
@@ -7901,6 +7902,7 @@ G.getDict('market_sell').modes['mode name']={
 };
 G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
 }
+	}
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
