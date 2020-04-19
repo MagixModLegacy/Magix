@@ -11054,7 +11054,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Mo\' tradez',
 		desc:'Policies such like [extended basic catalog] or [extended food catalog] now have more options',
 		icon:[30,20,'magixmod'],
-		cost:{'insight':1500},
+		cost:{'insight':1490},
 		req:{'Treeplanting':true},
 		effects:[
 		],
