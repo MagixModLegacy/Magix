@@ -11090,7 +11090,15 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-			}
+if(G.has('Essence trading')){
+G.getDict('market_sell').modes['mode name']={
+  name:'tt',
+  icon:[],
+  desc:'ttte',
+  req:{'extended essences catalog':true}
+};
+G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
+			}}
 		}
 	/*=====================================================================================
 	POLICIES
@@ -11470,15 +11478,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
             category: 'trading_policies',
         });		
 	}
-		if(G.modsByName['Market mod'] && G.achievByName['mausoleum'].won>0){
-	G.getDict('market_sell').modes['mode name']={
-  name:'tt',
-  icon:[],
-  desc:'ttte',
-  req:{'extended essences catalog':true}
-};
-G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
-}
+	
+
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
