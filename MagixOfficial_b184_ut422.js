@@ -11069,6 +11069,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 			}
 		}
+	function()
+	{
 	if(G.modsByName['Market mod']){
 		G.getDict('market_sell').modes['dark essence']={
 			name:'D.e',
@@ -11174,7 +11176,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		});
 			G.getDict('market_sell').modes['lightning essence']={
 			name:'L.e',
-			icon:[1,3,'magixmod'],
+			icon:[0,3,'magixmod'],
 			desc:'Trade with [Lightning essence].',
 			req:{'extended essences catalog':'on'}
 		};
@@ -11190,6 +11192,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			mode:'lightning essence'
 		});
 				}
+	}
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
