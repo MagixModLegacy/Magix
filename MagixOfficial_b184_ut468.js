@@ -11468,7 +11468,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 if(G.has('Essence trading')){
-G.getDict('market_sell').modes['dark essence']={
+G.getUnitByName['market_sell'].modes['dark essence']={
   name:'Dark essence',
   icon:[1,3,'magixmod'],
   desc:'ttte',
