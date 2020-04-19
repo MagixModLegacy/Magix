@@ -11097,7 +11097,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
   name:'tt',
   icon:[],
   desc:'ttte',
-  req:{}
+  req:{'extended essences catalog':true}
 };
 G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
 }
