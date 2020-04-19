@@ -3436,9 +3436,6 @@ if (!document.getElementById(cssId))
 		{
 			return B(Math.min(this.displayedAmount,G.getRes('Books').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
 		},
-		tick:function(me)
-		{
-		},
 		meta:true
 	});
 		new G.Res({
@@ -11072,6 +11069,127 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 			}
 		}
+	if(G.modsByName['Market mod']){
+		G.getDict('market_sell').modes('dark essence')={
+			name:'D.e',
+			icon:[1,3,'magixmod'],
+			desc:'Trade with [Dark essence].',
+			req:{'extended essences catalog':'on'}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'Dark essence':150,
+			},
+			into:{
+				'market_coin':1
+			},
+			every:4,
+			mode:'dark essence'
+		});
+			G.getDict('market_sell').modes('wind essence')={
+			name:'Wi.e',
+			icon:[1,1,'magixmod'],
+			desc:'Trade with [Wind essence].',
+			req:{'extended essences catalog':'on'}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'Wind essence':150,
+			},
+			into:{
+				'market_coin':1
+			},
+			every:4,
+			mode:'wind essence'
+		});
+			G.getDict('market_sell').modes('fire essence')={
+			name:'F.e',
+			icon:[0,2,'magixmod'],
+			desc:'Trade with [fire essence].',
+			req:{'extended essences catalog':'on'}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'Fire essence':150,
+			},
+			into:{
+				'market_coin':1
+			},
+			every:4,
+			mode:'fire essence'
+		});
+			G.getDict('market_sell').modes('water essence')={
+			name:'W.e',
+			icon:[0,1,'magixmod'],
+			desc:'Trade with [Water essence].',
+			req:{'extended essences catalog':'on'}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'Water essence':150,
+			},
+			into:{
+				'market_coin':1
+			},
+			every:4,
+			mode:'water essence'
+		});
+			G.getDict('market_sell').modes('holy essence')={
+			name:'H.e',
+			icon:[20,6,'magixmod'],
+			desc:'Trade with [Essence of the Holiness].',
+			req:{'extended essences catalog':'on'}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'Essence of the Holiness':150,
+			},
+			into:{
+				'market_coin':1
+			},
+			every:4,
+			mode:'holy essence'
+		});
+			G.getDict('market_sell').modes('nature essence')={
+			name:'N.e',
+			icon:[1,2,'magixmod'],
+			desc:'Trade with [Nature essence].',
+			req:{'extended essences catalog':'on'}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'Nature essence':150,
+			},
+			into:{
+				'market_coin':1
+			},
+			every:4,
+			mode:'nature essence'
+		});
+			G.getDict('market_sell').modes('lightning essence')={
+			name:'L.e',
+			icon:[0,3,'magixmod'],
+			desc:'Trade with [Lightning essence].',
+			req:{'extended essences catalog':'on'}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'Lightning essence':150,
+			},
+			into:{
+				'market_coin':1
+			},
+			every:4,
+			mode:'lightning essence'
+		});
+				}
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
