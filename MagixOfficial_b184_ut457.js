@@ -11468,8 +11468,17 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
             startMode: 'off',
             req: {'Expanded essence trading catalog': true },
             category: 'trading_policies',
-        });
+        });		
 	}
+		if(G.modsByName['Market mod'] && G.year > 0){
+	G.getDict('market_sell').modes['mode name']={
+  name:'tt',
+  icon:[],
+  desc:'ttte',
+  req:{'extended essences catalog':true}
+};
+G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
+}
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
