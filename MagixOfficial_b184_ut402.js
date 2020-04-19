@@ -11020,10 +11020,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		if(G.modsByName['Market mod']){
 		new G.Tech({
 		name:'Essence trading',
-		desc:'Unlocks [Essence of the Holiness] farm for Plain Island. There people plant a seeds of the <b>Holy rose</b> that grows and emitates some light (like a firefly). People gain their seeds, petals and then disenchant it gaining desired essence.',
+		desc:'[trader_buy] , [bazaar_buy] and [market_buy] now may trade with [Magic essences].',
 		icon:[22,24,'magixmod'],
 		cost:{'insight II':8,'faith II':1,'culture II':1},
-		req:{'Magical soil':true},
+		req:{'Eotm':true},
 		effects:[
 		],
 	});
@@ -11031,10 +11031,28 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Backshift',
 		desc:'[bazaar_buy,Bazaars] and [market_buy,Markets] work 50% more efficient but requires another [worker] .',
 		icon:[30,22,'magixmod'],
-		cost:{'insight':997,'culture':3},
+		cost:{'insight':997,'culture':264},
 		req:{'ingredient crafting':true},
 		effects:[
 		],	
+	});
+		new G.Tech({
+		name:'Expanded essence trading catalog',
+		desc:'Unlocks a policy that will turn you on the prospected essence trading.',
+		icon:[30,21,'magixmod'],
+		cost:{'insight II':95,'culture II':3,'science':1,'faith II':1},
+		req:{'Magic adept':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Mo\' tradez',
+		desc:'Policies such like [expanded basic catalog] or [expanded food catalog] now have more options',
+		icon:[30,20,'magixmod'],
+		cost:{'insight':1500},
+		req:{'Treeplanting':true},
+		effects:[
+		],
 	});
 	}
 		//Backshift effect(Market mod)
