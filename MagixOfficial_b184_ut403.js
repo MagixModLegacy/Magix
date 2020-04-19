@@ -4535,6 +4535,7 @@ if (!document.getElementById(cssId))
 					G.getDict('extended archaic catalog').cost = {'influence II':5}
 					G.getDict('extended basic catalog').cost = {'influence II':5}
 					G.getDict('extended precious catalog').cost = {'influence II':5}
+					G.getDict('extended essences catalog').cost = {'influence II':5}
 				}
 			}
 			if(G.has('Mining strategy'))
@@ -4578,6 +4579,8 @@ if (!document.getElementById(cssId))
 					G.getDict('bazaar_sell').icon=[28,24,'magixmod',30,23,'magixmod']
 					G.getDict('market_buy').icon=[29,24,'magixmod',30,24,'magixmod']
 					G.getDict('market_sell').icon=[28,24,'magixmod',30,24,'magixmod']
+					G.getDict('trader_buy').icon=[29,24,'magixmod',30,18,'magixmod']
+					G.getDict('trader_sell').icon=[28,24,'magixmod',30,18,'magixmod']
 				}
 			}
 			//3rd party achievement's code
@@ -11430,7 +11433,18 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'indigo':{name:'Indigo',desc:'Switches to indigo theme. Reward for <b>Magical victory</b> achievement.',req:{'Magical presence':true}},
 		},
 		category:'mag',
-	});	
+	});
+	if(G.modsByName['Market mod']){
+		 new G.Policy({
+            name: 'extended essences catalog',
+            desc: 'The [Magic essences] trading will be refined. You will be able to fine tune what specific items from the category you want to trade (instead of the whole category)',
+            icon: [0, 2, "market_images", 20, 13,'magixmod'],
+            cost: {'influence': 10 },
+            startMode: 'off',
+            req: {'Expanded essence trading catalog': true },
+            category: 'trading_policies',
+        });
+		}
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
