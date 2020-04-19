@@ -12587,11 +12587,11 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 				var landTile=lvl[x][y];
 				
 				var biomes=[];
-				if (tempTile<-0.1375)
+				if (tempTile<-0.1275)
 				{
 					biomes.push('iceberg');
 				}
-				else if (tempTile<-0.1 && tempTile>-0.1375)
+				else if (tempTile<-0.1 && tempTile>-0.1275)
 				{
 					if (landTile=='ocean') biomes.push('arctic ocean');
 					else biomes.push('ice desert');
