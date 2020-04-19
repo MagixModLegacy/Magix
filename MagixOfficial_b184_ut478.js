@@ -1267,15 +1267,16 @@ if (!document.getElementById(cssId))
 		partOf:'food',
 		category:'food',
 	});
+	let modes4=false
 	new G.Res({
 		name:'meat',
 		desc:'[meat,Raw meat] is gathered from dead animals and, while fairly tasty, can harbor a variety of diseases.',
 		icon:[5,7],
 		turnToByContext:{'eating':{'health':-0.03,'happiness':0.02,'bone':0.1},'decay':{'spoiled food':1}},
 		partOf:'food',
-		tick:function()
+		tick:function(tick)
 		{
-		if(G.modsByName['Market mod']){
+		if(G.modsByName['Market mod'] && !modes4){
 G.getDict('market_sell').modes['dark essence']={
   name:'Dark essence',
   icon:[1,3,'magixmod'],
@@ -1283,7 +1284,7 @@ G.getDict('market_sell').modes['dark essence']={
   req:{'Essence trading':true}
 };
 G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
-}
+		modes4=true
 		}
 		},
 		category:'food',
