@@ -11069,11 +11069,11 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 			}
 		G.getDict('market_sell').modes['dark essence']={name:'D.e.',icon:[1,3,'magixmod'],desc:'Trade [Dark essence]',req:{'extended essence catalog':'on'}};
-		G.getDict('market_sell').effects.push({type:'convert',from:{'Dark essence':150},into:{'market_coin':1},every:5,mode:{'dark essence'}});
+		G.getDict('market_sell').effects.push({type:'convert',from:{'Dark essence':150},into:{'market_coin':1},every:5,mode:{'dark essence':true}});
 		G.getDict('market_sell').modes['holy essence']={name:'H.e.',icon:[0,2,'magixmod'],desc:'Trade [Essence of the Holiness]',req:{'extended essence catalog':'on'}};
-		G.getDict('market_sell').effects.push({type:'convert',from:{'Essence of the Holiness':150},into:{'market_coin':1},every:5,mode:{'holy essence'}});
+		G.getDict('market_sell').effects.push({type:'convert',from:{'Essence of the Holiness':150},into:{'market_coin':1},every:5,mode:{'holy essence':true}});
 		G.getDict('market_sell').modes['fire essence']={name:'F.e.',icon:[20,6,'magixmod'],desc:'Trade [Fire essence]',req:{'extended essence catalog':'on'}};
-		G.getDict('market_sell').effects.push({type:'convert',from:{'Fire essence':150},into:{'market_coin':1},every:5,mode:{'fire essence'}});	
+		G.getDict('market_sell').effects.push({type:'convert',from:{'Fire essence':150},into:{'market_coin':1},every:5,mode:{'fire essence':true}});	
 		}
 	/*=====================================================================================
 	POLICIES
