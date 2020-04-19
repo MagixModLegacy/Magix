@@ -11052,7 +11052,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'Mo\' tradez',
-		desc:'Policies such like [expanded basic catalog] or [expanded food catalog] now have more options',
+		desc:'Policies such like [extended basic catalog] or [extended food catalog] now have more options',
 		icon:[30,20,'magixmod'],
 		cost:{'insight':1500},
 		req:{'Treeplanting':true},
