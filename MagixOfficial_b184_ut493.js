@@ -4537,6 +4537,9 @@ if (!document.getElementById(cssId))
 					G.getDict('eat cured meat and cured seafood').cost = {'influence II':5}
 					G.getDict('eat fruit').cost = {'influence II':2}
 					G.getDict('eat bread').cost = {'influence II':2}
+					G.getDict('eat meals').cost = {'influence II':2}
+					G.getDict('eat sunflower seeds').cost = {'influence II':2}
+					G.getDict('drink juices').cost = {'influence II':2}
 				}
 					if(G.modsByName['Market mod']){ //Interaction with Market.
 					G.getDict('extended food catalog').cost = {'influence II':5}
@@ -11504,9 +11507,56 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
             startMode: 'off',
             req: {'Expanded essence trading catalog': true},
             category: 'trading_policies',
+
         });		
 	}
-
+	if(G.modsByName['Laws Of Food']){
+		 new G.Policy({
+            name: 'eat meals',
+            desc: 'Decide if your people can eat [Meals] or not.',
+            icon: [6, 12, 22, 13,'magixmod'],
+            cost: {'influence': 2},
+            startMode: 'on',
+            req: {'Cooking':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Meals'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Meals'],parent:''},
+		],
+        });
+		new G.Policy({
+            name: 'eat sunflower seeds',
+            desc: 'Decide if your people can eat [Sunflower seeds] or not.',
+            icon: [6, 12, 12, 1,'magixmod'],
+            cost: {'influence': 2},
+            startMode: 'on',
+            req: {'plant lore':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Sunflower seeds'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Sunflower seeds'],parent:''},
+		],
+        });
+		 new G.Policy({
+            name: 'drink juices',
+            desc: 'Decide if your people can drink [Juices] or not.',
+            icon: [6, 12, 14, 3,'magixmod'],
+            cost: {'influence': 2},
+            startMode: 'on',
+            req: {'Crafting a juice':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Juices'],parent:'water'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Juices'],parent:''},
+		],
+        });	
+	}
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
