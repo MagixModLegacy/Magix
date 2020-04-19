@@ -7892,15 +7892,7 @@ new G.Unit({
 		category:'market_category'
 	});
 	}
-	if(G.modsByName['Market mod'] && G.has('tribalism')){
-	G.get('market_sell').modes['mode name']={
-  name:'tt',
-  icon:[],
-  desc:'ttte',
-  req:{}
-};
-G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
-}
+	
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -11100,7 +11092,15 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 			}
 		}
-	
+	if(G.modsByName['Market mod'] && G.has('tribalism')){
+	G.get('market_sell').modes['mode name']={
+  name:'tt',
+  icon:[],
+  desc:'ttte',
+  req:{}
+};
+G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
+}
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
