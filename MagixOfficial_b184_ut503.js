@@ -12427,7 +12427,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'Only in iceberg you can find so much [ice] . It is so coooldddd.... Brrr...',
 		icon:[21,24,'magixmod'],
 		res:{
-			'dig':{'ice':2},
+			'dig':{'ice':2.25},
 		},
 		affectedBy:['mineral depletion'],
 		mult:2,
