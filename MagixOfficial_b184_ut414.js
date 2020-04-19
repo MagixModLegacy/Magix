@@ -11070,6 +11070,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			}
 		}
 		if(G.modsByName['Market mod']){
+			if(G.has('commerce')){
 		G.getDict('market_sell').modes['dark essence']={
 			name:'D.e',
 			icon:[1,3,'magixmod'],
@@ -11189,6 +11190,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			every:4,
 			mode:'lightning essence'
 		});
+		}
 		}
 	/*=====================================================================================
 	POLICIES
