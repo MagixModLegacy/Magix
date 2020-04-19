@@ -11879,7 +11879,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		score:3,
 	});
 				new G.Land({
-		name:'iceberg',
+		name:'glacier',
 		goods:[
 			{type:'snow cover',min:0.4,max:3},
 			{type:'ice',min:2,max:3.5},
