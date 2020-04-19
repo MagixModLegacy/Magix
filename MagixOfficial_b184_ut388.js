@@ -4563,11 +4563,21 @@ if (!document.getElementById(cssId))
 			G.getDict('Fishers & hunters camp').upkeep = {'food':75,'fire pit':3}
 			}
 			if(G.modsByName['Market mod']){
-				if(G.has('Essence trading')){
+				if(G.has('Backshift')){
 					G.getDict('bazaar_buy').icon=[29,24,'magixmod',26,24,'magixmod']
 					G.getDict('bazaar_sell').icon=[28,24,'magixmod',26,24,'magixmod']
+					G.getDict('bazaar_buy').use={'worker':2,'land':1}
+					G.getDict('bazaar_sell').use={'worker':2,'land':1}
 					G.getDict('market_buy').icon=[29,24,'magixmod',27,24,'magixmod']
 					G.getDict('market_sell').icon=[28,24,'magixmod',27,24,'magixmod']
+					G.getDict('market_buy').use={'worker':3,'land':1}
+					G.getDict('market_sell').use={'worker':3,'land':1}
+				}
+				if(G.has('Essence trading')){
+					G.getDict('bazaar_buy').icon=[29,24,'magixmod',30,23,'magixmod']
+					G.getDict('bazaar_sell').icon=[28,24,'magixmod',30,23,'magixmod']
+					G.getDict('market_buy').icon=[29,24,'magixmod',30,24,'magixmod']
+					G.getDict('market_sell').icon=[28,24,'magixmod',30,24,'magixmod']
 				}
 			}
 		},
@@ -11009,6 +11019,19 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		effects:[
 		],
 	});
+		new G.Tech({
+		name:'Backshift',
+		desc:'[bazaar_buy,Bazaars] and [market_buy,Markets] work 50% more efficient but requires another [worker] .',
+		icon:[30,22,'magixmod'],
+		cost:{'insight':997,'culture':3},
+		req:{'Ingredient crafting':true},
+		effects:[
+		],	
+	});
+		G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+		G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+		G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 	}
 	/*=====================================================================================
 	POLICIES
