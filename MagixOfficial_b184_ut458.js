@@ -11470,7 +11470,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
             category: 'trading_policies',
         });		
 	}
-		if(G.modsByName['Market mod'] && G.year > 0){
+		if(G.modsByName['Market mod'] && G.achievByName['mausoleum'].won>0){
 	G.getDict('market_sell').modes['mode name']={
   name:'tt',
   icon:[],
