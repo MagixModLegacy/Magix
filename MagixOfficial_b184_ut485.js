@@ -11464,7 +11464,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
             req: {'Expanded essence trading catalog': true},
             category: 'trading_policies',
         });		
-		if(G.year=0 || G.year=1){
+		if(G.year==0 || G.year==1){
 		G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
