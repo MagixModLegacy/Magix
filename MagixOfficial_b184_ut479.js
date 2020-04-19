@@ -1274,7 +1274,7 @@ if (!document.getElementById(cssId))
 		icon:[5,7],
 		turnToByContext:{'eating':{'health':-0.03,'happiness':0.02,'bone':0.1},'decay':{'spoiled food':1}},
 		partOf:'food',
-		tick:function(tick)
+		tick:function(me,tick)
 		{
 		if(G.modsByName['Market mod'] && !modes4){
 G.getDict('market_sell').modes['dark essence']={
