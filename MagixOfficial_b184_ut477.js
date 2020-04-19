@@ -949,7 +949,6 @@ if (!document.getElementById(cssId))
 			return B(Math.min(this.displayedAmount,G.getRes('population').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
 		},
 	});
-	let newmarketmodes=false
 	new G.Res({
 		name:'land',
 		desc:'Each tile of territory you own grants you some [land] (100 per fully-explored non-ocean tile, by default) upon which you can construct buildings. If for some reason you find yourself with less land than your buildings are using, some of them will start to slowly crumble away.//The number on the left is how much land is occupied, while the number on the right is how much land you have in total.',
@@ -1277,7 +1276,6 @@ if (!document.getElementById(cssId))
 		tick:function()
 		{
 		if(G.modsByName['Market mod']){
-		if(G.has('Essence trading' && !newmarketmodes)){
 G.getDict('market_sell').modes['dark essence']={
   name:'Dark essence',
   icon:[1,3,'magixmod'],
@@ -1285,7 +1283,6 @@ G.getDict('market_sell').modes['dark essence']={
   req:{'Essence trading':true}
 };
 G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
-newmarketmodes=true
 }
 		}
 		},
