@@ -1274,7 +1274,7 @@ if (!document.getElementById(cssId))
 		icon:[5,7],
 		turnToByContext:{'eating':{'health':-0.03,'happiness':0.02,'bone':0.1},'decay':{'spoiled food':1}},
 		partOf:'food',
-		tick:function(me)
+		tick:function()
 		{
 		if(G.modsByName['Market mod']){
 		if(G.has('Essence trading' && !newmarketmodes)){
@@ -1282,7 +1282,7 @@ G.getDict('market_sell').modes['dark essence']={
   name:'Dark essence',
   icon:[1,3,'magixmod'],
   desc:'ttte',
-  req:{'extended essences catalog':'on'}
+  req:{'Essence trading':true}
 };
 G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
 newmarketmodes=true
