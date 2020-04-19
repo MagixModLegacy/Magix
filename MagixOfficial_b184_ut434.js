@@ -11571,7 +11571,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			},
 			every:4,
 			mode:'lightning essence'
-		});	
+		});
+		}
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
