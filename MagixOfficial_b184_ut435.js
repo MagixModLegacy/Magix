@@ -11453,7 +11453,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
         });
 	}
 		if(G.modsByName['Market mod']){
-		G.getDict('market_sell').modes['dark essence']={
+		G.getDict('market_sell').modes.push['dark essence']={
 			name:'D.e',
 			icon:[1,3,'magixmod'],
 			desc:'Trade with [Dark essence].',
