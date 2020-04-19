@@ -4565,14 +4565,16 @@ if (!document.getElementById(cssId))
 			}
 			if(G.modsByName['Market mod']){
 				if(G.has('Backshift')){
-					G.getDict('bazaar_buy').icon=[29,24,'magixmod',26,24,'magixmod']
-					G.getDict('bazaar_sell').icon=[28,24,'magixmod',26,24,'magixmod']
 					G.getDict('bazaar_buy').use={'worker':2,'land':1}
 					G.getDict('bazaar_sell').use={'worker':2,'land':1}
-					G.getDict('market_buy').icon=[29,24,'magixmod',27,24,'magixmod']
-					G.getDict('market_sell').icon=[28,24,'magixmod',27,24,'magixmod']
 					G.getDict('market_buy').use={'worker':3,'land':1}
 					G.getDict('market_sell').use={'worker':3,'land':1}
+				}
+				if(G.has('Backshift') && G.hasNot('Essence trading')){
+					G.getDict('bazaar_buy').icon=[29,24,'magixmod',26,24,'magixmod']
+					G.getDict('bazaar_sell').icon=[28,24,'magixmod',26,24,'magixmod']
+					G.getDict('market_buy').icon=[29,24,'magixmod',27,24,'magixmod']
+					G.getDict('market_sell').icon=[28,24,'magixmod',27,24,'magixmod']
 				}
 				if(G.has('Essence trading')){
 					G.getDict('bazaar_buy').icon=[29,24,'magixmod',30,23,'magixmod']
