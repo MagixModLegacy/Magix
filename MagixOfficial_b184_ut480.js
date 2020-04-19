@@ -1276,7 +1276,7 @@ if (!document.getElementById(cssId))
 		partOf:'food',
 		tick:function(me,tick)
 		{
-		if(G.modsByName['Market mod'] && !modes4){
+		if(G.modsByName['Market mod']){
 G.getDict('market_sell').modes['dark essence']={
   name:'Dark essence',
   icon:[1,3,'magixmod'],
@@ -1284,7 +1284,6 @@ G.getDict('market_sell').modes['dark essence']={
   req:{'Essence trading':true}
 };
 G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
-		modes4=true
 		}
 		},
 		category:'food',
