@@ -11471,7 +11471,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
         });
 	}
 		if(G.modsByName['Market mod']){
-	G.get('market_sell').modes['mode name']={
+	G.getDict('market_sell').modes['mode name']={
   name:'tt',
   icon:[],
   desc:'ttte',
