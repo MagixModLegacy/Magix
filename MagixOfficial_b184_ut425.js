@@ -3436,9 +3436,9 @@ if (!document.getElementById(cssId))
 		{
 			return B(Math.min(this.displayedAmount,G.getRes('Books').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
 		},
-		tick:function()
+		tick:function(me)
 		{
-				if(G.modsByName['Market mod']){
+		if(G.modsByName['Market mod']){
 		G.getDict('market_sell').modes['dark essence']={
 			name:'D.e',
 			icon:[1,3,'magixmod'],
