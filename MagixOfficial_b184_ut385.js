@@ -9650,7 +9650,7 @@ autobuy(G.year)
 		effects:[
 		],
 	});
-	
+
 		
 	
 	/*=====================================================================================
@@ -10985,6 +10985,17 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			],
 		chance:10
 	});
+		if(G.modsByName['Market mod']){
+		new G.Tech({
+		name:'Essence trading',
+		desc:'Unlocks [Essence of the Holiness] farm for Plain Island. There people plant a seeds of the <b>Holy rose</b> that grows and emitates some light (like a firefly). People gain their seeds, petals and then disenchant it gaining desired essence.',
+		icon:[22,24,'magixmod'],
+		cost:{'insight II':8,'faith II':1,'culture II':1},
+		req:{'Magical soil':true},
+		effects:[
+		],
+	});
+	}
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
