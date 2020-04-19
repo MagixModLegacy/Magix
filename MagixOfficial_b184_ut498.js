@@ -11834,6 +11834,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 				new G.Land({
 		name:'iceberg',
 		goods:[
+			{type:'snow cover',min:0.4,max:3},
+			{type:'ice',amount:2},
+			{type:'seals',min:0.05,max:1,chance:0.2},
+			{type:'saltwater fish',min:0.05,max:0.3,chance:0.01},
 		],
 		image:16,
 		score:3,
@@ -12369,6 +12373,16 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		},
 		affectedBy:['deforestation'],
 		mult:5,
+	});
+		new G.Goods({
+		name:'ice',
+		desc:'Only in iceberg you can find so much [ice] . It is so coooldddd.... Brrr...',
+		icon:[19,24,'magixmod'],
+		res:{
+			'dig':{'ice':2},
+		},
+		affectedBy:['mineral depletion'],
+		mult:2,
 	});
 	/*=====================================================================================
 	TILE EFFECTS
