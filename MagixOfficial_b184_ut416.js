@@ -4028,7 +4028,6 @@ if (!document.getElementById(cssId))
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 			if(G.modsByName['Market mod']){
-			if(G.has('commerce')){
 		G.getDict('market_sell').modes['dark essence']={
 			name:'D.e',
 			icon:[1,3,'magixmod'],
