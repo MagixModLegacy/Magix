@@ -959,18 +959,6 @@ if (!document.getElementById(cssId))
 		tick:function(me)
 		{
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
-			if(G.modsByName['Market mod']){
-			if(G.has('Essence trading' && !newmarketmodes)){
-G.get('market_sell').modes['dark essence']={
-  name:'Dark essence',
-  icon:[1,3,'magixmod'],
-  desc:'ttte',
-  req:{'extended essences catalog':'on'}
-};
-G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
-newmarketmodes=true
-}
-		}
 		},
 		getDisplayAmount:function()
 		{
@@ -1286,6 +1274,21 @@ newmarketmodes=true
 		icon:[5,7],
 		turnToByContext:{'eating':{'health':-0.03,'happiness':0.02,'bone':0.1},'decay':{'spoiled food':1}},
 		partOf:'food',
+		tick:function(me)
+		{
+		if(G.modsByName['Market mod']){
+		if(G.has('Essence trading' && !newmarketmodes)){
+G.getDict('market_sell').modes['dark essence']={
+  name:'Dark essence',
+  icon:[1,3,'magixmod'],
+  desc:'ttte',
+  req:{'extended essences catalog':'on'}
+};
+G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
+newmarketmodes=true
+}
+		}
+		},
 		category:'food',
 	});
 	new G.Res({
