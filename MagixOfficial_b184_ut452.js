@@ -11092,15 +11092,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 			}
 		}
-	if(G.modsByName['Market mod'] && G.has('tribalism')){
-	G.get('market_sell').modes['mode name']={
-  name:'tt',
-  icon:[],
-  desc:'ttte',
-  req:{'extended essences catalog':true}
-};
-G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
-}
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -11479,6 +11470,15 @@ G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'st
             category: 'trading_policies',
         });
 	}
+		if(G.modsByName['Market mod'] && G.has('tribalism')){
+	G.get('market_sell').modes['mode name']={
+  name:'tt',
+  icon:[],
+  desc:'ttte',
+  req:{'extended essences catalog':'on'}
+};
+G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'mode name'});
+}
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
