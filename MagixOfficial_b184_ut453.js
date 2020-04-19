@@ -11470,7 +11470,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
             category: 'trading_policies',
         });
 	}
-		if(G.modsByName['Market mod'] && G.has('tribalism')){
+		if(G.modsByName['Market mod']){
 	G.get('market_sell').modes['mode name']={
   name:'tt',
   icon:[],
