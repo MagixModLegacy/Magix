@@ -11567,6 +11567,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
             req: {'Expanded essence trading catalog': true },
             category: 'trading_policies',
         });
+	}
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
