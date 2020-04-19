@@ -4562,6 +4562,14 @@ if (!document.getElementById(cssId))
 			{
 			G.getDict('Fishers & hunters camp').upkeep = {'food':75,'fire pit':3}
 			}
+			if(G.modsByName['Market mod']){
+				if(G.has('Essence trading')){
+					G.getDict('bazaar_buy').icon=[29,24,'magixmod',26,24,'magixmod']
+					G.getDict('bazaar_sell').icon=[28,24,'magixmod',26,24,'magixmod']
+					G.getDict('market_buy').icon=[29,24,'magixmod',27,24,'magixmod']
+					G.getDict('market_sell').icon=[28,24,'magixmod',27,24,'magixmod']
+				}
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
