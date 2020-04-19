@@ -7893,8 +7893,7 @@ new G.Unit({
 	});
 	}
 	if(G.modsByName['Market mod']){
-G.getDict(G.modsByName['Market mod'])
-	G.getDict('market_sell').modes['mode name']={
+	G.get('market_sell').modes['mode name']={
   name:'tt',
   icon:[],
   desc:'ttte',
