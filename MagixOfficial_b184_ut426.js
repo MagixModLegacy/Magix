@@ -3439,7 +3439,7 @@ if (!document.getElementById(cssId))
 		tick:function(me)
 		{
 		if(G.modsByName['Market mod']){
-		G.getDict('market_sell').modes['dark essence']={
+		G.getDict('market_sell').modes('dark essence')={
 			name:'D.e',
 			icon:[1,3,'magixmod'],
 			desc:'Trade with [Dark essence].',
@@ -3456,7 +3456,7 @@ if (!document.getElementById(cssId))
 			every:4,
 			mode:'dark essence'
 		});
-			G.getDict('market_sell').modes['wind essence']={
+			G.getDict('market_sell').modes('wind essence')={
 			name:'Wi.e',
 			icon:[1,1,'magixmod'],
 			desc:'Trade with [Wind essence].',
@@ -3473,7 +3473,7 @@ if (!document.getElementById(cssId))
 			every:4,
 			mode:'wind essence'
 		});
-			G.getDict('market_sell').modes['fire essence']={
+			G.getDict('market_sell').modes('fire essence')={
 			name:'F.e',
 			icon:[0,2,'magixmod'],
 			desc:'Trade with [fire essence].',
@@ -3490,7 +3490,7 @@ if (!document.getElementById(cssId))
 			every:4,
 			mode:'fire essence'
 		});
-			G.getDict('market_sell').modes['water essence']={
+			G.getDict('market_sell').modes('water essence')={
 			name:'W.e',
 			icon:[0,1,'magixmod'],
 			desc:'Trade with [Water essence].',
@@ -3507,7 +3507,7 @@ if (!document.getElementById(cssId))
 			every:4,
 			mode:'water essence'
 		});
-			G.getDict('market_sell').modes['holy essence']={
+			G.getDict('market_sell').modes('holy essence')={
 			name:'H.e',
 			icon:[20,6,'magixmod'],
 			desc:'Trade with [Essence of the Holiness].',
@@ -3524,7 +3524,7 @@ if (!document.getElementById(cssId))
 			every:4,
 			mode:'holy essence'
 		});
-			G.getDict('market_sell').modes['nature essence']={
+			G.getDict('market_sell').modes('nature essence')={
 			name:'N.e',
 			icon:[1,2,'magixmod'],
 			desc:'Trade with [Nature essence].',
@@ -3541,7 +3541,7 @@ if (!document.getElementById(cssId))
 			every:4,
 			mode:'nature essence'
 		});
-			G.getDict('market_sell').modes['lightning essence']={
+			G.getDict('market_sell').modes('lightning essence')={
 			name:'L.e',
 			icon:[0,3,'magixmod'],
 			desc:'Trade with [Lightning essence].',
