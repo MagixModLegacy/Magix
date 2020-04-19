@@ -4582,8 +4582,8 @@ if (!document.getElementById(cssId))
 			}
 			//3rd party achievement's code
 			if(G.modsByName['Market mod'] || G.modsByName['Coal mod'] || G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version']){
-			   if(G.achievByName['3rd party'].won==0){
-			G.achievByName['3rd party'].won == 1
+			   if(G.achievByName['3rd party'].won=0){
+			G.achievByName['3rd party'].won = 1
 			G.middleText('- Completed <font color="pink">3rd party</font> achievement -')
 			  }
 			}
