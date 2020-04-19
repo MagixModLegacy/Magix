@@ -11557,6 +11557,53 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		],
         });	
 	}
+	if(G.modsByName['Laws Of Food Free Version']){
+		 new G.Policy({
+            name: 'eat meals',
+            desc: 'Decide if your people can eat [Meals] or not.',
+            icon: [6, 12, 22, 13,'magixmod'],
+            cost: {'influence': 0},
+            startMode: 'on',
+            req: {'Cooking':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Meals'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Meals'],parent:''},
+		],
+        });
+		new G.Policy({
+            name: 'eat sunflower seeds',
+            desc: 'Decide if your people can eat [Sunflower seeds] or not.',
+            icon: [6, 12, 12, 1,'magixmod'],
+            cost: {'influence': 0},
+            startMode: 'on',
+            req: {'plant lore':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Sunflower seeds'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Sunflower seeds'],parent:''},
+		],
+        });
+		 new G.Policy({
+            name: 'drink juices',
+            desc: 'Decide if your people can drink [Juices] or not.',
+            icon: [6, 12, 14, 3,'magixmod'],
+            cost: {'influence': 0},
+            startMode: 'on',
+            req: {'Crafting a juice':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Juices'],parent:'water'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Juices'],parent:''},
+		],
+        });	
+	}
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
@@ -12377,7 +12424,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		new G.Goods({
 		name:'ice',
 		desc:'Only in iceberg you can find so much [ice] . It is so coooldddd.... Brrr...',
-		icon:[19,24,'magixmod'],
+		icon:[21,24,'magixmod'],
 		res:{
 			'dig':{'ice':2},
 		},
