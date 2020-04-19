@@ -7872,7 +7872,7 @@ new G.Unit({
 		name:'essence_market_sell',
 		displayName:'Essence market',
 		desc:'Has similar functionality like [market_buy] but this market trades only with resources related to magic. Trades in bigger than normal bulks',
-		icon:[30,24,'magixmod'],
+		icon:[28,24,'magixmod',30,24,'magixmod'],
 		cost:{'basic building materials':100},
 		use:{'worker':3,'land':1},
 		gizmos:true,
