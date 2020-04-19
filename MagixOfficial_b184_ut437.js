@@ -7875,6 +7875,7 @@ new G.Unit({
 		icon:[30,24,'magixmod'],
 		cost:{'basic building materials':100},
 		use:{'worker':3,'land':1},
+		gizmos:true,
 		modes:{
 			'mana':{name:'Mana',icon:[2,3,'magixmod'],desc:'Trades 200 [Mana] for some [market_coin] '},
 			'fire':{name:'F.e',icon:[0,2,'magixmod'],desc:'Trades 200 [Fire essence] for some [market_coin] '},
