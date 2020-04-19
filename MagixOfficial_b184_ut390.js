@@ -7897,10 +7897,12 @@ new G.Unit({
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes4',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 	//Backshift (Market mod)
 		if(G.modsByName['Market mod']){
+			if(G.has('Backshift')){
 		G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+			}
 		}
 ////////////////////////////////////////////
 		/*=====================================================================================
