@@ -11457,7 +11457,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
             icon: [0, 2, "market_images", 20, 13,'magixmod'],
             cost: {'influence': 10 },
             startMode: 'off',
-            req: {'Expanded essence trading catalog': true },
+            req: {'Expanded essence trading catalog': true},
             category: 'trading_policies',
         });		
 	}
@@ -11473,7 +11473,7 @@ G.get('market_sell').modes['dark essence']={
   name:'Dark essence',
   icon:[1,3,'magixmod'],
   desc:'ttte',
-  req:{'extended essences catalog':'on'}
+  req:{'Expanded essence trading catalog': true}
 };
 G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
 }}}
