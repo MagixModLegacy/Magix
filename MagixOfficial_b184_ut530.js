@@ -4593,6 +4593,8 @@ if (!document.getElementById(cssId))
 					G.getDict('bazaar_sell').icon=[28,24,'magixmod',30,23,'magixmod']
 					G.getDict('market_buy').icon=[29,24,'magixmod',30,24,'magixmod']
 					G.getDict('market_sell').icon=[28,24,'magixmod',30,24,'magixmod']
+					G.getDict('trader_buy').icon=[29,24,'magixmod',30,18,'magixmod']
+					G.getDict('trader_sell').icon=[28,24,'magixmod',30,18,'magixmod']
 				}
 			}
 			//3rd party achievement's code
