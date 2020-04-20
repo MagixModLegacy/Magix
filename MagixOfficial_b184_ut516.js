@@ -11131,20 +11131,20 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		],
 			
 	});
-		};
-		if(G.modsByName['Market mod']){
-			 G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-        G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-        G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-        G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-G.getDict('market_sell').modes['dark essence']={
-  name:'Dark essence',
-  icon:[1,3,'magixmod'],
-  desc:'ttte',
-  req:{'extended essences catalog':'on'}
-};
-G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
 		}
+		//if(G.modsByName['Market mod']){
+			 //G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+       /// G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+       // G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+       // G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+//G.getDict('market_sell').modes['dark essence']={
+  //name:'Dark essence',
+  //icon:[1,3,'magixmod'],
+  //desc:'ttte',
+  //req:{'extended essences catalog':'on'}
+//};
+//G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
+		//}
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
