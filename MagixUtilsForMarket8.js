@@ -27,7 +27,7 @@ G.getDict('market_sell').modes['magic essences']={
 			name:'L.e.',
 			icon:[0,3,'magixmod'],
 			desc:'Sell [Lightning essence] for [market_coin].',
-			req:{'extended essence catalog':'on'}
+			req:{'extended essences catalog':'on'}
 		};
 		G.getDict('market_sell').effects.push({
 			type:'convert',
@@ -44,7 +44,7 @@ G.getDict('market_sell').modes['magic essences']={
 			name:'F.e.',
 			icon:[0,2,'magixmod'],
 			desc:'Sell [Fire essence] for [market_coin].',
-			req:{'extended essence catalog':'on'}
+			req:{'extended essences catalog':'on'}
 		};
 		G.getDict('market_sell').effects.push({
 			type:'convert',
@@ -61,7 +61,7 @@ G.getDict('market_sell').modes['magic essences']={
 			name:'W.e.',
 			icon:[0,1,'magixmod'],
 			desc:'Sell [Water essence] for [market_coin].',
-			req:{'extended essence catalog':'on'}
+			req:{'extended essences catalog':'on'}
 		};
 		G.getDict('market_sell').effects.push({
 			type:'convert',
