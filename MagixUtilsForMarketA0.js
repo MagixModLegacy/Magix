@@ -1239,13 +1239,13 @@ G.getDict('market_sell').modes['magic essences']={
 			every:5,
 			mode:'magic essences'
 		});
-	G.getDict('trade_buy').modes['le']={
+	G.getDict('trader_buy').modes['le']={
 			name:'L.e.',
 			icon:[0,3,'magixmod'],
 			desc:'Buy [Lightning essence] with [market_coin].',
 			req:{'extended essences catalog':'on'}
 		};
-		G.getDict('trade_buy').effects.push({
+		G.getDict('trader_buy').effects.push({
 			type:'convert',
 			from:{
 				'market_coin':3.5
