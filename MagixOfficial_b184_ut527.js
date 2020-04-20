@@ -11115,8 +11115,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 				G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5});
 				G.getDict('market_buy').effects.push({type:'mult',value:1.5});
 				G.getDict('market_sell').effects.push({type:'mult',value:1.5});
-				G.getDict('market_sell').modes['test']={name:'test',desc:'test.'},
-		G.getDict('market_sell').effects.push({type:'convert',from:{'stick':5,'coal':6},into:{'fire pit':1},every:5,mode:'test'});
 			}}
 		]
 	});
