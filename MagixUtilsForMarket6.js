@@ -10,7 +10,8 @@ func:function(){
 G.getDict('market_sell').modes['coal fire']={
 			name:'Start fires from coal',
 			icon:[12,8,13,7],
-			desc:'Craft [fire pit]s from 5 [stick]s and 5 [coal]s.'
+			desc:'Craft [fire pit]s from 5 [stick]s and 5 [coal]s.',
+			req:'
 		};
 		G.getDict('market_sell').effects.push({
 			type:'convert',
