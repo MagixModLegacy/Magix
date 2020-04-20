@@ -11131,10 +11131,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		],
 			
 	});
-			G.unitByName['bazaar_buy'].effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-G.unitByName['bazaar_sell'].effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-   G.unitByName['market_buy'].effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-     G.unitByName['market_sell'].effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+			G.unitByName('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+G.unitByName('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+   G.unitByName('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+     G.unitByName)'market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 		}
 		//if(G.modsByName['Market mod']){
 
