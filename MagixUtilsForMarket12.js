@@ -630,7 +630,7 @@ G.getDict('market_sell').modes['magic essences']={
 			every:5,
 			mode:'he'
 		});
-	G.getDict('bazar_sell').modes['othercutstone']={
+	G.getDict('bazaar_sell').modes['othercutstone']={
 			name:'Various cut stone',
 			icon:[2,12,'magixmod'],
 			desc:'Sell [Various cut stones] for [market_coin].',
