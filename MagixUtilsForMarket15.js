@@ -857,7 +857,7 @@ G.getDict('market_sell').modes['magic essences']={
 			every:5,
 			mode:'ne'
 		});
-	G.getDict('bazzar_buy').modes['he']={
+	G.getDict('bazaar_buy').modes['he']={
 			name:'H.e.',
 			icon:[20,6,'magixmod'],
 			desc:'Buy [Essence of the Holiness] with [market_coin].',
