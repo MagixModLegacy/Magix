@@ -11110,12 +11110,12 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight':997,'culture':264},
 		req:{'ingredient crafting':true},
 		effects:[
-			{type:'function',func:function()
-			 	G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5}),
-				G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5}),
-				G.getDict('market_buy').effects.push({type:'mult',value:1.5}),
-				G.getDict('market_sell').effects.push({type:'mult',value:1.5})
-			}
+			{type:'function',func:function(){
+			 	G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5});
+				G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5});
+				G.getDict('market_buy').effects.push({type:'mult',value:1.5});
+				G.getDict('market_sell').effects.push({type:'mult',value:1.5});
+			}}
 		]
 	});
 		new G.Tech({
