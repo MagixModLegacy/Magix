@@ -11063,7 +11063,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'Unlocks a policy that will turn you on the prospected essence trading. Now [market_sell,Markets] trades [Magic essences] with bulks of 150 instead of 100.',
 		icon:[30,21,'magixmod'],
 		cost:{'insight II':95,'culture II':3,'science':1,'faith II':1},
-		req:{'Magic adept':true},
+		req:{'Magic adept':true,'Magical presence':true},
 		effects:[
 		],
 	});
