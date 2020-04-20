@@ -829,7 +829,7 @@ G.getDict('market_sell').modes['magic essences']={
 			desc:'Buy [Wind essence] with [market_coin].',
 			req:{'extended essences catalog':'on'}
 		};
-		G.getDict('market_buy').effects.push({
+		G.getDict('bazaar_buy').effects.push({
 			type:'convert',
 			from:{
 				'market_coin':35
