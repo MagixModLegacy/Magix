@@ -11110,6 +11110,12 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight':997,'culture':264},
 		req:{'ingredient crafting':true},
 		effects:[
+			{type:'function',func:function(){
+			G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+			G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+  		 	G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+    		 	G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+			},
 		],	
 	});
 		new G.Tech({
@@ -11131,10 +11137,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		],
 			
 	});
-			G.unitByName('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-G.unitByName('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-   G.unitByName('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-     G.unitByName('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+			
 		}
 		//if(G.modsByName['Market mod']){
 
