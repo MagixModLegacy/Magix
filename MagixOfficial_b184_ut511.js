@@ -11093,7 +11093,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			],
 		chance:10
 	});
-		if(G.modsByName['Market mod']){
+		if(G.modsByName['Market mod'] && G.whenDoneLoadingMods=1;){
 		new G.Tech({
 		name:'Essence trading',
 		desc:'Unlocks [essence_market_sell,Magical markets].',
@@ -11135,9 +11135,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
         G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
         G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
         G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-	}
-	if(G.modsByName['Market mod']){
-       
 G.setDict('market_sell').modes['dark essence']={
   name:'Dark essence',
   icon:[1,3,'magixmod'],
