@@ -8849,7 +8849,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'Concrete making',
-		desc:'Use limestone and water to craft a concrete, an [advanced building materials].',
+		desc:'Use limestone and water to craft a concrete, an [advanced building materials,Advanced building material].',
 		icon:[8,0,'magixmod'], //WIP
 		cost:{'insight':70},
 		req:{'masonry':true,'smelting':true,'Crafting a glass':true},
