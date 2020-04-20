@@ -11093,7 +11093,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			],
 		chance:10
 	});
-		if(G.modsByName['Market mod'] && G.whenDoneLoadingMods==1 && G.day==15){
+		if(G.modsByName['Market mod']){
 		new G.Tech({
 		name:'Essence trading',
 		desc:'Unlocks [essence_market_sell,Magical markets].',
