@@ -4581,13 +4581,18 @@ if (!document.getElementById(cssId))
 					G.getDict('market_buy').use={'worker':3,'land':1}
 					G.getDict('market_sell').use={'worker':3,'land':1}
 				}
-				if(G.has('Backshift')){
+				if(G.has('Backshift') && G.hasNot('Essence trading')){
 					G.getDict('bazaar_buy').icon=[29,24,'magixmod',26,24,'magixmod']
 					G.getDict('bazaar_sell').icon=[28,24,'magixmod',26,24,'magixmod']
 					G.getDict('market_buy').icon=[29,24,'magixmod',27,24,'magixmod']
 					G.getDict('market_sell').icon=[28,24,'magixmod',27,24,'magixmod']
 					G.getDict('trader_buy').icon=[29,24,'magixmod',30,18,'magixmod']
 					G.getDict('trader_sell').icon=[28,24,'magixmod',30,18,'magixmod']
+				}else if(G.has('Essence trading')){
+					G.getDict('bazaar_buy').icon=[29,24,'magixmod',30,23,'magixmod']
+					G.getDict('bazaar_sell').icon=[28,24,'magixmod',30,23,'magixmod']
+					G.getDict('market_buy').icon=[29,24,'magixmod',30,24,'magixmod']
+					G.getDict('market_sell').icon=[28,24,'magixmod',30,24,'magixmod']
 				}
 			}
 			//3rd party achievement's code
@@ -7874,73 +7879,6 @@ new G.Unit({
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
-	if(G.modsByName['Market mod']){
-		new G.Unit({
-		name:'essence_market_sell',
-		displayName:'Essence market',
-		desc:'Has similar functionality like [market_buy] but this market trades only with resources related to magic. Trades in bigger than normal bulks',
-		icon:[28,24,'magixmod',30,24,'magixmod'],
-		cost:{'basic building materials':100},
-		use:{'worker':3,'land':1},
-		gizmos:true,
-		modes:{
-			'off':G.MODE_OFF,
-			'esse':{name:'Essences(all)',icon:[20,13,'magixmod'],desc:'Sells 1000 [Magic essences] for some [market_coin]'},
-			'fire':{name:'F.e',icon:[0,2,'magixmod'],desc:'Sells 500 [Fire essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'wind':{name:'Wi.e',icon:[1,1,'magixmod'],desc:'Sells 500 [Wind essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'dark':{name:'D.e',icon:[1,3,'magixmod'],desc:'Sells 500 [Dark essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'wate':{name:'W.e',icon:[0,1,'magixmod'],desc:'Sells 500 [Water essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'ligh':{name:'L.e',icon:[0,3,'magixmod'],desc:'Sells 500 [Lightning essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'natu':{name:'N.e',icon:[1,2,'magixmod'],desc:'Sells 500 [Nature essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'holy':{name:'H.e',icon:[20,6,'magixmod'],desc:'Sells 500 [Essence of the Holiness] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-		},
-		effects:[
-			{type:'convert',from:{'Magic essences':1000},into:{'market_coin':30},every:4,mode:'esse'},
-			{type:'convert',from:{'Fire essence':500},into:{'market_coin':30},every:4,mode:'fire'},
-			{type:'convert',from:{'Wind essence':500},into:{'market_coin':30},every:4,mode:'wind'},
-			{type:'convert',from:{'Dark essence':500},into:{'market_coin':30},every:4,mode:'dark'},
-			{type:'convert',from:{'Water essence':500},into:{'market_coin':30},every:4,mode:'wate'},
-			{type:'convert',from:{'Lightning essence':500},into:{'market_coin':30},every:4,mode:'ligh'},
-			{type:'convert',from:{'Nature essence':500},into:{'market_coin':30},every:4,mode:'natu'},
-			{type:'convert',from:{'Essence of the Holiness':500},into:{'market_coin':30},every:4,mode:'holy'},
-		],
-		req:{'Essence trading':true},
-		category:'market_category'
-	});
-		new G.Unit({
-		name:'essence_market_buy',
-		displayName:'Essence market',
-		desc:'Has similar functionality like [market_buy] but this market trades only with resources related to magic. Trades in bigger than normal bulks',
-		icon:[29,24,'magixmod',30,24,'magixmod'],
-		cost:{'basic building materials':100},
-		use:{'worker':3,'land':1},
-		gizmos:true,
-		modes:{
-			'off':G.MODE_OFF,
-			'esse':{name:'Essences(all)',icon:[20,13,'magixmod'],desc:'Buys 1000 [Magic essences] for some [market_coin]'},
-			'fire':{name:'F.e',icon:[0,2,'magixmod'],desc:'Buys 500 [Fire essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'wind':{name:'Wi.e',icon:[1,1,'magixmod'],desc:'Buys 500 [Wind essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'dark':{name:'D.e',icon:[1,3,'magixmod'],desc:'Buys 500 [Dark essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'wate':{name:'W.e',icon:[0,1,'magixmod'],desc:'Buys 500 [Water essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'ligh':{name:'L.e',icon:[0,3,'magixmod'],desc:'Buys 500 [Lightning essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'natu':{name:'N.e',icon:[1,2,'magixmod'],desc:'Buys 500 [Nature essence] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-			'holy':{name:'H.e',icon:[20,6,'magixmod'],desc:'Buys 500 [Essence of the Holiness] for some [market_coin] ',req:{'extended essences catalog':'on'}},
-		},
-		effects:[
-			{type:'convert',from:{'market_coin':120},into:{'Magic essences':900},every:4,mode:'esse'},
-			{type:'convert',from:{'market_coin':120},into:{'Fire essence':30},every:4,mode:'fire'},
-			{type:'convert',from:{'market_coin':120},into:{'Wind essence':30},every:4,mode:'wind'},
-			{type:'convert',from:{'market_coin':120},into:{'Dark essence':30},every:4,mode:'dark'},
-			{type:'convert',from:{'market_coin':120},into:{'Water essence':30},every:4,mode:'wate'},
-			{type:'convert',from:{'market_coin':120},into:{'Lightning essence':30},every:4,mode:'ligh'},
-			{type:'convert',from:{'market_coin':120},into:{'Nature essence':30},every:4,mode:'natu'},
-			{type:'convert',from:{'market_coin':120},into:{'Essence of the Holiness':30},every:4,mode:'holy'},
-		],
-		req:{'Essence trading':true},
-		category:'market_category'
-	});
-	}
-	
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -11096,7 +11034,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		if(G.modsByName['Market mod']){
 		new G.Tech({
 		name:'Essence trading',
-		desc:'Unlocks [essence_market_sell,Magical markets].',
+		desc:'Now [market_sell] may trade with [Magic essences].',
 		icon:[22,24,'magixmod'],
 		cost:{'insight II':8,'faith II':1,'culture II':1},
 		req:{'Eotm':true},
@@ -11139,16 +11077,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 			
 		}
-		//if(G.modsByName['Market mod']){
-
-//G.getDict('market_sell').modes['dark essence']={
-  //name:'Dark essence',
-  //icon:[1,3,'magixmod'],
-  //desc:'ttte',
-  //req:{'extended essences catalog':'on'}
-//};
-//G.getDict('market_sell').effects.push({type:'convert',from:{'fruit':1},into:{'stone':1},mode:'dark essence'});
-		//}
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
