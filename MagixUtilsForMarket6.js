@@ -25,4 +25,4 @@ G.getDict('market_sell').modes['coal fire']={
 			mode:'coal fire'
 		});
 
-});
+}});
