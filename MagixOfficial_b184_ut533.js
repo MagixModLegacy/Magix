@@ -4421,19 +4421,6 @@ if (!document.getElementById(cssId))
 			if(G.has('symbolism II')){
 			G.getDict('storyteller').icon = [29,7,'magixmod']
 			}
-			if(G.has('cozy building')){
-			G.getDict('hut').icon = [28,12,'magixmod']
-			G.getDict('hovel').icon = [28,11,'magixmod']
-			G.getDict('mud shelter').icon = [28,13,'magixmod']
-			G.getDict('house').icon = [28,14,'magixmod']
-			}
-			if(G.has('cozier building')){
-			G.getDict('hut').icon = [29,10,'magixmod']
-			G.getDict('hovel').icon = [29,11,'magixmod']
-			G.getDict('mud shelter').icon = [29,12,'magixmod']
-			G.getDict('house').icon = [29,14,'magixmod']
-			G.getDict('branch shelter').icon = [29,13,'magixmod']
-			}
 			if(G.has('Music instruments')){
 			G.getDict('storyteller').limitPer = {'population':400}
 			}
@@ -10531,6 +10518,12 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		cost:{'insight II':20},
 		req:{'sedentism':true,'tool-making':true,'focused scouting':true},
 		effects:[
+			{type:'function',func:function(){
+			G.getDict('hut').icon = [28,12,'magixmod']
+			G.getDict('hovel').icon = [28,11,'magixmod']
+			G.getDict('mud shelter').icon = [28,13,'magixmod']
+			G.getDict('house').icon = [28,14,'magixmod']
+			}}
 		],
 		chance:3,
 	});
@@ -10541,6 +10534,13 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		cost:{'insight II':25,'culture II':5,'insight':10},
 		req:{'cozy building':true,'focused scouting':true,'<font color="maroon">Caretaking</font>':true},
 		effects:[
+			{type:'function',func:function(){
+			G.getDict('hut').icon = [29,10,'magixmod']
+			G.getDict('hovel').icon = [29,11,'magixmod']
+			G.getDict('mud shelter').icon = [29,12,'magixmod']
+			G.getDict('house').icon = [29,14,'magixmod']
+			G.getDict('branch shelter').icon = [29,13,'magixmod']
+			}}
 		],
 		chance:3,
 	});
@@ -11080,12 +11080,23 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	}
 			new G.Tech({
 		name:'Mo\' beauty',
-		desc:'Applies visual changes to some units. //Default units gets "decorated" let\'s say',
+		desc:'Applies visual changes to some units. //Default units gets "decorated" let\'s say in short.',
 		icon:[30,11,'magixmod'],
 		cost:{'insight II':5},
 		req:{'Doctrine of the dark wormhole 4/5':true},
 		effects:[
-			{type:'function',func:function(){G.getDict('warehouse').icon=[30,9,'magixmod']}}
+			{type:'function',func:function(){
+				G.getDict('warehouse').icon=[30,9,'magixmod']
+				G.getDict('barn').icon=[30,8,'magixmod']
+				G.getDict('granary').icon=[30,7,'magixmod']
+				G.getDict('stockpile').icon=[30,6,'magixmod']
+				G.getDict('well').icon=[30,5,'magixmod']
+				G.getDict('furnace').icon=[30,4,'magixmod']
+				G.getDict('well of the Plain island').icon=[30,3,'magixmod']
+				G.getDict('carver').icon=[30,2,'magixmod']
+				G.getDict('firekepper').icon=[30,1,'magixmod']
+				G.getDict('storage pit').icon=[30,0,'magixmod']
+			}}
 			]
 	});
 	/*=====================================================================================
