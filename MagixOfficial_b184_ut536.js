@@ -4615,6 +4615,12 @@ if (!document.getElementById(cssId))
 				G.getDict('carver').icon=[30,2,'magixmod']
 				G.getDict('firekeeper').icon=[30,1,'magixmod']
 				G.getDict('storage pit').icon=[30,0,'magixmod']
+				G.getDict('woodcutter').icon=[31,0,'magixmod']
+				G.getDict('digger').icon=[31,1,'magixmod']
+				G.getDict('artisan').icon=[31,2,'magixmod']
+				G.getDict('dreamer').icon=[31,3,'magixmod']
+				G.getDict('architect').icon=[31,4,'magixmod']
+				G.getDict('healer').icon=[31,5,'magixmod']
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
