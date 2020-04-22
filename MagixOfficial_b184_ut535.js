@@ -4611,7 +4611,7 @@ if (!document.getElementById(cssId))
 				G.getDict('stockpile').icon=[30,6,'magixmod']
 				G.getDict('well').icon=[30,5,'magixmod']
 				G.getDict('furnace').icon=[30,4,'magixmod']
-				G.getDict('well of the Plain island').icon=[30,3,'magixmod']
+				G.getDict('well of the Plain Island').icon=[30,3,'magixmod']
 				G.getDict('carver').icon=[30,2,'magixmod']
 				G.getDict('firekepper').icon=[30,1,'magixmod']
 				G.getDict('storage pit').icon=[30,0,'magixmod']
