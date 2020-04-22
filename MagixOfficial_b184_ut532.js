@@ -11085,7 +11085,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':5},
 		req:{'Doctrine of the dark wormhole 4/5':true},
 		effects:[
-			G.getDict('warehouse').icon=[30,9,'magixmod'];
+			{type:'function',func:function(){G.getDict('warehouse').icon=[30,9,'magixmod']}}
 			]
 	});
 	/*=====================================================================================
