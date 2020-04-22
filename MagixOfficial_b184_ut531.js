@@ -11077,8 +11077,17 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		],
 			
 	});
-			
-		}
+	}
+			new G.Tech({
+		name:'Mo\' beauty',
+		desc:'Applies visual changes to some units. //Default units gets "decorated" let\'s say',
+		icon:[30,11,'magixmod'],
+		cost:{'insight II':5},
+		req:{'Doctrine of the dark wormhole 4/5':true},
+		effects:[
+			G.getDict('warehouse').icon=[30,9,'magixmod'];
+			]
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
