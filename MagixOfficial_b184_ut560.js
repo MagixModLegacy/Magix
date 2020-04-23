@@ -2750,7 +2750,7 @@ if (!document.getElementById(cssId))
 						G.gain('happiness',amount*2,'burial');
 					}
 			var toSpoil=me.amount*0.001;
-			var spent=G.lose(me,randomFloor(toSpoil),'decay');
+			var spent=G.lose('Urn',randomFloor(toSpoil),'decay');
 		}
 	});
 		new G.Res({
