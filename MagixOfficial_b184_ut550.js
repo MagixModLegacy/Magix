@@ -2246,6 +2246,12 @@ if (!document.getElementById(cssId))
 		icon:[16,6,'magixmod'],
 		partOf:'misc materials',
 		category:'misc',
+		hidden:true,
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.09;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 		new G.Res({
 		name:'Berry seeds',
@@ -2253,6 +2259,12 @@ if (!document.getElementById(cssId))
 		icon:[15,6,'magixmod'],
 		partOf:'misc materials',
 		category:'misc',
+		hidden:true,
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.09;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 		let madeUnlockMessage = false
 		new G.Res({
@@ -2725,17 +2737,15 @@ if (!document.getElementById(cssId))
 		category:'food',
 	});
 		new G.Res({
-		name:'Beet',
-		desc:'Good source of [sugar] but not as high rates as [Sugar cane] provides. Tasty, edible.',
+		name:'Urn',
+		desc:'Cremated [corpse] . People can store 4 [Urn]s per 1 [burial spot] . They decay as well.',
 		icon:[10,11,'magixmod'],
-		turnToByContext:{'eating':{'health':0.1,'happiness':0.005},'decay':{'spoiled food':1}},
-		partOf:'food',
-		category:'food',
-		hidden:true,
+		category:'misc'
 	});
 		new G.Res({
 		name:'Beet seeds',
-		desc:'If you want to start farming [Beet] and crafting [sugar] these seeds are a must.',
+		displayName:'Seeds',
+		desc:'Some seeds that may allow you to set up farms of lettuce for instance or carrots.',
 		icon:[6,11,'magixmod'],
 		partOf:'misc materials',
 		category:'misc',
@@ -4976,6 +4986,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'ground stone tools':true}},
 			{type:'mult',value:1.08,req:{'Motivation for artisans':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.04,req:{'Motivation for artisans':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.03,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 		],
 		req:{'stone-knapping':true},
 		category:'crafting',
@@ -5200,6 +5211,7 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'water':20}},
+			{type:'mult',value:1.05,req:{'Deeper wells':true}};
 		],
 		category:'production',
 		req:{'well-digging':true},
@@ -5363,6 +5375,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'},
 			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'waste',chance:0.001/1000},
 			//TODO : better metal tools, weapons etc
 		],
@@ -5401,6 +5414,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
 			{type:'mult',value:0.8,req:{'dt17':true}},
 			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -6329,6 +6343,7 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'convert',from:{'Sulfur':3,'Paper':2,'Thread':3},into:{'Light explosives':1.25},every:2,repeat:2,mode:'explosivesS'},
+			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 		],
 		req:{'Explosive crafting & mining':true},
 		category:'crafting',
@@ -6343,6 +6358,7 @@ if (!document.getElementById(cssId))
 		upkeep:{'Cloudy water':30},
 		effects:[
 			{type:'gather',what:{'Ambrosium leaf':40}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 		],
 		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 		category:'paradiseunit',
@@ -7155,6 +7171,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
 			{type:'mult',value:0.8,req:{'dt17':true}},
 			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -7188,6 +7205,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:3,repeat:1,mode:'hard metal armor'},
 			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':2},every:3,repeat:1,mode:'metal armor'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -7388,6 +7406,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'sugar':1,'Watermelon':0.4,'water':2},into:{'Watermelon juice':2},every:5,mode:'juices'},
 			{type:'convert',from:{'sugar':1,'fruit':0.4,'water':2},into:{'Fruit juice':2},every:5,mode:'juices',req:{'Moar juices':true}},
 			{type:'convert',from:{'sugar':3,'fruit':0.9,'water':6,'Berries':1,'Watermelon':0.25},into:{'Fruit juice':12,'Berry juice':8,'Watermelon juice':9},every:5,mode:'juices',req:{'Moar juices':true},chance:1/20},
+			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 		],
 		req:{'Crafting a juice':true},
 		category:'crafting',
@@ -7417,7 +7436,7 @@ if (!document.getElementById(cssId))
 		name:'Berry farm',
 		desc:'@Specialized farm which will harvest tasty [Berries] at the better rate than [gatherer].',
 		icon:[14,1,'magixmod'],
-		cost:{'Berry seeds':200},
+		cost:{'Beet seeds':200},//Ingame displays seed
 		req:{'Farms in the new land':true},
 		upkeep:{'water':12},
 		use:{'worker':8,'Land of the Plain Island':35},
@@ -7434,7 +7453,7 @@ if (!document.getElementById(cssId))
 		name:'Watermelon farm',
 		desc:'@Specialized farm which will harvest tasty [Watermelon] at the better rate than [gatherer].',
 		icon:[14,2,'magixmod'],
-		cost:{'Watermelon seeds':200},
+		cost:{'Beet seeds':200},//It will display ingame Seeds
 		req:{'Farms in the new land':true},
 		use:{'worker':8,'Land of the Plain Island':35},
 		upkeep:{'water':12},
@@ -7934,9 +7953,7 @@ new G.Unit({
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
 	=======================================================================================*/
 	//New gains for gatherer
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Berry seeds': 0.005},amount:1,max:1});
 		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Beet seeds': 0.005},amount:1,max:1});
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Watermelon seeds':0.0001},amount:1,max:1});
 //Healer generates health by trait and research(it is temporary)
 		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.008},amount:1,max:1,req:{'Nutrition':true}});
 		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.001},amount:1,max:1,req:{'first aid':true}}); 
@@ -11161,7 +11178,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'power of the faith',
-		desc:'Now [Crafting & farm rituals] applies to: @[blacksmith workshop](mortal and paradise version) @[carpenter workshop](mortal and paradise version)@[Holy orchard]@[artisan](types: juice, pyro and normal. Bonus for juice and pyro: 25% while for normal it is 3%)//All of these bonuses are only active when the ritual active is. These bonuses won\'t increase amount of [faith II] required to keep the ritual active. @provides 5 [spirituality II]',
+		desc:'Now [Crafting & farm rituals] bonus applies to: @[blacksmith workshop](mortal and paradise version) @[carpenter workshop](mortal and paradise version)@[Holy orchard]@[artisan](types: juice, pyro and normal. Bonus for juice and pyro: 25% while for normal it is 3%)//All of these bonuses are only active when the ritual active is. These bonuses won\'t increase amount of [faith II] required to keep the ritual active. @provides 5 [spirituality II]',
 		icon:[24,24,'magixmod'],
 		cost:{'culture II':25,'insight II':135,'science':5},
 		req:{'symbolism III':true},
