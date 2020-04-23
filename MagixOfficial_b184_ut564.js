@@ -2753,6 +2753,10 @@ if (!document.getElementById(cssId))
 						G.gain('happiness',amount*2,'burial');
 					}
 				}
+			if(G.has('dark urn decay')){
+			var toSpoil=me.amount*0.002*(G.getRes('corpsedecaypoint').amount);
+			var spent=G.lose('corpse',randomFloor(toSpoil),'Dark wormhole\' ability(Dark urn decay)');
+			}
 			var toSpoil=me.amount*0.001;
 			var spent=G.lose('Urn',randomFloor(toSpoil),'decay');
 		}
@@ -7498,7 +7502,7 @@ if (!document.getElementById(cssId))
 		desc:'Emballs and burns [corpse]s in roaring fire. Then all dust from the body is being put into the [Urn] . Uses [fire pit]s as an upkeep.',
 		icon:[31,21,'magixmod'],
 		req:{'cremation':true},
-		use:{'worker':3,'instructor':1,'land':1},
+		use:{'worker':3,'Instructor':1,'land':1},
 		cost:{'basic building materials':300},
 		upkeep:{'fire pit':3},
 		effects:[
