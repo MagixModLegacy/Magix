@@ -4623,6 +4623,9 @@ if (!document.getElementById(cssId))
 				G.getDict('healer').icon=[31,5,'magixmod']
 				G.getDict('blacksmith workshop').icon=[31,16,'magixmod']
 			}
+			if(G.has('Plain island mining strategy')){
+			G.getDict('Mine of the plain island').icon = [31,8,'magixmod']
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -7017,7 +7020,9 @@ new G.Unit({
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			//Collapsing chance
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine of Plain Island has collapsed, wounding its miners','mines of Plain Island collapsed, wounding their miners.'),chance:1/50}
+			{type:'mult',value:1.05,req:{'Plain island mining strategy':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Plain island mining strategy':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Plain island mining strategy':true}}
 		],
 		category:'plainisleunit',
 		limitPer:{'land':35},
@@ -10593,7 +10598,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	});
 		new G.Tech({
 		name:'Science blessing',
-		desc:'[Guru] generates 50% more science & insight.',
+		desc:'[Guru] generates 50% more [science] & [insight].',
 		icon:[29,5,'magixmod'],
 		cost:{'insight II':15,'science':5,'Mana':435},
 		req:{'Laws of physics(intermediate)':true,'Ambrosium treeplanting':true,'Faithful cloudy water filtering':true,'Farm of wheat':true},
@@ -11124,6 +11129,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		req:{'Doctrine of the dark wormhole 3/5':true},
 		effects:[
 			]
+	});
+			new G.Tech({
+		name:'Plain island mining strategy',
+		desc:'Decreases accident rate at [Mine of the plain island] . @Increases efficiency of [Mine of the plain island] by 5%. @Applies visual change to [Mine of the plain island]\'s icon.',
+		icon:[31,7,'magixmod'], 
+		cost:{'insight II':50,'science':2,'insight':204},
+		req:{'Mining strategy':true}
 	});
 	/*=====================================================================================
 	POLICIES
