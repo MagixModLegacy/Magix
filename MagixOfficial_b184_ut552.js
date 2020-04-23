@@ -2240,7 +2240,7 @@ if (!document.getElementById(cssId))
 		partOf:'misc materials',
 		category:'misc',
 	});
-		new G.Res({
+		new G.Res({//REMOVED AND WILL BE REPLACED SOON
 		name:'Watermelon seeds',
 		desc:'If you want to start farming [Watermelon] and crafting tasty [Juices] these seeds are a must.',
 		icon:[16,6,'magixmod'],
@@ -2253,7 +2253,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 	});
-		new G.Res({
+		new G.Res({//REMOVED AND WILL BE REPLACED SOON
 		name:'Berry seeds',
 		desc:'If you want to start farming [Berries] and crafting tasty [Juices] these seeds are a must.',
 		icon:[15,6,'magixmod'],
@@ -2739,8 +2739,18 @@ if (!document.getElementById(cssId))
 		new G.Res({
 		name:'Urn',
 		desc:'Cremated [corpse] . People can store 4 [Urn]s per 1 [burial spot] . They decay as well.',
-		icon:[10,11,'magixmod'],
-		category:'misc'
+		icon:[31,6,'magixmod'],
+		category:'misc',
+		tick:function(me,tick){
+		if (graves.amount>graves.used)
+					{
+						var amount=Math.min(graves.amount-graves.used,Math.max(0.25,randomFloor(me.amount*0.1)));
+						graves.used+=amount;G.lose('corpse',amount,'burial');
+						G.gain('happiness',amount*2,'burial');
+					}
+			var toSpoil=me.amount*0.001;
+			var spent=G.lose('Urn',randomFloor(toSpoil),'decay');
+		}
 	});
 		new G.Res({
 		name:'Beet seeds',
