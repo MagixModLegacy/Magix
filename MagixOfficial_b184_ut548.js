@@ -4629,6 +4629,14 @@ if (!document.getElementById(cssId))
 			if(G.has('Plain island mining strategy')){
 			G.getDict('Mine of the plain island').icon = [31,8,'magixmod']
 			}
+			if(G.has('backshift at farms')){
+			G.getDict('wheat farm').icon = [31,19,'magixmod']
+			G.getDict('wheat farm').use={'worker':12}
+			G.getDict('Berry farm').icon = [31,17,'magixmod']
+			G.getDict('Berry farm').use={'worker':12}
+			G.getDict('wheat farm').icon = [31,18,'magixmod']
+			G.getDict('wheat farm').use={'worker':12,'Instructor':2}
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -5896,8 +5904,8 @@ if (!document.getElementById(cssId))
 		],
 		category:'debug',
 	});
-	//MAGIX
-new G.Unit({
+		//MAGIX
+		new G.Unit({
 		name:'Hovel of colours',
 		desc:'Does same thing as [artisan] on <b>Craft dyes set (1,2,3,4)</b> was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
 		icon:[19,18,'magixmod'],
@@ -6128,6 +6136,7 @@ new G.Unit({
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}},
 			{type:'mult',value:1.75,req:{'wizard\'s grain fertlizer':true}},
+			{type:'mult',value:2,req:{'backshift at farms':true}},
 		],
 	});
 		new G.Unit({
@@ -7417,7 +7426,8 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Berries':15.3}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:8,req:{'God\'s trait #2 Berry rush':true}},
-			{type:'mult',value:2,req:{'Berry masterry':true}}
+			{type:'mult',value:2,req:{'Berry masterry':true}},
+			{type:'mult',value:2.5,req:{'backshift at farms':true}},
 		],
 	});
 		new G.Unit({
@@ -7445,7 +7455,8 @@ new G.Unit({
 		category:'plainisleunit',
 		effects:[
 			{type:'gather',context:'gather',what:{'Sugar cane':0.85}},
-			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
+			{type:'mult',value:2.5,req:{'backshift at farms':true}},
 		],
 	});
 		new G.Unit({//I am removed because I didn't change that much in game. I was a beet farm but I am going to be something different more useful
@@ -11174,6 +11185,17 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5},
 		req:{'improved windmill motors':true,'<font color="maroon">Moderation</font>':true},
 		chance:2,
+	});
+		new G.Trait({
+		name:'A leaf of the wisdom',
+		desc:'You found a red leaf that glows. You remember that now tree of wisdom has red leaves. The red leaf shines stronger and stronger... then dissipates providing you: 2[education] and 40[wisdom II].',
+		icon:[31,10,'magixmod'],
+		req:{'ritual necrophagy':true,'Liberating darkness':true},
+		chance:100,
+			effects:[
+			{type:'provide res',what:{'wisdom II':40}},
+			{type:'provide res',what:{'education':2}},
+			]
 	});
 	/*=====================================================================================
 	POLICIES
