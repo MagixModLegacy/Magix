@@ -11231,7 +11231,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'embalmment',
-		desc:'Smart people said how to make a substance that will slow down decay of corpses and discourage people from performing [ritual necrophagy,necrophagy] on them. They think about crafting something that is called [Urn] and there they would "store" [corpses].',
+		desc:'Smart people said how to make a substance that will slow down decay of corpses and discourage people from performing [ritual necrophagy,necrophagy] on them. They think about crafting something that is called [Urn] and there they would "store" [corpse]s.',
 		icon:[31,20,'magixmod'],
 		cost:{'insight II':100,'science':5,'influence II':10,'culture II':5},
 		req:{'respect for the corpse':true},
