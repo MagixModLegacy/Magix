@@ -2743,12 +2743,16 @@ if (!document.getElementById(cssId))
 		category:'misc',
 		tick:function(me,tick){
 		var graves=G.getRes('burial spot');
-		if (graves.amount>graves.used)
+		if (me.amount>0)
+				{
+					//bury slowly
+					if (graves.amount>graves.used)
 					{
 						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
 						graves.used+=amount;G.lose('Urn',amount*4,'burial');
 						G.gain('happiness',amount*2,'burial');
 					}
+				}
 			var toSpoil=me.amount*0.001;
 			var spent=G.lose('Urn',randomFloor(toSpoil),'decay');
 		}
