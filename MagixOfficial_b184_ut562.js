@@ -11219,7 +11219,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		chance:2,
 	});
 		new G.Trait({
-		name:'A leaf of the wisdom',
+		name:'A leaf of wisdom',
 		desc:'You found a red leaf that glows. You remember that now tree of wisdom has red leaves. The red leaf shines stronger and stronger... then dissipates providing you: 2[education] and 40[wisdom II].',
 		icon:[31,10,'magixmod'],
 		req:{'ritual necrophagy':true,'Liberating darkness':true},
@@ -11228,6 +11228,22 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'provide res',what:{'wisdom II':40}},
 			{type:'provide res',what:{'education':2}},
 			]
+	});
+		new G.Tech({
+		name:'embalmment',
+		desc:'Smart people said how to make a substance that will slow down decay of corpses and discourage people from performing [ritual necrophagy,necrophagy] on them. They think about crafting something that is called [Urn] and there they would "store" [corpses].',
+		icon:[31,20,'magixmod'],
+		cost:{'insight II':100,'science':5,'influence II':10,'culture II':5},
+		req:{'respect for the corpse':true},
+		chance:5,
+	});
+		new G.Tech({
+		name:'cremation',
+		desc:'Unlocks [crematorium]. Burns embalmed [corpse]s then all dust from [corpse] they put into the [Urn].//You\'ll unlock better way of burying people. 1 [burial spot] can store 4 [Urn]s.',
+		icon:[30,16,'magixmod'],
+		cost:{'insight II':150,'science':10,'influence II':10,'culture II':35},
+		req:{'embalmment':true},
+		chance:5,
 	});
 	/*=====================================================================================
 	POLICIES
