@@ -4630,12 +4630,12 @@ if (!document.getElementById(cssId))
 			G.getDict('Mine of the plain island').icon = [31,8,'magixmod']
 			}
 			if(G.has('backshift at farms')){
-			G.getDict('wheat farm').icon = [31,19,'magixmod']
-			G.getDict('wheat farm').use={'worker':12}
+			G.getDict('Wheat farm').icon = [31,19,'magixmod']
+			G.getDict('Wheat farm').use={'worker':12}
 			G.getDict('Berry farm').icon = [31,17,'magixmod']
 			G.getDict('Berry farm').use={'worker':12}
-			G.getDict('wheat farm').icon = [31,18,'magixmod']
-			G.getDict('wheat farm').use={'worker':12,'Instructor':2}
+			G.getDict('Sugar cane farm').icon = [31,18,'magixmod']
+			G.getDict('Sugar cane farm').use={'worker':12,'Instructor':2}
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
