@@ -2742,6 +2742,7 @@ if (!document.getElementById(cssId))
 		icon:[31,6,'magixmod'],
 		category:'misc',
 		tick:function(me,tick){
+		var graves=G.getRes('burial spot');
 		if (graves.amount>graves.used)
 					{
 						var amount=Math.min(graves.amount-graves.used,Math.max(0.25,randomFloor(me.amount*0.1)));
