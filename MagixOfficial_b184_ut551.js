@@ -5211,7 +5211,7 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'water':20}},
-			{type:'mult',value:1.05,req:{'Deeper wells':true}};
+			{type:'mult',value:1.05,req:{'Deeper wells':true}}
 		],
 		category:'production',
 		req:{'well-digging':true},
