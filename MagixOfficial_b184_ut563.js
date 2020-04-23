@@ -7493,12 +7493,18 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:2.5,req:{'backshift at farms':true}},
 		],
 	});
-		new G.Unit({//I am removed because I didn't change that much in game. I was a beet farm but I am going to be something different more useful
-		name:'.',
-		desc:'.',
-		req:{'Farms in the new land':true,'tribalism':false},
+		new G.Unit({//I was removed because I didn't change that much in game. I was a beet farm but I am going to be something different more useful
+		name:'crematorium',
+		desc:'Emballs and burns [corpse]s in roaring fire. Then all dust from the body is being put into the [Urn] . Uses [fire pit]s as an upkeep.',
+		icon:[31,21,'magixmod'],
+		req:{'cremation':true},
+		use:{'worker':3,'instructor':1,'land':1},
+		cost:{'basic building materials':300},
+		upkeep:{'fire pit':3},
 		effects:[
+			{type:'convert',from:{'corpse':7,'pot':7},into:{'Urn':7},every:5},
 		],
+		category:'civil'
 	});
 			new G.Unit({
 		name:'Essential conversion tank',
@@ -11243,6 +11249,14 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[30,16,'magixmod'],
 		cost:{'insight II':150,'science':10,'influence II':10,'culture II':35},
 		req:{'embalmment':true},
+		chance:5,
+	});
+		new G.Tech({
+		name:'dark urn decay',
+		desc:'[Corpse decay] now affects [Urn]s as well.',
+		icon:[30,15,'magixmod'],
+		cost:{'faith II':15,'insight II':100,'Essenced seeds':300},
+		req:{'Corpse decay':true,'cremation':true},
 		chance:5,
 	});
 	/*=====================================================================================
