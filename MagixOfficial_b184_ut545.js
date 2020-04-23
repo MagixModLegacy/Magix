@@ -11134,7 +11134,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Plain island mining strategy',
 		desc:'Decreases accident rate at [Mine of the plain island] . @Increases efficiency of [Mine of the plain island] by 5%. @Applies visual change to [Mine of the plain island]\'s icon.',
 		icon:[31,7,'magixmod'], 
-		cost:{'insight II':50,'science':2,'insight':204},
+		cost:{'insight II':50,'science':2,'insight':139},
 		req:{'Mining strategy':true}
 	});
 	/*=====================================================================================
