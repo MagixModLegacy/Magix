@@ -11106,7 +11106,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'symbolism III',
 		desc:'Third level of [symbolism] doesn\'t increase the bonus but since now the bonus will apply to more units([Guru] gathers 25% more [science], [musician] , [Thoughts sharer] , [Lawyer] ,[Mediator]. [Cathedral] gets 100% bonus instead of 70%([symbolism II] bonus). //In addition provides: @10[wisdom II],[inspiration II] @3[education] @5[authority II],[spirituality II].',
 		icon:[30,14,'magixmod'],
-		cost:{'insight II':145,'culture II':35,'influence II':5,'faith II':5,'science':10},
+		cost:{'insight II':145,'culture II':35,'influence II':5,'faith II':5,'science':10,'insight':16},
 		req:{'Doctrine of the dark wormhole 5/5':true},
 		effects:[
 			{type:'provide res',what:{'inspiration II':10}},
@@ -11120,7 +11120,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'wizard\'s grain fertlizer',
 		desc:'Fertlizer that makes [Wheat farm]s produce 75% more [wheat] (compounding). Made by group of wizards who love eating bread on breakfast and they do not imagine a life without a piece of bread.',
 		icon:[30,17,'magixmod'],
-		cost:{'insight II':100,'Mana':500,'culture II':33,'faith II':2},
+		cost:{'insight II':100,'Mana':500,'culture II':33,'faith II':2,'insight':35},
 		req:{'Doctrine of the dark wormhole 3/5':true},
 		effects:[
 			]
