@@ -2746,7 +2746,7 @@ if (!document.getElementById(cssId))
 		if (graves.amount>graves.used)
 					{
 						var amount=Math.min(graves.amount-graves.used,Math.max(0.25,randomFloor(me.amount*0.1)));
-						graves.used+=amount;G.lose('corpse',amount,'burial');
+						graves.used+=amount;G.lose('Urn',amount,'burial');
 						G.gain('happiness',amount*2,'burial');
 					}
 			var toSpoil=me.amount*0.001;
