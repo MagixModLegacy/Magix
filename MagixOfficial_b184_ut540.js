@@ -4621,6 +4621,7 @@ if (!document.getElementById(cssId))
 				G.getDict('dreamer').icon=[31,3,'magixmod']
 				G.getDict('architect').icon=[31,4,'magixmod']
 				G.getDict('healer').icon=[31,5,'magixmod']
+				G.getDict('blacksmith workshop').icon=[31,16,'magixmod']
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
