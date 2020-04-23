@@ -7358,12 +7358,11 @@ new G.Unit({
 		//upkeep:{'coin':0.2},
 		modes:{
 			'sugar':{name:'Extract sugar out of cane',icon:[15,2,'magixmod'],desc:'This artisan will only extract [sugar] out of [Sugar cane]. At least he will craft needed ingredient of tasty [Juices].',use:{'worker':1}},
-			'sugarbeet':{name:'Extract sugar out of beet',icon:[10,11,'magixmod'],desc:'This artisan will only extract [sugar] out of [Beet]. At least he will craft needed ingredient of tasty [Juices].',use:{'worker':1}},
+			
 			'juices':{name:'Craft juices',icon:[14,3,'magixmod'],desc:'This artisan will craft [Juices] out of [Watermelon] or [Berries] , [sugar] and [water]. Have a good taste. <b>:)',use:{'worker':1}},
 		},
 		effects:[
 			{type:'convert',from:{'Sugar cane':1.5},into:{'sugar':1},every:5,mode:'sugar'},
-			{type:'convert',from:{'Beet':1},into:{'sugar':0.125},every:5,mode:'sugarbeet'},
 			{type:'convert',from:{'sugar':1,'Berries':0.95,'water':1},into:{'Berry juice':1},every:5,mode:'juices'},
 			{type:'convert',from:{'sugar':1,'Watermelon':0.4,'water':2},into:{'Watermelon juice':2},every:5,mode:'juices'},
 			{type:'convert',from:{'sugar':1,'fruit':0.4,'water':2},into:{'Fruit juice':2},every:5,mode:'juices',req:{'Moar juices':true}},
@@ -11097,6 +11096,20 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':5},
 		req:{'Doctrine of the dark wormhole 4/5':true},
 		effects:[
+			]
+	});
+				new G.Tech({
+		name:'symbolism III',
+		desc:'Third level of [symbolism] doesn\'t increase the bonus but since now the bonus will apply to more units([Guru] gathers 25% more science, [musician] , [Thoughts sharer] , [Lawyer] ,[Mediator]. Cathedral gets 100% bonus instead of 70%([symbolism II] bonus). //In addition provides: @10[wisdom II],[inspiration II] @3[education] @5[authority II],[spirituality II].',
+		icon:[30,14,'magixmod'],
+		cost:{'insight II':150,'culture II':35,'influence II':5,'faith II':5,'science':10},
+		req:{'Corpse decay':true,'Doctrine of the dark wormhole 5/5':true},
+		effects:[
+			{type:'provide res',what:{'inspiration II':10}},
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'education':3}},
+			{type:'provide res',what:{'authority II':5}},
+			{type:'provide res',what:{'spirituality II':5}},
 			]
 	});
 	/*=====================================================================================
