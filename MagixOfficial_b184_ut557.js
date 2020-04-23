@@ -2745,7 +2745,7 @@ if (!document.getElementById(cssId))
 		var graves=G.getRes('burial spot');
 		if (graves.amount>graves.used)
 					{
-						var amount=Math.min(graves.amount-graves.used,Math.max(0.25,randomFloor(me.amount*0.1)));
+						var amount=Math.min(graves.amount-graves.used,Math.max(0.25,randomFloor(me.amount*0.025)));
 						graves.used+=amount;G.lose('Urn',amount,'burial');
 						G.gain('happiness',amount*2,'burial');
 					}
