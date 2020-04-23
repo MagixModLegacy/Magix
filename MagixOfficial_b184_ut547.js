@@ -582,6 +582,7 @@ if (!document.getElementById(cssId))
 				if (G.has('belief in the afterlife')) deathUnhappinessMult/=2;
 				if (G.has('Hope of revenant abandoning')) deathUnhappinessMult/=2;
 				if (G.has('dt12')) deathUnhappinessMult*=1.5;
+				if (G.has('respect for the corpse')) deathUnhappinessMult/=1.25;
 				if (tick%3==0 && G.checkPolicy('disable eating')=='off')
 				{
 					//drink water
@@ -925,7 +926,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose('corpse',randomFloor(toSpoil),'Dark wormhole\' ability(Corpse decay)');
 			}
 			if(G.has('respect for the corpse')){
-				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. They were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
+				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
 		},	
 	});
@@ -11141,11 +11142,38 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 			new G.Trait({
 		name:'respect for the corpse',
-		desc:'Obtaining this trait disables effect of the [ritual necrophagy] trait and unlocks way better and less cruel rites that can be used to bury corpses such like cremation.',
+		desc:'Obtaining this trait disables effect of the [ritual necrophagy] trait and unlocks way better and less cruel rites that can be used to bury corpses such like cremation. @unhappiness from unburied corpses is decreased by 25%',
 		icon:[25,24,'magixmod'],
 		cost:{'culture II':25,'faith II':5,'influence II':5},
 		req:{'ritual necrophagy':true,'Liberating darkness':true},
 		chance:35
+	});
+		new G.Tech({
+		name:'power of the faith',
+		desc:'Now [Crafting & farm rituals] applies to: @[blacksmith workshop](mortal and paradise version) @[carpenter workshop](mortal and paradise version)@[Holy orchard]@[artisan](types: juice, pyro and normal. Bonus for juice and pyro: 25% while for normal it is 3%)//All of these bonuses are only active when the ritual active is. These bonuses won\'t increase amount of [faith II] required to keep the ritual active. @provides 5 [spirituality II]',
+		icon:[24,24,'magixmod'],
+		cost:{'culture II':25,'insight II':135,'science':5},
+		req:{'symbolism III':true},
+		chance:2,
+			effects:[
+			{type:'provide res',what:{'spirituality II':5}},
+			]
+	});
+		new G.Tech({
+		name:'improved windmill motors',
+		desc:'[Windmill] can craft 35% more [flour].',
+		icon:[31,13,'magixmod'],
+		cost:{'insight II':165,'science':5},
+		req:{'symbolism III':true},
+		chance:2,
+	});
+		new G.Tech({
+		name:'backshift at farms',
+		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech.',
+		icon:[31,14,'magixmod'],
+		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5},
+		req:{'improved windmill motors':true,'<font color="maroon">Moderation</font>':true},
+		chance:2,
 	});
 	/*=====================================================================================
 	POLICIES
