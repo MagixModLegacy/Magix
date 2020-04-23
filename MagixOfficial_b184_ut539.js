@@ -7436,18 +7436,11 @@ new G.Unit({
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
 		],
 	});
-		new G.Unit({
-		name:'Beet farm',
-		desc:'@Specialized farm which will harvest useful in [Juices] crafting [Beet] - another source of [sugar].',
-		icon:[9,11,'magixmod'],
-		cost:{'Beet seeds':300},
-		req:{'Farms in the new land':true,'Farm of the Beet':true},
-		use:{'worker':8,'land':15},
-		upkeep:{'water':14},
-		category:'production',
+		new G.Unit({//I am removed because I didn't change that much in game. I was a beet farm but I am going to be something different more useful
+		name:'.',
+		desc:'.',
+		req:{'Farms in the new land':true,'tribalism':false},
 		effects:[
-			{type:'gather',context:'gather',what:{'Beet':30}},
-			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
 		],
 	});
 			new G.Unit({
@@ -9125,9 +9118,9 @@ getCosts:function()
 		req:{'Laws of physics(basic)':true},
 	});
 		new G.Tech({
-		name:'Farm of the Beet',
-		desc:'@Makes [Beet] farm possible to be built.',
-		icon:[10,11,'magixmod',24,1],
+		name:'Deeper wells',
+		desc:'@[well]s provide 5% more water.',
+		icon:[31,15,'magixmod'],
 		cost:{'insight':490,'wisdom':30},
 		req:{'Farms in the new land':true},
 	});
@@ -10021,7 +10014,7 @@ autobuy(G.year)
 		desc:'The time has finally come and people seem very curious. That is a sign that they want to know more and more. May unlock unique techs , traits , units for this path.',
 		icon:[25,17,'magixmod'],
 		cost:{},
-		chance:1000,
+		chance:750,
 		req:{'culture of moderation':true,'<font color="maroon">Caretaking</font>':false},
 		category:'main',
 	});
@@ -10031,7 +10024,7 @@ autobuy(G.year)
 		icon:[24,17,'magixmod'],
 		cost:{},
 		req:{'joy of eating':true,'<font color="maroon">Moderation</font>':false},
-		chance:1000,
+		chance:750,
 		category:'main',
 	});
 	//Another knowledge
