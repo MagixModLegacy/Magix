@@ -6120,7 +6120,8 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'wheat':230}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
-			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}},
+			{type:'mult',value:1.75,req:{'wizard\'s grain fertlizer':true}},
 		],
 	});
 		new G.Unit({
@@ -6368,6 +6369,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',what:{'insight':0.3}},
 			{type:'gather',what:{'science':0.00005}},
+			{type:'gather',what:{'science':0.0000125},req:{'symbolism III':true}},
 			{type:'mult',value:1.5,req:{'Science blessing':true}},
 		],
 		req:{'God\'s trait #3 Science^2':true},
@@ -6410,6 +6412,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',what:{'happiness':0.1}},
 			{type:'gather',what:{'influence':0.01}},
+			{type:'mult',value:1.7,req:{'symbolism III':true}}
 		],
 		use:{'worker':1},
 		req:{'Better influence & authority':true},
@@ -6884,6 +6887,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',what:{'faith':0.09}},
 			{type:'gather',what:{'faith':0.03},req:{'symbolism':true,'Stronger faith':true}},
+			{type:'mult',value:1.7,req:{'symbolism III':true}},
 			{type:'waste',chance:0.003/1000}
 	],
 		category:'spiritual',
@@ -11100,16 +11104,25 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 				new G.Tech({
 		name:'symbolism III',
-		desc:'Third level of [symbolism] doesn\'t increase the bonus but since now the bonus will apply to more units([Guru] gathers 25% more science, [musician] , [Thoughts sharer] , [Lawyer] ,[Mediator]. Cathedral gets 100% bonus instead of 70%([symbolism II] bonus). //In addition provides: @10[wisdom II],[inspiration II] @3[education] @5[authority II],[spirituality II].',
+		desc:'Third level of [symbolism] doesn\'t increase the bonus but since now the bonus will apply to more units([Guru] gathers 25% more [science], [musician] , [Thoughts sharer] , [Lawyer] ,[Mediator]. [Cathedral] gets 100% bonus instead of 70%([symbolism II] bonus). //In addition provides: @10[wisdom II],[inspiration II] @3[education] @5[authority II],[spirituality II].',
 		icon:[30,14,'magixmod'],
-		cost:{'insight II':150,'culture II':35,'influence II':5,'faith II':5,'science':10},
-		req:{'Corpse decay':true,'Doctrine of the dark wormhole 5/5':true},
+		cost:{'insight II':145,'culture II':35,'influence II':5,'faith II':5,'science':10},
+		req:{'Doctrine of the dark wormhole 5/5':true},
 		effects:[
 			{type:'provide res',what:{'inspiration II':10}},
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'education':3}},
 			{type:'provide res',what:{'authority II':5}},
 			{type:'provide res',what:{'spirituality II':5}},
+			]
+	});
+				new G.Tech({
+		name:'wizard\'s grain fertlizer',
+		desc:'Fertlizer that makes [Wheat farm]s produce 75% more [wheat] (compounding). Made by group of wizards who love eating bread on breakfast and they do not imagine a life without a piece of bread.',
+		icon:[30,17,'magixmod'],
+		cost:{'insight II':100,'Mana':500,'culture II':33,'faith II':2},
+		req:{'Doctrine of the dark wormhole 3/5':true},
+		effects:[
 			]
 	});
 	/*=====================================================================================
