@@ -882,7 +882,7 @@ if (!document.getElementById(cssId))
 			var graves=G.getRes('burial spot');
 			if (G.getRes('population').amount>0)
 			{
-				if (G.has('ritual necrophagy'))//butcher 3% of corpses every day, you weirdo
+				if (G.has('ritual necrophagy') && G.hasNot('respect for the corpse'))//butcher 3% of corpses every day, you weirdo
 				{
 					var changed=0;
 					var n=G.lose('corpse',randomFloor(G.getRes('corpse').amount*0.03),'necrophagy');G.gain('meat',n*30,'necrophagy');G.gain('bone',n*5,'necrophagy');changed+=n;
@@ -923,6 +923,9 @@ if (!document.getElementById(cssId))
 			if(G.has('Corpse decay')){
 			var toSpoil=me.amount*0.002*(G.getRes('corpsedecaypoint').amount);
 			var spent=G.lose('corpse',randomFloor(toSpoil),'Dark wormhole\' ability(Corpse decay)');
+			}
+			if(G.has('respect for the corpse')){
+				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. They were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
 		},	
 	});
@@ -11135,6 +11138,14 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[31,7,'magixmod'], 
 		cost:{'insight II':50,'science':2,'insight':139},
 		req:{'Mining strategy':true}
+	});
+			new G.Trait({
+		name:'respect for the corpse',
+		desc:'Obtaining this trait disables effect of the [ritual necrophagy] trait and unlocks way better and less cruel rites that can be used to bury corpses such like cremation.',
+		icon:[25,24,'magixmod'],
+		cost:{'culture II':25,'faith II':5,'influence II':5},
+		req:{'ritual necrophagy':true,'Liberating darkness':true},
+		chance:35
 	});
 	/*=====================================================================================
 	POLICIES
