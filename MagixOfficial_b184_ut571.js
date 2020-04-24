@@ -11836,6 +11836,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'grass',amount:2},
 			{type:'vfb1',chance:0.2},
 			{type:'vfb2',chance:0.05},
+			{type:'sugar cane',min:0.2,max:1,chance:0.5},
 			{type:['wild rabbits','stoats'],chance:0.9},
 			{type:['foxes'],chance:0.5,amount:0.5},
 			{type:['wolves','bears'],chance:0.2,amount:0.5},
@@ -11858,6 +11859,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'berry bush',chance:0.2},
 			{type:'grass',amount:1.5},
 			{type:'vfb1',chance:0.5},
+			{type:'sugar cane',min:0.2,max:2},
 			{type:['wild rabbits','stoats'],chance:0.6},
 			{type:['foxes'],chance:0.4,amount:0.3},
 			{type:['wolves','bears'],chance:0.1,amount:0.2},
@@ -11881,6 +11883,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'grass'},
 			{type:'rb1',chance:0.5},
 			{type:'rb2',chance:0.5},
+			{type:'sugar cane',min:0.1,max:0.5,chance:0.05},
 			{type:'bush of tulips',chance:0.5,min:0.3,max:0.9},
 			{type:['wild rabbits','stoats'],chance:0.2},
 			{type:['foxes'],chance:0.2,amount:0.2},
@@ -11952,6 +11955,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['wolves'],chance:0.5,min:0.5,max:1},
 			{type:['polar bears','bears'],chance:0.3,amount:0.5},
 			{type:'deer',chance:0.7,amount:0.5},
+			{type:'sugar cane',min:0.25,max:1.1},
 			{type:'wild bugs'},
 			{type:'freshwater fish',chance:0.1,min:0.1,max:0.3},
 			{type:'freshwater',amount:1},
@@ -11974,6 +11978,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['foxes'],chance:0.4,amount:0.5},
 			{type:['boars'],chance:0.3,amount:0.5},
 			{type:'wild bugs'},
+			{type:'sugar cane',min:0.1,max:0.8},
 			{type:'freshwater fish',chance:0.6,min:0.1,max:0.5},
 			{type:'freshwater',amount:0.8},
 			{type:'sandy soil',chance:0.3},
@@ -11994,6 +11999,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['foxes'],chance:0.3,min:0.1,max:0.3},
 			{type:['wolves'],chance:0.1,min:0.1,max:0.3},
 			{type:'wild bugs',amount:0.15},
+			{type:'sugar cane',min:0.05,max:0.15,chance:0.75},
 			{type:'freshwater',amount:0.1},
 			{type:'sandy soil'},
 			{type:'rocky substrate'},
@@ -12009,6 +12015,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'jungle fruits',chance:1},
 			{type:'grass'},
 			{type:'koalas',chance:0.3},
+			{type:'sugar cane',min:0.05,max:1},
 			{type:['boars'],chance:0.2,amount:0.5},
 			{type:'wild bugs',min:1,max:2},
 			{type:'freshwater fish',chance:0.1,min:0.1,max:0.3},
@@ -12024,6 +12031,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['swampflowers'],amount:1},
 			{type:'grass',chance:3},
 			{type:'rocky substrate'},
+			{type:'sugar cane',min:0.1,max:0.7},
 			{type:'crocodiles',min:0.2,max:0.8},
 			{type:'deer',min:0.1,max:0.9,chance:0.9},
 			{type:['willow'],amount:2},
@@ -12573,10 +12581,18 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		},
 		mult:1,
 	});
+			new G.Goods({
+		name:'sugar cane',
+		desc:'Wet land where [Sugar cane] can live and grow. Can be found at lush biomes and amount of sugar cane is not constant. At some lands you may spot that [Sugar cane] is scarce while somewhere else it is plenty.',
+		icon:[31,22,'magixmod'],
+		res:{
+			'gather':{'Sugar cane':1},
+		},
+		mult:1,
+	});
 		G.getDict('grass').res['gather']['vegetable']=0.001;
 		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
 		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
-		G.getDict('freshwater').res['gather']['Sugar cane']=0.000000004;
 		G.getDict('rocky substrate').res['mine']['Various stones']=0.075;
 		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
 	new G.Goods({
