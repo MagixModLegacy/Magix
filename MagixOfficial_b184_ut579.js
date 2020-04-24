@@ -1277,10 +1277,11 @@ if (!document.getElementById(cssId))
 		icon:[5,7],
 		turnToByContext:{'eating':{'health':-0.03,'happiness':0.02,'bone':0.1},'decay':{'spoiled food':1}},
 		partOf:'food',
-		tick:function(me,tick)    ///On purpose crash. Occurs while playing market without magix utils
+		tick:function(me,tick)   
 		{
+			///On purpose crash. Occurs while playing market without magix utils
 			if(G.modsByName['Market mod'] && !G.modsByName['Magix utils for market']){
-				return G.grettrtytyrt;
+				G.grettrtytyrt
 			}
 		},
 		category:'food',
