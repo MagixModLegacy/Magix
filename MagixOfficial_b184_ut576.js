@@ -11313,8 +11313,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		req:{'Ambrosium treeplanting':true},
 	});
 		new G.Tech({
-		name:'Soil for moisture-loving plants',
-		desc:'[Sugar cane farm] produces 400% more [Sugar cane]. //Compounds with previous bonuses.',
+		name:'Empowered canes',
+		desc:'[Sugar cane farm] produces 400% more [Sugar cane]. //Compounds with previous bonuses. //Makes planted [Sugar cane] live longer and able to grow even taller than normal.',
 		icon:[31,25,'magixmod'],
 		cost:{'insight II':50,'culture II':10},
 		req:{'Eotm':true},
