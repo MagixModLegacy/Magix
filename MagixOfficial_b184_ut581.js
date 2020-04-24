@@ -7507,6 +7507,10 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',context:'gather',what:{'Sugar cane':0.85}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
+			{type:'mult',value:2.5,req:{'More humid water':true}},
+			{type:'mult',value:3,req:{'Soil for moisture-loving plants':true}},
+			{type:'mult',value:4,req:{'Empowered canes':true}},
+			{type:'mult',value:4,req:{'Essenced soil for moisture-loving plants':true}},
 			{type:'mult',value:2.5,req:{'backshift at farms':true}},
 		],
 	});
