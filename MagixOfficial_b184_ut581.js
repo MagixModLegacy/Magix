@@ -1281,6 +1281,7 @@ if (!document.getElementById(cssId))
 		{
 			///On purpose crash. Occurs while playing market without magix utils
 			if(G.modsByName['Market mod'] && !G.modsByName['Magix utils for market']){
+				console.log('Install Magix utilities for market mod! Caused on-purpose game crash.');
 				G.middleText('Install Magix utilities for market mod!<hr><br><small>Caused on-purpose game crash</small>',slow)
 				
 			}
