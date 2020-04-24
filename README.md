@@ -9,5 +9,9 @@ But you will need to do something before you will unlock it.
 # Mod that is getting updates
 Yes it does. Not everyday but I try to launch a one update per 1 to 2 weeks.
 
+Utils for Bruno's market mod
+https://cdn.jsdelivr.net/gh/MagixModLegacy/Magix@master/MagixUtilsForMarketA0.js
+Installation: paste the url below url of Magix  *AND* Market mod. Playing market and magix without utils will cause on-purpose game crash.
+
 ## Hope you guys will enjoy the mod ##
 ## Copyrights: 2020
