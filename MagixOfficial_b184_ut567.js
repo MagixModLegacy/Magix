@@ -11205,7 +11205,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'power of the faith',
 		desc:'Now [Crafting & farm rituals] bonus applies to: @[blacksmith workshop](mortal and paradise version) @[carpenter workshop](mortal and paradise version)@[Holy orchard]@[artisan](types: juice, pyro and normal. Bonus for juice and pyro: 25% while for normal it is 3%)//All of these bonuses are only active when the ritual active is. These bonuses won\'t increase amount of [faith II] required to keep the ritual active. @provides 5 [spirituality II]',
 		icon:[24,24,'magixmod'],
-		cost:{'culture II':25,'insight II':135,'science':5},
+		cost:{'culture II':25,'insight II':135,'science':5,'faith':26},
 		req:{'symbolism III':true},
 		chance:2,
 			effects:[
@@ -11216,7 +11216,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'improved windmill motors',
 		desc:'[Windmill] can craft 35% more [flour].',
 		icon:[31,13,'magixmod'],
-		cost:{'insight II':165,'science':5},
+		cost:{'insight II':165,'science':5,'culture II':21},
 		req:{'symbolism III':true},
 		chance:2,
 	});
@@ -11259,7 +11259,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'dark urn decay',
 		desc:'[Corpse decay] now affects [Urn]s as well.',
 		icon:[30,15,'magixmod'],
-		cost:{'faith II':15,'insight II':135,'Essenced seeds':300},
+		cost:{'faith II':15,'insight II':135,'Essenced seeds':300,'insight':315},
 		req:{'Corpse decay':true,'cremation':true},
 		chance:5,
 	});
@@ -11267,7 +11267,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Juicy nutritious magical soil',
 		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] and previous soil upgrades.',
 		icon:[31,11,'magixmod'], 
-		cost:{'insight II':190,'culture II':20,'Juices':1050},
+		cost:{'insight II':190,'culture II':20,'Juices':1050,'culture':93},
 		req:{'Policy revaluation':true,'Nutritious magical soil':true,'Magical presence':true}
 	});
 	/*=====================================================================================
