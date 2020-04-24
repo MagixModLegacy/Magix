@@ -1279,6 +1279,9 @@ if (!document.getElementById(cssId))
 		partOf:'food',
 		tick:function(me,tick)
 		{
+			if(G.modsByName['Market mod'] && !G.modsByName['Magix utils for market']){
+				return 0;
+			}
 		},
 		category:'food',
 	});
