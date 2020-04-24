@@ -11312,28 +11312,28 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'More humid water',
 		desc:'[Sugar cane farm] produces 250% more [Sugar cane]',
 		icon:[31,23,'magixmod'],
-		cost:{'insight':500},
+		cost:{'insight':495},
 		req:{'Moar juices':true},
 	});
 		new G.Tech({
 		name:'Soil for moisture-loving plants',
 		desc:'[Sugar cane farm] produces 300% more [Sugar cane]. //Compounds with [More humid water] bonus',
 		icon:[31,24,'magixmod'],
-		cost:{'insight':1100,'culture':300},
+		cost:{'insight':1350,'culture':300},
 		req:{'Ambrosium treeplanting':true},
 	});
 		new G.Tech({
 		name:'Empowered canes',
 		desc:'[Sugar cane farm] produces 400% more [Sugar cane]. //Compounds with previous bonuses. //Makes planted [Sugar cane] live longer and able to grow even taller than normal.',
 		icon:[31,25,'magixmod'],
-		cost:{'insight II':50,'culture II':10},
+		cost:{'insight II':50,'culture II':15},
 		req:{'Eotm':true},
 	});
 		new G.Tech({
 		name:'Essenced soil for moisture-loving plants',
 		desc:'[Sugar cane farm] produces 400% more [Sugar cane]. //Compounds with previous bonuses.',
 		icon:[30,25,'magixmod'],
-		cost:{'insight II':90,'culture II':20,'influence II':3,'science':2},
+		cost:{'insight II':90,'culture II':20,'influence II':3,'science':2,'insight':33},
 		req:{'Nutritious magical soil':true},
 	});
 	/*=====================================================================================
