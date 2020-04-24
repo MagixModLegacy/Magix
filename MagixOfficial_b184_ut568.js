@@ -11224,7 +11224,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'backshift at farms',
 		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech.',
 		icon:[31,14,'magixmod'],
-		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5},
+		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5,'insight':374},
 		req:{'improved windmill motors':true,'<font color="maroon">Moderation</font>':true},
 		chance:2,
 	});
