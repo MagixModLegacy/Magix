@@ -12581,15 +12581,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		},
 		mult:1,
 	});
-			new G.Goods({
-		name:'sugar cane',
-		desc:'Wet land where [Sugar cane] can live and grow. Can be found at lush biomes and amount of sugar cane is not constant. At some lands you may spot that [Sugar cane] is scarce while somewhere else it is plenty.',
-		icon:[31,22,'magixmod'],
-		res:{
-			'gather':{'Sugar cane':1},
-		},
-		mult:1,
-	});
 		G.getDict('grass').res['gather']['vegetable']=0.001;
 		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
 		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
@@ -12615,6 +12606,15 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		},
 		affectedBy:['mineral depletion'],
 		mult:2,
+	});
+				new G.Goods({
+		name:'sugar cane',
+		desc:'Wet land where [Sugar cane] can live and grow. Can be found at lush biomes and amount of sugar cane is not constant. At some lands you may spot that [Sugar cane] is scarce while somewhere else it is plenty.',
+		icon:[31,22,'magixmod'],
+		res:{
+			'gather':{'Sugar cane':0.1},
+		},
+		mult:1,
 	});
 	/*=====================================================================================
 	TILE EFFECTS
