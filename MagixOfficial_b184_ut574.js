@@ -12612,7 +12612,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'Wet land where [Sugar cane] can live and grow. Can be found at lush biomes and amount of sugar cane is not constant. At some lands you may spot that [Sugar cane] is scarce while somewhere else it is plenty.',
 		icon:[31,22,'magixmod'],
 		res:{
-			'gather':{'Sugar cane':0.01},
+			'gather':{'Sugar cane':0.002},
 		},
 		mult:1,
 	});
