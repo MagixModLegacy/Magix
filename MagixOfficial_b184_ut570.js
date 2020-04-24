@@ -6152,7 +6152,8 @@ if (!document.getElementById(cssId))
 		category:'production',
 		effects:[
 			{type:'convert',from:{'wheat':6,'water':1},into:{'flour':5},every:3,repeat:2},
-			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}},
+			{type:'mult',value:1.35,req:{'improved windmill motors':true}}
 		],
 	});
 		new G.Unit({
@@ -6341,7 +6342,10 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'Bamboo':4},into:{'Paper':1.4},every:2,mode:'commonpaper'},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','joy of eating':true}},
-			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}}
+			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}},
+			{type:'mult',value:3,req:{'Paper mastery':true}},
+			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false}},
+			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false}},
 		],
 		req:{'papercrafting':true,'Paradise crafting':true},
 		category:'paradiseunit',
@@ -6691,7 +6695,10 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'Bamboo':4},into:{'Paper':1.4},every:2,mode:'commonpaper'},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','joy of eating':true}},
-			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}}
+			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}},
+			{type:'mult',value:3,req:{'Paper mastery':true}},
+			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false}},
+			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false}},
 		],
 		req:{'papercrafting':true},
 		category:'crafting',
@@ -7551,6 +7558,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'Fire essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7566,6 +7574,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'Wind essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7581,6 +7590,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'Essence of the Holiness':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7596,6 +7606,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'Water essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7611,6 +7622,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'Dark essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7626,6 +7638,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'Nature essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7641,6 +7654,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'Lightning essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -11280,8 +11294,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			new G.Tech({
 		name:'Even mo\' paper',
 		desc:'[Paper-crafting shack]s produces 25% more [Paper] .//To get this bonus you need to obtain [<font color="maroon">Moderation</font>] or [<font color="maroon">Caretaking</font>]. It does not matter which path your people will choose.',
-		icon:[31,10,'magixmod'],
-		cost:{'insight II':135,'science':7,'influence II':6,'culture II':30,'faith II':2},
+		icon:[31,12,'magixmod'],
+		cost:{'insight II':135,'science':7,'influence II':6,'culture II':30,'faith II':2,'insight':90},
 		req:{'Paper mastery':true},
 	});
 	/*=====================================================================================
