@@ -11243,7 +11243,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'embalmment',
 		desc:'Smart people said how to make a substance that will slow down decay of corpses and discourage people from performing [ritual necrophagy,necrophagy] on them. They think about crafting something that is called [Urn] and there they would "store" [corpse]s.',
 		icon:[31,20,'magixmod'],
-		cost:{'insight II':100,'science':5,'influence II':10,'culture II':5},
+		cost:{'insight II':110,'science':5,'influence II':10,'culture II':5},
 		req:{'respect for the corpse':true},
 		chance:5,
 	});
@@ -11251,7 +11251,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'cremation',
 		desc:'Unlocks [crematorium]. Burns embalmed [corpse]s then all dust from [corpse] they put into the [Urn].//You\'ll unlock better way of burying people. 1 [burial spot] can store 4 [Urn]s.',
 		icon:[30,16,'magixmod'],
-		cost:{'insight II':150,'science':10,'influence II':10,'culture II':35},
+		cost:{'insight II':155,'science':10,'influence II':10,'culture II':35},
 		req:{'embalmment':true},
 		chance:5,
 	});
@@ -11259,7 +11259,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'dark urn decay',
 		desc:'[Corpse decay] now affects [Urn]s as well.',
 		icon:[30,15,'magixmod'],
-		cost:{'faith II':15,'insight II':100,'Essenced seeds':300},
+		cost:{'faith II':15,'insight II':135,'Essenced seeds':300},
 		req:{'Corpse decay':true,'cremation':true},
 		chance:5,
 	});
