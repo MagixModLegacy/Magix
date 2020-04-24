@@ -11270,6 +11270,20 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':190,'culture II':20,'Juices':1050,'culture':93},
 		req:{'Policy revaluation':true,'Nutritious magical soil':true,'Magical presence':true}
 	});
+			new G.Tech({
+		name:'Paper mastery',
+		desc:'[Paper-crafting shack]s are thrice as efficient.',
+		icon:[31,9,'magixmod'],
+		cost:{'insight II':125,'science':7,'influence II':3},
+		req:{'Camp-cooking':true},
+	});
+			new G.Tech({
+		name:'Even mo\' paper',
+		desc:'[Paper-crafting shack]s produces 25% more [Paper] .//To get this bonus you need to obtain [<font color="maroon">Moderation</font>] or [<font color="maroon">Caretaking</font>]. It does not matter which path your people will choose.',
+		icon:[31,10,'magixmod'],
+		cost:{'insight II':135,'science':7,'influence II':6,'culture II':30,'faith II':2},
+		req:{'Paper mastery':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
