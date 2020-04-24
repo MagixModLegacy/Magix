@@ -12037,7 +12037,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['foxes'],chance:0.3,min:0.1,max:0.3},
 			{type:['wolves'],chance:0.1,min:0.1,max:0.3},
 			{type:'wild bugs',amount:0.15},
-			{type:'sugar cane',min:0.05,max:0.15,chance:0.75},
+			{type:'sugar cane',min:0.05,max:0.15,chance:0.075},
 			{type:'freshwater',amount:0.1},
 			{type:'sandy soil'},
 			{type:'rocky substrate'},
@@ -12650,7 +12650,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'Wet land where [Sugar cane] can live and grow. Can be found at lush biomes and amount of sugar cane is not constant. At some lands you may spot that [Sugar cane] is scarce while somewhere else it is plenty.',
 		icon:[31,22,'magixmod'],
 		res:{
-			'gather':{'Sugar cane':0.002},
+			'gather':{'Sugar cane':0.0002},
 		},
 		mult:1,
 	});
