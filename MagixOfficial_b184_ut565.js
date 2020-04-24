@@ -131,7 +131,7 @@ G.props['fastTicksOnResearch']=150;
 					{
 						if (G.checkReq(me.req) && G.testCost(me.cost,1))
 						{
-							G.doCost(me.cost,1);
+							G.doCost(me.cost,1);https://avatars0.githubusercontent.com/u/54317957?s=60&v=4
 							G.gainTrait(me);
 							G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon});
 							if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
@@ -11262,6 +11262,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'faith II':15,'insight II':100,'Essenced seeds':300},
 		req:{'Corpse decay':true,'cremation':true},
 		chance:5,
+	});
+		new G.Tech({
+		name:'Juicy nutritious magical soil',
+		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] and previous soil upgrades.',
+		icon:[31,11,'magixmod'], 
+		cost:{'insight II':190,'culture II':20,'Juices':1050},
+		req:{'Policy revaluation':true,'Nutritious magical soil':true,'Magical presence':true}
 	});
 	/*=====================================================================================
 	POLICIES
