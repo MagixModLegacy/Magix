@@ -8981,7 +8981,7 @@ getCosts:function()
 		new G.Tech({
 		name:'Sewing II',
 		displayName:'Weaving II', //Correct
-		desc:'Upgrades sewing skills of your civilization. @Unlocks <b>Drying racks<b> to make [Dried leather] used to craft better quality clothing. @Now artisans can sew [Fishing net] and craft [Thread].',
+		desc:'Upgrades sewing skills of your civilization. @Unlocks <b>Drying racks<b> to make [Dried leather] used to craft better quality clothing. @Now artisans can sew [Fishing net] @Clothier can craft [Thread] that is required to craft a [Fishing net].',
 		icon:[13,5,'magixmod'], 
 		cost:{'insight':380,'wisdom':10},
 		req:{'Wizardry':true,'sewing':true,},
