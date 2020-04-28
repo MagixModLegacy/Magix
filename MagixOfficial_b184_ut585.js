@@ -11354,7 +11354,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Storage at the bottom of the world',
 		desc:'Unlocks [heavy warehouse]. Built in Underworld and covered with heavy metal.',
 		icon:[30,13,'magixmod'],
-		cost:{'insight II':185},
+		cost:{'insight II':185,'culture II':15,'influence II':1,'science':4},
 		req:{'A leaf of wisdom':true},
 	});
 	/*=====================================================================================
