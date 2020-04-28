@@ -7983,6 +7983,20 @@ new G.Unit({
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
+		new G.Unit({
+		name:'heavy warehouse',
+		desc:'@provides 9000 [material storage]<>A large and hard-to-destroy building for storing materials. Staffed with six guards and one leader to prevent theft or evil forces from appear near the warehouse.',
+		icon:[30,12,'magixmod'],
+		cost:{'basic building materials':1500,'Cobalt ingot':1000,'precious building materials':100},
+		use:{'Land of the Underworld':5},
+		staff:{'worker':6,'armor set':6,'metal weapons':6,'Instructor':1},
+		effects:[
+			{type:'provide',what:{'added material storage':9000}},
+			{type:'waste',chance:0.0000001/1000000000000}
+		],
+		req:{'Storage at the bottom of the world':true},
+		category:'storage',
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -11335,6 +11349,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		icon:[30,25,'magixmod'],
 		cost:{'insight II':90,'culture II':20,'influence II':3,'science':2,'insight':33},
 		req:{'Nutritious magical soil':true},
+	});
+			new G.Tech({
+		name:'Storage at the bottom of the world',
+		desc:'Unlocks [heavy warehouse]. Built in Underworld and covered with heavy metal.',
+		icon:[30,13,'magixmod'],
+		cost:{'insight II':185},
+		req:{'A leaf of wisdom':true},
 	});
 	/*=====================================================================================
 	POLICIES
