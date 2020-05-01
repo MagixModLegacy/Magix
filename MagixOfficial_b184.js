@@ -6,9 +6,10 @@ engineVersion:1,
 manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
-//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020 
+//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
+//===========================
 G.props['fastTicksOnResearch']=150;
-	G.funcs['new game blurb']=function()
+		G.funcs['new game blurb']=function()
 	{   
 		var str=
 		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
@@ -18,7 +19,6 @@ G.props['fastTicksOnResearch']=150;
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x250</div>','250 Herbs')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
-		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('culture'))+'"></div><div class="freelabel">x3</div>','3 Culture & Inspiration')+
 		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
 		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+
 		'</div>'+
@@ -26,7 +26,6 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
 		return str;
 	}
-	
 	G.funcs['new game']=function()
 	{
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
@@ -132,7 +131,7 @@ G.props['fastTicksOnResearch']=150;
 					{
 						if (G.checkReq(me.req) && G.testCost(me.cost,1))
 						{
-							G.doCost(me.cost,1);
+							G.doCost(me.cost,1);https://avatars0.githubusercontent.com/u/54317957?s=60&v=4
 							G.gainTrait(me);
 							G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon});
 							if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
@@ -200,6 +199,7 @@ G.props['fastTicksOnResearch']=150;
 		}
 		return mult;
 	}
+		
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
 	G.hasNot=function(what)
@@ -582,6 +582,7 @@ if (!document.getElementById(cssId))
 				if (G.has('belief in the afterlife')) deathUnhappinessMult/=2;
 				if (G.has('Hope of revenant abandoning')) deathUnhappinessMult/=2;
 				if (G.has('dt12')) deathUnhappinessMult*=1.5;
+				if (G.has('respect for the corpse')) deathUnhappinessMult/=1.25;
 				if (tick%3==0 && G.checkPolicy('disable eating')=='off')
 				{
 					//drink water
@@ -882,7 +883,7 @@ if (!document.getElementById(cssId))
 			var graves=G.getRes('burial spot');
 			if (G.getRes('population').amount>0)
 			{
-				if (G.has('ritual necrophagy'))//butcher 3% of corpses every day, you weirdo
+				if (G.has('ritual necrophagy') && G.hasNot('respect for the corpse'))//butcher 3% of corpses every day, you weirdo
 				{
 					var changed=0;
 					var n=G.lose('corpse',randomFloor(G.getRes('corpse').amount*0.03),'necrophagy');G.gain('meat',n*30,'necrophagy');G.gain('bone',n*5,'necrophagy');changed+=n;
@@ -923,6 +924,9 @@ if (!document.getElementById(cssId))
 			if(G.has('Corpse decay')){
 			var toSpoil=me.amount*0.002*(G.getRes('corpsedecaypoint').amount);
 			var spent=G.lose('corpse',randomFloor(toSpoil),'Dark wormhole\' ability(Corpse decay)');
+			}
+			if(G.has('respect for the corpse')){
+				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
 		},	
 	});
@@ -1266,12 +1270,22 @@ if (!document.getElementById(cssId))
 		partOf:'food',
 		category:'food',
 	});
+	let modes4=false
 	new G.Res({
 		name:'meat',
 		desc:'[meat,Raw meat] is gathered from dead animals and, while fairly tasty, can harbor a variety of diseases.',
 		icon:[5,7],
 		turnToByContext:{'eating':{'health':-0.03,'happiness':0.02,'bone':0.1},'decay':{'spoiled food':1}},
 		partOf:'food',
+		tick:function(me,tick)   
+		{
+			///On purpose crash. Occurs while playing market without magix utils
+			if(G.modsByName['Market mod'] && !G.modsByName['Magix utils for market']){
+				console.log('Install Magix utilities for market mod! Caused on-purpose game crash.');
+				G.middleText('Install Magix utilities for market mod!<hr><br><small>Caused on-purpose game crash</small>',slow)
+				
+			}
+		},
 		category:'food',
 	});
 	new G.Res({
@@ -2232,19 +2246,31 @@ if (!document.getElementById(cssId))
 		partOf:'misc materials',
 		category:'misc',
 	});
-		new G.Res({
+		new G.Res({//REMOVED AND WILL BE REPLACED SOON
 		name:'Watermelon seeds',
 		desc:'If you want to start farming [Watermelon] and crafting tasty [Juices] these seeds are a must.',
 		icon:[16,6,'magixmod'],
 		partOf:'misc materials',
 		category:'misc',
+		hidden:true,
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.09;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
-		new G.Res({
+		new G.Res({//REMOVED AND WILL BE REPLACED SOON
 		name:'Berry seeds',
 		desc:'If you want to start farming [Berries] and crafting tasty [Juices] these seeds are a must.',
 		icon:[15,6,'magixmod'],
 		partOf:'misc materials',
 		category:'misc',
+		hidden:true,
+		tick:function(me,tick)
+		{
+			var toSpoil=me.amount*0.09;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 		let madeUnlockMessage = false
 		new G.Res({
@@ -2717,17 +2743,34 @@ if (!document.getElementById(cssId))
 		category:'food',
 	});
 		new G.Res({
-		name:'Beet',
-		desc:'Good source of [sugar] but not as high rates as [Sugar cane] provides. Tasty, edible.',
-		icon:[10,11,'magixmod'],
-		turnToByContext:{'eating':{'health':0.1,'happiness':0.005},'decay':{'spoiled food':1}},
-		partOf:'food',
-		category:'food',
-		hidden:true,
+		name:'Urn',
+		desc:'Cremated [corpse] . People can store 4 [Urn]s per 1 [burial spot] . They decay as well.',
+		icon:[31,6,'magixmod'],
+		category:'misc',
+		tick:function(me,tick){
+		var graves=G.getRes('burial spot');
+		if (me.amount>0)
+				{
+					//bury slowly
+					if (graves.amount>graves.used)
+					{
+						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
+						graves.used+=amount;G.lose('Urn',amount*4,'burial');
+						G.gain('happiness',amount*2,'burial');
+					}
+				}
+			if(G.has('dark urn decay')){
+			var toSpoil=me.amount*0.002*(G.getRes('corpsedecaypoint').amount);
+			var spent=G.lose('corpse',randomFloor(toSpoil),'Dark wormhole\' ability(Dark urn decay)');
+			}
+			var toSpoil=me.amount*0.001;
+			var spent=G.lose('Urn',randomFloor(toSpoil),'decay');
+		}
 	});
 		new G.Res({
 		name:'Beet seeds',
-		desc:'If you want to start farming [Beet] and crafting [sugar] these seeds are a must.',
+		displayName:'Seeds',
+		desc:'Some seeds that may allow you to set up farms of lettuce for instance or carrots.',
 		icon:[6,11,'magixmod'],
 		partOf:'misc materials',
 		category:'misc',
@@ -3003,6 +3046,13 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.0008;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			//Platinum and nickel patch
+				if (G.has('prospecting II')){
+					G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
+				}
+				if (G.has('quarrying II')){
+					G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;
+				}
 		},
 		category:'alchemypotions',
 	});
@@ -3428,6 +3478,9 @@ if (!document.getElementById(cssId))
 		getDisplayAmount:function()
 		{
 			return B(Math.min(this.displayedAmount,G.getRes('Books').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
+		},
+		tick:function()
+		{
 		},
 		meta:true
 	});
@@ -4406,19 +4459,6 @@ if (!document.getElementById(cssId))
 			if(G.has('symbolism II')){
 			G.getDict('storyteller').icon = [29,7,'magixmod']
 			}
-			if(G.has('cozy building')){
-			G.getDict('hut').icon = [28,12,'magixmod']
-			G.getDict('hovel').icon = [28,11,'magixmod']
-			G.getDict('mud shelter').icon = [28,13,'magixmod']
-			G.getDict('house').icon = [28,14,'magixmod']
-			}
-			if(G.has('cozier building')){
-			G.getDict('hut').icon = [29,10,'magixmod']
-			G.getDict('hovel').icon = [29,11,'magixmod']
-			G.getDict('mud shelter').icon = [29,12,'magixmod']
-			G.getDict('house').icon = [29,14,'magixmod']
-			G.getDict('branch shelter').icon = [29,13,'magixmod']
-			}
 			if(G.has('Music instruments')){
 			G.getDict('storyteller').limitPer = {'population':400}
 			}
@@ -4485,6 +4525,19 @@ if (!document.getElementById(cssId))
 			G.getDict('Mediator').limitPer = {'population':4000}
 			G.getDict('clan leader').icon = [25,23,'magixmod']
 			}
+			if(G.has('cozier building')){
+			G.getDict('hut').icon = [29,10,'magixmod']
+			G.getDict('hovel').icon = [29,11,'magixmod']
+			G.getDict('mud shelter').icon = [29,12,'magixmod']
+			G.getDict('house').icon = [29,14,'magixmod']
+			G.getDict('branch shelter').icon = [29,13,'magixmod']
+			}
+			if(G.has('cozy building')){
+			G.getDict('hut').icon = [28,12,'magixmod']
+			G.getDict('hovel').icon = [28,11,'magixmod']
+			G.getDict('mud shelter').icon = [28,13,'magixmod']
+			G.getDict('house').icon = [28,14,'magixmod']
+			}
 			if(G.has('Policy revaluation')){
 				G.getDict('food rations').cost = {'influence II':3}
 				G.getDict('water rations').cost = {'influence II':3}
@@ -4510,6 +4563,29 @@ if (!document.getElementById(cssId))
 				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
 				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
 				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
+				if(G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version']){ //Interaction with laws of food. Specially laws of food free will no longer be free after policy revaluation
+					G.getDict('eat raw meat').cost = {'influence II':2}
+					G.getDict('eat herbs').cost = {'influence II':2}
+					G.getDict('eat cooked meat').cost = {'influence II':2}
+					G.getDict('eat cured meat').cost = {'influence II':2}
+					G.getDict('eat raw seafood').cost = {'influence II':2}
+					G.getDict('eat cooked seafood').cost = {'influence II':2}
+					G.getDict('eat cured seafood').cost = {'influence II':2}
+					G.getDict('eat cooked meat and cooked seafood').cost = {'influence II':5}
+					G.getDict('eat cured meat and cured seafood').cost = {'influence II':5}
+					G.getDict('eat fruit').cost = {'influence II':2}
+					G.getDict('eat bread').cost = {'influence II':2}
+					G.getDict('eat meals').cost = {'influence II':2}
+					G.getDict('eat sunflower seeds').cost = {'influence II':2}
+					G.getDict('drink juices').cost = {'influence II':2}
+				}
+					if(G.modsByName['Market mod']){ //Interaction with Market.
+					G.getDict('extended food catalog').cost = {'influence II':5}
+					G.getDict('extended archaic catalog').cost = {'influence II':5}
+					G.getDict('extended basic catalog').cost = {'influence II':5}
+					G.getDict('extended precious catalog').cost = {'influence II':5}
+					G.getDict('extended essences catalog').cost = {'influence II':5}
+				}
 			}
 			if(G.has('Mining strategy'))
 			{
@@ -4535,6 +4611,66 @@ if (!document.getElementById(cssId))
 			if(G.has('Camp-cooking'))
 			{
 			G.getDict('Fishers & hunters camp').upkeep = {'food':75,'fire pit':3}
+			}
+			if(G.modsByName['Market mod']){
+				if(G.has('Backshift')){
+					G.getDict('bazaar_buy').use={'worker':2,'land':1}
+					G.getDict('bazaar_sell').use={'worker':2,'land':1}
+					G.getDict('market_buy').use={'worker':3,'land':1}
+					G.getDict('market_sell').use={'worker':3,'land':1}
+				}
+				if(G.has('Backshift') && G.hasNot('Essence trading')){
+					G.getDict('bazaar_buy').icon=[29,24,'magixmod',26,24,'magixmod']
+					G.getDict('bazaar_sell').icon=[28,24,'magixmod',26,24,'magixmod']
+					G.getDict('market_buy').icon=[29,24,'magixmod',27,24,'magixmod']
+					G.getDict('market_sell').icon=[28,24,'magixmod',27,24,'magixmod']
+					G.getDict('trader_buy').icon=[29,24,'magixmod',30,18,'magixmod']
+					G.getDict('trader_sell').icon=[28,24,'magixmod',30,18,'magixmod']
+				}else if(G.has('Essence trading')){
+					G.getDict('bazaar_buy').icon=[29,24,'magixmod',30,23,'magixmod']
+					G.getDict('bazaar_sell').icon=[28,24,'magixmod',30,23,'magixmod']
+					G.getDict('market_buy').icon=[29,24,'magixmod',30,24,'magixmod']
+					G.getDict('market_sell').icon=[28,24,'magixmod',30,24,'magixmod']
+					G.getDict('trader_buy').icon=[29,24,'magixmod',30,18,'magixmod']
+					G.getDict('trader_sell').icon=[28,24,'magixmod',30,18,'magixmod']
+				}
+			}
+			//3rd party achievement's code
+			if(G.modsByName['Market mod'] || G.modsByName['Coal mod'] || G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version']){
+			   if(G.achievByName['3rd party'].won==0){
+			G.achievByName['3rd party'].won = 2 //Fix for displaying over time middleText
+			G.middleText('- Completed <font color="pink">3rd party</font> achievement -')
+			  }
+			}
+			if(G.has('Mo\' beauty')){
+				G.getDict('warehouse').icon=[30,9,'magixmod']
+				G.getDict('barn').icon=[30,8,'magixmod']
+				G.getDict('granary').icon=[30,7,'magixmod']
+				G.getDict('stockpile').icon=[30,6,'magixmod']
+				G.getDict('well').icon=[30,5,'magixmod']
+				G.getDict('furnace').icon=[30,4,'magixmod']
+				G.getDict('well of the Plain Island').icon=[30,3,'magixmod']
+				G.getDict('carver').icon=[30,2,'magixmod']
+				G.getDict('firekeeper').icon=[30,1,'magixmod']
+				G.getDict('storage pit').icon=[30,0,'magixmod']
+				G.getDict('woodcutter').icon=[31,0,'magixmod']
+				G.getDict('digger').icon=[31,1,'magixmod']
+				G.getDict('artisan').icon=[31,2,'magixmod']
+				G.getDict('dreamer').icon=[31,3,'magixmod']
+				G.getDict('architect').icon=[31,4,'magixmod']
+				G.getDict('healer').icon=[31,5,'magixmod']
+				G.getDict('blacksmith workshop').icon=[31,16,'magixmod']
+			}
+			if(G.has('Plain island mining strategy')){
+			G.getDict('Mine of the plain island').icon = [31,8,'magixmod']
+			}
+			if(G.has('backshift at farms')){
+			G.getDict('Wheat farm').icon = [31,19,'magixmod']
+			G.getDict('Wheat farm').use={'worker':12}
+			G.getDict('Berry farm').icon = [31,17,'magixmod']
+			G.getDict('Berry farm').use={'worker':12}
+			G.getDict('Sugar cane farm').icon = [31,18,'magixmod']
+			G.getDict('Sugar cane farm').use={'worker':12,'Instructor':2}
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -4875,6 +5011,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'ground stone tools':true}},
 			{type:'mult',value:1.08,req:{'Motivation for artisans':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.04,req:{'Motivation for artisans':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.03,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 		],
 		req:{'stone-knapping':true},
 		category:'crafting',
@@ -5099,6 +5236,7 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'water':20}},
+			{type:'mult',value:1.05,req:{'Deeper wells':true}}
 		],
 		category:'production',
 		req:{'well-digging':true},
@@ -5262,6 +5400,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'},
 			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'waste',chance:0.001/1000},
 			//TODO : better metal tools, weapons etc
 		],
@@ -5300,6 +5439,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
 			{type:'mult',value:0.8,req:{'dt17':true}},
 			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -5803,8 +5943,8 @@ if (!document.getElementById(cssId))
 		],
 		category:'debug',
 	});
-	//MAGIX
-new G.Unit({
+		//MAGIX
+		new G.Unit({
 		name:'Hovel of colours',
 		desc:'Does same thing as [artisan] on <b>Craft dyes set (1,2,3,4)</b> was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
 		icon:[19,18,'magixmod'],
@@ -6018,7 +6158,8 @@ new G.Unit({
 		category:'production',
 		effects:[
 			{type:'convert',from:{'wheat':6,'water':1},into:{'flour':5},every:3,repeat:2},
-			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}},
+			{type:'mult',value:1.35,req:{'improved windmill motors':true}}
 		],
 	});
 		new G.Unit({
@@ -6033,7 +6174,9 @@ new G.Unit({
 		effects:[
 			{type:'gather',context:'gather',what:{'wheat':230}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
-			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}}
+			{type:'mult',value:1.5,req:{'Fertlizer for grain':true}},
+			{type:'mult',value:1.75,req:{'wizard\'s grain fertlizer':true}},
+			{type:'mult',value:2,req:{'backshift at farms':true}},
 		],
 	});
 		new G.Unit({
@@ -6205,7 +6348,10 @@ new G.Unit({
 			{type:'convert',from:{'Bamboo':4},into:{'Paper':1.4},every:2,mode:'commonpaper'},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','joy of eating':true}},
-			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}}
+			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}},
+			{type:'mult',value:3,req:{'Paper mastery':true}},
+			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false}},
+			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false}},
 		],
 		req:{'papercrafting':true,'Paradise crafting':true},
 		category:'paradiseunit',
@@ -6226,6 +6372,7 @@ new G.Unit({
 		},
 		effects:[
 			{type:'convert',from:{'Sulfur':3,'Paper':2,'Thread':3},into:{'Light explosives':1.25},every:2,repeat:2,mode:'explosivesS'},
+			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 		],
 		req:{'Explosive crafting & mining':true},
 		category:'crafting',
@@ -6240,6 +6387,7 @@ new G.Unit({
 		upkeep:{'Cloudy water':30},
 		effects:[
 			{type:'gather',what:{'Ambrosium leaf':40}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 		],
 		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 		category:'paradiseunit',
@@ -6281,6 +6429,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',what:{'insight':0.3}},
 			{type:'gather',what:{'science':0.00005}},
+			{type:'gather',what:{'science':0.0000125},req:{'symbolism III':true}},
 			{type:'mult',value:1.5,req:{'Science blessing':true}},
 		],
 		req:{'God\'s trait #3 Science^2':true},
@@ -6323,6 +6472,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',what:{'happiness':0.1}},
 			{type:'gather',what:{'influence':0.01}},
+			{type:'mult',value:1.7,req:{'symbolism III':true}}
 		],
 		use:{'worker':1},
 		req:{'Better influence & authority':true},
@@ -6551,7 +6701,10 @@ new G.Unit({
 			{type:'convert',from:{'Bamboo':4},into:{'Paper':1.4},every:2,mode:'commonpaper'},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','joy of eating':true}},
-			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}}
+			{type:'mult',value:1.44,req:{'Better papercrafting recipe':'true','culture of moderation':true}},
+			{type:'mult',value:3,req:{'Paper mastery':true}},
+			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false}},
+			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false}},
 		],
 		req:{'papercrafting':true},
 		category:'crafting',
@@ -6797,6 +6950,7 @@ new G.Unit({
 		effects:[
 			{type:'gather',what:{'faith':0.09}},
 			{type:'gather',what:{'faith':0.03},req:{'symbolism':true,'Stronger faith':true}},
+			{type:'mult',value:1.7,req:{'symbolism III':true}},
 			{type:'waste',chance:0.003/1000}
 	],
 		category:'spiritual',
@@ -6926,7 +7080,9 @@ new G.Unit({
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			//Collapsing chance
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine of Plain Island has collapsed, wounding its miners','mines of Plain Island collapsed, wounding their miners.'),chance:1/50}
+			{type:'mult',value:1.05,req:{'Plain island mining strategy':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Plain island mining strategy':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Plain island mining strategy':true}}
 		],
 		category:'plainisleunit',
 		limitPer:{'land':35},
@@ -7047,6 +7203,7 @@ new G.Unit({
 			{type:'convert',from:{'log':1},into:{'lumber':3},repeat:2,mode:'lumber'},
 			{type:'mult',value:0.8,req:{'dt17':true}},
 			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -7080,6 +7237,7 @@ new G.Unit({
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:3,repeat:1,mode:'hard metal armor'},
 			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':2},every:3,repeat:1,mode:'metal armor'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'waste',chance:0.001/1000},
 		],
 		gizmos:true,
@@ -7271,16 +7429,16 @@ new G.Unit({
 		//upkeep:{'coin':0.2},
 		modes:{
 			'sugar':{name:'Extract sugar out of cane',icon:[15,2,'magixmod'],desc:'This artisan will only extract [sugar] out of [Sugar cane]. At least he will craft needed ingredient of tasty [Juices].',use:{'worker':1}},
-			'sugarbeet':{name:'Extract sugar out of beet',icon:[10,11,'magixmod'],desc:'This artisan will only extract [sugar] out of [Beet]. At least he will craft needed ingredient of tasty [Juices].',use:{'worker':1}},
+			
 			'juices':{name:'Craft juices',icon:[14,3,'magixmod'],desc:'This artisan will craft [Juices] out of [Watermelon] or [Berries] , [sugar] and [water]. Have a good taste. <b>:)',use:{'worker':1}},
 		},
 		effects:[
 			{type:'convert',from:{'Sugar cane':1.5},into:{'sugar':1},every:5,mode:'sugar'},
-			{type:'convert',from:{'Beet':1},into:{'sugar':0.125},every:5,mode:'sugarbeet'},
 			{type:'convert',from:{'sugar':1,'Berries':0.95,'water':1},into:{'Berry juice':1},every:5,mode:'juices'},
 			{type:'convert',from:{'sugar':1,'Watermelon':0.4,'water':2},into:{'Watermelon juice':2},every:5,mode:'juices'},
 			{type:'convert',from:{'sugar':1,'fruit':0.4,'water':2},into:{'Fruit juice':2},every:5,mode:'juices',req:{'Moar juices':true}},
 			{type:'convert',from:{'sugar':3,'fruit':0.9,'water':6,'Berries':1,'Watermelon':0.25},into:{'Fruit juice':12,'Berry juice':8,'Watermelon juice':9},every:5,mode:'juices',req:{'Moar juices':true},chance:1/20},
+			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 		],
 		req:{'Crafting a juice':true},
 		category:'crafting',
@@ -7310,7 +7468,7 @@ new G.Unit({
 		name:'Berry farm',
 		desc:'@Specialized farm which will harvest tasty [Berries] at the better rate than [gatherer].',
 		icon:[14,1,'magixmod'],
-		cost:{'Berry seeds':200},
+		cost:{'Beet seeds':200},//Ingame displays seed
 		req:{'Farms in the new land':true},
 		upkeep:{'water':12},
 		use:{'worker':8,'Land of the Plain Island':35},
@@ -7319,14 +7477,15 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Berries':15.3}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
 			{type:'mult',value:8,req:{'God\'s trait #2 Berry rush':true}},
-			{type:'mult',value:2,req:{'Berry masterry':true}}
+			{type:'mult',value:2,req:{'Berry masterry':true}},
+			{type:'mult',value:2.5,req:{'backshift at farms':true}},
 		],
 	});
 		new G.Unit({
 		name:'Watermelon farm',
 		desc:'@Specialized farm which will harvest tasty [Watermelon] at the better rate than [gatherer].',
 		icon:[14,2,'magixmod'],
-		cost:{'Watermelon seeds':200},
+		cost:{'Beet seeds':200},//It will display ingame Seeds
 		req:{'Farms in the new land':true},
 		use:{'worker':8,'Land of the Plain Island':35},
 		upkeep:{'water':12},
@@ -7347,22 +7506,26 @@ new G.Unit({
 		category:'plainisleunit',
 		effects:[
 			{type:'gather',context:'gather',what:{'Sugar cane':0.85}},
-			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}},
+			{type:'mult',value:2.5,req:{'More humid water':true}},
+			{type:'mult',value:3,req:{'Soil for moisture-loving plants':true}},
+			{type:'mult',value:4,req:{'Empowered canes':true}},
+			{type:'mult',value:4,req:{'Essenced soil for moisture-loving plants':true}},
+			{type:'mult',value:2.5,req:{'backshift at farms':true}},
 		],
 	});
-		new G.Unit({
-		name:'Beet farm',
-		desc:'@Specialized farm which will harvest useful in [Juices] crafting [Beet] - another source of [sugar].',
-		icon:[9,11,'magixmod'],
-		cost:{'Beet seeds':300},
-		req:{'Farms in the new land':true,'Farm of the Beet':true},
-		use:{'worker':8,'land':15},
-		upkeep:{'water':14},
-		category:'production',
+		new G.Unit({//I was removed because I didn't change that much in game. I was a beet farm but I am going to be something different more useful
+		name:'crematorium',
+		desc:'Emballs and burns [corpse]s in roaring fire. Then all dust from the body is being put into the [Urn] . Uses [fire pit]s as an upkeep.',
+		icon:[31,21,'magixmod'],
+		req:{'cremation':true},
+		use:{'worker':3,'Instructor':1,'land':1},
+		cost:{'basic building materials':300},
+		upkeep:{'fire pit':3},
 		effects:[
-			{type:'gather',context:'gather',what:{'Beet':30}},
-			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on'}}
+			{type:'convert',from:{'corpse':7,'pot':7},into:{'Urn':7},every:5},
 		],
+		category:'civil'
 	});
 			new G.Unit({
 		name:'Essential conversion tank',
@@ -7405,6 +7568,7 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Fire essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7420,6 +7584,7 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Wind essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7435,6 +7600,7 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Essence of the Holiness':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7450,6 +7616,7 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Water essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7465,6 +7632,7 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Dark essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7480,6 +7648,7 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Nature essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7495,6 +7664,7 @@ new G.Unit({
 			{type:'gather',context:'gather',what:{'Lightning essence':11}},
 			{type:'mult',value:1.5,req:{'God\'s trait #6 Fertile essences farms':true}},
 			{type:'mult',value:1.1,req:{'Nutritious magical soil':true}},
+			{type:'mult',value:1.1,req:{'Juicy nutritious magical soil':true}},
 		],
 	});
 		new G.Unit({
@@ -7573,8 +7743,8 @@ new G.Unit({
 		upkeep:{'food':75,'fire pit':2},
 		limitPer:{'population':40000,'land':2500},
 		effects:[
-			{type:'gather',context:'fish',amount:1433,max:2111},
-			{type:'gather',context:'hunt',amount:1433,max:2111},
+			{type:'gather',context:'fish',amount:2533,max:3811},
+			{type:'gather',context:'hunt',amount:2833,max:4111},
 			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
 			{type:'mult',value:1.35,req:{'harvest rituals':'on'}},
 			{type:'convert',from:{'meat':4,'seafood':3},into:{'cooked meat':4,'seafood':3},every:2,req:{'Camp-cooking':true}},
@@ -7813,7 +7983,20 @@ new G.Unit({
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
-	
+		new G.Unit({
+		name:'heavy warehouse',
+		desc:'@provides 9000 [material storage]<>A large and hard-to-destroy building for storing materials. Staffed with six guards and one leader to prevent theft or evil forces from appear near the warehouse.',
+		icon:[30,12,'magixmod'],
+		cost:{'basic building materials':1500,'Cobalt ingot':1000,'precious building materials':100},
+		use:{'Land of the Underworld':5},
+		staff:{'worker':6,'armor set':6,'metal weapons':6,'Instructor':1},
+		effects:[
+			{type:'provide',what:{'added material storage':9000}},
+			{type:'waste',chance:0.0000001/1000000000000}
+		],
+		req:{'Storage at the bottom of the world':true},
+		category:'storage',
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -7833,9 +8016,7 @@ new G.Unit({
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
 	=======================================================================================*/
 	//New gains for gatherer
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Berry seeds': 0.005},amount:1,max:1});
 		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Beet seeds': 0.005},amount:1,max:1});
-		G.getDict('gatherer').effects.push({type:'gather',context:'gather',what:{'Watermelon seeds':0.0001},amount:1,max:1});
 //Healer generates health by trait and research(it is temporary)
 		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.008},amount:1,max:1,req:{'Nutrition':true}});
 		G.getDict('healer').effects.push({type:'gather',context:'gather',what:{'health': 0.001},amount:1,max:1,req:{'first aid':true}}); 
@@ -8005,7 +8186,7 @@ new G.Unit({
 		tier:2,
 		icon:[27,21,'magixmod'],
 		name:'Extremely smart',
-		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing [<font color="DA4f37">Mausoleum eternal</font>] unlocks you [Theme changer] .',
+		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing <font color="DA4f37">Mausoleum eternal</font> unlocks you [Theme changer] .',
 		effects:[
 			{type:'addFastTicksOnStart',amount:100},
 			{type:'addFastTicksOnResearch',amount:10}
@@ -8058,6 +8239,13 @@ new G.Unit({
 		name:'Familiar',
 		desc:'Get 200 or more technologies in a single run.',
 	});
+				new G.Achiev({
+		icon:[23,24,'magixmod'],
+		tier:0,
+		name:'3rd party',
+		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
+	});
+	
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
@@ -8775,7 +8963,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'Concrete making',
-		desc:'Use limestone and water to craft a concrete, an [advanced building materials].',
+		desc:'Use limestone and water to craft a concrete, an [advanced building materials,Advanced building material].',
 		icon:[8,0,'magixmod'], //WIP
 		cost:{'insight':70},
 		req:{'masonry':true,'smelting':true,'Crafting a glass':true},
@@ -8807,7 +8995,7 @@ getCosts:function()
 		new G.Tech({
 		name:'Sewing II',
 		displayName:'Weaving II', //Correct
-		desc:'Upgrades sewing skills of your civilization. @Unlocks <b>Drying racks<b> to make [Dried leather] used to craft better quality clothing. @Now artisans can sew [Fishing net] and craft [Thread].',
+		desc:'Upgrades sewing skills of your civilization. @Unlocks <b>Drying racks<b> to make [Dried leather] used to craft better quality clothing. @Now artisans can sew [Fishing net] @Clothier can craft [Thread] that is required to craft a [Fishing net].',
 		icon:[13,5,'magixmod'], 
 		cost:{'insight':380,'wisdom':10},
 		req:{'Wizardry':true,'sewing':true,},
@@ -9033,9 +9221,9 @@ getCosts:function()
 		req:{'Laws of physics(basic)':true},
 	});
 		new G.Tech({
-		name:'Farm of the Beet',
-		desc:'@Makes [Beet] farm possible to be built.',
-		icon:[10,11,'magixmod',24,1],
+		name:'Deeper wells',
+		desc:'@[well]s provide 5% more water.',
+		icon:[31,15,'magixmod'],
 		cost:{'insight':490,'wisdom':30},
 		req:{'Farms in the new land':true},
 	});
@@ -9624,7 +9812,7 @@ autobuy(G.year)
 		effects:[
 		],
 	});
-	
+
 		
 	
 	/*=====================================================================================
@@ -9852,7 +10040,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'Political roots',
-		desc:'Your people are seeming like they want political things go with old traditions. @Unlocks [Pagoda of Democracy] a political wonder.',
+		desc:'Your people seem like they want political things go with old traditions. @Unlocks [Pagoda of Democracy] a political wonder.',
 		icon:[20,17,'magixmod'],
 		cost:{'influence':200},
 		chance:1050,
@@ -9861,7 +10049,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'Cultural roots',
-		desc:'Your people are seeming like they cultivate traiditions born at their generation and share\'em to future times. @Unlocks [Fortress of cultural legacy] a cultural wonder.',
+		desc:'Your people seem like they cultivate traiditions born at their generation and share\'em to future times. @Unlocks [Fortress of cultural legacy] a cultural wonder.',
 		icon:[19,17,'magixmod'],
 		cost:{'culture':500},
 		chance:1050,
@@ -9870,7 +10058,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'Roots of insight',
-		desc:'Your people are seeming like they are born for discoveries. @Unlocks [Complex of Dreamers] a  wonder of insight.',
+		desc:'Your people seem like they are born for discoveries. @Unlocks [Complex of Dreamers] a  wonder of insight.',
 		icon:[18,17,'magixmod'],
 		cost:{'wisdom':100},
 		chance:1050,
@@ -9929,7 +10117,7 @@ autobuy(G.year)
 		desc:'The time has finally come and people seem very curious. That is a sign that they want to know more and more. May unlock unique techs , traits , units for this path.',
 		icon:[25,17,'magixmod'],
 		cost:{},
-		chance:1000,
+		chance:750,
 		req:{'culture of moderation':true,'<font color="maroon">Caretaking</font>':false},
 		category:'main',
 	});
@@ -9939,7 +10127,7 @@ autobuy(G.year)
 		icon:[24,17,'magixmod'],
 		cost:{},
 		req:{'joy of eating':true,'<font color="maroon">Moderation</font>':false},
-		chance:1000,
+		chance:750,
 		category:'main',
 	});
 	//Another knowledge
@@ -10396,7 +10584,7 @@ let gifUnA =  new G.Tech({
     });
 function checkUnA() {
   if (G.achievByName['"In the underworld"'].won) {
-    if (G.achievByName['"In the underworld"'].won > 0 && G.achievByName['Democration'].won > 0 && G.achievByName['Sacrificed for culture'].won > 0 && G.achievByName['Insight-ly'].won > 0 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')) {
+    if (G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')) {
       G.gainTech(gifUnA)
     }
 }
@@ -10504,7 +10692,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	});
 		new G.Tech({
 		name:'Science blessing',
-		desc:'[Guru] generates 50% more science & insight.',
+		desc:'[Guru] generates 50% more [science] & [insight].',
 		icon:[29,5,'magixmod'],
 		cost:{'insight II':15,'science':5,'Mana':435},
 		req:{'Laws of physics(intermediate)':true,'Ambrosium treeplanting':true,'Faithful cloudy water filtering':true,'Farm of wheat':true},
@@ -10721,7 +10909,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	});
 		new G.Trait({
 		name:'Magic adept',
-		desc:'May unlock a new wonder. This trait is a reward for getting over 1 million of [Magic essences] . //Good job :)',
+		desc:'May unlock a new wonder. This trait is a reward for getting over 2 million of [Magic essences] . //Good job :)',
 		icon:[12,22,'magixmod'],
 		cost:{'Magic essences':2100000},
 		chance:45,
@@ -10817,7 +11005,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 			new G.Tech({
 		name:'Fertile bushes',
-		desc:'[house]s and their berrybushes are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :)',
+		desc:'[house,Next-to house berrybushes] are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :)',
 		icon:[1,24,'magixmod'],
 		cost:{'insight II':100,'culture II':20,'insight':46},
 		req:{'Hunters & fishers unification':true,'Next-to house berrybushes':true},
@@ -10958,6 +11146,216 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		effects:[
 			],
 		chance:10
+	});
+		if(G.modsByName['Market mod']){
+		new G.Tech({
+		name:'Essence trading',
+		desc:'Now [market_sell] may trade with [Magic essences].',
+		icon:[22,24,'magixmod'],
+		cost:{'insight II':8,'faith II':1,'culture II':1},
+		req:{'Eotm':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Backshift',
+		desc:'[bazaar_buy,Bazaars] and [market_buy,Markets] work 50% more efficient but requires another [worker] .',
+		icon:[30,22,'magixmod'],
+		cost:{'insight':997,'culture':264},
+		req:{'ingredient crafting':true},
+		effects:[
+			{type:'function',func:function(){
+			 	G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5});
+				G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5});
+				G.getDict('market_buy').effects.push({type:'mult',value:1.5});
+				G.getDict('market_sell').effects.push({type:'mult',value:1.5});
+			}}
+		]
+	});
+		new G.Tech({
+		name:'Expanded essence trading catalog',
+		desc:'Unlocks a policy that will turn you on the prospected essence trading. Now [market_sell,Markets] trades [Magic essences] with bulks of 150 instead of 100.',
+		icon:[30,21,'magixmod'],
+		cost:{'insight II':95,'culture II':3,'science':1,'faith II':1},
+		req:{'Magic adept':true,'Magical presence':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'Mo\' tradez',
+		desc:'Policies such like [extended basic catalog] or [extended food catalog] now have more options',
+		icon:[30,20,'magixmod'],
+		cost:{'insight':1490},
+		req:{'Treeplanting':true},
+		effects:[
+		],
+			
+	});
+	}
+			new G.Tech({
+		name:'Mo\' beauty',
+		desc:'Applies visual changes to some units. //Default units gets "decorated" let\'s say in short.',
+		icon:[30,11,'magixmod'],
+		cost:{'insight II':5},
+		req:{'Doctrine of the dark wormhole 4/5':true},
+		effects:[
+			]
+	});
+				new G.Tech({
+		name:'symbolism III',
+		desc:'Third level of [symbolism] doesn\'t increase the bonus but since now the bonus will apply to more units([Guru] gathers 25% more [science], [musician] , [Thoughts sharer] , [Lawyer] ,[Mediator]. [Cathedral] gets 100% bonus instead of 70%([symbolism II] bonus). //In addition provides: @10[wisdom II],[inspiration II] @3[education] @5[authority II],[spirituality II].',
+		icon:[30,14,'magixmod'],
+		cost:{'insight II':145,'culture II':35,'influence II':5,'faith II':5,'science':10,'insight':16},
+		req:{'Doctrine of the dark wormhole 5/5':true},
+		effects:[
+			{type:'provide res',what:{'inspiration II':10}},
+			{type:'provide res',what:{'wisdom II':10}},
+			{type:'provide res',what:{'education':3}},
+			{type:'provide res',what:{'authority II':5}},
+			{type:'provide res',what:{'spirituality II':5}},
+			]
+	});
+				new G.Tech({
+		name:'wizard\'s grain fertlizer',
+		desc:'Fertlizer that makes [Wheat farm]s produce 75% more [wheat] (compounding). Made by group of wizards who love eating bread on breakfast and they do not imagine a life without a piece of bread.',
+		icon:[30,17,'magixmod'],
+		cost:{'insight II':100,'Mana':500,'culture II':33,'faith II':2,'insight':35},
+		req:{'Doctrine of the dark wormhole 3/5':true},
+		effects:[
+			]
+	});
+			new G.Tech({
+		name:'Plain island mining strategy',
+		desc:'Decreases accident rate at [Mine of the plain island] . @Increases efficiency of [Mine of the plain island] by 5%. @Applies visual change to [Mine of the plain island]\'s icon.',
+		icon:[31,7,'magixmod'], 
+		cost:{'insight II':50,'science':2,'insight':139},
+		req:{'Mining strategy':true}
+	});
+			new G.Trait({
+		name:'respect for the corpse',
+		desc:'Obtaining this trait disables effect of the [ritual necrophagy] trait and unlocks way better and less cruel rites that can be used to bury corpses such like cremation. @unhappiness from unburied corpses is decreased by 25%',
+		icon:[25,24,'magixmod'],
+		cost:{'culture II':25,'faith II':5,'influence II':5},
+		req:{'ritual necrophagy':true,'Liberating darkness':true},
+		chance:35
+	});
+		new G.Tech({
+		name:'power of the faith',
+		desc:'Now [Crafting & farm rituals] bonus applies to: @[blacksmith workshop](mortal and paradise version) @[carpenter workshop](mortal and paradise version)@[Holy orchard]@[artisan](types: juice, pyro and normal. Bonus for juice and pyro: 25% while for normal it is 3%)//All of these bonuses are only active when the ritual active is. These bonuses won\'t increase amount of [faith II] required to keep the ritual active. @provides 5 [spirituality II]',
+		icon:[24,24,'magixmod'],
+		cost:{'culture II':25,'insight II':135,'science':5,'faith':26},
+		req:{'symbolism III':true},
+		chance:2,
+			effects:[
+			{type:'provide res',what:{'spirituality II':5}},
+			]
+	});
+		new G.Tech({
+		name:'improved windmill motors',
+		desc:'[Windmill] can craft 35% more [flour].',
+		icon:[31,13,'magixmod'],
+		cost:{'insight II':165,'science':5,'culture II':21},
+		req:{'symbolism III':true},
+		chance:2,
+	});
+		new G.Tech({
+		name:'backshift at farms',
+		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech.',
+		icon:[31,14,'magixmod'],
+		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5,'insight':374},
+		req:{'improved windmill motors':true,'<font color="maroon">Moderation</font>':true},
+		chance:2,
+	});
+		new G.Trait({
+		name:'A leaf of wisdom',
+		desc:'You found a red leaf that glows. You remember that now tree of wisdom has red leaves. The red leaf shines stronger and stronger... then dissipates providing you: 2[education] and 40[wisdom II].',
+		icon:[31,10,'magixmod'],
+		req:{'ritual necrophagy':true,'Liberating darkness':true},
+		chance:100,
+			effects:[
+			{type:'provide res',what:{'wisdom II':40}},
+			{type:'provide res',what:{'education':2}},
+			]
+	});
+		new G.Tech({
+		name:'embalmment',
+		desc:'Smart people said how to make a substance that will slow down decay of corpses and discourage people from performing [ritual necrophagy,necrophagy] on them. They think about crafting something that is called [Urn] and there they would "store" [corpse]s.',
+		icon:[31,20,'magixmod'],
+		cost:{'insight II':110,'science':5,'influence II':10,'culture II':5},
+		req:{'respect for the corpse':true},
+		chance:5,
+	});
+		new G.Tech({
+		name:'cremation',
+		desc:'Unlocks [crematorium]. Burns embalmed [corpse]s then all dust from [corpse] they put into the [Urn].//You\'ll unlock better way of burying people. 1 [burial spot] can store 4 [Urn]s.',
+		icon:[30,16,'magixmod'],
+		cost:{'insight II':155,'science':10,'influence II':10,'culture II':35},
+		req:{'embalmment':true},
+		chance:5,
+	});
+		new G.Tech({
+		name:'dark urn decay',
+		desc:'[Corpse decay] now affects [Urn]s as well.',
+		icon:[30,15,'magixmod'],
+		cost:{'faith II':15,'insight II':135,'Essenced seeds':300,'insight':315},
+		req:{'Corpse decay':true,'cremation':true},
+		chance:5,
+	});
+		new G.Tech({
+		name:'Juicy nutritious magical soil',
+		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] and previous soil upgrades.',
+		icon:[31,11,'magixmod'], 
+		cost:{'insight II':190,'culture II':20,'Juices':1050,'culture':93},
+		req:{'Policy revaluation':true,'Nutritious magical soil':true,'Magical presence':true}
+	});
+			new G.Tech({
+		name:'Paper mastery',
+		desc:'[Paper-crafting shack]s are thrice as efficient.',
+		icon:[31,9,'magixmod'],
+		cost:{'insight II':125,'science':7,'influence II':3},
+		req:{'Camp-cooking':true},
+	});
+			new G.Tech({
+		name:'Even mo\' paper',
+		desc:'[Paper-crafting shack]s produces 25% more [Paper] .//To get this bonus you need to obtain [<font color="maroon">Moderation</font>] or [<font color="maroon">Caretaking</font>]. It does not matter which path your people will choose.',
+		icon:[31,12,'magixmod'],
+		cost:{'insight II':135,'science':7,'influence II':6,'culture II':30,'faith II':2,'insight':90},
+		req:{'Paper mastery':true},
+	});
+		new G.Tech({
+		name:'More humid water',
+		desc:'[Sugar cane farm] produces 250% more [Sugar cane]',
+		icon:[31,23,'magixmod'],
+		cost:{'insight':495},
+		req:{'Moar juices':true},
+	});
+		new G.Tech({
+		name:'Soil for moisture-loving plants',
+		desc:'[Sugar cane farm] produces 300% more [Sugar cane]. //Compounds with [More humid water] bonus',
+		icon:[31,24,'magixmod'],
+		cost:{'insight':1350,'culture':300},
+		req:{'Ambrosium treeplanting':true},
+	});
+		new G.Tech({
+		name:'Empowered canes',
+		desc:'[Sugar cane farm] produces 400% more [Sugar cane]. //Compounds with previous bonuses. //Makes planted [Sugar cane] live longer and able to grow even taller than normal.',
+		icon:[31,25,'magixmod'],
+		cost:{'insight II':50,'culture II':15},
+		req:{'Eotm':true},
+	});
+		new G.Tech({
+		name:'Essenced soil for moisture-loving plants',
+		desc:'[Sugar cane farm] produces 400% more [Sugar cane]. //Compounds with previous bonuses.',
+		icon:[30,25,'magixmod'],
+		cost:{'insight II':90,'culture II':20,'influence II':3,'science':2,'insight':33},
+		req:{'Nutritious magical soil':true},
+	});
+			new G.Tech({
+		name:'Storage at the bottom of the world',
+		desc:'Unlocks [heavy warehouse]. Built in Underworld and covered with heavy metal.',
+		icon:[30,13,'magixmod'],
+		cost:{'insight II':185,'culture II':15,'influence II':1,'science':4},
+		req:{'A leaf of wisdom':true},
 	});
 	/*=====================================================================================
 	POLICIES
@@ -11325,7 +11723,114 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'indigo':{name:'Indigo',desc:'Switches to indigo theme. Reward for <b>Magical victory</b> achievement.',req:{'Magical presence':true}},
 		},
 		category:'mag',
-	});	
+	});
+	if(G.modsByName['Market mod']){
+		 new G.Policy({
+            name: 'extended essences catalog',
+            desc: 'The [Magic essences] trading will be refined. You will be able to fine tune what specific items from the category you want to trade (instead of the whole category)',
+            icon: [0, 2, "market_images", 20, 13,'magixmod'],
+            cost: {'influence': 10 },
+            startMode: 'off',
+            req: {'Expanded essence trading catalog': true},
+            category: 'trading_policies',
+
+        });		
+	}
+	if(G.modsByName['Laws Of Food']){
+		 new G.Policy({
+            name: 'eat meals',
+            desc: 'Decide if your people can eat [Meals] or not.',
+            icon: [6, 12, 22, 13,'magixmod'],
+            cost: {'influence': 2},
+            startMode: 'on',
+            req: {'Cooking':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Meals'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Meals'],parent:''},
+		],
+        });
+		new G.Policy({
+            name: 'eat sunflower seeds',
+            desc: 'Decide if your people can eat [Sunflower seeds] or not.',
+            icon: [6, 12, 12, 1,'magixmod'],
+            cost: {'influence': 2},
+            startMode: 'on',
+            req: {'plant lore':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Sunflower seeds'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Sunflower seeds'],parent:''},
+		],
+        });
+		 new G.Policy({
+            name: 'drink juices',
+            desc: 'Decide if your people can drink [Juices] or not.',
+            icon: [6, 12, 14, 3,'magixmod'],
+            cost: {'influence': 2},
+            startMode: 'on',
+            req: {'Crafting a juice':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Juices'],parent:'water'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Juices'],parent:''},
+		],
+        });	
+	}
+	if(G.modsByName['Laws Of Food Free Version']){
+		 new G.Policy({
+            name: 'eat meals',
+            desc: 'Decide if your people can eat [Meals] or not.',
+            icon: [6, 12, 22, 13,'magixmod'],
+            cost: {'influence': 0},
+            startMode: 'on',
+            req: {'Cooking':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Meals'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Meals'],parent:''},
+		],
+        });
+		new G.Policy({
+            name: 'eat sunflower seeds',
+            desc: 'Decide if your people can eat [Sunflower seeds] or not.',
+            icon: [6, 12, 12, 1,'magixmod'],
+            cost: {'influence': 0},
+            startMode: 'on',
+            req: {'plant lore':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Sunflower seeds'],parent:'food'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Sunflower seeds'],parent:''},
+		],
+        });
+		 new G.Policy({
+            name: 'drink juices',
+            desc: 'Decide if your people can drink [Juices] or not.',
+            icon: [6, 12, 14, 3,'magixmod'],
+            cost: {'influence': 0},
+            startMode: 'on',
+            req: {'Crafting a juice':true},
+            category: 'food',
+		effects:[
+			{type:'make part of',what:['Juices'],parent:'water'},
+		],
+		effectsOff:[
+			{type:'make part of',what:['Juices'],parent:''},
+		],
+        });	
+	}
+	
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
@@ -11340,8 +11845,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'img/blot.png',
 			'img/iconSheet.png?v=1'
 		];
-		var loader=new PicLoader(resources,function(){G.Init();});//load all resources then init the game when done
 	}
+	
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
@@ -11390,6 +11895,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'grass',amount:2},
 			{type:'vfb1',chance:0.2},
 			{type:'vfb2',chance:0.05},
+			{type:'sugar cane',min:0.2,max:1,chance:0.5},
 			{type:['wild rabbits','stoats'],chance:0.9},
 			{type:['foxes'],chance:0.5,amount:0.5},
 			{type:['wolves','bears'],chance:0.2,amount:0.5},
@@ -11412,6 +11918,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'berry bush',chance:0.2},
 			{type:'grass',amount:1.5},
 			{type:'vfb1',chance:0.5},
+			{type:'sugar cane',min:0.2,max:2},
 			{type:['wild rabbits','stoats'],chance:0.6},
 			{type:['foxes'],chance:0.4,amount:0.3},
 			{type:['wolves','bears'],chance:0.1,amount:0.2},
@@ -11435,6 +11942,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'grass'},
 			{type:'rb1',chance:0.5},
 			{type:'rb2',chance:0.5},
+			{type:'sugar cane',min:0.1,max:0.5,chance:0.05},
 			{type:'bush of tulips',chance:0.5,min:0.3,max:0.9},
 			{type:['wild rabbits','stoats'],chance:0.2},
 			{type:['foxes'],chance:0.2,amount:0.2},
@@ -11506,6 +12014,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['wolves'],chance:0.5,min:0.5,max:1},
 			{type:['polar bears','bears'],chance:0.3,amount:0.5},
 			{type:'deer',chance:0.7,amount:0.5},
+			{type:'sugar cane',min:0.25,max:1.1},
 			{type:'wild bugs'},
 			{type:'freshwater fish',chance:0.1,min:0.1,max:0.3},
 			{type:'freshwater',amount:1},
@@ -11528,6 +12037,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['foxes'],chance:0.4,amount:0.5},
 			{type:['boars'],chance:0.3,amount:0.5},
 			{type:'wild bugs'},
+			{type:'sugar cane',min:0.1,max:0.8},
 			{type:'freshwater fish',chance:0.6,min:0.1,max:0.5},
 			{type:'freshwater',amount:0.8},
 			{type:'sandy soil',chance:0.3},
@@ -11548,6 +12058,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['foxes'],chance:0.3,min:0.1,max:0.3},
 			{type:['wolves'],chance:0.1,min:0.1,max:0.3},
 			{type:'wild bugs',amount:0.15},
+			{type:'sugar cane',min:0.05,max:0.15,chance:0.075},
 			{type:'freshwater',amount:0.1},
 			{type:'sandy soil'},
 			{type:'rocky substrate'},
@@ -11563,6 +12074,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:'jungle fruits',chance:1},
 			{type:'grass'},
 			{type:'koalas',chance:0.3},
+			{type:'sugar cane',min:0.05,max:1},
 			{type:['boars'],chance:0.2,amount:0.5},
 			{type:'wild bugs',min:1,max:2},
 			{type:'freshwater fish',chance:0.1,min:0.1,max:0.3},
@@ -11578,6 +12090,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			{type:['swampflowers'],amount:1},
 			{type:'grass',chance:3},
 			{type:'rocky substrate'},
+			{type:'sugar cane',min:0.1,max:0.7},
 			{type:'crocodiles',min:0.2,max:0.8},
 			{type:'deer',min:0.1,max:0.9,chance:0.9},
 			{type:['willow'],amount:2},
@@ -11599,6 +12112,19 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		],
 		image:15,
 		score:3,
+	});
+				new G.Land({
+		name:'glacier',
+		goods:[
+			{type:'snow cover',min:0.4,max:3},
+			{type:'Ice',min:2,max:3.5},
+			{type:'seals',min:0.05,max:1,chance:0.2},
+			{type:'saltwater fish',min:0.05,max:0.3,chance:0.01},
+			{type:'freshwater',amount:0.75},
+		],
+		image:16,
+		score:3,
+		ocean:true
 	});
 	
 	//TODO : all the following
@@ -12117,11 +12643,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		G.getDict('grass').res['gather']['vegetable']=0.001;
 		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
 		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
-		G.getDict('freshwater').res['gather']['Sugar cane']=0.000000004;
 		G.getDict('rocky substrate').res['mine']['Various stones']=0.075;
 		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
-		G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
-		G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;//test
 	new G.Goods({
 		name:'jacaranda',
 		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b> and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
@@ -12132,6 +12655,25 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		},
 		affectedBy:['deforestation'],
 		mult:5,
+	});
+		new G.Goods({
+		name:'Ice',
+		desc:'Only in iceberg you can find so much [ice] . It is so coooldddd.... Brrr...',
+		icon:[21,24,'magixmod'],
+		res:{
+			'dig':{'ice':2.25},
+		},
+		affectedBy:['mineral depletion'],
+		mult:2,
+	});
+				new G.Goods({
+		name:'sugar cane',
+		desc:'Wet land where [Sugar cane] can live and grow. Can be found at lush biomes and amount of sugar cane is not constant. At some lands you may spot that [Sugar cane] is scarce while somewhere else it is plenty.',
+		icon:[31,22,'magixmod'],
+		res:{
+			'gather':{'Sugar cane':0.0002},
+		},
+		mult:1,
 	});
 	/*=====================================================================================
 	TILE EFFECTS
@@ -12166,7 +12708,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
-	
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
@@ -12351,7 +12892,11 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 				var landTile=lvl[x][y];
 				
 				var biomes=[];
-				if (tempTile<-0.1)
+				if (tempTile<-0.1275)
+				{
+					biomes.push('glacier');
+				}
+				else if (tempTile<-0.1 && tempTile>-0.1275)
 				{
 					if (landTile=='ocean') biomes.push('arctic ocean');
 					else biomes.push('ice desert');
