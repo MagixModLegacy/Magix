@@ -11656,7 +11656,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		new G.Policy({
 		name:'Gather roses',//It is raw ID. Kept it to prevent crashes but added display name
 		displayName:'Chra-nos The Seraphin of Time',
-		desc:'Boost depends on year. <br><font color="lime">Each year boost goes up by 0.5% (range: 1 to 10%). Boosted are all crafting units.</font><br><font color="red"> Backfire: With the same ratio weakened are gathering units.</font>',
+		desc:'Boost depends on year. <br><font color="lime">Each year boost goes up by 0.5% (range: 1 to 10%). Boosted are all crafting units.</font><br><hr color="fuschia"><br><font color="red"> Backfire: With the same ratio weakened are gathering units.</font>',
 		icon:[0,7,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
