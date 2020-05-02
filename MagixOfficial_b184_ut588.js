@@ -4549,7 +4549,6 @@ if (!document.getElementById(cssId))
 				G.getDict('child workforce').cost = {'influence II':3}
 				G.getDict('drink cloudy water').cost = {'influence II':3}
 				G.getDict('elder workforce').cost = {'influence II':3}
-				G.getDict('Gather roses').cost = {'influence II':1}
 				G.getDict('Hovel of colours production rates').cost = {'influence II':5}
 				G.getDict('Hut of potters production rates').cost = {'influence II':5}
 				G.getDict('Leather factory production rates').cost = {'influence II':5}
@@ -11656,7 +11655,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		new G.Policy({
 		name:'Gather roses',//It is raw ID. Kept it to prevent crashes but added display name
 		displayName:'Chra-nos The Seraphin of Time',
-		desc:'Boost depends on year. <br><font color="lime">Each year boost goes up by 0.5% (range: 1 to 10%). Boosted are all crafting units.</font><br><hr color="fuschia"><br><font color="red"> Backfire: With the same ratio weakened are gathering units.</font>',
+		desc:'Boost depends on year. <br><font color="lime">Each year boost goes up by 0.5% (range: 1 to 10%). Boosted are all crafting units.</font><br><hr color="fuschia"><font color="red"> Backfire: With the same ratio weakened are gathering units.</font>',
 		icon:[0,7,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
@@ -11831,7 +11830,36 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		],
         });	
 	}
-	
+			new G.Policy({
+		name:'se02',
+		displayName:'Bersaria the Seraphin of Madness',
+		desc:'<font color="lime">Increases thieve hunters  and other guard efficiency by 40%</font><br><hr color="fuschia"><font color="red">Backfire: Harms happiness and 1% more thieves will spawn. </font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+				new G.Policy({
+		name:'se03',
+		displayName:'Tu-ria the Seraphin of Inspiration',
+		desc:'<font color="lime">Increases [culture] gathering by 100%, decreases limit for [musician] and [storyteller] by 50 [population]</font><br><hr color="fuschia"><font color="red">Backfire:[dreamer] , [faith,faith units] gather 5% less [insight] and [faith] .</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+		new G.Policy({
+		name:'se03',
+		displayName:'Hartar the Seraphin of Hunting',
+		desc:'<font color="lime">Increases efficiency of hunting units by 35%</font><br><hr color="fuschia"><font color="red">Backfire:Decreases efficiency of fishing units by 5%</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
