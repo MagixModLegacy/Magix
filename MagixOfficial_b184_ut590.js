@@ -11933,7 +11933,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 						new G.Policy({
 		name:'se12',
 		displayName:'Okar the Seer the Seraphin of Knowledge',
-		desc:'<font color="lime">[guru] and [dreamer]s are 50% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: [dreamer]s and [guru] require [food] and [water] as an upkeep. Weakens [gatherer] and [florist] by 20%. [culture] gaining lowered by 10%.</font>',
+		desc:'<font color="lime">[Guru] and [dreamer]s are 50% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: [dreamer]s and [Guru] require [food] and [water] as an upkeep. Weakens [gatherer] and [florist] by 20%. [culture] gaining lowered by 10%.</font>',
 		icon:[0,7,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
