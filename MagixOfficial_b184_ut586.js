@@ -11367,7 +11367,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		{id:'population',name:'Population'},
 		{id:'faith',name:'Faith'},
 		{id:'education',name:'Education'},
-		{id:'Florists',name:'Florists gathering'},
+		{id:'Florists',name:'Pantheon'},//Kept the same ID to prevent errors and crashes upon a update
 		{id:'education',name:'Education'},
 		{id:'prod',name:'Production'},
 		{id:'mag',name:'Magix utilities'}
@@ -11654,10 +11654,11 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		category:'Education',
 	});
 		new G.Policy({
-		name:'Gather roses',
-		desc:'Makes florist start gathering all types of rose. //Due to last update this policy will be replaced some time with new one.',
+		name:'Gather roses',//It is raw ID. Kept it to prevent crashes but added display name
+		displayName:'Chra-nos The Seraphin of Time',
+		desc:'Boost depends on year. <br><font color="lime">Each year boost goes up by 0.5% (range: 1 to 10%). Boosted are all crafting units.</font><br><font color="red"> Backfire: With the same ratio weakened are gathering units.</font>',
 		icon:[0,7,'magixmod'],
-		cost:{'influence':15},
+		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
 		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 		category:'Florists',
