@@ -3178,7 +3178,6 @@ if (!document.getElementById(cssId))
 		name:'Worship point',
 		desc:'You can use these points to decide which seraphin will be worshipped.',//Seraphins won't be added quickly it may be January /February 2020 when you will be able to see them for the first time
 		icon:[1,14,'magixmod'],
-		displayUsed:true,
 		category:'main',
 	});
 //Essence limits which can be increased by buying storages for essences
