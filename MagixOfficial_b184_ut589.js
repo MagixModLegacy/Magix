@@ -11851,9 +11851,89 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		category:'Florists',
 	});
 		new G.Policy({
-		name:'se03',
+		name:'se04',
 		displayName:'Hartar the Seraphin of Hunting',
 		desc:'<font color="lime">Increases efficiency of hunting units by 35%</font><br><hr color="fuschia"><font color="red">Backfire:Decreases efficiency of fishing units by 5%</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+			new G.Policy({
+		name:'se05',
+		displayName:'Fishyar the Seraphin of Fishing',
+		desc:'<font color="lime">Increases efficiency of fishing units by 35%</font><br><hr color="fuschia"><font color="red">Backfire:Decreases efficiency of hunting units by 5%</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+				new G.Policy({
+		name:'se06',
+		displayName:'Posi\'zul the Seraphin of Water',
+		desc:'<font color="lime">Increases gathering of water and decreases rate of water spoiling</font><br><hr color="fuschia"><font color="red">Backfire: Increases food spoiling rate</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+				new G.Policy({
+		name:'se07',
+		displayName:'Herbalia the Seraphin of Recovery',
+		desc:'<font color="lime">Boosts health level. [healer]s are 25% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: Happiness cap is: from -200 to 175%. [gatherer] gains 15% less [seafood](because it is raw).</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+					new G.Policy({
+		name:'se08',
+		displayName:'Buri\'o dak the Seraphin of Burial',
+		desc:'<font color="lime">Now 1 [burial spot] can store 1.1 [corpse] or 5 [Urn]s.</font><br><hr color="fuschia"><font color="red">Backfire: Harms [health] and decreases [healer]s efficiency by 5%.</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+						new G.Policy({
+		name:'se09',
+		displayName:'Moai the Seraphin of the Stone',
+		desc:'<font color="lime">All [mine]s are 25% more efficient(Doesn\'t apply to [gems] gathering). [digger] is 2% more efficient. [carver] works 3% more efficient at modes related to the [stone].</font><br><hr color="fuschia"><font color="red">Backfire: [well]s are 15% less efficient and [artisan]s are 7.5% less efficient.</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+						new G.Policy({
+		name:'se10',
+		displayName:'Mamuun the Seraphin of Richness',
+		desc:'<font color="lime">Gold and [precious building materials] decay 3% slower</font><br><hr color="fuschia"><font color="red">Backfire:[archaic building materials] decay 40% faster , [basic building materials] decay 12% faster, [advanced building materials] decay 3% faster. [food] spoils faster.</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+						new G.Policy({
+		name:'se11',
+		displayName:'Enlightened the Seraphin of Faith',
+		desc:'<font color="lime">All [faith] gathering is increased by 25%, [Thoughts sharer] is 1% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: All [influence] , [insight] units are weakened by 25%</font>',
+		icon:[0,7,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		category:'Florists',
+	});
+						new G.Policy({
+		name:'se12',
+		displayName:'Okar the Seer the Seraphin of Knowledge',
+		desc:'<font color="lime">[guru] and [dreamer]s are 50% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: [dreamer]s and [guru] require [food] and [water] as an upkeep. Weakens [gatherer] and [florist] by 20%. [culture] gaining lowered by 10%.</font>',
 		icon:[0,7,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
