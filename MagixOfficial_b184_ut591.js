@@ -8053,6 +8053,7 @@ new G.Unit({
 		],
 	});
 //Temple achiev
+	if(G.achievByName['mausoleum'].won>0){
 		new G.Achiev({
 		tier:1,
 		name:'Heavenly',
@@ -8161,6 +8162,7 @@ new G.Unit({
 		name:'Apprentice',
 		desc:'Get 100 or more technologies in a single run.',
 	});
+	}
 		new G.Achiev({
 		tier:1,
 		icon:[26,9,'magixmod'],
