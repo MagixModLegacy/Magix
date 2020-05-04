@@ -8491,6 +8491,24 @@ new G.Unit({
 			{type:'addFastTicksOnResearch',amount:25},
 		],
 	});
+	new G.Achiev({
+		tier:2,
+		name:'The first choice',
+		icon:[11,25,'magixmod'],
+		desc:'Spend your all [Worship point]s for the first time to pick Seraphins that your people will worship.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		name:'Trait-or',
+		icon:[12,25,'magixmod'],
+		desc:'Manage your wonderful tribe to adopt 50 traits.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+		],
+	});
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
