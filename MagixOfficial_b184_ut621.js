@@ -1373,10 +1373,10 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			var toSpoil=G.getRes('archaic building materials').amount*0.0002*1.4;
+			var toSpoil=G.getRes('archaic building materials').amount*0.005*1.4;
 			var spent=G.lose('archaic building materials',randomFloor(toSpoil),'decay');
 		}else{
-			var toSpoil=G.getRes('archaic building materials').amount*0.0002;
+			var toSpoil=G.getRes('archaic building materials').amount*0.005;
 			var spent=G.lose('archaic building materials',randomFloor(toSpoil),'decay');
 		}
 	};
@@ -1384,10 +1384,10 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			var toSpoil=G.getRes('basic building materials').amount*0.0002*1.12;
+			var toSpoil=G.getRes('basic building materials').amount*0.005*1.12;
 			var spent=G.lose('basic building materials',randomFloor(toSpoil),'decay');
 		}else{
-			var toSpoil=G.getRes('basic building materials').amount*0.0002;
+			var toSpoil=G.getRes('basic building materials').amount*0.005;
 			var spent=G.lose('basic building materials',randomFloor(toSpoil),'decay');
 		}
 	};
