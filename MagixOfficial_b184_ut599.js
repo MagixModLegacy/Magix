@@ -4675,6 +4675,13 @@ if (!document.getElementById(cssId))
 			G.getDict('Sugar cane farm').icon = [31,18,'magixmod']
 			G.getDict('Sugar cane farm').use={'worker':12,'Instructor':2}
 			}
+			if(G.checkPolicy('se12')=='on')//Okar The Seer's backfire
+			{
+			G.getDict('Guru').upkeep = {'food':10,'water':5}
+			G.getDict('dreamer').upkeep = {'food':2,'water':1}
+			G.getDict('Guru').alternateUpkeep = {'spoiled food':4,'muddy water':2}
+			G.getDict('dreamer').alternateUpkeep = {'spoiled food':2,'muddy water':1}
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -4886,6 +4893,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'harvest rituals':'on'}},
 			{type:'mult',value:1.075,req:{'Focused gathering':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.125,req:{'Focused gathering':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:0.8,req:{'se12':'on'}},
 		],
 		req:{'tribalism':true},
 		category:'production',
@@ -4907,7 +4915,8 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
 			{type:'mult',value:1.05,req:{'Knowledgeable':true}},
 			{type:'mult',value:2/3,req:{'dt18':true}},
-			{type:'mult',value:0.1,req:{'Eotm':true}}
+			{type:'mult',value:0.1,req:{'Eotm':true}},
+			{type:'mult',value:1.5,req:{'se12':'on'}}
 		],
 		req:{'speech':true},
 		category:'discovery',
@@ -4929,7 +4938,8 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
 			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
-			{type:'mult',value:0.1,req:{'Eotm':true}}
+			{type:'mult',value:0.1,req:{'Eotm':true}},
+			{type:'mult',value:0.9,req:{'se12':'on'}},
 		],
 		req:{'oral tradition':true},
 		category:'cultural',
@@ -6434,6 +6444,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'science':0.00005}},
 			{type:'gather',what:{'science':0.0000125},req:{'symbolism III':true}},
 			{type:'mult',value:1.5,req:{'Science blessing':true}},
+			{type:'mult',value:1.5,req:{'se12':'on'}},
 		],
 		req:{'God\'s trait #3 Science^2':true},
 		category:'discovery',
@@ -6759,7 +6770,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'culture':0.03},req:{'symbolism':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
-			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
+			{type:'mult',value:0.9,req:{'se12':'on'}},
 		],
 		req:{'oral tradition':true,'artistic thinking':true},
 		category:'cultural',
@@ -6971,7 +6983,8 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.31,req:{'artistic thinking':true}},
 			{type:'mult',value:1.21,req:{'wisdom rituals':'on'}},
 			{type:'convert',from:{'Paper':21},into:{'Poet\'s notes':1},every:11,req:{'Bookwriting':true}},
-			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
+			{type:'mult',value:0.9,req:{'se12':'on'}},
 		],
 		req:{'oral tradition':true,'Poetry':true},
 		category:'cultural',
@@ -7386,6 +7399,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'flowers',amount:0.1,max:0.4},
 			{type:'mult',value:1.05,req:{'harvest rituals for flowers':'on'}},
 			{type:'convert',from:{'Paper':12,'Ink':3},into:{'Florist\'s notes':1},every:11,req:{'Notewriting':true},chance:1/95},
+			{type:'mult',value:0.8,req:{'se12':'on'}},
 		],
 	});
 		new G.Unit({
@@ -7732,6 +7746,7 @@ if (!document.getElementById(cssId))
 		limitPer:{'population':400},
 		effects:[
 			{type:'gather',what:{'culture':0.1}},
+			{type:'mult',value:0.9,req:{'se12':'on'}},
 		],
 		req:{'oral tradition':true,'Music instruments':true},
 		category:'cultural',
@@ -11858,7 +11873,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		new G.Policy({
 		name:'Gather roses',//It is raw ID. Kept it to prevent crashes but added display name
 		displayName:'Chra-nos The Seraphin of Time',
-		desc:'Boost depends on year. <br><font color="lime">Each year boost goes up by 0.5% (range: 1 to 10%). Boosted are all crafting units.</font><br><hr color="fuschia"><font color="red"> Backfire: With the same ratio weakened are gathering units.</font>',
+		desc:'Boost depends on time. <br><font color="lime">Each year boost goes up by 0.5% (range: 1 to 10%). Boosted are all crafting units.</font><br><hr color="fuschia"><font color="red"> Backfire: With the same ratio weakened are gathering units.</font>',
 		icon:[29,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
