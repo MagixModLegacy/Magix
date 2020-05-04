@@ -1052,14 +1052,14 @@ if (!document.getElementById(cssId))
 				G.gain('health',-G.getRes('population').amount*(Math.random()*sickness),'disease');//people randomly get sick
 				var recovery=0.98;
 				me.amount*=recovery;//people recover over time
-				if (amount>400) amount=400;
-			if (amount<-400) amount=-400;
 			}
 		},
 		getDisplayAmount:function()
 		{
 			if (G.getRes('population').amount<=0) return '-';
 			return B(this.displayedAmount/G.getRes('population').displayedAmount)+'%';
+			if (amount>400) amount=400;
+			if (amount<-400) amount=-400;
 		},
 		getIcon:function(me)
 		{
