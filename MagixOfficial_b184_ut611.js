@@ -1368,13 +1368,15 @@ if (!document.getElementById(cssId))
 			G.props['perishable materials list'].push(me);
 		}
 	};
-	var MamuunPenalty4Archaic=function(me,tick)
+	
+	var MamuunPenalty4Archaic=function(me,tick){ //Mamuun's backfire
 		if (G.checkPolicy('disable spoiling')=='off')
 		{
 			me=1.4
 		}else{
 			me=1
 		}
+	};
 	
 	new G.Res({
 		//hidden, used for every material that can be stored in a warehouse that isn't part of any other material
