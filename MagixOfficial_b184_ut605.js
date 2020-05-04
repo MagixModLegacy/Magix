@@ -1058,7 +1058,6 @@ if (!document.getElementById(cssId))
 		{
 			if (amount>400) amount=400;
 			if (amount<-400) amount=-400;
-			return B(amount)+'%';
 			if (G.getRes('population').amount<=0) return '-';
 			return B(this.displayedAmount/G.getRes('population').displayedAmount)+'%';
 			
