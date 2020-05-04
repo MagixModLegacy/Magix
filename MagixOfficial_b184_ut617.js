@@ -1412,7 +1412,7 @@ if (!document.getElementById(cssId))
 		//hidden, used for every material that can be stored in a warehouse that isn't part of any other material
 		name:'misc materials',
 		meta:true,
-		tick:loseArchaicMaterialsTick,
+		tick:loseMaterialsTick,
 		hidden:true,
 	});
 	
@@ -1421,7 +1421,7 @@ if (!document.getElementById(cssId))
 		desc:'Materials such as [stick]s and [stone]s, used to build rudimentary structures.',
 		icon:[2,7],
 		meta:true,
-		tick:loseMaterialsTick
+		tick:loseArchaicMaterialsTick
 	});
 	new G.Res({
 		name:'stone',
