@@ -1407,10 +1407,10 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			var toSpoil=G.getRes('precious building materials').amount*0.0007*0.97;
+			var toSpoil=G.getRes('precious building materials').amount*0.0012*0.97;
 			var spent=G.lose('precious building materials',randomFloor(toSpoil),'decay');
 		}else{
-			var toSpoil=G.getRes('precious building materials').amount*0.0007;
+			var toSpoil=G.getRes('precious building materials').amount*0.0012;
 			var spent=G.lose('precious building materials',randomFloor(toSpoil),'decay');
 		}
 	};
