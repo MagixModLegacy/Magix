@@ -11503,6 +11503,62 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':185,'culture II':15,'influence II':1,'science':4},
 		req:{'A leaf of wisdom':true},
 	});
+		new G.Trait({
+		name:'gods and idols',
+		desc:'May open a door to the Seraphins - the God\'s superiors.',
+		icon:[17,25,'magixmod'],
+		req:{'Liberating darkness':true,'power of the faith':true},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
+		new G.Tech({
+		name:'monument-building III',
+		desc:'People now can use almost every resource while constructing mystical, beautiful wonders.',
+		icon:[0,25,'magixmod'],
+		req:{'gods and idols':true},
+		cost:{'insight II':192,'science':8,'culture II':30},
+	});
+		new G.Trait({
+		name:'sb1',
+		displayName:'Soothsayer blessing',
+		desc:'Increases amount of [faith] gained by [soothsayer]s by 10% due to getting closer to the religion.',
+		icon:[13,25,'magixmod'],
+		req:{'gods and idols':true,'power of the faith':true,'sb2':false,'sb3':false,'sb4':false},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
+	new G.Trait({
+		name:'sb2',
+		displayName:'Soothsayer blessing',
+		desc:'Increases amount of [faith] gained by [soothsayer]s by 5% due to getting closer to the religion.',
+		icon:[14,25,'magixmod'],
+		req:{'gods and idols':true,'power of the faith':true,'sb1':false,'sb3':false,'sb4':false},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
+	new G.Trait({
+		name:'sb3',
+		displayName:'Soothsayer blessing',
+		desc:'Sadly getting closer to the religion doesn\'t make [soothsayer]s gaining more [faith]. Try your luck next time(run in fact).',
+		icon:[15,25,'magixmod'],
+		req:{'gods and idols':true,'power of the faith':true,'sb2':false,'sb1':false,'sb4':false},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
+	new G.Trait({
+		name:'sb4',
+		displayName:'Soothsayer blessing',
+		desc:'Nobody knows why and how but [soothsayer]s are gaining 5% less [faith] even after getting closer to the God and the whole religion.',
+		icon:[16,25,'magixmod'],
+		req:{'gods and idols':true,'power of the faith':true,'sb2':false,'sb3':false,'sb1':false},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
