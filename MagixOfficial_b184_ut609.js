@@ -1382,7 +1382,7 @@ if (!document.getElementById(cssId))
 		desc:'Materials such as [stick]s and [stone]s, used to build rudimentary structures.',
 		icon:[2,7],
 		meta:true,
-		tick:function(me,tick){
+		tick:function(me){
 		if(G.checkPolicy('se10')=='on'){//Mamuun's backfire
 		loseMaterialsTick*1.4
 		}else{
