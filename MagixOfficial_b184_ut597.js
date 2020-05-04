@@ -1008,7 +1008,7 @@ if (!document.getElementById(cssId))
 		{
 			if (G.getRes('population').amount<=0) return '-';
 			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
-			if(G.checkPolicy('se07')=='on'){
+			if(G.checkPolicy('se07')=='on'){//Herbalia's backfire
 			if (amount>175) amount=175;
 			if (amount<-200) amount=-200;
 			}else{
