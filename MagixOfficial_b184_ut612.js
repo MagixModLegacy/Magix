@@ -1369,12 +1369,13 @@ if (!document.getElementById(cssId))
 		}
 	};
 	
-	var MamuunPenalty4Archaic=function(me,tick){ //Mamuun's backfire
-		if (G.checkPolicy('disable spoiling')=='off')
+	var MamuunPenalty4Archaic=function(me,tick)
+	{//Mamuun's backfire
+		if (G.checkPolicy('se10')=='on')
 		{
-			me=1.4
+			me==1.4;
 		}else{
-			me=1
+			me==1;
 		}
 	};
 	
