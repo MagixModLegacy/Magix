@@ -1368,12 +1368,13 @@ if (!document.getElementById(cssId))
 			G.props['perishable materials list'].push(me);
 		}
 	};
-	var MamuunAPenalty=function(tick)
+	var loseArchaicMaterialsTick=function(me,tick)
 	{
-		if (G.checkPolicy('se10')=='on'){
-			return 1.4
+		if (G.checkPolicy('se10')=='on')
+		{
+			return loseMaterialsTick*1.4
 		}else{
-			return 1
+			return loseMaterialsTick*1
 		}
 	};
 	
@@ -1382,7 +1383,7 @@ if (!document.getElementById(cssId))
 		//hidden, used for every material that can be stored in a warehouse that isn't part of any other material
 		name:'misc materials',
 		meta:true,
-		tick:loseMaterialsTick,
+		tick:loseArchaicMaterialsTick,
 		hidden:true,
 	});
 	
@@ -1391,7 +1392,7 @@ if (!document.getElementById(cssId))
 		desc:'Materials such as [stick]s and [stone]s, used to build rudimentary structures.',
 		icon:[2,7],
 		meta:true,
-		tick:loseMaterialsTick*MamuunAPenalty
+		tick:loseMaterialsTick
 	});
 	new G.Res({
 		name:'stone',
