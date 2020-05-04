@@ -8419,7 +8419,7 @@ new G.Unit({
 		name:'Underground',
 		wideIcon:[15,26,'magixmod'],
 		icon:[16,26,'magixmod'],
-		desc:'Complete Moai\'s trial for the first and the last time. Stone leads to victory! //Complete this trial again to gain extra Victory Points',
+		desc:'Complete Moai\'s trial for the first time. Stone leads to victory! //Complete this trial again to gain extra Victory Points',
 		//fromWonder:'Magical',
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
