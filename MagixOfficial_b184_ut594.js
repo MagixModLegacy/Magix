@@ -8341,6 +8341,18 @@ new G.Unit({
 	});
 		new G.Achiev({
 		tier:3,
+		name:'Underground',
+		wideIcon:[15,26,'magixmod'],
+		icon:[16,26,'magixmod'],
+		desc:'Complete Moai\'s trial for the first and the last time. Stone leads to victory! //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
 		name:'Pocket',
 		wideIcon:[9,26,'magixmod'],
 		icon:[10,26,'magixmod'],
