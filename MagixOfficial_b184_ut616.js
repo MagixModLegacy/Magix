@@ -1368,11 +1368,40 @@ if (!document.getElementById(cssId))
 			G.props['perishable materials list'].push(me);
 		}
 	};
+	//MAMUUN'S PENALTY/BACKFIRE
 	var loseArchaicMaterialsTick=function(me,tick)
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
 			return loseMaterialsTick*1.4
+		}else{
+			return loseMaterialsTick*1
+		}
+	};
+	var loseBasicMaterialsTick=function(me,tick)
+	{
+		if (G.checkPolicy('se10')=='on')
+		{
+			return loseMaterialsTick*1.12
+		}else{
+			return loseMaterialsTick*1
+		}
+	};
+	var loseAdvancedMaterialsTick=function(me,tick)
+	{
+		if (G.checkPolicy('se10')=='on')
+		{
+			return loseMaterialsTick*1.03
+		}else{
+			return loseMaterialsTick*1
+		}
+	};
+	//MAMUUN'S POSITIVE EFFECT
+	var losePreciousMaterialsTick=function(me,tick)
+	{
+		if (G.checkPolicy('se10')=='on')
+		{
+			return loseMaterialsTick*0.97
 		}else{
 			return loseMaterialsTick*1
 		}
@@ -1428,7 +1457,7 @@ if (!document.getElementById(cssId))
 		desc:'Processed materials such as [cut stone,Stone blocks], [brick]s and [lumber], used to build basic structures.',
 		icon:[2,8],
 		meta:true,
-		tick:loseMaterialsTick,
+		tick:loseBasicMaterialsTick,
 	});
 	new G.Res({
 		name:'cut stone',
@@ -1471,7 +1500,7 @@ if (!document.getElementById(cssId))
 		desc:'Building materials such as [concrete] and [glass], used to build advanced structures.',
 		icon:[3,9],
 		meta:true,
-		tick:loseMaterialsTick,
+		tick:loseAdvancedMaterialsTick,
 	});
 	new G.Res({
 		name:'sand',
@@ -1500,7 +1529,7 @@ if (!document.getElementById(cssId))
 		desc:'Building materials such as [marble], used to build monuments.',
 		icon:[16,8],
 		meta:true,
-		tick:loseMaterialsTick,
+		tick:losePreciousMaterialsTick,
 	});
 	new G.Res({
 		name:'marble',
