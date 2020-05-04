@@ -4,7 +4,7 @@ author:'pelletsstarPL',
 desc:'Magic! Magic!. Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
 manifest:'ModManifest.js',
-sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
+sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod2.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
@@ -8243,7 +8243,138 @@ new G.Unit({
 		name:'3rd party',
 		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
 	});
-	
+		new G.Achiev({
+		tier:3,
+		name:'Patience',
+		wideIcon:[3,26,'magixmod'],
+		icon:[4,26,'magixmod'],
+		desc:'Complete Chra-nos trial for the first time. Your determination led you to victory. //Complete this trial again to gain extra Victory Points.',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Unhappy',
+		wideIcon:[6,26,'magixmod'],
+		icon:[7,26,'magixmod'],
+		desc:'Complete Bersaria\'s trial for the first time. Your determination and calmness led you to victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Cultural',
+		wideIcon:[18,26,'magixmod'],
+		icon:[19,26,'magixmod'],
+		desc:'Complete Tu-ria\'s trial for the first time. Your artistic thinking led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Hunted',
+		wideIcon:[24,26,'magixmod'],
+		icon:[25,26,'magixmod'],
+		desc:'Complete Hartar\'s trial for the first time. Making people being masters at hunting and showing \'em what brave really is led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Unfishy',
+		wideIcon:[21,26,'magixmod'],
+		icon:[22,26,'magixmod'],
+		desc:'Complete Fishyar\'s trial for the first time. Making people believe that life without fish is not boring led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Ocean',
+		wideIcon:[1,25,'magixmod'],
+		icon:[2,25,'magixmod'],
+		desc:'Complete Posi\'zul\'s trial for the first time. Living at the endless ocean is not impossible and you are example of that. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Herbalism',
+		wideIcon:[12,26,'magixmod'],
+		icon:[13,26,'magixmod'],
+		desc:'Complete Herbalia\'s trial for the first time. Herbs are not that bad! //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Buried',
+		wideIcon:[0,26,'magixmod'],
+		icon:[1,26,'magixmod'],
+		desc:'Complete Buri\'o dak \'s trial for the first and the last time. Death lurks everywhere but it is still easy deal for you!',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Pocket',
+		wideIcon:[9,26,'magixmod'],
+		icon:[10,26,'magixmod'],
+		desc:'Complete Mamuun\'s trial for the first time. Seems like you have got a trading skills! This can lead to victory. //Complete this trial again to gain extra Victory Points. 2nd victory of this trial increases bonus from the trial',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Faithful',
+		wideIcon:[0,27,'magixmod'],
+		icon:[1,27,'magixmod'],
+		desc:'Complete Enlightened\'s trial for the first time. Belief and faith is everything. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Dreamy',
+		wideIcon:[27,26,'magixmod'],
+		icon:[28,26,'magixmod'],
+		desc:'Complete Okar the Seer\'s trial for the first time. Knowledge leads to victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
