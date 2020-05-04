@@ -8070,6 +8070,22 @@ new G.Unit({
 		req:{'Storage at the bottom of the world':true},
 		category:'storage',
 	});
+	new G.Unit({
+		name:'Temple of the Paradise',
+		desc:'@leads to the <b>Victory next to the god</b>. //A big, golden temple which is homeland of Seraphins and the God. A temple that stays at huge cloud. It is glowing with ambrosium.',
+		wonder:'Next to the god',
+		icon:[9,25,'magixmod'],
+		wideIcon:[8,25,'magixmod'],
+		cost:{'basic building materials':100000,'precious building materials':5000,'gold block':100,'platinum block':10,'Cloud':45000,'Ambrosium shard':10000},
+		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'Cloud':4500,'Ambrosium shard':1000},
+		steps:400,
+		messageOnStart:'The construction of The <b>Temple of the Paradise</b> has been started. Now you are full of hope that it will someday make the God appear next to you and show his true good-natured face.',
+		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000},
+		finalStepDesc:'To complete the wonder and be even closer to the God you must perform this final step 25k [population,people] must be sacrificed... and many other ingredients.',
+		use:{'Land of the Paradise':30},
+		req:{'monument-building III':true},
+		category:'wonder',
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
