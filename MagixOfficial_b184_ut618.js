@@ -1373,18 +1373,18 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			return loseMaterialsTick*1.4
+			loseMaterialsTick*1.4
 		}else{
-			return loseMaterialsTick*1
+			loseMaterialsTick*1
 		}
 	};
 	var loseBasicMaterialsTick=function(me,tick)
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			return loseMaterialsTick*1.12
+			loseMaterialsTick*1.12
 		}else{
-			return loseMaterialsTick*1
+			loseMaterialsTick*1
 		}
 	};
 	var loseAdvancedMaterialsTick=function(me,tick)
