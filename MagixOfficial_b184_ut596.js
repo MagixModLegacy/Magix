@@ -1008,8 +1008,13 @@ if (!document.getElementById(cssId))
 		{
 			if (G.getRes('population').amount<=0) return '-';
 			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
+			if(G.checkPolicy('se07')=='on'){
+			if (amount>175) amount=175;
+			if (amount<-200) amount=-200;
+			}else{
 			if (amount>200) amount=200;
 			if (amount<-200) amount=-200;
+			}
 			return B(amount)+'%';
 		},
 		getIcon:function(me)
