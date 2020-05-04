@@ -1371,9 +1371,9 @@ if (!document.getElementById(cssId))
 	var MamuunAPenalty=function(tick)
 	{
 		if (G.checkPolicy('se10')=='on'){
-			var MamuunAPenalty=1.4
+			return 1.4
 		}else{
-			var MamuunAPenalty=1
+			return 1
 		}
 	};
 	
