@@ -1373,10 +1373,10 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			var toSpoil=G.getRes('archaic building materials').amount*0.008*1.4;
+			var toSpoil=G.getRes('archaic building materials').amount*0.002*1.4;
 			var spent=G.lose('archaic building materials',randomFloor(toSpoil),'decay');
 		}else{
-			var toSpoil=G.getRes('archaic building materials').amount*0.008;
+			var toSpoil=G.getRes('archaic building materials').amount*0.002;
 			var spent=G.lose('archaic building materials',randomFloor(toSpoil),'decay');
 		}
 	};
@@ -1384,10 +1384,10 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			var toSpoil=G.getRes('basic building materials').amount*0.008*1.12;
+			var toSpoil=G.getRes('basic building materials').amount*0.003*1.12;
 			var spent=G.lose('basic building materials',randomFloor(toSpoil),'decay');
 		}else{
-			var toSpoil=G.getRes('basic building materials').amount*0.008;
+			var toSpoil=G.getRes('basic building materials').amount*0.003;
 			var spent=G.lose('basic building materials',randomFloor(toSpoil),'decay');
 		}
 	};
@@ -1395,10 +1395,10 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			var toSpoil=G.getRes('advanced building materials').amount*0.008*1.03;
+			var toSpoil=G.getRes('advanced building materials').amount*0.003*1.03;
 			var spent=G.lose('advanced building materials',randomFloor(toSpoil),'decay');
 		}else{
-			var toSpoil=G.getRes('advanced building materials').amount*0.008;
+			var toSpoil=G.getRes('advanced building materials').amount*0.003;
 			var spent=G.lose('advanced building materials',randomFloor(toSpoil),'decay');
 		}
 	};
@@ -1407,10 +1407,10 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			var toSpoil=G.getRes('precious building materials').amount*0.0012*0.97;
+			var toSpoil=G.getRes('precious building materials').amount*0.0009*0.97;
 			var spent=G.lose('precious building materials',randomFloor(toSpoil),'decay');
 		}else{
-			var toSpoil=G.getRes('precious building materials').amount*0.0012;
+			var toSpoil=G.getRes('precious building materials').amount*0.0009;
 			var spent=G.lose('precious building materials',randomFloor(toSpoil),'decay');
 		}
 	};
