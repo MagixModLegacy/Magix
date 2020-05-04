@@ -1057,8 +1057,7 @@ if (!document.getElementById(cssId))
 		getDisplayAmount:function()
 		{
 			if (G.getRes('population').amount<=0) return '-';
-			return B(if (amount>400) amount=400;
-			if (amount<-400) amount=-400;this.displayedAmount/G.getRes('population').displayedAmount)+'%';
+			return B(this.displayedAmount/G.getRes('population').displayedAmount)+'%';
 			
 		},
 		getIcon:function(me)
@@ -1383,7 +1382,13 @@ if (!document.getElementById(cssId))
 		desc:'Materials such as [stick]s and [stone]s, used to build rudimentary structures.',
 		icon:[2,7],
 		meta:true,
-		tick:loseMaterialsTick,
+		tick:function(me){
+		if(G.checkPolicy('se10')=='on'){
+		loseMaterialsTick*1.4
+		}else{
+		loseMaterialsTick
+		}
+		},
 	});
 	new G.Res({
 		name:'stone',
@@ -4918,7 +4923,8 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.05,req:{'Knowledgeable':true}},
 			{type:'mult',value:2/3,req:{'dt18':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}},
-			{type:'mult',value:1.5,req:{'se12':'on'}}
+			{type:'mult',value:1.5,req:{'se12':'on'}},
+			{type:'mult',value:0.75,req:{'se11':'on'}},
 		],
 		req:{'speech':true},
 		category:'discovery',
@@ -5474,6 +5480,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.05},req:{'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
+			{type:'mult',value:1.25,req:{'se11':'on'}},
 		],
 		req:{'ritualism':true},
 		category:'spiritual',
@@ -5509,7 +5516,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
 			{type:'mult',value:1.05,req:{'Politic power rising up':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}},
-			{type:'mult',value:1.1,req:{'Glory':true}}
+			{type:'mult',value:1.1,req:{'Glory':true}},
+			{type:'mult',value:0.75,req:{'se11':'on'}},
 		],
 		limitPer:{'population':100},
 		req:{'chieftains':true},
@@ -5528,7 +5536,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
 			{type:'mult',value:1.05,req:{'Politic power rising up':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}},
-			{type:'mult',value:1.1,req:{'Glory':true}}
+			{type:'mult',value:1.1,req:{'Glory':true}},
+			{type:'mult',value:0.75,req:{'se11':'on'}},
 		],
 		limitPer:{'population':500},
 		req:{'clans':true},
@@ -6447,6 +6456,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'science':0.0000125},req:{'symbolism III':true}},
 			{type:'mult',value:1.5,req:{'Science blessing':true}},
 			{type:'mult',value:1.5,req:{'se12':'on'}},
+			{type:'mult',value:0.75,req:{'se11':'on'}},
 		],
 		req:{'God\'s trait #3 Science^2':true},
 		category:'discovery',
@@ -6942,7 +6952,7 @@ if (!document.getElementById(cssId))
 	});
 		new G.Unit({
 		name:'Church',
-		desc:'Millenially generates some [spirituality]. Commonly generates [faith] at the lower rate than [soothsayer]. Further religion improvements may change it.',
+		desc:'Commonly generates [faith] at the lower rate than [soothsayer]. Further religion improvements may change it.',
 		icon:[6,3,'magixmod'],
 		cost:{'basic building materials':2000,'precious building materials':20},
 		upkeep:{'faith':0.001},
@@ -6951,7 +6961,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'faith':0.03},req:{'Spiritual piety':false}},
 			{type:'gather',what:{'faith':0.039},req:{'Spiritual piety':true}},
-			{type:'gather',what:{'spirituality':0.00000001}},
+			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'waste',chance:0.01/1000}
 	],
 		category:'spiritual',
@@ -6968,7 +6978,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.09}},
 			{type:'gather',what:{'faith':0.03},req:{'symbolism':true,'Stronger faith':true}},
 			{type:'mult',value:1.7,req:{'symbolism III':true}},
-			{type:'waste',chance:0.003/1000}
+			{type:'waste',chance:0.003/1000},
+			{type:'mult',value:1.25,req:{'se11':'on'}},
 	],
 		category:'spiritual',
 	});
@@ -7418,6 +7429,7 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'convert',from:{'insight':4,'adult':1},into:{'Instructor':1},every:375,mode:'thoughts'},
+			{type:'mult',value:1.01,req:{'se11':'on'}},
 		],
 		req:{'speech':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 		category:'discovery',
@@ -12143,7 +12155,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 						new G.Policy({
 		name:'se11',
 		displayName:'Enlightened the Seraphin of Faith',
-		desc:'<font color="lime">All [faith] gathering is increased by 25%, [Thoughts sharer] is 1% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: All [influence] , [insight] units are weakened by 25%</font>',
+		desc:'<font color="lime">All [faith] gathering is increased by 25%, [Thoughts sharer] is 1% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: All [influence] , [insight] units are weakened by 25%(including [Guru])</font>',
 		icon:[19,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
