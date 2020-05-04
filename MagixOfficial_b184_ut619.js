@@ -1373,27 +1373,33 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			loseMaterialsTick*1.4
+			var toSpoil=G.getRes('archaic building materials').amount*0.01*1.4;
+			var spent=G.lose('archaic building materials',randomFloor(toSpoil),'decay');
 		}else{
-			loseMaterialsTick*1
+			var toSpoil=G.getRes('archaic building materials').amount*0.01;
+			var spent=G.lose('archaic building materials',randomFloor(toSpoil),'decay');
 		}
 	};
 	var loseBasicMaterialsTick=function(me,tick)
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			loseMaterialsTick*1.12
+			var toSpoil=G.getRes('basic building materials').amount*0.01*1.12;
+			var spent=G.lose('basic building materials',randomFloor(toSpoil),'decay');
 		}else{
-			loseMaterialsTick*1
+			var toSpoil=G.getRes('basic building materials').amount*0.01;
+			var spent=G.lose('basic building materials',randomFloor(toSpoil),'decay');
 		}
 	};
 	var loseAdvancedMaterialsTick=function(me,tick)
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			return loseMaterialsTick*1.03
+			var toSpoil=G.getRes('advanced building materials').amount*0.01*1.03;
+			var spent=G.lose('advanced building materials',randomFloor(toSpoil),'decay');
 		}else{
-			return loseMaterialsTick*1
+			var toSpoil=G.getRes('advanced building materials').amount*0.01;
+			var spent=G.lose('advanced building materials',randomFloor(toSpoil),'decay');
 		}
 	};
 	//MAMUUN'S POSITIVE EFFECT
@@ -1401,9 +1407,11 @@ if (!document.getElementById(cssId))
 	{
 		if (G.checkPolicy('se10')=='on')
 		{
-			return loseMaterialsTick*0.97
+			var toSpoil=G.getRes('precious building materials').amount*0.01*0.97;
+			var spent=G.lose('precious building materials',randomFloor(toSpoil),'decay');
 		}else{
-			return loseMaterialsTick*1
+			var toSpoil=G.getRes('precious building materials').amount*0.01;
+			var spent=G.lose('precious building materials',randomFloor(toSpoil),'decay');
 		}
 	};
 	
