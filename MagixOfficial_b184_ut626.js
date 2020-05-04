@@ -8073,14 +8073,14 @@ new G.Unit({
 	new G.Unit({
 		name:'Temple of the Paradise',
 		desc:'@leads to the <b>Victory next to the god</b>. //A big, golden temple which is homeland of Seraphins and the God. A temple that stays at huge cloud. It is glowing with ambrosium.',
-		wonder:'Next to the god',
+		wonder:'Next to the God',
 		icon:[9,25,'magixmod'],
 		wideIcon:[8,25,'magixmod'],
-		cost:{'basic building materials':100000,'precious building materials':5000,'gold block':100,'platinum block':10,'Cloud':45000,'Ambrosium shard':10000},
-		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'Cloud':4500,'Ambrosium shard':1000},
+		cost:{'basic building materials':100000,'precious building materials':5000,'gold block':100,'platinum block':10,'cloud':45000,'Ambrosium shard':10000},
+		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'cloud':4500,'Ambrosium shard':1000},
 		steps:400,
 		messageOnStart:'The construction of The <b>Temple of the Paradise</b> has been started. Now you are full of hope that it will someday make the God appear next to you and show his true good-natured face.',
-		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000},
+		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':1000,'spirituality':25},
 		finalStepDesc:'To complete the wonder and be even closer to the God you must perform this final step 25k [population,people] must be sacrificed... and many other ingredients.',
 		use:{'Land of the Paradise':30},
 		req:{'monument-building III':true},
@@ -8476,6 +8476,19 @@ new G.Unit({
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+	new G.Achiev({
+		tier:2,
+		name:'Next to the God',
+		displayName:'<font color="yellow">Next to the god</font>',
+		wideIcon:[8,25,'magixmod'],
+		icon:[9,25,'magixmod'],
+		desc:'Ascend by the Temple of the Paradise... You managed to be very close to the God. But this step will make it easier. Because you had to sacrifice so much time reaching that far this achievement has plenty of rewards. Here are the rewards you will get for it: @Chance for [culture of the afterlife] is doubled. Same to [The God\'s call]. @[An opposite side of belief] has 10% bigger chance to occur.(Note: not 10 percent points! Chance for it is multiplied by 1.1!) @You will start each next run with +1 [faith] and [spirituality] @You will unlock the Pantheon! Just build this wonder again(nope you won\'t need to ascend once more by it, just complete it and buy tech that will finally unlock it for you). @This achievement will unlock you <b><font color="orange">3</font> new themes!</b>',
+		fromWonder:'Next to the God',
+		effects:[
+			{type:'addFastTicksOnStart',amount:250},
+			{type:'addFastTicksOnResearch',amount:25},
 		],
 	});
 	/*=====================================================================================
