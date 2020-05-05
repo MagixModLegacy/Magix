@@ -8481,7 +8481,7 @@ new G.Unit({
 	new G.Achiev({
 		tier:2,
 		name:'Next to the God',
-		displayName:'<font color="yellow">Next to the god</font>',
+		displayName:'<font color="yellow">Next to the God</font>',
 		wideIcon:[8,25,'magixmod'],
 		icon:[9,25,'magixmod'],
 		desc:'Ascend by the Temple of the Paradise... You managed to be very close to the God. But this step will make it easier. Because you had to sacrifice so much time reaching that far this achievement has plenty of rewards. Here are the rewards you will get for it: @Chance for [culture of the afterlife] is tripled. Same to [The God\'s call]. @[An opposite side of belief] has 10% bigger chance to occur.(Note: not 10 percent points! Chance for it is multiplied by 1.1!) @You will start each next run with +1 [faith] and [spirituality] @You will unlock the Pantheon! Just build this wonder again(nope you won\'t need to ascend once more by it, just complete it and buy tech that will finally unlock it for you). @This achievement will unlock you <b><font color="orange">3</font> new themes!</b>',
@@ -11634,7 +11634,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		desc:'People now can use almost every resource while constructing mystical, beautiful wonders.',
 		icon:[0,25,'magixmod'],
 		req:{'gods and idols':true},
-		cost:{'insight II':192,'science':8,'culture II':30},
+		cost:{'insight II':187,'science':8,'culture II':30},
 	});
 		new G.Trait({
 		name:'sb1',
@@ -11676,6 +11676,33 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		chance:70,
 		category:'religion'
 	});
+		let GodTempleAchiev =  new G.Tech({
+        name:'Life in faith',
+	name:'<font color="gold">Life in faith</font>',
+        desc:'You remember... you were staying near the Temple... the God\'s temple! This memory has unbelieveable powers: @+1[faith] @+1[spirituality] @3 new themes(check [Theme changer]).',
+        icon:[4,12,'magixmod',9,25,'magixmod'],
+        cost:{},
+	effects:[
+		{type:'provide res',what:{'spirituality':1}},
+		{type:'provide res',what:{'faith':1}},
+	],	
+        req:{'tribalism':false}
+    });
+function checkGodTempleAchiev() {
+  if (G.achievByName['Next to the God'].won) {
+    if (G.achievByName['Next to the God'].won >= 0 && G.hasNot('Life in faith')){
+      G.gainTech(GodTempleAchiev)
+    }
+}
+}
+checkGodTempleAchiev()
+const oldNewGameGodTemple = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkGodTempleAchiev()
+  }
+})
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
