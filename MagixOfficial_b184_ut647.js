@@ -11742,7 +11742,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	G.update['pantheon']=function()
 	{
 		var str='';
-		str+=<span class="tooltiped infoButton" id="textspan-36"></span>	
+		str+='<span class="tooltiped infoButton" id="textspan-36"></span>'	
 	}
 	////////////////////////////////////////////////////
 			}}
