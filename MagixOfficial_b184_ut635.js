@@ -11716,7 +11716,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab.',
 		icon:[4,25,'magixmod'],
 		req:{'Life in faith':true,'monument-building III':true},
-		cost:{'insight II':50,'faith II':10'culture II':30,'godTemplePoint':500},
+		cost:{'insight II':50,'faith II':10,'culture II':30,'godTemplePoint':500},
 		effects:[
 			{type:'function',func:function(){
 	if (!G.mSettingsLoaded)
