@@ -11738,10 +11738,9 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	{
 		var str='';
 		str+=
-			'<div class="behindBottomUI">'+
+				l('traitDiv').innerHTML=
 			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Inside the Pantheon you may take on a trial. Available trials depend on chosen seraphin. Each one has different trial. Almost each of the trials are repeatable.<br> For each trial victory you will gain a Victory point. <br>For winning a trial for the first time you will gain special bonuses. <br>Second victory on the same trial will make you get 2 extra Victory Points so in total the trial you won twice gives you 3 Victory Points. //Each next trial playing after a first victory of a trial will be harder(example: on map you will find less land than you were during beating the trial for the first time and so on) </div></div>','infoButton')+
-			'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:200px;"><div class="barred fancyText">Known technologies :</div></div><div id="pantheonBox" class="thingBox"></div></div></div></div>'+
-			'<div id="pantheonUI" class="bottomUI bgPanelUp">';
+			'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="traitBox" class="thingBox"></div></div></div>';
 	}
 	////////////////////////////////////////////////////
 			}}
