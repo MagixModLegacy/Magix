@@ -1420,7 +1420,7 @@ if (!document.getElementById(cssId))
 		////////////////////////////////////////
 	//PANTHEON TAB
 	if(G.has('Pantheon key')){
-	if (!G.mSettingsLoaded && !PanthTab=false)
+	if (!G.mSettingsLoaded && !PanthTab)
 	{
 		G.tabs.push({
 			name:'Pantheon',
