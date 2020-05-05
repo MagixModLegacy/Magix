@@ -11678,7 +11678,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		let GodTempleAchiev =  new G.Tech({
         name:'Life in faith',
-	name:'<font color="gold">Life in faith</font>',
+	displayName:'<font color="gold">Life in faith</font>',
         desc:'You remember... you were staying near the Temple... the God\'s temple! This memory has unbelieveable powers: @+1[faith] @+1[spirituality] @3 new themes(check [Theme changer]).',
         icon:[4,12,'magixmod',9,25,'magixmod'],
         cost:{},
