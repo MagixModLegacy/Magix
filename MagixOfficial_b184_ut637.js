@@ -403,7 +403,7 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 	//PANTHEON TAB
-	if (!G.mSettingsLoaded)
+	if (!G.mSettingsLoaded && G.has('Pantheon key'))
 	{
 		G.tabs.push({
 			name:'Pantheon',
