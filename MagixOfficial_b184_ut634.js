@@ -4867,6 +4867,10 @@ if (!document.getElementById(cssId))
 		name:'heavenlyTemplePoint',
 		displayName:'Temple of heaven point'
 	});
+	new G.Res({
+		name:'godTemplePoint',
+		displayName:'Paradise temple point'
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -7905,7 +7909,7 @@ if (!document.getElementById(cssId))
 		messageOnStart:'You begin the construction of the Temple. Its highest tower is a pass between land of people and sky of angels. No one may go on top unless it is coated. This temple will be last bastion of religion and a storage of relics. Your people with full of hope are building this mass, full of glory wonder.',
 		finalStepCost:{'population':1000,'precious building materials':25000,'faith':100,'influence':75,'basic building materials':3000,'heavenlyTemplePoint':-100},
 		finalStepDesc:'To complete the Temple, 1000 of your [population,People] and many more resources needed to finish Temple completely must be sacrificed to accompany you as servants in the afterlife and Angels of the Afterlife. Are you ready?',
-		use:{'land':75},
+		use:{'land':50},
 		//require:{'worker':10,'stone tools':10},
 		req:{'monument-building II':true},
 		category:'wonder',
@@ -7923,7 +7927,7 @@ if (!document.getElementById(cssId))
 		messageOnStart:'You begin the construction of The Skull of Wild Death. First terrain marked for realm is getting look like this from graves where your people lie. You think that is going right way. You say: <b>I think wild corpses will go right there to leave us away. I want calm, for all price. It is right choice. I will make my soldiers take these living skulls right there.</b>',
 		finalStepCost:{'corpse':100,'faith':100,'Dark essence':25000,'Cobalt ingot':1000,'burial spot':-15000},
 		finalStepDesc:'To complete this wonder in hope of wild corpses leaving you away for some time you will need pay some tools in order',
-		use:{'land':120},
+		use:{'land':100},
 		require:{'worker':40,'stone tools':10},
 		req:{'monument-building II':true,'<span style="color: red">Revenants</span>':true,'Dark wonder':true},
 		category:'wonder',
@@ -7957,7 +7961,7 @@ if (!document.getElementById(cssId))
 		messageOnStart:'You began the construction of Complex of Dreamers. The complex looks like not from this world when night visits the world.',
 		finalStepCost:{'wisdom':125,'population':250,'precious building materials':4500,'gem block':50,'insight':1000},
 		finalStepDesc:'To complete the wonder and make your whole civilization much smarter you will need to perform a final step.',
-		use:{'land':30},
+		use:{'land':25},
 		upkeep:{'Mana':15},
 		req:{'monument-building':true,'Roots of insight':true},
 		category:'discovery',
@@ -8081,10 +8085,10 @@ new G.Unit({
 		icon:[9,25,'magixmod'],
 		wideIcon:[8,25,'magixmod'],
 		cost:{'basic building materials':100000,'precious building materials':5000,'gold block':100,'platinum block':10,'cloud':45000,'Ambrosium shard':10000},
-		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'cloud':4500,'Ambrosium shard':1000},
+		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'cloud':4500,'Ambrosium shard':1000,'godTemplePoint':-1},
 		steps:400,
 		messageOnStart:'The construction of The <b>Temple of the Paradise</b> has been started. Now you are full of hope that it will someday make the God appear next to you and show his true good-natured face.',
-		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':1000,'spirituality':25},
+		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':1000,'spirituality':25,'godTemplePoint':-100},
 		finalStepDesc:'To complete the wonder and be even closer to the God you must perform this final step 25k [population,people] must be sacrificed... and many other ingredients.',
 		use:{'Land of the Paradise':30},
 		req:{'monument-building III':true},
@@ -11707,6 +11711,30 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
     checkGodTempleAchiev()
   }
 })
+		new G.Tech({
+		name:'Pantheon key',
+		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab.',
+		icon:[4,25,'magixmod'],
+		req:{'Life in faith':true,'monument-building III':true},
+		cost:{'insight II':50,'faith II':10'culture II':30,'godTemplePoint':500},
+		effects:[
+			{type:'function',func:function(){
+	if (!G.mSettingsLoaded)
+	{
+		G.tabs.push({
+			name:'Pantheon',
+			id:'pantheon',
+			popup:false,
+			addClass:'left',
+			desc:'From this tab you may take on a Seraphin\'s trial.'
+		});
+		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
+		G.buildTabs();
+		
+	}
+							}}
+		]
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -12010,7 +12038,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[29,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 		new G.Policy({
@@ -12188,7 +12216,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[28,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 				new G.Policy({
@@ -12198,7 +12226,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[27,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 		new G.Policy({
@@ -12208,7 +12236,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[26,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 			new G.Policy({
@@ -12218,7 +12246,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[25,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 				new G.Policy({
@@ -12228,7 +12256,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[24,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 				new G.Policy({
@@ -12238,7 +12266,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[23,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 					new G.Policy({
@@ -12248,7 +12276,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[22,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 						new G.Policy({
@@ -12258,7 +12286,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[21,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 						new G.Policy({
@@ -12268,7 +12296,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[20,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 						new G.Policy({
@@ -12278,7 +12306,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[19,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 						new G.Policy({
@@ -12288,7 +12316,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[18,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 	/*=======================================
