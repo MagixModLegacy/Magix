@@ -11690,7 +11690,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
     });
 function checkGodTempleAchiev() {
   if (G.achievByName['Next to the God'].won) {
-    if (G.achievByName['Next to the God'].won >= 0 && G.hasNot('Life in faith')){
+    if (G.achievByName['Next to the God'].won > 0 && G.hasNot('Life in faith')){
       G.gainTech(GodTempleAchiev)
     }
 }
