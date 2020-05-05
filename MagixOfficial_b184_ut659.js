@@ -2594,6 +2594,10 @@ if (!document.getElementById(cssId))
     if (G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won > 0) {
 	    G.getDict('belief in the afterlife').chance = 5;
    		  }
+		if (G.achievByName['Next to the God'].won > 0) {
+	    G.getDict('culture of the afterlife').chance = 167;
+	G.getDict('An opposite side of belief').chance = 337;
+   		  }
 		 }
 		}
 	});
@@ -4732,6 +4736,10 @@ if (!document.getElementById(cssId))
 			if(G.traitN >= 50 && G.achievByName['Trait-or'].won == 0){ //Traitsman achievement
 			G.achievByName['Trait-or'].won = 1
 			G.middleText('- Completed <font color="pink">Trait-or</font> achievement -')
+			}
+			if((G.getRes('Worship point').amount) == 0 && G.achievByName['The first choice'].won == 0 && G.has('Pantheon key')){;
+			G.achievByName['The first choice'].won = 1
+			G.middleText('- Completed <font color="cyan">The first choice</font> achievement -')
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -12115,6 +12123,9 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			'cyan':{name:'Cyan',desc:'Switches to cyan theme.',icon:[5,22,'magixmod']},
 			'gray':{name:'Gray',desc:'Switches to gray theme.',icon:[1,22,'magixmod']},
 			'indigo':{name:'Indigo',desc:'Switches to indigo theme. Reward for <b>Magical victory</b> achievement.',req:{'Magical presence':true}},
+			'bronze':{name:'Bronze',desc:'Switches to bronze theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
+			'silver':{name:'Silver',desc:'Switches to silver theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
+			'golden':{name:'Golden',desc:'Switches to golden theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 		},
 		category:'mag',
 	});
