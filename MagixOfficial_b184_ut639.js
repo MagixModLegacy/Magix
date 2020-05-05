@@ -402,29 +402,6 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
-	//PANTHEON TAB
-	if (!G.mSettingsLoaded && G.has('Pantheon key'))
-	{
-		G.tabs.push({
-			name:'Pantheon',
-			id:'pantheon',
-			popup:false,
-			addClass:'left',
-			desc:'From this tab you may take on a Seraphin\'s trial.'
-		});
-		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
-		G.buildTabs();
-		
-	}
-	G.update['pantheon']=function()
-	{
-		var str='';
-		str+=
-			'<div class="regularWrapper">'+
-			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Inside the Pantheon you may take on a trial. Available trials depend on chosen seraphin. Each one has different trial. Almost each of the trials are repeatable.<br> For each trial victory you will gain a Victory point. <br>For winning a trial for the first time you will gain special bonuses. <br>Second victory on the same trial will make you get 2 extra Victory Points so in total the trial you won twice gives you 3 Victory Points. //Each next trial playing after a first victory of a trial will be harder(example: on map you will find less land than you were during beating the trial for the first time and so on) </div></div>','infoButton')+
-			'<div class="fullCenteredOuter"><div id="policyBox" class="thingBox fullCenteredInner"></div></div></div>';
-		l('policyDiv').innerHTML=str;
-	}
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
@@ -12622,7 +12599,31 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		score:3,
 		ocean:true
 	});
-	
+	////////////////////////////////////////
+	//PANTHEON TAB
+	if (!G.mSettingsLoaded && G.has('Pantheon key'))
+	{
+		G.tabs.push({
+			name:'Pantheon',
+			id:'pantheon',
+			popup:false,
+			addClass:'left',
+			desc:'From this tab you may take on a Seraphin\'s trial.'
+		});
+		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
+		G.buildTabs();
+		
+	}
+	G.update['pantheon']=function()
+	{
+		var str='';
+		str+=
+			'<div class="regularWrapper">'+
+			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Inside the Pantheon you may take on a trial. Available trials depend on chosen seraphin. Each one has different trial. Almost each of the trials are repeatable.<br> For each trial victory you will gain a Victory point. <br>For winning a trial for the first time you will gain special bonuses. <br>Second victory on the same trial will make you get 2 extra Victory Points so in total the trial you won twice gives you 3 Victory Points. //Each next trial playing after a first victory of a trial will be harder(example: on map you will find less land than you were during beating the trial for the first time and so on) </div></div>','infoButton')+
+			'<div class="fullCenteredOuter"><div id="policyBox" class="thingBox fullCenteredInner"></div></div></div>';
+		l('policyDiv').innerHTML=str;
+	}
+	////////////////////////////////////////////////////
 	//TODO : all the following
 	new G.Land({
 		name:'mountain',
