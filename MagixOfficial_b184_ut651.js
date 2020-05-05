@@ -11724,6 +11724,10 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		effects:[
 			{type:'provide res',what:{'Worship point':4}},
 			{type:'function',func:function(){
+	
+			}}
+		]
+	});
 				////////////////////////////////////////
 	//PANTHEON TAB
 	if (!G.mSettingsLoaded && G.has('Pantheon key'))
@@ -11748,9 +11752,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="pantheonDiv" class="thingBox"></div></div></div>';
 	}
 	////////////////////////////////////////////////////
-			}}
-		]
-	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
