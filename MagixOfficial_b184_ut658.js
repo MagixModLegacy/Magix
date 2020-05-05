@@ -1414,11 +1414,9 @@ if (!document.getElementById(cssId))
 			var spent=G.lose('precious building materials',randomFloor(toSpoil),'decay');
 		}
 	};
-	var pantheonTab=function(me,tick)
-	{
 		////////////////////////////////////////
 	//PANTHEON TAB
-	if (!G.mSettingsLoaded && !PanthTab)
+	if (!G.mSettingsLoaded)
 	{
 		G.tabs.push({
 			name:'Pantheon',
@@ -1429,7 +1427,6 @@ if (!document.getElementById(cssId))
 		});
 		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
 		G.buildTabs();
-		
 	}
 	G.update['pantheon']=function()
 	{
@@ -1440,7 +1437,6 @@ if (!document.getElementById(cssId))
 		'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="pantheonDiv" class="thingBox"></div></div></div>';
 	}
 	////////////////////////////////////////////////////
-	}
 	new G.Res({
 		//hidden, used for every material that can be stored in a warehouse that isn't part of any other material
 		name:'misc materials',
