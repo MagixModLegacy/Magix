@@ -4730,6 +4730,10 @@ if (!document.getElementById(cssId))
 			G.getDict('Guru').alternateUpkeep = {'spoiled food':4,'muddy water':2}
 			G.getDict('dreamer').alternateUpkeep = {'spoiled food':2,'muddy water':1}
 			}
+			if(G.traitN >= 50 && G.achievByName['Trait-or'].won == 0){ //Traitsman achievement
+			G.achievByName['Trait-or'].won = 1
+			G.middleText('- Completed <font color="pink">Trait-or</font> achievement -')
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -11718,6 +11722,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'Life in faith':true,'monument-building III':true},
 		cost:{'insight II':50,'faith II':10,'culture II':30,'godTemplePoint':500},
 		effects:[
+			{type:'provide res',what:{'Worship point':4}},
 			{type:'function',func:function(){
 				////////////////////////////////////////
 	//PANTHEON TAB
@@ -11737,10 +11742,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	G.update['pantheon']=function()
 	{
 		var str='';
-		str+=
-				l('pantheonDiv').innerHTML=
-			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Inside the Pantheon you may take on a trial. Available trials depend on chosen seraphin. Each one has different trial. Almost each of the trials are repeatable.<br> For each trial victory you will gain a Victory point. <br>For winning a trial for the first time you will gain special bonuses. <br>Second victory on the same trial will make you get 2 extra Victory Points so in total the trial you won twice gives you 3 Victory Points. //Each next trial playing after a first victory of a trial will be harder(example: on map you will find less land than you were during beating the trial for the first time and so on) </div></div>','infoButton')+
-			'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="pantheonBox" class="thingBox"></div></div></div>';
+		str+=<span class="tooltiped infoButton" id="textspan-36"></span>	
 	}
 	////////////////////////////////////////////////////
 			}}
