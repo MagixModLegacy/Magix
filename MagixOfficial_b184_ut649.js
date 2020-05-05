@@ -11745,7 +11745,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		str+='<span class="tooltiped infoButton" id="textspan-36"></span>'
 		l('pantheonDiv').innerHTML=
 		G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Trials.</div></div>','infoButton')+
-		'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="traitBox" class="thingBox"></div></div></div>';
+		'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="pantheonDiv" class="thingBox"></div></div></div>';
 	}
 	////////////////////////////////////////////////////
 			}}
