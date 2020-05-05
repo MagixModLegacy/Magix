@@ -1466,6 +1466,7 @@ if (!document.getElementById(cssId))
 		icon:[2,6],
 		partOf:'archaic building materials',
 		category:'build',
+		tick:pantheonTab
 	});
 	new G.Res({
 		name:'stick',
