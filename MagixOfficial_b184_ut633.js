@@ -4863,6 +4863,10 @@ if (!document.getElementById(cssId))
 		new G.Res({
 		name:'corpsedecaypoint',
 	});
+		new G.Res({
+		name:'heavenlyTemplePoint',
+		displayName:'Temple of heaven point'
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -7864,7 +7868,7 @@ if (!document.getElementById(cssId))
     		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
     		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 paradise land at your own but you <b>must</b> follow some of God\'s rules.',
     		wideIcon:[7,4,'magixmod'],
-    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4},
+    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4,'heavenlyTemplePoint':400},
     		effects:[
     			{type:'provide',what:{'Land of the Paradise':26500}},
 			{type:'provide',what:{'Paradise emblem':1}},
@@ -7896,10 +7900,10 @@ if (!document.getElementById(cssId))
 		icon:[1,11,'magixmod'],
 		wideIcon:[0,11,'magixmod'],
 		cost:{'basic building materials':35000,'gem block':10},
-		costPerStep:{'basic building materials':2500,'precious building materials':1250,'gem block':2,'concrete':25},
+		costPerStep:{'basic building materials':2500,'precious building materials':1250,'gem block':2,'concrete':25,'heavenlyTemplePoint':-1},
 		steps:300,
 		messageOnStart:'You begin the construction of the Temple. Its highest tower is a pass between land of people and sky of angels. No one may go on top unless it is coated. This temple will be last bastion of religion and a storage of relics. Your people with full of hope are building this mass, full of glory wonder.',
-		finalStepCost:{'population':1000,'precious building materials':25000,'faith':100,'influence':75,'basic building materials':3000},
+		finalStepCost:{'population':1000,'precious building materials':25000,'faith':100,'influence':75,'basic building materials':3000,'heavenlyTemplePoint':-100},
 		finalStepDesc:'To complete the Temple, 1000 of your [population,People] and many more resources needed to finish Temple completely must be sacrificed to accompany you as servants in the afterlife and Angels of the Afterlife. Are you ready?',
 		use:{'land':75},
 		//require:{'worker':10,'stone tools':10},
