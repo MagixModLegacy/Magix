@@ -3236,6 +3236,20 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
+			if (G.checkPolicy('Theme changer')=='golden'){
+		var cssId = 'goldenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GoldenTheme/goldentheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
 		},
 		category:'alchemypotions',
 	});
