@@ -3208,6 +3208,34 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
+			if (G.checkPolicy('Theme changer')=='bronze'){
+		var cssId = 'bronzethemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/BronzeTheme/bronzetheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+			if (G.checkPolicy('Theme changer')=='silver'){
+		var cssId = 'silverthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/SilverTheme/silvertheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
 		},
 		category:'alchemypotions',
 	});
