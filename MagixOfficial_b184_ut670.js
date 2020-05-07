@@ -1272,8 +1272,13 @@ if (!document.getElementById(cssId))
 			///////////HERBALIA BACKFIRE
 			if (G.checkPolicy('se07')=='on')
 			{
+				if(G.getRes('happiness').amount>0){
 				var toSpoil=G.getRes('happiness').amount*0.00175;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'Herbalia');
+				}else{
+				var toSpoil=-G.getRes('happiness').amount*0.00175;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'Herbalia');
+				}
 			}
 		},
 		category:'food',
