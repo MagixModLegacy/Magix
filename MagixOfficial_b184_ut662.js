@@ -1198,10 +1198,14 @@ if (!document.getElementById(cssId))
 			{
 				var stored=Math.min(me.amount,G.getRes('food storage').amount)/me.amount;
 				var notStored=1-stored;
-				
+				if(G.checkPolicy('se10')=='off'){
 				var toSpoil=me.amount*0.01*notStored+me.amount*0.0005*stored;
 				var spent=G.lose('food',randomFloor(toSpoil),'decay');
 				//G.gain('spoiled food',randomFloor(spent));
+				}else{
+				var toSpoil=(me.amount*0.01*notStored+me.amount*0.0005*stored)*1.15;
+				var spent=G.lose('food',randomFloor(toSpoil),'decay');
+				}
 			}
 		},
 	});
