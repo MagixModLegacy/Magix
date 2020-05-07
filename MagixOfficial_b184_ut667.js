@@ -5177,7 +5177,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt3':true}},
 			{type:'mult',value:1.03,req:{'Inspirated carvers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.06,req:{'Inspirated carvers':true,'<font color="maroon">Caretaking</font>':true}},
-			{type:'mult',value:1.03,req:{'se09':'on'},mode:{'stone statuettes','cut stone','smash cut stone','gdablockscraft','gdablockssmash'}},
+			{type:'mult',value:1.03,req:{'se09':'on'},mode:'stone statuettes','cut stone','smash cut stone','gdablockscraft','gdablockssmash'},
 		],
 		req:{'carving':true},
 		category:'crafting',
