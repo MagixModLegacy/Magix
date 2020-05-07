@@ -5177,7 +5177,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt3':true}},
 			{type:'mult',value:1.03,req:{'Inspirated carvers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.06,req:{'Inspirated carvers':true,'<font color="maroon">Caretaking</font>':true}},
-			{type:'mult',value:1.03,req:{'se09':'on'},modes:{'stone statuettes','cut stone','smash cut stone','gdablockscraft','gdablockssmash'}},
+			{type:'mult',value:1.03,req:{'se09':'on'},modes:'stone statuettes','cut stone','smash cut stone','gdablockscraft','gdablockssmash'},
 		],
 		req:{'carving':true},
 		category:'crafting',
@@ -5453,7 +5453,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			{type:'mult',value:1.05,req:{'Mining strategy':true}},
-			{type:'mult',value:1.25,req:{'se09':'on'},modes:{'tin','coal','salt','copper','tin','iron','gold'}},
+			{type:'mult',value:1.25,req:{'se09':'on'},modes:'tin','coal','salt','copper','tin','iron','gold'},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Mining strategy':false}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}}
 		],
@@ -12368,7 +12368,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 						new G.Policy({
 		name:'se09',
 		displayName:'Moai the Seraphin of the Stone',
-		desc:'<font color="lime">All [mine]s are 25% more efficient(Doesn\'t apply to [gems] gathering and only applies to modes from [prospecting,prospecting I] not to <b>any</b> .). [digger] is 2% more efficient. [carver] works 3% more efficient at modes related to the [stone].</font><br><hr color="fuschia"><font color="red">Backfire: [well]s are 15% less efficient(not including [Well of mana] and [artisan]s are 7.5% less efficient.</font>',
+		desc:'<font color="lime">All [mine]s are 25% more efficient(Doesn\'t apply to [gems] gathering and only applies to modes from [prospecting,prospecting I] not to <b>any</b> .). [digger] is 2% more efficient. [carver] works 3% more efficient at modes related to the [stone].</font><br><hr color="fuschia"><font color="red">Backfire: [well]s are 15% less efficient(not including [Well of mana]) and [artisan]s are 7.5% less efficient.</font>',
 		icon:[21,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
