@@ -5177,7 +5177,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt3':true}},
 			{type:'mult',value:1.03,req:{'Inspirated carvers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.06,req:{'Inspirated carvers':true,'<font color="maroon">Caretaking</font>':true}},
-			{type:'mult',value:1.03,req:{'se09':'on'},modes:'stone statuettes','cut stone','smash cut stone','gdablockscraft','gdablockssmash'},
+			{type:'mult',value:1.03,req:{'se09':'on'},mode:{'stone statuettes','cut stone','smash cut stone','gdablockscraft','gdablockssmash'}},
 		],
 		req:{'carving':true},
 		category:'crafting',
@@ -5453,7 +5453,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			{type:'mult',value:1.05,req:{'Mining strategy':true}},
-			{type:'mult',value:1.25,req:{'se09':'on'},modes:'tin','coal','salt','copper','tin','iron','gold'},
+			{type:'mult',value:1.25,req:{'se09':'on'},mode:{'tin','coal','salt','copper','tin','iron','gold'}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Mining strategy':false}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}}
 		],
@@ -7227,6 +7227,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			//Collapsing chance
 			{type:'mult',value:1.05,req:{'Plain island mining strategy':true}},
+			{type:'mult',value:1.25,req:{'se09':'on'}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Plain island mining strategy':false}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Plain island mining strategy':true}}
 		],
