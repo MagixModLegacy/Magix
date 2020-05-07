@@ -4525,7 +4525,7 @@ if (!document.getElementById(cssId))
 			G.getDict('Mediator').limitPer = {'population':4000}
 			G.getDict('clan leader').icon = [25,23,'magixmod']
 			}
-			if(G.has('cozy building')){
+			if(G.has('cozy building') && G.hasNot('cozier building')){
 			G.getDict('hut').icon = [28,12,'magixmod']
 			G.getDict('hovel').icon = [28,11,'magixmod']
 			G.getDict('mud shelter').icon = [28,13,'magixmod']
