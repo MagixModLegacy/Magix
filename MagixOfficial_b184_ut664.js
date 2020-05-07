@@ -5008,6 +5008,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.075,req:{'Focused gathering':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.125,req:{'Focused gathering':true,'<font color="maroon">Caretaking</font>':true}},
 			{type:'mult',value:0.8,req:{'se12':'on'}},
+			{type:'mult',value:0.85,req:{'se07':'on'}},
 		],
 		req:{'tribalism':true},
 		category:'production',
@@ -5140,6 +5141,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.08,req:{'Motivation for artisans':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.04,req:{'Motivation for artisans':true,'<font color="maroon">Caretaking</font>':true}},
 			{type:'mult',value:1.03,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
 		req:{'stone-knapping':true},
 		category:'crafting',
@@ -5175,6 +5177,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt3':true}},
 			{type:'mult',value:1.03,req:{'Inspirated carvers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.06,req:{'Inspirated carvers':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.03,req:{'se09':'on'},modes:{'stone statuettes','cut stone','smash cut stone','gdablockscraft','gdablockssmash'}},
 		],
 		req:{'carving':true},
 		category:'crafting',
@@ -5364,7 +5367,8 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'water':20}},
-			{type:'mult',value:1.05,req:{'Deeper wells':true}}
+			{type:'mult',value:1.05,req:{'Deeper wells':true}},
+			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		category:'production',
 		req:{'well-digging':true},
@@ -5381,7 +5385,8 @@ if (!document.getElementById(cssId))
 		upkeep:{'coin':0.1},
 		effects:[
 			{type:'gather',context:'dig',amount:1,max:1},
-			{type:'gather',context:'dig',what:{'clay':5},max:1,req:{'pottery':true}}
+			{type:'gather',context:'dig',what:{'clay':5},max:1,req:{'pottery':true}},
+			{type:'mult',value:1.02,req:{'se09':'on'}},
 		],
 		req:{'digging':true},
 		category:'production',
@@ -5448,6 +5453,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			{type:'mult',value:1.05,req:{'Mining strategy':true}},
+			{type:'mult',value:1.25,req:{'se09':'on'},modes:{'tin','coal','salt','copper','tin','iron','gold'}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Mining strategy':false}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}}
 		],
@@ -5605,6 +5611,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'wounded':1,'herb':2.5},into:{'adult':1},chance:1/5,every:10},
 			{type:'mult',value:1.03,req:{'More experienced healers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.06,req:{'More experienced healers':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.25,req:{'se07':'on'}},
 		],
 		req:{'healing':true},
 		category:'spiritual',
@@ -6504,6 +6511,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'convert',from:{'Sulfur':3,'Paper':2,'Thread':3},into:{'Light explosives':1.25},every:2,repeat:2,mode:'explosivesS'},
 			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		req:{'Explosive crafting & mining':true},
 		category:'crafting',
@@ -6776,6 +6784,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'Cloudy water':28}},
 			{type:'mult',value:0.9,req:{'dt7':true}},
+			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		category:'paradiseunit',
 		req:{'well-digging':true,'<span style="color: ##FF0900">Paradise building</span>':true},
@@ -6855,6 +6864,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'health':0.1},req:{'Nutrition':true}},
 			{type:'mult',value:1.03,req:{'More experienced healers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.09,req:{'More experienced healers':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.25,req:{'se07':'on'}},
 		],
 		req:{'healing':true,'Healing with brews':true},
 		category:'spiritual',
@@ -7270,6 +7280,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'water':20}},
 			{type:'mult',value:0.85,req:{'dt8':true}},
+			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		category:'plainisleunit',
 		req:{'well-digging':true,'First portal to new world':true,'<span style="color: ##FF0900">Plain island building</span>':true},
@@ -7577,6 +7588,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'sugar':1,'fruit':0.4,'water':2},into:{'Fruit juice':2},every:5,mode:'juices',req:{'Moar juices':true}},
 			{type:'convert',from:{'sugar':3,'fruit':0.9,'water':6,'Berries':1,'Watermelon':0.25},into:{'Fruit juice':12,'Berry juice':8,'Watermelon juice':9},every:5,mode:'juices',req:{'Moar juices':true},chance:1/20},
 			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
 		req:{'Crafting a juice':true},
 		category:'crafting',
@@ -7596,6 +7608,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'health':0.1},req:{'Nutrition':true}},
 			{type:'mult',value:1.03,req:{'More experienced healers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.09,req:{'More experienced healers':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.25,req:{'se07':'on'}},
 		],
 		req:{'healing':true,'first aid':true},
 		category:'spiritual',
@@ -9551,7 +9564,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'Deeper wells',
-		desc:'@[well]s provide 5% more water.',
+		desc:'@[well]s provide 5% more water. Boosts only [well] and [Well of the Plain Island].',
 		icon:[31,15,'magixmod'],
 		cost:{'insight':490,'wisdom':30},
 		req:{'Farms in the new land':true},
@@ -12335,7 +12348,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 				new G.Policy({
 		name:'se07',
 		displayName:'Herbalia the Seraphin of Recovery',
-		desc:'<font color="lime">Boosts health level. [healer]s are 25% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: Happiness cap is: from -200 to 175%. [gatherer] gains 15% less [seafood](because it is raw).</font>',
+		desc:'<font color="lime">Boosts health level. [healer]s are 25% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: Happiness cap is: from -200 to 175%. [gatherer] gains 15% less.</font>',
 		icon:[23,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
@@ -12355,7 +12368,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 						new G.Policy({
 		name:'se09',
 		displayName:'Moai the Seraphin of the Stone',
-		desc:'<font color="lime">All [mine]s are 25% more efficient(Doesn\'t apply to [gems] gathering). [digger] is 2% more efficient. [carver] works 3% more efficient at modes related to the [stone].</font><br><hr color="fuschia"><font color="red">Backfire: [well]s are 15% less efficient and [artisan]s are 7.5% less efficient.</font>',
+		desc:'<font color="lime">All [mine]s are 25% more efficient(Doesn\'t apply to [gems] gathering and only applies to modes from [prospecting,prospecting I] not to <b>any</b> .). [digger] is 2% more efficient. [carver] works 3% more efficient at modes related to the [stone].</font><br><hr color="fuschia"><font color="red">Backfire: [well]s are 15% less efficient(not including [Well of mana] and [artisan]s are 7.5% less efficient.</font>',
 		icon:[21,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
