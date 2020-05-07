@@ -1269,6 +1269,12 @@ if (!document.getElementById(cssId))
 			{
 				G.getDict('Toggle SFX').icon = [29,0,'magixmod'];
 			}
+			///////////HERBALIA BACKFIRE
+			if (G.checkPolicy('se07')=='on')
+			{
+				var toSpoil=G.getRes('happiness').amount*0.00175;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'Herbalia');
+			}
 		},
 		category:'food',
 	});
@@ -3513,6 +3519,10 @@ if (!document.getElementById(cssId))
 				if (G.has('Healthy life')) //Healthy life trait power
 				{
 					var n=randomFloor(G.getRes('population').amount*0.13);G.gain('health',n,'healthy life');
+				}
+				if (G.checkPolicy('se07')=='on') //HERBALIA BOOST
+				{
+					var n=randomFloor(G.getRes('population').amount*0.05);G.gain('health',n,'Herbalia');
 				}
 		},
 		category:'misc',
