@@ -36,6 +36,7 @@ Added Pantheon
 	>>Now while constructing Temple of Heaven you gain a points of this structure
 	>>To activate the Paradise portal you need to get 400 points (300 from steps of wonder and 100 from its final step)
 		>>So in short you have to complete this wonder first. I made it like that to make the temple have some role in the game.
+->Applied a small fix for working after hours penalty(setting prod rates to 2)
 							  
 1 V 2020
 Big Update 3!
