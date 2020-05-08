@@ -5052,7 +5052,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.8,req:{'se12':'on'}},
 			{type:'mult',value:0.85,req:{'se07':'on'}},
 			{type:'mult',value:function()
-			1+(G.getRes('Watermelon seeds').amount/1000)}},
+			{1+(G.getRes('Watermelon seeds').amount/1000)}},
 		],
 		req:{'tribalism':true},
 		category:'production',
