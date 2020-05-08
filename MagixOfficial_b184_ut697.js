@@ -5052,7 +5052,6 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.125,req:{'Focused gathering':true,'<font color="maroon">Caretaking</font>':true}},
 			{type:'mult',value:0.8,req:{'se12':'on'}},
 			{type:'mult',value:0.85,req:{'se07':'on'}},
-			{type:'mult',value:1+3(((G.getRes('Watermelon seeds').amount)/1000))},
 		],
 		req:{'tribalism':true},
 		category:'production',
@@ -12177,7 +12176,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		new G.Policy({
 		name:'Gather roses',//It is raw ID. Kept it to prevent crashes but added display name
 		displayName:'Chra-nos The Seraphin of Time',
-		desc:'Boost depends on time. <br><font color="lime">Each year boost goes up by 0.5% (range: 1 to 10%). Boosted are all crafting units.</font><br><hr color="fuschia"><font color="red"> Backfire: With the same ratio weakened are gathering units.</font>',
+		desc:'Boost depends on time. <br><font color="lime">Each year [food] decays slower by 0.1% (range: 1 to 10%).</font><br><hr color="fuschia"><font color="red"> Backfire: With the same rate all [misc materials,Miscellaneous] decay faster.</font>',
 		icon:[29,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
