@@ -1177,9 +1177,17 @@ if (!document.getElementById(cssId))
 		{
 			if (G.checkPolicy('disable spoiling')=='off')
 			{
+				//CHRA-NOS
+				if (G.checkPolicy('Gather roses')=='on')
+				{
+				var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/1000)*2);
+				var spent=G.lose('water',randomFloor(toSpoil),'decay');
+				G.gain('muddy water',randomFloor(spent),'decay');
+				}else{
 				var toSpoil=me.amount*0.02;
 				var spent=G.lose('water',randomFloor(toSpoil),'decay');
 				G.gain('muddy water',randomFloor(spent),'decay');
+			}
 			}
 			if (G.checkPolicy('Toggle SFX')=='off'){
 				
@@ -1210,16 +1218,19 @@ if (!document.getElementById(cssId))
 		icon:[3,6],
 		tick:function(me,tick)
 		{
+			var se01=function(){
+				if(G.checkPolicy('se01')=='off'){return 1}else{return 1.2};
+			}
 			if (me.amount>0 && G.checkPolicy('disable spoiling')=='off')
 			{
 				var stored=Math.min(me.amount,G.getRes('food storage').amount)/me.amount;
 				var notStored=1-stored;
 				if(G.checkPolicy('se10')=='off'){
-				var toSpoil=me.amount*0.01*notStored+me.amount*0.0005*stored;
+				var toSpoil=me.amount*0.01*notStored+me.amount*0.0005*stored/se01;
 				var spent=G.lose('food',randomFloor(toSpoil),'decay');
 				//G.gain('spoiled food',randomFloor(spent));
 				}else{
-				var toSpoil=(me.amount*0.01*notStored+me.amount*0.0005*stored)*1.15;
+				var toSpoil=(me.amount*0.01*notStored+me.amount*0.0005*stored)*1.15/se01;
 				var spent=G.lose('food',randomFloor(toSpoil),'decay');
 				}
 			}
@@ -12176,7 +12187,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		new G.Policy({
 		name:'Gather roses',//It is raw ID. Kept it to prevent crashes but added display name
 		displayName:'Chra-nos The Seraphin of Time',
-		desc:'Boost depends on time. <br><font color="lime">Each year [food] decays slower by 0.1% (range: 1 to 10%).</font><br><hr color="fuschia"><font color="red"> Backfire: With the same rate all [misc materials,Miscellaneous] decay faster.</font>',
+		desc:'Boost depends on time. <br><font color="lime">Each year [food] decays slower by 0.1% (range: 1 to 10%). Bonus applies to [water] too but halved.</font><br><hr color="fuschia"><font color="red"> Backfire: With the same rate all [misc materials,Miscellaneous] decay faster.</font>',
 		icon:[29,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
