@@ -2353,6 +2353,7 @@ if (!document.getElementById(cssId))
 		name:'Watermelon seeds',
 		desc:'A res that defines Chra-nos bonus',
 		hidden:true,
+		startWith:1
 	});
 		new G.Res({//REMOVED AND WILL BE REPLACED SOON
 		name:'Berry seeds',
@@ -5031,7 +5032,6 @@ if (!document.getElementById(cssId))
 			}
 		}
 	}
-	var chranos=function(){1+(G.getRes('Watermelon seeds').amount/1000)};
 	new G.Unit({
 		name:'gatherer',
 		startWith:5,
@@ -5052,7 +5052,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.125,req:{'Focused gathering':true,'<font color="maroon">Caretaking</font>':true}},
 			{type:'mult',value:0.8,req:{'se12':'on'}},
 			{type:'mult',value:0.85,req:{'se07':'on'}},
-			{type:'mult',value:(function:chranos)},
+			{type:'mult',value:1+(G.getRes('Watermelon seeds').amount/1000)},
 		],
 		req:{'tribalism':true},
 		category:'production',
