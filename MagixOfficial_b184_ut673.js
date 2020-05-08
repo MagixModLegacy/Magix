@@ -64,6 +64,22 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
 			}
+			//Chra-nos bonus
+			let goup = false
+			let godown = false
+			if(G.getRes('Watermelon seeds').amount>=0 && goup && !godown){
+				G.gain('Watermelon seeds',1);
+				if(G.getRes('Watermelon seeds').amount==100){
+					goup=false
+					godown=true
+				}
+			}else if(G.getRes('Watermelon seeds').amount<=100 && godown && !goup){
+				G.lose('Watermelon seeds',1);
+				if(G.getRes('Watermelon seeds').amount=1){
+					goup=true
+					godown=false
+				}
+			}
 		}
 	}
 	
@@ -2333,18 +2349,10 @@ if (!document.getElementById(cssId))
 		partOf:'misc materials',
 		category:'misc',
 	});
-		new G.Res({//REMOVED AND WILL BE REPLACED SOON
+		new G.Res({//REMOVED AND REPLACED WITH CHRA-NOS BUFF EFFECT
 		name:'Watermelon seeds',
-		desc:'If you want to start farming [Watermelon] and crafting tasty [Juices] these seeds are a must.',
-		icon:[16,6,'magixmod'],
-		partOf:'misc materials',
-		category:'misc',
+		desc:'A res that defines Chra-nos bonus',
 		hidden:true,
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.09;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
 	});
 		new G.Res({//REMOVED AND WILL BE REPLACED SOON
 		name:'Berry seeds',
@@ -5044,7 +5052,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.125,req:{'Focused gathering':true,'<font color="maroon">Caretaking</font>':true}},
 			{type:'mult',value:0.8,req:{'se12':'on'}},
 			{type:'mult',value:0.85,req:{'se07':'on'}},
-			{type:'mult',value:1+15},
+			{type:'mult',value:1+(G.getRes('Watermelon seeds').amount/10)},
 		],
 		req:{'tribalism':true},
 		category:'production',
