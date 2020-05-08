@@ -5031,7 +5031,7 @@ if (!document.getElementById(cssId))
 			}
 		}
 	}
-	var chranos=function(){(G.getRes('Watermelon seeds').amount/1000)};
+	var chranos=function(){1+(G.getRes('Watermelon seeds').amount/1000)};
 	new G.Unit({
 		name:'gatherer',
 		startWith:5,
@@ -5052,7 +5052,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.125,req:{'Focused gathering':true,'<font color="maroon">Caretaking</font>':true}},
 			{type:'mult',value:0.8,req:{'se12':'on'}},
 			{type:'mult',value:0.85,req:{'se07':'on'}},
-			{type:'mult',value:1+chranos},
+			{type:'mult',value:chranos},
 		],
 		req:{'tribalism':true},
 		category:'production',
