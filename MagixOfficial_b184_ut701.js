@@ -397,7 +397,7 @@ G.writeMSettingButton=function(obj)
 		'<div class="fancyText title">How i can ask you by question which is not in Q&A there?</div>'+
 		'Find me at <a href="https://discordapp.com/invite/cookie" target="_blank">Dashnet discord server</a><div>'+
 		'<span style "color: #FF0000"><b>IMPORTANT NOTE! I am not responsible if some crazy bugs and issues will occur in debug mode</b></span>'+
-		'<div class="barred fancyText"><a href="https://raw.githubusercontent.com/pelletsstarPL/Magixmod/master/Changelog" target="_blank">Update log</a><div><div>'+
+		'<div class="barred fancyText"><a href="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/--MAGIX--/Magix.html" target="_blank">Update log</a><div><div>'+
 		'<div class="divider"></div>'+
 		G.writeMSettingCategories()+
 		'<div class="divider"></div>'+
