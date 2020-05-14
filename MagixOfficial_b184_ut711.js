@@ -1584,6 +1584,12 @@ if (!document.getElementById(cssId))
 		icon:[1,7],
 		partOf:'misc materials',
 		category:'build',
+		tick:function(me,tick)
+		{
+			var toLose=me.amount*0.0025;
+			var spent=G.lose(me.name,randomFloor(toLose),'decay');
+		}
+		
 	});
 	new G.Res({
 		name:'brick',
@@ -2381,6 +2387,11 @@ if (!document.getElementById(cssId))
 		icon:[15,4,'magixmod'],
 		partOf:'misc materials',
 		category:'misc',
+		tick:function(me,tick)
+		{
+			var toLose=me.amount*0.03;
+			var spent=G.lose(me.name,randomFloor(toLose),'decay');
+		}
 	});
 		new G.Res({
 		name:'sugar',
