@@ -4846,8 +4846,8 @@ if (!document.getElementById(cssId))
 			G.achievByName['The first choice'].won = 1
 			G.middleText('- Completed <font color="cyan">The first choice</font> achievement -')
 			}
-			if(G.checkPolicy('se04')=='on'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}}
-			if(G.checkPolicy('se05')=='on'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}}
+			if(G.checkPolicy('se04')=='on' && G.checkPolicy('se05')=='off'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}}
+			if(G.checkPolicy('se05')=='on' && G.checkPolicy('se04')=='off'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
