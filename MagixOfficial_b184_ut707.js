@@ -913,7 +913,7 @@ if (!document.getElementById(cssId))
 				{
 					//bury slowly
 					
-					var burioCorpse=if(G.checkPolicy('se08')=='on'){return 1.1 else return 1};
+					var burioCorpse=function(){if(G.checkPolicy('se08')=='on'){return 1.1 }else{ return 1}};
 					if (graves.amount>graves.used)
 					{
 						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1*burioCorpse)));
