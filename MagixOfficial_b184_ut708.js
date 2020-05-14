@@ -912,13 +912,18 @@ if (!document.getElementById(cssId))
 				if (me.amount>0)
 				{
 					//bury slowly
-					
-					var burioCorpse=function(){if(G.checkPolicy('se08')=='on'){return 1.1 }else{ return 1}};
+				
 					if (graves.amount>graves.used)
 					{
-						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1*burioCorpse)));
+						if(G.checkPolicy('se08')=='off'){//BURI'O DAK
+						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
 						graves.used+=amount;G.lose('corpse',amount,'burial');
 						G.gain('happiness',amount*2,'burial');
+						}else{
+						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
+						graves.used+=amount;G.lose('corpse',amount*1.1,'burial');
+						G.gain('happiness',amount*2,'burial');
+						}
 					}
 				}
 			}
@@ -1322,11 +1327,22 @@ if (!document.getElementById(cssId))
 			if (G.checkPolicy('se07')=='on')
 			{
 				if(G.getRes('happiness').amount>0){
-				var toSpoil=G.getRes('happiness').amount*0.00175;
+				var toSpoil=G.getRes('happiness').amount*0.00155;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'Herbalia');
 				}else{
-				var toSpoil=-G.getRes('happiness').amount*0.00175;
+				var toSpoil=-G.getRes('happiness').amount*0.00155;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'Herbalia');
+				}
+			}
+			///////////BERSARIA BACKFIRE
+			if (G.checkPolicy('se02')=='on')
+			{
+				if(G.getRes('happiness').amount>0){
+				var toSpoil=G.getRes('happiness').amount*0.00095;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'Bersaria');
+				}else{
+				var toSpoil=-G.getRes('happiness').amount*0.00095;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'Bersaria');
 				}
 			}
 		},
@@ -2868,9 +2884,15 @@ if (!document.getElementById(cssId))
 					//bury slowly
 					if (graves.amount>graves.used)
 					{
+						if(G.checkPolicy('se08')='off'){
 						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
 						graves.used+=amount;G.lose('Urn',amount*4,'burial');
 						G.gain('happiness',amount*2,'burial');
+						}else{
+						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
+						graves.used+=amount;G.lose('Urn',amount*5,'burial');
+						G.gain('happiness',amount*2,'burial');
+						};
 					}
 				}
 			if(G.has('dark urn decay')){
@@ -3770,7 +3792,11 @@ if (!document.getElementById(cssId))
 		{
 		if (G.year>89){ //Spawning rate
  		   var n = G.getRes('adult').amount * 0.00001
-  		  G.gain('thief',n,'unhappiness');
+		   if(G.checkPolicy('se02')=='on'){
+  		  G.gain('thief',n*1.01,'unhappiness');
+		   }else{
+			     G.gain('thief',n,'unhappiness');
+		   }
 			}
 			var toCalm=me.amount*0.007;
 			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');G.gain('adult',(toCalm),'calmdown');
@@ -7758,7 +7784,7 @@ if (!document.getElementById(cssId))
 		cost:{'basic building materials':300},
 		upkeep:{'fire pit':3},
 		effects:[
-			{type:'convert',from:{'corpse':7,'pot':7},into:{'Urn':7},every:5},
+			{type:'convert',from:{'corpse':28,'pot':28},into:{'Urn':28},every:5},
 		],
 		category:'civil'
 	});
