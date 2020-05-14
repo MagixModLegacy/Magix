@@ -912,9 +912,11 @@ if (!document.getElementById(cssId))
 				if (me.amount>0)
 				{
 					//bury slowly
+					
+					var burioCorpse=if(G.checkPolicy('se08')=='on'){return 1.1 else return 1};
 					if (graves.amount>graves.used)
 					{
-						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
+						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1*burioCorpse)));
 						graves.used+=amount;G.lose('corpse',amount,'burial');
 						G.gain('happiness',amount*2,'burial');
 					}
