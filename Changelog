@@ -11,23 +11,13 @@
 =================================================================================================================================================================================================================================
                                                           U   P   D   A   T   E                   L  O  G
 							  
-(upcoming)
-Big? Update 4
+16 V 2020
+Pantheon Update
 Added Pantheon
 ->12 seraphins
 	>>They boost something but weakens something else at the same time
 ->15(really not joking) new achievements!!!
-	>>12 are related to the Trials
-->Trials!
-	>>Upon unlocking Pantheon you can start the trial
-		>>Each one has different rules
-		>>Finishing a trial gains you Victory Point
-			>>Repeating a trial will get harder and harder, and will make you gain more points like:
-				>>I did 1st time Pocket for instance so I get +1 VP
-				>>I did 2nd time(it was harder) the same trial so I get +2 VP (1+2=3)
-				>>I did 3rd time so: 1+2+3=6. And so on.
-			>>And if you win some trial for the first time you will get special bonus from it
-			>>Each trial has its own wonder
+	>>12 are related to the Trials(they will be added next update)
 ->Removed Gather Roses policy
 ->5 new religious traits.
 	>>1 leads to unlock Pantheon
@@ -37,6 +27,11 @@ Added Pantheon
 	>>To activate the Paradise portal you need to get 400 points (300 from steps of wonder and 100 from its final step)
 		>>So in short you have to complete this wonder first. I made it like that to make the temple have some role in the game.
 ->Applied a small fix for working after hours penalty(setting prod rates to 2)
+->New changelog! Goodbye old .txt :)
+->Market utilites
+	>>Trade with:Paper,Wheat
+	>>Added the art seller! New separate unit
+->Clay decays 25% faster
 							  
 1 V 2020
 Big Update 3!
