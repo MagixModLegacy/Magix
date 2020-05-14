@@ -4846,6 +4846,8 @@ if (!document.getElementById(cssId))
 			G.achievByName['The first choice'].won = 1
 			G.middleText('- Completed <font color="cyan">The first choice</font> achievement -')
 			}
+			if(G.checkPolicy('se04')=='on'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}}
+			if(G.checkPolicy('se05')=='on'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -12405,10 +12407,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
 		req:{'Pantheon key':true},
-		effectsOn:
-			[
-				{type:'func',func:function(){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}}}
-			],
 		category:'Florists',
 	});
 			new G.Policy({
@@ -12419,10 +12417,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
 		req:{'Pantheon key':true},
-				effectsOn:
-			[
-				{type:'func',func:function(){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}}}
-			],
 		category:'Florists',
 	});
 				new G.Policy({
