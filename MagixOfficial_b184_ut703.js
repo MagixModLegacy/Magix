@@ -12408,7 +12408,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		effectsOn:
 			[
 				{type:'func',func:function(){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}}}
-			]
+			],
 		category:'Florists',
 	});
 			new G.Policy({
@@ -12422,7 +12422,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 				effectsOn:
 			[
 				{type:'func',func:function(){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}}}
-			]
+			],
 		category:'Florists',
 	});
 				new G.Policy({
