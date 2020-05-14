@@ -1344,6 +1344,17 @@ if (!document.getElementById(cssId))
 				var toSpoil=-G.getRes('happiness').amount*0.00095;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'Bersaria');
 				}
+				
+			}	
+			//BURIODAK HEALTH HARM
+			if(G.checkPolicy('se08')=='on'){
+			if(G.getRes('health').amount>0){
+				var toSpoil=G.getRes('health').amount*0.000095;
+				var spent=G.lose('health',randomFloor(toSpoil),'Buri\'o Dak');
+				}else{
+				var toSpoil=-G.getRes('health').amount*0.000095;
+				var spent=G.lose('health',randomFloor(toSpoil),'Buri\'o Dak');
+				}
 			}
 		},
 		category:'food',
