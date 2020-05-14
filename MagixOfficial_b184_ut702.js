@@ -4616,8 +4616,11 @@ if (!document.getElementById(cssId))
 			if(G.has('symbolism II')){
 			G.getDict('storyteller').icon = [29,7,'magixmod']
 			}
-			if(G.has('Music instruments')){
+			if(G.has('Music instruments') && G.checkPolicy('se03')=='off'){
 			G.getDict('storyteller').limitPer = {'population':400}
+			}else{
+			G.getDict('storyteller').limitPer = {'population':350}
+			G.getDict('musician').limitPer = {'population':350}
 			}
 			if(G.has('Oil-digging')){
 			G.getDict('quarry').icon = [19,21,'magixmod']
@@ -5087,6 +5090,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.1,req:{'Eotm':true}},
 			{type:'mult',value:1.5,req:{'se12':'on'}},
 			{type:'mult',value:0.75,req:{'se11':'on'}},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
 		],
 		req:{'speech':true},
 		category:'discovery',
@@ -5110,6 +5114,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}},
 			{type:'mult',value:0.9,req:{'se12':'on'}},
+			{type:'mult',value:2,req:{'se03':'on'}},
 		],
 		req:{'oral tradition':true},
 		category:'cultural',
@@ -5663,6 +5668,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
 		],
 		req:{'ritualism':true},
 		category:'spiritual',
@@ -6970,6 +6976,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
 			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
 			{type:'mult',value:0.9,req:{'se12':'on'}},
+			{type:'mult',value:2,req:{'se03':'on'}},
 		],
 		req:{'oral tradition':true,'artistic thinking':true},
 		category:'cultural',
@@ -7148,7 +7155,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.03},req:{'Spiritual piety':false}},
 			{type:'gather',what:{'faith':0.039},req:{'Spiritual piety':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
-			{type:'waste',chance:0.01/1000}
+			{type:'waste',chance:0.01/1000},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
 	],
 		category:'spiritual',
 	});
@@ -7166,6 +7174,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.7,req:{'symbolism III':true}},
 			{type:'waste',chance:0.003/1000},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
 	],
 		category:'spiritual',
 	});
@@ -7184,6 +7193,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'Paper':21},into:{'Poet\'s notes':1},every:11,req:{'Bookwriting':true}},
 			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
 			{type:'mult',value:0.9,req:{'se12':'on'}},
+			{type:'mult',value:2,req:{'se03':'on'}},
 		],
 		req:{'oral tradition':true,'Poetry':true},
 		category:'cultural',
@@ -7967,6 +7977,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',context:'fish',amount:2533,max:3811},
 			{type:'gather',context:'hunt',amount:2833,max:4111},
+			{type:'gather',context:'hunt',amount:991,max:1438,req:{'se04':'on'}},
+			{type:'gather',context:'fish',amount:886,max:1333,req:{'se05':'on'}},
 			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
 			{type:'mult',value:1.35,req:{'harvest rituals':'on'}},
 			{type:'convert',from:{'meat':4,'seafood':3},into:{'cooked meat':4,'seafood':3},every:2,req:{'Camp-cooking':true}},
@@ -12388,21 +12400,29 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		new G.Policy({
 		name:'se04',
 		displayName:'Hartar the Seraphin of Hunting',
-		desc:'<font color="lime">Increases efficiency of hunting units by 35%</font><br><hr color="fuschia"><font color="red">Backfire:Decreases efficiency of fishing units by 5%</font>',
+		desc:'<font color="lime">Increases efficiency of hunting units by 35%. After [Hunters & fishers unification] increases income of [meat] by this %.</font><br><hr color="fuschia">Hovewer this Seraphin doesn\'t have a backfire but choosing [se04] blocks you [se05] unless you unchoose that but it is not worthy.',
 		icon:[26,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
 		req:{'Pantheon key':true},
+		effectsOn:
+			[
+				{type:'func',func:function(){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}}}
+			]
 		category:'Florists',
 	});
 			new G.Policy({
 		name:'se05',
 		displayName:'Fishyar the Seraphin of Fishing',
-		desc:'<font color="lime">Increases efficiency of fishing units by 35%</font><br><hr color="fuschia"><font color="red">Backfire:Decreases efficiency of hunting units by 5%</font>',
+		desc:'<font color="lime">Increases efficiency of fishing units by 35%. After [Hunters & fishers unification] increases income of [seafood] by this %.</font><br><hr color="fuschia">Hovewer this Seraphin doesn\'t have a backfire but choosing [se05] blocks you [se04] unless you unchoose that but it is not worthy.',
 		icon:[25,25,'magixmod'],
 		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
 		req:{'Pantheon key':true},
+				effectsOn:
+			[
+				{type:'func',func:function(){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}}}
+			]
 		category:'Florists',
 	});
 				new G.Policy({
