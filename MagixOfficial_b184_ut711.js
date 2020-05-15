@@ -7806,7 +7806,7 @@ if (!document.getElementById(cssId))
 		cost:{'basic building materials':300},
 		upkeep:{'fire pit':3},
 		effects:[
-			{type:'convert',from:{'corpse':28,'pot':28},into:{'Urn':28},every:5},
+			{type:'convert',from:{'corpse':14,'pot':14},into:{'Urn':14},every:5},
 		],
 		category:'civil'
 	});
