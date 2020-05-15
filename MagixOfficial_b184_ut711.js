@@ -11659,7 +11659,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'Mo\' tradez',
-		desc:'Policies such like [extended basic catalog] or [extended food catalog] now have more options',
+		desc:'Policies such like [extended basic catalog] or [extended food catalog] now have more options. //Also unlocks [art trader] who can sell [Painting]s for [market_coin].',
 		icon:[30,20,'magixmod'],
 		cost:{'insight':1490},
 		req:{'Treeplanting':true},
