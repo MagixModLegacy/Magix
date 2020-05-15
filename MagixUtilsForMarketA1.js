@@ -246,6 +246,40 @@ G.getDict('market_sell').modes['magic essences']={
 			every:2,
 			mode:'flower'
 		});
+	G.getDict('market_sell').modes['wheat']={
+			name:'Wheat',
+			icon:[23,10,'magixmod'],
+			desc:'Sell [wheat] for [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'wheat':100,
+			},
+			into:{
+				'market_coin':8
+			},
+			every:2,
+			mode:'wheat'
+		});
+	G.getDict('market_sell').modes['paper']={
+			name:'Paper',
+			icon:[14,12,'magixmod'],
+			desc:'Sell [Paper] for [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'Paper':100,
+			},
+			into:{
+				'market_coin':10
+			},
+			every:2,
+			mode:'paper'
+		});
 	/////////////////////////////////////////////////////////
 	//BUY                  MARKET                          //
 	/////////////////////////////////////////////////////////
@@ -491,6 +525,40 @@ G.getDict('market_sell').modes['magic essences']={
 			every:2,
 			mode:'flower'
 		});
+	G.getDict('market_sell').modes['wheat']={
+			name:'Wheat',
+			icon:[23,10,'magixmod'],
+			desc:'Buy [wheat] with [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'market_coin':8,
+			},
+			into:{
+				'wheat':100
+			},
+			every:2,
+			mode:'wheat'
+		});
+	G.getDict('market_sell').modes['paper']={
+			name:'Paper',
+			icon:[14,12,'magixmod'],
+			desc:'Buy [Paper] with [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('market_sell').effects.push({
+			type:'convert',
+			from:{
+				'market_coin':10,
+			},
+			into:{
+				'Paper':100
+			},
+			every:2,
+			mode:'paper'
+		});
 	///////////////////////////////////////
 	//SELL                   BAZAAR      //
 	///////////////////////////////////////
@@ -731,6 +799,40 @@ G.getDict('market_sell').modes['magic essences']={
 			},
 			every:2,
 			mode:'flower'
+		});
+	G.getDict('bazaar_sell').modes['wheat']={
+			name:'Wheat',
+			icon:[23,10,'magixmod'],
+			desc:'Sell [wheat] for [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('bazaar_sell').effects.push({
+			type:'convert',
+			from:{
+				'wheat':10
+			},
+			into:{
+				'market_coin':0.8,
+			},
+			every:2,
+			mode:'wheat'
+		});
+	G.getDict('bazaar_sell').modes['paper']={
+			name:'Paper',
+			icon:[14,12,'magixmod'],
+			desc:'Sell [Paper] for [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('bazaar_sell').effects.push({
+			type:'convert',
+			from:{
+				'Paper':10
+			},
+			into:{
+				'market_coin':1,
+			},
+			every:2,
+			mode:'paper'
 		});
 	/////////////////////////////////////////////////////////
 	//BUY                               BAZAAR             //
@@ -977,6 +1079,40 @@ G.getDict('market_sell').modes['magic essences']={
 			every:2,
 			mode:'flower'
 		});
+	G.getDict('bazaar_buy').modes['wheat']={
+			name:'Wheat',
+			icon:[23,10,'magixmod'],
+			desc:'Buy [wheat] with [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('bazaar_buy').effects.push({
+			type:'convert',
+			from:{
+				'market_coin':0.8,
+			},
+			into:{
+				'wheat':10
+			},
+			every:2,
+			mode:'wheat'
+		});
+	G.getDict('bazaar_buy').modes['paper']={
+			name:'Paper',
+			icon:[14,12,'magixmod'],
+			desc:'Buy [Paper] with [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('bazaar_buy').effects.push({
+			type:'convert',
+			from:{
+				'market_coin':1,
+			},
+			into:{
+				'Paper':10
+			},
+			every:2,
+			mode:'paper'
+		});
 	///////////////////////////////////////
 	//SELL                         TRADER//
 	///////////////////////////////////////
@@ -1217,6 +1353,40 @@ G.getDict('market_sell').modes['magic essences']={
 			},
 			every:2,
 			mode:'flower'
+		});
+		G.getDict('trader_sell').modes['wheat']={
+			name:'Wheat',
+			icon:[23,10,'magixmod'],
+			desc:'Sell [wheat] for [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('trader_sell').effects.push({
+			type:'convert',
+			from:{
+				'wheat':1
+			},
+			into:{
+				'market_coin':0.08
+			},
+			every:2,
+			mode:'wheat'
+		});
+	G.getDict('trader_sell').modes['paper']={
+			name:'Paper',
+			icon:[14,12,'magixmod'],
+			desc:'Sell [Paper] for [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('trader_sell').effects.push({
+			type:'convert',
+			from:{
+				'Paper':1
+			},
+			into:{
+				'market_coin':0.1
+			},
+			every:2,
+			mode:'paper'
 		});
 	/////////////////////////////////////////////////////////
 	//BUY                               TRADER             //
@@ -1463,5 +1633,54 @@ G.getDict('market_sell').modes['magic essences']={
 			every:2,
 			mode:'flower'
 		});
-	
+			G.getDict('trader_buy').modes['wheat']={
+			name:'Wheat',
+			icon:[23,10,'magixmod'],
+			desc:'Buy [wheat] with [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('trader_buy').effects.push({
+			type:'convert',
+			from:{
+				'market_coin':0.08,
+			},
+			into:{
+				'wheat':1
+			},
+			every:2,
+			mode:'wheat'
+		});
+		G.getDict('trader_sell').modes['paper']={
+			name:'Paper',
+			icon:[14,12,'magixmod'],
+			desc:'Buy [Paper] for [market_coin].',
+			req:{'Mo\' tradez':true}
+		};
+		G.getDict('trader_sell').effects.push({
+			type:'convert',
+			from:{
+				'market_coin':0.1,
+			},
+			into:{
+				'Paper':1
+			},
+			every:2,
+			mode:'paper'
+		});
+	new G.Unit({
+		name:'art seller',
+		desc:'@can sell [Painting] for some [market_coin]. This unique seller can settle in any world except [<span style="color: #FF0000">Underworld</span>]',
+		icon:[30,26,'magixmod'],
+		cost:{},
+		modes:{
+			'1':{name:'Settle at mortal world',icon:[14,4],desc:'Settles [art seller] in mortal world.'},
+			'2':{name:'Settle at Plain Island',icon:[7,0,'magixmod'],desc:'Settles [art seller] in Plain Island.'},
+			'3':{name:'Settle at Paradise',icon:[20,4,'magixmod'],desc:'Settles [art seller] in the Paradise.'},
+		},
+		effects:[
+			{type:'convert',from:{'Painting':2},into:{'market_coin':9},every:11},
+		],
+		req:{'artistic thinking':true,'Mo\' tradez':true},
+		category:'market_category',
+	});
 }});
