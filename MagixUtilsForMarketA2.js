@@ -525,13 +525,13 @@ G.getDict('market_sell').modes['magic essences']={
 			every:2,
 			mode:'flower'
 		});
-	G.getDict('market_sell').modes['wheat']={
+	G.getDict('market_buy').modes['wheat']={
 			name:'Wheat',
 			icon:[23,10,'magixmod'],
 			desc:'Buy [wheat] with [market_coin].',
 			req:{'Mo\' tradez':true}
 		};
-		G.getDict('market_sell').effects.push({
+		G.getDict('market_buy').effects.push({
 			type:'convert',
 			from:{
 				'market_coin':8,
@@ -542,13 +542,13 @@ G.getDict('market_sell').modes['magic essences']={
 			every:2,
 			mode:'wheat'
 		});
-	G.getDict('market_sell').modes['paper']={
+	G.getDict('market_buy').modes['paper']={
 			name:'Paper',
 			icon:[14,12,'magixmod'],
 			desc:'Buy [Paper] with [market_coin].',
 			req:{'Mo\' tradez':true}
 		};
-		G.getDict('market_sell').effects.push({
+		G.getDict('market_buy').effects.push({
 			type:'convert',
 			from:{
 				'market_coin':10,
@@ -1650,13 +1650,13 @@ G.getDict('market_sell').modes['magic essences']={
 			every:2,
 			mode:'wheat'
 		});
-		G.getDict('trader_sell').modes['paper']={
+		G.getDict('trader_buy').modes['paper']={
 			name:'Paper',
 			icon:[14,12,'magixmod'],
 			desc:'Buy [Paper] for [market_coin].',
 			req:{'Mo\' tradez':true}
 		};
-		G.getDict('trader_sell').effects.push({
+		G.getDict('trader_buy').effects.push({
 			type:'convert',
 			from:{
 				'market_coin':0.1,
@@ -1672,10 +1672,11 @@ G.getDict('market_sell').modes['magic essences']={
 		desc:'@can sell [Painting] for some [market_coin]. This unique seller can settle in any world except [<span style="color: #FF0000">Underworld</span>]',
 		icon:[30,26,'magixmod'],
 		cost:{},
+		gizmos:true,
 		modes:{
-			'1':{name:'Settle at mortal world',icon:[14,4],desc:'Settles [art seller] in mortal world.'},
-			'2':{name:'Settle at Plain Island',icon:[7,0,'magixmod'],desc:'Settles [art seller] in Plain Island.'},
-			'3':{name:'Settle at Paradise',icon:[20,4,'magixmod'],desc:'Settles [art seller] in the Paradise.'},
+			'1':{name:'Settle at mortal world',icon:[14,4],desc:'Settles [art seller] in mortal world.',use:{'worker':1,'land':0.5}},
+			'2':{name:'Settle at Plain Island',icon:[7,0,'magixmod'],desc:'Settles [art seller] in Plain Island.',use:{'worker':1,'Land of the Plain Island':0.5}},
+			'3':{name:'Settle at Paradise',icon:[20,4,'magixmod'],desc:'Settles [art seller] in the Paradise.',use:{'worker':1,'Land of the Paradise':0.5}},
 		},
 		effects:[
 			{type:'convert',from:{'Painting':2},into:{'market_coin':9},every:11},
