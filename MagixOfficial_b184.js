@@ -64,6 +64,22 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
 			}
+			//Chra-nos bonus
+			let goup = false
+			let godown = false
+			if(G.getRes('Watermelon seeds').amount>=0 && goup && !godown){
+				G.gain('Watermelon seeds',1);
+				if(G.getRes('Watermelon seeds').amount==100){
+					goup=false
+					godown=true
+				}
+			}else if(G.getRes('Watermelon seeds').amount<=100 && godown && !goup){
+				G.lose('Watermelon seeds',1);
+				if(G.getRes('Watermelon seeds').amount=1){
+					goup=true
+					godown=false
+				}
+			}
 		}
 	}
 	
@@ -381,7 +397,7 @@ G.writeMSettingButton=function(obj)
 		'<div class="fancyText title">How i can ask you by question which is not in Q&A there?</div>'+
 		'Find me at <a href="https://discordapp.com/invite/cookie" target="_blank">Dashnet discord server</a><div>'+
 		'<span style "color: #FF0000"><b>IMPORTANT NOTE! I am not responsible if some crazy bugs and issues will occur in debug mode</b></span>'+
-		'<div class="barred fancyText"><a href="https://raw.githubusercontent.com/pelletsstarPL/Magixmod/master/Changelog" target="_blank">Update log</a><div><div>'+
+		'<div class="barred fancyText"><a href="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/--MAGIX--/Magix.html" target="_blank">Update log</a><div><div>'+
 		'<div class="divider"></div>'+
 		G.writeMSettingCategories()+
 		'<div class="divider"></div>'+
@@ -896,11 +912,18 @@ if (!document.getElementById(cssId))
 				if (me.amount>0)
 				{
 					//bury slowly
+				
 					if (graves.amount>graves.used)
 					{
+						if(G.checkPolicy('se08')=='off'){//BURI'O DAK
 						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
 						graves.used+=amount;G.lose('corpse',amount,'burial');
 						G.gain('happiness',amount*2,'burial');
+						}else{
+						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
+						graves.used+=amount;G.lose('corpse',amount*1.1,'burial');
+						G.gain('happiness',amount*2,'burial');
+						}
 					}
 				}
 			}
@@ -1008,8 +1031,13 @@ if (!document.getElementById(cssId))
 		{
 			if (G.getRes('population').amount<=0) return '-';
 			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
+			if(G.checkPolicy('se07')=='on'){//Herbalia's backfire
+			if (amount>175) amount=175;
+			if (amount<-200) amount=-200;
+			}else{
 			if (amount>200) amount=200;
 			if (amount<-200) amount=-200;
+			}
 			return B(amount)+'%';
 		},
 		getIcon:function(me)
@@ -1053,6 +1081,7 @@ if (!document.getElementById(cssId))
 		{
 			if (G.getRes('population').amount<=0) return '-';
 			return B(this.displayedAmount/G.getRes('population').displayedAmount)+'%';
+			
 		},
 		getIcon:function(me)
 		{
@@ -1155,9 +1184,17 @@ if (!document.getElementById(cssId))
 		{
 			if (G.checkPolicy('disable spoiling')=='off')
 			{
+				//CHRA-NOS
+				if (G.checkPolicy('Gather roses')=='on')
+				{
+				var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/1000)*2);
+				var spent=G.lose('water',randomFloor(toSpoil),'decay');
+				G.gain('muddy water',randomFloor(spent),'decay');
+				}else{
 				var toSpoil=me.amount*0.02;
 				var spent=G.lose('water',randomFloor(toSpoil),'decay');
 				G.gain('muddy water',randomFloor(spent),'decay');
+			}
 			}
 			if (G.checkPolicy('Toggle SFX')=='off'){
 				
@@ -1188,14 +1225,21 @@ if (!document.getElementById(cssId))
 		icon:[3,6],
 		tick:function(me,tick)
 		{
+			var se01=function(){
+				if(G.checkPolicy('se01')=='off'){return 1}else{return 1.2};
+			}
 			if (me.amount>0 && G.checkPolicy('disable spoiling')=='off')
 			{
 				var stored=Math.min(me.amount,G.getRes('food storage').amount)/me.amount;
 				var notStored=1-stored;
-				
-				var toSpoil=me.amount*0.01*notStored+me.amount*0.0005*stored;
+				if(G.checkPolicy('se10')=='off'){
+				var toSpoil=me.amount*0.01*notStored+me.amount*0.0005*stored/se01;
 				var spent=G.lose('food',randomFloor(toSpoil),'decay');
 				//G.gain('spoiled food',randomFloor(spent));
+				}else{
+				var toSpoil=(me.amount*0.01*notStored+me.amount*0.0005*stored)*1.15/se01;
+				var spent=G.lose('food',randomFloor(toSpoil),'decay');
+				}
 			}
 		},
 	});
@@ -1233,23 +1277,43 @@ if (!document.getElementById(cssId))
 			//WOrking after hours
 			if (G.checkPolicy('Factory of pots production rates')=='2')
 			{
+				if(G.getRes('happiness').amount>0){
 				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+				}else{
+				var toSpoil=-G.getRes('happiness').amount*0.01;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+				}
 			}
 			if (G.checkPolicy('Hovel of colours production rates')=='2')
 			{
+				if(G.getRes('happiness').amount>0){
 				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+				}else{
+				var toSpoil=-G.getRes('happiness').amount*0.01;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+				}
 			}
 			if (G.checkPolicy('Hut of potters production rates')=='2')
 			{
+				if(G.getRes('happiness').amount>0){
 				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+				}else{
+				var toSpoil=-G.getRes('happiness').amount*0.01;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+				}
 			}
 			if (G.checkPolicy('Leather factory production rates')=='2')
 			{
+				if(G.getRes('happiness').amount>0){
 				var toSpoil=G.getRes('happiness').amount*0.01;
 				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+				}else{
+				var toSpoil=-G.getRes('happiness').amount*0.01;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'working after hours');
+				}
 			}
 			if (G.checkPolicy('Toggle SFX')=='off') //Toggle SFX
 			{
@@ -1259,6 +1323,39 @@ if (!document.getElementById(cssId))
 			{
 				G.getDict('Toggle SFX').icon = [29,0,'magixmod'];
 			}
+			///////////HERBALIA BACKFIRE
+			if (G.checkPolicy('se07')=='on')
+			{
+				if(G.getRes('happiness').amount>0){
+				var toSpoil=G.getRes('happiness').amount*0.00155;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'Herbalia');
+				}else{
+				var toSpoil=-G.getRes('happiness').amount*0.00155;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'Herbalia');
+				}
+			}
+			///////////BERSARIA BACKFIRE
+			if (G.checkPolicy('se02')=='on')
+			{
+				if(G.getRes('happiness').amount>0){
+				var toSpoil=G.getRes('happiness').amount*0.00095;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'Bersaria');
+				}else{
+				var toSpoil=-G.getRes('happiness').amount*0.00095;
+				var spent=G.lose('happiness',randomFloor(toSpoil),'Bersaria');
+				}
+				
+			}	
+			//BURIODAK HEALTH HARM
+			if(G.checkPolicy('se08')=='on'){
+			if(G.getRes('health').amount>0){
+				var toSpoil=G.getRes('health').amount*0.000095;
+				var spent=G.lose('health',randomFloor(toSpoil),'Buri\'o Dak');
+				}else{
+				var toSpoil=-G.getRes('health').amount*0.000095;
+				var spent=G.lose('health',randomFloor(toSpoil),'Buri\'o Dak');
+				}
+			}
 		},
 		category:'food',
 	});
@@ -1266,7 +1363,7 @@ if (!document.getElementById(cssId))
 		name:'fruit',
 		desc:'[fruit,Fruits], whether gathered from berry bushes or fruit trees, are both sweet-tasting and good for you.',
 		icon:[4,7],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.01},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':0.02,'happiness':0.0075},'decay':{'spoiled food':1}},
 		partOf:'food',
 		category:'food',
 	});
@@ -1275,7 +1372,7 @@ if (!document.getElementById(cssId))
 		name:'meat',
 		desc:'[meat,Raw meat] is gathered from dead animals and, while fairly tasty, can harbor a variety of diseases.',
 		icon:[5,7],
-		turnToByContext:{'eating':{'health':-0.03,'happiness':0.02,'bone':0.1},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':-0.03,'happiness':0.01,'bone':0.1},'decay':{'spoiled food':1}},
 		partOf:'food',
 		tick:function(me,tick)   
 		{
@@ -1292,7 +1389,7 @@ if (!document.getElementById(cssId))
 		name:'cooked meat',
 		desc:'Eating [cooked meat] is deeply satisfying and may even produce a [bone].',
 		icon:[6,7],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.04,'bone':0.1},'decay':{'cooked meat':0.2,'spoiled food':0.8}},
+		turnToByContext:{'eating':{'health':0.02,'happiness':0.0275,'bone':0.1},'decay':{'cooked meat':0.2,'spoiled food':0.8}},
 		partOf:'food',
 		category:'food',
 	});
@@ -1300,7 +1397,7 @@ if (!document.getElementById(cssId))
 		name:'cured meat',
 		desc:'[cured meat] is interestingly tough and can keep for months without spoiling.',
 		icon:[11,6],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.05,'bone':0.1},'decay':{'cured meat':0.95,'spoiled food':0.05}},
+		turnToByContext:{'eating':{'health':0.02,'happiness':0.02,'bone':0.1},'decay':{'cured meat':0.95,'spoiled food':0.05}},
 		partOf:'food',
 		category:'food',
 	});
@@ -1308,7 +1405,7 @@ if (!document.getElementById(cssId))
 		name:'seafood',
 		desc:'[seafood,Raw seafood] such as fish, clams, or shrimps, is both bland-tasting and several kinds of nasty.',
 		icon:[5,6],
-		turnToByContext:{'eating':{'health':-0.02,'happiness':0.01,'bone':0.02},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':-0.02,'happiness':0.005,'bone':0.02},'decay':{'spoiled food':1}},
 		partOf:'food',
 		category:'food',
 	});
@@ -1316,7 +1413,7 @@ if (!document.getElementById(cssId))
 		name:'cooked seafood',
 		desc:'[cooked seafood] tastes pretty good and has various health benefits.',
 		icon:[6,6],
-		turnToByContext:{'eating':{'health':0.03,'happiness':0.03,'bone':0.02},'decay':{'cooked seafood':0.2,'spoiled food':0.8}},
+		turnToByContext:{'eating':{'health':0.03,'happiness':0.02,'bone':0.02},'decay':{'cooked seafood':0.2,'spoiled food':0.8}},
 		partOf:'food',
 		category:'food',
 	});
@@ -1324,7 +1421,7 @@ if (!document.getElementById(cssId))
 		name:'cured seafood',
 		desc:'[cured seafood] has a nice smoky flavor and lasts terribly long.',
 		icon:[12,6],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.04,'bone':0.02},'decay':{'cured seafood':0.95,'spoiled food':0.05}},
+		turnToByContext:{'eating':{'health':0.02,'happiness':0.0275,'bone':0.02},'decay':{'cured seafood':0.95,'spoiled food':0.05}},
 		partOf:'food',
 		category:'food',
 	});
@@ -1333,7 +1430,7 @@ if (!document.getElementById(cssId))
 		name:'bread',
 		desc:'[bread] is filling, nutritious, and usually not unpleasant to eat; for these reasons, it is often adopted as staple food by those who can produce it.',
 		icon:[7,7],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.02},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':0.02,'happiness':0.0175},'decay':{'spoiled food':1}},
 		partOf:'food',
 		category:'food',
 	});
@@ -1362,6 +1459,52 @@ if (!document.getElementById(cssId))
 			G.props['perishable materials list'].push(me);
 		}
 	};
+	//MAMUUN'S PENALTY/BACKFIRE
+	var loseArchaicMaterialsTick=function(me,tick)
+	{
+		if (G.checkPolicy('se10')=='on')
+		{
+			var toSpoil=G.getRes('archaic building materials').amount*0.002*1.4;
+			var spent=G.lose('archaic building materials',randomFloor(toSpoil),'decay');
+		}else{
+			var toSpoil=G.getRes('archaic building materials').amount*0.002;
+			var spent=G.lose('archaic building materials',randomFloor(toSpoil),'decay');
+		}
+	};
+	var loseBasicMaterialsTick=function(me,tick)
+	{
+		if (G.checkPolicy('se10')=='on')
+		{
+			var toSpoil=G.getRes('basic building materials').amount*0.003*1.12;
+			var spent=G.lose('basic building materials',randomFloor(toSpoil),'decay');
+		}else{
+			var toSpoil=G.getRes('basic building materials').amount*0.003;
+			var spent=G.lose('basic building materials',randomFloor(toSpoil),'decay');
+		}
+	};
+	var loseAdvancedMaterialsTick=function(me,tick)
+	{
+		if (G.checkPolicy('se10')=='on')
+		{
+			var toSpoil=G.getRes('advanced building materials').amount*0.003*1.03;
+			var spent=G.lose('advanced building materials',randomFloor(toSpoil),'decay');
+		}else{
+			var toSpoil=G.getRes('advanced building materials').amount*0.003;
+			var spent=G.lose('advanced building materials',randomFloor(toSpoil),'decay');
+		}
+	};
+	//MAMUUN'S POSITIVE EFFECT
+	var losePreciousMaterialsTick=function(me,tick)
+	{
+		if (G.checkPolicy('se10')=='on')
+		{
+			var toSpoil=G.getRes('precious building materials').amount*0.0009*0.97;
+			var spent=G.lose('precious building materials',randomFloor(toSpoil),'decay');
+		}else{
+			var toSpoil=G.getRes('precious building materials').amount*0.0009;
+			var spent=G.lose('precious building materials',randomFloor(toSpoil),'decay');
+		}
+	};
 	
 	new G.Res({
 		//hidden, used for every material that can be stored in a warehouse that isn't part of any other material
@@ -1376,7 +1519,7 @@ if (!document.getElementById(cssId))
 		desc:'Materials such as [stick]s and [stone]s, used to build rudimentary structures.',
 		icon:[2,7],
 		meta:true,
-		tick:loseMaterialsTick,
+		tick:loseArchaicMaterialsTick
 	});
 	new G.Res({
 		name:'stone',
@@ -1412,7 +1555,7 @@ if (!document.getElementById(cssId))
 		desc:'Processed materials such as [cut stone,Stone blocks], [brick]s and [lumber], used to build basic structures.',
 		icon:[2,8],
 		meta:true,
-		tick:loseMaterialsTick,
+		tick:loseBasicMaterialsTick,
 	});
 	new G.Res({
 		name:'cut stone',
@@ -1441,6 +1584,12 @@ if (!document.getElementById(cssId))
 		icon:[1,7],
 		partOf:'misc materials',
 		category:'build',
+		tick:function(me,tick)
+		{
+			var toLose=me.amount*0.0025;
+			var spent=G.lose(me.name,randomFloor(toLose),'decay');
+		}
+		
 	});
 	new G.Res({
 		name:'brick',
@@ -1455,7 +1604,7 @@ if (!document.getElementById(cssId))
 		desc:'Building materials such as [concrete] and [glass], used to build advanced structures.',
 		icon:[3,9],
 		meta:true,
-		tick:loseMaterialsTick,
+		tick:loseAdvancedMaterialsTick,
 	});
 	new G.Res({
 		name:'sand',
@@ -1484,7 +1633,7 @@ if (!document.getElementById(cssId))
 		desc:'Building materials such as [marble], used to build monuments.',
 		icon:[16,8],
 		meta:true,
-		tick:loseMaterialsTick,
+		tick:losePreciousMaterialsTick,
 	});
 	new G.Res({
 		name:'marble',
@@ -2238,6 +2387,11 @@ if (!document.getElementById(cssId))
 		icon:[15,4,'magixmod'],
 		partOf:'misc materials',
 		category:'misc',
+		tick:function(me,tick)
+		{
+			var toLose=me.amount*0.03;
+			var spent=G.lose(me.name,randomFloor(toLose),'decay');
+		}
 	});
 		new G.Res({
 		name:'sugar',
@@ -2246,18 +2400,11 @@ if (!document.getElementById(cssId))
 		partOf:'misc materials',
 		category:'misc',
 	});
-		new G.Res({//REMOVED AND WILL BE REPLACED SOON
+		new G.Res({//REMOVED AND REPLACED WITH CHRA-NOS BUFF EFFECT
 		name:'Watermelon seeds',
-		desc:'If you want to start farming [Watermelon] and crafting tasty [Juices] these seeds are a must.',
-		icon:[16,6,'magixmod'],
-		partOf:'misc materials',
-		category:'misc',
+		desc:'A res that defines Chra-nos bonus',
 		hidden:true,
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.09;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
+		startWith:1
 	});
 		new G.Res({//REMOVED AND WILL BE REPLACED SOON
 		name:'Berry seeds',
@@ -2542,6 +2689,11 @@ if (!document.getElementById(cssId))
     if (G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won > 0) {
 	    G.getDict('belief in the afterlife').chance = 5;
    		  }
+		if (G.achievByName['Next to the God'].won > 0) {
+	    G.getDict('culture of the afterlife').chance = 167;
+	G.getDict('The God\'s call').chance = 59;
+	G.getDict('An opposite side of belief').chance = 337;
+   		  }
 		 }
 		}
 	});
@@ -2754,9 +2906,15 @@ if (!document.getElementById(cssId))
 					//bury slowly
 					if (graves.amount>graves.used)
 					{
+						if(G.checkPolicy('se08')='off'){
 						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
 						graves.used+=amount;G.lose('Urn',amount*4,'burial');
 						G.gain('happiness',amount*2,'burial');
+						}else{
+						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
+						graves.used+=amount;G.lose('Urn',amount*5,'burial');
+						G.gain('happiness',amount*2,'burial');
+						};
 					}
 				}
 			if(G.has('dark urn decay')){
@@ -3151,6 +3309,48 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
+			if (G.checkPolicy('Theme changer')=='bronze'){
+		var cssId = 'bronzethemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/BronzeTheme/bronzetheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+			if (G.checkPolicy('Theme changer')=='silver'){
+		var cssId = 'silverthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/SilverTheme/silvertheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+			if (G.checkPolicy('Theme changer')=='golden'){
+		var cssId = 'goldenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GoldenTheme/goldentheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
 		},
 		category:'alchemypotions',
 	});
@@ -3178,7 +3378,6 @@ if (!document.getElementById(cssId))
 		name:'Worship point',
 		desc:'You can use these points to decide which seraphin will be worshipped.',//Seraphins won't be added quickly it may be January /February 2020 when you will be able to see them for the first time
 		icon:[1,14,'magixmod'],
-		displayUsed:true,
 		category:'main',
 	});
 //Essence limits which can be increased by buying storages for essences
@@ -3412,6 +3611,10 @@ if (!document.getElementById(cssId))
 				{
 					var n=randomFloor(G.getRes('population').amount*0.13);G.gain('health',n,'healthy life');
 				}
+				if (G.checkPolicy('se07')=='on') //HERBALIA BOOST
+				{
+					var n=randomFloor(G.getRes('population').amount*0.05);G.gain('health',n,'Herbalia');
+				}
 		},
 		category:'misc',
 	});
@@ -3611,7 +3814,11 @@ if (!document.getElementById(cssId))
 		{
 		if (G.year>89){ //Spawning rate
  		   var n = G.getRes('adult').amount * 0.00001
-  		  G.gain('thief',n,'unhappiness');
+		   if(G.checkPolicy('se02')=='on'){
+  		  G.gain('thief',n*1.01,'unhappiness');
+		   }else{
+			     G.gain('thief',n,'unhappiness');
+		   }
 			}
 			var toCalm=me.amount*0.007;
 			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');G.gain('adult',(toCalm),'calmdown');
@@ -4459,8 +4666,11 @@ if (!document.getElementById(cssId))
 			if(G.has('symbolism II')){
 			G.getDict('storyteller').icon = [29,7,'magixmod']
 			}
-			if(G.has('Music instruments')){
+			if(G.has('Music instruments') && G.checkPolicy('se03')=='off'){
 			G.getDict('storyteller').limitPer = {'population':400}
+			}else{
+			G.getDict('storyteller').limitPer = {'population':350}
+			G.getDict('musician').limitPer = {'population':350}
 			}
 			if(G.has('Oil-digging')){
 			G.getDict('quarry').icon = [19,21,'magixmod']
@@ -4549,7 +4759,6 @@ if (!document.getElementById(cssId))
 				G.getDict('child workforce').cost = {'influence II':3}
 				G.getDict('drink cloudy water').cost = {'influence II':3}
 				G.getDict('elder workforce').cost = {'influence II':3}
-				G.getDict('Gather roses').cost = {'influence II':1}
 				G.getDict('Hovel of colours production rates').cost = {'influence II':5}
 				G.getDict('Hut of potters production rates').cost = {'influence II':5}
 				G.getDict('Leather factory production rates').cost = {'influence II':5}
@@ -4672,6 +4881,23 @@ if (!document.getElementById(cssId))
 			G.getDict('Sugar cane farm').icon = [31,18,'magixmod']
 			G.getDict('Sugar cane farm').use={'worker':12,'Instructor':2}
 			}
+			if(G.checkPolicy('se12')=='on')//Okar The Seer's backfire
+			{
+			G.getDict('Guru').upkeep = {'food':10,'water':5}
+			G.getDict('dreamer').upkeep = {'food':2,'water':1}
+			G.getDict('Guru').alternateUpkeep = {'spoiled food':4,'muddy water':2}
+			G.getDict('dreamer').alternateUpkeep = {'spoiled food':2,'muddy water':1}
+			}
+			if(G.traitN >= 50 && G.achievByName['Trait-or'].won == 0){ //Traitsman achievement
+			G.achievByName['Trait-or'].won = 1
+			G.middleText('- Completed <font color="pink">Trait-or</font> achievement -')
+			}
+			if((G.getRes('Worship point').amount) == 0 && G.achievByName['The first choice'].won == 0 && G.has('Pantheon key')){;
+			G.achievByName['The first choice'].won = 1
+			G.middleText('- Completed <font color="cyan">The first choice</font> achievement -')
+			}
+			if(G.checkPolicy('se04')=='on' && G.checkPolicy('se05')=='off'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}}
+			if(G.checkPolicy('se05')=='on' && G.checkPolicy('se04')=='off'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -4805,6 +5031,14 @@ if (!document.getElementById(cssId))
 		new G.Res({
 		name:'corpsedecaypoint',
 	});
+		new G.Res({
+		name:'heavenlyTemplePoint',
+		displayName:'Temple of heaven point'
+	});
+	new G.Res({
+		name:'godTemplePoint',
+		displayName:'Paradise temple point'
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -4864,7 +5098,6 @@ if (!document.getElementById(cssId))
 			}
 		}
 	}
-	
 	new G.Unit({
 		name:'gatherer',
 		startWith:5,
@@ -4883,6 +5116,8 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'harvest rituals':'on'}},
 			{type:'mult',value:1.075,req:{'Focused gathering':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.125,req:{'Focused gathering':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:0.8,req:{'se12':'on'}},
+			{type:'mult',value:0.85,req:{'se07':'on'}},
 		],
 		req:{'tribalism':true},
 		category:'production',
@@ -4904,7 +5139,10 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
 			{type:'mult',value:1.05,req:{'Knowledgeable':true}},
 			{type:'mult',value:2/3,req:{'dt18':true}},
-			{type:'mult',value:0.1,req:{'Eotm':true}}
+			{type:'mult',value:0.1,req:{'Eotm':true}},
+			{type:'mult',value:1.5,req:{'se12':'on'}},
+			{type:'mult',value:0.75,req:{'se11':'on'}},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
 		],
 		req:{'speech':true},
 		category:'discovery',
@@ -4926,7 +5164,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
 			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
-			{type:'mult',value:0.1,req:{'Eotm':true}}
+			{type:'mult',value:0.1,req:{'Eotm':true}},
+			{type:'mult',value:0.9,req:{'se12':'on'}},
+			{type:'mult',value:2,req:{'se03':'on'}},
 		],
 		req:{'oral tradition':true},
 		category:'cultural',
@@ -5012,6 +5252,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.08,req:{'Motivation for artisans':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.04,req:{'Motivation for artisans':true,'<font color="maroon">Caretaking</font>':true}},
 			{type:'mult',value:1.03,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
 		req:{'stone-knapping':true},
 		category:'crafting',
@@ -5047,6 +5288,14 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt3':true}},
 			{type:'mult',value:1.03,req:{'Inspirated carvers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.06,req:{'Inspirated carvers':true,'<font color="maroon">Caretaking</font>':true}},
+			////////////////////
+			//MOAI BOOSTS
+			{type:'mult',value:1.03,req:{'se09':'on'},mode:'stone statuettes'},
+			{type:'mult',value:1.03,req:{'se09':'on'},mode:'cut stone'},
+			{type:'mult',value:1.03,req:{'se09':'on'},mode:'smash cut stone'},
+			{type:'mult',value:1.03,req:{'se09':'on'},mode:'gdablockscraft'},
+			{type:'mult',value:1.03,req:{'se09':'on'},mode:'gdablockssmash'},
+			/////////////
 		],
 		req:{'carving':true},
 		category:'crafting',
@@ -5236,7 +5485,8 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'water':20}},
-			{type:'mult',value:1.05,req:{'Deeper wells':true}}
+			{type:'mult',value:1.05,req:{'Deeper wells':true}},
+			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		category:'production',
 		req:{'well-digging':true},
@@ -5253,7 +5503,8 @@ if (!document.getElementById(cssId))
 		upkeep:{'coin':0.1},
 		effects:[
 			{type:'gather',context:'dig',amount:1,max:1},
-			{type:'gather',context:'dig',what:{'clay':5},max:1,req:{'pottery':true}}
+			{type:'gather',context:'dig',what:{'clay':5},max:1,req:{'pottery':true}},
+			{type:'mult',value:1.02,req:{'se09':'on'}},
 		],
 		req:{'digging':true},
 		category:'production',
@@ -5320,6 +5571,15 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			{type:'mult',value:1.05,req:{'Mining strategy':true}},
+			/////////////////////////
+			//MOAI BOOSTS
+			{type:'mult',value:1.25,req:{'se09':'on'},mode:'tin'},
+			{type:'mult',value:1.25,req:{'se09':'on'},mode:'coal'},
+			{type:'mult',value:1.25,req:{'se09':'on'},mode:'salt'},
+			{type:'mult',value:1.25,req:{'se09':'on'},mode:'copper'},
+			{type:'mult',value:1.25,req:{'se09':'on'},mode:'iron'},
+			{type:'mult',value:1.25,req:{'se09':'on'},mode:'gold'},
+			//////////////////////////
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Mining strategy':false}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}}
 		],
@@ -5459,6 +5719,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.05},req:{'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
+			{type:'mult',value:1.25,req:{'se11':'on'}},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
 		],
 		req:{'ritualism':true},
 		category:'spiritual',
@@ -5476,6 +5738,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'wounded':1,'herb':2.5},into:{'adult':1},chance:1/5,every:10},
 			{type:'mult',value:1.03,req:{'More experienced healers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.06,req:{'More experienced healers':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.25,req:{'se07':'on'}},
 		],
 		req:{'healing':true},
 		category:'spiritual',
@@ -5494,7 +5757,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
 			{type:'mult',value:1.05,req:{'Politic power rising up':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}},
-			{type:'mult',value:1.1,req:{'Glory':true}}
+			{type:'mult',value:1.1,req:{'Glory':true}},
+			{type:'mult',value:0.75,req:{'se11':'on'}},
 		],
 		limitPer:{'population':100},
 		req:{'chieftains':true},
@@ -5513,7 +5777,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'influence':0.05},req:{'code of law':true}},
 			{type:'mult',value:1.05,req:{'Politic power rising up':true}},
 			{type:'mult',value:0.1,req:{'Eotm':true}},
-			{type:'mult',value:1.1,req:{'Glory':true}}
+			{type:'mult',value:1.1,req:{'Glory':true}},
+			{type:'mult',value:0.75,req:{'se11':'on'}},
 		],
 		limitPer:{'population':500},
 		req:{'clans':true},
@@ -6373,6 +6638,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'convert',from:{'Sulfur':3,'Paper':2,'Thread':3},into:{'Light explosives':1.25},every:2,repeat:2,mode:'explosivesS'},
 			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		req:{'Explosive crafting & mining':true},
 		category:'crafting',
@@ -6431,6 +6697,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'science':0.00005}},
 			{type:'gather',what:{'science':0.0000125},req:{'symbolism III':true}},
 			{type:'mult',value:1.5,req:{'Science blessing':true}},
+			{type:'mult',value:1.5,req:{'se12':'on'}},
+			{type:'mult',value:0.75,req:{'se11':'on'}},
 		],
 		req:{'God\'s trait #3 Science^2':true},
 		category:'discovery',
@@ -6643,6 +6911,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'Cloudy water':28}},
 			{type:'mult',value:0.9,req:{'dt7':true}},
+			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		category:'paradiseunit',
 		req:{'well-digging':true,'<span style="color: ##FF0900">Paradise building</span>':true},
@@ -6722,6 +6991,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'health':0.1},req:{'Nutrition':true}},
 			{type:'mult',value:1.03,req:{'More experienced healers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.09,req:{'More experienced healers':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.25,req:{'se07':'on'}},
 		],
 		req:{'healing':true,'Healing with brews':true},
 		category:'spiritual',
@@ -6756,7 +7026,9 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'culture':0.03},req:{'symbolism':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on'}},
-			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
+			{type:'mult',value:0.9,req:{'se12':'on'}},
+			{type:'mult',value:2,req:{'se03':'on'}},
 		],
 		req:{'oral tradition':true,'artistic thinking':true},
 		category:'cultural',
@@ -6925,7 +7197,7 @@ if (!document.getElementById(cssId))
 	});
 		new G.Unit({
 		name:'Church',
-		desc:'Millenially generates some [spirituality]. Commonly generates [faith] at the lower rate than [soothsayer]. Further religion improvements may change it.',
+		desc:'Commonly generates [faith] at the lower rate than [soothsayer]. Further religion improvements may change it.',
 		icon:[6,3,'magixmod'],
 		cost:{'basic building materials':2000,'precious building materials':20},
 		upkeep:{'faith':0.001},
@@ -6934,8 +7206,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'faith':0.03},req:{'Spiritual piety':false}},
 			{type:'gather',what:{'faith':0.039},req:{'Spiritual piety':true}},
-			{type:'gather',what:{'spirituality':0.00000001}},
-			{type:'waste',chance:0.01/1000}
+			{type:'mult',value:1.25,req:{'se11':'on'}},
+			{type:'waste',chance:0.01/1000},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
 	],
 		category:'spiritual',
 	});
@@ -6951,7 +7224,9 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.09}},
 			{type:'gather',what:{'faith':0.03},req:{'symbolism':true,'Stronger faith':true}},
 			{type:'mult',value:1.7,req:{'symbolism III':true}},
-			{type:'waste',chance:0.003/1000}
+			{type:'waste',chance:0.003/1000},
+			{type:'mult',value:1.25,req:{'se11':'on'}},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
 	],
 		category:'spiritual',
 	});
@@ -6968,7 +7243,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.31,req:{'artistic thinking':true}},
 			{type:'mult',value:1.21,req:{'wisdom rituals':'on'}},
 			{type:'convert',from:{'Paper':21},into:{'Poet\'s notes':1},every:11,req:{'Bookwriting':true}},
-			{type:'mult',value:1.05,req:{'Cultural forces arise':true}}
+			{type:'mult',value:1.05,req:{'Cultural forces arise':true}},
+			{type:'mult',value:0.9,req:{'se12':'on'}},
+			{type:'mult',value:2,req:{'se03':'on'}},
 		],
 		req:{'oral tradition':true,'Poetry':true},
 		category:'cultural',
@@ -7081,6 +7358,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			//Collapsing chance
 			{type:'mult',value:1.05,req:{'Plain island mining strategy':true}},
+			{type:'mult',value:1.25,req:{'se09':'on'}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Plain island mining strategy':false}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Plain island mining strategy':true}}
 		],
@@ -7134,6 +7412,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'water':20}},
 			{type:'mult',value:0.85,req:{'dt8':true}},
+			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		category:'plainisleunit',
 		req:{'well-digging':true,'First portal to new world':true,'<span style="color: ##FF0900">Plain island building</span>':true},
@@ -7383,6 +7662,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'flowers',amount:0.1,max:0.4},
 			{type:'mult',value:1.05,req:{'harvest rituals for flowers':'on'}},
 			{type:'convert',from:{'Paper':12,'Ink':3},into:{'Florist\'s notes':1},every:11,req:{'Notewriting':true},chance:1/95},
+			{type:'mult',value:0.8,req:{'se12':'on'}},
 		],
 	});
 		new G.Unit({
@@ -7399,6 +7679,7 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'convert',from:{'insight':4,'adult':1},into:{'Instructor':1},every:375,mode:'thoughts'},
+			{type:'mult',value:1.01,req:{'se11':'on'}},
 		],
 		req:{'speech':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 		category:'discovery',
@@ -7439,6 +7720,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'sugar':1,'fruit':0.4,'water':2},into:{'Fruit juice':2},every:5,mode:'juices',req:{'Moar juices':true}},
 			{type:'convert',from:{'sugar':3,'fruit':0.9,'water':6,'Berries':1,'Watermelon':0.25},into:{'Fruit juice':12,'Berry juice':8,'Watermelon juice':9},every:5,mode:'juices',req:{'Moar juices':true},chance:1/20},
 			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
 		req:{'Crafting a juice':true},
 		category:'crafting',
@@ -7458,6 +7740,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'health':0.1},req:{'Nutrition':true}},
 			{type:'mult',value:1.03,req:{'More experienced healers':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.09,req:{'More experienced healers':true,'<font color="maroon">Caretaking</font>':true}},
+			{type:'mult',value:1.25,req:{'se07':'on'}},
 		],
 		req:{'healing':true,'first aid':true},
 		category:'spiritual',
@@ -7523,7 +7806,7 @@ if (!document.getElementById(cssId))
 		cost:{'basic building materials':300},
 		upkeep:{'fire pit':3},
 		effects:[
-			{type:'convert',from:{'corpse':7,'pot':7},into:{'Urn':7},every:5},
+			{type:'convert',from:{'corpse':14,'pot':14},into:{'Urn':14},every:5},
 		],
 		category:'civil'
 	});
@@ -7729,6 +8012,7 @@ if (!document.getElementById(cssId))
 		limitPer:{'population':400},
 		effects:[
 			{type:'gather',what:{'culture':0.1}},
+			{type:'mult',value:0.9,req:{'se12':'on'}},
 		],
 		req:{'oral tradition':true,'Music instruments':true},
 		category:'cultural',
@@ -7745,6 +8029,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',context:'fish',amount:2533,max:3811},
 			{type:'gather',context:'hunt',amount:2833,max:4111},
+			{type:'gather',context:'hunt',amount:991,max:1438,req:{'se04':'on'}},
+			{type:'gather',context:'fish',amount:886,max:1333,req:{'se05':'on'}},
 			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
 			{type:'mult',value:1.35,req:{'harvest rituals':'on'}},
 			{type:'convert',from:{'meat':4,'seafood':3},into:{'cooked meat':4,'seafood':3},every:2,req:{'Camp-cooking':true}},
@@ -7791,7 +8077,7 @@ if (!document.getElementById(cssId))
     		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
     		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 paradise land at your own but you <b>must</b> follow some of God\'s rules.',
     		wideIcon:[7,4,'magixmod'],
-    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4},
+    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4,'heavenlyTemplePoint':400},
     		effects:[
     			{type:'provide',what:{'Land of the Paradise':26500}},
 			{type:'provide',what:{'Paradise emblem':1}},
@@ -7823,12 +8109,12 @@ if (!document.getElementById(cssId))
 		icon:[1,11,'magixmod'],
 		wideIcon:[0,11,'magixmod'],
 		cost:{'basic building materials':35000,'gem block':10},
-		costPerStep:{'basic building materials':2500,'precious building materials':1250,'gem block':2,'concrete':25},
+		costPerStep:{'basic building materials':2500,'precious building materials':1250,'gem block':2,'concrete':25,'heavenlyTemplePoint':-1},
 		steps:300,
 		messageOnStart:'You begin the construction of the Temple. Its highest tower is a pass between land of people and sky of angels. No one may go on top unless it is coated. This temple will be last bastion of religion and a storage of relics. Your people with full of hope are building this mass, full of glory wonder.',
-		finalStepCost:{'population':1000,'precious building materials':25000,'faith':100,'influence':75,'basic building materials':3000},
+		finalStepCost:{'population':1000,'precious building materials':25000,'faith':100,'influence':75,'basic building materials':3000,'heavenlyTemplePoint':-100},
 		finalStepDesc:'To complete the Temple, 1000 of your [population,People] and many more resources needed to finish Temple completely must be sacrificed to accompany you as servants in the afterlife and Angels of the Afterlife. Are you ready?',
-		use:{'land':75},
+		use:{'land':50},
 		//require:{'worker':10,'stone tools':10},
 		req:{'monument-building II':true},
 		category:'wonder',
@@ -7846,7 +8132,7 @@ if (!document.getElementById(cssId))
 		messageOnStart:'You begin the construction of The Skull of Wild Death. First terrain marked for realm is getting look like this from graves where your people lie. You think that is going right way. You say: <b>I think wild corpses will go right there to leave us away. I want calm, for all price. It is right choice. I will make my soldiers take these living skulls right there.</b>',
 		finalStepCost:{'corpse':100,'faith':100,'Dark essence':25000,'Cobalt ingot':1000,'burial spot':-15000},
 		finalStepDesc:'To complete this wonder in hope of wild corpses leaving you away for some time you will need pay some tools in order',
-		use:{'land':120},
+		use:{'land':100},
 		require:{'worker':40,'stone tools':10},
 		req:{'monument-building II':true,'<span style="color: red">Revenants</span>':true,'Dark wonder':true},
 		category:'wonder',
@@ -7880,7 +8166,7 @@ if (!document.getElementById(cssId))
 		messageOnStart:'You began the construction of Complex of Dreamers. The complex looks like not from this world when night visits the world.',
 		finalStepCost:{'wisdom':125,'population':250,'precious building materials':4500,'gem block':50,'insight':1000},
 		finalStepDesc:'To complete the wonder and make your whole civilization much smarter you will need to perform a final step.',
-		use:{'land':30},
+		use:{'land':25},
 		upkeep:{'Mana':15},
 		req:{'monument-building':true,'Roots of insight':true},
 		category:'discovery',
@@ -7996,6 +8282,22 @@ new G.Unit({
 		],
 		req:{'Storage at the bottom of the world':true},
 		category:'storage',
+	});
+	new G.Unit({
+		name:'Temple of the Paradise',
+		desc:'@leads to the <b>Victory next to the god</b>. //A big, golden temple which is homeland of Seraphins and the God. A temple that stays at huge cloud. It is glowing with ambrosium.',
+		wonder:'Next to the God',
+		icon:[9,25,'magixmod'],
+		wideIcon:[8,25,'magixmod'],
+		cost:{'basic building materials':100000,'precious building materials':5000,'gold block':100,'platinum block':10,'cloud':45000,'Ambrosium shard':10000},
+		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'cloud':4500,'Ambrosium shard':1000,'godTemplePoint':-1},
+		steps:400,
+		messageOnStart:'The construction of The <b>Temple of the Paradise</b> has been started. Now you are full of hope that it will someday make the God appear next to you and show his true good-natured face.',
+		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':1000,'spirituality':25,'godTemplePoint':-100},
+		finalStepDesc:'To complete the wonder and be even closer to the God you must perform this final step 25k [population,people] must be sacrificed... and many other ingredients.',
+		use:{'Land of the Paradise':30},
+		req:{'monument-building III':true},
+		category:'wonder',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -8245,7 +8547,181 @@ new G.Unit({
 		name:'3rd party',
 		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
 	});
-	
+		new G.Achiev({
+		tier:3,
+		name:'Patience',
+		wideIcon:[3,26,'magixmod'],
+		icon:[4,26,'magixmod'],
+		desc:'Complete Chra-nos trial for the first time. Your determination led you to victory. //Complete this trial again to gain extra Victory Points.',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Unhappy',
+		wideIcon:[6,26,'magixmod'],
+		icon:[7,26,'magixmod'],
+		desc:'Complete Bersaria\'s trial for the first time. Your determination and calmness led you to victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Cultural',
+		wideIcon:[18,26,'magixmod'],
+		icon:[19,26,'magixmod'],
+		desc:'Complete Tu-ria\'s trial for the first time. Your artistic thinking led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Hunted',
+		wideIcon:[24,26,'magixmod'],
+		icon:[25,26,'magixmod'],
+		desc:'Complete Hartar\'s trial for the first time. Making people being masters at hunting and showing \'em what brave really is led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Unfishy',
+		wideIcon:[21,26,'magixmod'],
+		icon:[22,26,'magixmod'],
+		desc:'Complete Fishyar\'s trial for the first time. Making people believe that life without fish is not boring led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Ocean',
+		wideIcon:[1,25,'magixmod'],
+		icon:[2,25,'magixmod'],
+		desc:'Complete Posi\'zul\'s trial for the first time. Living at the endless ocean is not impossible and you are example of that. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Herbalism',
+		wideIcon:[12,26,'magixmod'],
+		icon:[13,26,'magixmod'],
+		desc:'Complete Herbalia\'s trial for the first time. Herbs are not that bad! //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Buried',
+		wideIcon:[0,26,'magixmod'],
+		icon:[1,26,'magixmod'],
+		desc:'Complete Buri\'o dak \'s trial for the first and the last time. Death lurks everywhere but it is still easy deal for you!',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Underground',
+		wideIcon:[15,26,'magixmod'],
+		icon:[16,26,'magixmod'],
+		desc:'Complete Moai\'s trial for the first time. Stone leads to victory! //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Pocket',
+		wideIcon:[9,26,'magixmod'],
+		icon:[10,26,'magixmod'],
+		desc:'Complete Mamuun\'s trial for the first time. Seems like you have got a trading skills! This can lead to victory. //Complete this trial again to gain extra Victory Points. 2nd victory of this trial increases bonus from the trial',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Faithful',
+		wideIcon:[0,27,'magixmod'],
+		icon:[1,27,'magixmod'],
+		desc:'Complete Enlightened\'s trial for the first time. Belief and faith is everything. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Dreamy',
+		wideIcon:[27,26,'magixmod'],
+		icon:[28,26,'magixmod'],
+		desc:'Complete Okar the Seer\'s trial for the first time. Knowledge leads to victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+	new G.Achiev({
+		tier:2,
+		name:'Next to the God',
+		displayName:'<font color="yellow">Next to the God</font>',
+		wideIcon:[8,25,'magixmod'],
+		icon:[9,25,'magixmod'],
+		desc:'Ascend by the Temple of the Paradise... You managed to be very close to the God. But this step will make it easier. Because you had to sacrifice so much time reaching that far this achievement has plenty of rewards. Here are the rewards you will get for it: @Chance for [culture of the afterlife] is tripled. Same to [The God\'s call]. @[An opposite side of belief] has 10% bigger chance to occur.(Note: not 10 percent points! Chance for it is multiplied by 1.1!) @You will start each next run with +1 [faith] and [spirituality] @You will unlock the Pantheon! Just build this wonder again(nope you won\'t need to ascend once more by it, just complete it and buy tech that will finally unlock it for you). @This achievement will unlock you <b><font color="orange">3</font> new themes!</b>',
+		fromWonder:'Next to the God',
+		effects:[
+			{type:'addFastTicksOnStart',amount:250},
+			{type:'addFastTicksOnResearch',amount:25},
+		],
+	});
+	new G.Achiev({
+		tier:2,
+		name:'The first choice',
+		icon:[11,25,'magixmod'],
+		desc:'Spend your all [Worship point]s for the first time to pick Seraphins that your people will worship.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		name:'Trait-or',
+		icon:[12,25,'magixmod'],
+		desc:'Manage your wonderful tribe to adopt 50 traits.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+		],
+	});
 	/*=====================================================================================
 	TECHS
 	=======================================================================================*/
@@ -9222,7 +9698,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'Deeper wells',
-		desc:'@[well]s provide 5% more water.',
+		desc:'@[well]s provide 5% more water. Boosts only [well] and [Well of the Plain Island].',
 		icon:[31,15,'magixmod'],
 		cost:{'insight':490,'wisdom':30},
 		req:{'Farms in the new land':true},
@@ -11183,7 +11659,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'Mo\' tradez',
-		desc:'Policies such like [extended basic catalog] or [extended food catalog] now have more options',
+		desc:'Policies such like [extended basic catalog] or [extended food catalog] now have more options. //Also unlocks [art trader] who can sell [Painting]s for [market_coin].',
 		icon:[30,20,'magixmod'],
 		cost:{'insight':1490},
 		req:{'Treeplanting':true},
@@ -11357,6 +11833,125 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':185,'culture II':15,'influence II':1,'science':4},
 		req:{'A leaf of wisdom':true},
 	});
+		new G.Trait({
+		name:'gods and idols',
+		desc:'May open a door to the Seraphins - the God\'s superiors.',
+		icon:[17,25,'magixmod'],
+		req:{'Liberating darkness':true,'power of the faith':true},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
+		new G.Tech({
+		name:'monument-building III',
+		desc:'People now can use almost every resource while constructing mystical, beautiful wonders.',
+		icon:[0,25,'magixmod'],
+		req:{'gods and idols':true},
+		cost:{'insight II':187,'science':8,'culture II':30},
+	});
+		new G.Trait({
+		name:'sb1',
+		displayName:'Soothsayer blessing',
+		desc:'Increases amount of [faith] gained by [soothsayer]s by 10% due to getting closer to the religion.',
+		icon:[13,25,'magixmod'],
+		req:{'gods and idols':true,'power of the faith':true,'sb2':false,'sb3':false,'sb4':false},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
+	new G.Trait({
+		name:'sb2',
+		displayName:'Soothsayer blessing',
+		desc:'Increases amount of [faith] gained by [soothsayer]s by 5% due to getting closer to the religion.',
+		icon:[14,25,'magixmod'],
+		req:{'gods and idols':true,'power of the faith':true,'sb1':false,'sb3':false,'sb4':false},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
+	new G.Trait({
+		name:'sb3',
+		displayName:'Soothsayer blessing',
+		desc:'Sadly getting closer to the religion doesn\'t make [soothsayer]s gaining more [faith]. Try your luck next time(run in fact).',
+		icon:[15,25,'magixmod'],
+		req:{'gods and idols':true,'power of the faith':true,'sb2':false,'sb1':false,'sb4':false},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
+	new G.Trait({
+		name:'sb4',
+		displayName:'Soothsayer blessing',
+		desc:'Nobody knows why and how but [soothsayer]s are gaining 5% less [faith] even after getting closer to the God and the whole religion.',
+		icon:[16,25,'magixmod'],
+		req:{'gods and idols':true,'power of the faith':true,'sb2':false,'sb3':false,'sb1':false},
+		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
+		chance:70,
+		category:'religion'
+	});
+		let GodTempleAchiev =  new G.Tech({
+        name:'Life in faith',
+	displayName:'<font color="gold">Life in faith</font>',
+        desc:'You remember... you were staying near the Temple... the God\'s temple! This memory has unbelieveable powers: @+1[faith] @+1[spirituality] @3 new themes(check [Theme changer]).',
+        icon:[4,12,'magixmod',9,25,'magixmod'],
+        cost:{},
+	effects:[
+		{type:'provide res',what:{'spirituality':1}},
+		{type:'provide res',what:{'faith':1}},
+	],	
+        req:{'tribalism':false}
+    });
+function checkGodTempleAchiev() {
+  if (G.achievByName['Next to the God'].won) {
+    if (G.achievByName['Next to the God'].won > 0 && G.hasNot('Life in faith')){
+      G.gainTech(GodTempleAchiev)
+    }
+}
+}
+checkGodTempleAchiev()
+const oldNewGameGodTemple = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkGodTempleAchiev()
+  }
+})
+		new G.Tech({
+		name:'Pantheon key',
+		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab.',
+		icon:[4,25,'magixmod'],
+		req:{'Life in faith':true,'monument-building III':true},
+		cost:{'insight II':100,'faith II':10,'culture II':30,'godTemplePoint':500},
+		effects:[
+			{type:'provide res',what:{'Worship point':4}},
+			{type:'function',func:function(){		
+		////////////////////////////////////////
+	/*PANTHEON TAB
+	if (!G.mSettingsLoaded)
+	{
+		G.tabs.push({
+			name:'Pantheon',
+			id:'pantheon',
+			popup:false,
+			addClass:'left',
+			desc:'From this tab you may take on a Seraphin\'s trial.'
+		});
+		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
+		G.buildTabs();
+	}
+	G.update['pantheon']=function()
+	{
+		var str='';
+		str+='<span class="tooltiped infoButton" id="textspan-36"></span>'
+		l('pantheonDiv').innerHTML=
+		G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">From this tab you may take on a Seraphin\'s trial. <hr> To take on a trial first choose the seraphins you\'ll make your people worship. <br>Then you will see there list of available trials. <hr>You can read more about the trial and start it. Completing trials will award you with <b>Victory points</b>.<br>Almost each trial is repeatable. <hr>Gaining of Victory points looks like: <li>1st victory of the trial: +1 point</li> <li> 2nd victory of the same trial: +2 points so (1+2=3) and so on. <hr>Completing trials for the first time may gain special bonuses. Each trial has its own wonder.</div></div>','infoButton')+
+		'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="pantheonDiv" class="thingBox"></div></div></div>';
+	}
+	////////////////////////////////////////////////////*/
+			}}
+		]
+	});
+	
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -11367,7 +11962,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		{id:'population',name:'Population'},
 		{id:'faith',name:'Faith'},
 		{id:'education',name:'Education'},
-		{id:'Florists',name:'Florists gathering'},
+		{id:'Florists',name:'Pantheon'},//Kept the same ID to prevent errors and crashes upon a update
 		{id:'education',name:'Education'},
 		{id:'prod',name:'Production'},
 		{id:'mag',name:'Magix utilities'}
@@ -11654,12 +12249,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		category:'Education',
 	});
 		new G.Policy({
-		name:'Gather roses',
-		desc:'Makes florist start gathering all types of rose. //Due to last update this policy will be replaced some time with new one.',
-		icon:[0,7,'magixmod'],
-		cost:{'influence':15},
+		name:'Gather roses',//It is raw ID. Kept it to prevent crashes but added display name
+		displayName:'Chra-nos The Seraphin of Time',
+		desc:'Boost depends on time. <br><font color="lime">Each year [food] decays slower by 0.1% (range: 1 to 10%). Bonus applies to [water] too but halved.</font><br><hr color="fuschia"><font color="red"> Backfire: With the same rate all [misc materials,Miscellaneous] decay faster.</font>',
+		icon:[29,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
 		startMode:'off',
-		req:{'plant lore':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'Pantheon key':true},
 		category:'Florists',
 	});
 		new G.Policy({
@@ -11721,6 +12317,9 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 			'cyan':{name:'Cyan',desc:'Switches to cyan theme.',icon:[5,22,'magixmod']},
 			'gray':{name:'Gray',desc:'Switches to gray theme.',icon:[1,22,'magixmod']},
 			'indigo':{name:'Indigo',desc:'Switches to indigo theme. Reward for <b>Magical victory</b> achievement.',req:{'Magical presence':true}},
+			'bronze':{name:'Bronze',desc:'Switches to bronze theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
+			'silver':{name:'Silver',desc:'Switches to silver theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
+			'golden':{name:'Golden',desc:'Switches to golden theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 		},
 		category:'mag',
 	});
@@ -11830,7 +12429,116 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		],
         });	
 	}
-	
+			new G.Policy({
+		name:'se02',
+		displayName:'Bersaria the Seraphin of Madness',
+		desc:'<font color="lime">Increases thieve hunters  and other guard efficiency by 40%</font><br><hr color="fuschia"><font color="red">Backfire: Harms happiness and 1% more thieves will spawn. </font>',
+		icon:[28,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+				new G.Policy({
+		name:'se03',
+		displayName:'Tu-ria the Seraphin of Inspiration',
+		desc:'<font color="lime">Increases [culture] gathering by 100%, decreases limit for [musician] and [storyteller] by 50 [population]</font><br><hr color="fuschia"><font color="red">Backfire:[dreamer] , [faith,faith units] gather 5% less [insight] and [faith] .</font>',
+		icon:[27,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+		new G.Policy({
+		name:'se04',
+		displayName:'Hartar the Seraphin of Hunting',
+		desc:'<font color="lime">Increases efficiency of hunting units by 35%. After [Hunters & fishers unification] increases income of [meat] by this %.</font><br><hr color="fuschia">Hovewer this Seraphin doesn\'t have a backfire but choosing [se04] blocks you [se05] unless you unchoose that but it is not worthy.',
+		icon:[26,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+			new G.Policy({
+		name:'se05',
+		displayName:'Fishyar the Seraphin of Fishing',
+		desc:'<font color="lime">Increases efficiency of fishing units by 35%. After [Hunters & fishers unification] increases income of [seafood] by this %.</font><br><hr color="fuschia">Hovewer this Seraphin doesn\'t have a backfire but choosing [se05] blocks you [se04] unless you unchoose that but it is not worthy.',
+		icon:[25,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+				new G.Policy({
+		name:'se06',
+		displayName:'Posi\'zul the Seraphin of Water',
+		desc:'<font color="lime">Increases gathering of water and decreases rate of water spoiling</font><br><hr color="fuschia"><font color="red">Backfire: Increases food spoiling rate</font>',
+		icon:[24,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+				new G.Policy({
+		name:'se07',
+		displayName:'Herbalia the Seraphin of Recovery',
+		desc:'<font color="lime">Boosts health level. [healer]s are 25% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: Happiness cap is: from -200 to 175%. [gatherer] gains 15% less.</font>',
+		icon:[23,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+					new G.Policy({
+		name:'se08',
+		displayName:'Buri\'o dak the Seraphin of Burial',
+		desc:'<font color="lime">Now 1 [burial spot] can store 1.1 [corpse] or 5 [Urn]s.</font><br><hr color="fuschia"><font color="red">Backfire: Harms [health] and decreases [healer]s efficiency by 5%.</font>',
+		icon:[22,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+						new G.Policy({
+		name:'se09',
+		displayName:'Moai the Seraphin of the Stone',
+		desc:'<font color="lime">All [mine]s are 25% more efficient(Doesn\'t apply to [gems] gathering and only applies to modes from [prospecting,prospecting I] not to <b>any</b> .). [digger] is 2% more efficient. [carver] works 3% more efficient at modes related to the [stone].</font><br><hr color="fuschia"><font color="red">Backfire: [well]s are 15% less efficient(not including [Well of mana]) and [artisan]s are 7.5% less efficient.</font>',
+		icon:[21,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+						new G.Policy({
+		name:'se10',
+		displayName:'Mamuun the Seraphin of Richness',
+		desc:'<font color="lime">Gold and [precious building materials] decay 3% slower</font><br><hr color="fuschia"><font color="red">Backfire:[archaic building materials] decay 40% faster , [basic building materials] decay 12% faster, [advanced building materials] decay 3% faster. [food] spoils faster.</font>',
+		icon:[20,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+						new G.Policy({
+		name:'se11',
+		displayName:'Enlightened the Seraphin of Faith',
+		desc:'<font color="lime">All [faith] gathering is increased by 25%, [Thoughts sharer] is 1% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: All [influence] , [insight] units are weakened by 25%(including [Guru])</font>',
+		icon:[19,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
+						new G.Policy({
+		name:'se12',
+		displayName:'Okar the Seer the Seraphin of Knowledge',
+		desc:'<font color="lime">[Guru] and [dreamer]s are 50% more efficient.</font><br><hr color="fuschia"><font color="red">Backfire: [dreamer]s and [Guru] require [food] and [water] as an upkeep. Weakens [gatherer] and [Florist] by 20%. [culture] gaining lowered by 10%.</font>',
+		icon:[18,25,'magixmod'],
+		cost:{'Worship point':1,'faith II':10},
+		startMode:'off',
+		req:{'Pantheon key':true},
+		category:'Florists',
+	});
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
@@ -12126,7 +12834,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		score:3,
 		ocean:true
 	});
-	
+
 	//TODO : all the following
 	new G.Land({
 		name:'mountain',
