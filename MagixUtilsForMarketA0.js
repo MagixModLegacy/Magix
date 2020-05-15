@@ -1463,4 +1463,5 @@ G.getDict('market_sell').modes['magic essences']={
 			every:2,
 			mode:'flower'
 		});
+	
 }});
