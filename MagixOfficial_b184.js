@@ -1225,19 +1225,16 @@ if (!document.getElementById(cssId))
 		icon:[3,6],
 		tick:function(me,tick)
 		{
-			var se01=function(){
-				if(G.checkPolicy('se01')=='off'){return 1}else{return 1.2};
-			}
 			if (me.amount>0 && G.checkPolicy('disable spoiling')=='off')
 			{
 				var stored=Math.min(me.amount,G.getRes('food storage').amount)/me.amount;
 				var notStored=1-stored;
 				if(G.checkPolicy('se10')=='off'){
-				var toSpoil=me.amount*0.01*notStored+me.amount*0.0005*stored/se01;
+				var toSpoil=me.amount*0.01*notStored+me.amount*0.0005*stored;
 				var spent=G.lose('food',randomFloor(toSpoil),'decay');
 				//G.gain('spoiled food',randomFloor(spent));
 				}else{
-				var toSpoil=(me.amount*0.01*notStored+me.amount*0.0005*stored)*1.15/se01;
+				var toSpoil=(me.amount*0.01*notStored+me.amount*0.0005*stored)*1.15;
 				var spent=G.lose('food',randomFloor(toSpoil),'decay');
 				}
 			}
