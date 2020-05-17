@@ -4665,7 +4665,7 @@ if (!document.getElementById(cssId))
 			}
 			if(G.has('Music instruments') && G.checkPolicy('se03')=='off'){
 			G.getDict('storyteller').limitPer = {'population':400}
-			}else{
+			}else if(G.checkPolicy('se03')=='on'){
 			G.getDict('storyteller').limitPer = {'population':350}
 			G.getDict('musician').limitPer = {'population':350}
 			}
