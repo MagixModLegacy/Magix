@@ -11924,10 +11924,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'Worship point':4}},		
 		]
 	});
-let tabload = false
-    
-        if (G.achievByName['Next to the God'].won>=1){tabload=true};
-    if(tabload==true){
         G.tabs.push({
                 name:'Pantheon',
                 id:'pantheon',
@@ -11937,19 +11933,7 @@ let tabload = false
                 });
 	   console.log('Pantheon tab test.');
         G.buildTabs()
-        }
-	G.tabs=
-	[
-		{name:'Production',id:'unit',update:'unit',desc:'Recruit units and create buildings.'},
-		{name:'Territory',id:'land',update:'land',showMap:true,desc:'View the world map, inspect explored territory and see your natural resources.'},
-		{name:'Diplomacy',id:'diplo',showMap:true,desc:'View and interact with other civilizations; conduct trade and send armies.'},//later
-		{name:'Policies',id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
-		{name:'Traits',id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
-		{name:'Research',id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
-		{name:'Settings',id:'settings',popup:true,addClass:'right',desc:'Change the game\'s settings.'},
-		{name:'Update log',id:'updates',popup:true,addClass:'right',desc:'View the game\'s version history and other information.'},
-		{name:'Legacy',id:'legacy',popup:true,addClass:'right',desc:'View your legacy stats and achievements.'}
-	]
+        
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
