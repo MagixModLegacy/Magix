@@ -5714,7 +5714,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
 			{type:'gather',what:{'faith':0.05},req:{'symbolism':true,'symbolism II':false}},
-			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
+			{type:'gather',what:{'faith':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
