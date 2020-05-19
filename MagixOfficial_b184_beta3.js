@@ -422,6 +422,7 @@ G.writeMSettingButton=function(obj)
 		str+=
 			'<div class="behindBottomUI">'+
 			G.textWithTooltip('#?!','<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization\'s long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>','infoButton')+
+	}
 var cssId = 'betaCss';  
 if (!document.getElementById(cssId))
 {
