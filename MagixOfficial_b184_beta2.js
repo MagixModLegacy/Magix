@@ -369,7 +369,7 @@ G.writeMSettingButton=function(obj)
                 id:'pantheon',
                 popup:false,
                 addClass:'left',
-                desc:'Take on.',
+                desc:'Take on the Trial from this tab.',
                 });
 	  
 		
@@ -416,6 +416,12 @@ G.writeMSettingButton=function(obj)
 		'</div>';
 		return str;
 	}
+	G.update['pantheon']=function()
+	{
+		var str='';
+		str+=
+			'<div class="behindBottomUI">'+
+			G.textWithTooltip('#?!','<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization\'s long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>','infoButton')+
 var cssId = 'betaCss';  
 if (!document.getElementById(cssId))
 {
