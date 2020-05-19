@@ -364,15 +364,7 @@ G.writeMSettingButton=function(obj)
 			addClass:'right',
 			desc:'Options and information about the Magix mod.'
 		});
-		if (G.has('Life in faith')){
-		G.tabs.push({
-			name:'Pantheon',
-			id:'pantheon',
-			popup:false,
-			addClass:'left',
-			desc:'Take on.'
-		});
-		}
+		
 		// Don't make assumptions about the existing tabs
 		// (or another mod that does the same thing)
 		// make sure everything is numbered and built properly
@@ -11929,35 +11921,17 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'Life in faith':true,'monument-building III':true},
 		cost:{'insight II':100,'faith II':10,'culture II':30,'godTemplePoint':500},
 		effects:[
-			{type:'provide res',what:{'Worship point':4}},
-			{type:'function',func:function(){		
-		////////////////////////////////////////
-	/*PANTHEON TAB
-	if (!G.mSettingsLoaded)
-	{
+			{type:'provide res',what:{'Worship point':4}},		
+		]
+	});
+		if (G.has('Life in faith')){
 		G.tabs.push({
 			name:'Pantheon',
 			id:'pantheon',
 			popup:false,
 			addClass:'left',
-			desc:'From this tab you may take on a Seraphin\'s trial.'
+			desc:'Take on.'
 		});
-		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
-		G.buildTabs();
-	}
-	G.update['pantheon']=function()
-	{
-		var str='';
-		str+='<span class="tooltiped infoButton" id="textspan-36"></span>'
-		l('pantheonDiv').innerHTML=
-		G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">From this tab you may take on a Seraphin\'s trial. <hr> To take on a trial first choose the seraphins you\'ll make your people worship. <br>Then you will see there list of available trials. <hr>You can read more about the trial and start it. Completing trials will award you with <b>Victory points</b>.<br>Almost each trial is repeatable. <hr>Gaining of Victory points looks like: <li>1st victory of the trial: +1 point</li> <li> 2nd victory of the same trial: +2 points so (1+2=3) and so on. <hr>Completing trials for the first time may gain special bonuses. Each trial has its own wonder.</div></div>','infoButton')+
-		'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="pantheonDiv" class="thingBox"></div></div></div>';
-	}
-	////////////////////////////////////////////////////*/
-			}}
-		]
-	});
-	
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
