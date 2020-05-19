@@ -250,7 +250,7 @@ G.getDict('market_sell').modes['magic essences']={
 			name:'Wheat',
 			icon:[23,10,'magixmod'],
 			desc:'Sell [wheat] for [market_coin].',
-			req:{'Mo\' tradez':true}
+			req:{'Mo\' tradez':true,'Farm of wheat':true}
 		};
 		G.getDict('market_sell').effects.push({
 			type:'convert',
@@ -529,7 +529,7 @@ G.getDict('market_sell').modes['magic essences']={
 			name:'Wheat',
 			icon:[23,10,'magixmod'],
 			desc:'Buy [wheat] with [market_coin].',
-			req:{'Mo\' tradez':true}
+			req:{'Mo\' tradez':true,'Farm of wheat':true}
 		};
 		G.getDict('market_buy').effects.push({
 			type:'convert',
@@ -804,7 +804,7 @@ G.getDict('market_sell').modes['magic essences']={
 			name:'Wheat',
 			icon:[23,10,'magixmod'],
 			desc:'Sell [wheat] for [market_coin].',
-			req:{'Mo\' tradez':true}
+			req:{'Mo\' tradez':true,'Farm of wheat':true}
 		};
 		G.getDict('bazaar_sell').effects.push({
 			type:'convert',
@@ -1083,7 +1083,7 @@ G.getDict('market_sell').modes['magic essences']={
 			name:'Wheat',
 			icon:[23,10,'magixmod'],
 			desc:'Buy [wheat] with [market_coin].',
-			req:{'Mo\' tradez':true}
+			req:{'Mo\' tradez':true,'Farm of wheat':true}
 		};
 		G.getDict('bazaar_buy').effects.push({
 			type:'convert',
@@ -1358,7 +1358,7 @@ G.getDict('market_sell').modes['magic essences']={
 			name:'Wheat',
 			icon:[23,10,'magixmod'],
 			desc:'Sell [wheat] for [market_coin].',
-			req:{'Mo\' tradez':true}
+			req:{'Mo\' tradez':true,'Farm of wheat':true}
 		};
 		G.getDict('trader_sell').effects.push({
 			type:'convert',
@@ -1637,7 +1637,7 @@ G.getDict('market_sell').modes['magic essences']={
 			name:'Wheat',
 			icon:[23,10,'magixmod'],
 			desc:'Buy [wheat] with [market_coin].',
-			req:{'Mo\' tradez':true}
+			req:{'Mo\' tradez':true,'Farm of wheat':true}
 		};
 		G.getDict('trader_buy').effects.push({
 			type:'convert',
