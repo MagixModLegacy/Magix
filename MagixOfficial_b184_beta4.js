@@ -420,8 +420,7 @@ G.writeMSettingButton=function(obj)
 	{
 		var str='';
 		str+=
-			'<div class="behindBottomUI">'+
-			G.textWithTooltip('#?!','<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization\'s long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>','infoButton')+
+			G.textWithTooltip('#?!','<div style="width:240px;text-align:left;"><div class="par">From this tab you may take on the trial. Trials are unlcokable by choosing Seraphins. 11 of 12 seraphins have repeatable trials. <br>However doing the same trial for 2nd time after 1st completion will be harder. <hr>For finishing trials you may get Victory Points which cannot be spent but can unlock new things.<br>Points gaining:<li>For the first time completed trial: +1 VP</li><li>The same trial completed for 2nd time: +2 VP (1+2=3)</li><li>For the 3rd time the same: +3 VP (1+2+3=6)<hr>Each of the Trials has its own wonder and building it finishes the trial. If you complete the trial for the first time you will get an unique for each Trial bonus.','infoButton')+
 	}
 var cssId = 'betaCss';  
 if (!document.getElementById(cssId))
