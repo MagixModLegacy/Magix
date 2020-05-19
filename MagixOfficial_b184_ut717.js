@@ -11931,7 +11931,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
            	 popup:false,
            	 addClass:'left',
             	desc:'Take on.',
-            	id:12345
        	 	});
 		G.buildTabs()
 		}
