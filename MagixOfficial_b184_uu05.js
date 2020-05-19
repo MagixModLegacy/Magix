@@ -11924,20 +11924,19 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'Worship point':4}},		
 		]
 	});
-	let tabload = false
-	
-		if (G.achievByName['Next to the God'].won>0){tabload=true};
-	if(tabload==true){
-		G.tabs.push({
-           	 name:'Pantheon',
-           	 id:'pantheon',
-           	 popup:false,
-           	 addClass:'left',
-            	desc:'Take on.',
-       	 	});
-		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
-		G.buildTabs()
-		}
+let tabload = false
+    
+        if (G.achievByName['Next to the God'].won>0){tabload=true};
+    if(tabload==true){
+        G.tabs.push({
+                name:'Pantheon',
+                id:'pantheon',
+                popup:false,
+                addClass:'left',
+                desc:'Take on.',
+                });
+        G.buildTabs()
+        }
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
