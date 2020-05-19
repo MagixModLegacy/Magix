@@ -419,7 +419,8 @@ G.writeMSettingButton=function(obj)
 	 G.update['pantheon']=function()
     {
         var str='';
-        str+='<span class="tooltiped infoButton" id="textspan-36">TESTTEST</span>'+
+        'TESTTEST'+
+	return str;
     }
 	
 var cssId = 'betaCss';  
