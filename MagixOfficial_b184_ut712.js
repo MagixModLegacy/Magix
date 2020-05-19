@@ -364,6 +364,15 @@ G.writeMSettingButton=function(obj)
 			addClass:'right',
 			desc:'Options and information about the Magix mod.'
 		});
+		if (G.has('Life in faith')){
+		G.tabs.push({
+			name:'Pantheon',
+			id:'pantheon',
+			popup:false,
+			addClass:'left',
+			desc:'Take on.'
+		});
+		}
 		// Don't make assumptions about the existing tabs
 		// (or another mod that does the same thing)
 		// make sure everything is numbered and built properly
@@ -1225,19 +1234,16 @@ if (!document.getElementById(cssId))
 		icon:[3,6],
 		tick:function(me,tick)
 		{
-			var se01=function(){
-				if(G.checkPolicy('se01')=='off'){return 1}else{return 1.2};
-			}
 			if (me.amount>0 && G.checkPolicy('disable spoiling')=='off')
 			{
 				var stored=Math.min(me.amount,G.getRes('food storage').amount)/me.amount;
 				var notStored=1-stored;
 				if(G.checkPolicy('se10')=='off'){
-				var toSpoil=me.amount*0.01*notStored+me.amount*0.0005*stored/se01;
+				var toSpoil=me.amount*0.01*notStored+me.amount*0.0005*stored;
 				var spent=G.lose('food',randomFloor(toSpoil),'decay');
 				//G.gain('spoiled food',randomFloor(spent));
 				}else{
-				var toSpoil=(me.amount*0.01*notStored+me.amount*0.0005*stored)*1.15/se01;
+				var toSpoil=(me.amount*0.01*notStored+me.amount*0.0005*stored)*1.15;
 				var spent=G.lose('food',randomFloor(toSpoil),'decay');
 				}
 			}
@@ -4668,7 +4674,7 @@ if (!document.getElementById(cssId))
 			}
 			if(G.has('Music instruments') && G.checkPolicy('se03')=='off'){
 			G.getDict('storyteller').limitPer = {'population':400}
-			}else{
+			}else if(G.checkPolicy('se03')=='on'){
 			G.getDict('storyteller').limitPer = {'population':350}
 			G.getDict('musician').limitPer = {'population':350}
 			}
@@ -5159,7 +5165,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'culture':0.1}},
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true,'symbolism II':false}},
-			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
+			{type:'gather',what:{'culture':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
@@ -5717,7 +5723,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
 			{type:'gather',what:{'faith':0.05},req:{'symbolism':true,'symbolism II':false}},
-			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
+			{type:'gather',what:{'faith':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
