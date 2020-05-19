@@ -364,6 +364,14 @@ G.writeMSettingButton=function(obj)
 			addClass:'right',
 			desc:'Options and information about the Magix mod.'
 		});
+		     G.tabs.push({
+                name:'Pantheon',
+                id:'pantheon',
+                popup:false,
+                addClass:'left',
+                desc:'Take on.',
+                });
+	  
 		
 		// Don't make assumptions about the existing tabs
 		// (or another mod that does the same thing)
@@ -11925,15 +11933,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'Worship point':4}},		
 		]
 	});
-        G.tabs.push({
-                name:'Pantheon',
-                id:'pantheon',
-                popup:false,
-                addClass:'left',
-                desc:'Take on.',
-                });
-	   console.log('Pantheon tab test.');
-        G.buildTabs()
+  
         
 	/*=====================================================================================
 	POLICIES
