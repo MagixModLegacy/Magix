@@ -11935,6 +11935,7 @@ let tabload = false
                 addClass:'left',
                 desc:'Take on.',
                 });
+	   console.log('Pantheon tab test.');
         G.buildTabs()
         }
 	/*=====================================================================================
