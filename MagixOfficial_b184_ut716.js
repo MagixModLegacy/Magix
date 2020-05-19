@@ -11926,12 +11926,14 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	});
 		if (G.achievByName['Next to the God'].won>0){
 		G.tabs.push({
-			name:'Pantheon',
-			id:'pantheon',
-			popup:false,
-			addClass:'left',
-			desc:'Take on.'
-		});
+           	 name:'Pantheon',
+           	 id:'pantheon',
+           	 popup:false,
+           	 addClass:'left',
+            	desc:'Take on.',
+            	id:12345
+       	 	});
+		G.buildTabs()
 		}
 	/*=====================================================================================
 	POLICIES
