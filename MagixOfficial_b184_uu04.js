@@ -11924,7 +11924,10 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'Worship point':4}},		
 		]
 	});
-		if (G.achievByName['Next to the God'].won>0){
+	let tabload = false
+	
+		if (G.achievByName['Next to the God'].won>0){tabload=true};
+	if(tabload==true){
 		G.tabs.push({
            	 name:'Pantheon',
            	 id:'pantheon',
