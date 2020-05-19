@@ -11938,6 +11938,10 @@ let tabload = false
 	   console.log('Pantheon tab test.');
         G.buildTabs()
         }
+	G.tabs=
+	[
+			{name:'Production',id:'unit',update:'unit',desc:'Recruit units and create buildings.'}
+		]
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
