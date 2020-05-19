@@ -5156,7 +5156,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'gather',what:{'culture':0.1}},
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true,'symbolism II':false}},
-			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
+			{type:'gather',what:{'culture':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
