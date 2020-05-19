@@ -420,7 +420,7 @@ G.writeMSettingButton=function(obj)
     {
         var str='';
         'TESTTEST'+
-	return str;
+	str;
     }
 	
 var cssId = 'betaCss';  
