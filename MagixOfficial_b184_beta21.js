@@ -369,7 +369,7 @@ G.writeMSettingButton=function(obj)
       id: 'pantheon',
       popup: false,
       addClass: 'left',
-      desc: 'Take on.',
+      desc: 'Take on the Seraphin\'s trial.',
       update: "pantheon"
   });
   G.buildTabs()
@@ -11982,7 +11982,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	});
 	new G.Tech({
 		name:'herbalism',
-		desc:'[gatherer] can gain more [herb].//Previously they were missing most of herbs because they were thinking that is just a grass.',
+		desc:'[gatherer] can now gahter [herb].//Previously they were missing most of herbs because they were thinking that is just a simple grass.',
 		icon:[31,27,'magixmod'],
 		req:{'language':true},
 		cost:{'insight':10},
