@@ -414,7 +414,6 @@ G.writeMSettingButton=function(obj)
 		'But i can say sooner or later if it will be <b>possible and reasonable</b> i may think about compatibilty with mods of other people.</div>'+
 		'<div class="fancyText title">Will you add more wonders or portals?</div>'+
 		'Yes i will... unless i run out of ideas so then i won\'t :D'+
-		'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png" />'+
 		'<div class="fancyText title">How i can ask you by question which is not in Q&A there?</div>'+
 		'Find me at <a href="https://discordapp.com/invite/cookie" target="_blank">Dashnet discord server</a><div>'+
 		'<span style "color: #FF0000"><b>IMPORTANT NOTE! I am not responsible if some crazy bugs and issues will occur in debug mode</b></span>'+
