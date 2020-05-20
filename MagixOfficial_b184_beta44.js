@@ -8798,7 +8798,7 @@ new G.Unit({
 		],
 	});
 	/*=====================================================================================
-	TECHS
+	TECHS  
 	=======================================================================================*/
 	
 	new G.ChooseBox({
@@ -8810,8 +8810,11 @@ getCosts:function()
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
             if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
-            }
+            }else if(G.has('Eotm') && G.hasNot('do we need that much science?')){
             return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
+	    }else if(G.has('Eotm') && G.has('do we need that much science?')){
+		    return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.1) }
+	    }
         },
 		getCardCosts:function(what)
 		{
@@ -12145,6 +12148,15 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[14,27,'magixmod'],
 		req:{'Paradise housing':true,'A leaf of wisdom':true},
 		cost:{'insight II':150,'culture II':40,'influence II':10,'science':10,'insight':580},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'do we need that much science?',
+		desc:'Halves amount of required to roll/reroll new tech choices [science].',
+		icon:[9,27,'magixmod'],
+		req:{'A leaf of wisdom':true,'power of the faith':true},
+		cost:{'insight II':150,'faith II':14,'science':16,'influence II':15},
 		effects:[
 		],
 	});
