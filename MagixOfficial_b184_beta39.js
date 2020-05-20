@@ -12140,7 +12140,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	});
 	new G.Tech({
 		name:'Paradise shelters',
-		desc:'Unlocks [paradise shelter]. Made out of stones with good construction can fit 4 people. Of course as the other Paradise housing is limited. <br>In addition adds +1 [housing] every 4 [Paradise shelter]s.',
+		desc:'Unlocks [paradise shelter]. Made out of stones with good construction can fit 4 people. Of course as the other Paradise housing is limited. <br>In addition adds +1 [housing] every 4 [paradise shelter]s.',
 		icon:[14,27,'magixmod'],
 		req:{'Paradise housing':true},
 		cost:{'insight II':150,'culture II':40,'influence II':10,'science':10},
