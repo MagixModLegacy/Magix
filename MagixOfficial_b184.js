@@ -4663,7 +4663,7 @@ if (!document.getElementById(cssId))
 			if(G.has('symbolism II')){
 			G.getDict('storyteller').icon = [29,7,'magixmod']
 			}
-			if(G.has('Music instruments') && G.checkPolicy('se03')=='off'){
+			if(G.has('Music instruments')){
 			G.getDict('storyteller').limitPer = {'population':400}
 			}else if(G.checkPolicy('se03')=='on'){
 			G.getDict('storyteller').limitPer = {'population':350}
