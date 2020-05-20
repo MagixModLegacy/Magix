@@ -5168,7 +5168,8 @@ if (!document.getElementById(cssId))
 		//upkeep:{'food':0.2},
 		//alternateUpkeep:{'food':'spoiled food'},
 		effects:[
-			{type:'gather',context:'gather',amount:2,max:4},//,multMax:{'leather pouches':1.1}//TODO
+			{type:'gather',context:'gather',amount:2,max:4},
+			{type:'gather',context:'gather',what:{'herb'},amount:0.8,max:3.2,req:{'herbalism':false}},//To keep early game possible
 			//{type:'gather',context:'gather',what:{'water':1,'muddy water':1},amount:1,max:3,req:{'gathering focus':'water'}},
 			{type:'gather',context:'gather',what:{'water':1,'muddy water':1},amount:1,max:3},
 			{type:'gather',context:'gather',what:{'herb':0.5,'fruit':0.5},amount:1,max:1,req:{'plant lore':true}},
@@ -12011,7 +12012,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	});
 	new G.Tech({
 		name:'herbalism',
-		desc:'[gatherer] can now gather [herb].//Previously they were missing most of herbs because they were thinking that is just a simple grass.',
+		desc:'[gatherer] can now gather [herb] amount depending on biome.//Previously they were missing most of herbs because they were thinking that is just a simple grass.',
 		icon:[31,27,'magixmod'],
 		req:{'language':true},
 		cost:{'insight':10},
@@ -12133,7 +12134,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'People wonder about their lives. Provides 50 [inspiration] for free. //Conclusions and guides related to life also spread making others being less insecure and help finding answers to questions like: What to do? What to choose? How should I live?',
 		icon:[18,27,'magixmod'],
 		req:{'philosophy':true,'<span style="color: ##FF0900">Paradise building</span>':true,'God\'s trait #3 Science^2':true},
-		cost:{'insight':1500,'culture':500},
+		cost:{'insight':2220,'culture':500},
 		effects:[
 			{type:'provide res',what:{'inspiration':50}},
 		],
@@ -12143,7 +12144,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Unlocks [paradise shelter]. Made out of stones with good construction can fit 4 people. Of course as the other Paradise housing is limited. <br>In addition adds +1 [housing] every 4 [paradise shelter]s.',
 		icon:[14,27,'magixmod'],
 		req:{'Paradise housing':true,'A leaf of wisdom':true},
-		cost:{'insight II':150,'culture II':40,'influence II':10,'science':10},
+		cost:{'insight II':150,'culture II':40,'influence II':10,'science':10,'insight':580},
 		effects:[
 		],
 	});
