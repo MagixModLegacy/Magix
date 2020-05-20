@@ -5157,7 +5157,8 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'insight':0.1}},
-			{type:'gather',what:{'insight':0.05},req:{'symbolism':true,'symbolism II':false}},
+			{type:'gather',what:{'insight':0.04},req:{'philosophy':false,'symbolism':true}},
+			{type:'gather',what:{'insight':0.05},req:{'philosophy':true,'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
@@ -7705,7 +7706,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'insight':4,'adult':1},into:{'Instructor':1},every:375,mode:'thoughts'},
 			{type:'mult',value:1.01,req:{'se11':'on'}},
 		],
-		req:{'speech':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'speech':true,'<font color="yellow">A gift from the Mausoleum</font>':true,'instruction':true},
 		category:'discovery',
 		priority:5,
 	});
@@ -9450,7 +9451,7 @@ getCosts:function()
 		name:'Essence storages',
 		desc:'<span style="color: #FF00FF">Essence has to be stored somewhere. So do not wait and build!</span>',
 		icon:[5,0,'magixmod'], //WIP
-		cost:{'insight':100,'Mana':317,'faith':8,'Wand':260},
+		cost:{'insight':100,'Mana':317,'faith':8,'Wand':200},
 		effects:[
 			{type:'provide res',what:{'fire essence limit':1}},
 			{type:'provide res',what:{'water essence limit':1}},
@@ -10050,7 +10051,7 @@ autobuy(G.year)
 		name:'Magical filtering way',
 		desc:'Obtaining this tech will make filters that convert [Cloudy water] or [muddy water] work 175% more efficient .<>Upkeep cost won\'t grow up so do not worry. These are all upgrades you can currently obtain for filtering.',
 		icon:[25,8,'magixmod'], 
-		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
+		cost:{'insight':1295,'wisdom':25,'Wind essence':775,'cloud':1990},
 		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
 		new G.Tech({
@@ -11762,7 +11763,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'backshift at farms',
 		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech.',
 		icon:[31,14,'magixmod'],
-		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5,'insight':374},
+		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5,'insight':293},
 		req:{'improved windmill motors':true,'<font color="maroon">Moderation</font>':true},
 		chance:2,
 	});
@@ -11805,7 +11806,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Juicy nutritious magical soil',
 		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] and previous soil upgrades.',
 		icon:[31,11,'magixmod'], 
-		cost:{'insight II':190,'culture II':20,'Juices':1050,'culture':93},
+		cost:{'insight II':190,'culture II':20,'Juices':1050,'culture':188},
 		req:{'Policy revaluation':true,'Nutritious magical soil':true,'Magical presence':true}
 	});
 			new G.Tech({
@@ -11826,7 +11827,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'More humid water',
 		desc:'[Sugar cane farm] produces 250% more [Sugar cane]',
 		icon:[31,23,'magixmod'],
-		cost:{'insight':495},
+		cost:{'insight':590},
 		req:{'Moar juices':true},
 	});
 		new G.Tech({
@@ -11945,7 +11946,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab.',
 		icon:[4,25,'magixmod'],
 		req:{'Life in faith':true,'monument-building III':true},
-		cost:{'insight II':100,'faith II':10,'culture II':30,'godTemplePoint':500},
+		cost:{'insight II':100,'faith II':10,'culture II':30,'godTemplePoint':500,'faith':80},
 		effects:[
 			{type:'provide res',what:{'Worship point':4}},		
 		]
@@ -12024,7 +12025,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	});
 	new G.Tech({
 		name:'philosophy',//Unlocks thot if Thot Mod installed :)
-		desc:'Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%.',
+		desc:'Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.',
 		icon:[23,27,'magixmod'],
 		req:{'alphabet 2/3':true},
 		cost:{'insight':400},
