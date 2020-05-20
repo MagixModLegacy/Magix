@@ -12153,7 +12153,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	});
 	new G.Tech({
 		name:'do we need that much science?',
-		desc:'Halves amount of required to roll/reroll new tech choices [science].',
+		desc:'Halves amount of required [science] to roll/reroll new tech choices.',
 		icon:[9,27,'magixmod'],
 		req:{'A leaf of wisdom':true,'power of the faith':true},
 		cost:{'insight II':150,'faith II':14,'science':16,'influence II':15},
