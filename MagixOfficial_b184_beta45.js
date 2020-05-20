@@ -5169,7 +5169,7 @@ if (!document.getElementById(cssId))
 		//alternateUpkeep:{'food':'spoiled food'},
 		effects:[
 			{type:'gather',context:'gather',amount:2,max:4},
-			{type:'gather',context:'gather',what:{'herb'},amount:0.8,max:3.2,req:{'herbalism':false}},//To keep early game possible
+			{type:'gather',context:'gather',what:{'herb':1.5},req:{'herbalism':false}},//To keep early game possible
 			//{type:'gather',context:'gather',what:{'water':1,'muddy water':1},amount:1,max:3,req:{'gathering focus':'water'}},
 			{type:'gather',context:'gather',what:{'water':1,'muddy water':1},amount:1,max:3},
 			{type:'gather',context:'gather',what:{'herb':0.5,'fruit':0.5},amount:1,max:1,req:{'plant lore':true}},
