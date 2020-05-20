@@ -4944,7 +4944,7 @@ if (!document.getElementById(cssId))
 			}
 			if(G.modsByName['Thot Mod']){
 				G.getDict('thot').req={'philosophy':true}
-				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot].'
+				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
