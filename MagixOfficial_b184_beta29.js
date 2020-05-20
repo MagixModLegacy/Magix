@@ -4945,7 +4945,7 @@ if (!document.getElementById(cssId))
 			if(G.modsByName['Thot Mod']){
 				G.getDict('thot').req={'philosophy':true}
 				if(G.hasNot('philosophy')){
-					G.getDict('thot').effects.push({type:'mult',value:0});
+					G.getDict('thot').effects.push({type:'mult',value:0,req:{'philosophy':false}});
 					G.getDict('thot').icon=[28,2,'magixmod',0,0,'thotSheet']
 				}else if(G.has('philosophy')){
 					G.getDict('thot').effects.push({type:'mult',value:1});
@@ -12065,7 +12065,49 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'wisdom':25}},
 		]
 	});
-        
+        if(G.modsByName['Thot Mod']){
+		new G.Trait({
+		name:'natural philosophy',
+		desc:'[thot] is 10% more efficient. Also [Thoughts sharer] becomes 5% more efficient(additive).',
+		icon:[22,27,'magixmod'],
+		req:{'alphabet 3/3':true},
+		cost:{'insight':600,'culture':300},
+		effects:[
+		]
+		chance:100
+	});
+		new G.Tech({
+		name:'natural philosophy II',
+		desc:'[dreamer] is 10% more efficient. [thot] becomes 10% more efficient(additive with [natural philosophy,Natural philosophy I]) Also [Thoughts sharer] becomes 5% more efficient(additive).',
+		icon:[20,27,'magixmod'],
+		req:{'alphabet 3/3':true,'symbolism III':true},
+		cost:{'insight II':60,'culture II':30},
+		effects:[
+		]
+		chance:5
+	});
+		new G.Trait({
+		name:'philosophy II',
+		desc:'[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].',
+		icon:[19,27,'magixmod'],
+		req:{'alphabet 3/3':true,'symbolism III':true},
+		cost:{'insight II':60,'culture II':30},
+		effects:[
+			{type:'provide res',what:{'science':6}},
+		]
+		chance:100
+	});
+	}
+		new G.Trait({
+		name:'mastered caligraphy',
+		desc:'<font color="#aaffff">Most of people can write and their writings are preety easy to read. Amount of almost unreadeable writings is slightly decreased. <br>Provides 5[education].</font>',
+		icon:[14,27,'magixmod'],
+		req:{'Eotm':true},
+		cost:{'insight II':15,'culture II':15},
+		effects:[	
+		],
+			category:'knowledge'
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
