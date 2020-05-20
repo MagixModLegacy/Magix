@@ -4942,6 +4942,10 @@ if (!document.getElementById(cssId))
 			G.getDict('succulents').res['gather']['herb']=3;
 			G.getDict('jungle fruits').res['gather']['herb']=1;
 			}
+			if(G.modsByName['Thot Mod']){
+				G.getDict('thot').req={'philosophy':true}
+				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot].'
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
