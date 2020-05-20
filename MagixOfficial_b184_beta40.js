@@ -8362,7 +8362,7 @@ new G.Unit({
 	});
 		new G.Unit({
 		name:'paradise shelter',
-		desc:'@provides 4 housing @+1 [housing] per each 4 [paradise shelter,shelter]s. Shelter is camouphlaged, so people feel safer inside of this construction. Seems like God doesn\'t mind about it.',
+		desc:'@provides 4 housing @+1 [housing] per each 4 [paradise shelter,Shelters]. Shelter is camouphlaged, so people feel safer inside of this construction. Seems like God doesn\'t mind about it.',
 		icon:[13,27,'magixmod'],
 		cost:{'archaic building materials':100,'cut stone':150,'lumber':25 /*lumber because scaffolding*/,'clay':100/*mortar*/,'herb':2500/*Cover*/},
 		use:{'Land of the Paradise':1},
