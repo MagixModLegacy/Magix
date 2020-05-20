@@ -4935,6 +4935,12 @@ if (!document.getElementById(cssId))
 			G.getDict('seals').res['hunt']['hide']=0.5;
 			G.getDict('crocodiles').res['hunt']['leather']=0.5;
 			}
+			if(G.has('herbalism')){
+			G.getDict('grass').res['gather']['herb']=10;
+			G.getDict('berry bushes').res['gather']['herb']=0.25;
+			G.getDict('forest mushrooms').res['gather']['herb']=4;
+			G.getDict('succulents').res['gather']['herb']=3;
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -13006,7 +13012,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[grass] is a good source of [herb]s; you may also occasionally find some [fruit]s and [stick]s while foraging.',
 		icon:[10,10],
 		res:{
-			'gather':{'herb':10,'fruit':0.5,'stick':0.5},
+			'gather':{'herb':2,'fruit':0.5,'stick':0.5},
 		},
 		mult:10,
 	});
@@ -13081,7 +13087,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[berry bush,Berry bushes] can be foraged for [fruit]s, [stick]s and sometimes [herb]s.',
 		icon:[4,10],
 		res:{
-			'gather':{'fruit':3,'stick':0.5,'herb':0.25},
+			'gather':{'fruit':3,'stick':0.5,'herb':0.625},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
@@ -13091,7 +13097,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[forest mushrooms] grow in the penumbra of the underbrush, and often yield all sorts of interesting [herb]s.',
 		icon:[5,10],
 		res:{
-			'gather':{'herb':4},
+			'gather':{'herb':0.8},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
@@ -13101,7 +13107,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Hardy cactii that grow in the desert. While tricky to harvest, [succulents] can provide [herb]s and [fruit]s.',
 		icon:[6,10],
 		res:{
-			'gather':{'fruit':1,'herb':3},
+			'gather':{'fruit':1,'herb':0.6},
 			'flowers':{'cactus':1,'Crown imperial':0.25},
 		},
 		affectedBy:['scarce forageables'],
