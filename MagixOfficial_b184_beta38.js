@@ -12132,7 +12132,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		name:'Life-guiding',
 		desc:'People wonder about their lives. Provides 50 [inspiration] for free. //Conclusions and guides related to life also spread making others being less insecure and help finding answers to questions like: What to do? What to choose? How should I live?',
 		icon:[18,27,'magixmod'],
-		req:{'philosophy':true,'Ambrosium crafting':true,'God\'s trait #3 Science^2'},
+		req:{'philosophy':true,'Ambrosium crafting':true,'God\'s trait #3 Science^2':true},
 		cost:{'insight':1500,'culture':500},
 		effects:[
 			{type:'provide res',what:{'inspiration':50}},
