@@ -4937,7 +4937,7 @@ if (!document.getElementById(cssId))
 			}
 			if(G.has('herbalism')){
 			G.getDict('grass').res['gather']['herb']=10;
-			G.getDict('berry bushes').res['gather']['herb']=0.25;
+			G.getDict('berry bush').res['gather']['herb']=0.25;
 			G.getDict('forest mushrooms').res['gather']['herb']=4;
 			G.getDict('succulents').res['gather']['herb']=3;
 			G.getDict('jungle fruits').res['gather']['herb']=1;
