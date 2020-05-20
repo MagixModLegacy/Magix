@@ -12065,7 +12065,8 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'wisdom':25}},
 		]
 	});
-        if(G.modsByName['Thot Mod']){
+        if(G.modsByName['Thot Mod'])
+	{
 		new G.Trait({
 		name:'natural philosophy',
 		desc:'[thot] is 10% more efficient. Also [Thoughts sharer] becomes 5% more efficient(additive).',
@@ -12073,7 +12074,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'alphabet 3/3':true},
 		cost:{'insight':600,'culture':300},
 		effects:[
-		]
+		],
 		chance:100
 	});
 		new G.Tech({
@@ -12083,7 +12084,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'alphabet 3/3':true,'symbolism III':true},
 		cost:{'insight II':60,'culture II':30},
 		effects:[
-		]
+		],
 		chance:5
 	});
 		new G.Trait({
@@ -12094,7 +12095,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		cost:{'insight II':60,'culture II':30},
 		effects:[
 			{type:'provide res',what:{'science':6}},
-		]
+		],
 		chance:100
 	});
 	}
