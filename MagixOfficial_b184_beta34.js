@@ -4869,7 +4869,7 @@ if (!document.getElementById(cssId))
 				}
 			}
 			//3rd party achievement's code
-			if(G.modsByName['Market mod'] || G.modsByName['Coal mod'] || G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version']){
+			if(G.modsByName['Market mod'] || G.modsByName['Coal mod'] || G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version'] || G.modsByName['Thot Mod']){
 			   if(G.achievByName['3rd party'].won==0){
 			G.achievByName['3rd party'].won = 2 //Fix for displaying over time middleText
 			G.middleText('- Completed <font color="pink">3rd party</font> achievement -')
@@ -4956,6 +4956,7 @@ if (!document.getElementById(cssId))
 				}
 				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
 				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. //[thot] limit per is increased and becomes 75% less efficient'
+				G.getDict('philosophy II').desc:'[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].',desc:'[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -12092,9 +12093,8 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	});
 	}
 		new G.Tech({
-		name:'philosophy II',//If thot mod isn't installed boosts guru 
-		//notinstalled: guru is 10% more efficient,dreamer is 25% more efficient,provides 1-time 6 science bonus
-		desc:'[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].',
+		name:'philosophy II',
+		desc:'[dreamer] is 75% more efficient, and [Thoughts sharer] is 5% more efficient(additive).@provides 1-time bonus: +6 [science] ',
 		icon:[19,27,'magixmod'],
 		req:{'alphabet 3/3':true,'symbolism III':true},
 		cost:{'insight II':150,'culture II':30},
