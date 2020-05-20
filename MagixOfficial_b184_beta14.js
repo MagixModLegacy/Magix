@@ -11982,7 +11982,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'People can write at least. Because they do not have any paper yet they write on stones, logs etc. Required to unlock further researches.',
 		icon:[16,27,'magixmod'],
 		req:{'language':true},
-		cost:{'insight':20},
+		cost:{'insight':25},
 		effects:[	
 		]
 	});
