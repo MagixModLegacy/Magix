@@ -8360,6 +8360,19 @@ new G.Unit({
 		req:{'monument-building III':true},
 		category:'wonder',
 	});
+		new G.Unit({
+		name:'paradise shelter',
+		desc:'@provides 4 housing @+1 [housing] per each 4 [paradise shelter,shelter]s. Shelter is camouphlaged, so people feel safer inside of this construction. Seems like God doesn\'t mind about it.',
+		icon:[13,27,'magixmod'],
+		cost:{'archaic building materials':100,'cut stone':150,'lumber':25 /*lumber because scaffolding*/,'clay':100/*mortar*/,'herb':2500/*Cover*/},
+		use:{'Land of the Paradise':1},
+		limitPer:{'land':11,'population':400},
+		effects:[
+			{type:'provide',what:{'housing':4.25}},
+		],
+		req:{'Paradise shelters':true},
+		category:'paradiseunit',
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -12106,7 +12119,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	
 		new G.Trait({
 		name:'mastered caligraphy',
-		desc:'<font color="#aaffff">Most of people can write and their writings are preety easy to read. Amount of almost unreadeable writings is slightly decreased. <br>Provides 5[education].</font>',
+		desc:'<font color="#aaffff">Most of people in your population can write and their writings are preety easy to read. Amount of almost unreadeable writings is slightly decreased. <br>Provides 5[education].</font>',
 		icon:[15,27,'magixmod'],
 		req:{'Eotm':true},
 		cost:{'insight II':15,'culture II':15},
@@ -12114,6 +12127,25 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'education':5}},
 		],
 			category:'knowledge'
+	});
+		new G.Tech({
+		name:'Life-guiding',
+		desc:'People wonder about their lives. Provides 50 [inspiration] for free. //Conclusions and guides related to life also spread making others being less insecure and help finding answers to questions like: What to do? What to choose? How should I live?',
+		icon:[18,27,'magixmod'],
+		req:{'philosophy':true,'Ambrosium crafting':true,'God\'s trait #3 Science^2'},
+		cost:{'insight':1500,'culture':500},
+		effects:[
+			{type:'provide res',what:{'inspiration':50}},
+		],
+	});
+	new G.Tech({
+		name:'Paradise shelters',
+		desc:'Unlocks [paradise shelter]. Made out of stones with good construction can fit 4 people. Of course as the other Paradise housing is limited. <br>In addition adds +1 [housing] every 4 [Paradise shelter]s.',
+		icon:[14,27,'magixmod'],
+		req:{'Paradise housing':true},
+		cost:{'insight II':150,'culture II':40,'influence II':10,'science':10},
+		effects:[
+		],
 	});
 	/*=====================================================================================
 	POLICIES
