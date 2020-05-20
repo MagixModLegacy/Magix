@@ -9422,35 +9422,35 @@ getCosts:function()
 		new G.Tech({
 		name:'Wizard complex',
 		desc:'Complex of wizard towers. Expensive but The Complex produces all types of Essences three times better than usual towers. Each complex increases additionaly max [faith],[culture] & [influence]. Boosts max mana too.',
-		icon:[2,2,'magixmod'], //WIP
+		icon:[2,2,'magixmod'], 
 		cost:{'insight':480,'culture':30,'Mana':100,'influence':20},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard towers':true},
 	});
 		new G.Tech({
 		name:'First portal to new world',
 		desc:'<span style="color: #00A012">Your wizards discovered way to make a portal and now they plan to open a new dimension. What would it mean? It means, more place to build, more housing, more everything!</span>',
-		icon:[2,1,'magixmod'], //WIP
+		icon:[2,1,'magixmod'], 
 		cost:{'insight':1400,'culture':30,'Mana':2500,'influence':70},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true},
 	});
 		new G.Tech({
 		name:'Crafting a glass',
 		desc:'Since now your kilns will be able to craft glass out of sand.',
-		icon:[7,1,'magixmod'], //WIP
+		icon:[7,1,'magixmod'], 
 		cost:{'insight':45},
 		req:{'masonry':true,'smelting':true},
 	});
 		new G.Tech({
 		name:'churches',
-		desc:'Will generate milennialy some [spirituality]. Generates some faith at the lower rate than [soothsayer]. ',
-		icon:[7,2,'magixmod'], //WIP
-		cost:{'insight':95},
+		desc:'Unlocks [Church]. Another source of [faith]. ',
+		icon:[7,2,'magixmod'], 
+		cost:{'insight':135},
 		req:{'Wizardry':true,'Wizard wisdom':true},
 	});
 		new G.Tech({
 		name:'Essence storages',
 		desc:'<span style="color: #FF00FF">Essence has to be stored somewhere. So do not wait and build!</span>',
-		icon:[5,0,'magixmod'], //WIP
+		icon:[5,0,'magixmod'], 
 		cost:{'insight':100,'Mana':317,'faith':8,'Wand':200},
 		effects:[
 			{type:'provide res',what:{'fire essence limit':1}},
@@ -11105,7 +11105,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'guilds unite',
 		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 5 to 100. <>NOTE: Useless for now but applies new icons to [lodge] , [guild quarters]',
 		icon:[29,8,'magixmod'],
-		cost:{'insight II':20,'culture II':10,'influence II':5},
+		cost:{'insight II':20,'culture II':10,'influence II':5,'insight':45},
 		req:{'cities':true,'construction II':true,'code of law II':true},
 		effects:[
 		],
@@ -12019,7 +12019,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Slightly expands amount of characters in people\'s language',
 		icon:[26,27,'magixmod',25,27,'magixmod'],
 		req:{'alphabet 2/3':true,'artistic thinking':true,'Beginnings of alchemy':true},
-		cost:{'insight':1400,'culture':500,'inspiration':20,'wisdom':40},
+		cost:{'insight':1400,'culture':500,'inspiration':20,'wisdom':40,'faith':181},
 		effects:[	
 		]
 	});
