@@ -4920,8 +4920,21 @@ if (!document.getElementById(cssId))
 			G.achievByName['The first choice'].won = 1
 			G.middleText('- Completed <font color="cyan">The first choice</font> achievement -')
 			}
-			if(G.checkPolicy('se04')=='on' && G.checkPolicy('se05')=='off'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}}
-			if(G.checkPolicy('se05')=='on' && G.checkPolicy('se04')=='off'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}}
+			if(G.checkPolicy('se04')=='on' && G.checkPolicy('se05')=='off'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}};
+			if(G.checkPolicy('se05')=='on' && G.checkPolicy('se04')=='off'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}};
+			if(G.has('skinning')){
+			G.getDict('stoats').res['hunt']['hide']=1;
+			G.getDict('wild rabbits').res['hunt']['hide']=0.2;
+			G.getDict('koalas').res['hunt']['hide']=0.2;
+			G.getDict('deer').res['hunt']['hide']=0.6;
+			G.getDict('bears').res['hunt']['hide']=1;
+			G.getDict('polar bears').res['hunt']['hide']=1;
+			G.getDict('boars').res['hunt']['hide']=0.5;
+			G.getDict('foxes').res['hunt']['hide']=0.5;
+			G.getDict('wolves').res['hunt']['hide']=0.5;
+			G.getDict('seals').res['hunt']['hide']=0.5;
+			G.getDict('crocodiles').res['hunt']['leather']=0.5;
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -11958,19 +11971,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'hunting':true},
 		cost:{'insight':15},
 		effects:[
-			{type:'function',func:function(){
-			G.getDict('stoats').res['hunt']['hide']=1;
-			G.getDict('wild rabbits').res['hunt']['hide']=0.2;
-			G.getDict('koalas').res['hunt']['hide']=0.2;
-			G.getDict('deer').res['hunt']['hide']=0.6;
-			G.getDict('bears').res['hunt']['hide']=1;
-			G.getDict('polar bears').res['hunt']['hide']=1;
-			G.getDict('boars').res['hunt']['hide']=0.5;
-			G.getDict('foxes').res['hunt']['hide']=0.5;
-			G.getDict('wolves').res['hunt']['hide']=0.5;
-			G.getDict('seals').res['hunt']['hide']=0.5;
-			G.getDict('crocodiles').res['hunt']['leather']=0.5;
-			}}
 		]
 	});
 	new G.Tech({
