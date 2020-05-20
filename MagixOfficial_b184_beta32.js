@@ -12087,6 +12087,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		],
 		chance:5
 	});
+	}
 		new G.Trait({
 		name:'philosophy II',//If thot mod isn't installed boosts guru 
 		//notinstalled: guru is 10% more efficient,dreamer is 25% more efficient,provides 1-time 6 science bonus
