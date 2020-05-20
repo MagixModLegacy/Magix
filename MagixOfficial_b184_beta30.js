@@ -12088,24 +12088,26 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		chance:5
 	});
 		new G.Trait({
-		name:'philosophy II',
+		name:'philosophy II',//If thot mod isn't installed boosts guru 
+		//notinstalled: guru is 10% more efficient,dreamer is 25% more efficient,provides 1-time 6 science bonus
 		desc:'[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].',
 		icon:[19,27,'magixmod'],
 		req:{'alphabet 3/3':true,'symbolism III':true},
-		cost:{'insight II':60,'culture II':30},
+		cost:{'insight II':150,'culture II':30},
 		effects:[
 			{type:'provide res',what:{'science':6}},
 		],
 		chance:100
 	});
-	}
+	
 		new G.Trait({
 		name:'mastered caligraphy',
 		desc:'<font color="#aaffff">Most of people can write and their writings are preety easy to read. Amount of almost unreadeable writings is slightly decreased. <br>Provides 5[education].</font>',
 		icon:[14,27,'magixmod'],
 		req:{'Eotm':true},
 		cost:{'insight II':15,'culture II':15},
-		effects:[	
+		effects:[
+			{type:'provide res',what:{'education':5}},
 		],
 			category:'knowledge'
 	});
