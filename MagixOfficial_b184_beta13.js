@@ -8993,7 +8993,7 @@ getCosts:function()
 		desc:'@unlocks [architect]s<>',
 		icon:[22,8],
 		cost:{'insight':25},
-		req:{'construction':true,'cities':true},
+		req:{'construction':true,'cities':true,'caligraphy':true,'alphabet 1/3':true},
 		effects:[
 		],
 	});
@@ -9054,7 +9054,7 @@ getCosts:function()
 		desc:'@[gatherer]s find more [herb]s and [fruit]s<>The knowledge of which plants are good to eat and which mean certain death is a slow and perilous one to learn.',
 		icon:[23,7],
 		cost:{'insight':5},
-		req:{'oral tradition':true},
+		req:{'oral tradition':true,'herbalism':true},
 		effects:[
 		],
 	});
@@ -9063,7 +9063,7 @@ getCosts:function()
 		desc:'@unlocks [healer]s<>',
 		icon:[25,7],
 		cost:{'insight':10},
-		req:{'plant lore':true,'stone-knapping':true},
+		req:{'plant lore':true,'stone-knapping':true,'herbalism':true},
 		effects:[
 		],
 		chance:2,
@@ -9082,7 +9082,7 @@ getCosts:function()
 	
 	new G.Tech({
 		name:'symbolism',
-		desc:'@[dreamer]s produce 50% more [insight]@[storyteller]s produce 50% more [culture]@[soothsayer]s produce 50% more [faith]<>The manifestation of one thing for the meaning of another - to make the cosmos relate to itself.',
+		desc:'@[dreamer]s produce 40% more [insight]@[storyteller]s produce 50% more [culture]@[soothsayer]s produce 50% more [faith]<>The manifestation of one thing for the meaning of another - to make the cosmos relate to itself.',
 		icon:[13,1],
 		cost:{'culture':10,'insight':10},
 		req:{'oral tradition':true},
@@ -9103,7 +9103,7 @@ getCosts:function()
 	
 	new G.Tech({
 		name:'hunting',
-		desc:'@unlocks [hunter]s<>It is a common tragedy that a creature should die so that another may survive.',
+		desc:'@unlocks [hunter]s<>It is a common tragedy that a creature should die so that another may survive.//[hunter] can gather [hide] if [skinning] is unlocked.',
 		icon:[15,1],
 		cost:{'insight':5},
 		req:{'language':true,'tribalism':true},
@@ -9279,7 +9279,7 @@ getCosts:function()
 		desc:'@provides 15 [authority]@political units generate more [influence]<>',//TODO : desc
 		icon:[24,6],
 		cost:{'insight':20},
-		req:{'symbolism':true,'sedentism':true},
+		req:{'symbolism':true,'sedentism':true,'writing':true},
 		effects:[
 			{type:'provide res',what:{'authority':15}},
 		],
@@ -9581,7 +9581,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'education':0.4}},
 		],
-		req:{'oral tradition':true},
+		req:{'oral tradition':true,'writing':true},
 	});
 		new G.Tech({
 		name:'Intermediate maths',
@@ -10637,7 +10637,7 @@ autobuy(G.year)
 		icon:[13,18,'magixmod'],
 		cost:{'wisdom':75},
 		chance:475,
-		req:{'Will to know more':true},
+		req:{'Will to know more':true,'alphabet 2/3':true,'caligraphy':true},
 		category:'knowledge',
 	});
 		new G.Trait({
@@ -11327,7 +11327,7 @@ G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
 })
 	let Smartrait =  	new G.Trait({
         name:'<font color="orange">Smaller but efficient</font>',
-        desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
+        desc:'<span style="color: #aaffff">[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .</span>',
         icon:[28,23,'magixmod'],
         cost:{},
 	effects:[
@@ -11496,7 +11496,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Trait({
 		name:'Camp-cooking',
-		desc:'Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able to cook some [cooked meat,meat] for you.',
+		desc:'<span style="color: #aaffff">Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able to cook some [cooked meat,meat] for you.</span>',
 		icon:[15,24,'magixmod'],
 		cost:{'insight II':100},
 		req:{'Hunters & fishers unification':true},
@@ -11558,7 +11558,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Trait({
 		name:'Doctrine of the dark wormhole 2/5',
-		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine.',
+		desc:'<span style="color: #aaffff">Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine.</span>',
 		icon:[20,22,'magixmod',16,22,'magixmod'],
 		cost:{'insight II':105,'science':6,'faith II':4,'influence II':5,'culture II':15,'wisdom':100},
 		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true},
@@ -11582,7 +11582,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Trait({
 		name:'Doctrine of the dark wormhole 4/5',
-		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine describes ways of keeping the wormhole active. It is important thing too because if it will run out of power a tons of corpses will explode out of wormhole and people will be really, really mad. //Your [Wizard]s know exactly how big problem will occur if wormhole will run out of power. ',
+		desc:'<span style="color: #aaffff">Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine describes ways of keeping the wormhole active. It is important thing too because if it will run out of power a tons of corpses will explode out of wormhole and people will be really, really mad. //Your [Wizard]s know exactly how big problem will occur if wormhole will run out of power.</span> ',
 		icon:[18,22,'magixmod',15,22,'magixmod'],
 		cost:{'insight II':130,'science':7,'faith II':4,'influence II':5,'culture II':27},
 		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 3/5':true},
@@ -11950,7 +11950,88 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'Worship point':4}},		
 		]
 	});
-  
+  	new G.Tech({
+		name:'skinning',
+		desc:'[hunter]s can gather [hide] out of killed animals.',
+		icon:[31,26,'magixmod'],
+		req:{'hunting':true},
+		cost:{'insight':15},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'herbalism',
+		desc:'[gatherer] can gain more [herb].//Previously they were missing most of herbs because they were thinking that is just a grass.',
+		icon:[31,27,'magixmod'],
+		req:{'language':true},
+		cost:{'insight':10},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'instruction',
+		desc:'Unlocks [Thoughts sharer]. //The [Thoughts sharer] spends his life figuring out a way to guide others. People which hear their thoughts will become [Instructor]s at some time.',
+		icon:[30,27,'magixmod'],
+		req:{'language':true,'<font color="yellow">A gift from the Mausoleum</font>':true,'alphabet 1/3':true},
+		cost:{'insight':30},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'writing',
+		desc:'People can write at least. Because they do not have any paper yet they write on stones, logs etc. Required to unlock further researches.',
+		icon:[16,27,'magixmod'],
+		req:{'language':true},
+		cost:{'insight':20},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'caligraphy',
+		desc:'Your people can write but their characters are hard to be read. This technology will be a pass for things like [city planning].',
+		icon:[17,27,'magixmod'],
+		req:{'writing':true},
+		cost:{'insight':30,'culture':5},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'alphabet 1/3',
+		desc:'Make people set up their own alphabet. It is another step to be closer to more advanced researches, technologies',
+		icon:[28,27,'magixmod',29,27,'magixmod'],
+		req:{'caligraphy':true},
+		cost:{'insight':30,'culture':5},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'alphabet 2/3',
+		desc:'Expands up set of characters in people\'s alphabet. //May lead to make native languages exist',
+		icon:[27,27,'magixmod',24,27,'magixmod'],
+		req:{'alphabet 1/3':true,'Wizardry':true},
+		cost:{'insight':250,'culture':50},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'alphabet 3/3',
+		desc:'Slightly expands amount of characters in people\'s language',
+		icon:[26,27,'magixmod',25,27,'magixmod'],
+		req:{'alphabet 2/3':true,'artistic thinking':true,'Beginnings of alchemy':true},
+		cost:{'insight':1400,'culture':500,'inspiration':20,'wisdom':40},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'philosophy',//Unlocks thot if Thot Mod installed :)
+		desc:'Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%.',
+		icon:[23,27,'magixmod'],
+		req:{'alphabet 2/3':true},
+		cost:{'insight':400},
+		effects:[
+			{type:'provide res',what:{'wisdom':25}},
+		]
+	});
         
 	/*=====================================================================================
 	POLICIES
