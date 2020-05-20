@@ -12156,7 +12156,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Halves amount of required [science] to roll/reroll new tech choices.',
 		icon:[9,27,'magixmod'],
 		req:{'A leaf of wisdom':true,'power of the faith':true},
-		cost:{'insight II':150,'faith II':14,'science':16,'influence II':15},
+		cost:{'insight II':150,'faith II':14,'science':16,'influence II':15,'insight':48},
 		effects:[
 		],
 	});
