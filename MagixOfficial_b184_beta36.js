@@ -4956,7 +4956,7 @@ if (!document.getElementById(cssId))
 				}
 				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
 				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. //[thot] limit per is increased and becomes 75% less efficient'
-				G.getDict('philosophy II').desc='[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].',desc:'[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
+				G.getDict('philosophy II').desc='[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
