@@ -4940,6 +4940,7 @@ if (!document.getElementById(cssId))
 			G.getDict('berry bushes').res['gather']['herb']=0.25;
 			G.getDict('forest mushrooms').res['gather']['herb']=4;
 			G.getDict('succulents').res['gather']['herb']=3;
+			G.getDict('jungle fruits').res['gather']['herb']=1;
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -13012,7 +13013,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[grass] is a good source of [herb]s; you may also occasionally find some [fruit]s and [stick]s while foraging.',
 		icon:[10,10],
 		res:{
-			'gather':{'herb':2,'fruit':0.5,'stick':0.5},
+			'gather':{'fruit':0.5,'stick':0.5},
 		},
 		mult:10,
 	});
@@ -13087,7 +13088,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[berry bush,Berry bushes] can be foraged for [fruit]s, [stick]s and sometimes [herb]s.',
 		icon:[4,10],
 		res:{
-			'gather':{'fruit':3,'stick':0.5,'herb':0.625},
+			'gather':{'fruit':3,'stick':0.5},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
@@ -13097,7 +13098,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[forest mushrooms] grow in the penumbra of the underbrush, and often yield all sorts of interesting [herb]s.',
 		icon:[5,10],
 		res:{
-			'gather':{'herb':0.8},
+			'gather':{},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
@@ -13107,7 +13108,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Hardy cactii that grow in the desert. While tricky to harvest, [succulents] can provide [herb]s and [fruit]s.',
 		icon:[6,10],
 		res:{
-			'gather':{'fruit':1,'herb':0.6},
+			'gather':{'fruit':1},
 			'flowers':{'cactus':1,'Crown imperial':0.25},
 		},
 		affectedBy:['scarce forageables'],
@@ -13118,7 +13119,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[jungle fruits] come in all shapes, colors and sizes, and will yield [fruit]s and [herb]s to those who forage them.',
 		icon:[7,10],
 		res:{
-			'gather':{'fruit':2,'herb':1},
+			'gather':{'fruit':2},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
