@@ -12103,7 +12103,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		new G.Trait({
 		name:'mastered caligraphy',
 		desc:'<font color="#aaffff">Most of people can write and their writings are preety easy to read. Amount of almost unreadeable writings is slightly decreased. <br>Provides 5[education].</font>',
-		icon:[14,27,'magixmod'],
+		icon:[15,27,'magixmod'],
 		req:{'Eotm':true},
 		cost:{'insight II':15,'culture II':15},
 		effects:[
