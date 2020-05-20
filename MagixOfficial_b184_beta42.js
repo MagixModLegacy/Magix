@@ -12132,7 +12132,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		name:'Life-guiding',
 		desc:'People wonder about their lives. Provides 50 [inspiration] for free. //Conclusions and guides related to life also spread making others being less insecure and help finding answers to questions like: What to do? What to choose? How should I live?',
 		icon:[18,27,'magixmod'],
-		req:{'philosophy':true,'Ambrosium crafting':true,'God\'s trait #3 Science^2':true},
+		req:{'philosophy':true,'<span style="color: ##FF0900">Paradise building</span>':true,'God\'s trait #3 Science^2':true},
 		cost:{'insight':1500,'culture':500},
 		effects:[
 			{type:'provide res',what:{'inspiration':50}},
@@ -12142,7 +12142,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		name:'Paradise shelters',
 		desc:'Unlocks [paradise shelter]. Made out of stones with good construction can fit 4 people. Of course as the other Paradise housing is limited. <br>In addition adds +1 [housing] every 4 [paradise shelter]s.',
 		icon:[14,27,'magixmod'],
-		req:{'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Paradise housing':true,'A leaf of wisdom':true},
 		cost:{'insight II':150,'culture II':40,'influence II':10,'science':10},
 		effects:[
 		],
