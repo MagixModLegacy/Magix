@@ -4893,6 +4893,9 @@ if (!document.getElementById(cssId))
 				G.getDict('architect').icon=[31,4,'magixmod']
 				G.getDict('healer').icon=[31,5,'magixmod']
 				G.getDict('blacksmith workshop').icon=[31,16,'magixmod']
+				if(G.modsByName['Thot Mod']){
+					G.getDict('thot').icon=[21,27,'magixmod']
+				}
 			}
 			if(G.has('Plain island mining strategy')){
 			G.getDict('Mine of the plain island').icon = [31,8,'magixmod']
