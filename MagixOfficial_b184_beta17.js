@@ -11356,7 +11356,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		name:'Glory',
 		desc:'@provides 7 [authority II] @Increases efficiency of [chieftain] and [clan leader] by 10% @Applies visual changes for [chieftain] and [clan leader] . @You gain yearly 2 [influence] instead of 1. @[Mediator] can gather [influence] but becomes more limited.',
 		icon:[23,23,'magixmod'], 
-		cost:{'influence II': 5,'insight II':50,'culture II':20},
+		cost:{'influence II': 5,'insight II':50,'culture II':20,'influence':160},
 		effects:[
 			{type:'provide res',what:{'authority II':7}},
 		],
@@ -11957,7 +11957,20 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[31,26,'magixmod'],
 		req:{'hunting':true},
 		cost:{'insight':15},
-		effects:[	
+		effects:[
+			{type:'function',func:function(){
+			G.getDict('stoats').res['hunt']['hide']=1;
+			G.getDict('wild rabbits').res['hunt']['hide']=0.2;
+			G.getDict('koalas').res['hunt']['hide']=0.2;
+			G.getDict('deer').res['hunt']['hide']=0.6;
+			G.getDict('bears').res['hunt']['hide']=1;
+			G.getDict('polar bears').res['hunt']['hide']=1;
+			G.getDict('boars').res['hunt']['hide']=0.5;
+			G.getDict('foxes').res['hunt']['hide']=0.5;
+			G.getDict('wolves').res['hunt']['hide']=0.5;
+			G.getDict('seals').res['hunt']['hide']=0.5;
+			G.getDict('crocodiles').res['hunt']['leather']=0.5;
+			}}
 		]
 	});
 	new G.Tech({
@@ -13111,7 +13124,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[0,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':2,'bone':0.2,'hide':0.2},
+			'hunt':{'meat':2,'bone':0.2},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13122,7 +13135,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[1,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':2,'bone':0.2,'hide':1},
+			'hunt':{'meat':2,'bone':0.2},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13133,7 +13146,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[2,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':2,'bone':0.2,'hide':0.2},
+			'hunt':{'meat':2,'bone':0.2},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13144,7 +13157,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[3,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':4,'bone':1,'hide':0.6},
+			'hunt':{'meat':4,'bone':1},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13155,7 +13168,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[5,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':4,'bone':1,'hide':1},
+			'hunt':{'meat':4,'bone':1},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13166,7 +13179,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[10,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':4,'bone':1,'hide':1},
+			'hunt':{'meat':4,'bone':1},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13177,7 +13190,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[4,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':3,'bone':1,'hide':0.5},
+			'hunt':{'meat':3,'bone':1},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13188,7 +13201,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[6,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':2,'bone':0.2,'hide':0.5},
+			'hunt':{'meat':2,'bone':0.2},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13199,7 +13212,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[7,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':3,'bone':0.5,'hide':0.5},
+			'hunt':{'meat':3,'bone':0.5},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13210,7 +13223,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[9,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':3,'bone':0.5,'hide':0.5},
+			'hunt':{'meat':3,'bone':0.5},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13393,7 +13406,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Crocodiles are large semiaquatic reptiles that live throughout the tropics especially swamplands. Source of [meat] and [leather] .//Carcasses can sometimes be gathered for [spoiled food].',
 		icon:[17,24,'magixmod'],
 		res:{
-			'hunt':{'leather':0.5,'meat':2},
+			'hunt':{'meat':2},
 			'gather':{'spoiled food':1},
 		},
 		mult:2,
