@@ -12728,12 +12728,12 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'Pantheon key':true},
 		category:'Florists',
 	});
-					new G.Policy({
+		new G.Policy({
 		name:'Patience',
 		desc:'starts [Gather roses] trial. Will warn you before start.',
 		icon:[24,18,'magixmod',29,25,'magixmod',1,22,'magixmod'],
 		startMode:'off',		
-		req:{'Gather roses':'on'},
+		req:{},
 		category:'trial',
 	});
 	/*=======================================
