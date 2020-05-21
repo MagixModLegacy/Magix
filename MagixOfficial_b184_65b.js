@@ -12724,8 +12724,9 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		name:'Patience',
 		desc:'starts [Gather roses] trial. Will warn you before start.',
 		icon:[24,18,'magixmod',29,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
 		startMode:'off',		
-		req:{},
+		req:{'Gather roses':'on'},
 		category:'trial',
 	});
 	/*=======================================
