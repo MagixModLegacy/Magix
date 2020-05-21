@@ -363,12 +363,7 @@ G.writeMSettingButton=function(obj)
 			popup:true,
 			addClass:'right',
 			desc:'Options and information about the Magix mod.'
-		});
-		 
-  G.buildTabs()
-  }
- 	  
-		
+		});	
 		// Don't make assumptions about the existing tabs
 		// (or another mod that does the same thing)
 		// make sure everything is numbered and built properly
