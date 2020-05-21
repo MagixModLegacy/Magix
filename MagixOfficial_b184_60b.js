@@ -12735,14 +12735,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		startMode:'off',
 		effects:[
 			{type:'function',func:function warning1(){
-				if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)                                                                                                                                                                                                              Trials are InDev and uses method that wipes save. For safety write down somewhere how many times you have won the achievement.                                                                                                                                               It is public test for Trials. As long as better way won't be figured out it will look like this.(yeah so go, write down and then send me your save file and I will introduce achievement data for you. Don't forget about writing down number of ascensions.")) {
-    alert("Alright... Good luck.");
-		alert("Then the Patience trial begins");
-} else {
-    alert("Do your last preparations and enter me again when you are ready");
-	alert("Begone");
-}
-			}}
+    alert("Alright... Good luck.")}};
 			],			
 		req:{'Gather roses':'on'},
 		category:'trial',
