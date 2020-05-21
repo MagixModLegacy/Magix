@@ -12742,7 +12742,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
     alert("Do your last preparations and enter me again when you are ready")
 	alert("Begone");
 }
-			}};
+			}}
 			],			
 		req:{'Gather roses':'on'},
 		category:'trial',
