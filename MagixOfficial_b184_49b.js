@@ -364,25 +364,10 @@ G.writeMSettingButton=function(obj)
 			addClass:'right',
 			desc:'Options and information about the Magix mod.'
 		});
-		    G.tabs.push({
-      name: 'Pantheon',
-      id: 'pantheon',
-      popup: false,
-      addClass: 'left',
-      desc: 'Take on the Seraphin\'s trial.',
-      update: "pantheon"
-  });
+		 
   G.buildTabs()
-  G.draw.pantheon = () => {
-
   }
-  G.update['pantheon'] = function() {
-      var str = '';
-      str +=
-          G.textWithTooltip('?', '<div style="width:240px;text-align:left;"><div class="par">From this tab you may take on the trial. Trials are unlcokable by choosing Seraphins. 11 of 12 seraphins have repeatable trials. <br>However doing the same trial for 2nd time after 1st completion will be harder. <hr>For finishing trials you may get Victory Points which cannot be spent but can unlock new things.<br>Points gaining:<li>For the first time completed trial: +1 VP</li><li>The same trial completed for 2nd time: +2 VP (1+2=3)</li><li>For the 3rd time the same: +3 VP (1+2+3=6)<hr>Each of the Trials has its own wonder and building it finishes the trial. If you complete the trial for the first time you will get an unique for each Trial bonus.', 'infoButton');
-      l("pantheonDiv").innerHTML = str
-  }
-	  
+ 	  
 		
 		// Don't make assumptions about the existing tabs
 		// (or another mod that does the same thing)
