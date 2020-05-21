@@ -369,7 +369,6 @@ G.writeMSettingButton=function(obj)
 		// make sure everything is numbered and built properly
 		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
 		G.buildTabs();
-		
 	}
 
 	G.tabPopup['Magix']=function()
@@ -406,13 +405,6 @@ G.writeMSettingButton=function(obj)
 		'</div>';
 		return str;
 }
-	 G.update['pantheon']=function()
-    {
-        var str='';
-        'TESTTEST'+
-	str;
-    }
-	
 var cssId = 'betaCss';  
 if (!document.getElementById(cssId))
 {
