@@ -12734,8 +12734,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[24,18,'magixmod',29,25,'magixmod',1,22,'magixmod'],
 		startMode:'off',
 		effects:[
-			{type:'function',func:function warning1(){
-    alert("Alright... Good luck.")}};
+			{type:'function',func:function warning1(){}};
 			],			
 		req:{'Gather roses':'on'},
 		category:'trial',
