@@ -9,7 +9,7 @@ func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 G.props['fastTicksOnResearch']=150;
-	let t1start = true
+	let t1start = false
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
