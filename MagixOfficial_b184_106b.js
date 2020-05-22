@@ -12168,9 +12168,8 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		cost:{},
 		effects:
 		[
-			{type:'function',func:function(){t1start=true}}};
-		],
-		
+			{type:'function',func:function(){t1start=true}};
+		]
 	});
 	/*=====================================================================================
 	POLICIES
