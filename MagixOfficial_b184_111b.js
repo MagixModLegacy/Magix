@@ -62,6 +62,7 @@ G.props['fastTicksOnResearch']=150;
 			{
 				var insight=Math.floor(Math.random() * 33);
 				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b>'+B(insight)+' Insight</b><br>The hidden weakness in this plane gets stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
+				G.gain('insight',insight);
 			}
 			//influence trickle
 			if(G.has('Glory')){
