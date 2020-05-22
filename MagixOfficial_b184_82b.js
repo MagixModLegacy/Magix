@@ -9,6 +9,7 @@ func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 G.props['fastTicksOnResearch']=150;
+	let t1start = false
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -80,6 +81,30 @@ G.props['fastTicksOnResearch']=150;
 					godown=false
 				}
 			}
+			if(t1start==true){
+G.unitsOwned.length=0
+G.unitsOwned=0
+G.policy.length=0
+G.traitsOwned.length=0
+G.traitsOwned=
+G.techsOwned.length=0
+G.techsOwned=0
+G.Reset()
+var trial=G.TraitByName['trial']
+var chranos=G.TraitByName['t1']
+var tribal=G.TechByName['tribalism']
+var speech=G.TechByName['speech']
+G.NewGameConfirm()
+G.gainTrait(trial)
+G.gainTrait(chranos)
+G.gainTech(trial)
+G.gainTech(speech)
+G.getRes('worker').used=0
+G.fastTicks=0
+G.year=0; G.day=0;
+G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');
+t1start=false
+	}
 		}
 	}
 	
@@ -12735,7 +12760,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'Pantheon key':true},
 		category:'Florists',
 	});
-	let t1start = false
 		new G.Policy({
 		name:'Patience',
 		desc:'starts [Gather roses] trial. Will warn you before start.',
@@ -12748,30 +12772,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)                                                                                                                                                                                                              Trials are InDev and playing may wipe save. For safety write down somewhere how many times you have won the achievement.                                                                                                                                               It is public test for Trials. As long as better way won't be figured out it will look like this.(yeah so go, write down and then send me your save file and I will introduce achievement data for you. Don't forget about writing down number of ascensions.")) {
     alert("Alright... Good luck.");     
 		alert("Then the Patience trial begins",t1start=true)
-	if(t1start==true){
-G.unitsOwned.length=0
-G.unitsOwned=0
-G.policy.length=0
-G.traitsOwned.length=2
-G.traitsOwned=2
-G.techsOwned.length=2
-G.techsOwned=2
-G.Reset()
-var trial=G.TraitByName['trial']
-var chranos=G.TraitByName['t1']
-var tribal=G.TechByName['tribalism']
-var speech=G.TechByName['speech']
-G.NewGameConfirm()
-G.gainTrait(trial)
-G.gainTrait(chranos)
-G.gainTech(trial)
-G.gainTech(speech)
-G.getRes('worker').used=0
-G.fastTicks=0
-G.year=0; G.day=0;
-G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');
-t1start=false
-	}
 } else {
     alert("Do your last preparations and enter me again when you are ready")
 	alert("Begone");
