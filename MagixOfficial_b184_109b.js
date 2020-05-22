@@ -12167,7 +12167,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'tribalism':false},
 		cost:{},
 			effects:[
-			{type:'function',func:function(){G.getDict('bugs').turnToByContext['eating']['happiness']=0.03;}},
+			{type:'function',func:function(){t1start=true;}},
 		],
 	});
 	/*=====================================================================================
