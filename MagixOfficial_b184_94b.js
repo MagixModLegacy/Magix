@@ -50,18 +50,25 @@ G.props['fastTicksOnResearch']=150;
 	{
 		if (G.on)
 		{
+			if(t1start==1){
 				var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
 			str+='Report for last year :<br>';
 			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
 			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
-			if(t1start==1){
-				str+='&bull; <b>Insight descended</b> : '+B(G.getRes('died this year').amount)+'<br>';
-			}
+			str+='&bull; <b>Insight descended</b> : '+B(G.getRes('died this year').amount)+'<br>';
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
-			}
+			}else{
+			var str='';
+			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
+			str+='Report for last year :<br>';
+			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
+			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			G.getRes('born this year').amount=0;
+			G.getRes('died this year').amount=0;
+			G.Message({type:'important',text:str,icon:[0,3]});}
 			//influence trickle
 			if(G.has('Glory')){
 				if (G.getRes('influence').amount<=G.getRes('authority').amount-2)G.gain('influence',2);
