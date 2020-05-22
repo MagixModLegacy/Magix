@@ -9,7 +9,7 @@ func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 G.props['fastTicksOnResearch']=150;
-	let t1start = 0
+	let t1start = true
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -58,7 +58,7 @@ G.props['fastTicksOnResearch']=150;
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
-			if(t1start==1)
+			if(t1start==true)
 			{
 				G.Message({type:'important',text:'tde',icon:[0,6]});
 			}
