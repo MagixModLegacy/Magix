@@ -1934,7 +1934,7 @@ if (!document.getElementById(cssId))
 	new G.Res({
 		name:'science',
 		desc:'[science] is the product of experiments and discoveries.//'+limitDesc('[education]')+'//Many technologies require science to be researched.',
-		icon:[6,4],
+		icon:[choose([3,4,5,6]),27,'magixmod'],
 		category:'main',
 		limit:'education',
 		getDisplayAmount:researchGetDisplayAmount,
@@ -5664,7 +5664,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'nickel'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 			{type:'mult',value:1.2,req:{'Improved furnace construction':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.1,req:{'Improved furnace construction':true,'<font color="maroon">Caretaking</font>':true}},
 		],
@@ -5703,7 +5705,9 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 			//TODO : better metal tools, weapons etc
 		],
 		gizmos:true,
@@ -5742,7 +5746,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.8,req:{'dt17':true}},
 			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		gizmos:true,
 		req:{'carpentry':true},
@@ -5865,7 +5871,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':3}},
 			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
-			{type:'waste',chance:1/1000}
+			{type:'waste',chance:1/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/1000,req:{'improved construction':true}},
 		],
 		req:{'sedentism':true},
 		category:'housing',
@@ -5880,7 +5888,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':3}},
 			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
-			{type:'waste',chance:3/1000}
+			{type:'waste',chance:3/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.6/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.42/1000,req:{'improved construction':true}},
 		],
 		req:{'sedentism':true},
 		category:'housing',
@@ -5895,7 +5905,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':5}},
 			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
-			{type:'waste',chance:0.1/1000}
+			
 		],
 		req:{'building':true},
 		category:'housing',
@@ -5910,7 +5920,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':8}},
 			{type:'provide',what:{'housing':0.5},req:{'God\'s trait #1 Housing':true}},
-			{type:'waste',chance:0.03/1000}
+			{type:'waste',chance:0.03/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.006/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.0042/1000,req:{'improved construction':true}},
 		],
 		req:{'cities':true},
 		category:'housing',
@@ -5927,7 +5939,9 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'housing':0.125},req:{'Better house construction':true}},
 			{type:'gather',what:{'Berries':1},req:{'Next-to house berrybushes':true}},
 			{type:'gather',what:{'Berries':0.2},req:{'Fertile bushes':true}},
-			{type:'waste',chance:0.01/1000}
+			{type:'waste',chance:0.01/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.02/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/1000,req:{'improved construction':true}},
 		],
 		req:{'construction':true},
 		category:'housing',
@@ -5959,7 +5973,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':1000}},
 			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
-			{type:'waste',chance:0.1/1000}
+			{type:'waste',chance:0.1/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.02/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.014/1000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true},
 		category:'storage',
@@ -5975,7 +5991,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':4000}},
 			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
-			{type:'waste',chance:0.001/1000}
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'construction':true},
 		category:'storage',
@@ -5990,7 +6008,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added food storage':1000}},
 			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
-			{type:'waste',chance:0.01/1000}
+			{type:'waste',chance:0.01/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.0014/1000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'pottery':true},
 		category:'storage',
@@ -6006,7 +6026,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added food storage':4000}},
 			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
-			{type:'waste',chance:0.001/1000}
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'carpentry':true},
 		category:'storage',
@@ -6848,7 +6870,9 @@ if (!document.getElementById(cssId))
 		//require:{'wizard':3},
 		effects:[
 			{type:'provide',what:{'mana capacity':32500}},
-			{type:'waste',chance:0.0004/1000},
+			{type:'waste',chance:0.0004/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.00008/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.000056/1000,req:{'improved construction':true}},
 		],
 		req:{'Mana brewery':true},
 		category:'storage',
@@ -6861,7 +6885,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'fire essence limit':11500}},
-			{type:'waste',chance:1/100000}
+			{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6874,7 +6900,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'water essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6887,7 +6915,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'lightning essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6900,7 +6930,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'dark essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6913,7 +6945,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'nature essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6926,7 +6960,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'wind essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6939,7 +6975,9 @@ if (!document.getElementById(cssId))
 		use:{'Land of the Paradise':0.8},
 		effects:[
 			{type:'provide',what:{'holy essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true,'<span style="color: ##FF0900">Paradise building</span>':true,'7th essence':true},
 		category:'storage',
@@ -7249,7 +7287,9 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.03},req:{'Spiritual piety':false}},
 			{type:'gather',what:{'faith':0.039},req:{'Spiritual piety':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
-			{type:'waste',chance:0.01/1000},
+			{type:'waste',chance:0.01/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.0014/1000,req:{'improved construction':true}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
 	],
 		category:'spiritual',
@@ -7267,6 +7307,9 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.03},req:{'symbolism':true,'Stronger faith':true}},
 			{type:'mult',value:1.7,req:{'symbolism III':true}},
 			{type:'waste',chance:0.003/1000},
+			{type:'waste',chance:0.003/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0006/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00042/1000,req:{'improved construction':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
 	],
@@ -7332,6 +7375,9 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'housing':0.2},req:{'Better house construction':true}},
 			{type:'provide',what:{'food storage':65}},
 			{type:'waste',chance:0.0004/1000},
+			{type:'waste',chance:0.0004/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.00008/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.000056/1000,req:{'improved construction':true}},
 		],
 		req:{'construction':true,'More useful housing':true,'Well of Mana':true},
 		category:'housing',
@@ -7355,13 +7401,15 @@ if (!document.getElementById(cssId))
 		name:'Blockhouse',
 		desc:'@provides 50 [housing]. Hardly constructed at the lands of Plain Island blockhouse has very low chance to be wasted.',
 		icon:[9,1,'magixmod'],
-		cost:{'advanced building materials':3000},
+		cost:{'concrete':4500,'glass':500,'basic building materials':750},
 		use:{'Land of the Plain Island':3},
 		effects:[
 			{type:'provide',what:{'housing':50}},
 			{type:'provide',what:{'housing':10},req:{'Mo\' floorz':true}},
 			{type:'provide',what:{'housing':20},req:{'Even mo\' floorz':true}},
-			{type:'waste',chance:0.00001/1000},
+			{type:'waste',chance:0.0001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		req:{'construction II':true,'Concrete making':true},
 		category:'plainisleunit',
@@ -7467,7 +7515,9 @@ if (!document.getElementById(cssId))
 		cost:{'basic building materials':1500,'glass':5},
 		use:{'Land of the Plain Island':1},
 		effects:[
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 			{type:'provide',what:{'housing':18}},
 		],
 		req:{'construction II':true},
@@ -7480,7 +7530,9 @@ if (!document.getElementById(cssId))
 		cost:{'basic building materials':1500,'glass':5},
 		use:{'Land of the Plain Island':1,'worker':3},
 		effects:[
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 			{type:'provide',what:{'food storage':5000}},
 		],
 		req:{'construction II':true},
@@ -7525,7 +7577,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.8,req:{'dt17':true}},
 			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		gizmos:true,
 		req:{'carpentry':true,'Paradise crafting':true},
@@ -7559,7 +7613,9 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':2},every:3,repeat:1,mode:'metal armor'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		gizmos:true,
 		req:{'smelting':true,'Paradise crafting':true},
@@ -8320,7 +8376,7 @@ new G.Unit({
 		staff:{'worker':6,'armor set':6,'metal weapons':6,'Instructor':1},
 		effects:[
 			{type:'provide',what:{'added material storage':9000}},
-			{type:'waste',chance:0.0000001/1000000000000}
+			{type:'waste',chance:0.001/100000000}
 		],
 		req:{'Storage at the bottom of the world':true},
 		category:'storage',
@@ -9772,7 +9828,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'Deeper wells',
-		desc:'@[well]s provide 5% more water. Boosts only [well] and [Well of the Plain Island].',
+		desc:'@[well]s provide 5% more water. Boosts only [well] and [well of the Plain Island].',
 		icon:[31,15,'magixmod'],
 		cost:{'insight':490,'wisdom':30},
 		req:{'Farms in the new land':true},
@@ -12172,6 +12228,36 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		cost:{},
 			effects:[
 			{type:'function',func:function(){t1start=true;}},
+		],
+	});
+		new G.Tech({
+		name:'construction III',
+		desc:'All buildings that can waste wastes 5x slower. It won\'t increase building costs. @Provides 15 [wisdom II] .',
+		icon:[12,27,'magixmod'],
+		req:{'A leaf of wisdom':true,'Paradise shelters':true,'do we need that much science?':true},
+		cost:{'insight II':180,'science':17,'influence II':3},
+		effects:[
+			{type:'provide res',what:{'wisdom II':15}},
+		],
+	});
+	new G.Tech({
+		name:'improved construction',
+		desc:'All buildings that can waste wastes additive 2x slower so (7 in total). It won\'t increase building costs. @Provides 15 [wisdom II] .',
+		icon:[11,27,'magixmod'],
+		req:{'construction III':true,'<font color="maroon">Moderation</font>':true},
+		cost:{'insight II':200,'science':14,'influence II':1},
+		effects:[
+			{type:'provide res',what:{'wisdom II':15}},
+		],
+	});
+	new G.Tech({
+		name:'mo\' shelterz',
+		desc:'Decreases the [land] limit per for [paradise shelter]s by 4 points. It means more shelters. <>More shelters = more housing = more people @Provides 15 [wisdom II] .',
+		icon:[10,27,'magixmod'],
+		req:{'Paradise shelters':true,'<font color="maroon">Caretaking</font>':true},
+		cost:{'insight II':200,'science':14,'influence II':1},
+		effects:[
+			{type:'provide res',what:{'wisdom II':15}},
 		],
 	});
 	/*=====================================================================================
