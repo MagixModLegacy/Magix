@@ -12165,10 +12165,12 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'You are during Patience trial',
 		icon:[7,27,'magixmod'],
 		req:{'tribalism':false},
-		effects:[
-		{type:'function',func:function(){t1start=true}};
-		],
 		cost:{},
+		effects:
+		[
+			{type:'function',func:function(){t1start=true}};
+		],
+		
 	});
 	/*=====================================================================================
 	POLICIES
