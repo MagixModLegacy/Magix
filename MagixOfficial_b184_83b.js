@@ -89,12 +89,11 @@ G.traitsOwned.length=0
 G.traitsOwned=
 G.techsOwned.length=0
 G.techsOwned=0
-G.Reset()
+G.NewGameConfirm()
 var trial=G.TraitByName['trial']
 var chranos=G.TraitByName['t1']
 var tribal=G.TechByName['tribalism']
 var speech=G.TechByName['speech']
-G.NewGameConfirm()
 G.gainTrait(trial)
 G.gainTrait(chranos)
 G.gainTech(trial)
