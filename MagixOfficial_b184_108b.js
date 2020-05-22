@@ -12166,9 +12166,9 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[7,27,'magixmod'],
 		req:{'tribalism':false},
 		cost:{},
-		effects:[
-			{type:'function',func:function(){t1start=true}};
-		]
+			effects:[
+			{type:'function',func:function(){G.getDict('bugs').turnToByContext['eating']['happiness']=0.03;}},
+		],
 	});
 	/*=====================================================================================
 	POLICIES
