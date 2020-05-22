@@ -12752,7 +12752,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
     alert("Alright... Good luck.");     
 		alert("Then the Patience trial begins",t1start=true);
 		alert("Paste this code: DON'T CHEAT ! DON'T CHANGE DATA IN THIS CODE! Here is the code: G.unitsOwned.length=0 G.policy.length=0 G.traitsOwned.length=0 G.techsOwned.length=0 G.NewGameConfirm() G.getRes('worker').used=0 G.fastTicks=0 var t1=G.traitByName['t1'] var trial=G.traitByName['trial'] G.gainTrait(t1) G.gainTrait(trial) G.year=0; G.day=0; G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');");
-				prompt("Paste the code right there:")
+				prompt(cols=30 rows=40"Paste the code right there:")
 } else {
     alert("Do your last preparations and enter me again when you are ready")
 	alert("Begone");
