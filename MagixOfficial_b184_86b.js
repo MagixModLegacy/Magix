@@ -90,13 +90,10 @@ G.traitsOwned=0
 G.techsOwned.length=0
 G.techsOwned=0
 G.NewGameConfirm()
-G.gainTrait(G.TraitByName['trial'])
-G.gainTrait(G.TraitByName['t1'])
 G.getRes('worker').used=0
 G.fastTicks=0
 G.year=0; G.day=0;
 G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');
-t1start=false
 	}
 		}
 	}
