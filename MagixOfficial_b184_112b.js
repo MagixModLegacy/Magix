@@ -60,9 +60,11 @@ G.props['fastTicksOnResearch']=150;
 			G.Message({type:'important',text:str,icon:[0,3]});
 			if(t1start==true)
 			{
-				var insight=Math.floor(Math.random() * 33);
+				var insight=Math.floor(Math.random() * (33/G.achievByName['Patience'].won+1);
 				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b><font color="#aaffff">'+B(insight)+' Insight</font></b><br>The hidden weakness in this plane gets stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
+				if (G.getRes('insight').amount < G.getRes('wisdom').amount*1.6){
 				G.gain('insight',insight);
+				}
 			}
 			//influence trickle
 			if(G.has('Glory')){
@@ -8354,10 +8356,10 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'pagoda of passing time',
-		desc:'@Leads to <b>Patience</b> trial completion.',
+		desc:'@Leads to <b>Patience</b> trial completion. //A monument of time. A wonder for Chra-nos the Seraphin of Time. Tall Pagoda with a huge clock that is a Seraphin\'s symbol.',
 		wonder:'Patience',
-		icon:[3,26,'magixmod'],
-		wideIcon:[4,26,'magixmod'],
+		icon:[4,26,'magixmod'],
+		wideIcon:[3,26,'magixmod'],
 		cost:{'basic building materials':225},
 		costPerStep:{'precious building materials':20,'gems':20,'basic building materials':200},
 		steps:90,
@@ -12769,7 +12771,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'Gather roses':'on'},
 		category:'trial',
 		effects:[
-			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)                                                                                                                                                                                                              Trials are InDev and playing may wipe save. For safety write down somewhere how many times you have won the achievement.                                                                                                                                               It is public test for Trials. As long as better way won't be figured out it will look like this.(yeah so go, write down and then send me your save file and I will introduce achievement data for you. Don't forget about writing down number of ascensions. Also recommended: before trying on backup your save.")) {
+			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [around 0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)                                                                                                                                                                                                              Trials are InDev and playing may wipe save. For safety write down somewhere how many times you have won the achievement.                                                                                                                                               It is public test for Trials. As long as better way won't be figured out it will look like this.(yeah so go, write down and then send me your save file and I will introduce achievement data for you. Don't forget about writing down number of ascensions. Also recommended: before trying on backup your save.")) {
     alert("Alright... Good luck.");     
 		alert("Then the Patience trial begins");
 		alert("DON'T CHEAT ! DON'T CHANGE DATA IN THIS CODE! Paste this code into the console. Here is the code: G.unitsOwned.length=0;<REMOVE THIS. THERE IS AN ENTER> G.policy.length=0;<REMOVE THIS. THERE IS AN ENTER> G.traitsOwned.length=0;<REMOVE THIS. THERE IS AN ENTER> G.techsOwned.length=0;<REMOVE THIS. THERE IS AN ENTER> G.NewGameConfirm()<REMOVE THIS. THERE IS AN ENTER> G.getRes('worker').used=0<REMOVE THIS. THERE IS AN ENTER> G.fastTicks=0<REMOVE THIS. THERE IS AN ENTER> var t1=G.traitByName['t1']<REMOVE THIS. THERE IS AN ENTER> var trial=G.traitByName['trial']<REMOVE THIS. THERE IS AN ENTER> G.gainTrait(t1)<REMOVE THIS. THERE IS AN ENTER> G.gainTrait(trial)<REMOVE THIS. THERE IS AN ENTER> G.year=0;<REMOVE THIS. THERE IS AN ENTER> G.day=0;<REMOVE THIS. THERE IS AN ENTER> G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');");
