@@ -12749,13 +12749,16 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
     alert("Alright... Good luck.");     
 		alert("Then the Patience trial begins",t1start=true)
 	if(t1start==true){
-	G.unitsOwned.length=0
+G.unitsOwned.length=0
+G.unitsOwned=0
 G.policy.length=0
 G.traitsOwned.length=0
+G.traitsOwned=0
 G.techsOwned.length=0
-var trial=G.TechByName['trial']
+G.techsOwned=0
+var trial=G.TraitByName['trial']
 G.gainTrait(trial)
-var chranos=G.TechByName['t1']
+var chranos=G.TraitByName['t1']
 G.gainTrait(chranos)
 G.NewGameConfirm()
 G.getRes('worker').used=0
