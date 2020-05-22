@@ -12753,11 +12753,11 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 G.policy.length=0
 G.traitsOwned.length=0
 G.techsOwned.length=0
-G.NewGameConfirm()
 var trial=G.TechByName['trial']
-G.gainTech(trial)
+G.gainTrait(trial)
 var chranos=G.TechByName['t1']
-G.gainTech(chranos)
+G.gainTrait(chranos)
+G.NewGameConfirm()
 G.getRes('worker').used=0
 G.fastTicks=0
 G.year=0; G.day=0;
