@@ -86,7 +86,7 @@ G.unitsOwned.length=0
 G.unitsOwned=0
 G.policy.length=0
 G.traitsOwned.length=0
-G.traitsOwned=
+G.traitsOwned=0
 G.techsOwned.length=0
 G.techsOwned=0
 G.NewGameConfirm()
