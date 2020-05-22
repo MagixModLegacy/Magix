@@ -52,15 +52,15 @@ G.props['fastTicksOnResearch']=150;
 		{
 			if(t1start==true)
 			{
-			var str='';
-			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
-			str+='Report for last year :<br>';
-			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
-			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
-			str+='&bull; <b>Insight descended</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			var strb='';
+			strb+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
+			strb+='Report for last year :<br>';
+			strb+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
+			strb+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			strb+='&bull; <b>Insight descended</b> : '+B(G.getRes('died this year').amount)+'<br>';
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
-			G.Message({type:'important',text:str,icon:[0,3]});
+			G.Message({type:'important',text:strb,icon:[0,3]});
 			}else if(t1start==false){
 				var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
