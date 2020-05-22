@@ -5178,7 +5178,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.75,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
 		],
-		req:{'speech':true},
+		req:{'speech':true,'t1':false/*Patience trial condition*/},
 		category:'discovery',
 		priority:5,
 	});
