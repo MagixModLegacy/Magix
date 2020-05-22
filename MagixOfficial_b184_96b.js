@@ -58,7 +58,7 @@ G.props['fastTicksOnResearch']=150;
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
-			if(t1start==true)
+			if(t1start==1)
 			{
 				G.Message({type:'important',text:'tde',icon:[0,6]});
 			}
