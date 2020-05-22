@@ -61,7 +61,7 @@ G.props['fastTicksOnResearch']=150;
 			if(t1start==true)
 			{
 				var insight=Math.floor(Math.random() * 33);
-				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b>'+B(insight)+' Insight</b><br>The hidden weakness in this plane gets stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
+				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b><font color="#aaffff">'+B(insight)+' Insight</font></b><br>The hidden weakness in this plane gets stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
 				G.gain('insight',insight);
 			}
 			//influence trickle
@@ -8353,19 +8353,19 @@ new G.Unit({
 		category:'paradiseunit',
 	});
 	new G.Unit({
-		name:'Temple of the Paradise',
-		desc:'@leads to the <b>Victory next to the god</b>. //A big, golden temple which is homeland of Seraphins and the God. A temple that stays at huge cloud. It is glowing with ambrosium.',
-		wonder:'Next to the God',
-		icon:[9,25,'magixmod'],
-		wideIcon:[8,25,'magixmod'],
-		cost:{'basic building materials':100000,'precious building materials':5000,'gold block':100,'platinum block':10,'cloud':45000,'Ambrosium shard':10000},
-		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'cloud':4500,'Ambrosium shard':1000,'godTemplePoint':-1},
-		steps:400,
-		messageOnStart:'The construction of The <b>Temple of the Paradise</b> has been started. Now you are full of hope that it will someday make the God appear next to you and show his true good-natured face.',
-		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':1000,'spirituality':25,'godTemplePoint':-100},
-		finalStepDesc:'To complete the wonder and be even closer to the God you must perform this final step 25k [population,people] must be sacrificed... and many other ingredients.',
-		use:{'Land of the Paradise':30},
-		req:{'monument-building III':true},
+		name:'pagoda of passing time',
+		desc:'@Leads to <b>Patience</b> trial completion.',
+		wonder:'Patience',
+		icon:[3,26,'magixmod'],
+		wideIcon:[4,26,'magixmod'],
+		cost:{'basic building materials':225},
+		costPerStep:{'precious building materials':20,'gems':20,'basic building materials':200},
+		steps:90,
+		messageOnStart:'You started to build wonder for <b>Chra-nos</b>. <br>This pagoda will have a huge clock which is the symbol of the seraphin. Stars on night sky as you noticed mostly often make a shape of clock. <br>It is taller than anything around and also its shadow brings reflexions about passing time to your people.',
+		finalStepCost:{'population':200,'gem block':10},
+		finalStepDesc:'To perform the final step 200[population,People] and 10 [gem block]s must be sacrificed in order to escape that plane of deadly time and award you with <b>Victory points</b>.',
+		use:{'land':10},
+		req:{'monument-building':true,'t1':true},
 		category:'wonder',
 	});
 	/*=====================================================================================
