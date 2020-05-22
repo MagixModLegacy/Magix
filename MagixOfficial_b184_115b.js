@@ -8412,7 +8412,7 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'pagoda of passing time',
-		desc:'@Leads to <b>Patience</b> trial completion. //A monument of time. A wonder for Chra-nos the Seraphin of Time. Tall Pagoda with a huge clock that is a Seraphin\'s symbol.',
+		desc:'@Leads to <b>Patience</b> trial completion. //A monument of time. A wonder for Chra-nos the Seraphin of Time. Tall Pagoda with a huge clock that is a Seraphin\'s symbol. <><font color="#ffaaff">Patience is key...<br>But waiting right there<br>Is deadly<br>Each year weakens me<br>Hope this year is the last one...<br>Patience... is a poison...<br>...deadly poison.',
 		wonder:'Patience',
 		icon:[4,26,'magixmod'],
 		wideIcon:[3,26,'magixmod'],
