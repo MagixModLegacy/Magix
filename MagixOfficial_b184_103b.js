@@ -8350,6 +8350,22 @@ new G.Unit({
 		req:{'Paradise shelters':true},
 		category:'paradiseunit',
 	});
+	new G.Unit({
+		name:'Temple of the Paradise',
+		desc:'@leads to the <b>Victory next to the god</b>. //A big, golden temple which is homeland of Seraphins and the God. A temple that stays at huge cloud. It is glowing with ambrosium.',
+		wonder:'Next to the God',
+		icon:[9,25,'magixmod'],
+		wideIcon:[8,25,'magixmod'],
+		cost:{'basic building materials':100000,'precious building materials':5000,'gold block':100,'platinum block':10,'cloud':45000,'Ambrosium shard':10000},
+		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'cloud':4500,'Ambrosium shard':1000,'godTemplePoint':-1},
+		steps:400,
+		messageOnStart:'The construction of The <b>Temple of the Paradise</b> has been started. Now you are full of hope that it will someday make the God appear next to you and show his true good-natured face.',
+		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':1000,'spirituality':25,'godTemplePoint':-100},
+		finalStepDesc:'To complete the wonder and be even closer to the God you must perform this final step 25k [population,people] must be sacrificed... and many other ingredients.',
+		use:{'Land of the Paradise':30},
+		req:{'monument-building III':true},
+		category:'wonder',
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -12149,6 +12165,9 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'You are during Patience trial',
 		icon:[7,27,'magixmod'],
 		req:{'tribalism':false},
+		effects:[
+		{type:'function',func:function(){t1start=true}};
+		],
 		cost:{},
 	});
 	/*=====================================================================================
@@ -12748,11 +12767,10 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'Gather roses':'on'},
 		category:'trial',
 		effects:[
-			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)                                                                                                                                                                                                              Trials are InDev and playing may wipe save. For safety write down somewhere how many times you have won the achievement.                                                                                                                                               It is public test for Trials. As long as better way won't be figured out it will look like this.(yeah so go, write down and then send me your save file and I will introduce achievement data for you. Don't forget about writing down number of ascensions.")) {
+			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)                                                                                                                                                                                                              Trials are InDev and playing may wipe save. For safety write down somewhere how many times you have won the achievement.                                                                                                                                               It is public test for Trials. As long as better way won't be figured out it will look like this.(yeah so go, write down and then send me your save file and I will introduce achievement data for you. Don't forget about writing down number of ascensions. Also recommended: before trying on backup your save.")) {
     alert("Alright... Good luck.");     
-		alert("Then the Patience trial begins",t1start=true);
-		alert("Paste this code: DON'T CHEAT ! DON'T CHANGE DATA IN THIS CODE! Here is the code: G.unitsOwned.length=0 G.policy.length=0 G.traitsOwned.length=0 G.techsOwned.length=0 G.NewGameConfirm() G.getRes('worker').used=0 G.fastTicks=0 var t1=G.traitByName['t1'] var trial=G.traitByName['trial'] G.gainTrait(t1) G.gainTrait(trial) G.year=0; G.day=0; G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');");
-				prompt(cols=30 rows=40"Paste the code right there:")
+		alert("Then the Patience trial begins");
+		alert("DON'T CHEAT ! DON'T CHANGE DATA IN THIS CODE! Paste this code into the console. Here is the code: G.unitsOwned.length=0;<REMOVE THIS. THERE IS AN ENTER> G.policy.length=0;<REMOVE THIS. THERE IS AN ENTER> G.traitsOwned.length=0;<REMOVE THIS. THERE IS AN ENTER> G.techsOwned.length=0;<REMOVE THIS. THERE IS AN ENTER> G.NewGameConfirm()<REMOVE THIS. THERE IS AN ENTER> G.getRes('worker').used=0<REMOVE THIS. THERE IS AN ENTER> G.fastTicks=0<REMOVE THIS. THERE IS AN ENTER> var t1=G.traitByName['t1']<REMOVE THIS. THERE IS AN ENTER> var trial=G.traitByName['trial']<REMOVE THIS. THERE IS AN ENTER> G.gainTrait(t1)<REMOVE THIS. THERE IS AN ENTER> G.gainTrait(trial)<REMOVE THIS. THERE IS AN ENTER> G.year=0;<REMOVE THIS. THERE IS AN ENTER> G.day=0;<REMOVE THIS. THERE IS AN ENTER> G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');");
 } else {
     alert("Do your last preparations and enter me again when you are ready")
 	alert("Begone");
