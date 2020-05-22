@@ -12166,8 +12166,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[7,27,'magixmod'],
 		req:{'tribalism':false},
 		cost:{},
-		effects:
-		[
+		effects:[
 			{type:'function',func:function(){t1start=true}};
 		]
 	});
