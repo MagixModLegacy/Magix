@@ -61,7 +61,7 @@ G.props['fastTicksOnResearch']=150;
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
-			}else{
+			}else if(t1start==false){
 				var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
 			str+='Report for last year :<br>';
