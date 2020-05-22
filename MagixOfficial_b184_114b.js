@@ -60,7 +60,7 @@ G.props['fastTicksOnResearch']=150;
 			G.Message({type:'important',text:str,icon:[0,3]});
 			if(t1start==true)
 			{
-				var insight=Math.floor(Math.random() * (33/G.achievByName['Patience'].won+1);
+				var insight=Math.floor(Math.random() * (33/G.achievByName['Patience'].won+1));
 				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b><font color="#aaffff">'+B(insight)+' Insight</font></b><br>The hidden weakness in this plane gets stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
 				if (G.getRes('insight').amount < G.getRes('wisdom').amount*1.6){
 				G.gain('insight',insight);
