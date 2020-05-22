@@ -12756,6 +12756,7 @@ G.traitsOwned.length=2
 G.traitsOwned=2
 G.techsOwned.length=2
 G.techsOwned=2
+G.Reset()
 var trial=G.TraitByName['trial']
 var chranos=G.TraitByName['t1']
 var tribal=G.TechByName['tribalism']
