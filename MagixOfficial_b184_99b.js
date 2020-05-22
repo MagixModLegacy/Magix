@@ -60,7 +60,7 @@ G.props['fastTicksOnResearch']=150;
 			G.Message({type:'important',text:str,icon:[0,3]});
 			if(t1start==true)
 			{
-				G.Message({type:'important',text:'tde',icon:[0,6]});
+				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br>10 <b>Insight</b><br>You get weakened each year stronger. Think about finishing the trial as soon as possible.',icon:[11,10,'magixmod']});
 			}
 			//influence trickle
 			if(G.has('Glory')){
