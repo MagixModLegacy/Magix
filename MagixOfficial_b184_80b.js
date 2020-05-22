@@ -12769,6 +12769,7 @@ G.getRes('worker').used=0
 G.fastTicks=0
 G.year=0; G.day=0;
 G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');
+t1start=false
 	}
 } else {
     alert("Do your last preparations and enter me again when you are ready")
