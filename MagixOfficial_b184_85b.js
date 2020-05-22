@@ -90,14 +90,8 @@ G.traitsOwned=0
 G.techsOwned.length=0
 G.techsOwned=0
 G.NewGameConfirm()
-var trial=G.TraitByName['trial']
-var chranos=G.TraitByName['t1']
-var tribal=G.TechByName['tribalism']
-var speech=G.TechByName['speech']
-G.gainTrait(trial)
-G.gainTrait(chranos)
-G.gainTech(trial)
-G.gainTech(speech)
+G.gainTrait(G.TraitByName['trial'])
+G.gainTrait(G.TraitByName['t1'])
 G.getRes('worker').used=0
 G.fastTicks=0
 G.year=0; G.day=0;
