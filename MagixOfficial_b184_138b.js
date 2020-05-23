@@ -53,7 +53,7 @@ G.props['fastTicksOnResearch']=150;
 	{
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		G.getRes('victory point').amount=0
-		var a1=G.achievByName['Patience'].won-1
+		var a1=G.achievByName['Patience'].won
 			while(b1<=a1){ 
     			  b1=b1+c1;  
    			   c1++;
