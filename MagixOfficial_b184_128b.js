@@ -178,7 +178,16 @@ G.props['fastTicksOnResearch']=150;
 	{
 		return 'Most population ruled';
 	}
-	
+	G.funcs['vp calc']=function()
+				{
+				var a1=G.achievByName['Patience'].won
+		var b1=0
+		var c1=t1vp 
+			while(b1<=a1){ 
+    			  b1=b1+c1;  
+   			   c1++;
+				G.gain('victory point',b1)
+			}
 	G.funcs['civ blurb']=function()
 	{
 		var str='';
@@ -5084,17 +5093,6 @@ if (!document.getElementById(cssId))
 		name:'victory point',
 		desc:'You can gain Victory Points for completing Seraphin\'s Trial. 11 of 12 trials are repeatable. After first completion of the trial it grants 1 VP, after 2nd succesful attempt in total grants 3 VP\'s and so on. They can\'t be spent but their amount may provide extra bonuses. <>VP\'s from trials: @[Gather roses,Patience] '+B(t1vp)+' VP @[se02,Unhappy] n VP @[se03,Cultural] n VP @[se04,Hunted] n VP @[se05,Unfishy] n VP @[se06,Ocean] n VP @[se07,Herbalism] n VP @[se08,Burial] n/1 VP @[se09,Underground] n VP @[se10,Pocket] n VP @[se11,Faithful] n VP @[se12,Dreamy] n VP',
 		icon:[0,28,'magixmod'],
-		tick:function(me,tick)
-			{
-				var a1=G.achievByName['Patience'].won
-		var b1=0
-		var c1=t1vp 
-			while(b1<=a1){ 
-    			  b1=b1+c1;  
-   			   c1++;
-				G.gain('victory point',b1)
-			}
-		}
 	});
 	/*=====================================================================================
 	UNITS
