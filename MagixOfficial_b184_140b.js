@@ -61,6 +61,7 @@ G.props['fastTicksOnResearch']=150;
 			}
 				G.gain('victory point',b1)
 		}
+		bonust1
 	}
 	G.funcs['new year']=function()
 	{
