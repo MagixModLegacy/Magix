@@ -188,6 +188,7 @@ G.props['fastTicksOnResearch']=150;
    			   c1++;
 				G.gain('victory point',b1)
 			}
+	}
 	G.funcs['civ blurb']=function()
 	{
 		var str='';
