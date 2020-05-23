@@ -29,20 +29,23 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
 		return str;
 	}
+	//////////////CHRANOS VP CALC//////////
+	var a1=G.achievByName['Patience'].won-1
+	var b1=0
+	var c1=0
+	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});
-		var a1=G.achievByName['Patience'].won-1
-		var b1=0
-		var c1=0
+		
 			while(b1<=a1){ 
     			  b1=b1+c1;  
    			   c1++;
 			}
 				G.gain('victory point',b1)		
 	}
-	t1vp=b1	
+	t1vp=b1
 	G.funcs['game over']=function()
 	{
 		var str=G.getName('civ')+' is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
