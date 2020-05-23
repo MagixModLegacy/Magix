@@ -53,12 +53,16 @@ G.props['fastTicksOnResearch']=150;
 	{
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		G.getRes('victory point').amount=0
-		var a1=G.achievByName['Patience'].won
-			while(b1<a1){ 
-    			  b1=b1+c1;  
-   			   c1+1;
-			}
-				G.gain('victory point',b1)
+		  var a1=G.achievByName['Patience'].won
+           	 while(b1<a1){ 
+                  b1=b1+c1;  
+                  c1+1;
+            }
+		function sumOfBefore(value){
+ 		 if(value < 2) return 1
+ 		 return value + sumOfBefore(value - 1)
+		}
+				G.gain('victory point', sumOfBefore(b1))
 		
 	}
 	G.funcs['new year']=function()
