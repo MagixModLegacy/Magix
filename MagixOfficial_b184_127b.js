@@ -5092,7 +5092,7 @@ if (!document.getElementById(cssId))
 			while(b1<=a1){ 
     			  b1=b1+c1;  
    			   c1++;
-				G.gainRes('victory point',b1)
+				G.gain('victory point',b1)
 			}
 		}
 	});
