@@ -225,7 +225,17 @@ G.props['fastTicksOnResearch']=150;
 		}
 		return mult;
 	}
-		
+	G.funcs['victory points calc']=function()
+	{
+		var a1=G.achievByName['Patience'].won
+		var b1=0
+		var c1=t1vp
+		do {
+			c1=c1+b1
+ 			 G.gainRes('victory point',c1);
+			b1=b1+1;
+			} while (b1 <= a1);
+	}	
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
 	G.hasNot=function(what)
