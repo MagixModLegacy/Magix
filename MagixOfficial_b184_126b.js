@@ -5094,6 +5094,7 @@ if (!document.getElementById(cssId))
    			   c1++;
 				G.gainRes('victory point',b1)
 			}
+		}
 	});
 	/*=====================================================================================
 	UNITS
