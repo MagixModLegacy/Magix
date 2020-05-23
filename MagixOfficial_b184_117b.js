@@ -4273,24 +4273,6 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-			//CHRANOS TRIAL START
-			if (t1start1==true){
-			G.unitsOwned.length=0
- G.policy.length=0
- G.traitsOwned.length=0
- G.techsOwned.length=0
- G.NewGameConfirm()
- G.getRes('worker').used=0
- G.fastTicks=0 
-var t1=G.traitByName['t1'] 
-var trial=G.traitByName['trial'] 
-G.gainTrait(t1) 
-G.gainTrait(trial) 
-G.year=0; G.day=0; 
-G.Save()
-G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');
-t1start1=false
-			}
 		},
 		category:'flowersanddyes',
 	});//31
