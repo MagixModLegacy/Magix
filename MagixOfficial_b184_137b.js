@@ -36,13 +36,7 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['new game']=function()
 	{
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
-		G.Message({type:'important tall',text:str,icon:[0,3]});
-		var a1=G.achievByName['Patience'].won-1
-			while(b1<=a1){ 
-    			  b1=b1+c1;  
-   			   c1++;
-			}
-				G.gain('victory point',b1)		
+		G.Message({type:'important tall',text:str,icon:[0,3]});		
 	}
 	t1vp=b1
 	G.funcs['game over']=function()
@@ -58,6 +52,13 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['game loaded']=function()
 	{
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
+		G.getRes('victory point').amount=0
+		var a1=G.achievByName['Patience'].won-1
+			while(b1<=a1){ 
+    			  b1=b1+c1;  
+   			   c1++;
+			}
+				G.gain('victory point',b1)
 	}
 	G.funcs['new year']=function()
 	{
