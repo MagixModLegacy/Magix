@@ -35,12 +35,14 @@ G.props['fastTicksOnResearch']=150;
 		G.Message({type:'important tall',text:str,icon:[0,3]});
 		var a1=G.achievByName['Patience'].won
 		var b1=0
-		var c1=t1vp 
+		var c1=0
 			while(b1<=a1){ 
     			  b1=b1+c1;  
    			   c1++;
-				G.gain('victory point',b1)
 			}
+				G.gain('victory point',b1)
+				t1vp=b1
+			
 	}
 	G.funcs['game over']=function()
 	{
