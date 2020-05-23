@@ -229,12 +229,12 @@ G.props['fastTicksOnResearch']=150;
 	{
 		var a1=G.achievByName['Patience'].won
 		var b1=0
-		var c1=t1vp
-		do {
-			c1=c1+b1
- 			 G.gainRes('victory point',c1);
-			b1=b1+1;
-			} while (b1 <= a1);
+		var c1=t1vp 
+			while(b1<=a1){ 
+    			  b1=b1+c1;  
+   			   c1++;
+				G.gainRes('victory point',b1)
+			}
 	}	
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
