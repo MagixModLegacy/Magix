@@ -433,7 +433,7 @@ if (!document.getElementById(cssId))
 			'main':{
 				name:'<span style "color: #DA4F37">Essentials</span>',
 				base:[],
-				side:['population','worker','happiness','health','coin'],
+				side:['population','worker','happiness','health','victory point'],
 		},
 			'terr':{
 				name:'Territory',
@@ -5084,13 +5084,6 @@ if (!document.getElementById(cssId))
 		name:'victory point',
 		desc:'You can gain Victory Points for completing Seraphin\'s Trial. 11 of 12 trials are repeatable. After first completion of the trial it grants 1 VP, after 2nd succesful attempt in total grants 3 VP\'s and so on. They can\'t be spent but their amount may provide extra bonuses. <>VP\'s from trials: @[Gather Roses,Patience] n VP @[se02,Unhappy] n VP @[se03,Cultural] n VP @[se04,Hunted] n VP @[se05,Unfishy] n VP @[se06,Ocean] n VP @[se07,Herbalism] n VP @[se08,Burial] n/1 VP @[se09,Underground] n VP @[se10,Pocket] n VP @[se11,Faithful] n VP @[se12,Dreamy] n VP',
 		icon:[0,28,'magixmod'],
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.009;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'seasonal',
-		hidden:true,
 	});
 	/*=====================================================================================
 	UNITS
