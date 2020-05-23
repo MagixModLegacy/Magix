@@ -33,6 +33,14 @@ G.props['fastTicksOnResearch']=150;
 	{
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});
+		var a1=G.achievByName['Patience'].won
+		var b1=0
+		var c1=t1vp 
+			while(b1<=a1){ 
+    			  b1=b1+c1;  
+   			   c1++;
+				G.gain('victory point',b1)
+			}
 	}
 	G.funcs['game over']=function()
 	{
@@ -177,17 +185,6 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['tracked stat str']=function()
 	{
 		return 'Most population ruled';
-	}
-	G.funcs['vp calc']=function()
-				{
-				var a1=G.achievByName['Patience'].won
-		var b1=0
-		var c1=t1vp 
-			while(b1<=a1){ 
-    			  b1=b1+c1;  
-   			   c1++;
-				G.gain('victory point',b1)
-			}
 	}
 	G.funcs['civ blurb']=function()
 	{
