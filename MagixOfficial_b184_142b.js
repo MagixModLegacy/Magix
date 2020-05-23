@@ -30,8 +30,8 @@ G.props['fastTicksOnResearch']=150;
 		return str;
 	}
 	//////////////CHRANOS VP CALC//////////
-	var b1=0
-	var c1=0
+	let b1=0
+	let c1=0
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
