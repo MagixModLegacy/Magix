@@ -11,6 +11,7 @@ func:function(){
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
+	let t1vp=0
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -5082,7 +5083,7 @@ if (!document.getElementById(cssId))
 	});
 		new G.Res({
 		name:'victory point',
-		desc:'You can gain Victory Points for completing Seraphin\'s Trial. 11 of 12 trials are repeatable. After first completion of the trial it grants 1 VP, after 2nd succesful attempt in total grants 3 VP\'s and so on. They can\'t be spent but their amount may provide extra bonuses. <>VP\'s from trials: @[Gather roses,Patience] n VP @[se02,Unhappy] n VP @[se03,Cultural] n VP @[se04,Hunted] n VP @[se05,Unfishy] n VP @[se06,Ocean] n VP @[se07,Herbalism] n VP @[se08,Burial] n/1 VP @[se09,Underground] n VP @[se10,Pocket] n VP @[se11,Faithful] n VP @[se12,Dreamy] n VP',
+		desc:'You can gain Victory Points for completing Seraphin\'s Trial. 11 of 12 trials are repeatable. After first completion of the trial it grants 1 VP, after 2nd succesful attempt in total grants 3 VP\'s and so on. They can\'t be spent but their amount may provide extra bonuses. <>VP\'s from trials: @[Gather roses,Patience] '+B(t1vp)+' VP @[se02,Unhappy] n VP @[se03,Cultural] n VP @[se04,Hunted] n VP @[se05,Unfishy] n VP @[se06,Ocean] n VP @[se07,Herbalism] n VP @[se08,Burial] n/1 VP @[se09,Underground] n VP @[se10,Pocket] n VP @[se11,Faithful] n VP @[se12,Dreamy] n VP',
 		icon:[0,28,'magixmod'],
 	});
 	/*=====================================================================================
