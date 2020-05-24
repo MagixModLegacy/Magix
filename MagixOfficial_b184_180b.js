@@ -4270,8 +4270,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
 					trait20=true
 				}
-			if(G.policy.length == 15 && !pol15){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
-			}
+			
 		},
 		category:'flowersanddyes',
 	});//23
@@ -4708,6 +4707,8 @@ if (!document.getElementById(cssId))
 		limit:'spirituality II',
 		tick:function(me,tick)
 		{
+			if(G.policy.length == 15 && !pol15){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
+			}
 			if (G.has('dt13')){
 			var toSpoil=me.amount*0.0002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
