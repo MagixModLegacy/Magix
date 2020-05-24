@@ -4278,7 +4278,7 @@ if (!document.getElementById(cssId))
 					trait20=true
 				}
 				if(G.has('Guru') && !guru && G.hasNot('An opposite side of belief')){
-				G.Message({type:'important',text:'Since the moment when you unlocked <b>Guru</b> you may start gathering. Just hire one Guru and wait patiently till he will gather one for you. It is gonna be needed in the later stages of the game.',icon:[8,12,choose([3,4,5,6]),27,'magixmod']})
+				G.Message({type:'important',text:'Since the moment when you unlocked <b>Guru</b> you may start gathering <font color="#ffaaff"><b>Science</b></font>. Just hire one or more Gurus and wait patiently till he will gather one for you. It is gonna be needed in the later stages of the game.',icon:[8,12,choose([3,4,5,6]),27,'magixmod']})
 					guru=true
 				}
 			if(G.has('rules of food') && !rofpopup && G.hasNot('sedentism')){
