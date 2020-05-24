@@ -4227,7 +4227,7 @@ if (!document.getElementById(cssId))
 			G.Message({type:'important',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
 			ritstory=true
 			if (G.has('burial') && !burystory && !G.has('monument-building')){
-			G.Message({type:'important',text:'The view of unburied corpses fears you and your tribe. Now they know that to calm down people you can just bury it.',icon:[13,2]})
+			G.Message({type:'important',text:'The view of unburied corpses fears you and your settlers. Now they know that to calm down people you can just bury it.',icon:[13,2]})
 				burystory=true}
 			if(G.has('fire-making') && !firestory && !G.has('construction')){
 			   G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
@@ -4238,7 +4238,7 @@ if (!document.getElementById(cssId))
 				if(G.has('weaving') && !weastory && G.hasNot('monument-building')){
 				G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})
 					weastory=true}
-				if(G.has('skinning') && !skinnsto && G.hasNot('city-planning')){
+				if(G.has('skinning') && !skinnsto && G.hasNot('city planning')){
 				G.Message({type:'important',text:'You give hope to hide resource. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
 				skinnsto=true}
 			}
