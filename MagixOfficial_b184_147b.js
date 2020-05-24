@@ -8994,7 +8994,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
 			{type:'function',func:function(){
-			G.Message({type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',icon:[1,28,'magixmod'})
+			G.Message({type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',icon:[1,28,'magixmod']})
 			}};
 		],
 		chance:3,
