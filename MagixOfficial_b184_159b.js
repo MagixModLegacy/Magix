@@ -4207,7 +4207,7 @@ if (!document.getElementById(cssId))
 				icon:[1,28,'magixmod']})
 				langstory=true
 			}
-			if(G.has('oral traditon')&& !oraltradstory && G.hasNot('ritualism')){
+			if(G.has('oral tradition')&& !oraltradstory && G.hasNot('ritualism')){
 				G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})
 				oraltradstory=true
 			}
