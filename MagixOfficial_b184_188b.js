@@ -4285,7 +4285,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'You now can control with food and water rations. They seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one.',icon:[4,28,'magixmod']})
 					rofpopup=true
 				}
-			if(G.getRes('land').amount==100 && !explorepop && G.hasNot('scout').amount>=1){
+			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
 				G.Message({type:'important',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover secrets hidden in new territory. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
 					explorepop=true
 				}
