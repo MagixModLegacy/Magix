@@ -4194,7 +4194,7 @@ if (!document.getElementById(cssId))
 	let tech50=false
 	let tech100=false
 	let trait20=false
-	let pol20=false
+	let pol15=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4255,7 +4255,7 @@ if (!document.getElementById(cssId))
 				skinnsto=true
 				}
 				if(G.getRes('gem block').amount>=10 && !gem && G.hasNot('monument-building')){
-				G.Message({type:'important',text:'Oh shiny gem blocks! You take one and hug it... So cute. : )',icon:[choose([17,18]),8]})
+				G.Message({type:'important',text:'Oh, shiny gem blocks! You take one and hug it... So cute. : )',icon:[choose([17,18]),8]})
 					gem=true
 				}
 				if(G.has('writing') && !writer && G.has('caligraphy') && G.has('alphabet 1/3') && G.hasNot('monument-building') && G.hasNot('alphabet 2/3')){
@@ -4270,10 +4270,11 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
 					trait20=true
 				}
-				if(G.policy.length == 20 && !pol20){
-				G.Message({type:'important',text:'Your rules and fact that you are leading this tribe has become accepted. People are bound to you.',icon:[11,4]})
-					pol20=true
+				if(G.policy.length == 15 && !pol15){
+				G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]})
+					pol15=true
 				}
+			}
 		},
 		category:'flowersanddyes',
 	});//23
