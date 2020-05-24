@@ -72,6 +72,9 @@ G.props['fastTicksOnResearch']=150;
 				if (G.getRes('insight').amount < G.getRes('wisdom').amount*1.6){
 				G.gain('insight',insight);
 				}
+				var weakness=Math.floor(Math.random() * 4)
+							G.gain('Berry seeds',weakness);
+				
 			}
 			//influence trickle
 			if(G.has('Glory')){
@@ -219,6 +222,17 @@ G.props['fastTicksOnResearch']=150;
 	
 	G.funcs['production multiplier']=function()
 	{
+		if t1start==true{
+			var mult=1-(G.getRes('Berry seeds').amount/500);
+		if (G.getRes('population').amount>0)
+		{
+			var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
+			happiness=Math.max(-2,Math.min(2,happiness));
+			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
+			else mult=1/(Math.pow(2,-happiness+1)/2);
+		}
+		return mult;
+		}else{
 		var mult=1;
 		if (G.getRes('population').amount>0)
 		{
@@ -2415,18 +2429,9 @@ if (!document.getElementById(cssId))
 		hidden:true,
 		startWith:1
 	});
-		new G.Res({//REMOVED AND WILL BE REPLACED SOON
+		new G.Res({//REMOVED AND USED AS CHRANOS WEAKNESS(DOWNGRADES YOU EACH YEAR WHILE IN PATIENCE TRIAL-well it is one of its rules tho)
 		name:'Berry seeds',
-		desc:'If you want to start farming [Berries] and crafting tasty [Juices] these seeds are a must.',
-		icon:[15,6,'magixmod'],
-		partOf:'misc materials',
-		category:'misc',
-		hidden:true,
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.09;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
+		desc:'Chranos\'s weakness',
 	});
 		let madeUnlockMessage = false
 		new G.Res({
