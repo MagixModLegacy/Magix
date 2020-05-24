@@ -8991,10 +8991,12 @@ getCosts:function()
 		icon:[2,1],
 		cost:{'insight':10},
 		req:{'speech':true},
-		effects:
-		[
+		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
-			{type:'function',func:function(){G.Message({type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',icon:[1,28,'magixmod']});}};
+			{type:'function',func:function(){G.Message({
+				type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',
+				icon:[1,28,'magixmod']})
+				}};
 		],
 		chance:3,
 	});
