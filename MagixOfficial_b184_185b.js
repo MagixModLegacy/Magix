@@ -4196,6 +4196,9 @@ if (!document.getElementById(cssId))
 	let tech100=false
 	let trait20=false
 	let pol15=false
+	let guru=false
+	let explorepop=false
+	let rofpopup=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4247,7 +4250,7 @@ if (!document.getElementById(cssId))
 			firestory=true
 			}
 				if(G.has('sewing') && !sewstory && G.hasNot('weaving')){
-				G.Message({type:'important',text:'You want some clothing. As long as you don\'t own a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})
+				G.Message({type:'important',text:'You want some clothing. As long as you won\'t hire a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})
 					sewstory=true
 				}
 				if(G.has('weaving') && !weastory && G.hasNot('monument-building')){
@@ -4273,6 +4276,18 @@ if (!document.getElementById(cssId))
 				if(G.traitN == 20 && !trait20){
 				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
 					trait20=true
+				}
+				if(G.has('guru') && !guru && G.hasNot('An opposite side of belief')){
+				G.Message({type:'important',text:'Since you got <b>Guru</b> you may start gathering.'+G.getIconUsedBy('science')+'Just hire one Guru and wait patiently till he will gather one for you. It is gonna be needed in the later stages of the game.',icon:[8,12,choose([3,4,5,6]),27,'magixmod']})
+					guru=true
+				}
+			if(G.has('rules of food') && !rofpopup && G.hasNot('sedentism')){
+				G.Message({type:'important',text:'You now can control with food and water rations. They seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one.',icon:[4,28,'magixmod']})
+					rofpopup=true
+				}
+			if(G.getRes('land').amount==100 && !explorepop && G.hasNot('scout')){
+				G.Message({type:'important',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover its secrets. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
+					explorepop=true
 				}
 		},
 		category:'flowersanddyes',
@@ -12166,7 +12181,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		name:'skinning',
 		desc:'[hunter]s can gather [hide] out of killed animals.',
 		icon:[31,26,'magixmod'],
-		req:{'hunting':true},
+		req:{'hunting':true,'sewing':true},
 		cost:{'insight':15},
 	});
 	new G.Tech({
