@@ -4273,7 +4273,6 @@ if (!document.getElementById(cssId))
 				if(G.policy.length == 15 && !pol15){
 				G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]})
 					pol15=true
-				}
 			}
 		},
 		category:'flowersanddyes',
