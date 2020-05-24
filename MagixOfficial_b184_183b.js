@@ -4204,72 +4204,6 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
-				G.Message({
-				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
-				icon:[1,28,'magixmod']})
-				langstory=true
-			}
-			if(G.has('oral tradition') && !oraltradstory && G.hasNot('ritualism')){
-				G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})
-				oraltradstory=true
-			}
-			if(G.has('tool-making') && !toolstory && G.hasNot('spears')){
-			G.Message({type:'important',text:'Finally people can use and craft something better than knapped tools, rocks etc.',icon:[1,9]})
-			toolstory=true
-			}
-			if(G.has('canoes') && !canoestory && G.hasNot('boat building')){
-			G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})
-				canoestory=true
-			}
-			if(G.has('sedentism') && !sedestory && G.hasNot('building')){
-			G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})
-			sedestory=true
-			}
-			if(G.has('boat building') && !boatstory && G.hasNot('Stronger faith')){
-			G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})
-			boatstory=true
-			}
-			if(G.has('ritualism') && !ritstory && G.hasNot('burial')){
-			G.Message({type:'important',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
-			ritstory=true
-			}
-			if (G.has('burial') && !burystory && !G.has('monument-building')){
-			G.Message({type:'important',text:'The view of unburied corpses fears you and your settlers. Now they know that to calm down people you can just bury it.',icon:[13,2]})
-				burystory=true
-			}
-			if(G.has('fire-making') && !firestory && !G.has('construction')){
-			   G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
-			firestory=true
-			}
-				if(G.has('sewing') && !sewstory && G.hasNot('weaving')){
-				G.Message({type:'important',text:'You want some clothing. As long as you don\'t own a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})
-					sewstory=true
-				}
-				if(G.has('weaving') && !weastory && G.hasNot('monument-building')){
-				G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})
-					weastory=true
-				}
-				if(G.has('skinning') && !skinnsto && G.hasNot('city planning')){
-				G.Message({type:'important',text:'You hope that primitive clothing from hide will make people happier. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
-				skinnsto=true
-				}
-				if(G.getRes('gem block').amount>=10 && !gem && G.hasNot('monument-building')){
-				G.Message({type:'important',text:'Oh, shiny gem blocks! You take one and hug it... So cute. : )',icon:[choose([17,18]),8]})
-					gem=true
-				}
-				if(G.has('writing') && !writer && G.has('caligraphy') && G.has('alphabet 1/3') && G.hasNot('monument-building') && G.hasNot('alphabet 2/3')){
-				G.Message({type:'important',text:'You managed to make people being able to write. Well... not everyone has readable writing... yet.',icon:[17,27,'magixmod']})
-					writer=true
-				}
-				if(G.techN == 50 && !tech50){
-				G.Message({type:'important',text:'Your tribe now can survive. Thanks to you, dreamers and mostly thanks to Insight for it. You stare at your tribe with smile.',icon:[8,12,8,4]})
-					tech50=true
-				}
-				if(G.traitN == 20 && !trait20){
-				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
-					trait20=true
-			}
 		},
 		category:'flowersanddyes',
 	});//23
@@ -4707,6 +4641,72 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick)
 		{
 			if(G.policy.length == 15 && !pol15){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
+			}
+			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
+				G.Message({
+				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
+				icon:[1,28,'magixmod']})
+				langstory=true
+			}
+			if(G.has('oral tradition') && !oraltradstory && G.hasNot('ritualism')){
+				G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})
+				oraltradstory=true
+			}
+			if(G.has('tool-making') && !toolstory && G.hasNot('spears')){
+			G.Message({type:'important',text:'Finally people can use and craft something better than knapped tools, rocks etc.',icon:[1,9]})
+			toolstory=true
+			}
+			if(G.has('canoes') && !canoestory && G.hasNot('boat building')){
+			G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})
+				canoestory=true
+			}
+			if(G.has('sedentism') && !sedestory && G.hasNot('building')){
+			G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})
+			sedestory=true
+			}
+			if(G.has('boat building') && !boatstory && G.hasNot('Stronger faith')){
+			G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})
+			boatstory=true
+			}
+			if(G.has('ritualism') && !ritstory && G.hasNot('burial')){
+			G.Message({type:'important',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
+			ritstory=true
+			}
+			if (G.has('burial') && !burystory && !G.has('monument-building')){
+			G.Message({type:'important',text:'The view of unburied corpses fears you and your settlers. Now they know that to calm down people you can just bury it.',icon:[13,2]})
+				burystory=true
+			}
+			if(G.has('fire-making') && !firestory && !G.has('construction')){
+			   G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
+			firestory=true
+			}
+				if(G.has('sewing') && !sewstory && G.hasNot('weaving')){
+				G.Message({type:'important',text:'You want some clothing. As long as you don\'t own a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})
+					sewstory=true
+				}
+				if(G.has('weaving') && !weastory && G.hasNot('monument-building')){
+				G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})
+					weastory=true
+				}
+				if(G.has('skinning') && !skinnsto && G.hasNot('city planning')){
+				G.Message({type:'important',text:'You hope that primitive clothing from hide will make people happier. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
+				skinnsto=true
+				}
+				if(G.getRes('gem block').amount>=10 && !gem && G.hasNot('monument-building')){
+				G.Message({type:'important',text:'Oh, shiny gem blocks! You take one and hug it... So cute. : )',icon:[choose([17,18]),8]})
+					gem=true
+				}
+				if(G.has('writing') && !writer && G.has('caligraphy') && G.has('alphabet 1/3') && G.hasNot('monument-building') && G.hasNot('alphabet 2/3')){
+				G.Message({type:'important',text:'You managed to make people being able to write. Well... not everyone has readable writing... yet.',icon:[17,27,'magixmod']})
+					writer=true
+				}
+				if(G.techN == 50 && !tech50){
+				G.Message({type:'important',text:'Your tribe now can survive. Thanks to you, dreamers and mostly thanks to Insight for it. You stare at your tribe with smile.',icon:[8,12,8,4]})
+					tech50=true
+				}
+				if(G.traitN == 20 && !trait20){
+				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
+					trait20=true
 			}
 			if (G.has('dt13')){
 			var toSpoil=me.amount*0.0002;
