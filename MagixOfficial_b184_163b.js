@@ -4225,7 +4225,7 @@ if (!document.getElementById(cssId))
 			boatstory=true}
 			if(G.has('ritualism') && !ritstory && G.hasNot('burial')){
 			G.Message({type:'important',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
-			ritstory=true
+			ritstory=true}
 			if (G.has('burial') && !burystory && !G.has('monument-building')){
 			G.Message({type:'important',text:'The view of unburied corpses fears you and your settlers. Now they know that to calm down people you can just bury it.',icon:[13,2]})
 				burystory=true}
