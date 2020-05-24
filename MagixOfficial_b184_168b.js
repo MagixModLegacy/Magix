@@ -4207,7 +4207,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
 				G.Message({
-				type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',
+				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
 				langstory=true
 			}
@@ -4216,7 +4216,7 @@ if (!document.getElementById(cssId))
 				oraltradstory=true
 			}
 			if(G.has('tool-making') && !toolstory && G.hasNot('spears')){
-			G.Message({type:'important',text:'Finally people can use something better than knapped tools, rocks etc.',icon:[1,9]})
+			G.Message({type:'important',text:'Finally people can use and craft something better than knapped tools, rocks etc.',icon:[1,9]})
 			toolstory=true
 			}
 			if(G.has('canoes') && !canoestory && G.hasNot('boat building')){
