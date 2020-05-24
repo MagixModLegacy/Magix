@@ -4246,6 +4246,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'You give hope to hide. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
 				skinnsto=true
 				}
+			}
 		},
 		category:'flowersanddyes',
 	});//23
