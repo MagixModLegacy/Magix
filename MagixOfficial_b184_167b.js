@@ -4266,7 +4266,7 @@ if (!document.getElementById(cssId))
 				if(G.techN == 50 && !tech50){
 				G.Message({type:'important',text:'Your tribe now can survive. Thanks to you, dreamers and mostly thanks to Insight for it. You stare at your tribe with smile.',icon:[8,12,8,4]})
 					tech50=true
-				}
+				
 			}
 		},
 		category:'flowersanddyes',
