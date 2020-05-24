@@ -4211,7 +4211,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})
 				oraltradstory=true
 			}
-			if(G.has('tool-making')&& !toolstory && G.hasNot('spears and maces')){
+			if(G.has('tool-making')&& !toolstory && G.hasNot('spears')){
 			G.Message({type:'important',text:'Finally people can use something better than knapped tools, rocks etc.',icon:[1,8]})
 			toolstory=true}
 			if(G.has('canoes') && !canoestory && G.hasNot('boat building')){
@@ -4230,7 +4230,7 @@ if (!document.getElementById(cssId))
 			G.Message({type:'important',text:'The view of unburied corpses fears you and your tribe. Now they know that to calm down people you can just bury it.',icon:[13,2]})
 				burystory=true
 			}
-			if(G.has('fire-making') && !firestory && G.hasNot('cooking')){
+			if(G.has('fire-making') && !firestory && G.hasNot('construction')){
 			   G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
 			firestory=true
 			   }
@@ -4242,8 +4242,8 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})
 					weastory=true
 				}
-				if(G.has('skinning') && !skinnsto && G.hasNot('weaving')){
-				G.Message({type:'important',text:'You give hope to hide. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
+				if(G.has('skinning') && !skinnsto && G.hasNot('city-planning')){
+				G.Message({type:'important',text:'You give hope to hide resource. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
 				skinnsto=true
 				}
 			}
