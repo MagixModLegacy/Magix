@@ -8993,9 +8993,7 @@ getCosts:function()
 		req:{'speech':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',icon:[1,28,'magixmod']})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',icon:[1,28,'magixmod']})}};
 		],
 		chance:3,
 	});
@@ -9008,9 +9006,7 @@ getCosts:function()
 		req:{'language':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':20,'wisdom':20}},
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})}};
 		],
 	});
 	
@@ -9032,9 +9028,7 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'stone-knapping':true,'carving':true},
 		effects:[
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'Finally people can use something better than knapped tools, rocks etc.',icon:[1,8]})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'Finally people can use something better than knapped tools, rocks etc.',icon:[1,8]})}};
 		],
 		chance:3,
 	});
@@ -9068,9 +9062,7 @@ getCosts:function()
 		req:{'tool-making':true,'woodcutting':true},
 		effects:[
 			{type:'allow',what:['shore exploring']},
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})}};
 		],
 	});
 	new G.Tech({
@@ -9082,9 +9074,7 @@ getCosts:function()
 		req:{'canoes':true,'carpentry':true},
 		effects:[
 			{type:'allow',what:['ocean exploring']},
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})}};
 		],
 	});
 	
@@ -9095,9 +9085,7 @@ getCosts:function()
 		cost:{'insight':20},
 		req:{'stone-knapping':true,'digging':true,'language':true},
 		effects:[
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})}};
 		],
 		chance:3,
 	});
@@ -9242,9 +9230,7 @@ getCosts:function()
 		cost:{'insight':5},
 		req:{'ritualism':true,'digging':true},
 		effects:[
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'The view of unburied corpses fears you and your tribe. Now they know that to calm down people you can just bury it.',icon:[13,2]})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'The view of unburied corpses fears you and your tribe. Now they know that to calm down people you can just bury it.',icon:[13,2]})}};
 		],
 		chance:2,
 	});
@@ -9312,9 +9298,7 @@ getCosts:function()
 		cost:{'insight':15},
 		req:{'stone-knapping':true},
 		effects:[
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})}};
 		],
 		chance:3,
 	});
@@ -9341,9 +9325,7 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'tool-making':true},
 		effects:[
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'You want some clothing. As long as you don\'t own a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'You want some clothing. As long as you don\'t own a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})}};
 		],
 	});
 	new G.Tech({
@@ -9353,9 +9335,7 @@ getCosts:function()
 		cost:{'insight':20},
 		req:{'sewing':true},
 		effects:[
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})}};
 		],
 	});
 	new G.Tech({
@@ -12116,10 +12096,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'hunting':true},
 		cost:{'insight':15},
 		effects:[
-			
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'You give hope to hide. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
-			}};
+			{type:'function',func:function(){G.Message({type:'important',text:'You give hope to hide. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})}};
 		],
 	});
 	new G.Tech({
