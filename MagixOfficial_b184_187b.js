@@ -4278,15 +4278,15 @@ if (!document.getElementById(cssId))
 					trait20=true
 				}
 				if(G.has('Guru') && !guru && G.hasNot('An opposite side of belief')){
-				G.Message({type:'important',text:'Since you got <b>Guru</b> you may start gathering.'+G.getIconUsedBy('science')+'Just hire one Guru and wait patiently till he will gather one for you. It is gonna be needed in the later stages of the game.',icon:[8,12,choose([3,4,5,6]),27,'magixmod']})
+				G.Message({type:'important',text:'Since the moment when you unlocked <b>Guru</b> you may start gathering. Just hire one Guru and wait patiently till he will gather one for you. It is gonna be needed in the later stages of the game.',icon:[8,12,choose([3,4,5,6]),27,'magixmod']})
 					guru=true
 				}
 			if(G.has('rules of food') && !rofpopup && G.hasNot('sedentism')){
 				G.Message({type:'important',text:'You now can control with food and water rations. They seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one.',icon:[4,28,'magixmod']})
 					rofpopup=true
 				}
-			if(G.getRes('land').amount==100 && !explorepop && G.hasNot('scout')){
-				G.Message({type:'important',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover its secrets. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
+			if(G.getRes('land').amount==100 && !explorepop && G.hasNot('scout').amount>=1){
+				G.Message({type:'important',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover secrets hidden in new territory. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
 					explorepop=true
 				}
 		},
@@ -12182,7 +12182,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[hunter]s can gather [hide] out of killed animals.',
 		icon:[31,26,'magixmod'],
 		req:{'hunting':true,'sewing':true},
-		cost:{'insight':15},
+		cost:{'insight':10},
 	});
 	new G.Tech({
 		name:'herbalism',
