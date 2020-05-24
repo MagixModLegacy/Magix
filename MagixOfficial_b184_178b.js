@@ -4270,7 +4270,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
 					trait20=true
 				}
-				if(G.policy.length == 15 && !pol15){
+				if(G.policy.length == 15 && !pol15)
 				G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]})
 					pol15=true
 			}
