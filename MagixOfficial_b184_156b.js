@@ -4180,6 +4180,18 @@ if (!document.getElementById(cssId))
 		},
 		category:'flowersanddyes',
 	});//22
+	let langstory=false
+	let oraltradstory=false
+	let toolstory=false
+	let canoestory=false
+	let sedestory=false
+	let boatstory=false
+	let ritstory=false
+	let burystory=false
+	let firestory=false
+	let sewstory=false
+	let weastory=false
+	let skinnsto=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4189,6 +4201,51 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			if(G.has('language')&& !langstory && G.hasNot('oral tradition')){
+				G.Message({
+				type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',
+				icon:[1,28,'magixmod']})
+				langstory=true
+			}
+			if(G.has('oral traditon')&& !oraltradstory && G.hasNot('ritualism')){
+				G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})
+				oraltradstory=true
+			}
+			if(G.has('tool-making')&& !toolstory && G.hasNot('spears and maces')){
+			G.Message({type:'important',text:'Finally people can use something better than knapped tools, rocks etc.',icon:[1,8]})
+			toolstory=true}
+			if(G.has('canoes') && !canoestory && G.hasNot('boat building')){
+			G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})
+				canoestory=true}
+			if(G.has('sedentism') && !sedestory && G.hasNot('building')){
+			G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})
+			sedestory=true}
+			if(G.has('boat building') && !boatstory && G.hasNot('Stronger faith')){
+			G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})
+			boatstory=true}
+			if(G.has('ritualism') && !ritstory && G.hasNot('burial')){
+			G.Message({type:'important',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
+			ritstory=true
+			if (G.has('burial') && !burystory && G.hasNot('monument-building')){
+			G.Message({type:'important',text:'The view of unburied corpses fears you and your tribe. Now they know that to calm down people you can just bury it.',icon:[13,2]})
+				burystory=true
+			}
+			if(G.has('fire-making') && !firestory && G.hasNot('cooking')){
+			   G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
+			firestory=true
+			   }
+				if(G.has('sewing') && !sewstory && G.hasNot('weaving')){
+				G.Message({type:'important',text:'You want some clothing. As long as you don\'t own a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})
+					sewstory=true
+				}
+				if(G.has('weaving') && !weastory && G.hasNot('monument-building')){
+				G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})
+					weastory=true
+				}
+				if(G.has('skinning') && !skinnsto && G.hasNot('weaving')){
+				G.Message({type:'important',text:'You give hope to hide. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
+				skinnsto=true
+				}
 		},
 		category:'flowersanddyes',
 	});//23
@@ -8993,12 +9050,6 @@ getCosts:function()
 		req:{'speech':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
-			{type:'function',func:function(){if(G.has('language')){
-				G.Message({
-				type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',
-				icon:[1,28,'magixmod']})
-			}
-			}};
 		],
 		chance:3,
 	});
@@ -9011,7 +9062,6 @@ getCosts:function()
 		req:{'language':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':20,'wisdom':20}},
-			{type:'function',func:function(){G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})}};
 		],
 	});
 	
@@ -9033,7 +9083,6 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'stone-knapping':true,'carving':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'Finally people can use something better than knapped tools, rocks etc.',icon:[1,8]})}};
 		],
 		chance:3,
 	});
@@ -9067,7 +9116,6 @@ getCosts:function()
 		req:{'tool-making':true,'woodcutting':true},
 		effects:[
 			{type:'allow',what:['shore exploring']},
-			{type:'function',func:function(){G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})}};
 		],
 	});
 	new G.Tech({
@@ -9079,7 +9127,6 @@ getCosts:function()
 		req:{'canoes':true,'carpentry':true},
 		effects:[
 			{type:'allow',what:['ocean exploring']},
-			{type:'function',func:function(){G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})}};
 		],
 	});
 	
@@ -9090,7 +9137,6 @@ getCosts:function()
 		cost:{'insight':20},
 		req:{'stone-knapping':true,'digging':true,'language':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})}};
 		],
 		chance:3,
 	});
@@ -9211,10 +9257,7 @@ getCosts:function()
 		cost:{'culture':5},
 		req:{'oral tradition':true},
 		effects:[
-			{type:'provide res',what:{'spirituality':10}},
-			{type:'function',func:function(){
-			G.Message({type:'important',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
-			}};
+			{type:'provide res',what:{'spirituality':10}};
 		],
 	});
 	
@@ -9235,7 +9278,6 @@ getCosts:function()
 		cost:{'insight':5},
 		req:{'ritualism':true,'digging':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'The view of unburied corpses fears you and your tribe. Now they know that to calm down people you can just bury it.',icon:[13,2]})}};
 		],
 		chance:2,
 	});
@@ -9303,7 +9345,6 @@ getCosts:function()
 		cost:{'insight':15},
 		req:{'stone-knapping':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})}};
 		],
 		chance:3,
 	});
@@ -9329,9 +9370,6 @@ getCosts:function()
 		icon:[29,1],
 		cost:{'insight':10},
 		req:{'tool-making':true},
-		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'You want some clothing. As long as you don\'t own a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})}};
-		],
 	});
 	new G.Tech({
 		name:'weaving',
@@ -9340,7 +9378,6 @@ getCosts:function()
 		cost:{'insight':20},
 		req:{'sewing':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})}};
 		],
 	});
 	new G.Tech({
@@ -12100,9 +12137,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[31,26,'magixmod'],
 		req:{'hunting':true},
 		cost:{'insight':15},
-		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'You give hope to hide. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})}};
-		],
 	});
 	new G.Tech({
 		name:'herbalism',
@@ -12110,8 +12144,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[31,27,'magixmod'],
 		req:{'language':true},
 		cost:{'insight':10},
-		effects:[	
-		]
 	});
 	new G.Tech({
 		name:'instruction',
