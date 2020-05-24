@@ -4209,7 +4209,7 @@ if (!document.getElementById(cssId))
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 			
-			if(G.policy.length == 15 && !pol15){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
+			if(G.policy.length >= 15 && !pol15 && G.policy.length <= 18){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
 			}
 			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
 				G.Message({
