@@ -4193,6 +4193,8 @@ if (!document.getElementById(cssId))
 	let writer=false
 	let tech50=false
 	let tech100=false
+	let trait20=false
+	let pol20=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4249,7 +4251,7 @@ if (!document.getElementById(cssId))
 					weastory=true
 				}
 				if(G.has('skinning') && !skinnsto && G.hasNot('city planning')){
-				G.Message({type:'important',text:'You give hope to hide resource. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
+				G.Message({type:'important',text:'You hope that primitive clothing from hide will make people happier. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
 				skinnsto=true
 				}
 				if(G.getRes('gem block').amount>=10 && !gem && G.hasNot('monument-building')){
@@ -4263,8 +4265,14 @@ if (!document.getElementById(cssId))
 				if(G.techN == 50 && !tech50){
 				G.Message({type:'important',text:'Your tribe now can survive. Thanks to you, dreamers and mostly thanks to Insight for it. You stare at your tribe with smile.',icon:[8,12,8,4]})
 					tech50=true
-				
-			}
+				}
+				if(G.traitN == 20 && !trait20){
+				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
+					trait20=true
+				}
+				if(G.policy.length == 20 && !pol20){
+				G.Message({type:'important',text:'Your rules and fact that you are leading this tribe has become accepted. People are bound to you.',icon:[11,4]})
+					pol20=true
 		},
 		category:'flowersanddyes',
 	});//23
