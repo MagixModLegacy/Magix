@@ -54,15 +54,11 @@ G.props['fastTicksOnResearch']=150;
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		G.getRes('victory point').amount=0
 		  var a1=G.achievByName['Patience'].won
-           	 while(b1<a1){ 
-                  b1=b1+c1;  
+           	 while(c1<a1){ 
+                  b1=b1+1;  
                   c1+1;
             }
-		function sumOfBefore(value){
- 		 if(value < 2) return 1
- 		 return value + sumOfBefore(value - 1)
-		}
-				G.gain('victory point', sumOfBefore(b1))
+				G.gain('victory point',b1)
 		
 	}
 	G.funcs['new year']=function()
@@ -7423,7 +7419,7 @@ if (!document.getElementById(cssId))
 		name:'Blockhouse',
 		desc:'@provides 50 [housing]. Hardly constructed at the lands of Plain Island blockhouse has very low chance to be wasted.',
 		icon:[9,1,'magixmod'],
-		cost:{'concrete':4500,'glass':500,'basic building materials':750},
+		cost:{'concrete':6500,'glass':600,'basic building materials':750},
 		use:{'Land of the Plain Island':3},
 		effects:[
 			{type:'provide',what:{'housing':50}},
@@ -8997,6 +8993,9 @@ getCosts:function()
 		req:{'speech':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'Now while talking to your people they understand you more. And they understand themselves each other',icon:[1,28,'magixmod'})
+			}};
 		],
 		chance:3,
 	});
@@ -9009,6 +9008,9 @@ getCosts:function()
 		req:{'language':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':20,'wisdom':20}},
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})
+			}};
 		],
 	});
 	
@@ -9030,6 +9032,9 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'stone-knapping':true,'carving':true},
 		effects:[
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'Finally people can use something better than knapped tools, rocks etc.',icon:[1,8]})
+			}};
 		],
 		chance:3,
 	});
@@ -9063,6 +9068,9 @@ getCosts:function()
 		req:{'tool-making':true,'woodcutting':true},
 		effects:[
 			{type:'allow',what:['shore exploring']},
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})
+			}};
 		],
 	});
 	new G.Tech({
@@ -9074,6 +9082,9 @@ getCosts:function()
 		req:{'canoes':true,'carpentry':true},
 		effects:[
 			{type:'allow',what:['ocean exploring']},
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})
+			}};
 		],
 	});
 	
@@ -9084,6 +9095,9 @@ getCosts:function()
 		cost:{'insight':20},
 		req:{'stone-knapping':true,'digging':true,'language':true},
 		effects:[
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})
+			}};
 		],
 		chance:3,
 	});
@@ -9205,6 +9219,9 @@ getCosts:function()
 		req:{'oral tradition':true},
 		effects:[
 			{type:'provide res',what:{'spirituality':10}},
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
+			}};
 		],
 	});
 	
@@ -9225,6 +9242,9 @@ getCosts:function()
 		cost:{'insight':5},
 		req:{'ritualism':true,'digging':true},
 		effects:[
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'The view of unburied corpses fears you and your tribe. Now they know that to calm down people you can just bury it.',icon:[13,2]})
+			}};
 		],
 		chance:2,
 	});
@@ -9292,6 +9312,9 @@ getCosts:function()
 		cost:{'insight':15},
 		req:{'stone-knapping':true},
 		effects:[
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
+			}};
 		],
 		chance:3,
 	});
@@ -9318,6 +9341,9 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'tool-making':true},
 		effects:[
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'You want some clothing. As long as you don\'t own a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})
+			}};
 		],
 	});
 	new G.Tech({
@@ -9326,6 +9352,11 @@ getCosts:function()
 		icon:[30,1],
 		cost:{'insight':20},
 		req:{'sewing':true},
+		effects:[
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})
+			}};
+		],
 	});
 	new G.Tech({
 		name:'leather-working',
@@ -12085,7 +12116,11 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'hunting':true},
 		cost:{'insight':15},
 		effects:[
-		]
+			
+			{type:'function',func:function(){
+			G.Message({type:'important',text:'You give hope to hide. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
+			}};
+		],
 	});
 	new G.Tech({
 		name:'herbalism',
