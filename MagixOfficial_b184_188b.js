@@ -223,13 +223,13 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['production multiplier']=function()
 	{
 		if (t1start==true){
-			var mult=1-(G.getRes('Berry seeds').amount/500);
+			var mult=1-((G.getRes('Berry seeds').amount/500)*G.achievByName['Patience'].won);
 		if (G.getRes('population').amount>0)
 		{
 			var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
 			happiness=Math.max(-2,Math.min(2,happiness));
-			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
-			else mult=1/(Math.pow(2,-happiness+1)/2);
+			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2)-((G.getRes('Berry seeds').amount/500)*G.achievByName['Patience'].won);
+			else mult=1/(Math.pow(2,-happiness+1)/2)-((G.getRes('Berry seeds').amount/500)*G.achievByName['Patience'].won);
 		}
 		return mult;
 		}else{
