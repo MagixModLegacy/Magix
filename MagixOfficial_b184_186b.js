@@ -4277,7 +4277,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
 					trait20=true
 				}
-				if(G.has('guru') && !guru && G.hasNot('An opposite side of belief')){
+				if(G.has('Guru') && !guru && G.hasNot('An opposite side of belief')){
 				G.Message({type:'important',text:'Since you got <b>Guru</b> you may start gathering.'+G.getIconUsedBy('science')+'Just hire one Guru and wait patiently till he will gather one for you. It is gonna be needed in the later stages of the game.',icon:[8,12,choose([3,4,5,6]),27,'magixmod']})
 					guru=true
 				}
