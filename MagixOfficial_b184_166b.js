@@ -4192,6 +4192,10 @@ if (!document.getElementById(cssId))
 	let sewstory=false
 	let weastory=false
 	let skinnsto=false
+	let gem=false
+	let writer=false
+	let tech50=false
+	let tech100=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4248,8 +4252,21 @@ if (!document.getElementById(cssId))
 					weastory=true
 				}
 				if(G.has('skinning') && !skinnsto && G.hasNot('city planning')){
-				G.Message({type:'important',text:'You give hope to hide resource. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
+				G.Message({type:'important',text:'You give hope to hide resource. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[17,27,'magixmod']})
 				skinnsto=true
+				}
+				if(G.getRes('gem block').amount>=10 && !gem && G.hasNot('monument-building')){
+				G.Message({type:'important',text:'Oh shiny gem blocks! You take one and hug it... So cute. : )',icon:[17,9]})
+					sewstory=true
+				}
+				if(G.has('writing') && !writer && G.has('caligraphy') && G.has('alphabet 1/3') && G.hasNot('monument-building') || G.hasNot('alphabet 2/3')){
+				G.Message({type:'important',text:'You managed to make people being able to write. Well... not everyone has readable writing... yet.',icon:[15,7]})
+					writer=true
+				}
+				if(G.techN == 50 && !tech50){
+				G.Message({type:'important',text:'Your tribe now can survive. Thanks to you, dreamers and mostly thanks to Insight for it. You stare at your tribe with smile.',icon:[8,12,8,4]})
+					tech50=true
+				}
 			}
 		},
 		category:'flowersanddyes',
@@ -4773,7 +4790,10 @@ if (!document.getElementById(cssId))
 			if(G.techN >= 100 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
 			G.achievByName['Apprentice'].won = 1
 			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
-			}
+				if(G.techN==100 && !tech100){
+			G.Message({type:'important',text:'You managed your civilization to be smart. They thank you with kindness for ruling them. They will not even think about choosing other lord than you. Keep going this way. Discover, research and prosper ',icon:[24,18,'magixmod',8,4]})
+					tech100=true
+				}}
 			if(G.techN >= 200 && G.achievByName['Familiar'].won == 0){ //Apprentice achievement
 			G.achievByName['Familiar'].won = 1
 			G.middleText('- Completed <font color="lime">Familiar</font> achievement -')
