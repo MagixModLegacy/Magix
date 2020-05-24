@@ -9258,7 +9258,7 @@ getCosts:function()
 		cost:{'culture':5},
 		req:{'oral tradition':true},
 		effects:[
-			{type:'provide res',what:{'spirituality':10}};
+			{type:'provide res',what:{'spirituality':10}}
 		],
 	});
 	
