@@ -4270,7 +4270,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
 					trait20=true
 				}
-			
+			}
 		},
 		category:'flowersanddyes',
 	});//23
