@@ -222,7 +222,7 @@ G.props['fastTicksOnResearch']=150;
 	
 	G.funcs['production multiplier']=function()
 	{
-		if t1start==true{
+		if (t1start==true){
 			var mult=1-(G.getRes('Berry seeds').amount/500);
 		if (G.getRes('population').amount>0)
 		{
