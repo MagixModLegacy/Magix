@@ -4252,15 +4252,15 @@ if (!document.getElementById(cssId))
 					weastory=true
 				}
 				if(G.has('skinning') && !skinnsto && G.hasNot('city planning')){
-				G.Message({type:'important',text:'You give hope to hide resource. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[17,27,'magixmod']})
+				G.Message({type:'important',text:'You give hope to hide resource. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
 				skinnsto=true
 				}
 				if(G.getRes('gem block').amount>=10 && !gem && G.hasNot('monument-building')){
 				G.Message({type:'important',text:'Oh shiny gem blocks! You take one and hug it... So cute. : )',icon:[17,9]})
 					sewstory=true
 				}
-				if(G.has('writing') && !writer && G.has('caligraphy') && G.has('alphabet 1/3') && G.hasNot('monument-building') || G.hasNot('alphabet 2/3')){
-				G.Message({type:'important',text:'You managed to make people being able to write. Well... not everyone has readable writing... yet.',icon:[15,7]})
+				if(G.has('writing') && !writer && G.has('caligraphy') && G.has('alphabet 1/3') && G.hasNot('monument-building') && G.hasNot('alphabet 2/3')){
+				G.Message({type:'important',text:'You managed to make people being able to write. Well... not everyone has readable writing... yet.',icon:[17,27,'magixmod']})
 					writer=true
 				}
 				if(G.techN == 50 && !tech50){
