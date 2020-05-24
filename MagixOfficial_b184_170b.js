@@ -51,15 +51,7 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['game loaded']=function()
 	{
-		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
-		G.getRes('victory point').amount=0
-		  var a1=G.achievByName['Patience'].won
-           	 while(c1<a1){ 
-                  b1=b1+1;  
-                  c1+1;
-            }
-				G.gain('victory point',b1)
-		
+		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});		
 	}
 	G.funcs['new year']=function()
 	{
