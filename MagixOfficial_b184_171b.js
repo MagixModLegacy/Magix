@@ -4248,8 +4248,8 @@ if (!document.getElementById(cssId))
 				skinnsto=true
 				}
 				if(G.getRes('gem block').amount>=10 && !gem && G.hasNot('monument-building')){
-				G.Message({type:'important',text:'Oh shiny gem blocks! You take one and hug it... So cute. : )',icon:[17,9]})
-					sewstory=true
+				G.Message({type:'important',text:'Oh shiny gem blocks! You take one and hug it... So cute. : )',icon:[choose([17,18]),8]})
+					gem=true
 				}
 				if(G.has('writing') && !writer && G.has('caligraphy') && G.has('alphabet 1/3') && G.hasNot('monument-building') && G.hasNot('alphabet 2/3')){
 				G.Message({type:'important',text:'You managed to make people being able to write. Well... not everyone has readable writing... yet.',icon:[17,27,'magixmod']})
