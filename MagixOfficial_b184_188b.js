@@ -1387,7 +1387,7 @@ if (!document.getElementById(cssId))
 		name:'fruit',
 		desc:'[fruit,Fruits], whether gathered from berry bushes or fruit trees, are both sweet-tasting and good for you.',
 		icon:[4,7],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.0075},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':0.02,'happiness':0.011},'decay':{'spoiled food':1}},
 		partOf:'food',
 		category:'food',
 	});
