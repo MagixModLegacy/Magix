@@ -1214,7 +1214,7 @@ if (!document.getElementById(cssId))
 				//CHRA-NOS
 				if (G.checkPolicy('Gather roses')=='on')
 				{
-				var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/100)*2);
+				var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/10)*2);
 				var spent=G.lose('water',randomFloor(toSpoil),'decay');
 				G.gain('muddy water',randomFloor(spent),'decay');
 				}else{
