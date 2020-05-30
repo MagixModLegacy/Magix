@@ -9,6 +9,9 @@ func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 G.props['fastTicksOnResearch']=150;
+	let t1start = false
+	let t1start1 = false
+	let t1vp=0
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -26,11 +29,16 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
 		return str;
 	}
+	//////////////CHRANOS VP CALC//////////
+	let b1=0
+	let c1=0
+	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
-		G.Message({type:'important tall',text:str,icon:[0,3]});
+		G.Message({type:'important tall',text:str,icon:[0,3]});		
 	}
+	t1vp=b1
 	G.funcs['game over']=function()
 	{
 		var str=G.getName('civ')+' is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
@@ -43,7 +51,7 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['game loaded']=function()
 	{
-		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
+		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});		
 	}
 	G.funcs['new year']=function()
 	{
@@ -57,7 +65,17 @@ G.props['fastTicksOnResearch']=150;
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
-			
+			if(t1start==true)
+			{
+				var insight=Math.floor(Math.random() * (33/G.achievByName['Patience'].won+1));
+				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b><font color="#aaffff">'+B(insight)+' Insight</font></b><br>The hidden weakness in this plane gets stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
+				if (G.getRes('insight').amount < G.getRes('wisdom').amount*1.6){
+				G.gain('insight',insight);
+				}
+				var weakness=Math.floor(Math.random() * 4)
+							G.gain('Berry seeds',weakness);
+				
+			}
 			//influence trickle
 			if(G.has('Glory')){
 				if (G.getRes('influence').amount<=G.getRes('authority').amount-2)G.gain('influence',2);
@@ -168,7 +186,6 @@ G.props['fastTicksOnResearch']=150;
 	{
 		return 'Most population ruled';
 	}
-	
 	G.funcs['civ blurb']=function()
 	{
 		var str='';
@@ -205,6 +222,17 @@ G.props['fastTicksOnResearch']=150;
 	
 	G.funcs['production multiplier']=function()
 	{
+		if (t1start==true){
+			var mult=1-((G.getRes('Berry seeds').amount/2500)*(G.achievByName['Patience'].won+1/4));
+		if (G.getRes('population').amount>0)
+		{
+			var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
+			happiness=Math.max(-2,Math.min(2,happiness));
+			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2)-((G.getRes('Berry seeds').amount/500)*G.achievByName['Patience'].won);
+			else mult=1/(Math.pow(2,-happiness+1)/2)-((G.getRes('Berry seeds').amount/500)*G.achievByName['Patience'].won);
+		}
+		return mult;
+		}else{
 		var mult=1;
 		if (G.getRes('population').amount>0)
 		{
@@ -214,8 +242,8 @@ G.props['fastTicksOnResearch']=150;
 			else mult=1/(Math.pow(2,-happiness+1)/2);
 		}
 		return mult;
+		}
 	}
-		
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
 	G.hasNot=function(what)
@@ -363,20 +391,19 @@ G.writeMSettingButton=function(obj)
 			popup:true,
 			addClass:'right',
 			desc:'Options and information about the Magix mod.'
-		});
+		});	
 		// Don't make assumptions about the existing tabs
 		// (or another mod that does the same thing)
 		// make sure everything is numbered and built properly
 		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
 		G.buildTabs();
-		
 	}
 
 	G.tabPopup['Magix']=function()
 	{
 		var str='';
 		str+='<div class="par">'+
-		'<b>The Magix mod</b> is a mod for NeverEnding Legacy made by <b>pelletsstarPL</b>.'+'It is currently in early-beta, may feature strange and exotic bugs, and may be updated at any time.</div>'+'<div class="par">While in development, the mod may be unstable and subject to changes, but the overall goal is to '+
+		'<b>The Magix mod</b> is a mod for NeverEnding Legacy made by <b>pelletsstarPL</b>.'+'It is currently in beta, may feature strange and exotic bugs, and may be updated at any time.</div>'+'<div class="par">While in development, the mod may be unstable and subject to changes, but the overall goal is to '+
 		'expand and improve the legacy with flexible, balanced, user-created content and improvements to existing mechanics.</div>'+
 		'Below this description you will see something like Q&A with me.</div>'+
 		'<div class="fancyText title">The Magix mod - why did I make this mod?</div>'+
@@ -405,7 +432,7 @@ G.writeMSettingButton=function(obj)
 		G.dialogue.getCloseButton()+
 		'</div>';
 		return str;
-	}
+}
 var cssId = 'betaCss';  
 if (!document.getElementById(cssId))
 {
@@ -425,7 +452,7 @@ if (!document.getElementById(cssId))
 			'main':{
 				name:'<span style "color: #DA4F37">Essentials</span>',
 				base:[],
-				side:['population','worker','happiness','health','coin'],
+				side:['population','worker','happiness','health','victory point'],
 		},
 			'terr':{
 				name:'Territory',
@@ -1187,7 +1214,7 @@ if (!document.getElementById(cssId))
 				//CHRA-NOS
 				if (G.checkPolicy('Gather roses')=='on')
 				{
-				var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/1000)*2);
+				var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/10)*2);
 				var spent=G.lose('water',randomFloor(toSpoil),'decay');
 				G.gain('muddy water',randomFloor(spent),'decay');
 				}else{
@@ -1360,7 +1387,7 @@ if (!document.getElementById(cssId))
 		name:'fruit',
 		desc:'[fruit,Fruits], whether gathered from berry bushes or fruit trees, are both sweet-tasting and good for you.',
 		icon:[4,7],
-		turnToByContext:{'eating':{'health':0.02,'happiness':0.0075},'decay':{'spoiled food':1}},
+		turnToByContext:{'eating':{'health':0.02,'happiness':0.011},'decay':{'spoiled food':1}},
 		partOf:'food',
 		category:'food',
 	});
@@ -1376,6 +1403,8 @@ if (!document.getElementById(cssId))
 			///On purpose crash. Occurs while playing market without magix utils
 			if(G.modsByName['Market mod'] && !G.modsByName['Magix utils for market']){
 				console.log('Install Magix utilities for market mod! Caused on-purpose game crash.');
+				console.log('Url to paste:https://cdn.jsdelivr.net/gh/MagixModLegacy/Magix@master/MagixUtilsForMarketA0.js');
+				console.log('Refresh the page.');
 				G.middleText('Install Magix utilities for market mod!<hr><br><small>Caused on-purpose game crash</small>',slow)
 				
 			}
@@ -1927,7 +1956,7 @@ if (!document.getElementById(cssId))
 	new G.Res({
 		name:'science',
 		desc:'[science] is the product of experiments and discoveries.//'+limitDesc('[education]')+'//Many technologies require science to be researched.',
-		icon:[6,4],
+		icon:[choose([3,4,5,6]),27,'magixmod'],
 		category:'main',
 		limit:'education',
 		getDisplayAmount:researchGetDisplayAmount,
@@ -2403,18 +2432,9 @@ if (!document.getElementById(cssId))
 		hidden:true,
 		startWith:1
 	});
-		new G.Res({//REMOVED AND WILL BE REPLACED SOON
+		new G.Res({//REMOVED AND USED AS CHRANOS WEAKNESS(DOWNGRADES YOU EACH YEAR WHILE IN PATIENCE TRIAL-well it is one of its rules tho)
 		name:'Berry seeds',
-		desc:'If you want to start farming [Berries] and crafting tasty [Juices] these seeds are a must.',
-		icon:[15,6,'magixmod'],
-		partOf:'misc materials',
-		category:'misc',
-		hidden:true,
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.09;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
+		desc:'Chranos\'s weakness',
 	});
 		let madeUnlockMessage = false
 		new G.Res({
@@ -4160,6 +4180,27 @@ if (!document.getElementById(cssId))
 		},
 		category:'flowersanddyes',
 	});//22
+	let langstory=false
+	let oraltradstory=false
+	let toolstory=false
+	let canoestory=false
+	let sedestory=false
+	let boatstory=false
+	let ritstory=false
+	let burystory=false
+	let firestory=false
+	let sewstory=false
+	let weastory=false
+	let skinnsto=false
+	let gem=false
+	let writer=false
+	let tech50=false
+	let tech100=false
+	let trait20=false
+	let pol15=false
+	let guru=false
+	let explorepop=false
+	let rofpopup=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4169,6 +4210,87 @@ if (!document.getElementById(cssId))
 		{
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			
+			if(G.policy.length >= 15 && !pol15 && G.policy.length <= 18){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
+			}
+			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
+				G.Message({
+				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
+				icon:[1,28,'magixmod']})
+				langstory=true
+			}
+			if(G.has('oral tradition') && !oraltradstory && G.hasNot('ritualism')){
+				G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})
+				oraltradstory=true
+			}
+			if(G.has('tool-making') && !toolstory && G.hasNot('spears')){
+			G.Message({type:'important',text:'Finally people can use and craft something better than knapped tools, rocks etc.',icon:[1,9]})
+			toolstory=true
+			}
+			if(G.has('canoes') && !canoestory && G.hasNot('boat building')){
+			G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})
+				canoestory=true
+			}
+			if(G.has('sedentism') && !sedestory && G.hasNot('building')){
+			G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})
+			sedestory=true
+			}
+			if(G.has('boat building') && !boatstory && G.hasNot('Stronger faith')){
+			G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})
+			boatstory=true
+			}
+			if(G.has('ritualism') && !ritstory && G.hasNot('burial')){
+			G.Message({type:'important',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
+			ritstory=true
+			}
+			if (G.has('burial') && !burystory && !G.has('monument-building')){
+			G.Message({type:'important',text:'The view of unburied corpses fears you and your settlers. Now they know that to calm down people you can just bury it.',icon:[13,2]})
+				burystory=true
+			}
+			if(G.has('fire-making') && !firestory && !G.has('construction')){
+			   G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
+			firestory=true
+			}
+				if(G.has('sewing') && !sewstory && G.hasNot('weaving')){
+				G.Message({type:'important',text:'You want some clothing. As long as you won\'t hire a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})
+					sewstory=true
+				}
+				if(G.has('weaving') && !weastory && G.hasNot('monument-building')){
+				G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})
+					weastory=true
+				}
+				if(G.has('skinning') && !skinnsto && G.hasNot('city planning')){
+				G.Message({type:'important',text:'You hope that primitive clothing from hide will make people happier. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
+				skinnsto=true
+				}
+				if(G.getRes('gem block').amount>=10 && !gem && G.hasNot('monument-building')){
+				G.Message({type:'important',text:'Oh, shiny gem blocks! You take one and hug it... So cute. : )',icon:[choose([17,18]),8]})
+					gem=true
+				}
+				if(G.has('writing') && !writer && G.has('caligraphy') && G.has('alphabet 1/3') && G.hasNot('monument-building') && G.hasNot('alphabet 2/3')){
+				G.Message({type:'important',text:'You managed to make people being able to write. Well... not everyone has readable writing... yet.',icon:[17,27,'magixmod']})
+					writer=true
+				}
+				if(G.techN == 50 && !tech50){
+				G.Message({type:'important',text:'Your tribe now can survive. Thanks to you, dreamers and mostly thanks to Insight for it. You stare at your tribe with smile.',icon:[8,12,8,4]})
+					tech50=true
+				}
+				if(G.traitN == 20 && !trait20){
+				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
+					trait20=true
+				}
+				if(G.has('Guru') && !guru && G.hasNot('An opposite side of belief')){
+				G.Message({type:'important',text:'Since the moment when you unlocked <b>Guru</b> you may start gathering <font color="#ffaaff"><b>Science</b></font>. Just hire one or more Gurus and wait patiently till he will gather one for you. It is gonna be needed in the later stages of the game.',icon:[8,12,choose([3,4,5,6]),27,'magixmod']})
+					guru=true
+				}
+			if(G.has('rules of food') && !rofpopup && G.hasNot('sedentism')){
+				G.Message({type:'important',text:'You now can control food and water rations. They seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one.',icon:[4,28,'magixmod']})
+					rofpopup=true
+				}
+			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
+				G.Message({type:'important',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover secrets hidden in new territory. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
+					explorepop=true
+				}
 		},
 		category:'flowersanddyes',
 	});//23
@@ -4691,7 +4813,10 @@ if (!document.getElementById(cssId))
 			if(G.techN >= 100 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
 			G.achievByName['Apprentice'].won = 1
 			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
-			}
+				if(G.techN==100 && !tech100){
+			G.Message({type:'important',text:'You managed your civilization to be smart. They thank you with kindness for ruling them. They will not even think about choosing other lord than you. Keep going this way. Discover, research and prosper ',icon:[24,18,'magixmod',8,4]})
+					tech100=true
+				}}
 			if(G.techN >= 200 && G.achievByName['Familiar'].won == 0){ //Apprentice achievement
 			G.achievByName['Familiar'].won = 1
 			G.middleText('- Completed <font color="lime">Familiar</font> achievement -')
@@ -4842,7 +4967,7 @@ if (!document.getElementById(cssId))
 				}
 			}
 			//3rd party achievement's code
-			if(G.modsByName['Market mod'] || G.modsByName['Coal mod'] || G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version']){
+			if(G.modsByName['Market mod'] || G.modsByName['Coal mod'] || G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version'] || G.modsByName['Thot Mod']){
 			   if(G.achievByName['3rd party'].won==0){
 			G.achievByName['3rd party'].won = 2 //Fix for displaying over time middleText
 			G.middleText('- Completed <font color="pink">3rd party</font> achievement -')
@@ -4866,6 +4991,9 @@ if (!document.getElementById(cssId))
 				G.getDict('architect').icon=[31,4,'magixmod']
 				G.getDict('healer').icon=[31,5,'magixmod']
 				G.getDict('blacksmith workshop').icon=[31,16,'magixmod']
+				if(G.modsByName['Thot Mod']){
+					G.getDict('thot').icon=[21,27,'magixmod']
+				}
 			}
 			if(G.has('Plain island mining strategy')){
 			G.getDict('Mine of the plain island').icon = [31,8,'magixmod']
@@ -4893,8 +5021,41 @@ if (!document.getElementById(cssId))
 			G.achievByName['The first choice'].won = 1
 			G.middleText('- Completed <font color="cyan">The first choice</font> achievement -')
 			}
-			if(G.checkPolicy('se04')=='on' && G.checkPolicy('se05')=='off'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}}
-			if(G.checkPolicy('se05')=='on' && G.checkPolicy('se04')=='off'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}}
+			if(G.checkPolicy('se04')=='on' && G.checkPolicy('se05')=='off'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}};
+			if(G.checkPolicy('se05')=='on' && G.checkPolicy('se04')=='off'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}};
+			if(G.has('skinning')){
+			G.getDict('stoats').res['hunt']['hide']=1;
+			G.getDict('wild rabbits').res['hunt']['hide']=0.2;
+			G.getDict('koalas').res['hunt']['hide']=0.2;
+			G.getDict('deer').res['hunt']['hide']=0.6;
+			G.getDict('bears').res['hunt']['hide']=1;
+			G.getDict('polar bears').res['hunt']['hide']=1;
+			G.getDict('boars').res['hunt']['hide']=0.5;
+			G.getDict('foxes').res['hunt']['hide']=0.5;
+			G.getDict('wolves').res['hunt']['hide']=0.5;
+			G.getDict('seals').res['hunt']['hide']=0.5;
+			G.getDict('crocodiles').res['hunt']['leather']=0.5;
+			}
+			if(G.has('herbalism')){
+			G.getDict('grass').res['gather']['herb']=10;
+			G.getDict('berry bush').res['gather']['herb']=0.25;
+			G.getDict('forest mushrooms').res['gather']['herb']=4;
+			G.getDict('succulents').res['gather']['herb']=3;
+			G.getDict('jungle fruits').res['gather']['herb']=1;
+			}
+			if(G.modsByName['Thot Mod']){
+				G.getDict('thot').req={'philosophy':true}
+				if(G.hasNot('philosophy')){
+					G.getDict('thot').effects.push({type:'mult',value:0,req:{'philosophy':false}});
+					G.getDict('thot').icon=[28,2,'magixmod',0,0,'thotSheet']
+				}else if(G.has('philosophy')){
+					G.getDict('thot').effects.push({type:'mult',value:1});
+					G.getDict('thot').icon=[0,0,'thotSheet']
+				}
+				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
+				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. //[thot] limit per is increased and becomes 75% less efficient'
+				G.getDict('philosophy II').desc='[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -5036,6 +5197,11 @@ if (!document.getElementById(cssId))
 		name:'godTemplePoint',
 		displayName:'Paradise temple point'
 	});
+		new G.Res({
+		name:'victory point',
+		desc:'You can gain Victory Points for completing Seraphin\'s Trial. 11 of 12 trials are repeatable. After first completion of the trial it grants 1 VP, after 2nd succesful attempt in total grants 3 VP\'s and so on. They can\'t be spent but their amount may provide extra bonuses. <>VP\'s from trials: @[Gather roses,Patience] '+B(t1vp)+' VP @[se02,Unhappy] n VP @[se03,Cultural] n VP @[se04,Hunted] n VP @[se05,Unfishy] n VP @[se06,Ocean] n VP @[se07,Herbalism] n VP @[se08,Burial] n/1 VP @[se09,Underground] n VP @[se10,Pocket] n VP @[se11,Faithful] n VP @[se12,Dreamy] n VP',
+		icon:[0,28,'magixmod'],
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -5105,7 +5271,8 @@ if (!document.getElementById(cssId))
 		//upkeep:{'food':0.2},
 		//alternateUpkeep:{'food':'spoiled food'},
 		effects:[
-			{type:'gather',context:'gather',amount:2,max:4},//,multMax:{'leather pouches':1.1}//TODO
+			{type:'gather',context:'gather',amount:2,max:4},
+			{type:'gather',context:'gather',what:{'herb':4.5},req:{'herbalism':false}},//To keep early game possible
 			//{type:'gather',context:'gather',what:{'water':1,'muddy water':1},amount:1,max:3,req:{'gathering focus':'water'}},
 			{type:'gather',context:'gather',what:{'water':1,'muddy water':1},amount:1,max:3},
 			{type:'gather',context:'gather',what:{'herb':0.5,'fruit':0.5},amount:1,max:1,req:{'plant lore':true}},
@@ -5130,7 +5297,8 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'insight':0.1}},
-			{type:'gather',what:{'insight':0.05},req:{'symbolism':true,'symbolism II':false}},
+			{type:'gather',what:{'insight':0.04},req:{'philosophy':false,'symbolism':true}},
+			{type:'gather',what:{'insight':0.05},req:{'philosophy':true,'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.2,req:{'wisdom rituals':'on','ritualism II':false}},
 			{type:'mult',value:1.25,req:{'wisdom rituals':'on','ritualism II':true}},
@@ -5141,7 +5309,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.75,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
 		],
-		req:{'speech':true},
+		req:{'speech':true,'t1':false/*Patience trial condition*/},
 		category:'discovery',
 		priority:5,
 	});
@@ -5619,7 +5787,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'nickel'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 			{type:'mult',value:1.2,req:{'Improved furnace construction':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.1,req:{'Improved furnace construction':true,'<font color="maroon">Caretaking</font>':true}},
 		],
@@ -5658,7 +5828,9 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 			//TODO : better metal tools, weapons etc
 		],
 		gizmos:true,
@@ -5697,7 +5869,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.8,req:{'dt17':true}},
 			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		gizmos:true,
 		req:{'carpentry':true},
@@ -5820,7 +5994,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':3}},
 			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
-			{type:'waste',chance:1/1000}
+			{type:'waste',chance:1/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/1000,req:{'improved construction':true}},
 		],
 		req:{'sedentism':true},
 		category:'housing',
@@ -5835,7 +6011,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':3}},
 			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
-			{type:'waste',chance:3/1000}
+			{type:'waste',chance:3/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.6/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.42/1000,req:{'improved construction':true}},
 		],
 		req:{'sedentism':true},
 		category:'housing',
@@ -5850,7 +6028,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':5}},
 			{type:'provide',what:{'housing':1},req:{'God\'s trait #1 Housing':true}},
-			{type:'waste',chance:0.1/1000}
+			
 		],
 		req:{'building':true},
 		category:'housing',
@@ -5865,7 +6043,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':8}},
 			{type:'provide',what:{'housing':0.5},req:{'God\'s trait #1 Housing':true}},
-			{type:'waste',chance:0.03/1000}
+			{type:'waste',chance:0.03/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.006/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.0042/1000,req:{'improved construction':true}},
 		],
 		req:{'cities':true},
 		category:'housing',
@@ -5882,7 +6062,9 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'housing':0.125},req:{'Better house construction':true}},
 			{type:'gather',what:{'Berries':1},req:{'Next-to house berrybushes':true}},
 			{type:'gather',what:{'Berries':0.2},req:{'Fertile bushes':true}},
-			{type:'waste',chance:0.01/1000}
+			{type:'waste',chance:0.01/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.02/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/1000,req:{'improved construction':true}},
 		],
 		req:{'construction':true},
 		category:'housing',
@@ -5914,7 +6096,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':1000}},
 			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
-			{type:'waste',chance:0.1/1000}
+			{type:'waste',chance:0.1/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.02/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.014/1000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true},
 		category:'storage',
@@ -5930,7 +6114,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':4000}},
 			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
-			{type:'waste',chance:0.001/1000}
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'construction':true},
 		category:'storage',
@@ -5945,7 +6131,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added food storage':1000}},
 			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
-			{type:'waste',chance:0.01/1000}
+			{type:'waste',chance:0.01/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.0014/1000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'pottery':true},
 		category:'storage',
@@ -5961,7 +6149,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added food storage':4000}},
 			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
-			{type:'waste',chance:0.001/1000}
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'carpentry':true},
 		category:'storage',
@@ -6160,7 +6350,7 @@ if (!document.getElementById(cssId))
 		finalStepDesc:'To complete the Mausoleum, 100 of your [population,People] must be sacrificed to accompany you as servants in the afterlife.',
 		use:{'land':10,'worker':5,'metal tools':5},
 		//require:{'worker':10,'stone tools':10},
-		req:{'monument-building':true},
+		req:{'monument-building':true,'trial':false},
 		category:'wonder',
 	});
 	
@@ -6803,7 +6993,9 @@ if (!document.getElementById(cssId))
 		//require:{'wizard':3},
 		effects:[
 			{type:'provide',what:{'mana capacity':32500}},
-			{type:'waste',chance:0.0004/1000},
+			{type:'waste',chance:0.0004/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.00008/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.000056/1000,req:{'improved construction':true}},
 		],
 		req:{'Mana brewery':true},
 		category:'storage',
@@ -6816,7 +7008,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'fire essence limit':11500}},
-			{type:'waste',chance:1/100000}
+			{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6829,7 +7023,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'water essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6842,7 +7038,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'lightning essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6855,7 +7053,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'dark essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6868,7 +7068,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'nature essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6881,7 +7083,9 @@ if (!document.getElementById(cssId))
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'wind essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true},
 		category:'storage',
@@ -6894,7 +7098,9 @@ if (!document.getElementById(cssId))
 		use:{'Land of the Paradise':0.8},
 		effects:[
 			{type:'provide',what:{'holy essence limit':11500}},
-			{type:'waste',chance:1/100000}
+				{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
 		req:{'stockpiling':true,'building':true,'Essence storages':true,'<span style="color: ##FF0900">Paradise building</span>':true,'7th essence':true},
 		category:'storage',
@@ -7204,7 +7410,9 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.03},req:{'Spiritual piety':false}},
 			{type:'gather',what:{'faith':0.039},req:{'Spiritual piety':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
-			{type:'waste',chance:0.01/1000},
+			{type:'waste',chance:0.01/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.0014/1000,req:{'improved construction':true}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
 	],
 		category:'spiritual',
@@ -7222,6 +7430,9 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.03},req:{'symbolism':true,'Stronger faith':true}},
 			{type:'mult',value:1.7,req:{'symbolism III':true}},
 			{type:'waste',chance:0.003/1000},
+			{type:'waste',chance:0.003/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0006/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00042/1000,req:{'improved construction':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
 	],
@@ -7287,6 +7498,9 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'housing':0.2},req:{'Better house construction':true}},
 			{type:'provide',what:{'food storage':65}},
 			{type:'waste',chance:0.0004/1000},
+			{type:'waste',chance:0.0004/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.00008/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.000056/1000,req:{'improved construction':true}},
 		],
 		req:{'construction':true,'More useful housing':true,'Well of Mana':true},
 		category:'housing',
@@ -7310,13 +7524,15 @@ if (!document.getElementById(cssId))
 		name:'Blockhouse',
 		desc:'@provides 50 [housing]. Hardly constructed at the lands of Plain Island blockhouse has very low chance to be wasted.',
 		icon:[9,1,'magixmod'],
-		cost:{'advanced building materials':3000},
+		cost:{'concrete':6500,'glass':600,'basic building materials':750},
 		use:{'Land of the Plain Island':3},
 		effects:[
 			{type:'provide',what:{'housing':50}},
 			{type:'provide',what:{'housing':10},req:{'Mo\' floorz':true}},
 			{type:'provide',what:{'housing':20},req:{'Even mo\' floorz':true}},
-			{type:'waste',chance:0.00001/1000},
+			{type:'waste',chance:0.0001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		req:{'construction II':true,'Concrete making':true},
 		category:'plainisleunit',
@@ -7422,7 +7638,9 @@ if (!document.getElementById(cssId))
 		cost:{'basic building materials':1500,'glass':5},
 		use:{'Land of the Plain Island':1},
 		effects:[
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 			{type:'provide',what:{'housing':18}},
 		],
 		req:{'construction II':true},
@@ -7435,7 +7653,9 @@ if (!document.getElementById(cssId))
 		cost:{'basic building materials':1500,'glass':5},
 		use:{'Land of the Plain Island':1,'worker':3},
 		effects:[
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 			{type:'provide',what:{'food storage':5000}},
 		],
 		req:{'construction II':true},
@@ -7480,7 +7700,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.8,req:{'dt17':true}},
 			{type:'mult',value:2.25,req:{'Moderated carpentry':true}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		gizmos:true,
 		req:{'carpentry':true,'Paradise crafting':true},
@@ -7514,7 +7736,9 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':2},every:3,repeat:1,mode:'metal armor'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
-			{type:'waste',chance:0.001/1000},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		gizmos:true,
 		req:{'smelting':true,'Paradise crafting':true},
@@ -7678,7 +7902,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'insight':4,'adult':1},into:{'Instructor':1},every:375,mode:'thoughts'},
 			{type:'mult',value:1.01,req:{'se11':'on'}},
 		],
-		req:{'speech':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'speech':true,'<font color="yellow">A gift from the Mausoleum</font>':true,'instruction':true},
 		category:'discovery',
 		priority:5,
 	});
@@ -8275,7 +8499,7 @@ new G.Unit({
 		staff:{'worker':6,'armor set':6,'metal weapons':6,'Instructor':1},
 		effects:[
 			{type:'provide',what:{'added material storage':9000}},
-			{type:'waste',chance:0.0000001/1000000000000}
+			{type:'waste',chance:0.001/100000000}
 		],
 		req:{'Storage at the bottom of the world':true},
 		category:'storage',
@@ -8294,6 +8518,35 @@ new G.Unit({
 		finalStepDesc:'To complete the wonder and be even closer to the God you must perform this final step 25k [population,people] must be sacrificed... and many other ingredients.',
 		use:{'Land of the Paradise':30},
 		req:{'monument-building III':true},
+		category:'wonder',
+	});
+		new G.Unit({
+		name:'paradise shelter',
+		desc:'@provides 4 [housing] @+1 [housing] per each 4 [paradise shelter,Shelters]. Shelter is camouphlaged, so people feel safer inside of this construction. Seems like God doesn\'t mind about it.',
+		icon:[13,27,'magixmod'],
+		cost:{'archaic building materials':100,'cut stone':150,'lumber':25 /*lumber because scaffolding*/,'clay':100/*mortar*/,'herb':2500/*Cover*/},
+		use:{'Land of the Paradise':1},
+		limitPer:{'land':11,'population':400},
+		effects:[
+			{type:'provide',what:{'housing':4.25}},
+		],
+		req:{'Paradise shelters':true},
+		category:'paradiseunit',
+	});
+	new G.Unit({
+		name:'pagoda of passing time',
+		desc:'@Leads to <b>Patience</b> trial completion. //A monument of time. A wonder for Chra-nos the Seraphin of Time. Tall Pagoda with a huge clock that is a Seraphin\'s symbol. <><font color="#ffaaff">Patience is key...<br>But waiting right there<br>Is deadly<br>Each year weakens me<br>Hope this year is the last one...<br>Patience... is a poison...<br>...deadly poison.',
+		wonder:'Patience',
+		icon:[4,26,'magixmod'],
+		wideIcon:[3,26,'magixmod'],
+		cost:{'basic building materials':225},
+		costPerStep:{'precious building materials':20,'gems':20,'basic building materials':200},
+		steps:90,
+		messageOnStart:'You started to build wonder for <b>Chra-nos</b>. <br>This pagoda will have a huge clock which is the symbol of the seraphin. Stars on night sky as you noticed mostly often make a shape of clock. <br>It is taller than anything around and also its shadow brings reflexions about passing time to your people.',
+		finalStepCost:{'population':200,'gem block':10},
+		finalStepDesc:'To perform the final step 200[population,People] and 10 [gem block]s must be sacrificed in order to escape that plane of deadly time and award you with <b>Victory points</b>.',
+		use:{'land':10},
+		req:{'monument-building':true,'t1':true},
 		category:'wonder',
 	});
 	/*=====================================================================================
@@ -8720,7 +8973,7 @@ new G.Unit({
 		],
 	});
 	/*=====================================================================================
-	TECHS
+	TECHS  
 	=======================================================================================*/
 	
 	new G.ChooseBox({
@@ -8732,8 +8985,11 @@ getCosts:function()
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
             if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
-            }
+            }else if(G.has('Eotm') && G.hasNot('do we need that much science?')){
             return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
+	    }else if(G.has('Eotm') && G.has('do we need that much science?')){
+		    return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.1) }
+	    }
         },
 		getCardCosts:function(what)
 		{
@@ -8966,7 +9222,7 @@ getCosts:function()
 		desc:'@unlocks [architect]s<>',
 		icon:[22,8],
 		cost:{'insight':25},
-		req:{'construction':true,'cities':true},
+		req:{'construction':true,'cities':true,'caligraphy':true,'alphabet 1/3':true},
 		effects:[
 		],
 	});
@@ -9027,7 +9283,7 @@ getCosts:function()
 		desc:'@[gatherer]s find more [herb]s and [fruit]s<>The knowledge of which plants are good to eat and which mean certain death is a slow and perilous one to learn.',
 		icon:[23,7],
 		cost:{'insight':5},
-		req:{'oral tradition':true},
+		req:{'oral tradition':true,'herbalism':true},
 		effects:[
 		],
 	});
@@ -9036,7 +9292,7 @@ getCosts:function()
 		desc:'@unlocks [healer]s<>',
 		icon:[25,7],
 		cost:{'insight':10},
-		req:{'plant lore':true,'stone-knapping':true},
+		req:{'plant lore':true,'stone-knapping':true,'herbalism':true},
 		effects:[
 		],
 		chance:2,
@@ -9049,13 +9305,13 @@ getCosts:function()
 		cost:{'culture':5},
 		req:{'oral tradition':true},
 		effects:[
-			{type:'provide res',what:{'spirituality':10}},
+			{type:'provide res',what:{'spirituality':10}}
 		],
 	});
 	
 	new G.Tech({
 		name:'symbolism',
-		desc:'@[dreamer]s produce 50% more [insight]@[storyteller]s produce 50% more [culture]@[soothsayer]s produce 50% more [faith]<>The manifestation of one thing for the meaning of another - to make the cosmos relate to itself.',
+		desc:'@[dreamer]s produce 40% more [insight]@[storyteller]s produce 50% more [culture]@[soothsayer]s produce 50% more [faith]<>The manifestation of one thing for the meaning of another - to make the cosmos relate to itself.',
 		icon:[13,1],
 		cost:{'culture':10,'insight':10},
 		req:{'oral tradition':true},
@@ -9076,7 +9332,7 @@ getCosts:function()
 	
 	new G.Tech({
 		name:'hunting',
-		desc:'@unlocks [hunter]s<>It is a common tragedy that a creature should die so that another may survive.',
+		desc:'@unlocks [hunter]s<>It is a common tragedy that a creature should die so that another may survive.//[hunter] can gather [hide] if [skinning] is unlocked.',
 		icon:[15,1],
 		cost:{'insight':5},
 		req:{'language':true,'tribalism':true},
@@ -9162,8 +9418,6 @@ getCosts:function()
 		icon:[29,1],
 		cost:{'insight':10},
 		req:{'tool-making':true},
-		effects:[
-		],
 	});
 	new G.Tech({
 		name:'weaving',
@@ -9171,6 +9425,8 @@ getCosts:function()
 		icon:[30,1],
 		cost:{'insight':20},
 		req:{'sewing':true},
+		effects:[
+		],
 	});
 	new G.Tech({
 		name:'leather-working',
@@ -9252,7 +9508,7 @@ getCosts:function()
 		desc:'@provides 15 [authority]@political units generate more [influence]<>',//TODO : desc
 		icon:[24,6],
 		cost:{'insight':20},
-		req:{'symbolism':true,'sedentism':true},
+		req:{'symbolism':true,'sedentism':true,'writing':true},
 		effects:[
 			{type:'provide res',what:{'authority':15}},
 		],
@@ -9394,36 +9650,36 @@ getCosts:function()
 		new G.Tech({
 		name:'Wizard complex',
 		desc:'Complex of wizard towers. Expensive but The Complex produces all types of Essences three times better than usual towers. Each complex increases additionaly max [faith],[culture] & [influence]. Boosts max mana too.',
-		icon:[2,2,'magixmod'], //WIP
+		icon:[2,2,'magixmod'], 
 		cost:{'insight':480,'culture':30,'Mana':100,'influence':20},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard towers':true},
 	});
 		new G.Tech({
 		name:'First portal to new world',
 		desc:'<span style="color: #00A012">Your wizards discovered way to make a portal and now they plan to open a new dimension. What would it mean? It means, more place to build, more housing, more everything!</span>',
-		icon:[2,1,'magixmod'], //WIP
+		icon:[2,1,'magixmod'], 
 		cost:{'insight':1400,'culture':30,'Mana':2500,'influence':70},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true},
 	});
 		new G.Tech({
 		name:'Crafting a glass',
 		desc:'Since now your kilns will be able to craft glass out of sand.',
-		icon:[7,1,'magixmod'], //WIP
+		icon:[7,1,'magixmod'], 
 		cost:{'insight':45},
 		req:{'masonry':true,'smelting':true},
 	});
 		new G.Tech({
 		name:'churches',
-		desc:'Will generate milennialy some [spirituality]. Generates some faith at the lower rate than [soothsayer]. ',
-		icon:[7,2,'magixmod'], //WIP
-		cost:{'insight':95},
+		desc:'Unlocks [Church]. Another source of [faith]. ',
+		icon:[7,2,'magixmod'], 
+		cost:{'insight':135},
 		req:{'Wizardry':true,'Wizard wisdom':true},
 	});
 		new G.Tech({
 		name:'Essence storages',
 		desc:'<span style="color: #FF00FF">Essence has to be stored somewhere. So do not wait and build!</span>',
-		icon:[5,0,'magixmod'], //WIP
-		cost:{'insight':100,'Mana':317,'faith':8,'Wand':260},
+		icon:[5,0,'magixmod'], 
+		cost:{'insight':100,'Mana':317,'faith':8,'Wand':200},
 		effects:[
 			{type:'provide res',what:{'fire essence limit':1}},
 			{type:'provide res',what:{'water essence limit':1}},
@@ -9554,7 +9810,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'education':0.4}},
 		],
-		req:{'oral tradition':true},
+		req:{'oral tradition':true,'writing':true},
 	});
 		new G.Tech({
 		name:'Intermediate maths',
@@ -9695,7 +9951,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'Deeper wells',
-		desc:'@[well]s provide 5% more water. Boosts only [well] and [Well of the Plain Island].',
+		desc:'@[well]s provide 5% more water. Boosts only [well] and [well of the Plain Island].',
 		icon:[31,15,'magixmod'],
 		cost:{'insight':490,'wisdom':30},
 		req:{'Farms in the new land':true},
@@ -10023,7 +10279,7 @@ autobuy(G.year)
 		name:'Magical filtering way',
 		desc:'Obtaining this tech will make filters that convert [Cloudy water] or [muddy water] work 175% more efficient .<>Upkeep cost won\'t grow up so do not worry. These are all upgrades you can currently obtain for filtering.',
 		icon:[25,8,'magixmod'], 
-		cost:{'insight':1200,'wisdom':25,'Wind essence':775,'cloud':1990},
+		cost:{'insight':1295,'wisdom':25,'Wind essence':775,'cloud':1990},
 		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
 		new G.Tech({
@@ -10610,7 +10866,7 @@ autobuy(G.year)
 		icon:[13,18,'magixmod'],
 		cost:{'wisdom':75},
 		chance:475,
-		req:{'Will to know more':true},
+		req:{'Will to know more':true,'alphabet 2/3':true,'caligraphy':true},
 		category:'knowledge',
 	});
 		new G.Trait({
@@ -11077,7 +11333,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		name:'guilds unite',
 		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 5 to 100. <>NOTE: Useless for now but applies new icons to [lodge] , [guild quarters]',
 		icon:[29,8,'magixmod'],
-		cost:{'insight II':20,'culture II':10,'influence II':5},
+		cost:{'insight II':20,'culture II':10,'influence II':5,'insight':45},
 		req:{'cities':true,'construction II':true,'code of law II':true},
 		effects:[
 		],
@@ -11300,7 +11556,7 @@ G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
 })
 	let Smartrait =  	new G.Trait({
         name:'<font color="orange">Smaller but efficient</font>',
-        desc:'[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .',
+        desc:'<span style="color: #aaffff">[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .</span>',
         icon:[28,23,'magixmod'],
         cost:{},
 	effects:[
@@ -11328,7 +11584,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		name:'Glory',
 		desc:'@provides 7 [authority II] @Increases efficiency of [chieftain] and [clan leader] by 10% @Applies visual changes for [chieftain] and [clan leader] . @You gain yearly 2 [influence] instead of 1. @[Mediator] can gather [influence] but becomes more limited.',
 		icon:[23,23,'magixmod'], 
-		cost:{'influence II': 5,'insight II':50,'culture II':20},
+		cost:{'influence II': 5,'insight II':50,'culture II':20,'influence':160},
 		effects:[
 			{type:'provide res',what:{'authority II':7}},
 		],
@@ -11469,7 +11725,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Trait({
 		name:'Camp-cooking',
-		desc:'Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able to cook some [cooked meat,meat] for you.',
+		desc:'<span style="color: #aaffff">Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able to cook some [cooked meat,meat] for you.</span>',
 		icon:[15,24,'magixmod'],
 		cost:{'insight II':100},
 		req:{'Hunters & fishers unification':true},
@@ -11531,7 +11787,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Trait({
 		name:'Doctrine of the dark wormhole 2/5',
-		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine.',
+		desc:'<span style="color: #aaffff">Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine.</span>',
 		icon:[20,22,'magixmod',16,22,'magixmod'],
 		cost:{'insight II':105,'science':6,'faith II':4,'influence II':5,'culture II':15,'wisdom':100},
 		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true},
@@ -11555,7 +11811,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Trait({
 		name:'Doctrine of the dark wormhole 4/5',
-		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine describes ways of keeping the wormhole active. It is important thing too because if it will run out of power a tons of corpses will explode out of wormhole and people will be really, really mad. //Your [Wizard]s know exactly how big problem will occur if wormhole will run out of power. ',
+		desc:'<span style="color: #aaffff">Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine describes ways of keeping the wormhole active. It is important thing too because if it will run out of power a tons of corpses will explode out of wormhole and people will be really, really mad. //Your [Wizard]s know exactly how big problem will occur if wormhole will run out of power.</span> ',
 		icon:[18,22,'magixmod',15,22,'magixmod'],
 		cost:{'insight II':130,'science':7,'faith II':4,'influence II':5,'culture II':27},
 		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 3/5':true},
@@ -11735,7 +11991,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'backshift at farms',
 		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech.',
 		icon:[31,14,'magixmod'],
-		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5,'insight':374},
+		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5,'insight':293},
 		req:{'improved windmill motors':true,'<font color="maroon">Moderation</font>':true},
 		chance:2,
 	});
@@ -11778,7 +12034,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Juicy nutritious magical soil',
 		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] and previous soil upgrades.',
 		icon:[31,11,'magixmod'], 
-		cost:{'insight II':190,'culture II':20,'Juices':1050,'culture':93},
+		cost:{'insight II':190,'culture II':20,'Juices':1050,'culture':188},
 		req:{'Policy revaluation':true,'Nutritious magical soil':true,'Magical presence':true}
 	});
 			new G.Tech({
@@ -11799,7 +12055,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'More humid water',
 		desc:'[Sugar cane farm] produces 250% more [Sugar cane]',
 		icon:[31,23,'magixmod'],
-		cost:{'insight':495},
+		cost:{'insight':590},
 		req:{'Moar juices':true},
 	});
 		new G.Tech({
@@ -11918,37 +12174,211 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab.',
 		icon:[4,25,'magixmod'],
 		req:{'Life in faith':true,'monument-building III':true},
-		cost:{'insight II':100,'faith II':10,'culture II':30,'godTemplePoint':500},
+		cost:{'insight II':100,'faith II':10,'culture II':30,'godTemplePoint':500,'faith':80},
 		effects:[
-			{type:'provide res',what:{'Worship point':4}},
-			{type:'function',func:function(){		
-		////////////////////////////////////////
-	/*PANTHEON TAB
-	if (!G.mSettingsLoaded)
-	{
-		G.tabs.push({
-			name:'Pantheon',
-			id:'pantheon',
-			popup:false,
-			addClass:'left',
-			desc:'From this tab you may take on a Seraphin\'s trial.'
-		});
-		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
-		G.buildTabs();
-	}
-	G.update['pantheon']=function()
-	{
-		var str='';
-		str+='<span class="tooltiped infoButton" id="textspan-36"></span>'
-		l('pantheonDiv').innerHTML=
-		G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">From this tab you may take on a Seraphin\'s trial. <hr> To take on a trial first choose the seraphins you\'ll make your people worship. <br>Then you will see there list of available trials. <hr>You can read more about the trial and start it. Completing trials will award you with <b>Victory points</b>.<br>Almost each trial is repeatable. <hr>Gaining of Victory points looks like: <li>1st victory of the trial: +1 point</li> <li> 2nd victory of the same trial: +2 points so (1+2=3) and so on. <hr>Completing trials for the first time may gain special bonuses. Each trial has its own wonder.</div></div>','infoButton')+
-		'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="pantheonDiv" class="thingBox"></div></div></div>';
-	}
-	////////////////////////////////////////////////////*/
-			}}
+			{type:'provide res',what:{'Worship point':4}},		
 		]
 	});
+  	new G.Tech({
+		name:'skinning',
+		desc:'[hunter]s can gather [hide] out of killed animals.',
+		icon:[31,26,'magixmod'],
+		req:{'hunting':true,'sewing':true},
+		cost:{'insight':10},
+	});
+	new G.Tech({
+		name:'herbalism',
+		desc:'[gatherer] can now gather [herb] amount depending on biome.//Previously they were missing most of herbs because they were thinking that is just a simple grass.',
+		icon:[31,27,'magixmod'],
+		req:{'language':true},
+		cost:{'insight':10},
+	});
+	new G.Tech({
+		name:'instruction',
+		desc:'Unlocks [Thoughts sharer]. //The [Thoughts sharer] spends his life figuring out a way to guide others. People which hear their thoughts will become [Instructor]s at some time.',
+		icon:[30,27,'magixmod'],
+		req:{'language':true,'<font color="yellow">A gift from the Mausoleum</font>':true,'alphabet 1/3':true},
+		cost:{'insight':30},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'writing',
+		desc:'People can write at least. Because they do not have any paper yet they write on stones, logs etc. Required to unlock further researches.',
+		icon:[16,27,'magixmod'],
+		req:{'language':true},
+		cost:{'insight':25},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'caligraphy',
+		desc:'Your people can write but their characters are hard to be read. This technology will be a pass for things like [city planning].',
+		icon:[17,27,'magixmod'],
+		req:{'writing':true},
+		cost:{'insight':30,'culture':5},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'alphabet 1/3',
+		desc:'Make people set up their own alphabet. It is another step to be closer to more advanced researches, technologies',
+		icon:[28,27,'magixmod',29,27,'magixmod'],
+		req:{'caligraphy':true},
+		cost:{'insight':30,'culture':5},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'alphabet 2/3',
+		desc:'Expands up set of characters in people\'s alphabet. //May lead to make native languages exist',
+		icon:[27,27,'magixmod',24,27,'magixmod'],
+		req:{'alphabet 1/3':true,'Wizardry':true},
+		cost:{'insight':250,'culture':50},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'alphabet 3/3',
+		desc:'Slightly expands amount of characters in people\'s language',
+		icon:[26,27,'magixmod',25,27,'magixmod'],
+		req:{'alphabet 2/3':true,'artistic thinking':true,'Beginnings of alchemy':true},
+		cost:{'insight':1400,'culture':500,'inspiration':20,'wisdom':40,'faith':181},
+		effects:[	
+		]
+	});
+	new G.Tech({
+		name:'philosophy',//Unlocks thot if Thot Mod installed :)
+		desc:'Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.',
+		icon:[23,27,'magixmod'],
+		req:{'alphabet 2/3':true},
+		cost:{'insight':400},
+		effects:[
+			{type:'provide res',what:{'wisdom':25}},
+		]
+	});
+        if(G.modsByName['Thot Mod'])
+	{
+		new G.Trait({
+		name:'natural philosophy',
+		desc:'[thot] is 10% more efficient. Also [Thoughts sharer] becomes 5% more efficient(additive).',
+		icon:[22,27,'magixmod'],
+		req:{'alphabet 3/3':true},
+		cost:{'insight':600,'culture':300},
+		effects:[
+		],
+		chance:100
+	});
+		new G.Tech({
+		name:'natural philosophy II',
+		desc:'[dreamer] is 10% more efficient. [thot] becomes 10% more efficient(additive with [natural philosophy,Natural philosophy I]) Also [Thoughts sharer] becomes 5% more efficient(additive).',
+		icon:[20,27,'magixmod'],
+		req:{'alphabet 3/3':true,'symbolism III':true},
+		cost:{'insight II':60,'culture II':30},
+		effects:[
+		],
+		chance:5
+	});
+	}
+		new G.Tech({
+		name:'philosophy II',
+		desc:'[dreamer] is 75% more efficient, and [Thoughts sharer] is 5% more efficient(additive).@provides 1-time bonus: +6 [science] ',
+		icon:[19,27,'magixmod'],
+		req:{'alphabet 3/3':true,'symbolism III':true},
+		cost:{'insight II':150,'culture II':30},
+		effects:[
+			{type:'provide res',what:{'science':6}},
+		],
+		chance:100
+	});
 	
+		new G.Trait({
+		name:'mastered caligraphy',
+		desc:'<font color="#aaffff">Most of people in your population can write and their writings are preety easy to read. Amount of almost unreadeable writings is slightly decreased. <br>Provides 5[education].</font>',
+		icon:[15,27,'magixmod'],
+		req:{'Eotm':true},
+		cost:{'insight II':15,'culture II':15},
+		effects:[
+			{type:'provide res',what:{'education':5}},
+		],
+			category:'knowledge'
+	});
+		new G.Tech({
+		name:'Life-guiding',
+		desc:'People wonder about their lives. Provides 50 [inspiration] for free. //Conclusions and guides related to life also spread making others being less insecure and help finding answers to questions like: What to do? What to choose? How should I live?',
+		icon:[18,27,'magixmod'],
+		req:{'philosophy':true,'<span style="color: ##FF0900">Paradise building</span>':true,'God\'s trait #3 Science^2':true},
+		cost:{'insight':2220,'culture':500},
+		effects:[
+			{type:'provide res',what:{'inspiration':50}},
+		],
+	});
+	new G.Tech({
+		name:'Paradise shelters',
+		desc:'Unlocks [paradise shelter]. Made out of stones with good construction can fit 4 people. Of course as the other Paradise housing is limited. <br>In addition adds +1 [housing] every 4 [paradise shelter]s.',
+		icon:[14,27,'magixmod'],
+		req:{'Paradise housing':true,'A leaf of wisdom':true},
+		cost:{'insight II':150,'culture II':40,'influence II':10,'science':10,'insight':580},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'do we need that much science?',
+		desc:'Halves amount of required [science] to roll/reroll new tech choices.',
+		icon:[9,27,'magixmod'],
+		req:{'A leaf of wisdom':true,'power of the faith':true},
+		cost:{'insight II':150,'faith II':14,'science':16,'influence II':15,'insight':48},
+		effects:[
+		],
+	});
+	new G.Trait({
+		name:'trial',
+		desc:'You are being under the trial. As long as you are in the trial new rules will apply depending on the Trial you had chosen.',
+		icon:[8,27,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+	});
+	new G.Trait({
+		name:'t1',
+		displayName:'Chra-nos\' Trial',
+		desc:'You are during Patience trial',
+		icon:[7,27,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+			effects:[
+			{type:'function',func:function(){t1start=true;}},
+		],
+	});
+		new G.Tech({
+		name:'construction III',
+		desc:'All buildings that can waste wastes 5x slower. It won\'t increase building costs. @Provides 15 [wisdom II] .',
+		icon:[12,27,'magixmod'],
+		req:{'A leaf of wisdom':true,'Paradise shelters':true,'do we need that much science?':true},
+		cost:{'insight II':180,'science':17,'influence II':3},
+		effects:[
+			{type:'provide res',what:{'wisdom II':15}},
+		],
+	});
+	new G.Tech({
+		name:'improved construction',
+		desc:'All buildings that can waste wastes additive 2x slower so (7 in total). It won\'t increase building costs. @Provides 15 [wisdom II] .',
+		icon:[11,27,'magixmod'],
+		req:{'construction III':true,'<font color="maroon">Moderation</font>':true},
+		cost:{'insight II':200,'science':14,'influence II':1},
+		effects:[
+			{type:'provide res',what:{'wisdom II':15}},
+		],
+	});
+	new G.Tech({
+		name:'mo\' shelterz',
+		desc:'Decreases the [land] limit per for [paradise shelter]s by 4 points. It means more shelters. <>More shelters = more housing = more people @Provides 15 [wisdom II] .',
+		icon:[10,27,'magixmod'],
+		req:{'Paradise shelters':true,'<font color="maroon">Caretaking</font>':true},
+		cost:{'insight II':200,'science':14,'influence II':1},
+		effects:[
+			{type:'provide res',what:{'wisdom II':15}},
+		],
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -11962,7 +12392,8 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		{id:'Florists',name:'Pantheon'},//Kept the same ID to prevent errors and crashes upon a update
 		{id:'education',name:'Education'},
 		{id:'prod',name:'Production'},
-		{id:'mag',name:'Magix utilities'}
+		{id:'mag',name:'Magix utilities'},
+		{id:'trial',name:'Trials'}
 	);
 	
 	new G.Policy({
@@ -12536,6 +12967,25 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'Pantheon key':true},
 		category:'Florists',
 	});
+		new G.Policy({
+		name:'Patience',
+		desc:'starts [Gather roses] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',29,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'Gather roses':'on'},
+		category:'trial',
+		effects:[
+			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [around 0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)                                                                                                                                                                                                              Trials are InDev and playing may wipe save. For safety write down somewhere how many times you have won the achievement.                                                                                                                                               It is public test for Trials. As long as better way won't be figured out it will look like this.(yeah so go, write down and then send me your save file and I will introduce achievement data for you. Don't forget about writing down number of ascensions. Also recommended: before trying on backup your save.")) {
+    alert("Alright... Good luck.");     
+		alert("Then the Patience trial begins", t1start1=true);
+		alert("DON'T CHEAT ! DON'T CHANGE DATA IN THIS CODE! Paste this code into the console. Here is the code: G.unitsOwned.length=0;<REMOVE THIS. THERE IS AN ENTER> G.policy.length=0;<REMOVE THIS. THERE IS AN ENTER> G.traitsOwned.length=0;<REMOVE THIS. THERE IS AN ENTER> G.techsOwned.length=0;<REMOVE THIS. THERE IS AN ENTER> G.NewGameConfirm()<REMOVE THIS. THERE IS AN ENTER> G.getRes('worker').used=0<REMOVE THIS. THERE IS AN ENTER> G.fastTicks=0<REMOVE THIS. THERE IS AN ENTER> var t1=G.traitByName['t1']<REMOVE THIS. THERE IS AN ENTER> var trial=G.traitByName['trial']<REMOVE THIS. THERE IS AN ENTER> G.gainTrait(t1)<REMOVE THIS. THERE IS AN ENTER> G.gainTrait(trial)<REMOVE THIS. THERE IS AN ENTER> G.year=0;<REMOVE THIS. THERE IS AN ENTER> G.day=0;<REMOVE THIS. THERE IS AN ENTER> G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane');");
+} else {
+    alert("Do your last preparations and enter me again when you are ready")
+	alert("Begone");
+}}}
+				],
+	});
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
@@ -12908,7 +13358,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[grass] is a good source of [herb]s; you may also occasionally find some [fruit]s and [stick]s while foraging.',
 		icon:[10,10],
 		res:{
-			'gather':{'herb':10,'fruit':0.5,'stick':0.5},
+			'gather':{'fruit':0.5,'stick':0.5},
 		},
 		mult:10,
 	});
@@ -12983,7 +13433,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[berry bush,Berry bushes] can be foraged for [fruit]s, [stick]s and sometimes [herb]s.',
 		icon:[4,10],
 		res:{
-			'gather':{'fruit':3,'stick':0.5,'herb':0.25},
+			'gather':{'fruit':3,'stick':0.5},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
@@ -12993,7 +13443,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[forest mushrooms] grow in the penumbra of the underbrush, and often yield all sorts of interesting [herb]s.',
 		icon:[5,10],
 		res:{
-			'gather':{'herb':4},
+			'gather':{},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
@@ -13003,7 +13453,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Hardy cactii that grow in the desert. While tricky to harvest, [succulents] can provide [herb]s and [fruit]s.',
 		icon:[6,10],
 		res:{
-			'gather':{'fruit':1,'herb':3},
+			'gather':{'fruit':1},
 			'flowers':{'cactus':1,'Crown imperial':0.25},
 		},
 		affectedBy:['scarce forageables'],
@@ -13014,7 +13464,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'[jungle fruits] come in all shapes, colors and sizes, and will yield [fruit]s and [herb]s to those who forage them.',
 		icon:[7,10],
 		res:{
-			'gather':{'fruit':2,'herb':1},
+			'gather':{'fruit':2},
 		},
 		affectedBy:['scarce forageables'],
 		mult:10,
@@ -13026,7 +13476,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[0,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':2,'bone':0.2,'hide':0.2},
+			'hunt':{'meat':2,'bone':0.2},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13037,7 +13487,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[1,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':2,'bone':0.2,'hide':1},
+			'hunt':{'meat':2,'bone':0.2},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13048,7 +13498,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[2,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':2,'bone':0.2,'hide':0.2},
+			'hunt':{'meat':2,'bone':0.2},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13059,7 +13509,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[3,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':4,'bone':1,'hide':0.6},
+			'hunt':{'meat':4,'bone':1},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13070,7 +13520,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[5,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':4,'bone':1,'hide':1},
+			'hunt':{'meat':4,'bone':1},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13081,7 +13531,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[10,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':4,'bone':1,'hide':1},
+			'hunt':{'meat':4,'bone':1},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13092,7 +13542,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[4,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':3,'bone':1,'hide':0.5},
+			'hunt':{'meat':3,'bone':1},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13103,7 +13553,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[6,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':2,'bone':0.2,'hide':0.5},
+			'hunt':{'meat':2,'bone':0.2},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13114,7 +13564,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[7,11],
 		res:{
 			'gather':{'spoiled food':0.5},
-			'hunt':{'meat':3,'bone':0.5,'hide':0.5},
+			'hunt':{'meat':3,'bone':0.5},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13125,7 +13575,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[9,11],
 		res:{
 			'gather':{'spoiled food':1},
-			'hunt':{'meat':3,'bone':0.5,'hide':0.5},
+			'hunt':{'meat':3,'bone':0.5},
 		},
 		affectedBy:['over hunting'],
 		mult:5,
@@ -13308,7 +13758,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Crocodiles are large semiaquatic reptiles that live throughout the tropics especially swamplands. Source of [meat] and [leather] .//Carcasses can sometimes be gathered for [spoiled food].',
 		icon:[17,24,'magixmod'],
 		res:{
-			'hunt':{'leather':0.5,'meat':2},
+			'hunt':{'meat':2},
 			'gather':{'spoiled food':1},
 		},
 		mult:2,
