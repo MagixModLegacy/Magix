@@ -8555,7 +8555,7 @@ new G.Unit({
 		new G.Unit({
 		name:'The Outstander',
 		desc:'[The Outstander] has a lot of knowledge and is very smart. Who knows if he is some sort of erudite. They doesn\'t seem like erudites for real. People call Outstanders like this one Guru\'s children.<>Provides 5 [wisdom II] and 1 [education] per each 5 [The Outstander,Outstanders] obtained.',
-		icon:[13,28,'magixmod'],
+		icon:[12,28,'magixmod'],
 		use:{'worker':1},
 		limitPer:{'population':40000},
 		effects:[
@@ -12397,7 +12397,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	new G.Tech({
 		name:'Outstanding wisdom',
 		desc:'Make the Wisdom tree have even more leaves. Unlocks [The Outstander] who will provide more [wisdom II] and [education]. Provides 10 extra [wisdom II] upon tech obtain.',
-		icon:[12,28,'magixmod'],
+		icon:[11,28,'magixmod'],
 		req:{'A leaf of wisdom':true},
 		cost:{'insight II':175,'science':10,'influence II':5},
 		effects:[
