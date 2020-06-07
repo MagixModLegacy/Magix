@@ -9000,7 +9000,7 @@ new G.Unit({
 		tier:2,
 		name:'Talented?',
 		icon:[32,25,'magixmod'],
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.2 less land per 1 piece so if unit uses 3 land it will use 2.4 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter,Water filters(moderation path) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b>',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.2 less land per 1 piece so if unit uses 3 land it will use 2.4 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter,Water filters(moderation path)] and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b>',
 		effects:[
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
