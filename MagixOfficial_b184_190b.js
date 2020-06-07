@@ -4287,7 +4287,7 @@ if (!document.getElementById(cssId))
 					guru=true
 				}
 			if(G.has('rules of food') && !rofpopup && G.hasNot('sedentism')){
-				G.Message({type:'important',text:'You now can control food and water rations. They seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one.',icon:[4,28,'magixmod']})
+				G.Message({type:'important',text:'You now can control food and water rations. They seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one if you will ignore this.',icon:[4,28,'magixmod']})
 					rofpopup=true
 				}
 			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
