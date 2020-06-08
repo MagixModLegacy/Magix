@@ -17,7 +17,10 @@ G.props['fastTicksOnResearch']=150;
 	let madeThanks4playmesg = false
 	let backupmesg = false
 	let milleniummesg = false
-	let st1=true
+	let st1=false
+	let st2=false
+	let st3=false
+	let st4=false
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -135,6 +138,39 @@ G.props['fastTicksOnResearch']=150;
 			if(G.techN >= 24 && G.techN <=33 && !st1){
 				G.Message({type:'important',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small empire is on a good way to become the empire'});
 				st1=true
+			}
+			if(G.techN > 34 && G.techN <=45 && !st2){
+				G.Message({type:'important',text:'All things go with its correct way'});
+				st2=true
+			}
+			if(G.techN > 46 && G.techN <=49 && !st3){
+				G.Message({type:'important',text:'You want some mirror. But sadly no one can craft glass mirror yet. Luckily you didn\'t forget that you can use water surface as some sort of a mirror.',icon:[32,14,'magixmod']});
+				st3=true
+			}
+			if(G.techN > 54 && G.techN <=64 && !st4){
+				if(G.resets==0){
+				G.Message({type:'important',text:'You think that you should ascend someday no matter what. You fell it so strongly.',icon:[32,13,'magixmod']});
+				st4=true
+				}else if(G.resets>=1){
+					G.Message({type:'important',text:'You wonder how your tribe will look and how advanced it will become within next centuries.',icon:[32,12,'magixmod']});
+				st4=true
+			}
+			}
+			if(G.techN > 67 && G.techN <=75 && !st5){
+				G.Message({type:'important',text:'You organize storytelling at the beach. Well. Some wolf was lurking to wound some of your '+G.getName('inhabs')+' but some hunter takes it down before the tragedy.',icon:[7,11]});
+				st5=true
+			}
+			if(G.techN > 76 && G.techN <=81 && !st6){
+				G.Message({type:'good',text:'Some of your people believe that our existence may make a lot of good for this world... And that hope spreads.',icon:[32,11,'magixmod']});
+				st6=true
+			}
+			if(G.techN > 83 && G.techN <=90 && !st7 && G.traitN>=10){
+				G.Message({type:'important',text:'One of dreamers asks you how are you today. You answer that you are fine. While you talking with this dreamer some firekeeper comes to you with water pot and some cured seafood. Great ; )',icon:[32,11,'magixmod']});
+				st7=true
+			}
+			if(G.techN > 90 && G.techN <=94 && !st8 && G.traitN>=11){
+				G.Message({type:'bad',text:'One of dreamers asks you how are you today. You answer that you are fine. While you talking with this dreamer some firekeeper comes to you with water pot and some cured seafood. Great ; )',icon:[32,10,'magixmod']});
+				st8=true
 			}
 		}
 	}
@@ -4298,15 +4334,15 @@ if (!document.getElementById(cssId))
 				}
 			if(G.has('monument-building') && !monument && G.hasNot('Wizard complex')){
 				G.Message({type:'important',text:'Once you obtained <b>Monument-building</b> you may begin construction of very first wonder of your '+G.getName('inhabs')+'. Check it out in <u>Production</u> tab.',icon:[32,18,'magixmod']})
-					bapopup=true
+					monument=true
 				}
 			if(G.getRes('pot').amount>=1 && !pot && G.hasNot('masonry')){
-				G.Message({type:'important',text:'You finally can have some flower. Only you know how to gain flowers so while no one watches you , you pick a flower and some mud and put it into the pot.',icon:[32,15,'magixmod']})
-					bapopup=true
+				G.Message({type:'important',text:'You finally can have some flower. Currently only you know how to pick flowers so while no one watch you , you pick a flower and some mud and put it into the pot.',icon:[32,15,'magixmod']})
+					pot=true
 				}
 			if(G.getRes('cured meat').amount>=1 || G.getRes('cured seafood').amount>=1  && !cure && G.has('curing') && G.hasNot('Hunting II')){
 				G.Message({type:'important',text:'You take a taste of cured meat. Yummy :) You are sure that people will love taste of cured food as well as you did.',icon:[32,17,'magixmod']})
-					bapopup=true
+					cure=true
 				}
 		},
 		category:'flowersanddyes',
