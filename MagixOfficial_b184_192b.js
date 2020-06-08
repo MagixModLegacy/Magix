@@ -17,6 +17,7 @@ G.props['fastTicksOnResearch']=150;
 	let madeThanks4playmesg = false
 	let backupmesg = false
 	let milleniummesg = false
+	let st1=true
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -131,8 +132,9 @@ G.props['fastTicksOnResearch']=150;
 				milleniummesg = true
 				}
 			////STORYLINE////
-			if(G.techN >= 24 && G.techN <=31){
-				G.Message({type:'important',text:'You glance at'+G.getName('inhabs')+' for a while. Who knows if that small empire is on a good way to become the empire'});
+			if(G.techN >= 24 && G.techN <=33 && !st1){
+				G.Message({type:'important',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small empire is on a good way to become the empire'});
+				st1=true
 			}
 		}
 	}
@@ -4198,6 +4200,8 @@ if (!document.getElementById(cssId))
 	let rofpopup=false
 	let bapopup=false
 	let monument=false
+	let pot=false
+	let cure=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4292,8 +4296,16 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'You obtained <b>Belief in the afterlife</b> trait.<br>From now you may obtain <b><font color="fuschia">Monument-building</font></b> research that will unlock you very first wonder. <br>Belief may evolve into <b>Culture of the afterlife</b> unlocking more.',icon:[32,16,'magixmod']})
 					bapopup=true
 				}
-			if(G.has('monument-building') && !monument && G.has('mausoleum')==0){
+			if(G.has('monument-building') && !monument && G.hasNot('Wizard complex')){
 				G.Message({type:'important',text:'Once you obtained <b>Monument-building</b> you may begin construction of very first wonder of your '+G.getName('inhabs')+'. Check it out in <u>Production</u> tab.',icon:[32,18,'magixmod']})
+					bapopup=true
+				}
+			if(G.getRes('pot').amount>=1) && !pot && G.hasNot('masonry')){
+				G.Message({type:'important',text:'You finally can have some flower. Only you know how to gain flowers so while no one watches you , you pick a flower and some mud and put it into the pot.',icon:[32,15,'magixmod']})
+					bapopup=true
+				}
+			if(G.getRes('cured meat').amount>=1 || G.getRes('cured seafood').amount>=1  && !cure && G.has('curing') && G.hasNot('Hunting II')){
+				G.Message({type:'important',text:'You take a taste of cured meat. Yummy :) You are sure that people will love taste of cured food as well as you did.',icon:[32,17,'magixmod']})
 					bapopup=true
 				}
 		},
