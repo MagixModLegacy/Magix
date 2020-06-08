@@ -12,6 +12,11 @@ G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
 	let t1vp=0
+	let madeThievesWarn = false
+	let madeWarnToolDecayMesg = false
+	let madeThanks4playmesg = false
+	let backupmesg = false
+	let milleniummesg = false
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -98,6 +103,33 @@ G.props['fastTicksOnResearch']=150;
 					godown=false
 				}
 			}
+			
+			if (G.year>=89 && G.year<=101 && !madeThievesWarn && G.hasNot('t1')){
+       				 G.Message({type:'bad',text:'<b><span style="color: #FFA500">Beware of thievery!</span></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <span style "color= aqua">Happiness</span> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
+				madeThievesWarn = true
+				}else if(G.year>=89 && G.year<=101 && !madeThievesWarn && G.has('t1')){
+       				 G.Message({type:'important',text:'You got used to Thieves and fact that they appear after year 90. But in this plane Thieves doesn\'t exist. It is good for you.',icon:[28,2,'magixmod',23,0,'magixmod']});
+				madeThievesWarn = true
+				}
+			
+			if (G.year>=29 && G.year<=31 && !madeWarnToolDecayMesg){
+       				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made have started decaying.</font> <li>This doesn\'t seem good.</li></b>',icon:[24,6,'magixmod']});
+				madeWarnToolDecayMesg = true
+			}
+			
+			if (G.year>=149 && G.year<=158 && !madeThanks4playmesg){
+       				 G.Message({type:'important',text:'<span style="color= aqua">Seems like you are doing preety well. It is been 150 years since you started magic adventure with Magix additions. Thank you for playing with this expansion. Your playing makes mod better and motivates for future updates. <br> <b> -> </b>Remember mod is still getting bigger and gets more content. This means someday the mod may be unavaiable to play for while. If you will lose progress due to update we are sorry. Anyway keep enjoying this adventure... <br> </span><b>Farewell</b>',icon:[24,1,'magixmod']});
+				madeThanks4playmesg = true
+				}
+			
+			if (G.year>=9 && !backupmesg){
+       				 G.Message({type:'important',text:'<b>Don\'t forget to backup your save!</b><br>If you don\'t want to lose your save you can always backup it. Click <b>Settings</b> tab then <b>Save to file</b> button. It will download a file with your save that you can load if your curent save ever got lost.',icon:[choose([25,26,27]),22,'magixmod']});
+				backupmesg = true
+				}
+			if (G.year>=999 && G.year<=1005 && !milleniummesg){
+       				 G.Message({type:'good',text:'Woah! It\'s been <b>1 thousand</b> years since your tribe started their existence. Your playing supports mod author and motivates for further updates. <br><b>Thank you ;)</b> <br><font color="lime"><tt>Continue enjoying Magix expansion.</tt></font>',icon:[27,23,'magixmod']});
+				milleniummesg = true
+				}
 			////STORYLINE////
 			if(G.techN >= 24 && G.techN <=31){
 				G.Message({type:'important',text:'You glance at'+G.getName('inhabs')+' for a while. Who knows if that small empire is on a good way to become the empire'});
@@ -3402,45 +3434,29 @@ if (!document.getElementById(cssId))
 		category:'main',
 	});
 //Essence limits which can be increased by buying storages for essences
-		let backupmesg
-		let milleniummesg
+		
 		new G.Res({
 		name:'fire essence limit',
 		desc:'The bigger limit the more essence.',
 		icon:[0,2,'magixmod'],
 		hidden:true,
-		category:'main',
-		tick:function(me,tick)
-		{
-				if (G.year>=9 && !backupmesg){
-       				 G.Message({type:'important',text:'<b>Don\'t forget to backup your save!</b><br>If you don\'t want to lose your save you can always backup it. Click <b>Settings</b> tab then <b>Save to file</b> button. It will download a file with your save that you can load if your curent save ever got lost.',icon:[choose([25,26,27]),22,'magixmod']});
-				backupmesg = true
-				}
-				if (G.year>=999 && G.year<=1005 && !milleniummesg){
-       				 G.Message({type:'good',text:'Woah! It\'s been <b>1 thousand</b> years since your tribe started their existence. Your playing supports mod author and motivates for further updates. <br><b>Thank you ;)</b> <br><font color="lime"><tt>Continue enjoying Magix expansion.</tt></font>',icon:[27,23,'magixmod']});
-				milleniummesg = true
-				}
-		},
 	});
 		new G.Res({
 		name:'water essence limit',
 		desc:'The bigger limit the more essence.',
 		icon:[0,1,'magixmod'],
-		category:'main',
 		hidden:true,
 	});
 		new G.Res({
 		name:'lightning essence limit',
 		desc:'The bigger limit the more essence.',
 		icon:[0,3,'magixmod'],
-		category:'main',
 		hidden:true,
 	});
 		new G.Res({
 		name:'wind essence limit',
 		desc:'The bigger limit the more essence.',
 		icon:[1,1,'magixmod'],
-		category:'main',
 		hidden:true,
 	});
 		new G.Res({
@@ -3448,28 +3464,24 @@ if (!document.getElementById(cssId))
 		desc:'The bigger limit the more essence.',
 		icon:[1,2,'magixmod'],
 		hidden:true,
-		category:'main',
 	});
 		new G.Res({
 		name:'dark essence limit',
 		desc:'The bigger limit the more essence.',
 		icon:[1,3,'magixmod'],
 		hidden:true,
-		category:'main',
 	});
 		new G.Res({
 		name:'mana capacity',
 		desc:'The bigger limit the more mana can be stored.',
 		icon:[2,3,'magixmod'],
 		hidden:true,
-		category:'main',
 	});
 		new G.Res({
 		name:'holy essence limit',
 		desc:'The bigger limit the more essence can be stored.',
 		icon:[20,6,'magixmod'],
 		hidden:true,
-		category:'main',
 	});
 		new G.Res({
 		name:'Dark skull construction point',
@@ -3662,19 +3674,12 @@ if (!document.getElementById(cssId))
 		},
 		category:'misc',
 	});
-		let madeWarnToolDecayMesg = false
 		new G.Res({
 		name:'Meals',
 		desc:'[Meals] are tastier than common food that is part of a [Meals,meal] . Makes people happier than other [food] .',
 		icon:[22,13,'magixmod'],
 		turnToByContext:{'eating':{'health':0.024,'happiness':0.045,'bone':0.1},'decay':{'spoiled food':0.8}},
 		category:'food',
-		tick:function(me,tick)
-		{
-			if (G.year>=29 && G.year<=31 && !madeWarnToolDecayMesg){
-       				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made have started decaying.</font> <li>This doesn\'t seem good.</li></b>',icon:[24,6,'magixmod']});
-				madeWarnToolDecayMesg = true
-		}},
 		partOf:'food',
 	});
 		new G.Res({
@@ -3811,21 +3816,11 @@ if (!document.getElementById(cssId))
 		},
 		category:'demog',
 	});
-		let madeThievesWarn = false
+		
 		new G.Res({
 		name:'wounded alchemist',
 		desc:'[Alchemists] may get [wounded,wounded] due to work injuries. They do not [worker,work] but may slowly get better over time.',
 		partOf:'population', //There we may add a message for thieves!
-		tick:function(me,tick)
-		{
-				if (G.year>=89 && G.year<=101 && !madeThievesWarn && G.hasNot('t1')){
-       				 G.Message({type:'bad',text:'<b><span style="color: #FFA500">Beware of thievery!</span></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <span style "color= aqua">Happiness</span> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
-				madeThievesWarn = true
-				}else if(G.year>=89 && G.year<=101 && !madeThievesWarn && G.has('t1')){
-       				 G.Message({type:'important',text:'You got used to Thieves and fact that they appear after year 90. But in this plane Thieves doesn\'t exist. It is good for you.',icon:[28,2,'magixmod',23,0,'magixmod']});
-				madeThievesWarn = true
-				}
-		},
 		icon:[21,2,'magixmod'],
 	});
 		new G.Res({
@@ -3851,19 +3846,12 @@ if (!document.getElementById(cssId))
 		}
 	});
 	//To make recovery not like wounded child alch becomes adult alch
-		let madeThanks4playmesg = false
+		
 		new G.Res({
 		name:'wounded child alchemist',
 		desc:'[Alchemists] may get [wounded,wounded] due to work injuries. They do not [worker,work] but may slowly get better over time.',
 		partOf:'population',
 		icon:[21,2,'magixmod'],
-		tick:function(me,tick)
-		{
-				if (G.year>=149 && G.year<=158 && !madeThanks4playmesg){
-       				 G.Message({type:'important',text:'<span style="color= aqua">Seems like you are doing preety well. It is been 150 years since you started magic adventure with Magix additions. Thank you for playing with this expansion. Your playing makes mod better and motivates for future updates. <br> <b> -> </b>Remember mod is still getting bigger and gets more content. This means someday the mod may be unavaiable to play for while. If you will lose progress due to update we are sorry. Anyway keep enjoying this adventure... <br> </span><b>Farewell</b>',icon:[24,1,'magixmod']});
-				madeThanks4playmesg = true
-				}
-		},
 	});
 //FLOWERS!,DYES!
 		new G.Res({
@@ -4208,6 +4196,8 @@ if (!document.getElementById(cssId))
 	let guru=false
 	let explorepop=false
 	let rofpopup=false
+	let bapopup=false
+	let monument=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4297,6 +4287,14 @@ if (!document.getElementById(cssId))
 			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
 				G.Message({type:'important',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover secrets hidden in new territory. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
 					explorepop=true
+				}
+			if(G.has('belief in the afterlife') && !bapopup && G.hasNot('monument-building')){
+				G.Message({type:'important',text:'You obtained <b>Belief in the afterlife</b> trait.<br>From now you may obtain <b><font color="fuschia">Monument-building</font></b> research that will unlock you very first wonder. <br>Belief may evolve into <b>Culture of the afterlife</b> unlocking more.',icon:[32,16,'magixmod']})
+					bapopup=true
+				}
+			if(G.has('monument-building') && !monument && G.has('mausoleum')==0){
+				G.Message({type:'important',text:'Once you obtained <b>Monument-building</b> you may begin construction of very first wonder of your '+G.getName('inhabs')+'. Check it out in <u>Production</u> tab.',icon:[32,18,'magixmod']})
+					bapopup=true
 				}
 		},
 		category:'flowersanddyes',
