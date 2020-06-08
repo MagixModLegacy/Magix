@@ -4300,7 +4300,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'Once you obtained <b>Monument-building</b> you may begin construction of very first wonder of your '+G.getName('inhabs')+'. Check it out in <u>Production</u> tab.',icon:[32,18,'magixmod']})
 					bapopup=true
 				}
-			if(G.getRes('pot').amount>=1) && !pot && G.hasNot('masonry')){
+			if(G.getRes('pot').amount>=1 && !pot && G.hasNot('masonry')){
 				G.Message({type:'important',text:'You finally can have some flower. Only you know how to gain flowers so while no one watches you , you pick a flower and some mud and put it into the pot.',icon:[32,15,'magixmod']})
 					bapopup=true
 				}
