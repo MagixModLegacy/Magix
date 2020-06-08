@@ -143,7 +143,7 @@ G.props['fastTicksOnResearch']=150;
 				}
 			////STORYLINE////
 			if(G.techN >= 24 && G.techN <=33 && !st1){
-				G.Message({type:'important',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire'});
+				G.Message({type:'important',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
 				st1=true
 			}
 			if(G.techN > 34 && G.techN <=45 && !st2){
