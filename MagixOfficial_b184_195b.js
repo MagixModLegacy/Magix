@@ -12487,7 +12487,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Make the Wisdom tree have even more leaves. Unlocks [The Outstander] who will provide more [wisdom II] and [education]. Provides 10 extra [wisdom II] upon tech obtain.',
 		icon:[11,28,'magixmod'],
 		req:{'A leaf of wisdom':true},
-		cost:{'insight II':175,'science':10,'influence II':5},
+		cost:{'insight II':175,'science':10,'influence II':5,'culture II':15},
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 		],
