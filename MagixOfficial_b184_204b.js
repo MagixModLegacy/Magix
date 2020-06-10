@@ -4268,6 +4268,9 @@ if (!document.getElementById(cssId))
 	let monument=false
 	let pot=false
 	let cure=false
+	let wiztip=false
+	let esstip=false
+	let weltip=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4351,7 +4354,7 @@ if (!document.getElementById(cssId))
 					guru=true
 				}
 			if(G.has('rules of food') && !rofpopup && G.hasNot('sedentism')){
-				G.Message({type:'tutorial',text:'You now can control food and water rations. They seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one if you will ignore this.',icon:[4,28,'magixmod']})
+				G.Message({type:'tutorial',text:'You now can control food and water rations. Your people seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one if you will ignore this.',icon:[4,28,'magixmod']})
 					rofpopup=true
 				}
 			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
@@ -4373,6 +4376,18 @@ if (!document.getElementById(cssId))
 			if(G.getRes('cured meat').amount>=1 || G.getRes('cured seafood').amount>=1  && !cure && G.has('curing') && G.hasNot('Hunting II')){
 				G.Message({type:'tutorial',text:'You take a taste of cured meat. Yummy :) You are sure that people will love taste of cured food as well as you did.',icon:[32,17,'magixmod']})
 					cure=true
+				}
+			if(G.has('Wizard wisdom') && G.hasNot('Wizard complex') && !wiztip){
+				G.Message({type:'tutorial',text:'Now you unlocked Wizards. Don\'t hire too much of them because these guys love eating a lot so having too much of them may lead to tribe starvation. Instead try to make your tribe bigger, hire more gatherers, explore then hire some. They are must-have.',icon:[choose([24,23,22,21]),8,'magixmod']})
+					wiztip=true
+				}
+			if(G.has('Wizard towers') && G.hasNot('Belief in portals') && !esstip){
+				G.Message({type:'tutorial',text:'You unlocked <b>Wizard towers</b>.<br>These towers provide housing and produce Essences using Mana. Make sure first if you have enough Mana income to upkeep at least one of towers. And make sure that you have built <b>Essence storages</b>.',icon:[20,13,'magixmod']})
+					esstip=true
+				}
+			if(G.has('well-digging') && G.hasNot('monument-building') && !weltip){
+				G.Message({type:'tutorial',text:'Henceforth you can dig a well why wouldn\'t you teach the others and set up your first <b>Well</b>. Well is source of fresh water but only 1 well per 10 pieces of land can be constructed.',icon:[30,3,'magixmod']})
+					weltip=true
 				}
 		},
 		category:'flowersanddyes',
@@ -9080,7 +9095,7 @@ new G.Unit({
 		tier:2,
 		name:'Talented?',
 		icon:[32,25,'magixmod'],
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.2 less land per 1 piece so if unit uses 3 land it will use 2.4 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter,Water filters(moderation path)] and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b>',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.2 less land per 1 piece so if unit uses 3 land it will use 2.4 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter,Water filters(moderation path)] and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>',
 		effects:[
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
