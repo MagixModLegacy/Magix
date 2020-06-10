@@ -9082,12 +9082,12 @@ new G.Unit({
 	new G.ChooseBox({
 		name:'research box',
 		context:'tech',
-		choicesN:function()
+		choicesN:function(me)
 		{
 			if(G.achievByName['Talented?'].won==0){
-				return 'choicesN:5'
-			}else if(G.achievByName['Talented?'].won>=1){
-				return 'choicesN:5'
+			me=4
+			}else{
+			me=5
 			}
 		},
 getCosts:function()
