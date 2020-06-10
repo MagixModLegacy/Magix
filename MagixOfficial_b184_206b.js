@@ -4762,7 +4762,7 @@ if (!document.getElementById(cssId))
 				u5popup = true
 				}
 				if (me.amount ==1500 && G.hasNot('A feeling from the Underworld') && !finalupopup){
-					G.middleText('<font color="fuschia">Now ascend through Underworld to continue unlocking the new world.</font>')
+					G.middleText('<font color="fuschia">Now ascend through Underworld to continue unlocking the new world.</font>','slow')
 				finalupopup = true
 				}
 		},
@@ -4902,30 +4902,30 @@ if (!document.getElementById(cssId))
 			}
 			if(G.has('Eotm') && G.achievByName['Level up'].won == 0){ //Level up achievement
 			G.achievByName['Level up'].won = 1
-			G.middleText('- Completed <font color="aqua">Level up</font> achievement -')
+			G.middleText('- Completed <font color="aqua">Level up</font> achievement -','slow')
 			}
 			if(G.has('dt9') && G.achievByName['Lucky 9'].won == 0){ //Lucky 9 achievement
 			G.achievByName['Lucky 9'].won = 1
-			G.middleText('- Completed <font color="red">Lucky 9</font> achievement -')
+			G.middleText('- Completed <font color="red">Lucky 9</font> achievement -','slow')
 			}
 			if(G.techN >= 100 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
 			G.achievByName['Apprentice'].won = 1
-			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -')
+			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -','slow')
 				if(G.techN==100 && !tech100){
 			G.Message({type:'important',text:'You managed your civilization to be smart. They thank you with kindness for ruling them. They will not even think about choosing other lord than you. Keep going this way. Discover, research and prosper ',icon:[24,18,'magixmod',8,4]})
 					tech100=true
 				}}
 			if(G.techN >= 200 && G.achievByName['Familiar'].won == 0){ //Apprentice achievement
 			G.achievByName['Familiar'].won = 1
-			G.middleText('- Completed <font color="lime">Familiar</font> achievement -')
+			G.middleText('- Completed <font color="lime">Familiar</font> achievement -','slow')
 			}
 			if(G.traitN >= 30 && G.achievByName['Traitsman'].won == 0){ //Traitsman achievement
 			G.achievByName['Traitsman'].won = 1
-			G.middleText('- Completed <font color="lime">Traitsman</font> achievement -')
+			G.middleText('- Completed <font color="lime">Traitsman</font> achievement -','slow')
 			}
 			if((G.getRes('insight II').amount) == (G.getRes('wisdom II').amount) && G.achievByName['Extremely smart'].won == 0 && G.has('Eotm')){; //Extremely smart achievement
 			G.achievByName['Extremely smart'].won = 1
-			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -')
+			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -','slow')
 			}
 			if(G.has('<font color="orange">Smaller but efficient</font>')){
 			G.getDict('hut').use = {'land':0.9}
@@ -4938,11 +4938,11 @@ if (!document.getElementById(cssId))
 			}
 			if(G.achievByName['mausoleum'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.achievByName['Metropoly'].won >= 1 && G.achievByName['Apprentice'].won >= 1 && G.achievByName['Experienced'].won == 0){ //Experienced
 			G.achievByName['Experienced'].won = 1
-			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>')
+			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>','slow')
 			}
 			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0 && G.achievByName['Familiar'].won == 1){ //Experienced
 			G.achievByName['Smart'].won = 1
-			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>')
+			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>','slow')
 			}
 			if(G.has('Spiritual piety')){
 			G.getDict('Church').icon = [24,23,'magixmod']
@@ -5068,7 +5068,7 @@ if (!document.getElementById(cssId))
 			if(G.modsByName['Market mod'] || G.modsByName['Coal mod'] || G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version'] || G.modsByName['Thot Mod']){
 			   if(G.achievByName['3rd party'].won==0){
 			G.achievByName['3rd party'].won = 2 //Fix for displaying over time middleText
-			G.middleText('- Completed <font color="pink">3rd party</font> achievement -')
+			G.middleText('- Completed <font color="pink">3rd party</font> achievement -','slow')
 			  }
 			}
 			if(G.has('Mo\' beauty')){
@@ -5113,11 +5113,11 @@ if (!document.getElementById(cssId))
 			}
 			if(G.traitN >= 50 && G.achievByName['Trait-or'].won == 0){ //Traitsman achievement
 			G.achievByName['Trait-or'].won = 1
-			G.middleText('- Completed <font color="pink">Trait-or</font> achievement -')
+			G.middleText('- Completed <font color="pink">Trait-or</font> achievement -','slow')
 			}
 			if((G.getRes('Worship point').amount) == 0 && G.achievByName['The first choice'].won == 0 && G.has('Pantheon key')){;
 			G.achievByName['The first choice'].won = 1
-			G.middleText('- Completed <font color="cyan">The first choice</font> achievement -')
+			G.middleText('- Completed <font color="cyan">The first choice</font> achievement -','slow')
 			}
 			if(G.checkPolicy('se04')=='on' && G.checkPolicy('se05')=='off'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}};
 			if(G.checkPolicy('se05')=='on' && G.checkPolicy('se04')=='off'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}};
@@ -5153,6 +5153,10 @@ if (!document.getElementById(cssId))
 				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
 				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. //[thot] limit per is increased and becomes 75% less efficient'
 				G.getDict('philosophy II').desc='[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
+			}
+			if(G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.achievByName['Extremely smart'].won >= 1 && G.achievByName['Man of essences'].won >= 1 && G.achievByName['Magical'].won >= 1 && G.achievByName['Next to the God'].won >= 1 && G.achievByName['The first choice'].won >= 1 && G.achievByName['Trait-or'].won >= 1 && G.achievByName['Not so pious people'].won >= 1 && G.achievByName['Talented?'].won == 0){ //Experienced
+			G.achievByName['Talented?'].won = 1
+			G.middleText('- All achievements  from tier <font color="orange">3</font> completed! - </br> </hr> <small>All crafting units and few non-crafting units that use overworld land since the next run will use 20% less land. In addition you can pick <font color="aqua">1 of 5</font> researches instead of <font color="aqua">1 of 4</font></small>','slow')
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
