@@ -9099,7 +9099,7 @@ new G.Unit({
 		tier:2,
 		name:'Talented?',
 		icon:[32,25,'magixmod'],
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.2 less land per 1 piece so if unit uses 3 land it will use 2.4 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter,Water filters(moderation path)] and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.2 less land per 1 piece so if unit uses 3 land it will use 2.4 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>',
 		effects:[
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
@@ -12522,6 +12522,32 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'wisdom II':10}},
 		],
 	});
+	let Talentrait =  	new G.Trait({
+        name:'<font color="orange">Smaller shacks</font>',
+        desc:'<span style="color: #aaffff">All [blacksmith workshop,Crafting units] and: [well]s , [Water filter]s (Caretaking filters uses 0.1 less land and Moderation filters will use 0.2 less land), [wheat farm]s and [crematorium]s will use 20% less land.</span>',
+        icon:[32,20,'magixmod'],
+        cost:{},
+	effects:[
+		],
+        req:{'tribalism':false},
+	category:'knowledge',
+	chance:1,
+    });
+function Checktalent() {
+  if (G.achievByName['Talented?'].won) {
+    if (G.achievByName['Talented?'].won >= 0 && G.hasNot('<font color="orange">Smaller shacks</font>')){
+      G.gainTrait(Talentrait)
+    }
+}
+}
+Checktalent()
+const oldNewGameTalent = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameTalent, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    Checktalent()
+  }
+})
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
