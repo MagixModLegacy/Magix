@@ -9082,7 +9082,14 @@ new G.Unit({
 	new G.ChooseBox({
 		name:'research box',
 		context:'tech',
-		choicesN:4,
+		choicesN:function()
+		{
+			if(G.achievByName['Talented?'].won==0){
+				return '4'
+			}else if(G.achievByName['Talented?'].won>=1){
+				return '5'
+			}
+		},
 getCosts:function()
         {
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
