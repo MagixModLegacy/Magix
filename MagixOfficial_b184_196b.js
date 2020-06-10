@@ -4296,7 +4296,7 @@ if (!document.getElementById(cssId))
 			boatstory=true
 			}
 			if(G.has('ritualism') && !ritstory && G.hasNot('burial')){
-			G.Message({type:'important',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
+			G.Message({type:'tutorial',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
 			ritstory=true
 			}
 			if (G.has('burial') && !burystory && !G.has('monument-building')){
@@ -4304,7 +4304,7 @@ if (!document.getElementById(cssId))
 				burystory=true
 			}
 			if(G.has('fire-making') && !firestory && !G.has('construction')){
-			   G.Message({type:'important',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
+			   G.Message({type:'tutorial',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
 			firestory=true
 			}
 				if(G.has('sewing') && !sewstory && G.hasNot('weaving')){
