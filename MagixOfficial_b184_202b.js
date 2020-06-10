@@ -52,7 +52,12 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['new game']=function()
 	{
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
-		G.Message({type:'important tall',text:str,icon:[0,3]});		
+		G.Message({type:'important tall',text:str,icon:[0,3]});	
+		if(G.achievByName['Talented?'].won==0){
+			G.getDict('research box').choicesN=4
+			}else if(G.achievByName['Talented?'].won>=1){
+			G.getDict('research box').choicesN=5
+			}
 	}
 	t1vp=b1
 	G.funcs['game over']=function()
@@ -9082,14 +9087,7 @@ new G.Unit({
 	new G.ChooseBox({
 		name:'research box',
 		context:'tech',
-		choicesN:function()
-		{
-			if(G.achievByName['Talented?'].won==0){
-			G.getDict('research box').choicesN=4
-			}else if(G.achievByName['Talented?'].won>=1){
-			G.getDict('research box').choicesN=5
-			}
-		},
+		choicesN:4,
 getCosts:function()
         {
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
