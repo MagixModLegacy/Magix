@@ -12524,7 +12524,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	});
 	let Talentrait =  	new G.Trait({
         name:'<font color="orange">Smaller shacks</font>',
-        desc:'<span style="color: #aaffff">All [blacksmith workshop,Crafting units] and: [well]s , [Water filter]s (Caretaking filters uses 0.1 less land and Moderation filters will use 0.2 less land), [wheat farm]s and [crematorium]s will use 20% less land.</span>',
+        desc:'<span style="color: #aaffff">All [blacksmith workshop,Crafting units] and: [well]s , [Water filter]s (Caretaking filters uses 0.1 less land and Moderation filters will use 0.2 less land), [Wheat farm]s and [crematorium]s will use 20% less land.</span>',
         icon:[32,20,'magixmod'],
         cost:{},
 	effects:[
