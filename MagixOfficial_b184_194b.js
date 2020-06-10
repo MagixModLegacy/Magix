@@ -172,23 +172,23 @@ G.props['fastTicksOnResearch']=150;
 				st6=true
 			}
 			if(G.techN > 83 && G.techN <=90 && !st7){
-				G.Message({type:'important',text:'One of dreamers asks you how are you today. You answer that you are fine. While you talking with this dreamer some firekeeper comes to you with water pot and some cured seafood. Great ; )',icon:[32,11,'magixmod']});
+				G.Message({type:'important',text:'One of dreamers asks you how are you today. You answer that you are fine. While you talking with this dreamer some firekeeper comes to you with water pot and some cured seafood. Great ; )',icon:[32,10,'magixmod']});
 				st7=true
 			}
 			if(G.techN > 90 && G.techN <=94 && !st8){
-				G.Message({type:'bad',text:'You had a nightmare someday. You saw there brutally wounded '+G.getName('inhab')+' . It really shocked and feared you.',icon:[32,10,'magixmod']});
+				G.Message({type:'bad',text:'You had a nightmare someday. You saw there brutally wounded '+G.getName('inhab')+' . It really shocked and feared you.',icon:[32,9,'magixmod']});
 				st8=true
 			}
 			if(G.techN > 94 && G.techN <=99 && !st9){
-				G.Message({type:'good',text:'While wandering you noticed some angel waving at you. But you didn\'t understand what the angel did say to you. You are full of hope that it is some greeting.',icon:[32,9,'magixmod']});
+				G.Message({type:'good',text:'While wandering you noticed some angel waving at you. But you didn\'t understand what the angel did say to you. You are full of hope that it is some greeting.',icon:[32,8,'magixmod']});
 				st9=true
 			}
 			if(G.techN > 102 && G.techN <=107 && !st10){
-				G.Message({type:'important',text:'This angel appears in your dreams. Now it said clearly that Paradise will be open for you and your tribe. You clearly remembered his words: <br><b><font color="#FFFED6">Dear '+G.getName('ruler')+' . I am so proud of you<br> and people you rule. They are sign that shows how worthy people are. <br>You teached them a lot.<br.Someday the Paradise will be open for you '+G.getName('ruler')+'and your '+G.getName('inhabs')+'</font></b>',icon:[32,9,'magixmod']});
+				G.Message({type:'important',text:'This angel appears in your dreams. Now it said clearly that Paradise will be open for you and your tribe. You clearly remembered his words: <br><b><font color="#FFFED6">Dear '+G.getName('ruler')+' . I am so proud of you<br> and people you rule. They are sign that shows how worthy people are. <br>You teached them a lot.<br.Someday the Paradise will be open for you '+G.getName('ruler')+'and your '+G.getName('inhabs')+'</font></b>',icon:[32,8,'magixmod']});
 				st10=true
 			}
 			if(G.techN > 108 && G.techN <=114 && !st11){
-				G.Message({type:'good',text:'You see one of your carver works on gem block. You came closer to see the big gem block and even asked if he can teach you a little of carving. You spend some time with him and carved your first wooden statuette. Then you carved a crown for the statuette. Hooray.',icon:[32,8,'magixmod']});
+				G.Message({type:'good',text:'You see one of your carver works on gem block. You came closer to see the big gem block and even asked if he can teach you a little of carving. You spend some time with him and carved your first wooden statuette. Then you carved a crown for the statuette. Hooray.',icon:[32,7,'magixmod']});
 				st11=true
 			}
 		}
