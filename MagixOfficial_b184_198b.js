@@ -9085,9 +9085,9 @@ new G.Unit({
 		choicesN:function()
 		{
 			if(G.achievByName['Talented?'].won==0){
-				return '4'
+				return 4
 			}else if(G.achievByName['Talented?'].won>=1){
-				return '5'
+				return 5
 			}
 		},
 getCosts:function()
