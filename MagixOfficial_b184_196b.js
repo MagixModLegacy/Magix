@@ -143,28 +143,28 @@ G.props['fastTicksOnResearch']=150;
 				}
 			////STORYLINE////
 			if(G.techN >= 24 && G.techN <=33 && !st1){
-				G.Message({type:'important',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
+				G.Message({type:'story1',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
 				st1=true
 			}
 			if(G.techN > 34 && G.techN <=45 && !st2){
-				G.Message({type:'important',text:'All things go with its correct way'});
+				G.Message({type:'story2',text:'All things go with its correct way'});
 				st2=true
 			}
 			if(G.techN > 46 && G.techN <=49 && !st3){
-				G.Message({type:'important',text:'You want some mirror. But sadly no one can craft glass mirror yet. Luckily you didn\'t forget that you can use water surface as some sort of a mirror.',icon:[32,14,'magixmod']});
+				G.Message({type:'story1',text:'You want some mirror. But sadly no one can craft glass mirror yet. Luckily you didn\'t forget that you can use water surface as some sort of a mirror.',icon:[32,14,'magixmod']});
 				st3=true
 			}
 			if(G.techN > 54 && G.techN <=64 && !st4){
 				if(G.resets==0){
-				G.Message({type:'important',text:'You think that you should ascend someday no matter what. You fell it so strongly.',icon:[32,13,'magixmod']});
+				G.Message({type:'story2',text:'You think that you should ascend someday no matter what. You fell it so strongly.',icon:[32,13,'magixmod']});
 				st4=true
 				}else if(G.resets>=1){
-					G.Message({type:'important',text:'You wonder how your tribe will look and how advanced it will become within next centuries.',icon:[32,12,'magixmod']});
+					G.Message({type:'story2',text:'You wonder how your tribe will look and how advanced it will become within next centuries.',icon:[32,12,'magixmod']});
 				st4=true
 			}
 			}
 			if(G.techN > 67 && G.techN <=75 && !st5){
-				G.Message({type:'important',text:'You organize storytelling at the beach. Well. Some wolf was lurking to wound some of your '+G.getName('inhabs')+' but some hunter takes it down before the tragedy.',icon:[7,11]});
+				G.Message({type:'story1',text:'You organize storytelling at the beach. Well. Some wolf was lurking to wound some of your '+G.getName('inhabs')+' but some hunter takes it down before the tragedy.',icon:[7,11]});
 				st5=true
 			}
 			if(G.techN > 76 && G.techN <=81 && !st6){
@@ -172,7 +172,7 @@ G.props['fastTicksOnResearch']=150;
 				st6=true
 			}
 			if(G.techN > 83 && G.techN <=90 && !st7){
-				G.Message({type:'important',text:'One of dreamers asks you how are you today. You answer that you are fine. While you talking with this dreamer some firekeeper comes to you with water pot and some cured seafood. Great ; )',icon:[32,10,'magixmod']});
+				G.Message({type:'story2',text:'One of dreamers asks you how are you today. You answer that you are fine. While you talking with this dreamer some firekeeper comes to you with water pot and some cured seafood. Great ; )',icon:[32,10,'magixmod']});
 				st7=true
 			}
 			if(G.techN > 90 && G.techN <=94 && !st8){
@@ -184,7 +184,7 @@ G.props['fastTicksOnResearch']=150;
 				st9=true
 			}
 			if(G.techN > 102 && G.techN <=107 && !st10){
-				G.Message({type:'important',text:'This angel appears in your dreams. Now it said clearly that Paradise will be open for you and your tribe. You clearly remembered his words: <br><b><font color="#FFFED6">Dear '+G.getName('ruler')+' . I am so proud of you<br> and people you rule. They are sign that shows how worthy people are. <br>You teached them a lot.<br.Someday the Paradise will be open for you '+G.getName('ruler')+'and your '+G.getName('inhabs')+'</font></b>',icon:[32,8,'magixmod']});
+				G.Message({type:'story1',text:'This angel appears in your dreams. Now it said clearly that Paradise will be open for you and your tribe. You clearly remembered his words: <br><b><font color="#FFFED6">Dear '+G.getName('ruler')+' . I am so proud of you<br> and people you rule. They are sign that shows how worthy people are. <br>You teached them a lot.<br.Someday the Paradise will be open for you '+G.getName('ruler')+'and your '+G.getName('inhabs')+'</font></b>',icon:[32,8,'magixmod']});
 				st10=true
 			}
 			if(G.techN > 108 && G.techN <=114 && !st11){
@@ -2538,7 +2538,7 @@ if (!document.getElementById(cssId))
         tick:function(me,tick)
         {
             if (me.amount>=1 && !madeUnlockMessage){ 
-                G.Message({type:'good',text:'<b>You and your people activated passage to Plain Island. Out of portal an Emblem falls and hits on rock. Big rectangular portal shines and you can see what is beyond it. You come through and notice there are flat plains. Now it is time for more discoveries and build there some stuff.</b>',icon:[8,3,'magixmod']});
+                G.Message({type:'emblemobtain',text:'<b>You and your people activated passage to Plain Island. Out of portal an Emblem falls and hits on rock. Big rectangular portal shines and you can see what is beyond it. You come through and notice there are flat plains. Now it is time for more discoveries and build there some stuff.</b>',icon:[8,3,'magixmod']});
                 madeUnlockMessage = true
 		   	if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 			{
@@ -3221,7 +3221,7 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick)
 		{
 			if (me.amount>=1 && !madeUnlockMessageP){ 
-				G.Message({type:'good',text:'<b>You and your people activated passage to Paradise. Out of portal an Emblem fall and hits next to your feet. Big golden portal shines and you can see what is beyond it. You come through and notice there is perfect heat to live. Now it is time for more discoveries.</b>',icon:[8,4,'magixmod']});
+				G.Message({type:'emblemobtain',text:'<b>You and your people activated passage to Paradise. Out of portal an Emblem fall and hits next to your feet. Big golden portal shines and you can see what is beyond it. You come through and notice there is perfect heat to live. Now it is time for more discoveries.</b>',icon:[8,4,'magixmod']});
 				madeUnlockMessageP = true
 						if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 			{
@@ -4687,7 +4687,7 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick)
 		{
 			if (me.amount>=1 && !UnderworldMESG){ 
-				G.Message({type:'cool',text:'<b>You and your people activated a way to the Underworld. Out of nowhere an Emblem appears behind you. It is hot in touch. Its red glowing only attract curses.</b></br> <font color="fuschia">So prepare to tame 6 Devil\'s traits in order to continue your adventure. Without it the Underworld won\'t allow you discover its secrets.',icon:[12,19,'magixmod']});
+				G.Message({type:'emblemobtain',text:'<b>You and your people activated a way to the Underworld. Out of nowhere an Emblem appears behind you. It is hot in touch. Its red glowing only attract curses.</b></br> <font color="fuschia">So prepare to tame 6 Devil\'s traits in order to continue your adventure. Without it the Underworld won\'t allow you discover its secrets.',icon:[12,19,'magixmod']});
 				UnderworldMESG = true
 			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 			{
@@ -4716,23 +4716,23 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick)
 		{
 				if (me.amount==150 && G.hasNot('A feeling from the Underworld') && !u1popup){
-       				 G.Message({text:'As your people keep digging down they start to feel more warm but not overheat yet. It mostly warms you. It feels like some soul from not known earlier world wants to say something.</br> <b><font color="aqua">You are the one</br>Who wasn\'t done</br>Those people seek new worlds...</br>...and new odds</font></b>',icon:[0,19,'magixmod']});
+       				 G.Message({type:'underworldig',text:'As your people keep digging down they start to feel more warm but not overheat yet. It mostly warms you. It feels like some soul from not known earlier world wants to say something.</br> <b><font color="aqua">You are the one</br>Who wasn\'t done</br>Those people seek new worlds...</br>...and new odds</font></b>',icon:[0,19,'magixmod']});
 				u1popup = true
 				}
 				if (me.amount==350 && G.hasNot('A feeling from the Underworld') && !u2popup){
-       				 G.Message({text:'People continue digging down and another souls want to tell you few things and green soul seemed like Nature essence creation has bitten you. People complain for warmth.</br><b><font color="fuschia">The world you want to meet</br>Will not give all it has right before your feet</br>Danger for people abounds</br>and forbidden will become crowds</font></b>',icon:[1,19,'magixmod']});
+       				 G.Message({type:'underworldig',text:'People continue digging down and another souls want to tell you few things and green soul seemed like Nature essence creation has bitten you. People complain for warmth.</br><b><font color="fuschia">The world you want to meet</br>Will not give all it has right before your feet</br>Danger for people abounds</br>and forbidden will become crowds</font></b>',icon:[1,19,'magixmod']});
 				u2popup = true
 				}
 				if (me.amount==600 && G.hasNot('A feeling from the Underworld') && !u3popup){
-       				 G.Message({text:'You see wizards using magic to cool down the warmth so people can continue digging down for new world. Dark voices yell and make civils feared near you. This doesn\'t seem well.</br><b><font color="teal">You want to see fear...</br>Please don\'t show me even one your tear...</br>You hear...</br>I yell so you are fear.</font></b>',icon:[2,19,'magixmod']});
+       				 G.Message({type:'underworldig',text:'You see wizards using magic to cool down the warmth so people can continue digging down for new world. Dark voices yell and make civils feared near you. This doesn\'t seem well.</br><b><font color="teal">You want to see fear...</br>Please don\'t show me even one your tear...</br>You hear...</br>I yell so you are fear.</font></b>',icon:[2,19,'magixmod']});
 				u3popup = true
 				}
 				if (me.amount==750 && G.hasNot('A feeling from the Underworld') && !u4popup){
-       				 G.Message({text:'Out of nowhere people yell and run away in panic except small group of braves who still dig down. Souls start behave weird... or you just don\'t understand them yet.</br><b><font color="red">Don\'t let the Gods</br>Send there his crowds</br>Danger for people abounds</br>and forbidden are becoming crowds</font></b>',icon:[3,19,'magixmod']});
+       				 G.Message({type:'underworldig',text:'Out of nowhere people yell and run away in panic except small group of braves who still dig down. Souls start behave weird... or you just don\'t understand them yet.</br><b><font color="red">Don\'t let the Gods</br>Send there his crowds</br>Danger for people abounds</br>and forbidden are becoming crowds</font></b>',icon:[3,19,'magixmod']});
 				u4popup = true
 				}
 				if (me.amount==950&& G.hasNot('A feeling from the Underworld') && !u5popup){
-       				 G.Message({text:'A huge cavern starts to show while braves continued digging down. They run away to you... empowered weirdly by these souls. Another lightning essence creature paralyses you and water essence creatures started behaving insane. Is this greeting from new world?</br><b><font color="silver">Alright '+G.getName('ruler')+' ...</br>Call your soul and make it go...</br>Right to the world</br>The Under...world</font></b>',icon:[4,19,'magixmod']});
+       				 G.Message({type:'underworldig',text:'A huge cavern starts to show while braves continued digging down. They run away to you... empowered weirdly by these souls. Another lightning essence creature paralyses you and water essence creatures started behaving insane. Is this greeting from new world?</br><b><font color="silver">Alright '+G.getName('ruler')+' ...</br>Call your soul and make it go...</br>Right to the world</br>The Under...world</font></b>',icon:[4,19,'magixmod']});
 				u5popup = true
 				}
 				if (me.amount ==1500 && G.hasNot('A feeling from the Underworld') && !finalupopup){
