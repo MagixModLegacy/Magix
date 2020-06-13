@@ -12626,6 +12626,47 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		effects:[
 		],
 	});
+	//Gatherer and Digger trend improvements
+		new G.Tech({
+		name:'gt1u2',
+		displayName:'Sugar cane trend II',
+		desc:'[Sugar cane] trend makes [gatherer]s gather more [Sugar cane] for you.',
+		icon:[21,28,'magixmod'],
+		req:{'gt1':true,'Policy revaluation':true},
+		cost:{'insight II':110,'culture II':30},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'gt2u2',
+		displayName:'Fruit trend II',
+		desc:'[fruit] trend makes [gatherer]s gather more [fruit]s for you.',
+		icon:[22,28,'magixmod'],
+		req:{'gt2':true,'Policy revaluation':true},
+		cost:{'insight II':110,'culture II':30},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'dit1u2',
+		displayName:'Clay trend II',
+		desc:'[clay] trend makes [diggr]s dig more [clay]s for you.',
+		icon:[23,28,'magixmod'],
+		req:{'dit1':true,'Policy revaluation':true},
+		cost:{'insight II':100,'culture II':35,'influence II':10},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'dit2u2',
+		displayName:'Mud trend II',
+		desc:'[mud] trend makes [digger]s gather more [clay]s for you.',
+		icon:[24,28,'magixmod'],
+		req:{'dit2':true,'Policy revaluation':true},
+		cost:{'insight II':100,'culture II':35,'influence II':10},
+		effects:[
+		],
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
