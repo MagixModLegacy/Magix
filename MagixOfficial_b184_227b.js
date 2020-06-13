@@ -12650,7 +12650,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'dit1u2',
 		displayName:'Clay trend II',
-		desc:'[clay] trend makes [diggr]s dig more [clay]s for you.',
+		desc:'[clay] trend makes [digger]s dig more [clay]s for you.',
 		icon:[23,28,'magixmod'],
 		req:{'dit1':true,'Policy revaluation':true},
 		cost:{'insight II':100,'culture II':35,'influence II':10},
@@ -12666,6 +12666,31 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		cost:{'insight II':100,'culture II':35,'influence II':10},
 		effects:[
 		],
+	});
+	//Trait trends. A trait + tech trend is allowed
+	new G.Trait({
+		name:'cart1',
+		displayName:'Carver\'s trend:Stone statuettes',
+		desc:'[carver]s feel that [stone statuette] is accepted better by '+G.getName('inhabs')+' than statuette from wood or other non-stone resource. <><b>Craft stone statuettes</b> mode is 5% more efficient.',
+		icon:[32,25,'magixmod'],
+		req:{'construction':true,'cart2':false},
+		cost:{'insight':25,'culture':25},
+		effects:[
+		],
+		chance:16,
+		category:'main'
+	});
+	new G.Trait({
+		name:'cart2',
+		displayName:'Carver\'s trend:Wooden statuettes',
+		desc:'[carver]s feel that [Wooden statuette] is accepted better by '+G.getName('inhabs')+' than statuette from stone or other non-wood resource. <><b>Craft wooden statuettes</b> mode is 5% more efficient.',
+		icon:[32,24,'magixmod'],
+		req:{'construction':true,'cart1':false},
+		cost:{'insight':25,'culture':25},
+		effects:[
+		],
+		chance:16,
+		category:'main'
 	});
 	/*=====================================================================================
 	POLICIES
