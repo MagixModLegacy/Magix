@@ -94,7 +94,7 @@ G.props['fastTicksOnResearch']=150;
 			G.Message({type:'important',text:str,icon:[0,3]});
 			if(t1start==true)
 			{
-				var insight=Math.floor(Math.random() * (33/G.achievByName['Patience'].won+1));
+				var insight=Math.floor(Math.random() * (33/(G.achievByName['Patience'].won+1)));
 				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b><font color="#aaffff">'+B(insight)+' Insight</font></b><br>The hidden weakness in this plane gets stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
 				if (G.getRes('insight').amount < G.getRes('wisdom').amount*1.6){
 				G.gain('insight',insight);
@@ -12551,11 +12551,31 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'Enchanted shovels',
 		desc:'Bigger shovels make [digger]s 12.5% more efficient. <> Now their shovels are enchanted by wind so despite that they are bigger they are still light. <>Also provides 5 [wisdom II]',
-		icon:[11,28,'magixmod'],
+		icon:[15,28,'magixmod'],
 		req:{'A leaf of wisdom':true},
 		cost:{'insight II':150},
 		effects:[
 			{type:'provide res',what:{'wisdom II':5}},
+		],
+	});
+	new G.Tech({
+		name:'gt1',
+		displayName:'Gatherer\'s trend:Sugar cane',
+		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [Sugar cane] for you.',
+		icon:[17,28,'magixmod'],
+		req:{'Deeper wells':true,'gt2':false},
+		cost:{'insight':1000,'culture':300},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'gt2',
+		displayName:'Gatherer\'s trend:Fruits',
+		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [fruit]s for you.',
+		icon:[18,28,'magixmod'],
+		req:{'Deeper wells':true,'gt1':false},
+		cost:{'insight':1000,'culture':300},
+		effects:[
 		],
 	});
 	/*=====================================================================================
