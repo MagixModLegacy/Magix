@@ -241,12 +241,13 @@ G.props['fastTicksOnResearch']=150;
 		'An eerie glow from above illuminates the night.',
 		'Distant lands lay undisturbed.',
 		'<b>Magic awaits.</b>',
-		'A cool breeze is blowing.'
+		'A cool breeze is blowing.',
 		'Another sea wave crashes against a huge rock.',
 		'What a cloudy day today.',
 		'It\'s dry air today.',
 		'Wild brambles look so scary even from far.',
-		'Some dangerous creature sleeps calmly.'
+		'Some dangerous creature sleeps calmly.',
+		'From far a sounds of a falling tree can be heard',
 	];
 		
 	shuffle(G.props['new day lines']);
