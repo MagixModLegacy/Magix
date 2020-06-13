@@ -9183,8 +9183,8 @@ getCosts:function()
 		buttonText:function()
 		{
 			var str='';
-			if (this.choices.length>0) str+='Reroll';
-			else str+='Research';
+			if (this.choices.length>0) str+='<font color="lime">Reroll</font>';
+			else str+='<font color="fuschia">Research</font>';
 			var costs=this.getCosts();
 			var costsStr=G.getCostString(costs);
 			if (costsStr) str+=' ('+costsStr+')';
