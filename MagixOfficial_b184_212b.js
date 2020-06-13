@@ -9187,7 +9187,7 @@ getCosts:function()
 			else str+='<font color="fuschia">Research</font>';
 			var costs=this.getCosts();
 			var costsStr=G.getCostString(costs);
-			if (costsStr) str+='<font color="#aaffff">('+costsStr+')</font>';
+			if (costsStr) str+='<b><i><font color="#aaffff">('+costsStr+')</font></i></b>';
 			return str;
 		},
 		buttonTooltip:function()
