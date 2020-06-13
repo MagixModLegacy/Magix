@@ -11,6 +11,34 @@
 =================================================================================================================================================================================================================================
                                                           U   P   D   A   T   E                   L  O  G
 							  
+19 VI 2020
+Big update 5!
+Trends
+->Trends define what people rather more gathering
+	>>Two subtypes:
+		>>First which is as tech you can pick the trend for people
+		>>Second which is as trait and can stack with tech trend and there you have no choice what it will be
+		>>So some units can obtain 2 trends
+		>>Some trend can be obtained at early game stage while others at late game
+	>>Trends doesn't decrease income of other resource unit can gather
+Figured out how to make custom message types so:
+->Tutorial messages now have dark blue background to be more noticeable
+->Emblem popups have yellow background
+->Digging to the Underworld story messages have magenta background
+Tiny research box change:
+->Research and reroll text is now colored
+Added row 3 achievement bonus
+->Finally if you complete this row you will unlock 5th tech choice pernamently
+	>>...and something extra but as special as the bonus above
+New achievement for Row 3!
+Now middle text that notifies about: completing achievement that doesn't require ascending or wonder and full row completed notifications lasts 3,5 seconds longer on a screen
+Some extra new day lines added
+Expanded tutorial and story!
+	>>Now it will hint you what belief in the afterlife trait will unlock
+	>>And many more
+Changed balance for food(it was causing happiness go to -200% too quickly)
+Attempting to nerf plentiful mode for food and water rations(it skyrockets to +200% happiness)
+
 16 V 2020
 Pantheon Update
 Added Pantheon
