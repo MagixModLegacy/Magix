@@ -4398,10 +4398,12 @@ if (!document.getElementById(cssId))
 				G.Message({type:'tutorial',text:'Henceforth you can dig a well why wouldn\'t you teach the others and set up your first <b>Well</b>. Well is source of fresh water but only 1 well per 10 pieces of land can be constructed.',icon:[30,3,'magixmod']})
 					weltip=true
 				}
-			if(G.has('cart1') || G.has('cart2') && G.hasNot('Wizard wisdom') && !trendtip){
+			if(G.has('cart1') || G.has('cart2')){
+			if(G.hasNot('Wizard wisdom') && !trendtip){
 				G.Message({type:'tutorial',text:'Your '+G.getName('inhabs')+' have obtained their first trend. Trends increase income of specific resource. There are two types of trends: <li>"Decisional" - there you can pick what will be point of the trend(they appear as techs)</li><li>"Random" - you cannot choose what will be point of trend.(they appear as traits)</li><br>You are allowed to have at once random and decisional trend at one unit.',icon:[32,27,'magixmod']})
 					trendtip=true
 				}
+			}
 		},
 		category:'flowersanddyes',
 	});//23
