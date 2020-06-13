@@ -9187,7 +9187,7 @@ getCosts:function()
 			else str+='<font color="fuschia">Research</font>';
 			var costs=this.getCosts();
 			var costsStr=G.getCostString(costs);
-			if (costsStr) str+=' ('+costsStr+')';
+			if (costsStr) str+='<font color="#aaffff">('+costsStr+')</font>';
 			return str;
 		},
 		buttonTooltip:function()
@@ -12548,6 +12548,16 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
     Checktalent()
   }
 })
+	new G.Tech({
+		name:'Enchanted shovels',
+		desc:'Bigger shovels make [digger]s 12.5% more efficient. <> Now their shovels are enchanted by wind so despite that they are bigger they are still light. <>Also provides 5 [wisdom II]',
+		icon:[11,28,'magixmod'],
+		req:{'A leaf of wisdom':true},
+		cost:{'insight II':150},
+		effects:[
+			{type:'provide res',what:{'wisdom II':5}},
+		],
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
