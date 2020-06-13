@@ -9,7 +9,7 @@ func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 G.props['fastTicksOnResearch']=150;
-	l('date').innerHTML='<p style="font-color(rgba):(255,255,255,0.25)"> Century, year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ')</p>;
+	l('date').innerHTML="Century '+(G.century+1)+', year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
 	let t1start = false
 	let t1start1 = false
 	let t1vp=0
