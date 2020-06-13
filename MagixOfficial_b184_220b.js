@@ -9,7 +9,7 @@ func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 G.props['fastTicksOnResearch']=150;
-	l('date').innerHTML='Century '+(G.century+1)+', year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+G.century=0
 	let t1start = false
 	let t1start1 = false
 	let t1vp=0
@@ -59,6 +59,7 @@ G.props['fastTicksOnResearch']=150;
 			}else if(G.achievByName['Talented?'].won>=1){
 			G.getDict('research box').choicesN=5
 			}
+		l('date').innerHTML='Century '+(G.century+1)+', year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
 	}
 	t1vp=b1
 	G.funcs['game over']=function()
@@ -80,6 +81,7 @@ G.props['fastTicksOnResearch']=150;
 			}else if(G.achievByName['Talented?'].won>=1){
 			G.getDict('research box').choicesN=5
 			}
+		l('date').innerHTML='Century '+(G.century+1)+', year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
 	}
 	G.funcs['new year']=function()
 	{
