@@ -12588,7 +12588,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Tech({
 		name:'dit1',
-		displayName:'Digger\'s trend:Sugar cane',
+		displayName:'Digger\'s trend:Clay',
 		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] dig a little more [clay] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[19,28,'magixmod'],
 		req:{'More humid water':true,'dt2':false},
@@ -12598,7 +12598,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Tech({
 		name:'dit2',
-		displayName:'Digger\'s trend:Fruits',
+		displayName:'Digger\'s trend:Mud',
 		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] dig a little more [mud] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[20,28,'magixmod'],
 		req:{'More humid water':true,'dt1':false},
@@ -12612,7 +12612,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'You can pick one of two trends for the [mine]s.<>This trend will make [mine]\'s [coal] mode more efficient(it will mine bigger amounts of specific resource).<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[32,21,'magixmod'],
 		req:{'Outstanding wisdom':true,'mt2':false},
-		cost:{'insight II':250,'culture II':35},
+		cost:{'insight II':260,'culture II':35},
 		effects:[
 		],
 	});
@@ -12622,7 +12622,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'You can pick one of two trends for the [mine]s.<>This trend will make [mine]\'s [salt] mode more efficient(it will mine bigger amounts of specific resource).<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[32,22,'magixmod'],
 		req:{'Outstanding wisdom':true,'mt1':false},
-		cost:{'insight II':250,'culture II':35},
+		cost:{'insight II':260,'culture II':35},
 		effects:[
 		],
 	});
