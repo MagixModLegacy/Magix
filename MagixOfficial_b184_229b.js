@@ -4279,6 +4279,7 @@ if (!document.getElementById(cssId))
 	let wiztip=false
 	let esstip=false
 	let weltip=false
+	let trendtip=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4396,6 +4397,10 @@ if (!document.getElementById(cssId))
 			if(G.has('well-digging') && G.hasNot('monument-building') && !weltip){
 				G.Message({type:'tutorial',text:'Henceforth you can dig a well why wouldn\'t you teach the others and set up your first <b>Well</b>. Well is source of fresh water but only 1 well per 10 pieces of land can be constructed.',icon:[30,3,'magixmod']})
 					weltip=true
+				}
+			if(G.has('cart1') || G.has('cart2') && G.hasNot('Wizard wisdom') && !trendtip){
+				G.Message({type:'tutorial',text:'Your '+G.getName('inhabs')+' have obtained their first trend. Trends increase income of specific resource. There are two types of trends: <li>"Decisional" - there you can pick what will be point of the trend(they appear as techs)</li><li>"Random" - you cannot choose what will be point of trend.(they appear as traits)</li><br>You are allowed to have at once random and decisional trend at one unit.',icon:[32,27,'magixmod']})
+					trendtip=true
 				}
 		},
 		category:'flowersanddyes',
@@ -12677,7 +12682,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		cost:{'insight':25,'culture':25},
 		effects:[
 		],
-		chance:16,
+		chance:22,
 		category:'main'
 	});
 	new G.Trait({
@@ -12689,7 +12694,79 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		cost:{'insight':25,'culture':25},
 		effects:[
 		],
-		chance:16,
+		chance:22,
+		category:'main'
+	});
+	new G.Trait({
+		name:'gtt1',
+		displayName:'Gatherer\'s trend:Sticks',
+		desc:'[gatherer] gains more [stick]s. Doesn\'t disable effect of Decisional trend related to this unit.',
+		icon:[27,28,'magixmod'],
+		req:{'construction II':true,'gtt2':false},
+		cost:{'insight':250,'culture':125,'faith':62,'influence':36},
+		effects:[
+		],
+		chance:22,
+		category:'main'
+	});
+	new G.Trait({
+		name:'gtt2',
+		displayName:'Gatherer\'s trend:Water',
+		desc:'[gatherer] gains more [water]. Doesn\'t disable effect of Decisional trend related to this unit.',
+		icon:[28,28,'magixmod'],
+		req:{'construction II':true,'gtt1':false},
+		cost:{'insight':250,'culture':125,'faith':62,'influence':36},
+		effects:[
+		],
+		chance:22,
+		category:'main'
+	});
+	new G.Trait({
+		name:'dtt1',
+		displayName:'Digger\'s trend:Ice',
+		desc:'[digger] gains more [ice]. Doesn\'t disable effect of Decisional trend related to this unit.',
+		icon:[29,28,'magixmod'],
+		req:{'Ink crafting':true,'dtt2':false},
+		cost:{'insight':250,'culture':125,'faith':62,'influence':36},
+		effects:[
+		],
+		chance:22,
+		category:'main'
+	});
+	new G.Trait({
+		name:'dtt2',
+		displayName:'Digger\'s trend:Sand',
+		desc:'[digger] gains more [sand]. Doesn\'t disable effect of Decisional trend related to this unit.',
+		icon:[30,28,'magixmod'],
+		req:{'Ink crafting':true,'dtt1':false},
+		cost:{'insight':250,'culture':125,'faith':62,'influence':36},
+		effects:[
+		],
+		chance:22,
+		category:'main'
+	});
+	new G.Trait({
+		name:'htt1',
+		displayName:'Hunter\'s trend:Hide',
+		desc:'[hunter] gains more [hide]. Doesn\'t disable effect of Decisional trend related to this unit.',
+		icon:[31,28,'magixmod'],
+		req:{'Hunting II':true,'htt2':false},
+		cost:{'insight':250,'culture':125,'faith':62,'influence':36},
+		effects:[
+		],
+		chance:22,
+		category:'main'
+	});
+	new G.Trait({
+		name:'htt2',
+		displayName:'Hunter\'s trend:Meat',
+		desc:'[hunter] gains more [meat]. Doesn\'t disable effect of Decisional trend related to this unit.',
+		icon:[32,28,'magixmod'],
+		req:{'Hunting II':true,'htt1':false},
+		cost:{'insight':250,'culture':125,'faith':62,'influence':36},
+		effects:[
+		],
+		chance:22,
 		category:'main'
 	});
 	/*=====================================================================================
