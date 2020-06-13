@@ -12569,7 +12569,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'gt1',
 		displayName:'Gatherer\'s trend:Sugar cane',
-		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [Sugar cane] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait.',
+		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [Sugar cane] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[17,28,'magixmod'],
 		req:{'Deeper wells':true,'gt2':false},
 		cost:{'insight':1000,'culture':300},
@@ -12579,7 +12579,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'gt2',
 		displayName:'Gatherer\'s trend:Fruits',
-		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [fruit]s for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait.',
+		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [fruit]s for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[18,28,'magixmod'],
 		req:{'Deeper wells':true,'gt1':false},
 		cost:{'insight':1000,'culture':300},
@@ -12587,22 +12587,42 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		],
 	});
 	new G.Tech({
-		name:'dt1',
+		name:'dit1',
 		displayName:'Digger\'s trend:Sugar cane',
-		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] gather a little more [Sugar cane] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait.',
+		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] dig a little more [clay] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[19,28,'magixmod'],
 		req:{'More humid water':true,'dt2':false},
-		cost:{'insight':1100,'culture':400},
+		cost:{'insight':1100,'culture':431},
 		effects:[
 		],
 	});
 	new G.Tech({
-		name:'dt2',
+		name:'dit2',
 		displayName:'Digger\'s trend:Fruits',
-		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] gather a little more [fruit]s for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait.',
+		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] dig a little more [mud] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[20,28,'magixmod'],
 		req:{'More humid water':true,'dt1':false},
-		cost:{'insight':1100,'culture':400},
+		cost:{'insight':1100,'culture':431},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'mt1',
+		displayName:'Mining trend:Coal',
+		desc:'You can pick one of two trends for the [mine]s.<>This trend will make [mine]\'s [coal] mode more efficient(it will mine bigger amounts of specific resource).<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
+		icon:[32,21,'magixmod'],
+		req:{'Outstanding wisdom':true,'mt2':false},
+		cost:{'insight II':250,'culture II':35},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'mt2',
+		displayName:'Mining trend:Salt',
+		desc:'You can pick one of two trends for the [mine]s.<>This trend will make [mine]\'s [salt] mode more efficient(it will mine bigger amounts of specific resource).<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
+		icon:[32,22,'magixmod'],
+		req:{'Outstanding wisdom':true,'mt1':false},
+		cost:{'insight II':250,'culture II':35},
 		effects:[
 		],
 	});
