@@ -11680,7 +11680,7 @@ G.NewGameConfirm = new Proxy(oldNewGameFruit, {
     });
 function CheckThemetech() {
   if (G.achievByName['Extremely smart'].won) {
-    if (G.achievByName['Extremely smart'].won >= 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 0 && G.hasNot('<font color="orange">Life has its theme</font>')) {
+    if (G.achievByName['Extremely smart'].won >= 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('<font color="orange">Life has its theme</font>')) {
       G.gainTech(themetech)
     }
 }
