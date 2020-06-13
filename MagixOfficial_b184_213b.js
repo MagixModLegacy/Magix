@@ -12561,7 +12561,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'gt1',
 		displayName:'Gatherer\'s trend:Sugar cane',
-		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [Sugar cane] for you.',
+		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [Sugar cane] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait.',
 		icon:[17,28,'magixmod'],
 		req:{'Deeper wells':true,'gt2':false},
 		cost:{'insight':1000,'culture':300},
@@ -12571,7 +12571,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'gt2',
 		displayName:'Gatherer\'s trend:Fruits',
-		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [fruit]s for you.',
+		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [fruit]s for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait.',
 		icon:[18,28,'magixmod'],
 		req:{'Deeper wells':true,'gt1':false},
 		cost:{'insight':1000,'culture':300},
