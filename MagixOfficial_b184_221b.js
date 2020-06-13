@@ -10,6 +10,7 @@ func:function(){
 //===========================
 G.props['fastTicksOnResearch']=150;
 G.century=0
+	l('date').innerHTML='Century '+(G.century+1)+', year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
 	let t1start = false
 	let t1start1 = false
 	let t1vp=0
@@ -59,7 +60,7 @@ G.century=0
 			}else if(G.achievByName['Talented?'].won>=1){
 			G.getDict('research box').choicesN=5
 			}
-		l('date').innerHTML='Century '+(G.century+1)+', year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+		
 	}
 	t1vp=b1
 	G.funcs['game over']=function()
@@ -81,7 +82,7 @@ G.century=0
 			}else if(G.achievByName['Talented?'].won>=1){
 			G.getDict('research box').choicesN=5
 			}
-		l('date').innerHTML='Century '+(G.century+1)+', year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+		
 	}
 	G.funcs['new year']=function()
 	{
