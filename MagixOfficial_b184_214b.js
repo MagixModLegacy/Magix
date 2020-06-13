@@ -242,6 +242,14 @@ G.props['fastTicksOnResearch']=150;
 		'Distant lands lay undisturbed.',
 		'<b>Magic awaits.</b>',
 		'A cool breeze is blowing.'
+		'Another sea wave crashes against a huge rock.',
+		'What a cloudy day today.',
+		if(G.has('Cooking')){
+			'Can anyone bake a cookie?',
+			'A smell of preety tasty seafood can be felt up from here.',
+		};
+		'It\'s dry air today',
+		'Wild brambles look so scary'
 	];
 		
 	shuffle(G.props['new day lines']);
