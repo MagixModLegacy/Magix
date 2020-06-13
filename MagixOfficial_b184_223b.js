@@ -11877,7 +11877,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		name:'Fertile bushes',
 		desc:'[house,Next-to house berrybushes] are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :)',
 		icon:[1,24,'magixmod'],
-		cost:{'insight II':100,'culture II':20,'insight':46},
+		cost:{'insight II':100,'culture II':20,'insight':50},
 		req:{'Hunters & fishers unification':true,'Next-to house berrybushes':true},
 	});
 		new G.Tech({
@@ -12583,6 +12583,26 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[18,28,'magixmod'],
 		req:{'Deeper wells':true,'gt1':false},
 		cost:{'insight':1000,'culture':300},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'dt1',
+		displayName:'Digger\'s trend:Sugar cane',
+		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] gather a little more [Sugar cane] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait.',
+		icon:[19,28,'magixmod'],
+		req:{'More humid water':true,'dt2':false},
+		cost:{'insight':1100,'culture':400},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'dt2',
+		displayName:'Digger\'s trend:Fruits',
+		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] gather a little more [fruit]s for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait.',
+		icon:[20,28,'magixmod'],
+		req:{'More humid water':true,'dt1':false},
+		cost:{'insight':1100,'culture':400},
 		effects:[
 		],
 	});
