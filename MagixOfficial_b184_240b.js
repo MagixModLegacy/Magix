@@ -1129,7 +1129,7 @@ if (!document.getElementById(cssId))
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'water rations');G.gain('health',-me.amount*0.5,'water rations')}
 					else if (rations=='plentiful') 
 						if(G.getRes('happiness').displayedAmount<=160){
-					{toConsume*=1.5;G.gain('happiness',me.amount*0.55,'water rations');}}
+					{toConsume*=1.5;G.gain('happiness',me.amount*0.85,'water rations');}}
 					toConsume=randomFloor(toConsume);
 					var lacking=toConsume-G.lose('water',toConsume,'drinking');
 					if (rations=='none') lacking=me.amount*0.5;
@@ -1170,7 +1170,7 @@ if (!document.getElementById(cssId))
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'food rations');G.gain('health',-me.amount*0.5,'food rations');}
 					else if (rations=='plentiful') 
 						if(G.getRes('happiness').displayedAmount<=160){
-					{toConsume*=1.5;G.gain('happiness',me.amount*0.55,'food rations');}}
+					{toConsume*=1.5;G.gain('happiness',me.amount*0.85,'food rations');}}
 					toConsume=randomFloor(toConsume*consumeMult);
 					var consumed=G.lose('food',toConsume,'eating');
 					G.gain('happiness',G.lose('salt',randomFloor(consumed*0.1),'eating')*5,'salting food');//use salt
