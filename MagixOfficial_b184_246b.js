@@ -5303,11 +5303,11 @@ if (!document.getElementById(cssId))
 			}
 			if(G.has('backshift at farms')){
 			G.getDict('Wheat farm').icon = [31,19,'magixmod']
-			G.getDict('Wheat farm').use={'worker':12}
+			G.getDict('Wheat farm').use={'worker':12,'land':15}
 			G.getDict('Berry farm').icon = [31,17,'magixmod']
-			G.getDict('Berry farm').use={'worker':12}
+			G.getDict('Berry farm').use={'worker':12,'Land of the Plain Island':35}
 			G.getDict('Sugar cane farm').icon = [31,18,'magixmod']
-			G.getDict('Sugar cane farm').use={'worker':12,'Instructor':2}
+			G.getDict('Sugar cane farm').use={'worker':12,'Land of the Plain Island':35}
 			}
 			if(G.checkPolicy('se12')=='on')//Okar The Seer's backfire
 			{
@@ -5361,10 +5361,30 @@ if (!document.getElementById(cssId))
 			}
 			if(G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.achievByName['Extremely smart'].won >= 1 && G.achievByName['Man of essences'].won >= 1 && G.achievByName['Magical'].won >= 1 && G.achievByName['Next to the God'].won >= 1 && G.achievByName['The first choice'].won >= 1 && G.achievByName['Trait-or'].won >= 1 && G.achievByName['Not so pious people'].won >= 1 && G.achievByName['Talented?'].won == 0){ //Experienced
 			G.achievByName['Talented?'].won = 1
-			G.middleText('- All achievements  from tier <font color="orange">3</font> completed! - </br> </hr> <small>All crafting units and few non-crafting units that use overworld land since the next run will use 20% less land. In addition you can pick <font color="aqua">1 of 5</font> researches instead of <font color="aqua">1 of 4</font></small>','slow')
+			G.middleText('- All achievements  from tier <font color="orange">3</font> completed! - </br> </hr> <small>All crafting units and few non-crafting units that use overworld land since the next run will use 15% less land. In addition you can pick <font color="aqua">1 of 5</font> researches instead of <font color="aqua">1 of 4</font></small>','slow')
 			}
 			if(G.has('Outstanders club')){
 			G.getDict('The Outstander').limitPer = {'population':28000}
+			}
+				if(G.has('<font color="orange">Smaller shacks</font>')){
+			G.getDict('blacksmith workshop').use = {'land':0.85}
+			G.getDict('furnace').use = {'land':0.85}
+			G.getDict('kiln').use = {'land':0.85}
+			G.getDict('Hovel of colours').use = {'land':0.85,'worker':20,'stone tools':25,'Instructor':2}
+			G.getDict('Hut of potters').use = {'land':0.85,'worker':20,'stone tools':25,'Instructor':2}
+			G.getDict('Leather factory').use = {'land':0.85,'worker':15,'stone tools':32,'Instructor':1}
+			G.getDict('Factory of pots').use = {'land':0.85,'worker':15,'stone tools':32,'Instructor':1}
+			G.getDict(';Water filter').use = {'land':0.8,'worker':1}
+			G.getDict('Water filter').use = {'land':0.6,'worker':1}
+			G.getDict('Bakery').use = {'land':0.85,'Instructor':1}
+			G.getDict('Chef').use = {'land':0.85,'worker':1}
+			G.getDict('Well of mana').use = {'land':0.85}
+			G.getDict('Concrete making shack').use = {'land':0.85,'worker':1}
+			G.getDict('well').use = {'land':0.85}
+			G.getDict('crematorium').use = {'land':0.85,'Instructor':1,'worker':3}	
+			}
+			if(G.has('<font color="orange">Smaller shacks</font>') && G.has('Backshift at farms')){
+				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -9335,7 +9355,7 @@ new G.Unit({
 		tier:2,
 		name:'Talented?',
 		icon:[32,25,'magixmod'],
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.2 less land per 1 piece so if unit uses 3 land it will use 2.4 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.15 less land per 1 piece so if unit uses 3 land it will use 2.55 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>',
 		effects:[
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
@@ -12760,7 +12780,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	});
 	let Talentrait =  	new G.Trait({
         name:'<font color="orange">Smaller shacks</font>',
-        desc:'<span style="color: #aaffff">All [blacksmith workshop,Crafting units] and: [well]s , [Water filter]s (Caretaking filters uses 0.1 less land and Moderation filters will use 0.2 less land), [Wheat farm]s and [crematorium]s will use 20% less land.</span>',
+        desc:'<span style="color: #aaffff">All [blacksmith workshop,Crafting units] and: [well]s , [Water filter]s (Caretaking filters uses 0.1 less land and Moderation filters will use 0.2 less land), [Wheat farm]s and [crematorium]s will use 15% less land.</span>',
         icon:[32,20,'magixmod'],
         cost:{},
 	effects:[
