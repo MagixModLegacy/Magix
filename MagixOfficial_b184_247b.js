@@ -5383,7 +5383,7 @@ if (!document.getElementById(cssId))
 			G.getDict('well').use = {'land':0.85}
 			G.getDict('crematorium').use = {'land':0.85,'Instructor':1,'worker':3}	
 			}
-			if(G.has('<font color="orange">Smaller shacks</font>') && G.has('Backshift at farms')){
+			if(G.has('<font color="orange">Smaller shacks</font>') && G.has('backshift at farms')){
 				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
 		},
