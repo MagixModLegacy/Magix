@@ -1968,7 +1968,7 @@ if (!document.getElementById(cssId))
 				var toLoseHappyBalance=G.getRes('happiness').amount*0.0015;//Plentiful nerf it was TOOOOO and WAYYYY TOOOO OP
 					var spent=G.lose('happiness',randomFloor(toLoseHappyBalance));
 			}
-			if(G.checkPolicy('water')=='plentiful'){
+			if(G.checkPolicy('water rations')=='plentiful'){
 				var toLoseHappyBalance=G.getRes('happiness').amount*0.00015;//Plentiful nerf it was TOOOOO and WAYYYY TOOOO OP
 					var spent=G.lose('happiness',randomFloor(toLoseHappyBalance));
 			}
