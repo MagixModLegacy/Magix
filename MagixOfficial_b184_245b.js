@@ -1128,8 +1128,7 @@ if (!document.getElementById(cssId))
 					if (rations=='none') {toConsume=0;G.gain('happiness',-me.amount*3,'water rations');G.gain('health',-me.amount*2,'water rations');}
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'water rations');G.gain('health',-me.amount*0.5,'water rations')}
 					else if (rations=='plentiful') 
-						if(!G.getRes('happiness').amount*G.getRes('population').amount<=(G.getRes('population').amount/160)){
-					{toConsume*=1.5;G.gain('happiness',me.amount*0.85,'water rations');}}
+					{toConsume*=1.5;G.gain('happiness',me.amount*0.85,'water rations');}
 					toConsume=randomFloor(toConsume);
 					var lacking=toConsume-G.lose('water',toConsume,'drinking');
 					if (rations=='none') lacking=me.amount*0.5;
@@ -1168,9 +1167,8 @@ if (!document.getElementById(cssId))
 					var rations=G.checkPolicy('food rations');
 					if (rations=='none') {toConsume=0;G.gain('happiness',-me.amount*3,'food rations');G.gain('health',-me.amount*2,'food rations');}
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'food rations');G.gain('health',-me.amount*0.5,'food rations');}
-					else if (rations=='plentiful') 
-						if(!G.getRes('happiness').amount*G.getRes('population').amount<=(G.getRes('population').amount/160)){
-					{toConsume*=1.5;G.gain('happiness',me.amount*0.85,'food rations');}}
+					else if (rations=='plentiful')
+					{toConsume*=1.5;G.gain('happiness',me.amount*0.85,'food rations');}
 					toConsume=randomFloor(toConsume*consumeMult);
 					var consumed=G.lose('food',toConsume,'eating');
 					G.gain('happiness',G.lose('salt',randomFloor(consumed*0.1),'eating')*5,'salting food');//use salt
@@ -5595,6 +5593,13 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.8,req:{'se12':'on'}},
 			{type:'mult',value:0.85,req:{'se07':'on'}},
 			//Trend things aren't/shouldn't be affected by multiplier. here come trend effects
+			{type:'gather',context:'gather',what:{'Sugar cane':0.022},req:{'gt1':true,'gt1u2':false}},
+			{type:'gather',context:'gather',what:{'fruit':0.022},req:{'gt2':true,'gt2u2':false}},
+			{type:'gather',context:'gather',what:{'Sugar cane':0.035},req:{'gt1u2':true}},
+			{type:'gather',context:'gather',what:{'fruit':0.035},req:{'gt2u2':true}},
+			//Random trends
+			{type:'gather',context:'gather',what:{'stick':0.035},req:{'gtt1':true}},
+			{type:'gather',context:'gather',what:{'water':0.035},req:{'gtt2':true}},
 		],
 		req:{'tribalism':true},
 		category:'production',
@@ -5774,6 +5779,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.03,req:{'se09':'on'},mode:'gdablockscraft'},
 			{type:'mult',value:1.03,req:{'se09':'on'},mode:'gdablockssmash'},
 			/////////////
+			//Trends
+			{type:'convert',from:{'stone':0.05},into:{'statuette':0.05},every:5,mode:'stone statuettes',req:{'cart1':true}},
+			{type:'convert',from:{'log':0.05},into:{'Wooden statuette':0.05},every:5,mode:'wood statuettes',req:{'cart2':true}},
 		],
 		req:{'carving':true},
 		category:'crafting',
@@ -5840,6 +5848,9 @@ if (!document.getElementById(cssId))
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/38,req:{'hunting III':true,'An armor for Hunter':true,'Hunters & fishers unification':false}},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
 			{type:'mult',value:0,req:{'Hunters & fishers unification':true}},
+			//Trait trends
+			{type:'gather',context:'hunt',what:{'hide':1},req:{'htt1':true}},
+			{type:'gather',context:'hunt',what:{'meat':1},req:{'htt2':true}},
 		],
 		req:{'hunting':true},
 		category:'production',
@@ -5984,6 +5995,14 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'dig',what:{'clay':5},max:1,req:{'pottery':true}},
 			{type:'mult',value:1.125,req:{'Enchanted shovels':true}},
 			{type:'mult',value:1.02,req:{'se09':'on'}},
+			//Trends
+			{type:'gather',context:'dig',what:{'clay':0.85},req:{'dit1':true,'dit1u2':false}},
+			{type:'gather',context:'dig',what:{'mud':0.85},req:{'dit2':true,'dit2u2':false}},
+			{type:'gather',context:'dig',what:{'clay':1.2},req:{'dit1u2':true}},
+			{type:'gather',context:'dig',what:{'mud':1.2},req:{'dit2u2':true}},
+			//Random trends
+			{type:'gather',context:'dig',what:{'ice':1},req:{'dtt1':true}},
+			{type:'gather',context:'dig',what:{'sand':1},req:{'dtt2':true}},
 		],
 		req:{'digging':true},
 		category:'production',
@@ -6060,7 +6079,11 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.25,req:{'se09':'on'},mode:'gold'},
 			//////////////////////////
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Mining strategy':false}},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}}
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}},
+			//////////////////////////
+			//Trends
+			{type:'gather',context:'mine',what:{'coal':5},max:30,mode:'coal',req:{'mt1':true}},
+			{type:'gather',context:'mine',what:{'salt':5},max:30,mode:'salt',req:{'mt2':true}},
 		],
 		gizmos:true,
 		req:{'mining':true},
