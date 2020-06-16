@@ -12931,7 +12931,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Trait({
 		name:'cart2',
 		displayName:'Carver\'s trend:Wooden statuettes',
-		desc:'[carver]s feel that [Wooden statuette] made out of wood is accepted better by this tribe than statuette from stone or other non-wood resource. <><b>Craft wooden statuettes</b> mode is 5% more efficient.',
+		desc:'[carver]s feel that [Wooden statuette,Statuette] made out of wood is accepted better by this tribe than statuette from stone or other non-wood resource. <><b>Craft wooden statuettes</b> mode is 5% more efficient.',
 		icon:[32,23,'magixmod'],
 		req:{'construction':true,'cart1':false},
 		cost:{'insight':25,'culture':25},
