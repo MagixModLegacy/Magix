@@ -3204,6 +3204,7 @@ if (!document.getElementById(cssId))
    		  }
 		 }
 		}*/
+		}
 	});
 		new G.Res({
 		name:'First aid things',
