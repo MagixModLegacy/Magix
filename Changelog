@@ -38,6 +38,8 @@ Expanded tutorial and story!
 	>>And many more
 Changed balance for food(it was causing happiness go to -200% too quickly)
 Attempting to nerf plentiful mode for food and water rations(it skyrockets to +200% happiness)
+	>>Currently power of it is a little bit nerfed(it still can raise up to 200%)
+Fixed Backshift at farms exploit!
 
 16 V 2020
 Pantheon Update
