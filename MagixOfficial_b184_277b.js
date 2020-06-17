@@ -252,10 +252,98 @@ G.props['fastTicksOnResearch']=150;
 		var a1=G.achievByName['Patience'].won
 		var b1=1
 		var c1=0
-		while(c1<=a1){
+		while(c1<a1){
 		G.gain('victory point',b1)
 			b1++
 			c1++
+		}
+				var a2=G.achievByName['Unhappy'].won
+		var b2=1
+		var c2=0
+		while(c2<a2){
+		G.gain('victory point',b2)
+			b2++
+			c2++
+		}
+		var a3=G.achievByName['Cultural'].won
+		var b3=1
+		var c3=0
+		while(c3<a3){
+		G.gain('victory point',b3)
+			b3++
+			c3++
+		}
+		var a4=G.achievByName['Hunted'].won
+		var b4=1
+		var c4=0
+		while(c4<a4){
+		G.gain('victory point',b4)
+			b4++
+			c4++
+		}
+		var a5=G.achievByName['Unfishy'].won
+		var b5=1
+		var c5=0
+		while(c5<a5){
+		G.gain('victory point',b5)
+			b5++
+			c5++
+		}
+		var a6=G.achievByName['Ocean'].won
+		var b6=1
+		var c6=0
+		while(c6<a6){
+		G.gain('victory point',b6)
+			b6++
+			c6++
+		}
+		var a7=G.achievByName['Herbalism'].won
+		var b7=1
+		var c7=0
+		while(c7<a7){
+		G.gain('victory point',b7)
+			b7++
+			c7++
+		}
+		var a8=G.achievByName['Buried'].won
+		var b8=1
+		var c8=0
+		while(c8<a8){
+		G.gain('victory point',b8)
+			b8++
+			c8++
+		}
+		var a9=G.achievByName['Underground'].won
+		var b9=1
+		var c9=0
+		while(c9<a9){
+		G.gain('victory point',b9)
+			b9++
+			c9++
+		}
+		var a10=G.achievByName['Pocket'].won
+		var b10=1
+		var c10=0
+		while(c10<a10){
+		G.gain('victory point',b10)
+			b10++
+			c10++
+		}
+		var a11=G.achievByName['Faithful'].won
+		var b11=1
+		var c11=0
+		while(c11<a11){
+		G.gain('victory point',b11)
+			b11++
+			c11++
+		}
+		var a12=G.achievByName['Dreamy'].won
+		var b12=1
+		var c12=0
+		while(c12<a12){
+		G.gain('victory point',b12)
+			b12++
+			c12++
 		}
 	}
 	G.funcs['game over']=function()
@@ -476,6 +564,94 @@ G.props['fastTicksOnResearch']=150;
 		G.gain('victory point',b1)
 			b1++
 			c1++
+		}
+		var a2=G.achievByName['Unhappy'].won
+		var b2=1
+		var c2=0
+		while(c2<a2){
+		G.gain('victory point',b2)
+			b2++
+			c2++
+		}
+		var a3=G.achievByName['Cultural'].won
+		var b3=1
+		var c3=0
+		while(c3<a3){
+		G.gain('victory point',b3)
+			b3++
+			c3++
+		}
+		var a4=G.achievByName['Hunted'].won
+		var b4=1
+		var c4=0
+		while(c4<a4){
+		G.gain('victory point',b4)
+			b4++
+			c4++
+		}
+		var a5=G.achievByName['Unfishy'].won
+		var b5=1
+		var c5=0
+		while(c5<a5){
+		G.gain('victory point',b5)
+			b5++
+			c5++
+		}
+		var a6=G.achievByName['Ocean'].won
+		var b6=1
+		var c6=0
+		while(c6<a6){
+		G.gain('victory point',b6)
+			b6++
+			c6++
+		}
+		var a7=G.achievByName['Herbalism'].won
+		var b7=1
+		var c7=0
+		while(c7<a7){
+		G.gain('victory point',b7)
+			b7++
+			c7++
+		}
+		var a8=G.achievByName['Buried'].won
+		var b8=1
+		var c8=0
+		while(c8<a8){
+		G.gain('victory point',b8)
+			b8++
+			c8++
+		}
+		var a9=G.achievByName['Underground'].won
+		var b9=1
+		var c9=0
+		while(c9<a9){
+		G.gain('victory point',b9)
+			b9++
+			c9++
+		}
+		var a10=G.achievByName['Pocket'].won
+		var b10=1
+		var c10=0
+		while(c10<a10){
+		G.gain('victory point',b10)
+			b10++
+			c10++
+		}
+		var a11=G.achievByName['Faithful'].won
+		var b11=1
+		var c11=0
+		while(c11<a11){
+		G.gain('victory point',b11)
+			b11++
+			c11++
+		}
+		var a12=G.achievByName['Dreamy'].won
+		var b12=1
+		var c12=0
+		while(c12<a12){
+		G.gain('victory point',b12)
+			b12++
+			c12++
 		}
 	}
 	G.funcs['new year']=function()
