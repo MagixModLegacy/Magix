@@ -490,6 +490,7 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
 			}
+			if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;}
 			//Chra-nos bonus
 			let goup = false
 			let godown = false
@@ -14496,7 +14497,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		affectedBy:['over fishing'],
 		mult:0.95,
 	});
-	if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;}
+	
 	/*=====================================================================================
 	TILE EFFECTS
 	=======================================================================================*/
