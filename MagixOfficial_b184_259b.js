@@ -14491,10 +14491,10 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Squid is a good source of [Ink]. It doesn\'t mean that [artisan] that crafts that resource is useless. Requires [Ink-fishing] to make this good be source of [Ink] for you.',
 		icon:[32,6,'magixmod'],
 		res:{
-			func:function()
+			func:function(){
 			if(G.has('Ink-fishing')){
 			'fish':{'Ink':0.0001},
-			}
+			}}
 		},
 		mult:0.95,
 	});
