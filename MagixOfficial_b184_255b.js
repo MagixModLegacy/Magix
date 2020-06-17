@@ -5387,7 +5387,7 @@ if (!document.getElementById(cssId))
 				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
 			if(G.has('Ink-fishing')){
-			G.getDict('squid').res['fishing']['Ink'].push=0.001;
+			G.getDict('squid').res='fish':{'Ink':0.001},
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -14008,7 +14008,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	G.contextNames['chop']='<font color="#FF6619">Chopping</font>';
 	G.contextNames['dig']='<font color="#FFE666">Digging</font>';
 	G.contextNames['mine']='<font color="#707070">Mining</font>';
-	G.contextNames['quarry']='<font color="#9E9e9e>Quarrying</font>';
+	G.contextNames['quarry']='<font color="#9E9E9E">Quarrying</font>';
 	G.contextNames['flowers']='<font color="#80ffaa">Flowers</font>';
 	
 	//plants
