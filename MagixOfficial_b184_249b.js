@@ -14491,12 +14491,12 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 			new G.Goods({
 		name:'squid',
-		desc:'Wet land where [Sugar cane] can live and grow. Can be found at lush biomes and amount of sugar cane is not constant. At some lands you may spot that [Sugar cane] is scarce while somewhere else it is plenty.',
+		desc:'Squid is a good source of [Ink]. It doesn\'t mean that [artisan] that crafts that resource is useless. Requires [Ink-fishing] to make this good be source of [Ink] for you.',
 		icon:[32,6,'magixmod'],
 		res:{
 			//It will be active if obtained special tech: 'fish':{'Ink':0.001},
 		},
-		mult:1,
+		mult:0.95,
 	});
 	/*=====================================================================================
 	TILE EFFECTS
