@@ -942,7 +942,7 @@ if (!document.getElementById(cssId))
 	=======================================================================================*/
 	G.resCategories={
 			'main':{
-				name:'<p style="font-color:#E66900; font-family:"courier new"><b>Essentials</b></p>',
+				name:'<font color="#E66900">Essentials</font>',
 				base:[],
 				side:['population','worker','happiness','health','victory point'],
 		},
@@ -952,42 +952,42 @@ if (!document.getElementById(cssId))
 				side:['tl'],
 		},
 			'demog':{
-				name:'<span style "color: #0DA42B">Demographics</span>',
+				name:'<font color="#0DA42B">Demographics</font>',
 				base:['baby','child','adult','elder','worker','sick','wounded'],
 				side:['population','housing','corpse','burial spot','Alchemists'],
 		},
 			'food':{
-				name:'<span style "color: #0080FF">Food & Water</span>',
+				name:'<font color="#0080FF">Food & Water</font>',
 				base:[],
 				side:['food','spoiled food','water','muddy water','food storage','Juices','Spoiled juices'],
 		},
 			'build':{
-				name:'<span style "color: #FFCCCC">Crafting & Construction</span>',
+				name:'<font color="#FFCCCC">Crafting & Construction</font>',
 				base:[],
 				side:['archaic building materials','basic building materials','advanced building materials','precious building materials','material storage'],
 		},
 			'gear':{
-				name:'Gear',
+				name:'<font color="#ddffdd">Gear</font>',
 				base:[],
 				side:[],
 		},
 			'misc':{
-				name:'Miscellaneous',
+				name:'<font color="#ffdddd">Miscellaneous</font>',
 				base:[],
 				side:['Paper','Magic essences','book storage'],
 		},
 			'flowersanddyes':{
-				name:'<span style "color=green">Flowers & Dyes</span>',
+				name:'<font color="#ddddff">Flowers & Dyes</font>',
 				base:[],
 				side:['Flowers','Dyes'],
 		},
 			'alchemypotions':{
-				name:'<span style "color: #B266ff">Alchemy - Potions</span>', 
+				name:'<font color="#B266ff">Alchemy - Potions</font>', 
 				base:[],
 				side:['Basic brews','Alcohol brews','Medicament brews','combat potions'],
 		},
 			'alchemyingredients':{
-				name:'<span style "color: #B266ff">Alchemy - Ingredients</span>', 
+				name:'<font color="#B266ff">Alchemy - Ingredients</font>', 
 				base:[],
 				side:[],
 		},
