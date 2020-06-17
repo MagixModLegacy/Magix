@@ -14492,7 +14492,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Squid is a good source of [Ink]. It doesn\'t mean that [artisan] that crafts that resource is useless. Requires [Ink-fishing] to make this good be source of [Ink] for you.',
 		icon:[32,6,'magixmod'],
 		res:{
-			
+			'fish':{'Ink':0},//B4 inkfishing tech
 		},
 		affectedBy:['over fishing'],
 		mult:0.95,
