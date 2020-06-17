@@ -13028,7 +13028,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Tech({
 		name:'Ink-fishing',
-		desc:'Now fishing context contains [Ink]. <>Fishers from camp now are able to gather [Ink] out of some squids.',
+		desc:'Now fishing context contains [Ink]. <>Fishers from camp now are able to gather [Ink] out of some squids.<>Well... it is WIP so it doesn\'t work yet but next update may fix it.',
 		icon:[32,19,'magixmod'],
 		req:{'Outstanding wisdom':true,'Hunters & fishers unification':true},
 		cost:{'insight II':290,'science':20},
@@ -14491,13 +14491,12 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Squid is a good source of [Ink]. It doesn\'t mean that [artisan] that crafts that resource is useless. Requires [Ink-fishing] to make this good be source of [Ink] for you.',
 		icon:[32,6,'magixmod'],
 		res:{
-			func:function(){
-			if(G.has('Ink-fishing')){
-			'fish':{'Ink':0.0001},
-			}}
+			
 		},
+		affectedBy:['over fishing'],
 		mult:0.95,
 	});
+	if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;}
 	/*=====================================================================================
 	TILE EFFECTS
 	=======================================================================================*/
