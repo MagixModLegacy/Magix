@@ -472,7 +472,7 @@ G.props['fastTicksOnResearch']=150;
 		var a1=G.achievByName['Patience'].won
 		var b1=1
 		var c1=0
-		while(c1<=a1){
+		while(c1<a1){
 		G.gain('victory point',b1)
 			b1++
 			c1++
