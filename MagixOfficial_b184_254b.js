@@ -14002,14 +14002,14 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	GOODS
 	=======================================================================================*/
 	
-	G.contextNames['gather']='Gathering';
-	G.contextNames['fish']='Fishing';
-	G.contextNames['hunt']='Hunting';
-	G.contextNames['chop']='Chopping';
-	G.contextNames['dig']='Digging';
-	G.contextNames['mine']='Mining';
-	G.contextNames['quarry']='Quarrying';
-	G.contextNames['flowers']='Flowers';
+	G.contextNames['gather']='<font color="#E6FFEA">Gathering</font>';
+	G.contextNames['fish']='<font color="#CCFFEE">Fishing</font>';
+	G.contextNames['hunt']='<font color="#FFDDCC">Hunting</font>';
+	G.contextNames['chop']='<font color="#FF6619">Chopping</font>';
+	G.contextNames['dig']='<font color="#FFE666">Digging</font>';
+	G.contextNames['mine']='<font color="#707070">Mining</font>';
+	G.contextNames['quarry']='<font color="#9E9e9e>Quarrying</font>';
+	G.contextNames['flowers']='<font color="#80ffaa">Flowers</font>';
 	
 	//plants
 	new G.Goods({
