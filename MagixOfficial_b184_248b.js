@@ -5386,6 +5386,9 @@ if (!document.getElementById(cssId))
 			if(G.has('<font color="orange">Smaller shacks</font>') && G.has('backshift at farms')){
 				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
+			if(G.has('Ink-fishing')){
+			G.getDict('squid').res['fish']['Ink']=0.001;
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -13026,6 +13029,13 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'Outstanding wisdom':true},
 		cost:{'insight II':320,'science':20},
 	});
+	new G.Tech({
+		name:'Ink-fishing',
+		desc:'Now fishing context contains [Ink]. <>Fishers from camp now are able to gather [Ink] out of some squids.',
+		icon:[32,19,'magixmod'],
+		req:{'Outstanding wisdom':true,'Hunters & fishers unification':true},
+		cost:{'insight II':290,'science':20},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -13659,6 +13669,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		goods:[
 			{type:'saltwater fish',min:1,max:4},
 			{type:'saltwater'},
+			{type:'squid',min:0.1,max:2,chance:0.33},
 		],
 		ocean:true,
 		image:3,
@@ -13682,6 +13693,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		goods:[
 			{type:'saltwater fish',min:1,max:4},
 			{type:'saltwater'},
+			{type:'saltwater fish',min:0.5,max:2,chance:0.33},
 		],
 		ocean:true,
 		image:4,
@@ -14474,6 +14486,15 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[31,22,'magixmod'],
 		res:{
 			'gather':{'Sugar cane':0.000002},
+		},
+		mult:1,
+	});
+			new G.Goods({
+		name:'squid',
+		desc:'Wet land where [Sugar cane] can live and grow. Can be found at lush biomes and amount of sugar cane is not constant. At some lands you may spot that [Sugar cane] is scarce while somewhere else it is plenty.',
+		icon:[32,6,'magixmod'],
+		res:{
+			//It will be active if obtained special tech: 'fish':{'Ink':0.001},
 		},
 		mult:1,
 	});
