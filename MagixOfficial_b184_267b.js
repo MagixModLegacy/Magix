@@ -8,9 +8,6 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-function myFunction() {
-  document.getElementById("topBar").innerHTML = "Paragraph changed!";
-}	
 	
 
 G.props['fastTicksOnResearch']=150;
@@ -895,7 +892,7 @@ G.writeMSettingButton=function(obj)
 		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
 		G.buildTabs();
 	}
-
+	str+='<div id="mapHeader" class="fancyText framed bgLight">World Mapfddf'+
 	G.tabPopup['Magix']=function()
 	{
 		var str='';
