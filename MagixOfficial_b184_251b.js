@@ -5386,9 +5386,6 @@ if (!document.getElementById(cssId))
 			if(G.has('<font color="orange">Smaller shacks</font>') && G.has('backshift at farms')){
 				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
-			if(G.has('Ink-fishing')){
-			G.getDict('squid').res['fish']['Ink']=0.001;
-			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -14494,7 +14491,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Squid is a good source of [Ink]. It doesn\'t mean that [artisan] that crafts that resource is useless. Requires [Ink-fishing] to make this good be source of [Ink] for you.',
 		icon:[32,6,'magixmod'],
 		res:{
-			//It will be active if obtained special tech: 'fish':{'Ink':0.001},
+			'fish':{'Ink':0},
 		},
 		mult:0.95,
 	});
