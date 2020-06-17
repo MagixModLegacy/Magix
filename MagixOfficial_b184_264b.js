@@ -942,7 +942,7 @@ if (!document.getElementById(cssId))
 	=======================================================================================*/
 	G.resCategories={
 			'main':{
-				name:'<font color="#da4f37">Essentials</font>',
+				name:'<p style="font-color:#E66900; font-family:"courier new"><b>Essentials</b></p>',
 				base:[],
 				side:['population','worker','happiness','health','victory point'],
 		},
