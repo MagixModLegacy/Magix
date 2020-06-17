@@ -5387,7 +5387,7 @@ if (!document.getElementById(cssId))
 				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
 			if(G.has('Ink-fishing')){
-			G.getDict('squid').res='fish'={'Ink':0.001},
+			G.getDict('squid').res['fish']={'Ink':0.001},
 			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
