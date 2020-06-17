@@ -247,7 +247,16 @@ G.props['fastTicksOnResearch']=150;
 	G.getDict('An opposite side of belief').chance = 337;
    		  }
 		 }
-		
+		/////VP CALC FOR STARTING A NEW RUN
+		G.getRes('victory point').amount=0
+		var a1=G.achievByName['Patience'].won
+		var b1=1
+		var c1=0
+		while(c1<=a1){
+		G.gain('victory point',b1)
+			b1++
+			c1++
+		}
 	}
 	G.funcs['game over']=function()
 	{
@@ -458,11 +467,11 @@ G.props['fastTicksOnResearch']=150;
 	G.getDict('An opposite side of belief').chance = 337;
    		  }
 		 }
-		/////VP CALC
+		/////VP CALC FOR REFRESHING PAGE
 		G.getRes('victory point').amount=0
 		var a1=G.achievByName['Patience'].won
 		var b1=1
-		var c1
+		var c1=0
 		while(c1<=a1){
 		G.gain('victory point',b1)
 			b1++
