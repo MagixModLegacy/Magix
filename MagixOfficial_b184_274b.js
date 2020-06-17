@@ -47,9 +47,6 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
 		return str;
 	}
-	//////////////CHRANOS VP CALC//////////
-	let b1=0
-	let c1=0
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
@@ -252,7 +249,6 @@ G.props['fastTicksOnResearch']=150;
 		 }
 		
 	}
-	t1vp=b1
 	G.funcs['game over']=function()
 	{
 		var str=G.getName('civ')+' is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
@@ -462,6 +458,16 @@ G.props['fastTicksOnResearch']=150;
 	G.getDict('An opposite side of belief').chance = 337;
    		  }
 		 }
+		/////VP CALC
+		G.getRes('victory point').amount=0
+		var a1=G.achievByName['Patience'].won
+		var b1=1
+		var c1
+		while(c1<=a1){
+		G.gain('victory point',b1)
+			b1++
+			c1++
+		}
 	}
 	G.funcs['new year']=function()
 	{
