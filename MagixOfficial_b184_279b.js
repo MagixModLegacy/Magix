@@ -4375,8 +4375,8 @@ if (!document.getElementById(cssId))
 	G.lose("basic building materials", thieves.amount*0.1, "stolen")
         break
       case "hurt":
-        G.lose("adult", thieves.amount*0.75, "thieves hurting people")
-        G.gain("wounded", thieves.amount*0.75, "thieves hurting people")
+        G.lose("adult", thieves.amount*0.45, "thieves hurting people")
+        G.gain("wounded", thieves.amount*0.45, "thieves hurting people")
         break
   }
 },
@@ -14681,7 +14681,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 			new G.Goods({
 		name:'squid',
-		desc:'Squid is a good source of [Ink]. It doesn\'t mean that [artisan] that crafts that resource is useless. Requires [Ink-fishing] to make this good be source of [Ink] for you.',
+		desc:'Squid is a good source of *Ink*. That doesn\'t mean that [artisan] is useless though. You need [Ink-fishing] for this to be a good source of [Ink] for you.',
 		icon:[32,6,'magixmod'],
 		res:{
 			'fish':{'Ink':0},//B4 inkfishing tech
