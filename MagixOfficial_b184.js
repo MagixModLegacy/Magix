@@ -13840,44 +13840,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 }}}
 				],
 	});
-	new G.Policy({
-		name:'Unhappy',
-		desc:'starts [se02] trial. Will warn you before start.',
-		icon:[24,18,'magixmod',28,25,'magixmod',1,22,'magixmod'],
-		cost:{'insight II':1,'influence II':1},
-		startMode:'off',		
-		req:{'se02':'on'},
-		category:'trial',
-		effects:[
-			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Unhappy. I am a Madness. This plane is full of anger... No way to make'em happy. You will have to handle it. In fact people's happiness will be always at -200% level and can't be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Only Gatherers are not harmed by The Madness's power. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!")) {
-    alert("Alright... Handle the Madness.");     
-		alert("Then the Unhappy trial begins. After clicking this popup just refresh this page.");
-		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.Save();
-} else {
-    alert("Make sure you will prepare enough for madness... ~Bersaria")
-	alert("Begone");
-}}}
-				],
-	});
-	new G.Policy({
-		name:'Cultural',
-		desc:'starts [se03] trial. Will warn you before start.',
-		icon:[24,18,'magixmod',27,25,'magixmod',1,22,'magixmod'],
-		cost:{'insight II':1,'influence II':1},
-		startMode:'off',		
-		req:{'se03':'on'},
-		category:'trial',
-		effects:[
-			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Cultural. I am a personification of Inspiration. Ya met me! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather [culture] , [influence] etc. for ya. (their amounts can over cap but Tu-ria won't bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial [water rations] cannot be set to plentiful(food one can be still be set)! Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. (This trial is repeatable)")) {
-    alert("Alright... Show your worth.");     
-		alert("Then the Cultural trial begins. After clicking this popup just refresh this page.");
-		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.Save();
-} else {
-    alert("Are you afraid of being inspirated? Come back when you will defeat this fear.")
-	alert("See you soon");
-}}}
-				],
-	});
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
