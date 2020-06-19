@@ -8810,7 +8810,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'hunt',amount:991,max:1438,req:{'se04':'on'}},
 			{type:'gather',context:'fish',what:{'seafood':1333},req:{'se05':'on'}},
 			{type:'gather',context:'fish',what:{'Ink':2},req:{'Ink-fishing':true}},
-			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
+			{type:'convert',from:{'adult':2},into:{'wounded':2},every:7,chance:1/115},
 			{type:'mult',value:1.35,req:{'harvest rituals':'on'}},
 			{type:'convert',from:{'meat':4,'seafood':3},into:{'cooked meat':4,'seafood':3},every:2,req:{'Camp-cooking':true}},
 		],
