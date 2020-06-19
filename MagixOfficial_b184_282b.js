@@ -8805,10 +8805,10 @@ if (!document.getElementById(cssId))
 		upkeep:{'food':75,'fire pit':2},
 		limitPer:{'population':40000,'land':2500},
 		effects:[
-			{type:'gather',context:'fish',amount:2533,max:3811},
+			{type:'gather',context:'fish',what:{'seafood'},amount:2533,max:3811},
 			{type:'gather',context:'hunt',amount:2833,max:4111},
 			{type:'gather',context:'hunt',amount:991,max:1438,req:{'se04':'on'}},
-			{type:'gather',context:'fish',amount:886,max:1333,req:{'se05':'on'}},
+			{type:'gather',context:'fish',what:{'seafood'},amount:886,max:1333,req:{'se05':'on'}},
 			{type:'convert',from:{'worker':2},into:{'wounded':2},every:7,chance:1/115},
 			{type:'mult',value:1.35,req:{'harvest rituals':'on'}},
 			{type:'convert',from:{'meat':4,'seafood':3},into:{'cooked meat':4,'seafood':3},every:2,req:{'Camp-cooking':true}},
