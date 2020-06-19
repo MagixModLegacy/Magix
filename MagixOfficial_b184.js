@@ -4765,7 +4765,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'tutorial',text:'You finally can have some flower. Currently only you know how to pick flowers so while no one watch you , you pick a flower and some mud and put it into the pot.',icon:[32,15,'magixmod']})
 					pot=true
 				}
-			if(G.getRes('cured meat').amount>=1 || G.getRes('cured seafood').amount>=1  && !cure && G.has('curing') && G.hasNot('Hunting II')){
+			if(G.getRes('cured meat').amount>=1 && G.getRes('cured seafood').amount>=1  && !cure && G.has('curing') && G.hasNot('Hunting II')){
 				G.Message({type:'tutorial',text:'You take a taste of cured meat. Yummy :) You are sure that people will love taste of cured food as well as you did.',icon:[32,17,'magixmod']})
 					cure=true
 				}
