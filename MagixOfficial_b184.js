@@ -5579,6 +5579,11 @@ if (!document.getElementById(cssId))
 			if(G.has('<font color="orange">Smaller shacks</font>') && G.has('backshift at farms')){
 				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
+			if(G.hasNot('monument-building')){
+				G.getDict('pagoda of passing time').cost={'land':1e20}
+			}else{
+				G.getDict('pagoda of passing time').cost={'basic building materials':225}
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -13826,7 +13831,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [around 0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)                                                                                                                                                                                                              Trials are InDev and playing may wipe save. For safety write down somewhere how many times you have won the achievement.                                                                                                                                               It is public test for Trials. As long as better way won't be figured out it will look like this.(yeah so go, write down and then send me your save file and I will introduce achievement data for you. Don't forget about writing down number of ascensions. Also recommended: before trying on backup your save.")) {
     alert("Alright... Good luck.");     
 		alert("Then the Patience trial begins. After clicking this popup just refresh this page.", t1start1=true);
-		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane','slow');G.Save();
+		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane','slow');G.Save();
 } else {
     alert("Do your last preparations and enter me again when you are ready")
 	alert("Begone");
