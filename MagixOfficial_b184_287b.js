@@ -683,7 +683,7 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
 			}
-			if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;}
+			if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;G.getDict('squid').mult=0.95;}
 			//Chra-nos bonus
 			let goup = false
 			let godown = false
@@ -6091,7 +6091,7 @@ if (!document.getElementById(cssId))
 			'disabled':{name:'Disabled',icon:[1,0,'magixmod'],desc:'Unit disabled by [Hunters & fishers unification] .',req:{'Hunters & fishers unification':true}},
 		},
 		effects:[
-			{type:'gather',context:'fish',mode:'catch by hand',what:{'seafood':{amount:1,max:5}}},
+			{type:'gather',context:'fish',amount:1.5,max:5,mode:'catch by hand'},
 			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
 			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
 			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'net fishing'},
@@ -14732,7 +14732,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'fish':{'Ink':0},//B4 inkfishing tech
 		},
 		affectedBy:['over fishing'],
-		mult:0.95,
+		mult:0,
 	});
 	
 	/*=====================================================================================
