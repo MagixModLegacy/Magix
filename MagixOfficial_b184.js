@@ -49,6 +49,7 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
 		if(G.achievByName['Talented?'].won==0){
@@ -682,7 +683,7 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
 			}
-			if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;}
+			if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;G.getDict('squid').mult=0.95;}
 			//Chra-nos bonus
 			let goup = false
 			let godown = false
@@ -6090,7 +6091,7 @@ if (!document.getElementById(cssId))
 			'disabled':{name:'Disabled',icon:[1,0,'magixmod'],desc:'Unit disabled by [Hunters & fishers unification] .',req:{'Hunters & fishers unification':true}},
 		},
 		effects:[
-			{type:'gather',context:'fish',amount:1,max:5,mode:'catch by hand'},
+			{type:'gather',context:'fish',amount:1.5,max:5,mode:'catch by hand'},
 			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
 			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
 			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'net fishing'},
@@ -13227,7 +13228,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Tech({
 		name:'Ink-fishing',
-		desc:'Now fishing context contains [Ink]. <>Fishers from camp now are able to gather [Ink] out of some squids.<>Well... it is WIP so it doesn\'t work yet but next update may fix it.',
+		desc:'Now fishing context contains [Ink]. <>Fishers from camp now are able to gather [Ink] out of some squids.',
 		icon:[32,19,'magixmod'],
 		req:{'Outstanding wisdom':true,'Hunters & fishers unification':true},
 		cost:{'insight II':290,'science':20},
@@ -13829,13 +13830,51 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'Gather roses':'on'},
 		category:'trial',
 		effects:[
-			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [around 0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)                                                                                                                                                                                                              Trials are InDev and playing may wipe save. For safety write down somewhere how many times you have won the achievement.                                                                                                                                               It is public test for Trials. As long as better way won't be figured out it will look like this.(yeah so go, write down and then send me your save file and I will introduce achievement data for you. Don't forget about writing down number of ascensions. Also recommended: before trying on backup your save.")) {
+			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Patience. Enter the plane where I will show you that the time is mo' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [around 0.01% to 0.5%]. In addition [dreamer]s in this plane doesn't exist and nobody knows who are they but I will bring down to you some , random amount of [insight] each year(from 3 to 30 and can go over Wisdom amount but next portion of [insight] won't apply when current [insight] amount will be over 60% of maximum possible [insight]).Finish the trial by building mai wonder and ascend your soul to me. I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first completion)")) {
     alert("Alright... Good luck.");     
 		alert("Then the Patience trial begins. After clicking this popup just refresh this page.", t1start1=true);
 		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane','slow');G.Save();
 } else {
     alert("Do your last preparations and enter me again when you are ready")
 	alert("Begone");
+}}}
+				],
+	});
+	new G.Policy({
+		name:'Unhappy',
+		desc:'starts [se02] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',28,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se02':'on'},
+		category:'trial',
+		effects:[
+			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Unhappy. I am a Madness. This plane is full of anger... No way to make'em happy. You will have to handle it. In fact people's happiness will be always at -200% level and can't be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Only Gatherers are not harmed by The Madness's power. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!")) {
+    alert("Alright... Handle the Madness.");     
+		alert("Then the Unhappy trial begins. After clicking this popup just refresh this page.");
+		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.Save();
+} else {
+    alert("Make sure you will prepare enough for madness... ~Bersaria")
+	alert("Begone");
+}}}
+				],
+	});
+	new G.Policy({
+		name:'Cultural',
+		desc:'starts [se03] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',27,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se03':'on'},
+		category:'trial',
+		effects:[
+			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Cultural. I am a personification of Inspiration. Ya met me! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather [culture] , [influence] etc. for ya. (their amounts can over cap but Tu-ria won't bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial [water rations] cannot be set to plentiful(food one can be still be set)! Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. (This trial is repeatable)")) {
+    alert("Alright... Show your worth.");     
+		alert("Then the Cultural trial begins. After clicking this popup just refresh this page.");
+		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.Save();
+} else {
+    alert("Are you afraid of being inspirated? Come back when you will defeat this fear.")
+	alert("See you soon");
 }}}
 				],
 	});
@@ -14690,10 +14729,10 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Squid is a good source of *Ink*. That doesn\'t mean that [artisan] is useless though. You need [Ink-fishing] for this to be a good source of [Ink] for you.',
 		icon:[32,6,'magixmod'],
 		res:{
-			'fish':{'Ink':0},//B4 inkfishing tech
+			'fish':{},//B4 inkfishing tech
 		},
 		affectedBy:['over fishing'],
-		mult:0.95,
+		mult:0,
 	});
 	
 	/*=====================================================================================
