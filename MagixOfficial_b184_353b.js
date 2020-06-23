@@ -10047,7 +10047,7 @@ getCosts:function()
 	});
 	new G.Tech({
 		name:'healing',
-		desc:'@unlocks [healer]s<> <q><i>No life deserves on death by disease</i></q>',
+		desc:'@unlocks [healer]s<>',
 		icon:[25,7],
 		cost:{'insight':10},
 		req:{'plant lore':true,'stone-knapping':true,'herbalism':true},
@@ -10124,14 +10124,14 @@ getCosts:function()
 	new G.Tech({
 		name:'spears',
 		displayName:'Spears and maces',
-		desc:'@[artisan]s can now craft [stone weapons]@unlocks new modes for [hunter]s and [fisher]s<>Using tools as weapons opens a world of possibilities, from hunting to warfare.',
+		desc:'@[artisan]s can now craft [stone weapons]@unlocks new modes for [hunter]s and [fisher]s<>Using tools as weapons opens a world of possibilities, from hunting to warfare. <b>Spear hunting/fishing</b> modes has only 80% of its normal efficiency. To remove that penalty obtain [aiming] research.',
 		icon:[26,1],
 		cost:{'insight':10},
 		req:{'tool-making':true},
 	});
 	new G.Tech({
 		name:'bows',
-		desc:'@[artisan]s can now craft [bow]s@unlocks new modes for [hunter]s<>',//TODO : desc
+		desc:'@[artisan]s can now craft [bow]s@unlocks new modes for [hunter]s<> <b>Bow hunting</b> mode has only 40% of its normal efficiency. To remove that penalty obtain [aiming] research.',//TODO : desc
 		icon:[27,1],
 		cost:{'insight':20},
 		req:{'spears':true},
@@ -13402,6 +13402,13 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[32,19,'magixmod'],
 		req:{'Outstanding wisdom':true,'Hunters & fishers unification':true},
 		cost:{'insight II':290,'science':20},
+	});
+	new G.Tech({
+		name:'aiming',
+		desc:'Teach your [hunter]s and [fisher]s how to be more accurate. The problem was hunters were shooting arrows from bows without any preparation just on "try your luck". Same with spear throwing.<>Improved accuarcy will increase chances for successful hunting meaning that <b>Bow hunting</b> & <b>Spear hunting/fishing</b> are no longer penaltized.',
+		icon:[33,28,'magixmod'],
+		req:{'spears':true,'bows':true,'building':true},
+		cost:{'insight':27,'influence':3},
 	});
 	/*=====================================================================================
 	POLICIES
