@@ -878,13 +878,18 @@ G.props['fastTicksOnResearch']=150;
 				}
 			}
 			
-			G.trackedStatC1=Math.max(G.trackedStatC1,G.getRes('population').amount);
+			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
+			G.trackedStatTechN=Math.max(G.trackedStatTechN,G.techN);
 		}
 	}
 	
 	G.funcs['tracked stat str']=function()
 	{
 		return 'Most population ruled';
+	}
+	G.funcs['tracked stat str tech']=function()
+	{
+		return 'Most technologies obtained';
 	}
 	G.funcs['civ blurb']=function()
 	{
@@ -894,7 +899,6 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="barred">ruler : '+G.getName('ruler')+'</div>';
 		var toParse='';
 		var pop=G.getRes('population').amount;
-		var technologiesam=G.techN;
 		if (pop>0)
 		{
 			toParse+='Population : <b>'+B(pop)+' [population,'+G.getName((pop==1?'inhab':'inhabs'))+']</b>//';
@@ -1220,12 +1224,13 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Behold, the fruits of your legacy! Below are stats about your current and past games.</div>';
 		str+='<div class="par">Legacy started : <b>'+G.selfUpdatingText(function(){return BT((Date.now()-G.fullDate)/1000);})+' ago</b></div>';
 		str+='<div class="par">This game started : <b>'+G.selfUpdatingText(function(){return BT((Date.now()-G.startDate)/1000);})+' ago</b></div>';
-		str+='<div class="par">'+G.doFunc('tracked stat str','Tracked stat')+' : <b>'+G.selfUpdatingText(function(){return B(G.trackedStatC1);})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str','Tracked stat')+' : <b>'+G.selfUpdatingText(function(){return B(G.trackedStat);})+'</b></div>';
 		str+='<div class="par">Longest game : <b>'+G.selfUpdatingText(function(){return G.BT(G.furthestDay);})+'</b></div>';
 		str+='<div class="par">Total legacy time : <b>'+G.selfUpdatingText(function(){return G.BT(G.totalDays);})+'</b></div>';
 		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
 		str+='<div class="par">Victory points: <b>'+G.selfUpdatingText(function(){return B(G.getRes('victory point').amount);})+'</b></div>';
 		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str tech','Tracked stat')+' : <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTechN);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
