@@ -1134,7 +1134,7 @@ G.writeMSettingButton=function(obj)
 		return str;
 }
 
-G.tabPopup['legacy']=function()
+G.getDict(G.tabPopup['legacy'])=function()
 	{
 		var str='';
 		str+='<div class="fancyText title"><font color="#d4af37" size="5">- - Legacy - -</font></div>';
