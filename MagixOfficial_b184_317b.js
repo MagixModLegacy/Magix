@@ -1224,11 +1224,12 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Longest game : <b>'+G.selfUpdatingText(function(){return G.BT(G.furthestDay);})+'</b></div>';
 		str+='<div class="par">Total legacy time : <b>'+G.selfUpdatingText(function(){return G.BT(G.totalDays);})+'</b></div>';
 		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
+		str+='<div class="par">Victory points: <b>'+G.selfUpdatingText(function(){return B(G.getRes('victory point').amount);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
 		{
-			str+='<div class="fancyText barred bitBiggerText" style="text-align:center;">Achievements</div>';
+			str+='<div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
 			for (var i in G.achievByTier)
 			{
 				str+='<div class="tier thingBox">';
