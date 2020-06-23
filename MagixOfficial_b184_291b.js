@@ -46,7 +46,7 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
 		return str;
-			}else{
+			}else if(G.achievByName['Democration'].won>=1){
 			var str=
 		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
 		'<b>Your tribe :</b><div class="thingBox">'+
