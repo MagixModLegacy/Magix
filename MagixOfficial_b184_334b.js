@@ -879,8 +879,8 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-			G.trackedStatTech=Math.max(G.trackedStatTech,G.getRes('most techs').amount);
-			G.trackedStatLand=Math.max(G.trackedStatLand,G.getRes('land').amount);
+			G.trackedStatTech=Math.max(G.trackedStat,G.getRes('most techs').amount);
+			G.trackedStatLand=Math.max(G.trackedStat,G.getRes('land').amount);
 		}
 	}
 	
