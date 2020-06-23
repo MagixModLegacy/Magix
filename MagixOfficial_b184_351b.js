@@ -879,9 +879,6 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-			G.trackingTechs=Math.max(G.trackingTechs,G.getRes('most techs').amount);
-			G.trackedStatLand=Math.max(G.trackedStatLand,G.getRes('land').amount);
-			G.trackedStatTrait=Math.max(G.trackedStatTrait,G.getRes('most traits').amount);
 		}
 	}
 	
@@ -891,15 +888,11 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['tracked stat str techs']=function()
 	{
-		return 'Most researches obtained';
-	}
-	G.funcs['tracked stat str land']=function()
-	{
-		return 'Most land explored at the main world';
+		return 'Current amount of obtained researches';
 	}
 	G.funcs['tracked stat str traits']=function()
 	{
-		return 'Most traits adopted';
+		return 'Current amount of adopted traits:';
 	}
 	G.funcs['civ blurb']=function()
 	{
@@ -1243,9 +1236,8 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
 		str+='<div class="par">Victory points: <b>'+G.selfUpdatingText(function(){return B(G.getRes('victory point').amount);})+'</b></div>';
 		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
-		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackingTechs);})+'</b></div>';
-		str+='<div class="par">'+G.doFunc('tracked stat str land','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatLand);})+'</b></div>';
-		str+='<div class="par">'+G.doFunc('tracked stat str traits','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTrait);})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.techN);})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str traits','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.traitN);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
@@ -1366,8 +1358,7 @@ G.writeMSettingButton=function(obj)
 	
 	new G.Res({name:'died this year',hidden:true});
 	new G.Res({name:'born this year',hidden:true});
-	new G.Res({name:'most techs',hidden:true,tick:function(me){me.amount=G.techN}});
-	new G.Res({name:'most traits',hidden:true,tick:function(me){me.amount=G.traitN}});
+
 	
 	var numbersInfo='//The number on the left is how many are in use, while the number on the right is how many you have in total.';
 	
@@ -5905,6 +5896,7 @@ if (!document.getElementById(cssId))
 		desc:'You can gain Victory Points for completing Seraphin\'s Trial. 11 of 12 trials are repeatable. After first completion of the trial it grants 1 VP, after 2nd succesful attempt in total grants 3 VP\'s and so on. They can\'t be spent but their amount may provide extra bonuses. ',
 		icon:[0,28,'magixmod'],
 	});
+		new G.Res({name:'most techs',hidden:true,tick:function(me){me.amount=G.techN}});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -9737,11 +9729,6 @@ new G.Unit({
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
 		],
-	});
-	new G.Achiev({
-		name:'mostland',
-		visible:false,
-		tier:NaN
 	});
 	/*=====================================================================================
 	TECHS  
