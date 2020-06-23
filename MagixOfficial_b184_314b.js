@@ -1134,7 +1134,84 @@ G.writeMSettingButton=function(obj)
 		return str;
 }
 
-G.getDict(G.tabPopup['legacy'])=function()
+/*=====================================================================================
+	ACHIEVEMENTS AND LEGACY
+		When the player completes a wonder, they may click it to ascend; this takes them to the new game screen.
+		Ascending with a wonder unlocks that wonder's achievement and its associated effects, which can be anything from adding free fast ticks at the start of every game to unlocking new special units available in every playthrough.
+		There are other achievements, not necessarily linked to wonders. Some achievements are used to track generic things across playthroughs, such as tutorial tips.
+	=======================================================================================*/
+	G.achiev=[];
+	G.achievByName=[];
+	G.achievByTier=[];
+	G.getAchiev=function(name){if (!G.achievByName[name]) ERROR('No achievement exists with the name '+name+'.'); else return G.achievByName[name];}
+	G.achievN=0;//incrementer
+	G.legacyBonuses=[];
+	G.Achiev=function(obj)
+	{
+		this.type='achiev';
+		this.effects=[];//applied on new game start
+		this.tier=0;//where the achievement is located vertically on the legacy screen
+		this.won=0;//how many times we've achieved this achievement (may also be used to track other info about the achievement)
+		this.visible=true;
+		this.icon=[0,0];
+		
+		for (var i in obj) this[i]=obj[i];
+		this.id=G.achiev.length;
+		if (!this.displayName) this.displayName=cap(this.name);
+		
+		G.achiev.push(this);
+		G.achievByName[this.name]=this;
+		if (!G.achievByTier[this.tier]) G.achievByTier[this.tier]=[];
+		G.achievByTier[this.tier].push(this);
+		//G.setDict(this.name,this);
+		this.mod=G.context;
+		if (!this.mod.achievs) this.mod.achievs=[];
+		this.mod.achievs.push(this);
+	}
+	
+	G.applyAchievEffects=function(context)
+	{
+		//this is done on creating or loading a game
+		for (var i in G.achiev)
+		{
+			var me=G.achiev[i];
+			if (me.won)
+			{
+				for (var ii in me.effects)
+				{
+					var effect=me.effects[ii];
+					var type=effect.type;
+					if (G.legacyBonuses[type])
+					{
+						var bonus=G.legacyBonuses[type];
+						if (bonus.func && (!bonus.context || bonus.context==context))
+						{
+							bonus.func(effect);
+						}
+					}
+				}
+			}
+		}
+	}
+	G.getAchievEffectsString=function(effects)
+	{
+		//returns a string that describes the effects of a achievement
+		var str='';
+		for (var i in effects)
+		{
+			var effect=effects[i];
+			var type=effect.type;
+			if (G.legacyBonuses[type])
+			{
+				var bonus=G.legacyBonuses[type];
+				str+='<div class="bulleted" style="text-align:left;"><b>'+bonus.name.replaceAll('\\[X\\]',B(effect.amount))+'</b><div style="font-size:90%;">'+bonus.desc+'</div></div>';
+			}
+		}
+		return str;
+	}
+	
+	
+	G.tabPopup['legacy']=function()
 	{
 		var str='';
 		str+='<div class="fancyText title"><font color="#d4af37" size="5">- - Legacy - -</font></div>';
@@ -1168,7 +1245,41 @@ G.getDict(G.tabPopup['legacy'])=function()
 				str+='<div class="divider"></div>';
 				str+='</div>';
 			}
+			
+			G.arbitraryCallback(function(){
+				for (var i in G.achievByTier)
+				{
+					for (var ii in G.achievByTier[i])
+					{
+						var me=G.achievByTier[i][ii];
+						var div=l('achiev-'+me.id);
+						div.onclick=function(me,div){return function(){
+							if (G.getSetting('debug'))
+							{
+								if (me.won) me.won=0; else me.won=1;
+								if (me.won) div.classList.remove('off');
+								else div.classList.add('off');
+							}
+						}}(me,div);
+						G.addTooltip(div,function(me){return function(){
+							return '<div class="info">'+
+							'<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>'+
+							'<div class="fancyText barred infoTitle">'+me.displayName+'</div>'+
+							'<div class="fancyText barred">'+(me.won>0?('Achieved : '+me.won+' '+(me.won==1?'time':'times')):'Locked')+'</div>'+
+							'<div class="fancyText barred">Effects :'+G.getAchievEffectsString(me.effects)+'</div>'+
+							(me.desc?('<div class="infoDesc">'+G.parse(me.desc)+'</div>'):'')+
+							'</div>'+
+							G.debugInfo(me)
+						};}(me),{offY:8});
+					}
+				}
+			});
 		}
+		str+='</div>';
+		str+='<div class="buttonBox">'+
+		G.dialogue.getCloseButton()+
+		'</div>';
+		return str;
 	}
 	/*=====================================================================================
 	RESOURCES
