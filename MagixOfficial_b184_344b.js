@@ -9388,6 +9388,7 @@ new G.Unit({
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
+			visible:false
 	});
 		new G.Achiev({
 		tier:0,
@@ -9400,6 +9401,7 @@ new G.Unit({
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
+			visible:false
 	});
 		new G.Achiev({
 		tier:0,
@@ -9412,6 +9414,7 @@ new G.Unit({
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
+			visible:false
 	});
 		new G.Achiev({
 		tier:1,
