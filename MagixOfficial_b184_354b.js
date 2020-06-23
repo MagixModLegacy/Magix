@@ -13408,7 +13408,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Teach your [hunter]s and [fisher]s how to be more accurate. The problem was hunters were shooting arrows from bows without any preparation just on "try your luck". Same with spear throwing.<>Improved accuarcy will increase chances for successful hunting meaning that <b>Bow hunting</b> & <b>Spear hunting/fishing</b> are no longer penaltized.',
 		icon:[33,28,'magixmod'],
 		req:{'spears':true,'bows':true,'building':true},
-		cost:{'insight':27,'influence':3},
+		cost:{'insight':17,'influence':3},
 	});
 	/*=====================================================================================
 	POLICIES
