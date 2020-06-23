@@ -881,6 +881,7 @@ G.props['fastTicksOnResearch']=150;
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
 			G.trackedStatTech=Math.max(G.trackedStatTech,G.getRes('most techs').amount);
 			G.trackedStatLand=Math.max(G.trackedStatLand,G.getRes('land').amount);
+			G.trackedStatTrait=Math.max(G.trackedStatTrait,G.getRes('most traits').amount);
 		}
 	}
 	
@@ -895,6 +896,10 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['tracked stat str land']=function()
 	{
 		return 'Most land explored at the main world';
+	}
+	G.funcs['tracked stat str traits']=function()
+	{
+		return 'Most traits adopted';
 	}
 	G.funcs['civ blurb']=function()
 	{
@@ -913,6 +918,9 @@ G.props['fastTicksOnResearch']=150;
 			var stat=G.getRes('health').amount/pop;
 			var text='unknown';if (stat<=-200) text='dreadful'; else if (stat<=-100) text='sickly'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='good'; else if (stat<=200) text='gleaming'; else if (stat>=200) text='examplary';
 			toParse+='Health : <b>'+text+'</b>//';
+			var stat=G.getRes('most techs').amount;
+			var text='unknown';if (stat<=25) text='pre-prehistoric';else if (stat<=50) text='prehistoric'; else if (stat<=100) text='skilled'; else if (stat<=170) text='decent technologically'; else if (stat<=240) text='expanded'; else if (stat<=325) text='advanced'; else if (stat<=400) text='modern'; else if (stat<=500) text='truly advanced'; else if (stat>=500) text='most advanced';
+			toParse+='Technological stage: <b>'+text+'</b>//';
 		}
 		else toParse+='All '+G.getName('inhabs')+' have died out.';
 		str+=G.parse(toParse);
@@ -1237,6 +1245,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTech);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str land','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatLand);})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str traits','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTrait);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
@@ -1358,6 +1367,7 @@ G.writeMSettingButton=function(obj)
 	new G.Res({name:'died this year',hidden:true});
 	new G.Res({name:'born this year',hidden:true});
 	new G.Res({name:'most techs',hidden:true,tick:function(me){me.amount=G.techN}});
+	new G.Res({name:'most traits',hidden:true,tick:function(me){me.amount=G.traitN}});
 	
 	var numbersInfo='//The number on the left is how many are in use, while the number on the right is how many you have in total.';
 	
@@ -3385,7 +3395,6 @@ G.writeMSettingButton=function(obj)
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'misc',
-		meta:true,
 	});
 		new G.Res({
 		name:'Cloudy water',
