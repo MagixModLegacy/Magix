@@ -879,7 +879,7 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-			G.trackedStatTech=Math.max(G.trackedStat,G.techN);
+			G.trackedStatTech=Math.max(G.trackedStatTech,G.getRes('most techs').amount);
 		}
 	}
 	
@@ -1351,6 +1351,7 @@ G.writeMSettingButton=function(obj)
 	
 	new G.Res({name:'died this year',hidden:true});
 	new G.Res({name:'born this year',hidden:true});
+	new G.Res({name:'most techs',hidden:true,tick:function(me){me.amount=G.techN}});
 	
 	var numbersInfo='//The number on the left is how many are in use, while the number on the right is how many you have in total.';
 	
