@@ -8,7 +8,18 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-
+var cssId = 'betaCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/beta.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
@@ -1122,22 +1133,11 @@ G.writeMSettingButton=function(obj)
 		'</div>';
 		return str;
 }
-var cssId = 'betaCss';  
-if (!document.getElementById(cssId))
-{
-    var head  = document.getElementsByTagName('head')[0];
-    var link  = document.createElement('link');
-    link.id   = cssId;
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
-    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/beta.css';
-    link.media = 'all';
-    head.appendChild(link);
-}
-	G.tabPopup['legacy']=function()
+
+G.tabPopup['legacy']=function()
 	{
 		var str='';
-		str+='<div class="fancyText title"><font color="#d4af37" size="6">- - Legacy - -</font></div>';
+		str+='<div class="fancyText title"><font color="#d4af37" size="5">- - Legacy - -</font></div>';
 		str+='<div class="scrollBox underTitle" style="width:248px;left:0px;">';
 		str+='<div class="fancyText barred bitBiggerText" style="text-align:center;">Stats</div>';
 		str+='<div class="par">Behold, the fruits of your legacy! Below are stats about your current and past games.</div>';
