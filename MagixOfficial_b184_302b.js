@@ -42,7 +42,7 @@ G.props['fastTicksOnResearch']=150;
 		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
 					'<script>'+
 		'if(G.achievByName["Democration"].won>=1){'+
-				'G.textWithTooltip("<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x1</div>',"1 extra Influence & Authority")'+
+				'document.write("G.textWithTooltip("<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x1</div>','1 extra Influence & Authority')")+
 		'}'+
 				'</script>'+
 		'</div>'+
