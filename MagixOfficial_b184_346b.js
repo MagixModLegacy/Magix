@@ -64,7 +64,6 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
-		G.achievByName['Democration'].visible=false
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -880,7 +879,7 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-			G.trackedStatTech=Math.max(G.trackedStatTech,G.getRes('most techs').amount);
+			G.trackingTechs=Math.max(G.trackingTechs,G.getRes('most techs').amount);
 			G.trackedStatLand=Math.max(G.trackedStatLand,G.getRes('land').amount);
 			G.trackedStatTrait=Math.max(G.trackedStatTrait,G.getRes('most traits').amount);
 		}
@@ -1244,7 +1243,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
 		str+='<div class="par">Victory points: <b>'+G.selfUpdatingText(function(){return B(G.getRes('victory point').amount);})+'</b></div>';
 		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
-		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTech);})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackingTechs);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str land','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatLand);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str traits','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTrait);})+'</b></div>';
 		str+='</div>';
@@ -9389,7 +9388,7 @@ new G.Unit({
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
-			visible:false
+			
 	});
 		new G.Achiev({
 		tier:0,
@@ -9415,7 +9414,7 @@ new G.Unit({
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
-			visible:false
+			
 	});
 		new G.Achiev({
 		tier:1,
