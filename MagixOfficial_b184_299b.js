@@ -31,9 +31,6 @@ G.props['fastTicksOnResearch']=150;
 	let st11=false
 		G.funcs['new game blurb']=function()
 	{   
-			if(G.achievByName['Democration'].won>=1){
-				var democ=document.write(G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+)
-
 		var str=
 		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
 		'<b>Your tribe :</b><div class="thingBox">'+
