@@ -32,9 +32,9 @@ G.props['fastTicksOnResearch']=150;
 		G.funcs['new game blurb']=function()
 	{   
 			if(G.achievByName['Democration'].won>=1){
-				var democ=write("G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+")
+				var democ=document.write("G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+")
 						 }else{
-						 var democ=write("")
+						 var democ=document.write("")
 				}
 		var str=
 		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
