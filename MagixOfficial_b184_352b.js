@@ -892,7 +892,7 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['tracked stat str traits']=function()
 	{
-		return 'Current amount of adopted traits:';
+		return 'Current amount of adopted traits';
 	}
 	G.funcs['civ blurb']=function()
 	{
@@ -10047,7 +10047,7 @@ getCosts:function()
 	});
 	new G.Tech({
 		name:'healing',
-		desc:'@unlocks [healer]s<>',
+		desc:'@unlocks [healer]s<> <q><i>No life deserves on death by disease</i></q>',
 		icon:[25,7],
 		cost:{'insight':10},
 		req:{'plant lore':true,'stone-knapping':true,'herbalism':true},
