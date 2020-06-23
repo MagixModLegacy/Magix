@@ -1225,6 +1225,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Total legacy time : <b>'+G.selfUpdatingText(function(){return G.BT(G.totalDays);})+'</b></div>';
 		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
 		str+='<div class="par">Victory points: <b>'+G.selfUpdatingText(function(){return B(G.getRes('victory point').amount);})+'</b></div>';
+		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
@@ -1266,7 +1267,7 @@ G.writeMSettingButton=function(obj)
 							return '<div class="info">'+
 							'<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>'+
 							'<div class="fancyText barred infoTitle">'+me.displayName+'</div>'+
-							'<div class="fancyText barred">'+(me.won>0?('Achieved : '+me.won+' '+(me.won==1?'time':'times')):'Locked')+'</div>'+
+							'<div class="fancyText barred">'+(me.won>0?('Achieved : '+me.won+' '+(me.won==1?'time':'times')):'Locked :(')+'</div>'+
 							'<div class="fancyText barred">Effects :'+G.getAchievEffectsString(me.effects)+'</div>'+
 							(me.desc?('<div class="infoDesc">'+G.parse(me.desc)+'</div>'):'')+
 							'</div>'+
