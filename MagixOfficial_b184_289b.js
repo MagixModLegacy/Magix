@@ -12890,7 +12890,8 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		effects:[
 			{type:'provide res',what:{'education':5}},
 		],
-			category:'knowledge'
+			category:'knowledge',
+			chance:250
 	});
 		new G.Tech({
 		name:'Life-guiding',
