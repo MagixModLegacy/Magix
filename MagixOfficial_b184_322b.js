@@ -882,7 +882,7 @@ G.props['fastTicksOnResearch']=150;
 		}
 	}
 	
-	G.funcs['tracked stat strC1']=function()
+	G.funcs['tracked stat str']=function()
 	{
 		return 'Most population ruled';
 	}
@@ -1220,7 +1220,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Behold, the fruits of your legacy! Below are stats about your current and past games.</div>';
 		str+='<div class="par">Legacy started : <b>'+G.selfUpdatingText(function(){return BT((Date.now()-G.fullDate)/1000);})+' ago</b></div>';
 		str+='<div class="par">This game started : <b>'+G.selfUpdatingText(function(){return BT((Date.now()-G.startDate)/1000);})+' ago</b></div>';
-		str+='<div class="par">'+G.doFunc('tracked stat strC1','Tracked stat')+' : <b>'+G.selfUpdatingText(function(){return B(G.trackedStatC1);})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str','Tracked stat')+' : <b>'+G.selfUpdatingText(function(){return B(G.trackedStatC1);})+'</b></div>';
 		str+='<div class="par">Longest game : <b>'+G.selfUpdatingText(function(){return G.BT(G.furthestDay);})+'</b></div>';
 		str+='<div class="par">Total legacy time : <b>'+G.selfUpdatingText(function(){return G.BT(G.totalDays);})+'</b></div>';
 		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
