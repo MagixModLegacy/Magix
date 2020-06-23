@@ -64,6 +64,7 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		G.achievByName['Democration'].visible=false
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -9401,7 +9402,7 @@ new G.Unit({
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
-			visible:false
+			
 	});
 		new G.Achiev({
 		tier:0,
