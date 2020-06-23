@@ -879,12 +879,17 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
+			G.trackedStatTech=Math.max(G.trackedStatTech,G.techN);
 		}
 	}
 	
-	G.funcs['tracked stat str']=function()
+	G.funcs['tracked stat str c1']=function()
 	{
 		return 'Most population ruled';
+	}
+	G.funcs['tracked stat str techs']=function()
+	{
+		return 'Most researches obtained';
 	}
 	G.funcs['civ blurb']=function()
 	{
@@ -1225,7 +1230,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
 		str+='<div class="par">Victory points: <b>'+G.selfUpdatingText(function(){return B(G.getRes('victory point').amount);})+'</b></div>';
 		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
-		str+='<div class="par">Most researches completed(in one run): <b>'+G.selfUpdatingText(function(){return G.BT(Math.max(G.techN));})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTech);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
