@@ -1134,6 +1134,40 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+	G.tabPopup['legacy']=function()
+	{
+		var str='';
+		str+='<div class="fancyText title"><font color="#d4af37" size="6">- - Legacy - -</font></div>';
+		str+='<div class="scrollBox underTitle" style="width:248px;left:0px;">';
+		str+='<div class="fancyText barred bitBiggerText" style="text-align:center;">Stats</div>';
+		str+='<div class="par">Behold, the fruits of your legacy! Below are stats about your current and past games.</div>';
+		str+='<div class="par">Legacy started : <b>'+G.selfUpdatingText(function(){return BT((Date.now()-G.fullDate)/1000);})+' ago</b></div>';
+		str+='<div class="par">This game started : <b>'+G.selfUpdatingText(function(){return BT((Date.now()-G.startDate)/1000);})+' ago</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str','Tracked stat')+' : <b>'+G.selfUpdatingText(function(){return B(G.trackedStat);})+'</b></div>';
+		str+='<div class="par">Longest game : <b>'+G.selfUpdatingText(function(){return G.BT(G.furthestDay);})+'</b></div>';
+		str+='<div class="par">Total legacy time : <b>'+G.selfUpdatingText(function(){return G.BT(G.totalDays);})+'</b></div>';
+		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
+		str+='</div>';
+		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
+		if (G.sequence=='main')
+		{
+			str+='<div class="fancyText barred bitBiggerText" style="text-align:center;">Achievements</div>';
+			for (var i in G.achievByTier)
+			{
+				str+='<div class="tier thingBox">';
+				for (var ii in G.achievByTier[i])
+				{
+					var me=G.achievByTier[i][ii];
+					str+='<div class="thingWrapper">'+
+						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
+						G.getIconStr(me,'achiev-icon-'+me.id)+
+						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
+						'</div>'+
+					'</div>';
+				}
+				str+='<div class="divider"></div>';
+				str+='</div>';
+			}
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
