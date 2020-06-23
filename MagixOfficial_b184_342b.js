@@ -879,9 +879,9 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-			
-			G.trackedStatLand=Math.max(G.trackedStatLand,G.getRes('land').amount);
-			G.trackedStatTrait=Math.max(G.trackedStatTrait,G.getRes('most traits').amount);
+			G.trackedStat=Math.max(G.trackedStatTech,G.getRes('most techs').amount);
+			G.trackedStat=Math.max(G.trackedStatLand,G.getRes('land').amount);
+			G.trackedStat=Math.max(G.trackedStatTrait,G.getRes('most traits').amount);
 		}
 	}
 	
@@ -1243,7 +1243,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
 		str+='<div class="par">Victory points: <b>'+G.selfUpdatingText(function(){return B(G.getRes('victory point').amount);})+'</b></div>';
 		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
-		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTech=Math.max(G.trackedStatTech,G.getRes('most techs').amount););})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTech);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str land','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatLand);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str traits','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.trackedStatTrait);})+'</b></div>';
 		str+='</div>';
