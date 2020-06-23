@@ -894,7 +894,7 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['tracked stat str land']=function()
 	{
-		return 'Most land on the main world';
+		return 'Most land explored at the main world';
 	}
 	G.funcs['civ blurb']=function()
 	{
