@@ -1214,7 +1214,7 @@ G.writeMSettingButton=function(obj)
 	G.tabPopup['legacy']=function()
 	{
 		var str='';
-		str+='<div class="fancyText title"><font color="#d4af37" size="5">- - Legacy - -</font></div>';
+		str+='<div class="fancyText title"><font color="#d4af37" size="7">- - - Legacy - - -</font></div>';
 		str+='<div class="scrollBox underTitle" style="width:248px;left:0px;">';
 		str+='<div class="fancyText barred bitBiggerText" style="text-align:center;">Stats</div>';
 		str+='<div class="par">Behold, the fruits of your legacy! Below are stats about your current and past games.</div>';
