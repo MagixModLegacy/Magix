@@ -15043,4 +15043,4 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		return lvl;
 	}
 }
-});
+}));
