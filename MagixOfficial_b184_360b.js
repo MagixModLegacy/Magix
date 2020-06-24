@@ -911,7 +911,7 @@ G.props['fastTicksOnResearch']=150;
 			var stat=G.getRes('health').amount/pop;
 			var text='unknown';if (stat<=-200) text='dreadful'; else if (stat<=-100) text='sickly'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='good'; else if (stat<=200) text='gleaming'; else if (stat>=200) text='examplary';
 			toParse+='Health : <b>'+text+'</b>//';
-			var stat=G.getRes('most techs').amount;
+			var stat=G.techN;
 			var text='unknown';if (stat<=25) text='pre-prehistoric';else if (stat<=50) text='prehistoric'; else if (stat<=100) text='skilled'; else if (stat<=170) text='decent technologically'; else if (stat<=240) text='expanded'; else if (stat<=325) text='advanced'; else if (stat<=400) text='modern'; else if (stat<=500) text='truly advanced'; else if (stat>=500) text='most advanced';
 			toParse+='Technological stage: <b>'+text+'</b>//';
 		}
