@@ -2070,15 +2070,25 @@ G.writeMSettingButton=function(obj)
 				//CHRA-NOS
 				if (G.checkPolicy('Gather roses')=='on')
 				{
-				var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/10)*2);
-				var spent=G.lose('water',randomFloor(toSpoil),'decay');
-				G.gain('muddy water',randomFloor(spent),'decay');
-				}else{
-				var toSpoil=me.amount*0.02;
-				var spent=G.lose('water',randomFloor(toSpoil),'decay');
-				G.gain('muddy water',randomFloor(spent),'decay');
-			}
-			}
+					if(G.achievByName['Patience'].won==0){
+						var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/10)*2);
+						var spent=G.lose('water',randomFloor(toSpoil),'decay');
+						G.gain('muddy water',randomFloor(spent),'decay');
+						}else{
+						var toSpoil=me.amount*0.02;
+						var spent=G.lose('water',randomFloor(toSpoil),'decay');
+						G.gain('muddy water',randomFloor(spent),'decay');
+						}
+					}else if(G.achievByName['Patience'].won>=1){
+						var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/10-0,025)*2);
+						var spent=G.lose('water',randomFloor(toSpoil),'decay');
+						G.gain('muddy water',randomFloor(spent),'decay');
+						}else{
+						var toSpoil=me.amount*0.02;
+						var spent=G.lose('water',randomFloor(toSpoil),'decay');
+						G.gain('muddy water',randomFloor(spent),'decay');
+						}
+				}
 			if (G.checkPolicy('Toggle SFX')=='off'){
 				
 			 }
@@ -13417,7 +13427,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'t2',
 		displayName:'Bersaria\'s Trial',
 		desc:'You are during Unhappy trial',
-		icon:[28,24,'magixmod',5,21,'magixmod'],
+		icon:[28,25,'magixmod',5,22,'magixmod'],
 		req:{'tribalism':false},
 		cost:{},
 			effects:[
@@ -14043,7 +14053,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Unhappy. I am a Madness. This plane is full of anger... No way to make'em happy. You will have to handle it. In fact people's happiness will be always at -200% level and can't be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Only Gatherers are not harmed by The Madness's power. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!")) {
     alert("Alright... Handle the Madness.");     
 		alert("Then the Unhappy trial begins. After clicking this popup just refresh this page.");
-		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.Save();
+		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t2=G.traitByName['t2'];var trial=G.traitByName['trial'];G.gainTrait(t2);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.Save();
 } else {
     alert("Make sure you will prepare enough for madness... ~Bersaria")
 	alert("Begone");
