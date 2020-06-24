@@ -1906,6 +1906,9 @@ G.writeMSettingButton=function(obj)
 		fractional:true,
 		tick:function(me,tick)
 		{
+			if(G.has('t2')){
+				G.getRes('happiness').amount=-1e15//Unhappy trial
+			}
 		},
 		getDisplayAmount:function()
 		{
