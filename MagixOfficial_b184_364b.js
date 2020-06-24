@@ -1295,33 +1295,28 @@ G.writeMSettingButton=function(obj)
 		'</div>';
 		return str;
 	}
-	G.SelectMods=function()
+	G.createTopInterface=function()
 	{
-		G.dialogue.popup(function(div){
-			var modsStr=G.modsStr;
-			G.newModsStr=modsStr;
-			return '<div style="padding:16px;width:480px;"><div class="fancyText title">Select mods TEST MODDDING</div>'+
-			'<div class="par">Enter the URLs for mods you want to use, separated by linebreaks.</div><div class="par"><b>data.js</b> is the default content used by the game.</div><div class="par"><b><span style="color:#f30;">Note :</span> once your game starts, you won\'t be able<br>to change your mods until you start a new game.</b></div><div class="par"><b><span style="color:#f30;">Note :</span> removing a mod will also remove<br>any achievements linked to it.</b></div><div class="par"><b><span style="color:#f30;">Note :</span> only load mods from sources you trust!</b></div>'+
-			G.textarea({style:'width:100%;height:180px;',text:modsStr,select:true,oninput:function(val){G.newModsStr=val;}})+
-			'<br><br></div>'+
-			'<div class="buttonBox">'+
-				G.button({text:'Load mods',classes:'frameless',onclick:function(){
-					G.dialogue.close();
-					var mods=G.newModsStr;
-					mods=mods.split('\n');
-					var mods2=[];
-					for (var i in mods)
-					{
-						mods[i]=mods[i].trim()
-						if (mods[i].length>0) mods2.push(mods[i]);
-					}
-					G.NewGame(false,mods2);
-				}})+
-				G.dialogue.getCloseButton('Cancel')+
-			'</div>';
-		});
-	}
-	
+		var str=''+
+		'<div class="flourishL"></div><div class="framed fancyText bgMid" style="display:inline-block;padding:8px 12px;font-weight:bold;font-size:18px;font-variant:small-caps;" id="date">-</div><div class="flourishR"></div><br>'+
+		'<div class="flourish2L"></div>'+
+		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">0</div>'+
+		G.button({id:'pauseButton',
+			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) 0px 0px;"></div>',
+			tooltip:'Time will be stopped.<br>Generates fast ticks. MODDING TEST!',
+			onclick:function(){G.setSetting('paused',1);}
+		})+
+		G.button({id:'playButton',
+			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -11px 0px;"></div>',
+			tooltip:'Time will pass by normally - 1 day every second.',
+			onclick:function(){G.setSetting('paused',0);G.setSetting('fast',0);}
+		})+
+		G.button({id:'fastButton',
+			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
+			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
+			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
+		})+
+		'<div class="flourish2R"></div>';
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
