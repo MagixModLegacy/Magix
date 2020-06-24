@@ -1914,7 +1914,7 @@ G.writeMSettingButton=function(obj)
 			if(G.checkPolicy('se07')=='on'){//Herbalia's backfire
 			if (amount>175) amount=175;
 			if (amount<-200) amount=-200;
-			}else if(G.has('t2'){
+			}else if(G.has('t2')){
 			if (amount>200) amount=200;
 			if (amount<-200) amount=-200-(G.techN/2);
 			}else{
