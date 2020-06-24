@@ -5912,7 +5912,6 @@ if (!document.getElementById(cssId))
 		desc:'You can gain Victory Points for completing Seraphin\'s Trial. 11 of 12 trials are repeatable. After first completion of the trial it grants 1 VP, after 2nd succesful attempt in total grants 3 VP\'s and so on. They can\'t be spent but their amount may provide extra bonuses. ',
 		icon:[0,28,'magixmod'],
 	});
-		new G.Res({name:'most techs',hidden:true,tick:function(me){me.amount=G.techN}});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -13418,6 +13417,38 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[32,19,'magixmod'],
 		req:{'Outstanding wisdom':true,'Hunters & fishers unification':true},
 		cost:{'insight II':290,'science':20},
+	});
+	new G.Trait({
+		name:'bonus1',
+		displayName:'. . .',
+		desc:'You seem powerful. Probably [Guru] can make more science',
+		icon:[32,5,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+	});
+	new G.Trait({
+		name:'bonus2',
+		displayName:'. . .',
+		desc:'You have a potential and power. Feels like everything goes faster.',
+		icon:[32,4,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+	});
+	new G.Trait({
+		name:'bonus3',
+		displayName:'. . .',
+		desc:'You are powerful. Your glory can lighten up some secret darkness.',
+		icon:[32,3,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+	});
+	new G.Trait({
+		name:'bonus3',
+		displayName:'. . .',
+		desc:'You have . . . \'s attention. But who is he? Feels like that entity or whoever is proud of your strength.',
+		icon:[32,2,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
 	});
 	new G.Tech({
 		name:'aiming',
