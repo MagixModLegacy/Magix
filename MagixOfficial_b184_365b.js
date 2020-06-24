@@ -1308,7 +1308,7 @@ G.writeMSettingButton=function(obj)
 		})+
 		G.button({id:'playButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -11px 0px;"></div>',
-			tooltip:'Time will pass by normally - 1 day every second.',
+			tooltip:'Time will pass by normally - 1 day every second. AAAA',
 			onclick:function(){G.setSetting('paused',0);G.setSetting('fast',0);}
 		})+
 		G.button({id:'fastButton',
@@ -1317,6 +1317,7 @@ G.writeMSettingButton=function(obj)
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
 		})+
 		'<div class="flourish2R"></div>';
+	}
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
