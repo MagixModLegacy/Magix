@@ -1295,7 +1295,33 @@ G.writeMSettingButton=function(obj)
 		'</div>';
 		return str;
 	}
-	G.saveTo='MagixLegacySave-'+SAVESLOT;
+	G.SelectMods=function()
+	{
+		G.dialogue.popup(function(div){
+			var modsStr=G.modsStr;
+			G.newModsStr=modsStr;
+			return '<div style="padding:16px;width:480px;"><div class="fancyText title">Select mods TEST MODDDING</div>'+
+			'<div class="par">Enter the URLs for mods you want to use, separated by linebreaks.</div><div class="par"><b>data.js</b> is the default content used by the game.</div><div class="par"><b><span style="color:#f30;">Note :</span> once your game starts, you won\'t be able<br>to change your mods until you start a new game.</b></div><div class="par"><b><span style="color:#f30;">Note :</span> removing a mod will also remove<br>any achievements linked to it.</b></div><div class="par"><b><span style="color:#f30;">Note :</span> only load mods from sources you trust!</b></div>'+
+			G.textarea({style:'width:100%;height:180px;',text:modsStr,select:true,oninput:function(val){G.newModsStr=val;}})+
+			'<br><br></div>'+
+			'<div class="buttonBox">'+
+				G.button({text:'Load mods',classes:'frameless',onclick:function(){
+					G.dialogue.close();
+					var mods=G.newModsStr;
+					mods=mods.split('\n');
+					var mods2=[];
+					for (var i in mods)
+					{
+						mods[i]=mods[i].trim()
+						if (mods[i].length>0) mods2.push(mods[i]);
+					}
+					G.NewGame(false,mods2);
+				}})+
+				G.dialogue.getCloseButton('Cancel')+
+			'</div>';
+		});
+	}
+	
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
