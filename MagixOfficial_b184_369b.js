@@ -1300,7 +1300,7 @@ G.writeMSettingButton=function(obj)
 		var str=''+
 		'<div class="flourishL"></div><div class="framed fancyText bgMid" style="display:inline-block;padding:8px 12px;font-weight:bold;font-size:18px;font-variant:small-caps;" id="date">-</div><div class="flourishR"></div><br>'+
 		'<div class="flourish2L"></div>'+
-		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;linear-gradient(to right, red, orange, yellow, lime, blue, purple, fuchsia);">0</div>'+
+		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;linear-gradient;"><font color="#aaff00">0</font></div>'+
 		G.button({id:'pauseButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) 0px 0px;"></div>',
 			tooltip:'Time will be stopped.<br>Generates fast ticks(1 fast tick per second of paused).',
@@ -1320,7 +1320,7 @@ G.writeMSettingButton=function(obj)
 	}
 		G.FileSave=function()
 	{
-		var filename='MagixLegacySave';
+		var filename='MagixLegacySave';//Vanilla saves are called legacySave. To recognize save with Magix I will change it
 		var text=G.Export();
 		var blob=new Blob([text],{type:'text/plain;charset=utf-8'});
 		saveAs(blob,filename+'.txt');
