@@ -1300,15 +1300,15 @@ G.writeMSettingButton=function(obj)
 		var str=''+
 		'<div class="flourishL"></div><div class="framed fancyText bgMid" style="display:inline-block;padding:8px 12px;font-weight:bold;font-size:18px;font-variant:small-caps;" id="date">-</div><div class="flourishR"></div><br>'+
 		'<div class="flourish2L"></div>'+
-		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">0</div>'+
+		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;"><font color="#ddff00">0</font>('+G.fastTicks+' fast ticks)</div>'+
 		G.button({id:'pauseButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) 0px 0px;"></div>',
-			tooltip:'Time will be stopped.<br>Generates fast ticks. MODDING TEST!',
+			tooltip:'Time will be stopped.<br>Generates fast ticks.',
 			onclick:function(){G.setSetting('paused',1);}
 		})+
 		G.button({id:'playButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -11px 0px;"></div>',
-			tooltip:'Time will pass by normally - 1 day every second. AAAA',
+			tooltip:'Time will pass by normally - 1 day every second.',
 			onclick:function(){G.setSetting('paused',0);G.setSetting('fast',0);}
 		})+
 		G.button({id:'fastButton',
