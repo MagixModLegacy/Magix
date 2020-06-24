@@ -906,7 +906,7 @@ G.props['fastTicksOnResearch']=150;
 		{
 			toParse+='Population : <b>'+B(pop)+' [population,'+G.getName((pop==1?'inhab':'inhabs'))+']</b>//';
 			var stat=G.getRes('happiness').amount/pop;
-			var text='unknown';if (stat<=-200) text='miserable'; else if (stat<=-100) text='mediocre'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='pleasant'; else if (stat<=200) text='high'; else if (stat>=200) text='euphoric';
+			var text='unknown';if (stat<=-200 && G.has('t2')) text='irreversibly unhappy & miserable';else if (stat<=-200) text='miserable'; else if (stat<=-100) text='mediocre'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='pleasant'; else if (stat<=200) text='high'; else if (stat>=200) text='euphoric';
 			toParse+='Happiness : <b>'+text+'</b>//';
 			var stat=G.getRes('health').amount/pop;
 			var text='unknown';if (stat<=-200) text='dreadful'; else if (stat<=-100) text='sickly'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='good'; else if (stat<=200) text='gleaming'; else if (stat>=200) text='examplary';
@@ -1914,6 +1914,9 @@ G.writeMSettingButton=function(obj)
 			if(G.checkPolicy('se07')=='on'){//Herbalia's backfire
 			if (amount>175) amount=175;
 			if (amount<-200) amount=-200;
+			}else if(G.has('t2'){
+			if (amount>200) amount=200;
+			if (amount<-200) amount=-200-(G.techN/2);
 			}else{
 			if (amount>200) amount=200;
 			if (amount<-200) amount=-200;
@@ -13409,6 +13412,17 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[33,28,'magixmod'],
 		req:{'spears':true,'bows':true,'building':true},
 		cost:{'insight':17,'influence':3},
+	});
+	new G.Trait({
+		name:'t2',
+		displayName:'Bersaria\'s Trial',
+		desc:'You are during Unhappy trial',
+		icon:[28,24,'magixmod',5,21,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+			effects:[
+			{type:'function',func:function(){}},
+		],
 	});
 	/*=====================================================================================
 	POLICIES
