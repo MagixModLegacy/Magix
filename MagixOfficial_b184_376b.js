@@ -1307,7 +1307,7 @@ G.writeMSettingButton=function(obj)
 		var str=''+
 		'<div class="flourishL"></div><div class="framed fancyText bgMid" style="display:inline-block;padding:8px 12px;font-weight:bold;font-size:18px;font-variant:small-caps;" id="date">-</div><div class="flourishR"></div><br>'+
 		'<div class="flourish2L"></div>'+
-		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;"><font color="#aaff44">0</font></div>'+
+		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;font-color:#aaff00;">0</div>'+
 		G.button({id:'pauseButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) 0px 0px;"></div>',
 			tooltip:'Time will be stopped.<br>Generates fast ticks.',
@@ -1318,13 +1318,13 @@ G.writeMSettingButton=function(obj)
 			tooltip:'Time will pass by normally - 1 day every second.',
 			onclick:function(){G.setSetting('paused',0);G.setSetting('fast',0);}
 		})+
-		G.button({id:'fastButton',
+		G.button({id:'halffastButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
 			tooltip:'Time will go by about 15 times faster - half of a month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
 		})+
 		    G.button({id:'fastButton',
-			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -31px 0px;"></div>',
+			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
 			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
 		})+
