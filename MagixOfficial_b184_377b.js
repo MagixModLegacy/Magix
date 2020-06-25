@@ -1310,7 +1310,7 @@ G.writeMSettingButton=function(obj)
 		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;font-color:#aaff00;">0</div>'+
 		G.button({id:'pauseButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) 0px 0px;"></div>',
-			tooltip:'Time will be stopped.<br>Generates fast ticks.',
+			tooltip:'Time will be stopped.<br>Generates fast ticks.(generates 1 per each second of being in this mode)',
 			onclick:function(){G.setSetting('paused',1);}
 		})+
 		G.button({id:'playButton',
@@ -1347,6 +1347,20 @@ G.writeMSettingButton=function(obj)
 		
 		G.addCallbacks();
 		G.updateSpeedButtons();
+	}
+	G.updateSpeedButtons=function()
+	{
+			var div=l('pauseButton');
+			if (div)
+			{
+				var speed=1;
+				if (G.getSetting('fast')) speed=2;
+				if (G.getSetting('paused') || G.getSetting('forcePaused')) speed=0;
+				if (speed==0) {if (G.getSetting('animations')) {triggerAnim(l('pauseButton'),'plop');} l('pauseButton').classList.add('on');l('playButton').classList.remove('on');l('halffastButton').classList.remove('on');l('fastButton').classList.remove('on');}
+				else if (speed==1) {if (G.getSetting('animations')) {triggerAnim(l('playButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.add('on');l('halffastButton').classList.remove('on');l('fastButton').classList.remove('on');}
+				else if (speed==1.5) {if (G.getSetting('animations')) {triggerAnim(l('playButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('halffastButton').classList.add('on');l('fastButton').classList.remove('on');}
+				else if (speed==2) {if (G.getSetting('animations')) {triggerAnim(l('fastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');l('fastButton').classList.add('on');}
+			}
 	}
 	/*=====================================================================================
 	RESOURCES
