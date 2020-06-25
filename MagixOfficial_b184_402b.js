@@ -1338,7 +1338,7 @@ G.writeMSettingButton=function(obj)
 	G.Logic=function(forceTick)
 	{
 		//forceTick lets us execute logic and force a tick update
-		else if (G.sequence=='main')
+		if (G.sequence=='main')
 		{
 			G.oldSpeed=G.speed;
 			G.speed=1;
