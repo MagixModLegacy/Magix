@@ -1328,7 +1328,7 @@ G.writeMSettingButton=function(obj)
 		l('topInterface').innerHTML=str;
 		
 		G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses every second, and 300 days make up a year.</div>';},{offY:-8});
-		G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed(at half fast speed it will execute in:'+BT(G.fastTicks/15)+'),<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
+		G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b>,<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
 		
 		
 		G.addCallbacks();
@@ -1338,11 +1338,6 @@ G.writeMSettingButton=function(obj)
 	G.Logic=function(forceTick)
 	{
 		//forceTick lets us execute logic and force a tick update
-
-		if (G.sequence=='loading' || G.sequence=='checking' || G.sequence=='updating')
-		{
-			var done=G.LogicModLoading();
-		}
 		else if (G.sequence=='main')
 		{
 			G.oldSpeed=G.speed;
