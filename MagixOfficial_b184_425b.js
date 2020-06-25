@@ -1485,7 +1485,7 @@ G.writeMSettingButton=function(obj)
 					G.tick++;
 					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
 					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
-					if (G.year>100) {G.year=0;G.getRes('century').amount+1}
+					if (G.year>100) {G.year=0;G.century++}
 					l('date').innerHTML='Century '+(G.century+1)+', Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
 				}
 				if (!forceTick) G.nextTick--;
