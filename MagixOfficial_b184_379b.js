@@ -1333,7 +1333,7 @@ G.writeMSettingButton=function(obj)
 		l('topInterface').innerHTML=str;
 		
 		G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses every second, and 300 days make up a year.</div>';},{offY:-8});
-		G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed,<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
+		G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed(at half fast speed it will execute in:'+BT(G.fastTicks/15)+'),<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
 		
 		l('fastTicks').onclick=function(e)
 		{
@@ -1455,6 +1455,12 @@ G.writeMSettingButton=function(obj)
 						//use up fast ticks when on fast speed
 						G.fastTicks--;
 						if (G.fastTicks<=0) {G.fastTicks=0;G.speed=1;G.setSetting('fast',0);}
+					}
+					if (G.speed==1.5)
+					{
+						//use up fast ticks when on half fast speed
+						G.fastTicks--;
+						if (G.fastTicks<=0) {G.fastTicks=0;G.speed=1;G.setSetting('halffast',0);}
 					}
 					G.logic['res']();
 					G.logic['unit']();
