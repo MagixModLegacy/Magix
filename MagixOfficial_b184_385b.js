@@ -8,9 +8,48 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-	new G.setting=[
-		{name:'halffast',type:'toggle',def:1,onChange:function(){G.updateSpeedButtons();}},//is the game currently on fast speed?
-	]
+		G.settings=[
+		{name:'mapEditMode',type:'int',def:0,onChange:function(){
+			G.editMode=(G.getSetting('mapEditMode'));
+			G.mapEditWithLand=0;
+			var div=l('tileEditButton');
+			if (div && G.editMode==2)
+			{
+				div.style.display='block';
+				if (G.getSetting('animations')) triggerAnim(div,'plop');
+				if (G.land[G.mapEditWithLand])
+				{
+					div.style.background=G.getLandIconBG(G.land[G.mapEditWithLand]);
+					div.style.backgroundPosition=G.getLandIconBGpos(G.land[G.mapEditWithLand]);
+				}
+			}
+			else if (div) div.style.display='none';
+		}},//what are we doing to the map?
+		{name:'paused',type:'toggle',def:0,onChange:function(){G.updateSpeedButtons();}},//is the game currently paused?
+		{name:'halffast',type:'toggle',def:1,onChange:function(){G.updateSpeedButtons();}},
+		{name:'fast',type:'toggle',def:1,onChange:function(){G.updateSpeedButtons();}},//is the game currently on fast speed?
+		{name:'forcePaused',type:'toggle',def:0,onChange:function(){G.updateSpeedButtons();}},//force pause when on
+		{name:'tab',type:'int',def:0,onChange:function(){}},//current tab
+		{name:'showLeads',type:'int',def:0,onChange:function(){}},//show what any given tech or trait will lead to (kinda cheaty/cumbersome)
+		{name:'pauseOnMenus',type:'toggle',def:1,onChange:function(){}},//pause when in menus
+		{name:'atmosphere',type:'toggle',def:1,onChange:function(){}},//show atmospheric messages
+		{name:'particles',type:'toggle',def:1,onChange:function(){}},//show particles
+		{name:'animations',type:'toggle',def:1,onChange:function(){if (G.getSetting('animations')) G.wrapl.classList.add('animationsOn'); else G.wrapl.classList.remove('animationsOn');}},//show animations ("plops" and blue squares)
+		{name:'filters',type:'toggle',def:1,onChange:function(){if (G.getSetting('filters')) G.wrapl.classList.add('filtersOn'); else G.wrapl.classList.remove('filtersOn');}},//use CSS filters
+		{name:'fpsgraph',type:'toggle',def:1,onChange:function(){if (G.getSetting('fpsgraph')) {G.fpsGraph.style.display='block';l('fpsCounter').style.display='block';} else {G.fpsGraph.style.display='none';l('fpsCounter').style.display='none';}}},//show fps graph
+		{name:'debug',type:'toggle',def:0,onChange:function(){if (G.getSetting('debug')) G.wrapl.classList.add('debugOn'); else G.wrapl.classList.remove('debugOn');}},//cheaty debug mode
+		{name:'showAllRes',type:'toggle',def:0,onChange:function(){}},//see all resources
+		{name:'autosave',type:'toggle',def:1,onChange:function(){}},//game will save every minute
+		{name:'buyAny',type:'toggle',def:0,onChange:function(){}},//when bulk-buying, buy any amount up to the demanded amount instead of cancelling if we can't buy the demanded amount
+		{name:'tieredDisplay',type:'toggle',def:0,onChange:function(){if (l('techDiv')) G.update['tech']();}},//techs will be displayed as tiers instead of in the order they were researched
+		{name:'buyAmount',type:'int',def:1,onChange:function(){G.updateBuyAmount();}},//how many units we create/remove at once
+	];
+	G.settingsByName=[];
+	for (var i in G.settings){G.settingsByName[G.settings[i].name]=G.settings[i];}
+	G.getSetting=function(name){return G.settingsByName[name].value;}
+	G.setSetting=function(name,value)
+	
+	
 var cssId = 'betaCss';  
 if (!document.getElementById(cssId))
 {
