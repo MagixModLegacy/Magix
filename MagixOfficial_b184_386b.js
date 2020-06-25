@@ -47,8 +47,11 @@ func:function(){
 	G.settingsByName=[];
 	for (var i in G.settings){G.settingsByName[G.settings[i].name]=G.settings[i];}
 	G.getSetting=function(name){return G.settingsByName[name].value;}
-	G.setSetting=function(name,value)
-	
+	G.setSetting=function(name,value){
+	var me=G.settingsByName[name];
+		me.value=value;
+		if (me.onChange) me.onChange();
+	}
 	
 var cssId = 'betaCss';  
 if (!document.getElementById(cssId))
