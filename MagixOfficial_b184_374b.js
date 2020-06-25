@@ -1310,7 +1310,7 @@ G.writeMSettingButton=function(obj)
 		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">0</div>'+
 		G.button({id:'pauseButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) 0px 0px;"></div>',
-			tooltip:'Time will be stopped.<br>Generates fast ticks(1 extra fast tick per 1 second of pause mode active)',
+			tooltip:'Time will be stopped.<br>Generates fast ticks.',
 			onclick:function(){G.setSetting('paused',1);}
 		})+
 		G.button({id:'playButton',
@@ -1320,14 +1320,33 @@ G.writeMSettingButton=function(obj)
 		})+
 		G.button({id:'fastButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
-			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
+			tooltip:'Time will go by about 15 times faster - half of a month month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
 		})+
 		    G.button({id:'fastButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
-			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.hh',
+			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
 		})+
+		'<div class="flourish2R"></div>';
+		
+		l('topInterface').innerHTML=str;
+		
+		G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses every second, and 300 days make up a year.</div>';},{offY:-8});
+		G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed,<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
+		
+		l('fastTicks').onclick=function(e)
+		{
+			if (G.getSetting('debug'))
+			{
+				//debug : gain fast ticks
+				G.fastTicks+=10*G.getBuyAmount();
+				G.fastTicks=Math.max(0,G.fastTicks);
+			}
+		};
+		
+		G.addCallbacks();
+		G.updateSpeedButtons();
 	}
 	/*=====================================================================================
 	RESOURCES
