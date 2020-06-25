@@ -8,7 +8,7 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-	G.settings.push=[
+	new G.settings=[
 		{name:'halffast',type:'toggle',def:1,onChange:function(){G.updateSpeedButtons();}},//is the game currently on fast speed?
 	]
 var cssId = 'betaCss';  
