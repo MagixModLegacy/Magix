@@ -1335,13 +1335,270 @@ G.writeMSettingButton=function(obj)
 		G.updateSpeedButtons();
 	}
 	//Modded Logic
+			G.Logic=function(forceTick)
+	{
+		//forceTick lets us execute logic and force a tick update
+
+		if (G.sequence=='loading' || G.sequence=='checking' || G.sequence=='updating')
+		{
+			var done=G.LogicModLoading();
+		}
+		else if (G.sequence=='main')
+		{
+			G.oldSpeed=G.speed;
+			G.speed=1;
+			if (G.getSetting('fast')) G.speed=2;
+			if (G.getSetting('paused')) G.speed=0;
+			if (G.getSetting('forcePaused')) G.speed=0;
+			if (forceTick) G.speed=1;
 			
+			if (G.speed==0)
+			{
+				//accumulate fast ticks when paused
+				G.nextFastTick--;
+				if (G.nextFastTick<=0) {G.fastTicks++;G.nextFastTick=G.tickDuration;}
+			}
+			
+			if (G.oldSpeed!=G.speed)
+			{
+				if (G.speed==1)
+				{
+					G.wrapl.classList.remove('speed0');
+					G.wrapl.classList.add('speed1');
+					G.wrapl.classList.remove('speed2');
+				}
+				else if (G.speed==2)
+				{
+					G.wrapl.classList.remove('speed0');
+					G.wrapl.classList.remove('speed1');
+					G.wrapl.classList.add('speed2');
+				}
+				else
+				{
+					G.wrapl.classList.add('speed0');
+					G.wrapl.classList.remove('speed1');
+					G.wrapl.classList.remove('speed2');
+				}
+			}
+			
+			if (G.T>0 && G.oldSpeed!=G.speed)
+			{
+				if (G.speed==0)//just paused
+				{
+					l('foreground').style.display='block';
+					G.middleText('- Pause -<br><small>Press space to unpause</small>');
+				}
+				else if (G.oldSpeed==0)//just unpaused
+				{
+					l('foreground').style.display='none';
+					if (G.T>0) G.middleText('- Unpaused -');
+				}
+				else if (G.speed==1)
+				{
+					G.middleText('- Speed x1 -');
+				}
+				else if (G.speed==2)
+				{
+					G.middleText('- Speed x30 -');
+				}
+			}
+			
+			if (G.speed>0)//not paused
+			{
+				if (G.nextTick<=0 || forceTick)
+				{
+					if (G.speed==2)
+					{
+						//use up fast ticks when on fast speed
+						G.fastTicks--;
+						if (G.fastTicks<=0) {G.fastTicks=0;G.speed=1;G.setSetting('fast',0);}
+					}
+					G.logic['res']();
+					G.logic['unit']();
+					G.logic['land']();
+					G.logic['tech']();
+					G.logic['trait']();
+					
+					//exploring
+					var map=G.currentMap;
+					var updateMap=false;
+					if (G.exploreOwnedTiles && map.tilesByOwner[1].length>0)
+					{
+						G.exploreOwnedTiles=randomFloor(G.exploreOwnedTiles);
+						for (var i=0;i<G.exploreOwnedTiles;i++)
+						{
+							var tile=choose(map.tilesByOwner[1]);
+							if (tile.explored<1)
+							{
+								tile.explored+=0.01;
+								tile.explored=Math.min(tile.explored,1);
+								G.tileToRender(tile);
+								updateMap=true;
+							}
+						}
+					}
+					if (G.exploreNewTiles && map.tilesByOwner[1].length>0)
+					{
+						G.exploreNewTiles=randomFloor(G.exploreNewTiles);
+						for (var i=0;i<G.exploreNewTiles;i++)
+						{
+							var dirs=[];
+							var tile=choose(map.tilesByOwner[1]);
+							var fromLand=true;
+							if (tile.land.ocean) fromLand=false;
+							if (fromLand || G.allowShoreExplore)
+							{
+								if (tile.x>0 && map.tiles[tile.x-1][tile.y].explored==0) dirs.push([-1,0]);
+								if (tile.x<map.w-1 && map.tiles[tile.x+1][tile.y].explored==0) dirs.push([1,0]);
+								if (tile.y>0 && map.tiles[tile.x][tile.y-1].explored==0) dirs.push([0,-1]);
+								if (tile.y<map.h-1 && map.tiles[tile.x][tile.y+1].explored==0) dirs.push([0,1]);
+								if (dirs.length>0)
+								{
+									var dir=choose(dirs);
+									tile=map.tiles[tile.x+dir[0]][tile.y+dir[1]];
+									var isShore=false;
+									if (tile.land.ocean && fromLand) isShore=true;
+									if (G.allowOceanExplore || !tile.land.ocean || isShore)
+									{
+										tile.owner=1;
+										tile.explored+=0.1;
+										G.tileToRender(tile);
+										updateMap=true;
+										G.doFuncWithArgs('found tile',[tile]);
+									}
+								}
+							}
+						}
+					}
+					if (updateMap)
+					{
+						G.updateMapForOwners(map);
+						//G.mapToRefresh=true;
+					}
+					G.exploreOwnedTiles=0;
+					G.exploreNewTiles=0;
+					
+					
 					G.tickChooseBoxes();
 					G.nextTick=(G.speed==1?G.tickDuration:1);
 					G.tick++;
 					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
 					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
 					l('date').innerHTML='Century X, Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+				}
+				if (!forceTick) G.nextTick--;
+			}
+			
+			l('fastTicks').innerHTML=G.BT(G.fastTicks);
+			
+			if (G.getSetting('autosave') && G.T%(G.fps*60)==(G.fps*60-1)) G.Save();
+		}
+		
+		if (G.mapToRefresh) G.refreshMap(G.currentMap);
+		if (G.mapToRedraw) G.redrawMap(G.currentMap);
+		
+		if (G.shouldRunReqs)
+		{
+			G.runUnitReqs();
+			G.runPolicyReqs();
+			G.update['unit']();
+			G.shouldRunReqs=0;
+		}
+		
+		G.logicMapDisplay();
+		G.widget.update();
+		if (G.T%5==0) G.tooltip.refresh();
+		G.tooltip.update();
+		G.infoPopup.update();
+		G.popupSquares.update();
+		G.updateMessages();
+		
+		//keyboard shortcuts
+		if (G.keysD[27]) {G.dialogue.close();}//esc
+		if (G.sequence=='main')
+		{
+			if (G.keys[17] && G.keysD[83]) {G.Save();}//ctrl-s
+			if (G.keysD[32])//space
+			{
+				if (G.getSetting('paused')) G.setSetting('paused',0);
+				else G.setSetting('paused',1)
+			}
+		}
+		
+		G.logic['particles']();
+		
+		if (G.T%5==0 && G.resizing) {G.stabilizeResize();}
+		
+		if (G.mouseUp) G.mousePressed=false;
+		G.mouseDown=false;
+		G.mouseUp=false;
+		if (G.mouseMoved && G.mousePressed) G.draggedFrames++; else if (!G.mousePressed) G.draggedFrames=0;
+		G.mouseMoved=0;
+		G.Scroll=0;
+		G.clickL=0;
+		G.keysD=[];
+		G.keysU=[];
+		if (document.activeElement.nodeName=='TEXTAREA' || document.activeElement.nodeName=='INPUT') G.keys=[];
+		
+		G.T++;
+	}
+	
+	G.Draw=function()
+	{
+		if (G.sequence=='main')
+		{
+			if (G.drawT%2==0)
+			{
+				G.draw['res']();
+				//if (G.tab.id=='unit') G.draw['unit']();
+				if (G.tab.update) G.draw[G.tab.update]();
+			}
+			
+			if (G.mapVisible)
+			{
+				G.resizeMapDisplay();
+				if (G.drawT%15==0) G.renderTiles();
+			}
+		}
+		
+		G.draw['particles']();
+		
+		if (G.animIntro)
+		{
+			var tooFancy=false;
+			if (G.T<G.introDur)
+			{
+				var r=Math.pow(G.T/G.introDur,0.5);
+				r=(3*Math.pow(r,2)-2*Math.pow(r,3))
+				if (G.getSetting('filters'))
+				{
+					G.l.style.filter='blur('+((1-r)*5)+'px)';
+					G.l.style.webkitFilter='blur('+((1-r)*5)+'px)';
+				}
+				l('foreground').style.display='block';
+				if (G.speed!=0) l('foreground').style.opacity=1-r;
+				if (tooFancy) G.l.style.transform='scale('+(0.5+0.5*r)+','+(0.5+0.5*Math.pow(r,0.5))+')';
+				G.l.style.opacity=r;
+				//if (tooFancy) G.l.style.boxShadow='0px 0px '+Math.floor((1-r)*100+100)+'px #000 inset';
+				G.l.style.display='block';
+			}
+			else
+			{
+				G.l.style.display='block';
+				G.l.style.filter='';
+				G.l.style.webkitFilter='';
+				if (G.speed!=0) l('foreground').style.display='none';
+				l('foreground').style.opacity='1';
+				if (tooFancy) G.l.style.transform='';
+				G.l.style.opacity='1';
+				//if (tooFancy) G.l.style.boxShadow='none';
+				G.animIntro=false;
+			}
+		}
+		
+		G.drawT++;
+	}
+					
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
