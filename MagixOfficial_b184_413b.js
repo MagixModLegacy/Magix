@@ -1346,7 +1346,7 @@ G.writeMSettingButton=function(obj)
 		for (var i in obj) {me[i]=obj[i];}
 		var scrolled=!(Math.abs(G.messagesWrapl.scrollTop-(G.messagesWrapl.scrollHeight-G.messagesWrapl.offsetHeight))<3);//is the message list not scrolled at the bottom? (if yes, don't update the scroll - the player probably manually scrolled it)
 		
-		me.date=G.year*300+G.day;
+		me.date=G.century*100+G.year*300+G.day;
 		var text=me.text||me.textFunc(me.args);
 		
 		var mergeWith=0;
