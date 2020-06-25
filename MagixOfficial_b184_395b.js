@@ -1394,21 +1394,6 @@ G.writeMSettingButton=function(obj)
 		G.addCallbacks();
 		G.updateSpeedButtons();
 	}
-	G.updateSpeedButtons=function()
-	{
-			var div=l('pauseButton');
-			if (div)
-			{
-				var speed=1;
-				if (G.getSetting('fast')) speed=2;
-				if (G.getSetting('halffast')) speed=1.5;
-				if (G.getSetting('paused') || G.getSetting('forcePaused')) speed=0;
-				if (speed==0) {if (G.getSetting('animations')) {triggerAnim(l('pauseButton'),'plop');} l('pauseButton').classList.add('on');l('playButton').classList.remove('on');l('halffastButton').classList.remove('on');l('fastButton').classList.remove('on');}
-				else if (speed==1) {if (G.getSetting('animations')) {triggerAnim(l('playButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.add('on');l('fastButton').classList.remove('on');l('halffastButton').classList.remove('on');}
-				else if (speed==1.5) {if (G.getSetting('animations')) {triggerAnim(l('halffastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('halffastButton').classList.add('on');l('fastButton').classList.remove('on');}
-				else if (speed==2) {if (G.getSetting('animations')) {triggerAnim(l('fastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('halffastButton').classList.remove('on');l('fastButton').classList.add('on');}
-			}
-	}
 	//Modded Logic
 	G.Logic=function(forceTick)
 	{
@@ -1580,7 +1565,7 @@ G.writeMSettingButton=function(obj)
 					G.tick++;
 					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
 					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
-					l('date').innerHTML='Century, Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+					l('date').innerHTML='Century X, Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
 				}
 				if (!forceTick) G.nextTick--;
 			}
@@ -1637,62 +1622,6 @@ G.writeMSettingButton=function(obj)
 		if (document.activeElement.nodeName=='TEXTAREA' || document.activeElement.nodeName=='INPUT') G.keys=[];
 		
 		G.T++;
-	}
-	
-	G.Draw=function()
-	{
-		if (G.sequence=='main')
-		{
-			if (G.drawT%2==0)
-			{
-				G.draw['res']();
-				//if (G.tab.id=='unit') G.draw['unit']();
-				if (G.tab.update) G.draw[G.tab.update]();
-			}
-			
-			if (G.mapVisible)
-			{
-				G.resizeMapDisplay();
-				if (G.drawT%15==0) G.renderTiles();
-			}
-		}
-		
-		G.draw['particles']();
-		
-		if (G.animIntro)
-		{
-			var tooFancy=false;
-			if (G.T<G.introDur)
-			{
-				var r=Math.pow(G.T/G.introDur,0.5);
-				r=(3*Math.pow(r,2)-2*Math.pow(r,3))
-				if (G.getSetting('filters'))
-				{
-					G.l.style.filter='blur('+((1-r)*5)+'px)';
-					G.l.style.webkitFilter='blur('+((1-r)*5)+'px)';
-				}
-				l('foreground').style.display='block';
-				if (G.speed!=0) l('foreground').style.opacity=1-r;
-				if (tooFancy) G.l.style.transform='scale('+(0.5+0.5*r)+','+(0.5+0.5*Math.pow(r,0.5))+')';
-				G.l.style.opacity=r;
-				//if (tooFancy) G.l.style.boxShadow='0px 0px '+Math.floor((1-r)*100+100)+'px #000 inset';
-				G.l.style.display='block';
-			}
-			else
-			{
-				G.l.style.display='block';
-				G.l.style.filter='';
-				G.l.style.webkitFilter='';
-				if (G.speed!=0) l('foreground').style.display='none';
-				l('foreground').style.opacity='1';
-				if (tooFancy) G.l.style.transform='';
-				G.l.style.opacity='1';
-				//if (tooFancy) G.l.style.boxShadow='none';
-				G.animIntro=false;
-			}
-		}
-		
-		G.drawT++;
 	}
 	/*=====================================================================================
 	RESOURCES
