@@ -1321,7 +1321,7 @@ G.writeMSettingButton=function(obj)
 		G.button({id:'halffastButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
 			tooltip:'Time will go by about 15 times faster - half of a month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
-			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
+			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('halffast',1);}}
 		})+
 		    G.button({id:'fastButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
