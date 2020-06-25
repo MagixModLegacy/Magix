@@ -1569,7 +1569,7 @@ G.writeMSettingButton=function(obj)
 					}
 					G.exploreOwnedTiles=0;
 					G.exploreNewTiles=0;
-					
+					G.century
 					G.tickChooseBoxes();
 					G.nextTick=(G.speed==1?G.tickDuration:1);
 					G.tick++;
