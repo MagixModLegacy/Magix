@@ -1358,6 +1358,7 @@ G.writeMSettingButton=function(obj)
 			{
 				var speed=1;
 				if (G.getSetting('fast')) speed=2;
+				if (G.getSetting('halffast')) speed=1.5;
 				if (G.getSetting('paused') || G.getSetting('forcePaused')) speed=0;
 				if (speed==0) {if (G.getSetting('animations')) {triggerAnim(l('pauseButton'),'plop');} l('pauseButton').classList.add('on');l('playButton').classList.remove('on');l('halffastButton').classList.remove('on');l('fastButton').classList.remove('on');}
 				else if (speed==1) {if (G.getSetting('animations')) {triggerAnim(l('playButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.add('on');l('halffastButton').classList.remove('on');l('fastButton').classList.remove('on');}
