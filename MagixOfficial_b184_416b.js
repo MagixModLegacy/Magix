@@ -1335,7 +1335,7 @@ G.writeMSettingButton=function(obj)
 		G.updateSpeedButtons();
 	}		
 		var str='<div class="messageTimestamp" title="century '+(G.century+1)+','+'year '+(G.year+1)+', day '+(G.day+1)+'">'+'C:'+(G.century+1)+'<br> Y:'+(G.year+1)+'</div>'+	
-		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
+	
 		
 	//Modded logic
 		G.Logic=function(forceTick)
