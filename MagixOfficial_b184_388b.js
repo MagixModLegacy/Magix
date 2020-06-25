@@ -26,7 +26,7 @@ func:function(){
 			else if (div) div.style.display='none';
 		}},//what are we doing to the map?
 		{name:'paused',type:'toggle',def:0,onChange:function(){G.updateSpeedButtons();}},//is the game currently paused?
-		{name:'halffast',type:'toggle',def:1,onChange:function(){G.updateSpeedButtons();}},
+		{name:'halffast',type:'toggle',def:0,onChange:function(){G.updateSpeedButtons();}},
 		{name:'fast',type:'toggle',def:1,onChange:function(){G.updateSpeedButtons();}},//is the game currently on fast speed?
 		{name:'forcePaused',type:'toggle',def:0,onChange:function(){G.updateSpeedButtons();}},//force pause when on
 		{name:'tab',type:'int',def:0,onChange:function(){}},//current tab
