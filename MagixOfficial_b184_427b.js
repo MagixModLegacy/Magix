@@ -1486,7 +1486,7 @@ G.writeMSettingButton=function(obj)
 					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
 					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
 					if (G.year>100) {G.year=0;G.century++}
-					l('date').innerHTML='Century '+(G.century+1)+', Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+					l('date').innerHTML='Century <font color="fuschia">'+(G.century+1)+'</font>, year <font color="fuschia">'+(G.year+1)+'</font>, day<font color="fuschia">'+(G.day+1)+'</font> in '+G.getName('civ');
 				}
 				if (!forceTick) G.nextTick--;
 			}
@@ -1650,7 +1650,7 @@ G.writeMSettingButton=function(obj)
 			text=me.textFunc(mergeWith.args);
 		}
 		
-		var str='<div class="messageTimestamp" title="century '+(G.century+1)+',year '+(G.year+1)+', day '+(G.day+1)+'">'+'C: '+(G.century+1)+' <br> Y:'+(G.year+1)+'</div>'+
+		var str='<div class="messageTimestamp" title="century '+(G.century+1)+',year '+(G.year+1)+', day '+(G.day+1)+'">'+'C: '+(G.century+1)+' Y:'+(G.year+1)+'</div>'+
 		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
 		
 		if (mergeWith) mergeWith.l.innerHTML=str;
