@@ -8,7 +8,7 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-	G.century=G.getRes('century').amount
+	
 var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -6312,7 +6312,7 @@ if (!document.getElementById(cssId))
 	new G.Res({
 		name:'century',
 		hidden:true
-	});
+	});G.century=G.getRes('century').amount
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
