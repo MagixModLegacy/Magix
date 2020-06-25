@@ -1486,7 +1486,7 @@ G.writeMSettingButton=function(obj)
 					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
 					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
 					if (G.year>100) {G.year=0;G.century++}
-					l('date').innerHTML='Century <font color="fuschia">'+(G.century+1)+'</font>, year <font color="fuschia">'+(G.year+1)+'</font>, day<font color="fuschia">'+(G.day+1)+'</font> in '+G.getName('civ');
+					l('date').innerHTML='Century <font color="fuschia">'+(G.century+1)+'</font>, year <font color="fuschia">'+(G.year+1)+'</font>, day <font color="fuschia">'+(G.day+1)+'</font> in '+G.getName('civ');
 				}
 				if (!forceTick) G.nextTick--;
 			}
@@ -13844,7 +13844,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		cost:{},
 	});
 	new G.Trait({
-		name:'bonus3',
+		name:'bonus4',
 		displayName:'. . .',
 		desc:'You have . . . \'s attention. But who is he? Feels like that entity or whoever is proud of your strength.',
 		icon:[32,2,'magixmod'],
