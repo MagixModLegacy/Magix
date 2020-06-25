@@ -1598,7 +1598,7 @@ G.writeMSettingButton=function(obj)
 		
 		G.drawT++;
 	}
-					
+		var str='<div class="messageTimestamp" title="'+'century '+(G.century+1)+','+'year '+(G.year+1)+', day '+(G.day+1)+'">'+'C:'+(G.century+1)+'<br> Y:'+(G.year+1)+'</div>'+			
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
