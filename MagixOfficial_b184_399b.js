@@ -1381,15 +1381,6 @@ G.writeMSettingButton=function(obj)
 		G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses every second, and 300 days make up a year.</div>';},{offY:-8});
 		G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed(at half fast speed it will execute in:'+BT(G.fastTicks/15)+'),<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
 		
-		l('fastTicks').onclick=function(e)
-		{
-			if (G.getSetting('debug'))
-			{
-				//debug : gain fast ticks
-				G.fastTicks+=10*G.getBuyAmount();
-				G.fastTicks=Math.max(0,G.fastTicks);
-			}
-		};
 		
 		G.addCallbacks();
 		G.updateSpeedButtons();
@@ -1408,7 +1399,6 @@ G.writeMSettingButton=function(obj)
 			G.oldSpeed=G.speed;
 			G.speed=1;
 			if (G.getSetting('fast')) G.speed=2;
-			if (G.getSetting('halffast')) G.speed=1.5;
 			if (G.getSetting('paused')) G.speed=0;
 			if (G.getSetting('forcePaused')) G.speed=0;
 			if (forceTick) G.speed=1;
@@ -1426,28 +1416,18 @@ G.writeMSettingButton=function(obj)
 				{
 					G.wrapl.classList.remove('speed0');
 					G.wrapl.classList.add('speed1');
-					G.wrapl.classList.remove('speed1.5');
 					G.wrapl.classList.remove('speed2');
 				}
 				else if (G.speed==2)
 				{
 					G.wrapl.classList.remove('speed0');
 					G.wrapl.classList.remove('speed1');
-					G.wrapl.classList.remove('speed1.5');
 					G.wrapl.classList.add('speed2');
-				}
-				else if (G.speed==1.5)
-				{
-					G.wrapl.classList.remove('speed0');
-					G.wrapl.classList.remove('speed1');
-					G.wrapl.classList.add('speed1.5');
-					G.wrapl.classList.remove('speed2');
 				}
 				else
 				{
 					G.wrapl.classList.add('speed0');
 					G.wrapl.classList.remove('speed1');
-					G.wrapl.classList.remove('speed1.5');
 					G.wrapl.classList.remove('speed2');
 				}
 			}
@@ -1468,10 +1448,6 @@ G.writeMSettingButton=function(obj)
 				{
 					G.middleText('- Speed x1 -');
 				}
-				else if (G.speed==1.5)
-				{
-					G.middleText('- Speed x15 -');
-				}
 				else if (G.speed==2)
 				{
 					G.middleText('- Speed x30 -');
@@ -1487,12 +1463,6 @@ G.writeMSettingButton=function(obj)
 						//use up fast ticks when on fast speed
 						G.fastTicks--;
 						if (G.fastTicks<=0) {G.fastTicks=0;G.speed=1;G.setSetting('fast',0);}
-					}
-					if (G.speed==1.5)
-					{
-						//use up fast ticks when on half fast speed
-						G.fastTicks--;
-						if (G.fastTicks<=0) {G.fastTicks=0;G.speed=1;G.setSetting('halffast',0);}
 					}
 	
 					G.tickChooseBoxes();
