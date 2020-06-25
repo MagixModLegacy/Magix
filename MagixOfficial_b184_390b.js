@@ -44,6 +44,16 @@ func:function(){
 		{name:'tieredDisplay',type:'toggle',def:0,onChange:function(){if (l('techDiv')) G.update['tech']();}},//techs will be displayed as tiers instead of in the order they were researched
 		{name:'buyAmount',type:'int',def:1,onChange:function(){G.updateBuyAmount();}},//how many units we create/remove at once
 	];
+	G.settingsByName=[];
+	for (var i in G.settings){G.settingsByName[G.settings[i].name]=G.settings[i];}
+	G.getSetting=function(name){return G.settingsByName[name].value;}
+	G.setSetting=function(name,value)
+	{
+		var me=G.settingsByName[name];
+		me.value=value;
+		if (me.onChange) me.onChange();
+	}
+	G.setSetting('halffast',0);
 var cssId = 'betaCss';  
 if (!document.getElementById(cssId))
 {
