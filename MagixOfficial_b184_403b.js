@@ -1335,92 +1335,13 @@ G.writeMSettingButton=function(obj)
 		G.updateSpeedButtons();
 	}
 	//Modded Logic
-	G.Logic=function(forceTick)
-	{
-		//forceTick lets us execute logic and force a tick update
-		if (G.sequence=='main')
-		{
-			G.oldSpeed=G.speed;
-			G.speed=1;
-			if (G.getSetting('fast')) G.speed=2;
-			if (G.getSetting('paused')) G.speed=0;
-			if (G.getSetting('forcePaused')) G.speed=0;
-			if (forceTick) G.speed=1;
 			
-			if (G.speed==0)
-			{
-				//accumulate fast ticks when paused
-				G.nextFastTick--;
-				if (G.nextFastTick<=0) {G.fastTicks++;G.nextFastTick=G.tickDuration;}
-			}
-			
-			if (G.oldSpeed!=G.speed)
-			{
-				if (G.speed==1)
-				{
-					G.wrapl.classList.remove('speed0');
-					G.wrapl.classList.add('speed1');
-					G.wrapl.classList.remove('speed2');
-				}
-				else if (G.speed==2)
-				{
-					G.wrapl.classList.remove('speed0');
-					G.wrapl.classList.remove('speed1');
-					G.wrapl.classList.add('speed2');
-				}
-				else
-				{
-					G.wrapl.classList.add('speed0');
-					G.wrapl.classList.remove('speed1');
-					G.wrapl.classList.remove('speed2');
-				}
-			}
-			
-			if (G.T>0 && G.oldSpeed!=G.speed)
-			{
-				if (G.speed==0)//just paused
-				{
-					l('foreground').style.display='block';
-					G.middleText('- Pause -<br><small>Press space to unpause</small>');
-				}
-				else if (G.oldSpeed==0)//just unpaused
-				{
-					l('foreground').style.display='none';
-					if (G.T>0) G.middleText('- Unpaused -');
-				}
-				else if (G.speed==1)
-				{
-					G.middleText('- Speed x1 -');
-				}
-				else if (G.speed==2)
-				{
-					G.middleText('- Speed x30 -');
-				}
-			}
-			
-			if (G.speed>0)//not paused
-			{
-				if (G.nextTick<=0 || forceTick)
-				{
-					if (G.speed==2)
-					{
-						//use up fast ticks when on fast speed
-						G.fastTicks--;
-						if (G.fastTicks<=0) {G.fastTicks=0;G.speed=1;G.setSetting('fast',0);}
-					}
-	
 					G.tickChooseBoxes();
 					G.nextTick=(G.speed==1?G.tickDuration:1);
 					G.tick++;
 					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
 					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
 					l('date').innerHTML='Century X, Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
-				}
-				if (!forceTick) G.nextTick--;
-			}
-			
-			l('fastTicks').innerHTML=G.BT(G.fastTicks);
-		}}
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
