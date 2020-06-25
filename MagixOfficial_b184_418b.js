@@ -1385,7 +1385,46 @@ G.writeMSettingButton=function(obj)
 		}
 	
 		var str='<div class="messageTimestamp" title="century '+(G.century+1)+','+'year '+(G.year+1)+', day '+(G.day+1)+'">'+'C:'+(G.century+1)+'<br> Y:'+(G.year+1)+'</div>'+	
-	
+		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
+		
+		if (mergeWith) mergeWith.l.innerHTML=str;
+		else
+		{
+			var div=document.createElement('div');
+			div.innerHTML=str;
+			div.className='message popInVertical '+(me.type).replaceAll(' ','Message ')+'Message';
+			G.messagesl.appendChild(div);
+			me.l=div;
+			G.messages.push(me);
+			if (G.messages.length>G.maxMessages)
+			{
+				var el=G.messagesl.firstChild;
+				for (var i in G.messages)
+				{
+					if (G.messages[i].l==el)
+					{
+						G.messages.splice(i,1);
+						break;
+					}
+				}
+				G.messagesl.removeChild(el);
+				//G.messages.pop();
+				//G.messagesl.removeChild(G.messagesl.firstChild);
+			}
+			if (!scrolled) G.messagesWrapl.scrollTop=G.messagesWrapl.scrollHeight-G.messagesWrapl.offsetHeight;
+		}
+		G.addCallbacks();
+	}
+	G.initMessages=function()
+	{
+		G.messages=[];
+		G.messagesl=l('messagesList');
+		G.messagesWrapl=l('messages');
+		G.messagesl.innerHTML='';
+	}
+	G.updateMessages=function()
+	{
+	}
 		
 	//Modded logic
 		G.Logic=function(forceTick)
