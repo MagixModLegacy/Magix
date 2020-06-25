@@ -1406,7 +1406,7 @@ G.writeMSettingButton=function(obj)
 				if (speed==0) {if (G.getSetting('animations')) {triggerAnim(l('pauseButton'),'plop');} l('pauseButton').classList.add('on');l('playButton').classList.remove('on');l('halffastButton').classList.remove('on');l('fastButton').classList.remove('on');}
 				else if (speed==1) {if (G.getSetting('animations')) {triggerAnim(l('playButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.add('on');l('fastButton').classList.remove('on');l('halffastButton').classList.remove('on');}
 				else if (speed==1.5) {if (G.getSetting('animations')) {triggerAnim(l('halffastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('halffastButton').classList.add('on');l('fastButton').classList.remove('on');}
-				else if (speed==2) {if (G.getSetting('animations')) {triggerAnim(l('fastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');l('fastButton').classList.add('on');}
+				else if (speed==2) {if (G.getSetting('animations')) {triggerAnim(l('fastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('halffastButton').classList.remove('on');l('fastButton').classList.add('on');}
 			}
 	}
 	//Modded Logic
