@@ -1478,13 +1478,14 @@ G.writeMSettingButton=function(obj)
 					G.exploreOwnedTiles=0;
 					G.exploreNewTiles=0;
 					
-					
+					G.century=0
 					G.tickChooseBoxes();
 					G.nextTick=(G.speed==1?G.tickDuration:1);
 					G.tick++;
 					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
 					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
-					l('date').innerHTML='Century X, Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+					if (G.year>100) {G.year=0;G.century++}
+					l('date').innerHTML='Century '+G.century', Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
 				}
 				if (!forceTick) G.nextTick--;
 			}
