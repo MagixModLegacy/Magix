@@ -1328,6 +1328,7 @@ G.writeMSettingButton=function(obj)
 			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.hh',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
 		})+
+	}
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
