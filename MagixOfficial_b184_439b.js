@@ -802,7 +802,7 @@ G.props['fastTicksOnResearch']=150;
 				//G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)
 				/////////////////////
 			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: @People murdered: '+(G.getRes('population').amount/150+(G.year+G.achievByName['Unhappy'].won*4/5))+' <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
-				G.lose('population',G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5),'The Madness')
+				G.lose('population',(G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
 		}
 		}
 	}
