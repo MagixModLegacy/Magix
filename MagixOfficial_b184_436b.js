@@ -798,7 +798,11 @@ G.props['fastTicksOnResearch']=150;
 		if(G.has('t2')){
 			if(G.getRes('population').amount>=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)){
 				var popinfo=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)
-			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: report <br>Population above '+popinfo+' displays cruel behaviours'})
+				//Murdered by Madness
+				var murdered=G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)
+				/////////////////////
+			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: @People murdered: '+murdered+' <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
+				G.lose('population',murdered,'The Madness')
 		}
 		}
 	}
