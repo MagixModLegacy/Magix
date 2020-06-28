@@ -795,6 +795,11 @@ G.props['fastTicksOnResearch']=150;
 				st11=true
 			}
 		}
+		if(G.has('t2')){
+			if(G.getRes('population').amount>=50-(G.achievByName['Unhappy'].won*2.5)){
+			   G.Message({type:'bad','Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report:'})
+		}
+		}
 	}
 	
 	G.props['new day lines']=[
@@ -946,6 +951,16 @@ G.props['fastTicksOnResearch']=150;
 		return mult;
 		}else{
 		var mult=1;
+		if (G.getRes('population').amount>0)
+		{
+			var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
+			happiness=Math.max(-2,Math.min(2,happiness));
+			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
+			else mult=1/(Math.pow(2,-happiness+1)/2);
+		}
+		return mult;
+		}else if(G.has('t2')){
+		var mult=1-(G.techN/100-G.achievByName['Unhappy'].won);
 		if (G.getRes('population').amount>0)
 		{
 			var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
