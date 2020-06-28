@@ -959,17 +959,18 @@ G.props['fastTicksOnResearch']=150;
 			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
 			else mult=1/(Math.pow(2,-happiness+1)/2);
 		}
+	}
 		return mult;
 		if(G.has('t2')){
-		var mult=1-(G.techN/100-G.achievByName['Unhappy'].won);
-		if (G.getRes('population').amount>0)
-		{
-			var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
-			happiness=Math.max(-2,Math.min(2,happiness));
-			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
-			else mult=1/(Math.pow(2,-happiness+1)/2);
-		}
-		return mult;
+			var mult=1-(G.techN/100-G.achievByName['Unhappy'].won);
+			if (G.getRes('population').amount>0)
+				{
+				var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
+				happiness=Math.max(-2,Math.min(2,happiness));
+				if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
+				else mult=1/(Math.pow(2,-happiness+1)/2);
+			}
+			return mult;
 		}
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////
