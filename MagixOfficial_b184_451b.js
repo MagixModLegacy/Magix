@@ -797,6 +797,7 @@ G.props['fastTicksOnResearch']=150;
 		if(G.has('t2')){
 			if(G.getRes('population').amount>=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)){
 				var popinfo=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)
+				G.gain('unhappy',1)
 				//Murdered by Madness
 				//G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)
 				/////////////////////
@@ -1962,7 +1963,7 @@ G.writeMSettingButton=function(obj)
 			if (amount<-200) amount=-200;
 			}else if(G.has('t2')){
 			if (amount>200) amount=200;
-			if (amount<-200) amount=-200-(G.techN/2);
+			if (amount<-200) amount=-200-(G.techN/2)-G.getRes('unhappy').amount;
 			}else{
 			if (amount>200) amount=200;
 			if (amount<-200) amount=-200;
