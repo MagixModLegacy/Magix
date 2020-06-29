@@ -10,7 +10,7 @@ func:function(){
 //===========================
 		G.sellUnitByName=function(name,amount,any)
 	{
-		var out=false;
+		var out=true;
 		var unit=G.getUnitByName(name);
 		if (unit) out=G.taskBuyUnit(unit,-amount,any);
 		return out;
