@@ -8,11 +8,11 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-		G.sellUnitByName=function(name,amount,any)
+		G.sellUnitByName=function(name,amount)
 	{
 		var out=true;
 		var unit=G.getUnitByName(name);
-		if (unit) out=G.taskBuyUnit(unit,-amount,any);
+		if (unit) out=G.taskBuyUnit(unit,-amount);
 		return out;
 	}
 var cssId = 'betaCss'; 
