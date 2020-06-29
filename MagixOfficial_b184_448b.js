@@ -805,13 +805,14 @@ G.props['fastTicksOnResearch']=150;
 				G.gain('adult',(G.getRes('corpse').amount/150+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
 				if(G.getRes('happiness').getDisplayAmount()="-500%"){
 					G.lose('population',G.getRes('population').amount,'The Madness')
-					G.dialogue.popup(function(div){
+				G.dialogue.popup(function(div){
             return '<div style="width:320x;min-height:200px;height:75%;">'+
                 '<div class="fancyText title"><font color="red">Trial failed</font></div>'+
                 '<tt><div class="fancyText">You failed Unhappy trial by reaching -500% unhappiness cap</tt>'+
         '<br>All people murdered themselves leaving no one alive.<br> This is cruel.<br>'+
                 '<br><br>'+
-                'But you can try again, by reaching Pantheon again and choose Bersaria</div>'+
+                'But you can try again, by reaching Pantheon again and choose Bersaria</div><br>'+
+                'Technical note: Start a new game , you know how.'+
             '</div></div>'
 })
 				}
