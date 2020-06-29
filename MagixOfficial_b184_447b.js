@@ -8,13 +8,6 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-		G.sellUnitByName=function(name,amount)
-	{
-		var out=true;
-		var unit=G.getUnitByName(name);
-		if (unit) out=G.taskBuyUnit(unit,-amount);
-		return out;
-	}
 var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -809,7 +802,19 @@ G.props['fastTicksOnResearch']=150;
 				/////////////////////
 			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+(G.getRes('population').amount/150+(G.year+G.achievByName['Unhappy'].won*4/5))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
 				G.lose('adult',(G.getRes('population').amount/150+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
-				//G.lose('
+				G.gain('adult',(G.getRes('corpse').amount/150+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+				if(G.getRes('happiness').getDisplayAmount()="-500%"){
+					G.lose('population',G.getRes('population').amount,'The Madness')
+					G.dialogue.popup(function(div){
+            return '<div style="width:320x;min-height:200px;height:75%;">'+
+                '<div class="fancyText title"><font color="red">Trial failed</font></div>'+
+                '<tt><div class="fancyText">You failed Unhappy trial by reaching -500% unhappiness cap</tt>'+
+        '<br>All people murdered themselves leaving no one alive.<br> This is cruel.<br>'+
+                '<br><br>'+
+                'But you can try again, by reaching Pantheon again and choose Bersaria</div>'+
+            '</div></div>'
+})
+				}
 		}
 		}
 	}
@@ -5948,6 +5953,9 @@ if (!document.getElementById(cssId))
 		name:'victory point',
 		desc:'You can gain Victory Points for completing Seraphin\'s Trial. 11 of 12 trials are repeatable. After first completion of the trial it grants 1 VP, after 2nd succesful attempt in total grants 3 VP\'s and so on. They can\'t be spent but their amount may provide extra bonuses. ',
 		icon:[0,28,'magixmod'],
+	});
+	new G.Res({
+		name:'unhappy',
 	});
 	/*=====================================================================================
 	UNITS
@@ -14121,7 +14129,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'se02':'on'},
 		category:'trial',
 		effects:[
-			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Unhappy. I am a Madness. This plane is full of anger... No way to make'em happy. You will have to handle it. In fact people's happiness will be always at -200% level and can't be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Only Gatherers are not harmed by The Madness's power. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!")) {
+			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Unhappy. I am a Madness. This plane is full of anger... No way to make'em happy. You will have to handle it. In fact people's happiness will be always at -200% level and can't be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Reaching -500% happiness causes Madness to kick you out of this plane. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!")) {
     alert("Alright... Handle the Madness.");     
 		alert("Then the Unhappy trial begins. After clicking this popup just refresh this page.");
 		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t2=G.traitByName['t2'];var trial=G.traitByName['trial'];G.gainTrait(t2);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.Save();
