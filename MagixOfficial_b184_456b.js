@@ -9829,7 +9829,7 @@ getCosts:function()
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
             if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
-            } if (G.hasNot('Eotm') && G.has('t2') && G.has('fear of death')){
+            }else if (G.hasNot('Eotm') && G.has('t2') && G.has('fear of death')){
               return { 'insight' : calcCost('wisdom') , 'blood':1+G.techN+G.year/10*G.achievByName['Unhappy'].won+1}
             }else if(G.has('Eotm') && G.hasNot('do we need that much science?')){
             return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
