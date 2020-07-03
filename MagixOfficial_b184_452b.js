@@ -804,6 +804,7 @@ G.props['fastTicksOnResearch']=150;
 			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+(G.getRes('population').amount/80+(G.year+G.achievByName['Unhappy'].won*4/5))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
 				G.lose('adult',(G.getRes('population').amount/80+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
 				G.gain('adult',(G.getRes('corpse').amount/80+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+				G.gain('blood',(G.getRes('corpse').amount/80+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
 				if(G.getRes('happiness').getDisplayAmount()=="-500%"){
 					G.lose('population',G.getRes('population').amount,'The Madness')
 				G.dialogue.popup(function(div){
@@ -5959,6 +5960,12 @@ if (!document.getElementById(cssId))
 	new G.Res({
 		name:'unhappy',
 	});
+	new G.Res({
+		name:'blood',
+		desc:'You gain blood each year from Madness victims equal to murdered people. Required to glory Bersaria and to research next things with [fear of death] active. You start with 200 [blood] in that case.',
+		icon:[0,28,'magixmod'],
+		startWith:250
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -9347,6 +9354,22 @@ new G.Unit({
 		req:{'Outstanding wisdom':true},
 		category:'discovery',
 	});
+	new G.Unit({
+		name:'statue of Madness',
+		desc:'@Leads to <b>Unhappy</b> trial completion. //A monument of anger and wrath. A wonder for Bersaria the Seraphin of Madness. Tall statue with a mad face and some bonfires. <><font color="#ffdddd">It is insane...</font>',
+		wonder:'Unhappy',
+		icon:[7,26,'magixmod'],
+		wideIcon:[6,26,'magixmod'],
+		cost:{'basic building materials':250,'gold block':10},
+		costPerStep:{'gold block':15,'blood':(10*(G.achievByName['Unhappy'].won+1.2)),'basic building materials':100,'gem block':1},
+		steps:100,
+		messageOnStart:'You started to build wonder for <b>Bersaria</b>. <br>This statue will have a angry face at top. Terrain is covered by some sort of fog. But you do it to stop the Madness and come back to normal plane. Let the statue be built!',
+		finalStepCost:{'population':250,'gem block':5,'blood':100},
+		finalStepDesc:'To perform the final step 25[population,People],5 [gem block]s and 100[blood] must be sacrificed in order to escape that plane of Wrath and Madness and award you with <b>Victory points</b>.',
+		use:{'land':10},
+		req:{'monument-building':true,'t2':true},
+		category:'wonder',
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -9805,6 +9828,8 @@ getCosts:function()
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
             if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
+            } if (G.hasNot('Eotm') && G.has('t2') && G.has('fear of death')){
+              return { 'insight' : calcCost('wisdom') , 'blood':1+G.techN+G.year/10*G.achievByName['Unhappy'].won+1}
             }else if(G.has('Eotm') && G.hasNot('do we need that much science?')){
             return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
 	    }else if(G.has('Eotm') && G.has('do we need that much science?')){
@@ -9881,6 +9906,8 @@ getCosts:function()
 		{
 			if (G.hasNot('Eotm')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom</b> resource.':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
+			}else if(G.hasNot('Eotm') && G.has('t2') && G.has('fear of death'){
+			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom</b> resource.<br>The blood cost scales with amount of techs owned.(you currently own: '+G.getRes('blood').amount+'Blood)':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
 			}
 			if (G.has('Eotm')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom II & Education</b> resources.':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
