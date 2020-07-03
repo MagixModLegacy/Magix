@@ -9906,7 +9906,7 @@ getCosts:function()
 		{
 			if (G.hasNot('Eotm')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom</b> resource.':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
-			}else if(G.hasNot('Eotm') && G.has('t2') && G.has('fear of death'){
+			}else if(G.hasNot('Eotm') && G.has('t2') && G.has('fear of death')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom</b> resource.<br>The blood cost scales with amount of techs owned.(you currently own: '+G.getRes('blood').amount+'Blood)':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
 			}
 			if (G.has('Eotm')){
