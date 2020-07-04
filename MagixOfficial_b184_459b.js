@@ -5540,6 +5540,10 @@ if (!document.getElementById(cssId))
 					G.getDict('extended basic catalog').cost = {'influence II':5}
 					G.getDict('extended precious catalog').cost = {'influence II':5}
 					G.getDict('extended essences catalog').cost = {'influence II':5}
+						G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+						G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+						G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+						G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 				}
 			}
 			if(G.has('Mining strategy'))
@@ -5573,6 +5577,10 @@ if (!document.getElementById(cssId))
 					G.getDict('bazaar_sell').use={'worker':2,'land':1}
 					G.getDict('market_buy').use={'worker':3,'land':1}
 					G.getDict('market_sell').use={'worker':3,'land':1}
+					G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+					G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+					G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+					G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 				}
 				if(G.has('Backshift') && G.hasNot('Essence trading')){
 					G.getDict('bazaar_buy').icon=[29,24,'magixmod',26,24,'magixmod']
@@ -5712,6 +5720,7 @@ if (!document.getElementById(cssId))
 			}else{
 				G.getDict('pagoda of passing time').cost={'basic building materials':225}
 			}
+			
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -12565,6 +12574,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'inspiration II':2}},
+			{type:'function',func:function(){G.Message({type:'tutorial',text:'Next part of doctrine is a trait. You don\'t have to roll new researches. All you should do now is waiting and no spending any essentials, because next part of doctrine despite it is a Trait but it is not cheap thing. Even numbered stages are traits while odd numbered stages are represented as researches.',icon:[32,27,'magixmod']})}}
 			]
 	});
 		new G.Trait({
@@ -12576,7 +12586,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'inspiration II':2}},
-			],
+		]
 		category:'knowledge',
 		chance:40
 	});
@@ -12675,11 +12685,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight':997,'culture':264},
 		req:{'ingredient crafting':true},
 		effects:[
-			{type:'function',func:function(){
-			 	G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5});
-				G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5});
-				G.getDict('market_buy').effects.push({type:'mult',value:1.5});
-				G.getDict('market_sell').effects.push({type:'mult',value:1.5});
 			}}
 		]
 	});
