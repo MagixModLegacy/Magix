@@ -801,10 +801,10 @@ G.props['fastTicksOnResearch']=150;
 				//Murdered by Madness
 				//G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)
 				/////////////////////
-			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+(G.getRes('population').amount/80+(G.year+G.achievByName['Unhappy'].won*4/5))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
-				G.lose('adult',(G.getRes('population').amount/80+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
-				G.gain('adult',(G.getRes('corpse').amount/80+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
-				G.gain('blood',(G.getRes('corpse').amount/80+(G.year+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+(G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
+				G.lose('adult',(G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+				G.gain('corpse',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+				G.gain('blood',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
 				if(G.getRes('happiness').getDisplayAmount()=="-500%"){
 					G.lose('population',G.getRes('population').amount,'The Madness')
 				G.dialogue.popup(function(div){
@@ -9683,8 +9683,8 @@ new G.Unit({
 		costPerStep:{'gold block':15,'blood':(10*(G.achievByName['Unhappy'].won+1.2)),'basic building materials':100,'gem block':1},
 		steps:100,
 		messageOnStart:'You started to build wonder for <b>Bersaria</b>. <br>This statue will have a angry face at top. Terrain is covered by some sort of fog. But you do it to stop the Madness and come back to normal plane. Let the statue be built!',
-		finalStepCost:{'population':(250*(G.achievByName['Unhappy'].won+1/10)),'gem block':5,'blood':(100*G.achievByName['Unhappy'].won+1.5)},
-		finalStepDesc:'To perform the final step 250[population,People],5 [gem block]s and 100[blood] must be sacrificed in order to escape that plane of Wrath and Madness and award you with <b>Victory points</b>.',
+		finalStepCost:{'population':(250*(G.achievByName['Unhappy'].won+1/10)),'gem block':5,'blood':(100*(G.achievByName['Unhappy'].won+1.5))},
+		finalStepDesc:'To perform the final step '+250*(G.achievByName['Unhappy'].won+1/10)+'[population,People],5 [gem block]s and '+100*(G.achievByName['Unhappy'].won+1.5)+'[blood] must be sacrificed in order to escape that plane of Wrath and Madness and award you with <b>Victory points</b>.',
 		use:{'land':10},
 		req:{'monument-building':true,'t2':true},
 		category:'wonder',
@@ -12715,6 +12715,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':5},
 		req:{'Doctrine of the dark wormhole 4/5':true},
 		effects:[
+			{type:'function',func:function(){G.Message({type:'story2',text:'Oh. <b>Mo\' beauty</b> made cities look much, much nicer. Lanterns, flower decors everywhere. Sometimes even <b>tools</b> (not joking now) have some shapes,patterns carved. And it is not any festival. You wander and even some huts get even more beautiful than ever.'})}}
 			]
 	});
 				new G.Tech({
