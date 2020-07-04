@@ -12586,7 +12586,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'inspiration II':2}},
-		]
+		],
 		category:'knowledge',
 		chance:40
 	});
