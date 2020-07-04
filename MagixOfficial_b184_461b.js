@@ -12685,7 +12685,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight':997,'culture':264},
 		req:{'ingredient crafting':true},
 		effects:[
-			}}
+			
 		]
 	});
 		new G.Tech({
