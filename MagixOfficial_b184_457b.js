@@ -11445,6 +11445,9 @@ autobuy(G.year)
 		cost:{'culture':5,'faith':2},
 		chance:10,
 		req:{'fear of death':true,'oral tradition':true},
+		effects:[
+			{type:'function',func:function(){G.Message({type:'tutorial',text:'You obtained <b>Belief in the afterlife</b> trait.<br>From now you may obtain <b><font color="fuschia">Monument-building</font></b> research that will unlock you very first wonder. <br>Belief may evolve into <b>Culture of the afterlife</b> unlocking more.',icon:[32,16,'magixmod']})}},
+		]
 	});
 	new G.Trait({
 		name:'belief in revenants',
