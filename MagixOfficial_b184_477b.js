@@ -374,7 +374,7 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['game loaded']=function()
 	{
-		
+		 G.setPolicyModeByName('tutorialdebug','off');
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
@@ -876,6 +876,7 @@ G.props['fastTicksOnResearch']=150;
 		
 		if (G.on)
 		{
+			 G.setPolicyModeByName('tutorialdebug','on');
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
 			{
 				//show a random atmospheric message occasionally on new days
@@ -9866,7 +9867,7 @@ getCosts:function()
 			if (G.on);G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
-			},req:{'language':false}}
+			},req:{'tutorialdebug':'on'}}
 		],
 		chance:3,
 	});
@@ -14137,6 +14138,11 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	alert("See you soon");
 }}}
 				],
+	});
+	//debug
+	new G.Policy({
+		name:'tutorialdebug',
+		startMode:'on',		
 	});
 	/*=======================================
 	Icon sheet for custom land tiles
