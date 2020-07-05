@@ -9861,8 +9861,8 @@ getCosts:function()
             return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
 	    }if(G.has('Eotm') && G.has('do we need that much science?')){
 		    return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.1) }
-	    }if (G.hasNot('Eotm') && G.has('t2')){
-              return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.01)}
+	    }if (G.has('t2')){
+              return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.03)}
             }
         },
 		getCardCosts:function(what)
