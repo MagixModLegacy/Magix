@@ -9857,7 +9857,7 @@ getCosts:function()
             if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
             }else if (G.hasNot('Eotm') && G.has('t2') && G.has('fear of death')){
-              return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.01+(G.year/10)}
+              return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.01+(G.year/10))}
             }else if(G.has('Eotm') && G.hasNot('do we need that much science?')){
             return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
 	    }else if(G.has('Eotm') && G.has('do we need that much science?')){
