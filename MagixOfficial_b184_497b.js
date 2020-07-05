@@ -976,6 +976,17 @@ G.props['fastTicksOnResearch']=150;
 			else mult=1/(Math.pow(2,-happiness+1)/2)-((G.getRes('Berry seeds').amount/500)*G.achievByName['Patience'].won);
 		}
 		return mult;
+			else if(G.has('t2')){
+			var mult=1-(G.techN/100-G.achievByName['Unhappy'].won);
+			if (G.getRes('population').amount>0)
+				{
+				var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
+				happiness=Math.max(-2,Math.min(2,happiness));
+				if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
+				else mult=1/(Math.pow(2,-happiness+1)/2);
+			}
+			return mult;
+		
 		}else{
 		var mult=1;
 		if (G.getRes('population').amount>0)
@@ -987,17 +998,7 @@ G.props['fastTicksOnResearch']=150;
 		}
 	}
 		return mult;
-		else if(G.has('t2')){
-			var mult=1-(G.techN/100-G.achievByName['Unhappy'].won);
-			if (G.getRes('population').amount>0)
-				{
-				var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
-				happiness=Math.max(-2,Math.min(2,happiness));
-				if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
-				else mult=1/(Math.pow(2,-happiness+1)/2);
-			}
-			return mult;
-		}
+		
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
