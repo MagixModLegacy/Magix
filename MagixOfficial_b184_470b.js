@@ -9857,7 +9857,7 @@ getCosts:function()
 		req:{'speech':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
-			{type:'function',func:function(){
+			{type:'function',func:function(oneTime){
 			if(G.hasNot('language'));G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
@@ -9874,7 +9874,7 @@ getCosts:function()
 		req:{'language':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':20,'wisdom':20}},
-			{type:'function',func:function(){G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})}}
+			{type:'function',func:function(oneTime){G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})}}
 		],
 	});
 	
