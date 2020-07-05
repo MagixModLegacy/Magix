@@ -670,7 +670,7 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		G.setPolicyModeByName('debugtutorial','off');
+		
 	}
 	G.funcs['new year']=function()
 	{
@@ -822,6 +822,7 @@ G.props['fastTicksOnResearch']=150;
 				}
 		}
 		}
+		
 	}
 	
 	G.props['new day lines']=[
@@ -909,7 +910,7 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-			G.setPolicyModeByName('debugtutorial','on');
+
 		}
 	}
 	
@@ -9862,7 +9863,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
 			{type:'function',func:function(oneTime){
-			if (G.checkPolicy('debugtutorial')=='on');G.Message({
+			if (G.on);G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
 			}}
@@ -14136,11 +14137,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	alert("See you soon");
 }}}
 				],
-	});
-	//Another debug policy. For moment of obtaining new tech /trait and it debugs tip messages
-	new G.Policy({
-		name:'debugtutorial',
-		startMode:'on'
 	});
 	/*=======================================
 	Icon sheet for custom land tiles
