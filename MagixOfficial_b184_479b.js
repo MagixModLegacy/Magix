@@ -374,10 +374,7 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['game loaded']=function()
 	{
-		if (G.checkPolicy('tutorialdebug')=='on') //Toggle SFX
-		{
-		 G.setPolicyModeByName('tutorialdebug','off');
-		}
+		
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
@@ -14147,6 +14144,13 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'tutorialdebug',
 		startMode:'on',		
 	});
+	G.funcs['game loaded']=function()
+	{
+		if (G.checkPolicy('tutorialdebug')=='on') //Toggle SFX
+		{
+		 G.setPolicyModeByName('tutorialdebug','off');
+		}
+	}
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
