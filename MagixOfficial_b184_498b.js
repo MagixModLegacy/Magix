@@ -976,7 +976,7 @@ G.props['fastTicksOnResearch']=150;
 			else mult=1/(Math.pow(2,-happiness+1)/2)-((G.getRes('Berry seeds').amount/500)*G.achievByName['Patience'].won);
 		}
 		return mult;
-			else if(G.has('t2')){
+		}else if(G.has('t2')){
 			var mult=1-(G.techN/100-G.achievByName['Unhappy'].won);
 			if (G.getRes('population').amount>0)
 				{
