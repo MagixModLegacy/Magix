@@ -871,7 +871,7 @@ G.props['fastTicksOnResearch']=150;
 	shuffle(G.props['new day lines']);
 	G.funcs['new day']=function()
 	{
-		G.setPolicyModeByName('debugtutorial','on');
+		
 		if (G.on)
 		{
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
@@ -908,6 +908,7 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
+			G.setPolicyModeByName('debugtutorial','on');
 		}
 	}
 	
