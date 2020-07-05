@@ -374,7 +374,7 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['game loaded']=function()
 	{
-		G.getRes('tutorialdebug').amount=0
+	
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
@@ -874,7 +874,7 @@ G.props['fastTicksOnResearch']=150;
 	shuffle(G.props['new day lines']);
 	G.funcs['new day']=function()
 	{
-		G.getRes('tutorialdebug').amount=3
+		
 		if (G.on)
 		{
 			
