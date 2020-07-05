@@ -14138,6 +14138,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	//Another debug policy. For moment of obtaining new tech /trait and it debugs tip messages
 	new G.Policy({
 		name:'debugtutorial',
+		startMode:'on'
 	});
 	/*=======================================
 	Icon sheet for custom land tiles
