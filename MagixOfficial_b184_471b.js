@@ -374,6 +374,7 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['game loaded']=function()
 	{
+		G.setPolicyModeByName('debugtutorial','off');
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
@@ -870,6 +871,7 @@ G.props['fastTicksOnResearch']=150;
 	shuffle(G.props['new day lines']);
 	G.funcs['new day']=function()
 	{
+		G.setPolicyModeByName('debugtutorial','on');
 		if (G.on)
 		{
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
@@ -9858,7 +9860,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
 			{type:'function',func:function(oneTime){
-			if(G.hasNot('language'));G.Message({
+			if (G.checkPolicy('debugtutorial')=='on');G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
 			}}
@@ -14132,6 +14134,10 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	alert("See you soon");
 }}}
 				],
+	});
+	//Another debug policy. For moment of obtaining new tech /trait and it debugs tip messages
+	new G.Policy({
+		name:'debugtutorial',
 	});
 	/*=======================================
 	Icon sheet for custom land tiles
