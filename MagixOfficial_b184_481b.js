@@ -876,7 +876,7 @@ G.props['fastTicksOnResearch']=150;
 		
 		if (G.on)
 		{
-			 G.setPolicyModeByName('tutorialdebug','on');
+			
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
 			{
 				//show a random atmospheric message occasionally on new days
@@ -9843,7 +9843,7 @@ getCosts:function()
 			{type:'provide res',what:{'authority':5}},
 			{type:'show res',what:['influence']},
 			{type:'show context',what:['gather']},
-			{type:'function',func:function(){G.setPolicyModeByName('tutorialdebug','off');}}
+			
 		],
 	});
 	new G.Tech({
@@ -9864,11 +9864,11 @@ getCosts:function()
 		req:{'speech':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
-			{type:'function',func:function(oneTime){
+			{type:'function',func:function(){
 			G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
-			},req:{'tutorialdebug':'on'}}
+			}}
 		],
 		chance:3,
 	});
@@ -13492,7 +13492,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'tribalism':false},
 		cost:{},
 			effects:[
-			{type:'function',func:function(){}},
+			{type:'function',func:function(){G.getDict('blood').category='main'}},
 		],
 	});
 	/*=====================================================================================
@@ -14139,11 +14139,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	alert("See you soon");
 }}}
 				],
-	});
-	//debug
-	new G.Policy({
-		name:'tutorialdebug',
-		startMode:'on',		
 	});
 	
 	/*=======================================
