@@ -9973,9 +9973,8 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'speech':true},
 		effects:[
-			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
-			{type:'function',func:function(){
-		
+			{type:'provide res',what:{'inspiration':30,'wisdom':30}}
+			
 		],
 		chance:3,
 	});
