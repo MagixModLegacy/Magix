@@ -4868,15 +4868,37 @@ if (!document.getElementById(cssId))
 		},
 		category:'flowersanddyes',
 	});//22
-	let tech100=false
+	let langstory=false
+	let oraltradstory=false
+	let toolstory=false
+	let canoestory=false
+	let sedestory=false
+	let boatstory=false
+	let ritstory=false
+	let burystory=false
+	let firestory=false
+	let sewstory=false
+	let weastory=false
+	let skinnsto=false
+	let gem=false
+	let writer=false
 	let tech50=false
+	let tech100=false
 	let trait20=false
 	let pol15=false
-	let gem=false
+	let guru=false
 	let explorepop=false
-	let cure=false
+	let rofpopup=false
+	let bapopup=false
+	let monument=false
 	let pot=false
+	let cure=false
+	let wiztip=false
+	let esstip=false
+	let weltip=false
 	let trendtip=false
+	let doctip=false
+	let mobeauty=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4889,9 +4911,63 @@ if (!document.getElementById(cssId))
 			
 			if(G.policy.length >= 15 && !pol15 && G.policy.length <= 18){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
 			}
+			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
+				G.Message({
+				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
+				icon:[1,28,'magixmod']})
+				langstory=true
+			}
+			if(G.has('oral tradition') && !oraltradstory && G.hasNot('ritualism')){
+				G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})
+				oraltradstory=true
+			}
+			if(G.has('tool-making') && !toolstory && G.hasNot('spears')){
+			G.Message({type:'important',text:'Finally people can use and craft something better than knapped tools, rocks etc.',icon:[1,9]})
+			toolstory=true
+			}
+			if(G.has('canoes') && !canoestory && G.hasNot('boat building')){
+			G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})
+				canoestory=true
+			}
+			if(G.has('sedentism') && !sedestory && G.hasNot('building')){
+			G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})
+			sedestory=true
+			}
+			if(G.has('boat building') && !boatstory && G.hasNot('Stronger faith')){
+			G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})
+			boatstory=true
+			}
+			if(G.has('ritualism') && !ritstory && G.hasNot('burial')){
+			G.Message({type:'tutorial',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})
+			ritstory=true
+			}
+			if (G.has('burial') && !burystory && !G.has('monument-building')){
+			G.Message({type:'important',text:'The view of unburied corpses fears you and your settlers. Now they know that to calm down people you can just bury it.',icon:[13,2]})
+				burystory=true
+			}
+			if(G.has('fire-making') && !firestory && !G.has('construction')){
+			   G.Message({type:'tutorial',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
+			firestory=true
+			}
+				if(G.has('sewing') && !sewstory && G.hasNot('weaving')){
+				G.Message({type:'important',text:'You want some clothing. As long as you won\'t hire a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})
+					sewstory=true
+				}
+				if(G.has('weaving') && !weastory && G.hasNot('monument-building')){
+				G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})
+					weastory=true
+				}
+				if(G.has('skinning') && !skinnsto && G.hasNot('city planning')){
+				G.Message({type:'important',text:'You hope that primitive clothing from hide will make people happier. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})
+				skinnsto=true
+				}
 				if(G.getRes('gem block').amount>=10 && !gem && G.hasNot('monument-building')){
 				G.Message({type:'important',text:'Oh, shiny gem blocks! You take one and hug it... So cute. : )',icon:[choose([17,18]),8]})
 					gem=true
+				}
+				if(G.has('writing') && !writer && G.has('caligraphy') && G.has('alphabet 1/3') && G.hasNot('monument-building') && G.hasNot('alphabet 2/3')){
+				G.Message({type:'important',text:'You managed to make people being able to write. Well... not everyone has readable writing... yet.',icon:[17,27,'magixmod']})
+					writer=true
 				}
 				if(G.techN == 50 && !tech50){
 				G.Message({type:'important',text:'Your tribe now can survive. Thanks to you '+G.getName('ruler')+' , dreamers and mostly thanks to Insight for it. You stare at your tribe with smile.',icon:[8,12,8,4]})
@@ -4901,13 +4977,26 @@ if (!document.getElementById(cssId))
 				G.Message({type:'important',text:'This tribe develops some sort of traits.',icon:[8,12,8,4]})
 					trait20=true
 				}
-				
-			
+				if(G.has('Guru') && !guru && G.hasNot('An opposite side of belief')){
+				G.Message({type:'tutorial',text:'Since the moment when you unlocked <b>Guru</b> you may start gathering <font color="#ffaaff"><b>Science</b></font>. Just hire one or more Gurus and wait patiently till he will gather one for you. It is gonna be needed in the later stages of the game.',icon:[8,12,choose([3,4,5,6]),27,'magixmod']})
+					guru=true
+				}
+			if(G.has('rules of food') && !rofpopup && G.hasNot('sedentism')){
+				G.Message({type:'tutorial',text:'You now can control food and water rations. Your people seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one if you will ignore this.',icon:[4,28,'magixmod']})
+					rofpopup=true
+				}
 			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
 				G.Message({type:'tutorial',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover secrets hidden in new territory. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
 					explorepop=true
 				}
-		
+			if(G.has('belief in the afterlife') && !bapopup && G.hasNot('monument-building')){
+				G.Message({type:'tutorial',text:'You obtained <b>Belief in the afterlife</b> trait.<br>From now you may obtain <b><font color="fuschia">Monument-building</font></b> research that will unlock you very first wonder. <br>Belief may evolve into <b>Culture of the afterlife</b> unlocking more.',icon:[32,16,'magixmod']})
+					bapopup=true
+				}
+			if(G.has('monument-building') && !monument && G.hasNot('Wizard complex')){
+				G.Message({type:'tutorial',text:'Once you obtained <b>Monument-building</b> you may begin construction of very first wonder of your '+G.getName('inhabs')+'. Check it out in <u>Production</u> tab.',icon:[32,18,'magixmod']})
+					monument=true
+				}
 			if(G.getRes('pot').amount>=1 && !pot && G.hasNot('masonry')){
 				G.Message({type:'tutorial',text:'You finally can have some flower. Currently only you know how to pick flowers so while no one watch you , you pick a flower and some mud and put it into the pot.',icon:[32,15,'magixmod']})
 					pot=true
@@ -4916,12 +5005,32 @@ if (!document.getElementById(cssId))
 				G.Message({type:'tutorial',text:'You take a taste of cured meat. Yummy :) You are sure that people will love taste of cured food as well as you did.',icon:[32,17,'magixmod']})
 					cure=true
 				}
+			if(G.has('Wizard wisdom') && G.hasNot('Wizard complex') && !wiztip){
+				G.Message({type:'tutorial',text:'Now you unlocked Wizards. Don\'t hire too much of them because these guys love eating a lot so having too much of them may lead to tribe starvation. Instead try to make your tribe bigger, hire more gatherers, explore then hire some. They are must-have.',icon:[choose([24,23,22,21]),8,'magixmod']})
+					wiztip=true
+				}
+			if(G.has('Wizard towers') && G.hasNot('Belief in portals') && !esstip){
+				G.Message({type:'tutorial',text:'You unlocked <b>Wizard towers</b>.<br>These towers provide housing and produce Essences using Mana. Make sure first if you have enough Mana income to upkeep at least one of towers. And make sure that you have built <b>Essence storages</b>.',icon:[20,13,'magixmod']})
+					esstip=true
+				}
+			if(G.has('well-digging') && G.hasNot('monument-building') && !weltip){
+				G.Message({type:'tutorial',text:'Henceforth you can dig a well why wouldn\'t you teach the others and set up your first <b>Well</b>. Well is source of fresh water but only 1 well per 10 pieces of land can be constructed.',icon:[30,3,'magixmod']})
+					weltip=true
+				}
 			if(G.has('cart1') || G.has('cart2')){
 			if(G.hasNot('Wizard wisdom') && !trendtip){
 				G.Message({type:'tutorial',text:'Your '+G.getName('inhabs')+' have obtained their first trend. Trends increase income of specific resource. There are two types of trends: <li>"Decisional" - there you can pick what will be point of the trend(they appear as techs)</li><li>"Random" - you cannot choose what will be point of trend.(they appear as traits)</li><br>You are allowed to have at once random and decisional trend at one unit.',icon:[32,27,'magixmod']})
 					trendtip=true
 				}
 			}
+			if(G.has('Doctrine of the dark wormhole 1/5') && !doctip && G.hasNot('Doctrine of the dark wormhole 2/5')){
+			G.Message({type:'tutorial',text:'Next part of doctrine is a trait. You don\'t have to roll new researches. All you should do now is waiting and no spending any essentials, because next part of doctrine despite it is a Trait but it is not cheap thing. Even numbered stages are traits while odd numbered stages are represented as researches.',icon:[32,27,'magixmod']})
+				doctip=true
+			}
+			if(G.has('Mo\' beauty') && !mobeauty && G.hasNot('Doctrine of the dark wormhole 5/5'))
+			G.Message({type:'story2',text:'Oh. <b>Mo\' beauty</b> made cities look much, much nicer. Lanterns, flower decors everywhere. Sometimes even <b>tools</b> (not joking now) have some shapes,patterns carved. And it is not any festival. You wander and even some huts get even more beautiful than ever.'})
+			mobeauty=true
+		}
 		},
 		category:'flowersanddyes',
 	});//23
@@ -5882,9 +5991,6 @@ if (!document.getElementById(cssId))
 		desc:'You gain blood each year from Madness victims equal to murdered people. Required to glory Bersaria and to research next things with [fear of death] active. You start with 200 [blood] in that case.',
 		icon:[33,6,'magixmod'],
 		startWith:350
-	});
-	new G.Res({
-		name:'tutorialdebug',
 	});
 		/*=====================================================================================
 	ACHIEVEMENTS
@@ -9869,10 +9975,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
 			{type:'function',func:function(){
-			if(G.getRes('tutorialdebug').amount==3);G.Message({
-				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
-				icon:[1,28,'magixmod']})
-			}}
+		
 		],
 		chance:3,
 	});
@@ -9885,7 +9988,6 @@ getCosts:function()
 		req:{'language':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':20,'wisdom':20}},
-			{type:'function',func:function(oneTime){if(G.getRes('tutorialdebug').amount==3);G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})}}
 		],
 	});
 	
@@ -9907,7 +10009,6 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'stone-knapping':true,'carving':true},
 		effects:[
-			{type:'function',func:function(){if(G.getRes('tutorialdebug').amount==3);G.Message({type:'important',text:'Finally people can use and craft something better than knapped tools, rocks etc.',icon:[1,9]})}}
 		],
 		chance:3,
 	});
@@ -9941,7 +10042,6 @@ getCosts:function()
 		req:{'tool-making':true,'woodcutting':true},
 		effects:[
 			{type:'allow',what:['shore exploring']},
-			{type:'function',func:function(){if(G.getRes('tutorialdebug').amount==3);G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})}}
 		],
 	});
 	new G.Tech({
@@ -9953,7 +10053,6 @@ getCosts:function()
 		req:{'canoes':true,'carpentry':true},
 		effects:[
 			{type:'allow',what:['ocean exploring']},
-			{type:'function',func:function(){if(G.getRes('tutorialdebug').amount==3);G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})}}
 		],
 	});
 	
@@ -9964,7 +10063,6 @@ getCosts:function()
 		cost:{'insight':20},
 		req:{'stone-knapping':true,'digging':true,'language':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'Your people are now going to set up first dwellings. Aren\'t you happy that it may mean your tribe will have more people?',icon:[12,4]})}}
 		],
 		chance:3,
 	});
@@ -10045,7 +10143,6 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'digging':true,'sedentism':true,'tool-making':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'tutorial',text:'Henceforth you can dig a well why wouldn\'t you teach the others and set up your first <b>Well</b>. Well is source of fresh water but only 1 well per 10 pieces of land can be constructed.',icon:[30,3,'magixmod']})}}
 		],
 	});
 	new G.Tech({
@@ -10087,7 +10184,6 @@ getCosts:function()
 		req:{'oral tradition':true},
 		effects:[
 			{type:'provide res',what:{'spirituality':10}},
-			{type:'function',func:function(){G.Message({type:'tutorial',text:'You now faced rituals. It is first spark of belief that may become a religion.',icon:[7,4]})}}
 		],
 	});
 	
@@ -10108,7 +10204,6 @@ getCosts:function()
 		cost:{'insight':5},
 		req:{'ritualism':true,'digging':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'The view of unburied corpses fears you and your settlers. Now they know that to calm down people you can just bury it.',icon:[13,2]})}}
 		],
 		chance:2,
 	});
@@ -10176,7 +10271,6 @@ getCosts:function()
 		cost:{'insight':15},
 		req:{'stone-knapping':true},
 		effects:[
-			 {type:'function',func:function(){G.Message({type:'tutorial',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})}}
 		],
 		chance:3,
 	});
@@ -10203,7 +10297,6 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'tool-making':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'You want some clothing. As long as you won\'t hire a Clothier only you know and do just for yourself some clothing.',icon:[15,7]})}}
 		]
 	});
 	new G.Tech({
@@ -10213,7 +10306,6 @@ getCosts:function()
 		cost:{'insight':20},
 		req:{'sewing':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'You smile that now your people can craft clothing that is slightly better than primitive pieces of hide or grass.',icon:[16,7]})}}
 		],
 	});
 	new G.Tech({
@@ -10389,7 +10481,6 @@ getCosts:function()
 		cost:{'insight':90,'culture':40},
 		req:{'construction':true,'burial':true,'belief in the afterlife':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'tutorial',text:'Once you obtained <b>Monument-building</b> you may begin construction of very first wonder of your '+G.getName('inhabs')+'. Check it out in <u>Production</u> tab.',icon:[32,18,'magixmod']})}}
 		],
 	});
 	//MAGIX
@@ -10429,7 +10520,6 @@ getCosts:function()
 		cost:{'insight':125,'culture': 30,'Mana':40,'influence':10},
 		req:{'Mana brewery':true,'More useful housing':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'tutorial',text:'You unlocked <b>Wizard towers</b>.<br>These towers provide housing and produce Essences using Mana. Make sure first if you have enough Mana income to upkeep at least one of towers. And make sure that you have built <b>Essence storages</b>.',icon:[20,13,'magixmod']})}}
 		]
 	});
 		new G.Tech({
@@ -10439,7 +10529,6 @@ getCosts:function()
 		cost:{'insight':85,'culture': 30,'Mana':40,'influence':10},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'tutorial',text:'Now you unlocked Wizards. Don\'t hire too much of them because these guys love eating a lot so having too much of them may lead to tribe starvation. Instead try to make your tribe bigger, hire more gatherers, explore then hire some. They are must-have.',icon:[choose([24,23,22,21]),8,'magixmod']})}}
 	]
 			});
 		new G.Tech({
@@ -11359,7 +11448,6 @@ autobuy(G.year)
 		chance:1,
 		req:{'tribalism':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'tutorial',text:'You now can control food and water rations. Your people seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may become later the major one if you will ignore this.',icon:[4,28,'magixmod']})}}
 			]
 	});
 	new G.Trait({
@@ -11395,7 +11483,6 @@ autobuy(G.year)
 		chance:10,
 		req:{'fear of death':true,'oral tradition':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'tutorial',text:'You obtained <b>Belief in the afterlife</b> trait.<br>From now you may obtain <b><font color="fuschia">Monument-building</font></b> research that will unlock you very first wonder. <br>Belief may evolve into <b>Culture of the afterlife</b> unlocking more.',icon:[32,16,'magixmod']})}},
 		]
 	});
 	new G.Trait({
@@ -11622,7 +11709,6 @@ autobuy(G.year)
 		req:{'The God\'s call':true,'7th essence':true},
 		category:'gods',
 			effects:[
-		{type:'function',func:function(){G.Message({type:'tutorial',text:'Since the moment when you unlocked <b>Guru</b> you may start gathering <font color="#ffaaff"><b>Science</b></font>. Just hire one or more Gurus and wait patiently till he will gather one for you. It is gonna be needed in the later stages of the game.',icon:[8,12,choose([3,4,5,6]),27,'magixmod']})}}
 				]
 	});
 		new G.Trait({
@@ -12586,7 +12672,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'inspiration II':2}},
-			{type:'function',func:function(){G.Message({type:'tutorial',text:'Next part of doctrine is a trait. You don\'t have to roll new researches. All you should do now is waiting and no spending any essentials, because next part of doctrine despite it is a Trait but it is not cheap thing. Even numbered stages are traits while odd numbered stages are represented as researches.',icon:[32,27,'magixmod']})}}
 			]
 	});
 		new G.Trait({
@@ -12727,7 +12812,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':5},
 		req:{'Doctrine of the dark wormhole 4/5':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'story2',text:'Oh. <b>Mo\' beauty</b> made cities look much, much nicer. Lanterns, flower decors everywhere. Sometimes even <b>tools</b> (not joking now) have some shapes,patterns carved. And it is not any festival. You wander and even some huts get even more beautiful than ever.'})}}
+			
 			]
 	});
 				new G.Tech({
@@ -12986,7 +13071,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'hunting':true,'sewing':true},
 		cost:{'insight':10},
 		effects:[
-				{type:'function',func:function(){G.Message({type:'important',text:'You hope that primitive clothing from hide will make people happier. You think that this resource will make better clothing. You probably will ask some hunter to hunt some animal and get its hide for your tribe.',icon:[9,7]})}}
 			]
 	});
 	new G.Tech({
@@ -13012,7 +13096,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'language':true},
 		cost:{'insight':25},
 		effects:[	
-			{type:'function',func:function(){G.Message({type:'important',text:'You managed to make people being able to write. Well... not everyone has readable writing... yet.',icon:[17,27,'magixmod']})}}
 		]
 	});
 	new G.Tech({
