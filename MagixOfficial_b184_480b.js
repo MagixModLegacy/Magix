@@ -9843,6 +9843,7 @@ getCosts:function()
 			{type:'provide res',what:{'authority':5}},
 			{type:'show res',what:['influence']},
 			{type:'show context',what:['gather']},
+			{type:'function',func:function(){G.setPolicyModeByName('tutorialdebug','off');}}
 		],
 	});
 	new G.Tech({
@@ -9864,7 +9865,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
 			{type:'function',func:function(oneTime){
-			if (G.on);G.Message({
+			G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
 			},req:{'tutorialdebug':'on'}}
@@ -14144,13 +14145,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'tutorialdebug',
 		startMode:'on',		
 	});
-	G.funcs['game loaded']=function()
-	{
-		if (G.checkPolicy('tutorialdebug')=='on') //Toggle SFX
-		{
-		 G.setPolicyModeByName('tutorialdebug','off');
-		}
-	}
+	
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
