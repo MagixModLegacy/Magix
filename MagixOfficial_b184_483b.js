@@ -573,6 +573,7 @@ G.props['fastTicksOnResearch']=150;
    		  }
 		 }
 		/////VP CALC FOR REFRESHING PAGE
+		
 		G.getRes('victory point').amount=0
 		var a1=G.achievByName['Patience'].won
 		var b1=1
@@ -670,7 +671,7 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		
+		G.getRes('tutorialdebug').amount=0
 	}
 	G.funcs['new year']=function()
 	{
@@ -873,7 +874,7 @@ G.props['fastTicksOnResearch']=150;
 	shuffle(G.props['new day lines']);
 	G.funcs['new day']=function()
 	{
-		
+		G.getRes('tutorialdebug').amount=3
 		if (G.on)
 		{
 			
@@ -5882,6 +5883,9 @@ if (!document.getElementById(cssId))
 		icon:[33,6,'magixmod'],
 		startWith:350
 	});
+	new G.Res({
+		name:'tutorialdebug',
+	});
 		/*=====================================================================================
 	ACHIEVEMENTS
 	=======================================================================================*/
@@ -9865,7 +9869,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
 			{type:'function',func:function(){
-			G.Message({
+			if(G.getRes('tutorialdebug').amount==3);G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
 			}}
@@ -9881,7 +9885,7 @@ getCosts:function()
 		req:{'language':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':20,'wisdom':20}},
-			{type:'function',func:function(oneTime){G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})}}
+			{type:'function',func:function(oneTime){if(G.getRes('tutorialdebug').amount==3);G.Message({type:'important',text:'The first spark of culture arises.',icon:[10,4]})}}
 		],
 	});
 	
@@ -9903,7 +9907,7 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'stone-knapping':true,'carving':true},
 		effects:[
-			{type:'function',func:function(){G.Message({type:'important',text:'Finally people can use and craft something better than knapped tools, rocks etc.',icon:[1,9]})}}
+			{type:'function',func:function(){if(G.getRes('tutorialdebug').amount==3);G.Message({type:'important',text:'Finally people can use and craft something better than knapped tools, rocks etc.',icon:[1,9]})}}
 		],
 		chance:3,
 	});
@@ -9937,7 +9941,7 @@ getCosts:function()
 		req:{'tool-making':true,'woodcutting':true},
 		effects:[
 			{type:'allow',what:['shore exploring']},
-			{type:'function',func:function(){G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})}}
+			{type:'function',func:function(){if(G.getRes('tutorialdebug').amount==3);G.Message({type:'important',text:'From now exploring through ocean shores is possible. You realize that the world is so beautiful. You wonder if that "endless" ocean hide some secrets.',icon:[2,28,'magixmod']})}}
 		],
 	});
 	new G.Tech({
@@ -9949,7 +9953,7 @@ getCosts:function()
 		req:{'canoes':true,'carpentry':true},
 		effects:[
 			{type:'allow',what:['ocean exploring']},
-			{type:'function',func:function(){G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})}}
+			{type:'function',func:function(){if(G.getRes('tutorialdebug').amount==3);G.Message({type:'important',text:'Remember the first time you could explore beach? Since they can build and set up the boat they can discover the secrets which lay at the ocean depths.',icon:[3,28,'magixmod']})}}
 		],
 	});
 	
