@@ -987,7 +987,7 @@ G.props['fastTicksOnResearch']=150;
 		}
 	}
 		return mult;
-		if(G.has('t2')){
+		else if(G.has('t2')){
 			var mult=1-(G.techN/100-G.achievByName['Unhappy'].won);
 			if (G.getRes('population').amount>0)
 				{
