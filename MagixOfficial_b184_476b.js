@@ -9866,7 +9866,7 @@ getCosts:function()
 			if (G.on);G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
-			}}
+			},req:{'language':false}}
 		],
 		chance:3,
 	});
