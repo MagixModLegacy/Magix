@@ -9857,8 +9857,8 @@ getCosts:function()
 		req:{'speech':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
-			{type:'function',func:function(onBuy){
-			G.Message({
+			{type:'function',func:function(){
+			if(G.hasNot('language'));G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
 				icon:[1,28,'magixmod']})
 			}}
