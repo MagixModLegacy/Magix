@@ -9856,11 +9856,11 @@ getCosts:function()
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
             if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
-            }else if(G.has('Eotm') && G.hasNot('do we need that much science?')){
+            }if(G.has('Eotm') && G.hasNot('do we need that much science?')){
             return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
-	    }else if(G.has('Eotm') && G.has('do we need that much science?')){
+	    }if(G.has('Eotm') && G.has('do we need that much science?')){
 		    return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.1) }
-	    }else if (G.hasNot('Eotm') && G.has('t2') && G.has('fear of death')){
+	    }if (G.hasNot('Eotm') && G.has('t2') && G.has('fear of death')){
               return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.01+(G.year/10))}
             }
         },
@@ -9934,10 +9934,10 @@ getCosts:function()
 		{
 			if (G.hasNot('Eotm')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom</b> resource.':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
-			}else if(G.hasNot('Eotm') && G.has('t2') && G.has('fear of death')){
+			}if(G.hasNot('Eotm') && G.has('t2') && G.has('fear of death')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom</b> resource.<br>The blood cost scales with amount of techs owned.(you currently own: '+G.getRes('blood').amount+'Blood)':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
 			}
-			else if (G.has('Eotm')){
+			if (G.has('Eotm')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom II & Education</b> resources.':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
 			}
 		}
