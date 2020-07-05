@@ -5991,8 +5991,8 @@ if (!document.getElementById(cssId))
 		name:'blood',
 		desc:'You gain blood each year from Madness victims equal to murdered people. Required to glory Bersaria and to research next things with [fear of death] active. You start with 200 [blood] in that case.',
 		icon:[33,6,'magixmod'],
-		startWith:350
-		category:''
+		startWith:350,
+		category:'',
 	});
 		/*=====================================================================================
 	ACHIEVEMENTS
