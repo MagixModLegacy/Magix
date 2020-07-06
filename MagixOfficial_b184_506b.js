@@ -716,7 +716,7 @@ G.props['fastTicksOnResearch']=150;
 			}
 			//science trickle for bonus 2 or above
 			if(G.has('Eotm')){
-				if(G.has('bonus 2') || G.has('bonus 3') || G.has('bonus 4')){
+				if(G.has('bonus2') || G.has('bonus3') || G.has('bonus4')){
 					if (G.getRes('science').amount<=G.getRes('education').amount-0.1)G.gain('science',0.1,'. . .');
 				}
 			}
