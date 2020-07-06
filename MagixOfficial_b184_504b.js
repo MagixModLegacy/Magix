@@ -361,6 +361,18 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
+		/*---------------------
+		. . . assignments
+		----------------------------*/
+		if(G.getRes('victory point').amount >=1 && G.getRes('victory point').amount <6 && G.hasNot('bonus1') && G.hasNot('bonus2')){
+			G.gainTrait(G.traitByName['bonus1'])
+		}else if(G.getRes('victory point').amount >=6 && G.getRes('victory point').amount <10 && G.hasNot('bonus2') && G.hasNot('bonus3')){
+			G.gainTrait(G.traitByName['bonus2'])
+		}else if(G.getRes('victory point').amount >=10 && G.getRes('victory point').amount <20 && G.hasNot('bonus3') && G.hasNot('bonus3')){
+			G.gainTrait(G.traitByName['bonus3'])
+		}else if(G.getRes('victory point').amount >=20 && G.getRes('victory point').amount <35 && G.hasNot('bonus4')){
+			G.gainTrait(G.traitByName['bonus4'])
+		}
 	}
 	G.funcs['game over']=function()
 	{
@@ -6746,9 +6758,16 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'gather',context:'hunt',amount:1,max:5,mode:'endurance hunting'},
-			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting'},
-			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},
-			{type:'gather',context:'hunt',amount:5,max:6,mode:'crossbow hunting'},
+			//SPEARS
+			{type:'gather',context:'hunt',amount:2,max:4,mode:'spear hunting',req:{'aiming':false}},
+			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting',req:{'aiming':true}},
+			//BOW
+			{type:'gather',context:'hunt',amount:1.6,max:2,mode:'bow hunting',req:{'aiming':false}},
+			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting',req:{'aiming':true}},
+			//CROSSBOW
+			{type:'gather',context:'hunt',amount:1.8,max:2.2,mode:'crossbow hunting',req:{'aiming':false}},
+			{type:'gather',context:'hunt',amount:4.5,max:5.5,mode:'crossbow hunting',req:{'aiming':true}},
+			
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30,req:{'hunting III':false}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/38,req:{'hunting III':true,'An armor for Hunter':true,'Hunters & fishers unification':false}},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
@@ -6778,7 +6797,10 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'gather',context:'fish',amount:1.5,max:5,mode:'catch by hand'},
-			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
+			//SPEARS
+			{type:'gather',context:'fish',amount:2,max:4,mode:'spear fishing',req:{'aiming':false}},
+			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing',req:{'aiming':true}},
+			//LINE
 			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
 			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'net fishing'},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
