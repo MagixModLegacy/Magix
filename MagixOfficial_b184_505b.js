@@ -714,6 +714,10 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
 			}
+			//science trickle for bonus 2 or above
+			if(G.has('bonus 2') || G.has('bonus 3') || G.has('bonus 4')){
+				if (G.getRes('science').amount<=G.getRes('education').amount-0.1)G.gain('science',0.1,'. . .');
+			}
 			if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;G.getDict('squid').mult=0.95;}
 			//Chra-nos bonus
 			let goup = false
@@ -8147,6 +8151,10 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'insight':0.3}},
 			{type:'gather',what:{'science':0.00005}},
 			{type:'gather',what:{'science':0.0000125},req:{'symbolism III':true}},
+			{type:'mult',value:1.1,req:{'bonus1':true}},
+			{type:'mult',value:1.11,req:{'bonus2':true}},
+			{type:'mult',value:1.12,req:{'bonus3':true}},
+			{type:'mult',value:1.13,req:{'bonus4':true}},
 			{type:'mult',value:1.5,req:{'Science blessing':true}},
 			{type:'mult',value:1.5,req:{'se12':'on'}},
 			{type:'mult',value:0.75,req:{'se11':'on'}},
@@ -14246,7 +14254,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 }}}
 				],
 	});
-	new G.Policy({
+	/*new G.Policy({  IN DEV!
 		name:'Cultural',
 		desc:'starts [se03] trial. Will warn you before start.',
 		icon:[24,18,'magixmod',27,25,'magixmod',1,22,'magixmod'],
@@ -14264,7 +14272,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	alert("See you soon");
 }}}
 				],
-	});
+	});*/
 	
 	/*=======================================
 	Icon sheet for custom land tiles
