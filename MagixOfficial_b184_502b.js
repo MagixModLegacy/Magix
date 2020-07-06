@@ -4098,6 +4098,20 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
+			if (G.checkPolicy('Theme changer')=='black'){
+		var cssId = 'goldenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GoldenTheme/blacktheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
 		},
 		category:'alchemypotions',
 	});
@@ -6397,7 +6411,7 @@ if (!document.getElementById(cssId))
 		tier:2,
 		name:'Talented?',
 		icon:[32,25,'magixmod'],
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.15 less land per 1 piece so if unit uses 3 land it will use 2.55 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.15 less land per 1 piece so if unit uses 3 land it will use 2.55 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>. And... it unlocks new theme!',
 		effects:[
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
@@ -13952,6 +13966,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'bronze':{name:'Bronze',desc:'Switches to bronze theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'silver':{name:'Silver',desc:'Switches to silver theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'golden':{name:'Golden',desc:'Switches to golden theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
+			'black':{name:'Black',desc:'Switches to black theme. Reward for <b>Talented?</b> achievement.',req:{'<font color="orange">Smaller shacks</font>':true}},
 		},
 		category:'mag',
 	});
