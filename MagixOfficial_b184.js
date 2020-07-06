@@ -8,7 +8,18 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-
+var cssId = 'betaCss'; 
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/beta.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
@@ -40,7 +51,11 @@ G.props['fastTicksOnResearch']=150;
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x250</div>','250 Herbs')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
 		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
-		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x6</div>','6 Influence & Authority')+
+		'<script type="text/javascript">'+
+        'if(G.achievByName["Democration"].won>=1){'+
+                'document.getElementByClass("thingBox").innerHTML = G.textWithTooltip("<div class=\\"icon freestanding\\" style=\\""+G.getIconUsedBy(G.getRes("influence"))+"\\"></div><div class=\\"freelabel\\">x1</div>","1 extra Influence & Authority")'+
+        '}'+
+                '</script>'+
 		'</div>'+
 		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
@@ -49,6 +64,7 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -345,6 +361,18 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
+		/*---------------------
+		. . . assignments
+		----------------------------*/
+		if(G.getRes('victory point').amount >=1 && G.getRes('victory point').amount <6 && G.hasNot('bonus1') && G.hasNot('bonus2')){
+			G.gainTrait(G.traitByName['bonus1'])
+		}else if(G.getRes('victory point').amount >=6 && G.getRes('victory point').amount <10 && G.hasNot('bonus2') && G.hasNot('bonus3')){
+			G.gainTrait(G.traitByName['bonus2'])
+		}else if(G.getRes('victory point').amount >=10 && G.getRes('victory point').amount <20 && G.hasNot('bonus3') && G.hasNot('bonus3')){
+			G.gainTrait(G.traitByName['bonus3'])
+		}else if(G.getRes('victory point').amount >=20 && G.getRes('victory point').amount <35 && G.hasNot('bonus4')){
+			G.gainTrait(G.traitByName['bonus4'])
+		}
 	}
 	G.funcs['game over']=function()
 	{
@@ -358,6 +386,7 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['game loaded']=function()
 	{
+	
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
@@ -556,6 +585,7 @@ G.props['fastTicksOnResearch']=150;
    		  }
 		 }
 		/////VP CALC FOR REFRESHING PAGE
+		
 		G.getRes('victory point').amount=0
 		var a1=G.achievByName['Patience'].won
 		var b1=1
@@ -653,6 +683,7 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
+		
 	}
 	G.funcs['new year']=function()
 	{
@@ -669,7 +700,7 @@ G.props['fastTicksOnResearch']=150;
 			if(t1start==true)
 			{
 				var insight=Math.floor(Math.random() * (33/(G.achievByName['Patience'].won+1)));
-				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b><font color="#aaffff">'+B(insight)+' Insight</font></b><br>The hidden weakness in this plane gets stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
+				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b><font color="#aaffff">'+B(insight)+' Insight</font></b><br>The hidden weakness in this plane affects you stronger and stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
 				if (G.getRes('insight').amount < G.getRes('wisdom').amount*1.6){
 				G.gain('insight',insight);
 				}
@@ -682,6 +713,12 @@ G.props['fastTicksOnResearch']=150;
 				if (G.getRes('influence').amount<=G.getRes('authority').amount-2)G.gain('influence',2);
 			}else{
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
+			}
+			//science trickle for bonus 2 or above
+			if(G.has('Eotm')){
+				if(G.has('bonus2') || G.has('bonus3') || G.has('bonus4')){
+					if (G.getRes('science').amount<=G.getRes('education').amount-0.1)G.gain('science',0.1,'. . .');
+				}
 			}
 			if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;G.getDict('squid').mult=0.95;}
 			//Chra-nos bonus
@@ -778,6 +815,33 @@ G.props['fastTicksOnResearch']=150;
 				st11=true
 			}
 		}
+		if(G.has('t2')){
+			if(G.getRes('population').amount>=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)){
+				var popinfo=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)
+				G.gain('unhappy',1)
+				//Murdered by Madness
+				//G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)
+				/////////////////////
+			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+(G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
+				G.lose('adult',(G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+				G.gain('corpse',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+				G.gain('blood',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+				if(G.getRes('happiness').getDisplayAmount()=="-500%"){
+					G.lose('population',G.getRes('population').amount,'The Madness')
+				G.dialogue.popup(function(div){
+            return '<div style="width:320x;min-height:200px;height:75%;">'+
+                '<div class="fancyText title"><font color="red">Trial failed</font></div>'+
+                '<tt><div class="fancyText">You failed Unhappy trial by reaching -500% unhappiness cap</tt>'+
+        '<br>All people murdered themselves leaving no one alive.<br> This is cruel.<br>'+
+                '<br><br>'+
+                'But you can try again, by reaching Pantheon again and choose Bersaria</div><br>'+
+                'Technical note: Start a new game , you know how.'+
+            '</div></div>'
+})
+				}
+		}
+		}
+		
 	}
 	
 	G.props['new day lines']=[
@@ -828,8 +892,10 @@ G.props['fastTicksOnResearch']=150;
 	shuffle(G.props['new day lines']);
 	G.funcs['new day']=function()
 	{
+		
 		if (G.on)
 		{
+			
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
 			{
 				//show a random atmospheric message occasionally on new days
@@ -864,12 +930,21 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
+
 		}
 	}
 	
-	G.funcs['tracked stat str']=function()
+	G.funcs['tracked stat str c1']=function()
 	{
 		return 'Most population ruled';
+	}
+	G.funcs['tracked stat str techs']=function()
+	{
+		return 'Current amount of obtained researches';
+	}
+	G.funcs['tracked stat str traits']=function()
+	{
+		return 'Current amount of adopted traits';
 	}
 	G.funcs['civ blurb']=function()
 	{
@@ -879,16 +954,18 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="barred">ruler : '+G.getName('ruler')+'</div>';
 		var toParse='';
 		var pop=G.getRes('population').amount;
-		var technologiesam=G.techN;
 		if (pop>0)
 		{
 			toParse+='Population : <b>'+B(pop)+' [population,'+G.getName((pop==1?'inhab':'inhabs'))+']</b>//';
 			var stat=G.getRes('happiness').amount/pop;
-			var text='unknown';if (stat<=-200) text='miserable'; else if (stat<=-100) text='mediocre'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='pleasant'; else if (stat<=200) text='high'; else if (stat>=200) text='euphoric';
+			var text='unknown';if (stat<=-200 && G.has('t2')) text='irreversibly unhappy & miserable';else if (stat<=-200) text='miserable'; else if (stat<=-100) text='mediocre'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='pleasant'; else if (stat<=200) text='high'; else if (stat>=200) text='euphoric';
 			toParse+='Happiness : <b>'+text+'</b>//';
 			var stat=G.getRes('health').amount/pop;
 			var text='unknown';if (stat<=-200) text='dreadful'; else if (stat<=-100) text='sickly'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='good'; else if (stat<=200) text='gleaming'; else if (stat>=200) text='examplary';
 			toParse+='Health : <b>'+text+'</b>//';
+			var stat=G.techN;
+			var text='unknown';if (stat<=25) text='pre-prehistoric';else if (stat<=50) text='prehistoric'; else if (stat<=100) text='skilled'; else if (stat<=170) text='decent technologically'; else if (stat<=240) text='expanded'; else if (stat<=325) text='advanced'; else if (stat<=400) text='modern'; else if (stat<=500) text='truly advanced'; else if (stat>=500) text='most advanced';
+			toParse+='Technological stage: <b>'+text+'</b>//';
 		}
 		else toParse+='All '+G.getName('inhabs')+' have died out.';
 		str+=G.parse(toParse);
@@ -917,6 +994,17 @@ G.props['fastTicksOnResearch']=150;
 			else mult=1/(Math.pow(2,-happiness+1)/2)-((G.getRes('Berry seeds').amount/500)*G.achievByName['Patience'].won);
 		}
 		return mult;
+		}else if(G.has('t2')){
+			var mult=1-(G.techN/100-G.achievByName['Unhappy'].won);
+			if (G.getRes('population').amount>0)
+				{
+				var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
+				happiness=Math.max(-2,Math.min(2,happiness));
+				if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
+				else mult=1/(Math.pow(2,-happiness+1)/2);
+			}
+			return mult;
+		
 		}else{
 		var mult=1;
 		if (G.getRes('population').amount>0)
@@ -926,8 +1014,9 @@ G.props['fastTicksOnResearch']=150;
 			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
 			else mult=1/(Math.pow(2,-happiness+1)/2);
 		}
+	}
 		return mult;
-		}
+		
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	//G.hasNot is function that has inverted working rules than G.has//
@@ -1118,18 +1207,165 @@ G.writeMSettingButton=function(obj)
 		'</div>';
 		return str;
 }
-var cssId = 'betaCss';  
-if (!document.getElementById(cssId))
-{
-    var head  = document.getElementsByTagName('head')[0];
-    var link  = document.createElement('link');
-    link.id   = cssId;
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
-    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/beta.css';
-    link.media = 'all';
-    head.appendChild(link);
-}
+
+/*=====================================================================================
+	ACHIEVEMENTS AND LEGACY
+		When the player completes a wonder, they may click it to ascend; this takes them to the new game screen.
+		Ascending with a wonder unlocks that wonder's achievement and its associated effects, which can be anything from adding free fast ticks at the start of every game to unlocking new special units available in every playthrough.
+		There are other achievements, not necessarily linked to wonders. Some achievements are used to track generic things across playthroughs, such as tutorial tips.
+	=======================================================================================*/
+	G.achiev=[];
+	G.achievByName=[];
+	G.achievByTier=[];
+	G.getAchiev=function(name){if (!G.achievByName[name]) ERROR('No achievement exists with the name '+name+'.'); else return G.achievByName[name];}
+	G.achievN=0;//incrementer
+	G.legacyBonuses=[];
+	G.Achiev=function(obj)
+	{
+		this.type='achiev';
+		this.effects=[];//applied on new game start
+		this.tier=0;//where the achievement is located vertically on the legacy screen
+		this.won=0;//how many times we've achieved this achievement (may also be used to track other info about the achievement)
+		this.visible=true;
+		this.icon=[0,0];
+		
+		for (var i in obj) this[i]=obj[i];
+		this.id=G.achiev.length;
+		if (!this.displayName) this.displayName=cap(this.name);
+		
+		G.achiev.push(this);
+		G.achievByName[this.name]=this;
+		if (!G.achievByTier[this.tier]) G.achievByTier[this.tier]=[];
+		G.achievByTier[this.tier].push(this);
+		//G.setDict(this.name,this);
+		this.mod=G.context;
+		if (!this.mod.achievs) this.mod.achievs=[];
+		this.mod.achievs.push(this);
+	}
+	
+	G.applyAchievEffects=function(context)
+	{
+		//this is done on creating or loading a game
+		for (var i in G.achiev)
+		{
+			var me=G.achiev[i];
+			if (me.won)
+			{
+				for (var ii in me.effects)
+				{
+					var effect=me.effects[ii];
+					var type=effect.type;
+					if (G.legacyBonuses[type])
+					{
+						var bonus=G.legacyBonuses[type];
+						if (bonus.func && (!bonus.context || bonus.context==context))
+						{
+							bonus.func(effect);
+						}
+					}
+				}
+			}
+		}
+	}
+	G.getAchievEffectsString=function(effects)
+	{
+		//returns a string that describes the effects of a achievement
+		var str='';
+		for (var i in effects)
+		{
+			var effect=effects[i];
+			var type=effect.type;
+			if (G.legacyBonuses[type])
+			{
+				var bonus=G.legacyBonuses[type];
+				str+='<div class="bulleted" style="text-align:left;"><b>'+bonus.name.replaceAll('\\[X\\]',B(effect.amount))+'</b><div style="font-size:90%;">'+bonus.desc+'</div></div>';
+			}
+		}
+		return str;
+	}
+	
+	
+	G.tabPopup['legacy']=function()
+	{
+		var str='';
+		str+='<div class="fancyText title"><font color="#d4af37" size="5">- - - Legacy - - -</font></div>';
+		str+='<div class="scrollBox underTitle" style="width:248px;left:0px;">';
+		str+='<div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Stats</font></div>';
+		str+='<div class="par">Behold, the fruits of your legacy! Below are stats about your current and past games.</div>';
+		str+='<div class="par">Legacy started : <b>'+G.selfUpdatingText(function(){return BT((Date.now()-G.fullDate)/1000);})+' ago</b></div>';
+		str+='<div class="par">This game started : <b>'+G.selfUpdatingText(function(){return BT((Date.now()-G.startDate)/1000);})+' ago</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str c1','Tracked stat')+' : <b>'+G.selfUpdatingText(function(){return B(G.trackedStat);})+'</b></div>';
+		str+='<div class="par">Longest game : <b>'+G.selfUpdatingText(function(){return G.BT(G.furthestDay);})+'</b></div>';
+		str+='<div class="par">Total legacy time : <b>'+G.selfUpdatingText(function(){return G.BT(G.totalDays);})+'</b></div>';
+		str+='<div class="par">Ascensions : <b>'+G.selfUpdatingText(function(){return B(G.resets);})+'</b></div>';
+		str+='<div class="par">Victory points: <b>'+G.selfUpdatingText(function(){return B(G.getRes('victory point').amount);})+'</b></div>';
+		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.techN);})+'</b></div>';
+		str+='<div class="par">'+G.doFunc('tracked stat str traits','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.traitN);})+'</b></div>';
+		str+='</div>';
+		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
+		if (G.sequence=='main')
+		{
+			str+='<div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
+			for (var i in G.achievByTier)
+			{
+				str+='<div class="tier thingBox">';
+				for (var ii in G.achievByTier[i])
+				{
+					var me=G.achievByTier[i][ii];
+					str+='<div class="thingWrapper">'+
+						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
+						G.getIconStr(me,'achiev-icon-'+me.id)+
+						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
+						'</div>'+
+					'</div>';
+				}
+				str+='<div class="divider"></div>';
+				str+='</div>';
+			}
+			
+			G.arbitraryCallback(function(){
+				for (var i in G.achievByTier)
+				{
+					for (var ii in G.achievByTier[i])
+					{
+						var me=G.achievByTier[i][ii];
+						var div=l('achiev-'+me.id);
+						div.onclick=function(me,div){return function(){
+							if (G.getSetting('debug'))
+							{
+								if (me.won) me.won=0; else me.won=1;
+								if (me.won) div.classList.remove('off');
+								else div.classList.add('off');
+							}
+						}}(me,div);
+						G.addTooltip(div,function(me){return function(){
+							return '<div class="info">'+
+							'<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>'+
+							'<div class="fancyText barred infoTitle">'+me.displayName+'</div>'+
+							'<div class="fancyText barred">'+(me.won>0?('Achieved :<font color="yellow"> '+me.won+'</font> '+(me.won==1?'time':'times')):'Locked <font color="#aaffff">:(</font>')+'</div>'+
+							'<div class="fancyText barred">Effects :'+G.getAchievEffectsString(me.effects)+'</div>'+
+							(me.desc?('<div class="infoDesc">'+G.parse(me.desc)+'</div>'):'')+
+							'</div>'+
+							G.debugInfo(me)
+						};}(me),{offY:8});
+					}
+				}
+			});
+		}
+		str+='</div>';
+		str+='<div class="buttonBox">'+
+		G.dialogue.getCloseButton()+
+		'</div>';
+		return str;
+	}
+		G.FileSave=function()
+	{
+		var filename='MagixLegacySave';//Vanilla saves are called legacySave. To recognize save with Magix I will change it
+		var text=G.Export();
+		var blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+		saveAs(blob,filename+'.txt');
+	}
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
@@ -1193,6 +1429,7 @@ if (!document.getElementById(cssId))
 	
 	new G.Res({name:'died this year',hidden:true});
 	new G.Res({name:'born this year',hidden:true});
+
 	
 	var numbersInfo='//The number on the left is how many are in use, while the number on the right is how many you have in total.';
 	
@@ -1740,6 +1977,9 @@ if (!document.getElementById(cssId))
 		fractional:true,
 		tick:function(me,tick)
 		{
+			if(G.has('t2')){
+				G.getRes('happiness').amount=-1e15//Unhappy trial
+			}
 		},
 		getDisplayAmount:function()
 		{
@@ -1748,6 +1988,9 @@ if (!document.getElementById(cssId))
 			if(G.checkPolicy('se07')=='on'){//Herbalia's backfire
 			if (amount>175) amount=175;
 			if (amount<-200) amount=-200;
+			}else if(G.has('t2')){
+			if (amount>200) amount=200;
+			if (amount<-200) amount=-200-(G.techN/2)-G.getRes('unhappy').amount;
 			}else{
 			if (amount>200) amount=200;
 			if (amount<-200) amount=-200;
@@ -1901,15 +2144,25 @@ if (!document.getElementById(cssId))
 				//CHRA-NOS
 				if (G.checkPolicy('Gather roses')=='on')
 				{
-				var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/10)*2);
-				var spent=G.lose('water',randomFloor(toSpoil),'decay');
-				G.gain('muddy water',randomFloor(spent),'decay');
-				}else{
-				var toSpoil=me.amount*0.02;
-				var spent=G.lose('water',randomFloor(toSpoil),'decay');
-				G.gain('muddy water',randomFloor(spent),'decay');
-			}
-			}
+					if(G.achievByName['Patience'].won==0){
+						var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/10)*2);
+						var spent=G.lose('water',randomFloor(toSpoil),'decay');
+						G.gain('muddy water',randomFloor(spent),'decay');
+						}else{
+						var toSpoil=me.amount*0.02;
+						var spent=G.lose('water',randomFloor(toSpoil),'decay');
+						G.gain('muddy water',randomFloor(spent),'decay');
+						}
+					}else if(G.achievByName['Patience'].won>=1){
+						var toSpoil=me.amount*0.02*((G.getRes('Watermelon seeds').amount/10-0,025)*2);
+						var spent=G.lose('water',randomFloor(toSpoil),'decay');
+						G.gain('muddy water',randomFloor(spent),'decay');
+						}else{
+						var toSpoil=me.amount*0.02;
+						var spent=G.lose('water',randomFloor(toSpoil),'decay');
+						G.gain('muddy water',randomFloor(spent),'decay');
+						}
+				}
 			if (G.checkPolicy('Toggle SFX')=='off'){
 				
 			 }
@@ -3220,7 +3473,6 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'misc',
-		meta:true,
 	});
 		new G.Res({
 		name:'Cloudy water',
@@ -3860,6 +4112,20 @@ if (!document.getElementById(cssId))
     link.rel  = 'stylesheet';
     link.type = 'text/css';
     link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GoldenTheme/goldentheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+			if (G.checkPolicy('Theme changer')=='black'){
+		var cssId = 'goldenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/BlackTheme/blacktheme.css';
     link.media = 'all';
     head.appendChild(link);
 }
@@ -4664,6 +4930,8 @@ if (!document.getElementById(cssId))
 	let esstip=false
 	let weltip=false
 	let trendtip=false
+	let doctip=false
+	let mobeauty=false
 		new G.Res({
 		name:'Dandelion',
 		desc:'Easiest source of yellow dye.',
@@ -4788,6 +5056,14 @@ if (!document.getElementById(cssId))
 					trendtip=true
 				}
 			}
+			if(G.has('Doctrine of the dark wormhole 1/5') && !doctip && G.hasNot('Doctrine of the dark wormhole 2/5')){
+			G.Message({type:'tutorial',text:'Next part of doctrine is a trait. You don\'t have to roll new researches. All you should do now is waiting and no spending any essentials, because next part of doctrine despite it is a Trait but it is not cheap thing. Even numbered stages are traits while odd numbered stages are represented as researches.',icon:[32,27,'magixmod']})
+				doctip=true
+			}
+			if(G.has('Mo\' beauty') && !mobeauty && G.hasNot('Doctrine of the dark wormhole 5/5')){
+			G.Message({type:'story2',text:'Oh. <b>Mo\' beauty</b> made cities look much, much nicer. Lanterns, flower decors everywhere. Sometimes even <b>tools</b> (not joking now) have some shapes,patterns carved. And it is not any festival. You wander and even some huts get even more beautiful than ever.'})
+			mobeauty=true
+		}
 		},
 		category:'flowersanddyes',
 	});//23
@@ -5413,6 +5689,10 @@ if (!document.getElementById(cssId))
 					G.getDict('extended basic catalog').cost = {'influence II':5}
 					G.getDict('extended precious catalog').cost = {'influence II':5}
 					G.getDict('extended essences catalog').cost = {'influence II':5}
+						G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+						G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+						G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+						G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 				}
 			}
 			if(G.has('Mining strategy'))
@@ -5446,6 +5726,10 @@ if (!document.getElementById(cssId))
 					G.getDict('bazaar_sell').use={'worker':2,'land':1}
 					G.getDict('market_buy').use={'worker':3,'land':1}
 					G.getDict('market_sell').use={'worker':3,'land':1}
+					G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+					G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+					G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+					G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 				}
 				if(G.has('Backshift') && G.hasNot('Essence trading')){
 					G.getDict('bazaar_buy').icon=[29,24,'magixmod',26,24,'magixmod']
@@ -5585,6 +5869,7 @@ if (!document.getElementById(cssId))
 			}else{
 				G.getDict('pagoda of passing time').cost={'basic building materials':225}
 			}
+			
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -5730,6 +6015,425 @@ if (!document.getElementById(cssId))
 		name:'victory point',
 		desc:'You can gain Victory Points for completing Seraphin\'s Trial. 11 of 12 trials are repeatable. After first completion of the trial it grants 1 VP, after 2nd succesful attempt in total grants 3 VP\'s and so on. They can\'t be spent but their amount may provide extra bonuses. ',
 		icon:[0,28,'magixmod'],
+	});
+	new G.Res({
+		name:'unhappy',
+	});
+	new G.Res({
+		name:'blood',
+		desc:'You gain blood each year from Madness victims equal to murdered people. Required to glory Bersaria and to research next things with [fear of death] active. You start with 200 [blood] in that case.',
+		icon:[33,6,'magixmod'],
+		startWith:350,
+		category:'',
+	});
+		/*=====================================================================================
+	ACHIEVEMENTS
+	=======================================================================================*/
+	
+	G.legacyBonuses.push(
+		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
+		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
+	);
+	
+	//do NOT remove or reorder achievements or saves WILL get corrupted
+	
+	new G.Achiev({
+		tier:0,
+		name:'mausoleum',
+		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
+		fromUnit:'mausoleum',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300*3},
+			{type:'addFastTicksOnResearch',amount:150}
+		],
+	});
+//Temple achiev
+		new G.Achiev({
+		tier:1,
+		name:'Heavenly',
+		wideIcon:[0,11,'magixmod'],
+		icon:[1,11,'magixmod'],
+		desc:'Your soul has been sent to Paradise as archangel with power of top Temple tower in an beautiful stone monument the purpose of which takes root in a pure religious thought.',
+		fromWonder:'Heavenly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+	});
+//skull achiev
+		new G.Achiev({
+		tier:1,
+		name:'Deadly, revenantic',
+		wideIcon:[0,16,'magixmod'],
+		icon:[1,16,'magixmod'],
+		desc:'You escaped and your soul got escorted right into the world of Underwold... you may discover it sometime.',
+		fromWonder:'Deadly, revenantic',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+	});
+
+		new G.Achiev({
+		tier:0,
+		name:'Sacrificed for culture',
+		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
+		icon:[6,12,'magixmod'],
+		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+		visible:false
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Democration',
+		wideIcon:[5,13,'magixmod'],
+		icon:[6,13,'magixmod'],
+		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
+		fromWonder:'Democration',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+			
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Insight-ly',
+		wideIcon:[choose([0,3,6]),17,'magixmod'],
+		icon:[choose([1,4,7]),17,'magixmod'],
+		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+			
+	});
+		new G.Achiev({
+		tier:1,
+		name:'"In the underworld"',
+		wideIcon:[7,5,'magixmod'],
+		icon:[9,5,'magixmod'],
+		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
+		fromWonder:'"In the underworld"',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:15},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		wideIcon:[27,20,'magixmod'],
+		icon:[28,20,'magixmod'],
+		name:'<font color="DA4f37">Mausoleum eternal</font>',
+		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve [mausoleum] to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
+		fromWonder:'<font color="DA4f37">Mausoleum eternal</font>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:2000},
+			{type:'addFastTicksOnResearch',amount:175}
+		],
+	});
+		new G.Achiev({
+		tier:1,
+		icon:[25,19,'magixmod'],
+		name:'Level up',
+		desc:'Obtain [Eotm] trait during the run. This trait unlocks second tier of [insight] , [culture] , [faith] and [influence] which are required for further researches.',
+	});
+		new G.Achiev({
+		tier:0,
+		icon:[25,21,'magixmod'],
+		name:'Metropoly',
+		desc:'Manage to get 500k [population,people] in one run.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:25},
+			{type:'addFastTicksOnResearch',amount:5}
+		],
+	});
+		new G.Achiev({
+		tier:0,
+		icon:[23,21,'magixmod'],
+		name:'Apprentice',
+		desc:'Get 100 or more technologies in a single run.',
+	});
+		new G.Achiev({
+		tier:1,
+		icon:[26,9,'magixmod'],
+		name:'Lucky 9',
+		desc:'Obtain the [dt9] .',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5}
+		],
+	});
+		new G.Achiev({
+		tier:1,
+		icon:[26,21,'magixmod'],
+		name:'Traitsman',
+		desc:'Make your tribe attract 30 traits.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		icon:[27,21,'magixmod'],
+		name:'Extremely smart',
+		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing <font color="DA4f37">Mausoleum eternal</font> unlocks you [Theme changer] .',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+			{type:'addFastTicksOnResearch',amount:10}
+		],
+	});
+		new G.Achiev({
+		tier:0,
+		icon:[29,21,'magixmod'],
+		name:'Experienced',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: +100 [fruit]s at start of each next game</b>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+			{type:'addFastTicksOnResearch',amount:10}
+		],
+	});
+		new G.Achiev({
+		tier:1,
+		icon:[29,22,'magixmod'],
+		name:'Smart',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:10}
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		icon:[12,22,'magixmod'],
+		name:'Man of essences',
+		desc:'Obtain [Magic adept] trait. Manage to get 2.1M [Magic essences]. //Obtaining it may unlock a new wonder.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:40},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		name:'Magical',
+		wideIcon:[9,22,'magixmod'],
+		icon:[10,22,'magixmod'],
+		desc:'<b>You decided to sacrifice yourself for magic.</br>You decided that putting yourself at coffin that there was lying will attract some glory.</br>You were right</b> //This achievement will: @Unlock you a new theme @Increase effect of <b>Wizard towers</b> by 5% without increasing their upkeep cost. //This achievement will unlock you way further technologies such like [hunting III] or [fishing III] .',
+		fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:15},
+		],
+	});
+			new G.Achiev({
+		icon:[16,24,'magixmod'],
+		tier:1,
+		name:'Familiar',
+		desc:'Get 200 or more technologies in a single run.',
+	});
+				new G.Achiev({
+		icon:[23,24,'magixmod'],
+		tier:0,
+		name:'3rd party',
+		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Patience',
+		wideIcon:[3,26,'magixmod'],
+		icon:[4,26,'magixmod'],
+		desc:'Complete Chra-nos trial for the first time. Your determination led you to victory. //Complete this trial again to gain extra Victory Points.',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Unhappy',
+		wideIcon:[6,26,'magixmod'],
+		icon:[7,26,'magixmod'],
+		desc:'Complete Bersaria\'s trial for the first time. Your determination and calmness led you to victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Cultural',
+		wideIcon:[18,26,'magixmod'],
+		icon:[19,26,'magixmod'],
+		desc:'Complete Tu-ria\'s trial for the first time. Your artistic thinking led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Hunted',
+		wideIcon:[24,26,'magixmod'],
+		icon:[25,26,'magixmod'],
+		desc:'Complete Hartar\'s trial for the first time. Making people being masters at hunting and showing \'em what brave really is led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Unfishy',
+		wideIcon:[21,26,'magixmod'],
+		icon:[22,26,'magixmod'],
+		desc:'Complete Fishyar\'s trial for the first time. Making people believe that life without fish is not boring led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Ocean',
+		wideIcon:[1,25,'magixmod'],
+		icon:[2,25,'magixmod'],
+		desc:'Complete Posi\'zul\'s trial for the first time. Living at the endless ocean is not impossible and you are example of that. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Herbalism',
+		wideIcon:[12,26,'magixmod'],
+		icon:[13,26,'magixmod'],
+		desc:'Complete Herbalia\'s trial for the first time. Herbs are not that bad! //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Buried',
+		wideIcon:[0,26,'magixmod'],
+		icon:[1,26,'magixmod'],
+		desc:'Complete Buri\'o dak \'s trial for the first and the last time. Death lurks everywhere but it is still easy deal for you!',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Underground',
+		wideIcon:[15,26,'magixmod'],
+		icon:[16,26,'magixmod'],
+		desc:'Complete Moai\'s trial for the first time. Stone leads to victory! //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Pocket',
+		wideIcon:[9,26,'magixmod'],
+		icon:[10,26,'magixmod'],
+		desc:'Complete Mamuun\'s trial for the first time. Seems like you have got a trading skills! This can lead to victory. //Complete this trial again to gain extra Victory Points. 2nd victory of this trial increases bonus from the trial',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Faithful',
+		wideIcon:[0,27,'magixmod'],
+		icon:[1,27,'magixmod'],
+		desc:'Complete Enlightened\'s trial for the first time. Belief and faith is everything. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Dreamy',
+		wideIcon:[27,26,'magixmod'],
+		icon:[28,26,'magixmod'],
+		desc:'Complete Okar the Seer\'s trial for the first time. Knowledge leads to victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+	});
+	new G.Achiev({
+		tier:2,
+		name:'Next to the God',
+		displayName:'<font color="yellow">Next to the God</font>',
+		wideIcon:[8,25,'magixmod'],
+		icon:[9,25,'magixmod'],
+		desc:'Ascend by the Temple of the Paradise... You managed to be very close to the God. But this step will make it easier. Because you had to sacrifice so much time reaching that far this achievement has plenty of rewards. Here are the rewards you will get for it: @Chance for [culture of the afterlife] is tripled. Same to [The God\'s call]. @[An opposite side of belief] has 10% bigger chance to occur.(Note: not 10 percent points! Chance for it is multiplied by 1.1!) @You will start each next run with +1 [faith] and [spirituality] @You will unlock the Pantheon! Just build this wonder again(nope you won\'t need to ascend once more by it, just complete it and buy tech that will finally unlock it for you). @This achievement will unlock you <b><font color="orange">3</font> new themes!</b>',
+		fromWonder:'Next to the God',
+		effects:[
+			{type:'addFastTicksOnStart',amount:250},
+			{type:'addFastTicksOnResearch',amount:25},
+		],
+	});
+	new G.Achiev({
+		tier:2,
+		name:'The first choice',
+		icon:[11,25,'magixmod'],
+		desc:'Spend your all [Worship point]s for the first time to pick Seraphins that your people will worship.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+		],
+	});
+		new G.Achiev({
+		tier:2,
+		name:'Trait-or',
+		icon:[12,25,'magixmod'],
+		desc:'Manage your wonderful tribe to adopt 50 traits.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+		],
+	});
+	new G.Achiev({
+		tier:2,
+		name:'Not so pious people',
+		icon:[32,26,'magixmod'],
+		desc:'Get: @2 traits that will lower your [faith] income @Choose Seraphin that decreases [faith] income as well. To make this achievement possible [dt13] is not required.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:90},
+		],
+	});
+	new G.Achiev({
+		tier:2,
+		name:'Talented?',
+		icon:[32,25,'magixmod'],
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.15 less land per 1 piece so if unit uses 3 land it will use 2.55 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>. And... it unlocks new theme!',
+		effects:[
+			{type:'addFastTicksOnStart',amount:200},
+			{type:'addFastTicksOnResearch',amount:10},
+		],
 	});
 	/*=====================================================================================
 	UNITS
@@ -6060,9 +6764,16 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'gather',context:'hunt',amount:1,max:5,mode:'endurance hunting'},
-			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting'},
-			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting'},
-			{type:'gather',context:'hunt',amount:5,max:6,mode:'crossbow hunting'},
+			//SPEARS
+			{type:'gather',context:'hunt',amount:2,max:4,mode:'spear hunting',req:{'aiming':false}},
+			{type:'gather',context:'hunt',amount:2.5,max:5,mode:'spear hunting',req:{'aiming':true}},
+			//BOW
+			{type:'gather',context:'hunt',amount:1.6,max:2,mode:'bow hunting',req:{'aiming':false}},
+			{type:'gather',context:'hunt',amount:4,max:5,mode:'bow hunting',req:{'aiming':true}},
+			//CROSSBOW
+			{type:'gather',context:'hunt',amount:1.8,max:2.2,mode:'crossbow hunting',req:{'aiming':false}},
+			{type:'gather',context:'hunt',amount:4.5,max:5.5,mode:'crossbow hunting',req:{'aiming':true}},
+			
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30,req:{'hunting III':false}},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/38,req:{'hunting III':true,'An armor for Hunter':true,'Hunters & fishers unification':false}},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
@@ -6092,7 +6803,10 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'gather',context:'fish',amount:1.5,max:5,mode:'catch by hand'},
-			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing'},
+			//SPEARS
+			{type:'gather',context:'fish',amount:2,max:4,mode:'spear fishing',req:{'aiming':false}},
+			{type:'gather',context:'fish',amount:2.5,max:5,mode:'spear fishing',req:{'aiming':true}},
+			//LINE
 			{type:'gather',context:'fish',amount:4,max:5,mode:'line fishing'},
 			{type:'gather',context:'fish',what:{'seafood':6},amount:6,max:8,mode:'net fishing'},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
@@ -7439,6 +8153,10 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'insight':0.3}},
 			{type:'gather',what:{'science':0.00005}},
 			{type:'gather',what:{'science':0.0000125},req:{'symbolism III':true}},
+			{type:'mult',value:1.1,req:{'bonus1':true}},
+			{type:'mult',value:1.11,req:{'bonus2':true}},
+			{type:'mult',value:1.12,req:{'bonus3':true}},
+			{type:'mult',value:1.13,req:{'bonus4':true}},
 			{type:'mult',value:1.5,req:{'Science blessing':true}},
 			{type:'mult',value:1.5,req:{'se12':'on'}},
 			{type:'mult',value:0.75,req:{'se11':'on'}},
@@ -9119,6 +9837,23 @@ new G.Unit({
 		req:{'Outstanding wisdom':true},
 		category:'discovery',
 	});
+	var bloodcost=100+(1*G.achievByName['Unhappy'].won)
+	new G.Unit({
+		name:'statue of Madness',
+		desc:'@Leads to <b>Unhappy</b> trial completion. //A monument of anger and wrath. A wonder for Bersaria the Seraphin of Madness. Tall statue with a mad face and some bonfires. <><font color="#ffdddd">It is insane...</font>',
+		wonder:'Unhappy',
+		icon:[7,26,'magixmod'],
+		wideIcon:[6,26,'magixmod'],
+		cost:{'basic building materials':250,'gold block':10},
+		costPerStep:{'gold block':15,'blood':(10*(G.achievByName['Unhappy'].won+1.2)),'basic building materials':100,'gem block':1},
+		steps:100,
+		messageOnStart:'You started to build wonder for <b>Bersaria</b>. <br>This statue will have a angry face at top. Terrain is covered by some sort of fog. But you do it to stop the Madness and come back to normal plane. Let the statue be built!',
+		finalStepCost:{'population':(250+(1*G.achievByName['Unhappy'].won+1/10)),'gem block':5,'blood':bloodcost},
+		finalStepDesc:'To perform the final step '+250+(1*G.achievByName['Unhappy'].won+1/10)+'[population,People],5 [gem block]s and '+100+(1*G.achievByName['Unhappy'].won)+'[blood] must be sacrificed in order to escape that plane of Wrath and Madness and award you with <b>Victory points</b>.',
+		use:{'land':10},
+		req:{'monument-building':true,'t2':true},
+		category:'wonder',
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -9155,412 +9890,7 @@ new G.Unit({
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes3',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes4',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 ////////////////////////////////////////////
-		/*=====================================================================================
-	ACHIEVEMENTS
-	=======================================================================================*/
 	
-	G.legacyBonuses.push(
-		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
-		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
-	);
-	
-	//do NOT remove or reorder achievements or saves WILL get corrupted
-	
-	new G.Achiev({
-		tier:0,
-		name:'mausoleum',
-		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
-		fromUnit:'mausoleum',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300*3},
-			{type:'addFastTicksOnResearch',amount:150}
-		],
-	});
-//Temple achiev
-		new G.Achiev({
-		tier:1,
-		name:'Heavenly',
-		wideIcon:[0,11,'magixmod'],
-		icon:[1,11,'magixmod'],
-		desc:'Your soul has been sent to Paradise as archangel with power of top Temple tower in an beautiful stone monument the purpose of which takes root in a pure religious thought.',
-		fromWonder:'Heavenly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300},
-			{type:'addFastTicksOnResearch',amount:25}	
-		],
-	});
-//skull achiev
-		new G.Achiev({
-		tier:1,
-		name:'Deadly, revenantic',
-		wideIcon:[0,16,'magixmod'],
-		icon:[1,16,'magixmod'],
-		desc:'You escaped and your soul got escorted right into the world of Underwold... you may discover it sometime.',
-		fromWonder:'Deadly, revenantic',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300},
-			{type:'addFastTicksOnResearch',amount:25}	
-		],
-	});
-
-		new G.Achiev({
-		tier:0,
-		name:'Sacrificed for culture',
-		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
-		icon:[6,12,'magixmod'],
-		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
-		fromWonder:'Insight-ly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		name:'Democration',
-		wideIcon:[5,13,'magixmod'],
-		icon:[6,13,'magixmod'],
-		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
-		fromWonder:'Democration',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		name:'Insight-ly',
-		wideIcon:[choose([0,3,6]),17,'magixmod'],
-		icon:[choose([1,4,7]),17,'magixmod'],
-		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
-		fromWonder:'Insight-ly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-	});
-		new G.Achiev({
-		tier:1,
-		name:'"In the underworld"',
-		wideIcon:[7,5,'magixmod'],
-		icon:[9,5,'magixmod'],
-		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
-		fromWonder:'"In the underworld"',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:15},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		wideIcon:[27,20,'magixmod'],
-		icon:[28,20,'magixmod'],
-		name:'<font color="DA4f37">Mausoleum eternal</font>',
-		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve [mausoleum] to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
-		fromWonder:'<font color="DA4f37">Mausoleum eternal</font>',
-		effects:[
-			{type:'addFastTicksOnStart',amount:2000},
-			{type:'addFastTicksOnResearch',amount:175}
-		],
-	});
-		new G.Achiev({
-		tier:1,
-		icon:[25,19,'magixmod'],
-		name:'Level up',
-		desc:'Obtain [Eotm] trait during the run. This trait unlocks second tier of [insight] , [culture] , [faith] and [influence] which are required for further researches.',
-	});
-		new G.Achiev({
-		tier:0,
-		icon:[25,21,'magixmod'],
-		name:'Metropoly',
-		desc:'Manage to get 500k [population,people] in one run.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:25},
-			{type:'addFastTicksOnResearch',amount:5}
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		icon:[23,21,'magixmod'],
-		name:'Apprentice',
-		desc:'Get 100 or more technologies in a single run.',
-	});
-		new G.Achiev({
-		tier:1,
-		icon:[26,9,'magixmod'],
-		name:'Lucky 9',
-		desc:'Obtain the [dt9] .',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5}
-		],
-	});
-		new G.Achiev({
-		tier:1,
-		icon:[26,21,'magixmod'],
-		name:'Traitsman',
-		desc:'Make your tribe attract 30 traits.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		icon:[27,21,'magixmod'],
-		name:'Extremely smart',
-		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing <font color="DA4f37">Mausoleum eternal</font> unlocks you [Theme changer] .',
-		effects:[
-			{type:'addFastTicksOnStart',amount:100},
-			{type:'addFastTicksOnResearch',amount:10}
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		icon:[29,21,'magixmod'],
-		name:'Experienced',
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: +100 [fruit]s at start of each next game</b>',
-		effects:[
-			{type:'addFastTicksOnStart',amount:100},
-			{type:'addFastTicksOnResearch',amount:10}
-		],
-	});
-		new G.Achiev({
-		tier:1,
-		icon:[29,22,'magixmod'],
-		name:'Smart',
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:10}
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		icon:[12,22,'magixmod'],
-		name:'Man of essences',
-		desc:'Obtain [Magic adept] trait. Manage to get 2.1M [Magic essences]. //Obtaining it may unlock a new wonder.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:40},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		name:'Magical',
-		wideIcon:[9,22,'magixmod'],
-		icon:[10,22,'magixmod'],
-		desc:'<b>You decided to sacrifice yourself for magic.</br>You decided that putting yourself at coffin that there was lying will attract some glory.</br>You were right</b> //This achievement will: @Unlock you a new theme @Increase effect of <b>Wizard towers</b> by 5% without increasing their upkeep cost. //This achievement will unlock you way further technologies such like [hunting III] or [fishing III] .',
-		fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:15},
-		],
-	});
-			new G.Achiev({
-		icon:[16,24,'magixmod'],
-		tier:1,
-		name:'Familiar',
-		desc:'Get 200 or more technologies in a single run.',
-	});
-				new G.Achiev({
-		icon:[23,24,'magixmod'],
-		tier:0,
-		name:'3rd party',
-		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Patience',
-		wideIcon:[3,26,'magixmod'],
-		icon:[4,26,'magixmod'],
-		desc:'Complete Chra-nos trial for the first time. Your determination led you to victory. //Complete this trial again to gain extra Victory Points.',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Unhappy',
-		wideIcon:[6,26,'magixmod'],
-		icon:[7,26,'magixmod'],
-		desc:'Complete Bersaria\'s trial for the first time. Your determination and calmness led you to victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Cultural',
-		wideIcon:[18,26,'magixmod'],
-		icon:[19,26,'magixmod'],
-		desc:'Complete Tu-ria\'s trial for the first time. Your artistic thinking led you to the victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Hunted',
-		wideIcon:[24,26,'magixmod'],
-		icon:[25,26,'magixmod'],
-		desc:'Complete Hartar\'s trial for the first time. Making people being masters at hunting and showing \'em what brave really is led you to the victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Unfishy',
-		wideIcon:[21,26,'magixmod'],
-		icon:[22,26,'magixmod'],
-		desc:'Complete Fishyar\'s trial for the first time. Making people believe that life without fish is not boring led you to the victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Ocean',
-		wideIcon:[1,25,'magixmod'],
-		icon:[2,25,'magixmod'],
-		desc:'Complete Posi\'zul\'s trial for the first time. Living at the endless ocean is not impossible and you are example of that. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Herbalism',
-		wideIcon:[12,26,'magixmod'],
-		icon:[13,26,'magixmod'],
-		desc:'Complete Herbalia\'s trial for the first time. Herbs are not that bad! //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Buried',
-		wideIcon:[0,26,'magixmod'],
-		icon:[1,26,'magixmod'],
-		desc:'Complete Buri\'o dak \'s trial for the first and the last time. Death lurks everywhere but it is still easy deal for you!',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Underground',
-		wideIcon:[15,26,'magixmod'],
-		icon:[16,26,'magixmod'],
-		desc:'Complete Moai\'s trial for the first time. Stone leads to victory! //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Pocket',
-		wideIcon:[9,26,'magixmod'],
-		icon:[10,26,'magixmod'],
-		desc:'Complete Mamuun\'s trial for the first time. Seems like you have got a trading skills! This can lead to victory. //Complete this trial again to gain extra Victory Points. 2nd victory of this trial increases bonus from the trial',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Faithful',
-		wideIcon:[0,27,'magixmod'],
-		icon:[1,27,'magixmod'],
-		desc:'Complete Enlightened\'s trial for the first time. Belief and faith is everything. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Dreamy',
-		wideIcon:[27,26,'magixmod'],
-		icon:[28,26,'magixmod'],
-		desc:'Complete Okar the Seer\'s trial for the first time. Knowledge leads to victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-	new G.Achiev({
-		tier:2,
-		name:'Next to the God',
-		displayName:'<font color="yellow">Next to the God</font>',
-		wideIcon:[8,25,'magixmod'],
-		icon:[9,25,'magixmod'],
-		desc:'Ascend by the Temple of the Paradise... You managed to be very close to the God. But this step will make it easier. Because you had to sacrifice so much time reaching that far this achievement has plenty of rewards. Here are the rewards you will get for it: @Chance for [culture of the afterlife] is tripled. Same to [The God\'s call]. @[An opposite side of belief] has 10% bigger chance to occur.(Note: not 10 percent points! Chance for it is multiplied by 1.1!) @You will start each next run with +1 [faith] and [spirituality] @You will unlock the Pantheon! Just build this wonder again(nope you won\'t need to ascend once more by it, just complete it and buy tech that will finally unlock it for you). @This achievement will unlock you <b><font color="orange">3</font> new themes!</b>',
-		fromWonder:'Next to the God',
-		effects:[
-			{type:'addFastTicksOnStart',amount:250},
-			{type:'addFastTicksOnResearch',amount:25},
-		],
-	});
-	new G.Achiev({
-		tier:2,
-		name:'The first choice',
-		icon:[11,25,'magixmod'],
-		desc:'Spend your all [Worship point]s for the first time to pick Seraphins that your people will worship.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:100},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		name:'Trait-or',
-		icon:[12,25,'magixmod'],
-		desc:'Manage your wonderful tribe to adopt 50 traits.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-		],
-	});
-	new G.Achiev({
-		tier:2,
-		name:'Not so pious people',
-		icon:[32,26,'magixmod'],
-		desc:'Get: @2 traits that will lower your [faith] income @Choose Seraphin that decreases [faith] income as well. To make this achievement possible [dt13] is not required.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:90},
-		],
-	});
-	new G.Achiev({
-		tier:2,
-		name:'Talented?',
-		icon:[32,25,'magixmod'],
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.15 less land per 1 piece so if unit uses 3 land it will use 2.55 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>',
-		effects:[
-			{type:'addFastTicksOnStart',amount:200},
-			{type:'addFastTicksOnResearch',amount:10},
-		],
-	});
 	/*=====================================================================================
 	TECHS  
 	=======================================================================================*/
@@ -9574,11 +9904,13 @@ getCosts:function()
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
             if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
-            }else if(G.has('Eotm') && G.hasNot('do we need that much science?')){
+            }if(G.has('Eotm') && G.hasNot('do we need that much science?')){
             return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
-	    }else if(G.has('Eotm') && G.has('do we need that much science?')){
+	    }if(G.has('Eotm') && G.has('do we need that much science?')){
 		    return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.1) }
-	    }
+	    }if (G.has('t2')){
+              return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.03)}
+            }
         },
 		getCardCosts:function(what)
 		{
@@ -9650,6 +9982,8 @@ getCosts:function()
 		{
 			if (G.hasNot('Eotm')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom</b> resource.':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
+			}if(G.hasNot('Eotm') && G.has('t2')){
+			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom</b> resource.<br>The blood cost scales with amount of techs owned.(you currently own: '+G.getRes('blood').amount+' Blood)':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
 			}
 			if (G.has('Eotm')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom II & Education</b> resources.':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
@@ -9667,6 +10001,7 @@ getCosts:function()
 			{type:'provide res',what:{'authority':5}},
 			{type:'show res',what:['influence']},
 			{type:'show context',what:['gather']},
+			
 		],
 	});
 	new G.Tech({
@@ -9686,7 +10021,8 @@ getCosts:function()
 		cost:{'insight':10},
 		req:{'speech':true},
 		effects:[
-			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
+			{type:'provide res',what:{'inspiration':30,'wisdom':30}}
+			
 		],
 		chance:3,
 	});
@@ -9894,7 +10230,7 @@ getCosts:function()
 		cost:{'culture':5},
 		req:{'oral tradition':true},
 		effects:[
-			{type:'provide res',what:{'spirituality':10}}
+			{type:'provide res',what:{'spirituality':10}},
 		],
 	});
 	
@@ -9955,14 +10291,14 @@ getCosts:function()
 	new G.Tech({
 		name:'spears',
 		displayName:'Spears and maces',
-		desc:'@[artisan]s can now craft [stone weapons]@unlocks new modes for [hunter]s and [fisher]s<>Using tools as weapons opens a world of possibilities, from hunting to warfare.',
+		desc:'@[artisan]s can now craft [stone weapons]@unlocks new modes for [hunter]s and [fisher]s<>Using tools as weapons opens a world of possibilities, from hunting to warfare. <b>Spear hunting/fishing</b> modes has only 80% of its normal efficiency. To remove that penalty obtain [aiming] research.',
 		icon:[26,1],
 		cost:{'insight':10},
 		req:{'tool-making':true},
 	});
 	new G.Tech({
 		name:'bows',
-		desc:'@[artisan]s can now craft [bow]s@unlocks new modes for [hunter]s<>',//TODO : desc
+		desc:'@[artisan]s can now craft [bow]s@unlocks new modes for [hunter]s<> <b>Bow hunting</b> mode has only 40% of its normal efficiency. To remove that penalty obtain [aiming] research.',//TODO : desc
 		icon:[27,1],
 		cost:{'insight':20},
 		req:{'spears':true},
@@ -10007,6 +10343,8 @@ getCosts:function()
 		icon:[29,1],
 		cost:{'insight':10},
 		req:{'tool-making':true},
+		effects:[
+		]
 	});
 	new G.Tech({
 		name:'weaving',
@@ -10228,6 +10566,8 @@ getCosts:function()
 		icon:[6,0,'magixmod'], //WIP
 		cost:{'insight':125,'culture': 30,'Mana':40,'influence':10},
 		req:{'Mana brewery':true,'More useful housing':true},
+		effects:[
+		]
 	});
 		new G.Tech({
 		name:'Wizard wisdom',
@@ -10235,7 +10575,9 @@ getCosts:function()
 		icon:[3,0,'magixmod'], //WIP
 		cost:{'insight':85,'culture': 30,'Mana':40,'influence':10},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true},
-	});
+		effects:[
+	]
+			});
 		new G.Tech({
 		name:'Wizard complex',
 		desc:'Complex of wizard towers. Expensive but The Complex produces all types of Essences three times better than usual towers. Each complex increases additionaly max [faith],[culture] & [influence]. Boosts max mana too.',
@@ -11152,7 +11494,8 @@ autobuy(G.year)
 		icon:[19,1],
 		chance:1,
 		req:{'tribalism':true},
-		//TODO
+		effects:[
+			]
 	});
 	new G.Trait({
 		name:'ground stone tools',
@@ -11186,6 +11529,8 @@ autobuy(G.year)
 		cost:{'culture':5,'faith':2},
 		chance:10,
 		req:{'fear of death':true,'oral tradition':true},
+		effects:[
+		]
 	});
 	new G.Trait({
 		name:'belief in revenants',
@@ -11410,6 +11755,8 @@ autobuy(G.year)
 		chance:275,
 		req:{'The God\'s call':true,'7th essence':true},
 		category:'gods',
+			effects:[
+				]
 	});
 		new G.Trait({
 		name:'God\'s trait #4 Potter\'s frenzy',
@@ -12383,7 +12730,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		effects:[
 			{type:'provide res',what:{'wisdom II':10}},
 			{type:'provide res',what:{'inspiration II':2}},
-			],
+		],
 		category:'knowledge',
 		chance:40
 	});
@@ -12482,12 +12829,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight':997,'culture':264},
 		req:{'ingredient crafting':true},
 		effects:[
-			{type:'function',func:function(){
-			 	G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5});
-				G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5});
-				G.getDict('market_buy').effects.push({type:'mult',value:1.5});
-				G.getDict('market_sell').effects.push({type:'mult',value:1.5});
-			}}
+			
 		]
 	});
 		new G.Tech({
@@ -12517,6 +12859,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 		cost:{'insight II':5},
 		req:{'Doctrine of the dark wormhole 4/5':true},
 		effects:[
+			
 			]
 	});
 				new G.Tech({
@@ -12774,6 +13117,8 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[31,26,'magixmod'],
 		req:{'hunting':true,'sewing':true},
 		cost:{'insight':10},
+		effects:[
+			]
 	});
 	new G.Tech({
 		name:'herbalism',
@@ -13234,6 +13579,56 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'Outstanding wisdom':true,'Hunters & fishers unification':true},
 		cost:{'insight II':290,'science':20},
 	});
+	new G.Trait({
+		name:'bonus1',
+		displayName:'. . .',
+		desc:'You seem powerful. Probably [Guru] can make more science',
+		icon:[32,5,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+	});
+	new G.Trait({
+		name:'bonus2',
+		displayName:'. . .',
+		desc:'You have a potential and power. Feels like everything goes faster.',
+		icon:[32,4,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+	});
+	new G.Trait({
+		name:'bonus3',
+		displayName:'. . .',
+		desc:'You are powerful. Your glory can lighten up some secret darkness.',
+		icon:[32,3,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+	});
+	new G.Trait({
+		name:'bonus4',
+		displayName:'. . .',
+		desc:'You have . . . \'s attention. But who is he? Feels like that entity or whoever is proud of your strength.',
+		icon:[32,2,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+	});
+	new G.Tech({
+		name:'aiming',
+		desc:'Teach your [hunter]s and [fisher]s how to be more accurate. The problem was hunters were shooting arrows from bows without any preparation just on "try your luck". Same with spear throwing.<>Improved accuarcy will increase chances for successful hunting meaning that <b>Bow hunting</b> & <b>Spear hunting/fishing</b> are no longer penaltized.',
+		icon:[33,28,'magixmod'],
+		req:{'spears':true,'bows':true,'building':true},
+		cost:{'insight':17,'influence':3},
+	});
+	new G.Trait({
+		name:'t2',
+		displayName:'Bersaria\'s Trial',
+		desc:'You are during Unhappy trial',
+		icon:[28,25,'magixmod',5,22,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+			effects:[
+			{type:'function',func:function(){G.getDict('blood').category='main'}},
+		],
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -13603,6 +13998,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'bronze':{name:'Bronze',desc:'Switches to bronze theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'silver':{name:'Silver',desc:'Switches to silver theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'golden':{name:'Golden',desc:'Switches to golden theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
+			'black':{name:'Black',desc:'Switches to black theme. Reward for <b>Talented?</b> achievement.',req:{'<font color="orange">Smaller shacks</font>':true}},
 		},
 		category:'mag',
 	});
@@ -13841,6 +14237,45 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 }}}
 				],
 	});
+	new G.Policy({
+		name:'Unhappy',
+		desc:'starts [se02] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',28,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se02':'on'},
+		category:'trial',
+		effects:[
+			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Unhappy. I am a Madness. This plane is full of anger... No way to make'em happy. You will have to handle it. In fact people's happiness will be always at -200% level and can't be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Reaching -500% happiness causes Madness to kick you out of this plane. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!")) {
+    alert("Alright... Handle the Madness.");     
+		alert("Then the Unhappy trial begins. After clicking this popup just refresh this page.");
+		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t2=G.traitByName['t2'];var trial=G.traitByName['trial'];G.gainTrait(t2);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.Save();
+} else {
+    alert("Make sure you will prepare enough for madness... ~Bersaria")
+	alert("Begone");
+}}}
+				],
+	});
+	/*new G.Policy({  IN DEV!
+		name:'Cultural',
+		desc:'starts [se03] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',27,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se03':'on'},
+		category:'trial',
+		effects:[
+			{type:'function',func:function(){if (confirm("Are you sure you want to start the Trial? -- Trial that will run: Cultural. I am a personification of Inspiration. Ya met me! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather [culture] , [influence] etc. for ya. (their amounts can over cap but Tu-ria won't bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial [water rations] cannot be set to plentiful(food one can be still be set)! Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. (This trial is repeatable)")) {
+    alert("Alright... Show your worth.");     
+		alert("Then the Cultural trial begins. After clicking this popup just refresh this page.");
+		G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.Save();
+} else {
+    alert("Are you afraid of being inspirated? Come back when you will defeat this fear.")
+	alert("See you soon");
+}}}
+				],
+	});*/
+	
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
