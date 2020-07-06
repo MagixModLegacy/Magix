@@ -715,8 +715,10 @@ G.props['fastTicksOnResearch']=150;
 			if (G.getRes('influence').amount<=G.getRes('authority').amount-1)G.gain('influence',1);
 			}
 			//science trickle for bonus 2 or above
-			if(G.has('bonus 2') || G.has('bonus 3') || G.has('bonus 4')){
-				if (G.getRes('science').amount<=G.getRes('education').amount-0.1)G.gain('science',0.1,'. . .');
+			if(G.has('Eotm')){
+				if(G.has('bonus 2') || G.has('bonus 3') || G.has('bonus 4')){
+					if (G.getRes('science').amount<=G.getRes('education').amount-0.1)G.gain('science',0.1,'. . .');
+				}
 			}
 			if(G.has('Ink-fishing')){G.getDict('squid').res['fish']['Ink']=0.001;G.getDict('squid').mult=0.95;}
 			//Chra-nos bonus
