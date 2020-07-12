@@ -34,7 +34,7 @@ if (!document.getElementById(cssId))
 				value /= 1000;
 				base++;
 			}
-			if (base > notations.length) {return 'Inf';} else {notationValue = notations[base];}
+			if (base > notations.length) {return 'Infini';} else {notationValue = notations[base];}
 		}
 		return ( Math.round(value * 10) / 10 ) + notationValue;
 	};
@@ -104,10 +104,7 @@ function rawFormatter(value) {return Math.round(value * 1000) / 1000;}
 	if (output=='0') negative=false;
 	return negative?'-'+output:output+decimal;
 }
-				G.button({id:'removeBulk',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">-</span>',
-					tooltip:'Divide by 10',
-					onclick:function(){
+				G.getDict('removeBulk').onclick=function(){
 						var n=G.getSetting('buyAmount');
 						if (G.keys[17]) n=-n;
 						else
@@ -116,12 +113,7 @@ function rawFormatter(value) {return Math.round(value * 1000) / 1000;}
 							else if (n<1) n=n*10;
 							else if (n>1) n=n/10;
 						}
-						n=Math.round(n);
-						n=Math.max(Math.min(n,1e+105),-1e+105);
-						G.setSetting('buyAmount',n);
-						G.updateBuyAmount();
-					},
-				});
+				};
 				G.button({id:'addBulk',
 					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
 					tooltip:'Multiply by 10',
