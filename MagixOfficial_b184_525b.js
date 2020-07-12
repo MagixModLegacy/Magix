@@ -93,6 +93,17 @@ function rawFormatter(value) {return Math.round(value * 1000) / 1000;}
 		'Uv',
 	])
 ];
+	function Beautify(value,floats)
+{
+	var negative=(value<0);
+	var decimal='';
+	if (Math.abs(value)<1000 && floats>0) decimal='.'+(value.toFixed(floats).toString()).split('.')[1];
+	value=Math.floor(Math.abs(value));
+	var formatter=numberFormatters[2];
+	var output=formatter(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+	if (output=='0') negative=false;
+	return negative?'-'+output:output+decimal;
+}
 		G.update['unit']=function()
 	{
 		l('unitDiv').innerHTML=
@@ -172,18 +183,6 @@ function rawFormatter(value) {return Math.round(value * 1000) / 1000;}
 			str+='</div>';
 			strByCat[me.unit.category]+=str;
 		}
-		
-		var str='';
-		var len=G.unitCategories.length;
-		for (var iC=0;iC<len;iC++)
-		{
-			if (strByCat[G.unitCategories[iC].id]!='')
-			{
-				if (G.unitCategories[iC].id=='wonder') str+='<br>';
-				str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="unit-catName-'+iC+'">'+G.unitCategories[iC].name+'</div>'+strByCat[G.unitCategories[iC].id]+'</div>';
-			}
-		}
-		l('unitBox').innerHTML=str;
 	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
