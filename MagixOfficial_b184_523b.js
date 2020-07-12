@@ -20,6 +20,170 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+	function formatEveryThirdPower(notations)
+{
+	return function (value)
+	{
+		var base = 0,
+		notationValue = '';
+		if (value >= 1000 && isFinite(value))
+		{
+			value /= 1000;
+			while(Math.round(value) >= 1000)
+			{
+				value /= 1000;
+				base++;
+			}
+			if (base > notations.length) {return 'Inf';} else {notationValue = notations[base];}
+		}
+		return ( Math.round(value * 10) / 10 ) + notationValue;
+	};
+}
+
+function rawFormatter(value) {return Math.round(value * 1000) / 1000;}
+	var numberFormatters =
+[
+	rawFormatter,
+	formatEveryThirdPower([
+		' thousand',
+		' million',
+		' billion',
+		' trillion',
+		' quadrillion',
+		' quintillion',
+		' sextillion',
+		' septillion',
+		' octillion',
+		' nonillion',
+		' decillion',
+		' undecillion',
+		' duodecillion',
+		' tredecillion',
+		' quattuordecillion',
+		' quindeccillion',
+		' sexdecillion',
+		' septendecillion',
+		' octodecillion',
+		' novemdecillion',
+		' vigintillion',
+		' unvigintillion',
+	]),
+	formatEveryThirdPower([
+		'k',
+		'M',
+		'B',
+		'T',
+		'Qa',
+		'Qi',
+		'Sx',
+		'Sp',
+		'Oc',
+		'No',
+		'Dc',
+		'Ud',
+		'Dd',
+		'Td',
+		'Qad',
+		'Qid',
+		'Sxd',
+		'Spd',
+		'Od',
+		'Nd',
+		'V',
+		'Uv',
+	])
+];
+		G.update['unit']=function()
+	{
+		l('unitDiv').innerHTML=
+			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Units are the core of your resource production and gathering.</div><div class="par">Units can be <b>queued</b> for purchase by clicking on them; they will then automatically be created over time until they reach the queued amount. Creating units usually takes up resources such as workers or tools; resources shown in red in the tooltip are resources you do not have enough of.<div class="bulleted">click a unit to queue 1</div><div class="bulleted">right-click or ctrl-click to remove 1</div><div class="bulleted">shift-click to queue 50</div><div class="bulleted">shift-right-click or ctrl-shift-click to remove 50</div></div><div class="par">Units usually require some resources to be present; a <b>building</b> will crumble if you do not have the land to support it, or it could go inactive if you lack the workers or tools (it will become active again once you fit the requirements). Some units may also require daily <b>upkeep</b>, such as fresh food or money, without which they will go inactive.</div><div class="par">Furthermore, workers will sometimes grow old, get sick, or die, removing a unit they\'re part of in the process.</div><div class="par">Units that die off will be automatically replaced until they match the queued amount again.</div><div class="par">Some units have different <b>modes</b> of operation, which can affect what they craft or how they act; you can use the small buttons next to such units to change those modes and do other things. One of those buttons is used to <b>split</b> the unit into another stack; each stack can have its own mode.</div></div>','infoButton')+
+			'<div style="position:absolute;z-index:100;top:0px;left:0px;right:0px;text-align:center;"><div class="flourishL"></div>'+
+				G.button({id:'removeBulk',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">-</span>',
+					tooltip:'Divide by 10',
+					onclick:function(){
+						var n=G.getSetting('buyAmount');
+						if (G.keys[17]) n=-n;
+						else
+						{
+							if (n==1) n=-1;
+							else if (n<1) n=n*10;
+							else if (n>1) n=n/10;
+						}
+						n=Math.round(n);
+						n=Math.max(Math.min(n,1e+105),-1e+105);
+						G.setSetting('buyAmount',n);
+						G.updateBuyAmount();
+					},
+				})+
+				'<div id="buyAmount" class="bgMid framed" style="width:128px;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">...</div>'+
+				G.button({id:'addBulk',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
+					tooltip:'Multiply by 10',
+					onclick:function(){
+						var n=G.getSetting('buyAmount');
+						if (G.keys[17]) n=-n;
+						else
+						{
+							if (n==-1) n=1;
+							else if (n>-1) n=n*10;
+							else if (n<-1) n=n/10;
+						}
+						n=Math.round(n);
+						n=Math.max(Math.min(n,1e+105),-1e+105);
+						G.setSetting('buyAmount',n);
+						G.updateBuyAmount();
+					}
+				})+
+			'<div class="flourishR"></div></div>'+
+			'<div class="fullCenteredOuter" style="padding-top:16px;"><div id="unitBox" class="thingBox fullCenteredInner"></div></div>';
+		
+		/*
+			-create an empty string for every unit category
+			-go through every unit owned and add it to the string of its category
+			-display each string under category headers, then attach events
+		*/
+		var strByCat=[];
+		var len=G.unitCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			strByCat[G.unitCategories[iC].id]='';
+		}
+		var len=G.unitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var str='';
+			var me=G.unitsOwned[i];
+			str+='<div class="thingWrapper">';
+			str+='<div class="unit thing'+G.getIconClasses(me.unit,true)+'" id="unit-'+me.id+'">'+
+				G.getIconStr(me.unit,'unit-icon-'+me.id,0,true)+
+				G.getArbitrarySmallIcon([0,0],false,'unit-modeIcon-'+me.id)+
+				'<div class="overlay" id="unit-over-'+me.id+'"></div>'+
+				'<div class="amount" id="unit-amount-'+me.id+'"></div>'+
+			'</div>';
+			if (me.unit.gizmos)
+			{
+				str+='<div class="gizmos">'+
+					'<div class="gizmo gizmo1" id="unit-mode-'+me.id+'"></div>'+
+					'<div class="gizmo gizmo2'+(me.splitOf?' off':'')+'" id="unit-split-'+me.id+'"></div>'+
+					'<div class="gizmo gizmo3" id="unit-percent-'+me.id+'"><div class="percentGizmo" id="unit-percentDisplay-'+me.id+'"></div></div>'+
+				'</div>';
+			}
+			str+='</div>';
+			strByCat[me.unit.category]+=str;
+		}
+		
+		var str='';
+		var len=G.unitCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			if (strByCat[G.unitCategories[iC].id]!='')
+			{
+				if (G.unitCategories[iC].id=='wonder') str+='<br>';
+				str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="unit-catName-'+iC+'">'+G.unitCategories[iC].name+'</div>'+strByCat[G.unitCategories[iC].id]+'</div>';
+			}
+		}
+		l('unitBox').innerHTML=str;
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
