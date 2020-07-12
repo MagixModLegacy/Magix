@@ -5869,7 +5869,8 @@ if (!document.getElementById(cssId))
 			}else{
 				G.getDict('pagoda of passing time').cost={'basic building materials':225}
 			}
-			
+			//STORAGE NERFS
+			G.getDict('Fire essence storage').cost={'basic building materials':(100*((G.getUnitAmount('Fire essence storage')+1)/10)),'glass':(200*((G.getUnitAmount('Fire essence storage')+1)/8))};
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
