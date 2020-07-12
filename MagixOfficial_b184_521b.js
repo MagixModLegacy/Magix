@@ -5870,13 +5870,13 @@ if (!document.getElementById(cssId))
 				G.getDict('pagoda of passing time').cost={'basic building materials':225}
 			}
 			//STORAGE NERFS
-			G.getDict('Fire essence storage').cost={'basic building materials':(25*(G.getUnitAmount('Fire essence storage')+1/15)),'glass':(50*(G.getUnitAmount('Fire essence storage')+1/15))};
-			G.getDict('Water essence storage').cost={'basic building materials':(25*(G.getUnitAmount('Water essence storage')+1/15)),'glass':(50*(G.getUnitAmount('Water essence storage')+1/15))};
-			G.getDict('Nature essence storage').cost={'basic building materials':(25*(G.getUnitAmount('Nature essence storage')+1/15)),'glass':(50*(G.getUnitAmount('Nature essence storage')+1/15))};
-			G.getDict('Wind essence storage').cost={'basic building materials':(25*(G.getUnitAmount('Wind essence storage')+1/15)),'glass':(50*(G.getUnitAmount('Wind essence storage')+1/15))};
-			G.getDict('Dark essence storage').cost={'basic building materials':(25*(G.getUnitAmount('Dark essence storage')+1/15)),'glass':(50*(G.getUnitAmount('Dark essence storage')+1/15))};
-			G.getDict('Lightning essence storage').cost={'basic building materials':(25*(G.getUnitAmount('Lightning essence storage')+1/15)),'glass':(50*(G.getUnitAmount('Lightning essence storage')+1/15))};
-			G.getDict('Holy essence storage').cost={'basic building materials':(25*(G.getUnitAmount('Holy essence storage')+1/15)),'glass':(50*(G.getUnitAmount('Holy essence storage')+1/15))};
+			G.getDict('Fire essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Fire essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Fire essence storage')+1/15))};
+			G.getDict('Water essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Water essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Water essence storage')+1/15))};
+			G.getDict('Nature essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Nature essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Nature essence storage')+1/15))};
+			G.getDict('Wind essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Wind essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Wind essence storage')+1/15))};
+			G.getDict('Dark essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Dark essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Dark essence storage')+1/15))};
+			G.getDict('Lightning essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Lightning essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Lightning essence storage')+1/15))};
+			G.getDict('Holy essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Holy essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Holy essence storage')+1/15))};
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
