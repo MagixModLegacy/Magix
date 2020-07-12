@@ -8278,7 +8278,7 @@ if (!document.getElementById(cssId))
 		name:'Fire essence storage',
 		desc:'@One storage allows you to store 11500 [Fire essence] more<>A simple glass shielded storage with essence faucet. It is more tall than wide so that is why it consumes only 0.8 [land].',
 		icon:[2,5,'magixmod'],
-		cost:{'basic building materials':100*((G.getUnitAmount('Fire essence storage')+1)/10),'glass':200*((G.getUnitAmount('Fire essence storage')+1)/8)},
+		cost:{'basic building materials':(100*((G.getUnitAmount('Fire essence storage')+1)/10)),'glass':(200*((G.getUnitAmount('Fire essence storage')+1)/8))},
 		use:{'land':0.8},
 		effects:[
 			{type:'provide',what:{'fire essence limit':11500}},
