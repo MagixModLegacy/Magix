@@ -184,6 +184,7 @@ function rawFormatter(value) {return Math.round(value * 1000) / 1000;}
 			}
 		}
 		l('unitBox').innerHTML=str;
+	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
