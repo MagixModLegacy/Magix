@@ -13568,17 +13568,23 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Tech({
 		name:'Outstanders club',
-		desc:'Decreases [population] limit per one [The Outstander] from 40k to 28k.',
+		desc:'Decreases [population] limit per one [The Outstander] from 40k to 28k. Provides extra 5 [wisdom II]',
 		icon:[14,28,'magixmod'],
 		req:{'Outstanding wisdom':true},
 		cost:{'insight II':300,'science':15,'culture II':25},
+		effects:[
+			{type:'provide res',what:{'wisdom II':5}},
+		],
 	});
 	new G.Tech({
 		name:'Unbelieva-canes',
-		desc:'[Sugar cane farm] is 225% more efficient(compounds).<>The number of this source of sugar in one farm is unbelieveable. :O ',
+		desc:'[Sugar cane farm] is 225% more efficient(compounds).<>The number of this source of sugar in one farm is unbelieveable. :O @Provides extra 10 [wisdom II] ',
 		icon:[13,28,'magixmod'],
 		req:{'Outstanding wisdom':true},
 		cost:{'insight II':320,'science':20},
+		effects:[
+			{type:'provide res',what:{'wisdom II':10}},
+		],
 	});
 	new G.Tech({
 		name:'Ink-fishing',
@@ -13636,6 +13642,12 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			effects:[
 			{type:'function',func:function(){G.getDict('blood').category='main'}},
 		],
+	});
+		new G.Tech({
+		name:'beyond the edge',
+		desc:'Send your people beyond the edge of the world for the first time. You will lose 30% of your current [population] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 1.5% of your total land for your people. It may help you but there is a huge risk.</font>',
+		req:{'spears':true,'bows':true,'building':true},
+		cost:{'insight':17,'influence':3},
 	});
 	/*=====================================================================================
 	POLICIES
