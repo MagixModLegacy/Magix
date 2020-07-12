@@ -148,41 +148,6 @@ function rawFormatter(value) {return Math.round(value * 1000) / 1000;}
 				})+
 			'<div class="flourishR"></div></div>'+
 			'<div class="fullCenteredOuter" style="padding-top:16px;"><div id="unitBox" class="thingBox fullCenteredInner"></div></div>';
-		
-		/*
-			-create an empty string for every unit category
-			-go through every unit owned and add it to the string of its category
-			-display each string under category headers, then attach events
-		*/
-		var strByCat=[];
-		var len=G.unitCategories.length;
-		for (var iC=0;iC<len;iC++)
-		{
-			strByCat[G.unitCategories[iC].id]='';
-		}
-		var len=G.unitsOwned.length;
-		for (var i=0;i<len;i++)
-		{
-			var str='';
-			var me=G.unitsOwned[i];
-			str+='<div class="thingWrapper">';
-			str+='<div class="unit thing'+G.getIconClasses(me.unit,true)+'" id="unit-'+me.id+'">'+
-				G.getIconStr(me.unit,'unit-icon-'+me.id,0,true)+
-				G.getArbitrarySmallIcon([0,0],false,'unit-modeIcon-'+me.id)+
-				'<div class="overlay" id="unit-over-'+me.id+'"></div>'+
-				'<div class="amount" id="unit-amount-'+me.id+'"></div>'+
-			'</div>';
-			if (me.unit.gizmos)
-			{
-				str+='<div class="gizmos">'+
-					'<div class="gizmo gizmo1" id="unit-mode-'+me.id+'"></div>'+
-					'<div class="gizmo gizmo2'+(me.splitOf?' off':'')+'" id="unit-split-'+me.id+'"></div>'+
-					'<div class="gizmo gizmo3" id="unit-percent-'+me.id+'"><div class="percentGizmo" id="unit-percentDisplay-'+me.id+'"></div></div>'+
-				'</div>';
-			}
-			str+='</div>';
-			strByCat[me.unit.category]+=str;
-		}
 	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
