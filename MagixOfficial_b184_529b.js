@@ -13758,8 +13758,16 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		new G.Tech({
 		name:'beyond the edge',
 		desc:'Send your people beyond the edge of the world for the first time. You will lose 30% of your current [population] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 1.5% of your total land for your people. It may help you but there is a huge risk.</font>',
+		req:{'Policy revaluation':true,'focused scouting':true},
+		cost:{'insight II':45,'influence':3},
+		icon:[33,26,'magixmod']
+	});
+		new G.Tech({
+		name:'sleep-speech',
+		desc:'Send your people beyond the edge of the world for the first time. You will lose 30% of your current [population] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 1.5% of your total land for your people. It may help you but there is a huge risk.</font>',
 		req:{'spears':true,'bows':true,'building':true},
 		cost:{'insight':17,'influence':3},
+		icon:[33,25,'magixmod']
 	});
 	/*=====================================================================================
 	POLICIES
