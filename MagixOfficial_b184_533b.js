@@ -13648,7 +13648,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'beyond the edge',
 		desc:'Send your people beyond the edge of the world for the first time. You will lose 30% of your current [population] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 1.5% of your total land for your people. It may help you but there is a huge risk.</font>',
 		req:{'Policy revaluation':true,'focused scouting':true},
-		cost:{'insight II':45,'influence':3},
+		cost:{'insight II':45,'influence':255},
 		icon:[33,26,'magixmod']
 	});
 		new G.Tech({
@@ -14320,7 +14320,24 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 }}}
 				],
 	});*/
-	
+	new G.Policy({
+		name:'sleepy insight',
+		desc:'A chance to obtain some amount of [insight] at start of new year. This policy has a meter that has a scale from: -3 to 3. <>Modes with number lower than 0 will cause ability to be stronger at the cost of chance while modes with over 0 numbers will cause ability provide less [insight] but with bigger chance.',
+		icon:[8,12,33,24,'magixmod'],
+		cost:{'faith':10,'insight':1},
+		startMode:'0',
+		req:{'ritualism':true,'sleep-speech':true},
+		category:'faith',
+		modes:{
+			'-3':{name:'-3',desc:'A 1% chance to receive 13 to 27 [insight] at the start of new year.'},
+			'-2':{name:'-2',desc:'A 2% chance to receive 9 to 18 [insight] at the start of new year.'},
+			'-1':{name:'-1',desc:'A 3% chance to receive 5 to 12 [insight] at the start of new year.'},
+			'0':{name:'0',desc:'A 5% chance to receive 3 to 9 [insight] at the start of new year.'},
+			'+1':{name:'+1',desc:'A 6% chance to receive 1 to 5 [insight] at the start of new year.'},
+			'+2':{name:'+2',desc:'A 7.5% chance to receive 0.25 to 2 [insight] at the start of new year.'},
+			'+3':{name:'+3',desc:'A 8.25% chance to receive 0.15 to 1.5 [insight] at the start of new year.'},
+		},
+	});
 	/*=======================================
 	Icon sheet for custom land tiles
 	=======================================*/
