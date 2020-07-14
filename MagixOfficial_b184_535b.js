@@ -14329,8 +14329,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'ritualism':true,'sleep-speech':true},
 		category:'faith',
 		modes:{
-			'-3':{name:'<font color="#3399ff">-3</font>',desc:'A 1% chance to receive 13 to 27 [insight] at the start of new year.'},
-			'-2':{name:'<font color="#4dc3ff">-2</font>',desc:'A 2% chance to receive 9 to 18 [insight] at the start of new year.'},
+			'-3':{name:'<font color="#3399ff">-3</font>',desc:'A 0.75% chance to receive 13 to 27 [insight] at the start of new year.'},
+			'-2':{name:'<font color="#4dc3ff">-2</font>',desc:'A 2.5% chance to receive 9 to 18 [insight] at the start of new year.'},
 			'-1':{name:'<font color="#B3FFFF">-1</font>',desc:'A 3% chance to receive 5 to 12 [insight] at the start of new year.'},
 			'0':{name:'0',desc:'A 5% chance to receive 3 to 9 [insight] at the start of new year.'},
 			'+1':{name:'<font color="#ffc34d">+1</font>',desc:'A 6% chance to receive 1 to 5 [insight] at the start of new year.'},
