@@ -374,6 +374,18 @@ G.props['fastTicksOnResearch']=150;
 		}else if(G.getRes('victory point').amount >=20 && G.getRes('victory point').amount <35 && G.hasNot('bonus4')){
 			G.gainTrait(G.traitByName['bonus4'])
 		}
+		G.getLandIconBG=function(land)
+	{
+		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
+	}
+	G.LoadResources=function()
+	{
+		var resources=[
+			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
+			'img/blot.png',
+			'img/iconSheet.png?v=1'
+		];
+	}
 	}
 	G.funcs['game over']=function()
 	{
@@ -684,7 +696,18 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		
+		G.getLandIconBG=function(land)
+	{
+		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
+	}
+	G.LoadResources=function()
+	{
+		var resources=[
+			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
+			'img/blot.png',
+			'img/iconSheet.png?v=1'
+		];
+	}
 	}
 	G.funcs['new year']=function()
 	{
@@ -14338,22 +14361,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'+3':{name:'<font color="#ff8066">+3</font>',desc:'A 8.25% chance to receive 0.15 to 1.5 [insight] at the start of new year.'},
 		},
 	});
-	/*=======================================
-	Icon sheet for custom land tiles
-	=======================================*/
-	G.getLandIconBG=function(land)
-	{
-		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
-	}
-	G.LoadResources=function()
-	{
-		var resources=[
-			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
-			'img/blot.png',
-			'img/iconSheet.png?v=1'
-		];
-	}
-	
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
