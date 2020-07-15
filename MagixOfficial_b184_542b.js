@@ -14638,7 +14638,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'saltwater fish',min:0.05,max:0.3,chance:0.01},
 			{type:'freshwater',amount:0.75},
 		],
-		image:16,
+		image:(16,'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'),
 		score:3,
 		ocean:true
 	});
