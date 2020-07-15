@@ -14626,7 +14626,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'wild rabbits',chance:0.9,min:0.3,max:0.6},
 			{type:['jacaranda'],min:0.5,max:1.5},
 		],
-		image:('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/lf.png'),
+		image:15,
 		score:3,
 	});
 				new G.Land({
@@ -14638,7 +14638,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'saltwater fish',min:0.05,max:0.3,chance:0.01},
 			{type:'freshwater',amount:0.75},
 		],
-		image:(16),
+		image:16,
 		score:3,
 		ocean:true
 	});
