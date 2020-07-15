@@ -378,6 +378,10 @@ G.props['fastTicksOnResearch']=150;
 	{
 		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
 	}
+		G.getLandIconBGpos=function(land)
+	{
+		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
+	}
 	G.LoadResources=function()
 	{
 		var resources=[
@@ -699,6 +703,10 @@ G.props['fastTicksOnResearch']=150;
 		G.getLandIconBG=function(land)
 	{
 		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
+	}
+		G.getLandIconBGpos=function(land)
+	{
+		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
 	}
 	G.LoadResources=function()
 	{
