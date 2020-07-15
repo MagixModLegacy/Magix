@@ -695,7 +695,6 @@ G.props['fastTicksOnResearch']=150;
 			str+='Report for last year :<br>';
 			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
 			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
-			str+=if(G.has('sleep-speech')){return '&bull; <b>Sleepy insight bonus</b>: ';}
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
