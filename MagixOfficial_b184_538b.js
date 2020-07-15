@@ -1935,7 +1935,7 @@ G.writeMSettingButton=function(obj)
 		partOf:'tl',
 		tick:function(me)
 		{
-			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
+			me.amount=Math.ceil(G.currentMap.territoryByOwner[0]*100);
 		},
 		getDisplayAmount:function()
 		{
