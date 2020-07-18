@@ -859,12 +859,12 @@ G.props['fastTicksOnResearch']=150;
 				G.lose('adult',(G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
 				G.gain('corpse',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
 				G.gain('blood',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
-				if(G.getRes('happiness').getDisplayAmount()=="-500%"){
+				if(G.getRes('happiness').getDisplayAmount()=="-400%"){
 					G.lose('population',G.getRes('population').amount,'The Madness')
 				G.dialogue.popup(function(div){
             return '<div style="width:320x;min-height:200px;height:75%;">'+
                 '<div class="fancyText title"><font color="red">Trial failed</font></div>'+
-                '<tt><div class="fancyText">You failed Unhappy trial by reaching -500% unhappiness cap</tt>'+
+                '<tt><div class="fancyText">You failed Unhappy trial by reaching -400% unhappiness cap</tt>'+
         '<br>All people murdered themselves leaving no one alive.<br> This is cruel.<br>'+
                 '<br><br>'+
                 'But you can try again, by reaching Pantheon again and choose Bersaria</div><br>'+
@@ -874,7 +874,58 @@ G.props['fastTicksOnResearch']=150;
 				}
 		}
 		}
-		
+		//SLEPPY INSIGHT
+	if(G.has('sleep-speech')){
+		if(G.checkPolicy('sleepy insight').mode=="-3"){
+			var number=Math.floor(Math.random() * 100);
+				if(number >= 0 && number <= 0.75){
+					var bonus=Math.floor(Math.random() * 14)+13;
+					G.gain('insight',bonus,'Sleepy Insight')
+				}
+		}
+		if(G.checkPolicy('sleepy insight').mode=="-2"){
+			var number=Math.floor(Math.random() * 100);
+				if(number >= 0 && number <= 2.5){
+					var bonus=Math.floor(Math.random() * 9)+9;
+					G.gain('insight',bonus,'Sleepy Insight')
+				}
+		}
+		if(G.checkPolicy('sleepy insight').mode=="-1"){
+			var number=Math.floor(Math.random() * 100);
+				if(number >= 0 && number <= 3){
+					var bonus=Math.floor(Math.random() * 7)+5;
+					G.gain('insight',bonus,'Sleepy Insight')
+				}
+		}
+		if(G.checkPolicy('sleepy insight').mode=="0"){
+			var number=Math.floor(Math.random() * 100);
+				if(number >= 0 && number <= 5){
+					var bonus=Math.floor(Math.random() * 6)+3;
+					G.gain('insight',bonus,'Sleepy Insight')
+				}
+		}
+		if(G.checkPolicy('sleepy insight').mode=="1"){
+			var number=Math.floor(Math.random() * 100);
+				if(number >= 0 && number <= 6){
+					var bonus=Math.floor(Math.random() * 4)+1;
+					G.gain('insight',bonus,'Sleepy Insight')
+				}
+		}
+		if(G.checkPolicy('sleepy insight').mode=="2"){
+			var number=Math.floor(Math.random() * 100);
+				if(number >= 0 && number <= 7.5){
+					var bonus=Math.floor(Math.random() * 1.75)+0.25;
+					G.gain('insight',bonus,'Sleepy Insight')
+				}
+		}
+		if(G.checkPolicy('sleepy insight').mode=="3"){
+			var number=Math.floor(Math.random() * 100);
+				if(number >= 0 && number <= 8.25){
+					var bonus=Math.floor(Math.random() * 1.35)+0.15;
+					G.gain('insight',bonus,'Sleepy Insight')
+				}
+		}
+		}
 	}
 	
 	G.props['new day lines']=[
