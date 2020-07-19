@@ -878,49 +878,49 @@ G.props['fastTicksOnResearch']=150;
 	if(G.has('sleep-speech')){
 		if(G.checkPolicy('sleepy insight').mode=="-3"){
 			var number=Math.floor(Math.random() * 100);
-				if(number >= 0 && number <= 0.75){
+				if(number >= 0 && number <= 2.75){
 					var bonus=Math.floor(Math.random() * 14)+13;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="-2"){
 			var number=Math.floor(Math.random() * 100);
-				if(number >= 0 && number <= 2.5){
+				if(number >= 0 && number <= 4.5){
 					var bonus=Math.floor(Math.random() * 9)+9;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="-1"){
 			var number=Math.floor(Math.random() * 100);
-				if(number >= 0 && number <= 3){
+				if(number >= 0 && number <= 5){
 					var bonus=Math.floor(Math.random() * 7)+5;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="0"){
 			var number=Math.floor(Math.random() * 100);
-				if(number >= 0 && number <= 5){
+				if(number >= 0 && number <= 7){
 					var bonus=Math.floor(Math.random() * 6)+3;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="1"){
 			var number=Math.floor(Math.random() * 100);
-				if(number >= 0 && number <= 6){
+				if(number >= 0 && number <= 8){
 					var bonus=Math.floor(Math.random() * 4)+1;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="2"){
 			var number=Math.floor(Math.random() * 100);
-				if(number >= 0 && number <= 7.5){
+				if(number >= 0 && number <= 9.5){
 					var bonus=Math.floor(Math.random() * 1.75)+0.25;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="3"){
 			var number=Math.floor(Math.random() * 100);
-				if(number >= 0 && number <= 8.25){
+				if(number >= 0 && number <= 10.25){
 					var bonus=Math.floor(Math.random() * 1.35)+0.15;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
@@ -14412,13 +14412,13 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'ritualism':true,'sleep-speech':true},
 		category:'faith',
 		modes:{
-			'-3':{name:'<font color="#3399ff">-3</font>',desc:'A 0.75% chance to receive 13 to 27 [insight] at the start of new year.'},
-			'-2':{name:'<font color="#4dc3ff">-2</font>',desc:'A 2.5% chance to receive 9 to 18 [insight] at the start of new year.'},
-			'-1':{name:'<font color="#B3FFFF">-1</font>',desc:'A 3% chance to receive 5 to 12 [insight] at the start of new year.'},
-			'0':{name:'0',desc:'A 5% chance to receive 3 to 9 [insight] at the start of new year.'},
-			'+1':{name:'<font color="#ffc34d">+1</font>',desc:'A 6% chance to receive 1 to 5 [insight] at the start of new year.'},
-			'+2':{name:'<font color="#ff884d">+2</font>',desc:'A 7.5% chance to receive 0.25 to 2 [insight] at the start of new year.'},
-			'+3':{name:'<font color="#ff8066">+3</font>',desc:'A 8.25% chance to receive 0.15 to 1.5 [insight] at the start of new year.'},
+			'-3':{name:'<font color="#3399ff">-3</font>',desc:'A 2.75% chance to receive 13 to 27 [insight] at the start of new year.'},
+			'-2':{name:'<font color="#4dc3ff">-2</font>',desc:'A 4.5% chance to receive 9 to 18 [insight] at the start of new year.'},
+			'-1':{name:'<font color="#B3FFFF">-1</font>',desc:'A 5% chance to receive 5 to 12 [insight] at the start of new year.'},
+			'0':{name:'0',desc:'A 7% chance to receive 3 to 9 [insight] at the start of new year.'},
+			'+1':{name:'<font color="#ffc34d">+1</font>',desc:'A 8% chance to receive 1 to 5 [insight] at the start of new year.'},
+			'+2':{name:'<font color="#ff884d">+2</font>',desc:'A 9.5% chance to receive 0.25 to 2 [insight] at the start of new year.'},
+			'+3':{name:'<font color="#ff8066">+3</font>',desc:'A 10.25% chance to receive 0.15 to 1.5 [insight] at the start of new year.'},
 		},
 	});
 	/*=====================================================================================
