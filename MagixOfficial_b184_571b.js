@@ -875,7 +875,7 @@ G.props['fastTicksOnResearch']=150;
 		}
 		}
 		//SLEPPY INSIGHT
-	if(G.has('sleep-speech')){
+	
 		if(G.checkPolicy('sleepy insight').mode=="-3"){
 			var number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 2.75){
@@ -925,7 +925,7 @@ G.props['fastTicksOnResearch']=150;
 				}
 			}
 		
-		}
+		
 	}
 	
 	G.props['new day lines']=[
