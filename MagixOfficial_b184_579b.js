@@ -771,10 +771,10 @@ G.props['fastTicksOnResearch']=150;
 				}
 			}
 			
-			if (G.year>=89 && G.year<=101 && !madeThievesWarn && G.hasNot('t1')){
+			if (G.year>=109 && G.year<=121 && !madeThievesWarn && G.hasNot('t1')){
        				 G.Message({type:'bad',text:'<b><span style="color: #FFA500">Beware of thievery!</span></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <span style "color= aqua">Happiness</span> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
 				madeThievesWarn = true
-				}else if(G.year>=89 && G.year<=101 && !madeThievesWarn && G.has('t1')){
+				}else if(G.year>=109 && G.year<=121 && !madeThievesWarn && G.has('t1')){
        				 G.Message({type:'important',text:'You got used to Thieves and fact that they appear after year 90. But in this plane Thieves doesn\'t exist. It is good for you.',icon:[28,2,'magixmod',23,0,'magixmod']});
 				madeThievesWarn = true
 				}
@@ -4642,7 +4642,7 @@ if (!document.getElementById(cssId))
 		partOf:'population',
 		tick:function(me,tick)
 		{
-		if (G.year>89 && G.hasNot('t1')){ //Spawning rate
+		if (G.year>109 && G.hasNot('t1')){ //Spawning rate
  		   var n = G.getRes('adult').amount * 0.00001
 		   if(G.checkPolicy('se02')=='on'){
   		  G.gain('thief',n*1.01,'unhappiness');
@@ -11239,7 +11239,7 @@ getCosts:function()
         effects:[]//manual unlocking blocker
     });
 function autobuy(newBuy) {
-  if(!G.techsOwnedNames.includes(battlingThieves.name) && newBuy >= 89) G.gainTech(battlingThieves)
+  if(!G.techsOwnedNames.includes(battlingThieves.name) && newBuy >= 109) G.gainTech(battlingThieves)
 }
 G = new Proxy(G, {
   set: (src, prop, value) => {
