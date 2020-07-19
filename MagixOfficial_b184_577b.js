@@ -1008,6 +1008,11 @@ G.props['fastTicksOnResearch']=150;
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
 
 		}
+		//0/0 insight fix
+		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
+			if(G.getRes('wisdom').amount<100){
+		G.gain('wisdom',1)	
+		}}
 	}
 	
 	G.funcs['tracked stat str c1']=function()
