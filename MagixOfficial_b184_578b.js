@@ -2015,7 +2015,11 @@ G.writeMSettingButton=function(obj)
 		partOf:'tl',
 		tick:function(me)
 		{
+			if(G.hasNot('Beyond the edge')){
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
+			}else{
+			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100)*1.015;
+			}
 		},
 		getDisplayAmount:function()
 		{
