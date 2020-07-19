@@ -776,7 +776,7 @@ G.props['fastTicksOnResearch']=150;
        				 G.Message({type:'bad',text:'<b><span style="color: #FFA500">Beware of thievery!</span></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <span style "color= aqua">Happiness</span> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
 				madeThievesWarn = true
 				}else if(G.year>=109 && G.year<=121 && !madeThievesWarn && G.has('t1')){
-       				 G.Message({type:'important',text:'You got used to Thieves and fact that they appear after year 90. But in this plane Thieves doesn\'t exist. It is good for you.',icon:[28,2,'magixmod',23,0,'magixmod']});
+       				 G.Message({type:'important',text:'You got used to Thieves and fact that they appear after year 110. But in this plane Thieves doesn\'t exist. It is good for you.',icon:[28,2,'magixmod',23,0,'magixmod']});
 				madeThievesWarn = true
 				}
 			
@@ -14414,9 +14414,36 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		effects:[
 			{type:'function',func:function(){G.dialogue.popup(function(div){
             return '<div style="width:580px;min-height:550px;height:75%;">'+
-                '<div class="fancyText title"><font color="#d4af37" size="5">- - Unhappy - -</font></div>'+
-				'<div class="fancyText">The Bersaria trial</font></div><br>'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Cultural - -</font></div>'+
+				'<div class="fancyText">The Turia\'s trial</font></div><br>'+
 				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/3.png" width="72" height="72"/>'+
+                '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
+'<br><br><Br><br>'+
+				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
+                '<br>Trial rules<br>'+
+                'Are you sure you want to start the Trial? -- Trial that will run: Unhappy. I am a Madness. This plane is full of anger... No way to make\'em happy. You will have to handle it. In fact people\'s happiness will be always at -200% level and can\'t be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Reaching -400% happiness causes Madness to kick you out of this plane. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!<br><Br><BR>'+
+'<div class="fancyText title">Tell me your choice...</div>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Unhappy trial begins...<br>The Madness begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
+                '</div>'+
+            '</div><div class="buttonBox">'+
+            '</div></div>'
+})}}
+				],
+	});
+	new G.Policy({
+		name:'Hunted',
+		desc:'starts [se04] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',26,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se03':'on'},
+		category:'trial',
+		effects:[
+			{type:'function',func:function(){G.dialogue.popup(function(div){
+            return '<div style="width:580px;min-height:550px;height:75%;">'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Hunted - -</font></div>'+
+				'<div class="fancyText">The Hartar\'s trial</font></div><br>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/4.png" width="72" height="72"/>'+
                 '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
