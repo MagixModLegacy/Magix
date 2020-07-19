@@ -905,21 +905,21 @@ G.props['fastTicksOnResearch']=150;
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="1"){
-			var number=Math.floor(Math.random() * 100);
+			let number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 8){
 					var bonus=Math.floor(Math.random() * 4)+1;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="2"){
-			var number=Math.floor(Math.random() * 100);
+			let number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 9.5){
 					var bonus=Math.floor(Math.random() * 1.75)+0.25;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="3"){
-			var number=Math.floor(Math.random() * 100);
+			let number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 70.25){
 					var bonus=Math.floor(Math.random() * 1.35)+0.15;
 					G.gain('insight',bonus,'Sleepy Insight')
