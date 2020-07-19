@@ -27,6 +27,7 @@ G.props['fastTicksOnResearch']=150;
 	let t1start1 = false
 	let t1vp=0
 	let madeThievesWarn = false
+	let ThiefPreWarn = false
 	let madeWarnToolDecayMesg = false
 	let madeThanks4playmesg = false
 	let backupmesg = false
@@ -783,7 +784,15 @@ G.props['fastTicksOnResearch']=150;
        				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made have started decaying.</font> <li>This doesn\'t seem good.</li></b>',icon:[24,6,'magixmod']});
 				madeWarnToolDecayMesg = true
 			}
-			
+			if (G.year>=89 && G.year<=91 && !ThiefPreWarn){
+				if(G.achievByName['mausoleum'].won==0){
+       				 G.Message({type:'tutorial',text:'I need to warn you. In next 20 years something bad will start to occur. If you think that you can deal it without ascending by Mausoleum you are mistaken. Ascend as soon as possible.',icon:[32,27,'magixmod']});
+				ThiefPreWarn = true
+				}else{
+					G.Message({type:'tutorial',text:'I need to warn you. In next 20 years something bad will start to occur. Seems like you ascended already. That is a good choice. You should prepare some <b>Armor</b> and <b>Metal weapons</b>.',icon:[32,27,'magixmod']});
+				ThiefPreWarn = true
+				}
+			}
 			if (G.year>=149 && G.year<=158 && !madeThanks4playmesg){
        				 G.Message({type:'important',text:'<span style="color= aqua">Seems like you are doing preety well. It is been 150 years since you started magic adventure with Magix additions. Thank you for playing with this expansion. Your playing makes mod better and motivates for future updates. <br> <b> -> </b>Remember mod is still getting bigger and gets more content. This means someday the mod may be unavaiable to play for while. If you will lose progress due to update we are sorry. Anyway keep enjoying this adventure... <br> </span><b>Farewell</b>',icon:[24,1,'magixmod']});
 				madeThanks4playmesg = true
