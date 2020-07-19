@@ -919,10 +919,10 @@ G.props['fastTicksOnResearch']=150;
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="3"){
-			let number=Math.floor(Math.random() * 100);
+			var number=Math.floor(Math.random() * 100);
+			var bonus=Math.floor(Math.random() * 1.35)+0.15;
 				if(number >= 0 && number <= 70.25){
-					var bonus=Math.floor(Math.random() * 1.35)+0.15;
-					G.gain('insight',bonus,'Sleepy Insight')
+					G.gain('insight',bonus,'Sleepy Insight');
 				}
 		}
 		}
