@@ -876,49 +876,49 @@ G.props['fastTicksOnResearch']=150;
 		}
 		//SLEPPY INSIGHT
 	
-		if(G.checkPolicy('sleepy insight').mode=="-3"){
+		if(G.checkPolicy('sleepy insight')=="-3"){
 			var number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 2.75){
 					var bonus=Math.floor(Math.random() * 14)+13;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
-		if(G.checkPolicy('sleepy insight').mode=="-2"){
+		if(G.checkPolicy('sleepy insight')=="-2"){
 			var number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 4.5){
 					var bonus=Math.floor(Math.random() * 9)+9;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
-		if(G.checkPolicy('sleepy insight').mode=="-1"){
+		if(G.checkPolicy('sleepy insight')=="-1"){
 			var number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 5){
 					var bonus=Math.floor(Math.random() * 7)+5;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
-		if(G.checkPolicy('sleepy insight').mode=="0"){
+		if(G.checkPolicy('sleepy insight')=="0"){
 			var number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 7){
 					var bonus=Math.floor(Math.random() * 6)+3;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
-		if(G.checkPolicy('sleepy insight').mode=="+1"){
+		if(G.checkPolicy('sleepy insight')=="+1"){
 			let number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 8){
 					var bonus=Math.floor(Math.random() * 4)+1;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
-		if(G.checkPolicy('sleepy insight').mode=="+2"){
+		if(G.checkPolicy('sleepy insight')=="+2"){
 			let number=Math.floor(Math.random() * 100);
 				if(number >= 0 && number <= 9.5){
 					var bonus=Math.floor(Math.random() * 1.75)+0.25;
 					G.gain('insight',bonus,'Sleepy Insight')
 				}
 		}
-		if(G.checkPolicy('sleepy insight').mode=="+3"){
+		if(G.checkPolicy('sleepy insight')=="+3"){
 			//var insighter=function(){
 				if(G.getRes('chance').amount<=70.25){
 					G.gain('insight',1.5,'Sleepy Insight');
