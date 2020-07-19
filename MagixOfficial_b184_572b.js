@@ -6121,7 +6121,9 @@ if (!document.getElementById(cssId))
 		name:'chance',
 		tick:function(me,tick)
 		{
+			if(G.day==290){
 			me.amount=Math.random() * 100;
+			}
 		},
 	});
 		/*=====================================================================================
