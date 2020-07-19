@@ -919,7 +919,6 @@ G.props['fastTicksOnResearch']=150;
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="+3"){
-			G.getRes('chance').amount=Math.random() * 100;
 			var bonus7=(Math.random() * 1.35)+15;
 				if(G.getRes('chance').amount<=70.25){
 					G.gain('insight',bonus7,'Sleepy Insight');
@@ -6119,6 +6118,10 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'chance',
+		tick:function(me,tick)
+		{
+			me.amount=Math.random() * 100;
+		},
 	});
 		/*=====================================================================================
 	ACHIEVEMENTS
