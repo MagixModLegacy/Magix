@@ -919,7 +919,7 @@ G.props['fastTicksOnResearch']=150;
 				}
 		}
 		if(G.checkPolicy('sleepy insight').mode=="+3"){
-			function(){
+			var insighter=function(){
 				if(G.getRes('chance').amount<=70.25){
 					var bonus7=(Math.floor() * 1.35)+15;
 					G.gain('insight',bonus7,'Sleepy Insight');
