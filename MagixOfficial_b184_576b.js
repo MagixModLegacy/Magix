@@ -880,17 +880,17 @@ G.props['fastTicksOnResearch']=150;
 			var bonus=Math.floor(Math.random() * 14)+13
 				if(G.getRes('chance').amount<=2.75 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
 					G.gain('insight',bonus,'Sleepy Insight');
-		}
+		}}
 		if(G.checkPolicy('sleepy insight')=="-2"){
 			var bonus=Math.floor(Math.random() * 9)+9
 				if(G.getRes('chance').amount<=4.5 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
 					G.gain('insight',bonus,'Sleepy Insight');
-		}
+		}}
 		if(G.checkPolicy('sleepy insight')=="-1"){
 			var bonus=Math.floor(Math.random() * 7)+5
 				if(G.getRes('chance').amount<=5 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
 					G.gain('insight',bonus,'Sleepy Insight');
-		}
+		}}
 		if(G.checkPolicy('sleepy insight')=="0"){
 			var bonus=Math.floor(Math.random() * 6)+3
 				if(G.getRes('chance').amount<=7 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
@@ -912,11 +912,12 @@ G.props['fastTicksOnResearch']=150;
 			
 		}
 		if(G.checkPolicy('sleepy insight')=="+3"){
-			//var insighter=function(){
+			
 			var bonus=Math.floor(Math.random() * 1.35)+0.15
 				if(G.getRes('chance').amount<=10.25 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
 					G.gain('insight',bonus,'Sleepy Insight');
 				}
+		}
 	}
 	
 	G.props['new day lines']=[
