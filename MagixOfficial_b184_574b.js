@@ -921,7 +921,7 @@ G.props['fastTicksOnResearch']=150;
 		if(G.checkPolicy('sleepy insight')=="+3"){
 			//var insighter=function(){
 				if(G.getRes('chance').amount<=70.25){
-					G.gain('insight',1.5,'Sleepy Insight');
+					G.gain('insight',Math.floor(Math.random() * 1.35)+0.15,'Sleepy Insight');
 				}
 			}
 		
