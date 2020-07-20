@@ -14436,7 +14436,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[24,18,'magixmod',26,25,'magixmod',1,22,'magixmod'],
 		cost:{'insight II':1,'influence II':1},
 		startMode:'off',		
-		req:{'se03':'on'},
+		req:{'se04':'on'},
 		category:'trial',
 		effects:[
 			{type:'function',func:function(){G.dialogue.popup(function(div){
