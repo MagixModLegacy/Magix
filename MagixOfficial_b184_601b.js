@@ -13772,7 +13772,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			effects:[
 			{type:'function',func:function(){G.getDict('blood').hidden=false}},
 		],
-	});var most=50-(G.achievByName['Cultural'].won/2);
+	});var most=(50-(G.achievByName['Cultural'].won/2));
 	new G.Trait({
 		name:'t3',
 		displayName:'Tu-ria\'s Trial',
