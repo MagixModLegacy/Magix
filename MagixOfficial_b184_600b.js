@@ -13772,7 +13772,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			effects:[
 			{type:'function',func:function(){G.getDict('blood').hidden=false}},
 		],
-	});
+	});var most=50-(G.achievByName['Cultural'].won/2);
 	new G.Trait({
 		name:'t3',
 		displayName:'Tu-ria\'s Trial',
@@ -13781,7 +13781,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'tribalism':false},
 		cost:{},
 			effects:[
-		{type:'function',func:function(){G.getDict('cultural balance').desc='[cultural balance] is main rule of Cultural trial. Defines the rate of cultural stability in this plane. Reaching <b>'+50-(G.achievByName['Cultural'].won/2)+'</b> or <b>'+0+(G.achievByName['Cultural'].won/2)+'</b> causes the trial to be failed. So be careful!';G.getDict('cultural balance').hidden=false;}},
+		{type:'function',func:function(){G.getDict('cultural balance').desc='[cultural balance] is main rule of Cultural trial. Defines the rate of cultural stability in this plane. Reaching <b>'+most+'</b> or <b>'+(G.achievByName['Cultural'].won/2)+'</b> causes the trial to be failed. So be careful!';G.getDict('cultural balance').hidden=false;}},
 		],
 	});
 		new G.Trait({
