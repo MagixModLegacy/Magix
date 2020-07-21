@@ -6137,8 +6137,7 @@ if (!document.getElementById(cssId))
 			}
 		},
 	});
-	var least=50-(G.achievByName['Cultural'].won/2);
-	  var most=0+(G.achievByName['Cultural'].won/2);
+	
 	new G.Res({
 		name:'cultural balance',
 		desc:'[cultural balance] is main rule of Cultural trial. Defines the rate of cultural stability in this plane. Reaching <b>'+least+'</b> or <b>'+most+'</b> causes the trial to be failed. So be careful!',
@@ -6409,6 +6408,8 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnResearch',amount:5},
 		],
 	});
+	var least=50-(G.achievByName['Cultural'].won/2);
+	  var most=0+(G.achievByName['Cultural'].won/2);
 		new G.Achiev({
 		tier:3,
 		name:'Hunted',
