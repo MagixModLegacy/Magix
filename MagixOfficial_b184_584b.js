@@ -6125,7 +6125,8 @@ if (!document.getElementById(cssId))
 		desc:'You gain blood each year from Madness victims equal to murdered people. Required to glory Bersaria and to research next things with [fear of death] active. You start with 200 [blood] in that case.',
 		icon:[33,6,'magixmod'],
 		startWith:350,
-		category:'',
+		category:'main',
+		hidden:true
 	});
 	new G.Res({
 		name:'chance',
@@ -13743,7 +13744,29 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'tribalism':false},
 		cost:{},
 			effects:[
-			{type:'function',func:function(){G.getDict('blood').category='main'}},
+			{type:'function',func:function(){G.getDict('blood').hidden=false}},
+		],
+	});
+	new G.Trait({
+		name:'t3',
+		displayName:'Tu-ria\'s Trial',
+		desc:'You are during Cultural trial',
+		icon:[27,25,'magixmod',1,22,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+			effects:[
+		
+		],
+	});
+		new G.Trait({
+		name:'t4',
+		displayName:'Hartar\'s Trial',
+		desc:'You are during Hunted trial',
+		icon:[26,25,'magixmod',1,22,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+			effects:[
+			
 		],
 	});
 		new G.Tech({
@@ -13760,6 +13783,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		cost:{'insight':17,'influence':3},
 		icon:[33,25,'magixmod']
 	});
+		
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
