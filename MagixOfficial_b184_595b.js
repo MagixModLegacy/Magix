@@ -6153,7 +6153,7 @@ if (!document.getElementById(cssId))
 			var amount=me.amount
 				if (amount<=10) return [33,11,'magixmod'];
 				else if (amount<=20) return [33,10,'magixmod'];
-				else if (amount>20 && amount<30) return [33,10,'magixmod'];
+				else if (amount>20 && amount<30) return [33,7,'magixmod'];
 				else if (amount>30) return [33,8,'magixmod'];
 				else if (amount>=40) return [33,9,'magixmod'];
 				
