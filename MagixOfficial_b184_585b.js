@@ -6124,7 +6124,7 @@ if (!document.getElementById(cssId))
 		name:'blood',
 		desc:'You gain blood each year from Madness victims equal to murdered people. Required to glory Bersaria and to research next things with [fear of death] active. You start with 200 [blood] in that case.',
 		icon:[33,6,'magixmod'],
-		startWith:350,
+		startWith:200,
 		category:'main',
 		hidden:true
 	});
@@ -10013,15 +10013,16 @@ new G.Unit({
 getCosts:function()
         {
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
-            if (G.hasNot('Eotm')){
-              return { 'insight' : calcCost('wisdom') }
-            }if(G.has('Eotm') && G.hasNot('do we need that much science?')){
-            return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
-	    }if(G.has('Eotm') && G.has('do we need that much science?')){
-		    return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.1) }
-	    }if (G.has('t2')){
+	    if (G.has('t2')){
               return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.03)}
             }
+            else if (G.hasNot('Eotm')){
+              return { 'insight' : calcCost('wisdom') }
+            }else if(G.has('Eotm') && G.hasNot('do we need that much science?')){
+            return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.2) }
+	    }else if(G.has('Eotm') && G.has('do we need that much science?')){
+		    return { 'insight II' : calcCost('wisdom II'), 'science': calcCost('education', 0.1) }
+	    }
         },
 		getCardCosts:function(what)
 		{
