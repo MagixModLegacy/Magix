@@ -6137,6 +6137,26 @@ if (!document.getElementById(cssId))
 			}
 		},
 	});
+	new G.Res({
+		name:'cultural balance',
+		desc:'[cultural balance] is main rule of Cultural trial',
+		startWith:25,
+		visible:true,
+		icon:[33,7,'magixmod'],
+		fractional:true,
+		category:'main',
+		tick:function(me,tick)
+		{
+		},
+		getIcon:function(me)
+		{
+				if (me.amount>=30) return [33,8,'magixmod'];
+				else if (me.amount>=40) return [33,9,'magixmod'];
+				else if (me.amount<=20) return [33,10,'magixmod'];
+				else if (me.amount<=10) return [33,11,'magixmod'];
+			}
+		},
+	});
 		/*=====================================================================================
 	ACHIEVEMENTS
 	=======================================================================================*/
