@@ -6150,10 +6150,13 @@ if (!document.getElementById(cssId))
 		},
 		getIcon:function(me)
 		{
-				if (me.amount>=30) return [33,8,'magixmod'];
-				else if (me.amount>=40) return [33,9,'magixmod'];
-				else if (me.amount<=20) return [33,10,'magixmod'];
-				else if (me.amount<=10) return [33,11,'magixmod'];
+			var amount=me.amount
+				if (amount<=10) return [33,11,'magixmod'];
+				else if (amount<=20) return [33,10,'magixmod'];
+				else if (amount>=23 && amount<=28) return [33,10,'magixmod'];
+				else if (amount>=30) return [33,8,'magixmod'];
+				else if (amount>=40) return [33,9,'magixmod'];
+				
 			
 		},
 	});
