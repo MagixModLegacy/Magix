@@ -959,7 +959,7 @@ G.props['fastTicksOnResearch']=150;
 })
 			}
 				var culture=Math.floor(Math.random()*12);
-				G.Message({type:'important',text:'During this year Tu-ria has brought down to you:<br><b><font color="#aaffcc">'+B(culture)+' Culture</font></b> and <b><font color="#ffbbbb>'+(culture/2)+' Influence</font></b>',icon:[10,11,'magixmod']});
+				G.Message({type:'important',text:'During this year Tu-ria has brought down to you:<br><b><font color="#aaffcc">'+B(culture)+' Culture</font></b> and <b><font color="#ffbbbb">'+(culture/2)+' Influence</font></b>',icon:[10,11,'magixmod']});
 				if (G.getRes('culture').amount < G.getRes('inspiration').amount-culture){
 				G.gain('culture',culture);
 				}
