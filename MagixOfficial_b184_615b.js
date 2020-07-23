@@ -13415,6 +13415,9 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		icon:[8,27,'magixmod'],
 		req:{'tribalism':false},
 		cost:{},
+		effects:[
+			{type:'function',func:function(){G.getDict('monument-building').desc='@unlocks wonder depending on Trial you are currently doing'}},
+		],
 	});
 	new G.Trait({
 		name:'t1',
