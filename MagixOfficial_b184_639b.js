@@ -10101,7 +10101,7 @@ new G.Unit({
 		icon:[18,2],
 		cost:{},
 		use:{'worker':1},
-		upkeep:{'blood':0.01*G.achievByName['Hunted'].won},
+		upkeep:{'blood':0.025*G.achievByName['Hunted'].won},
 		effects:[
 			{type:'gather',context:'hunt',amount:1,max:5,req:{'t4':true}},
 ],
@@ -13908,6 +13908,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		cost:{},
 			effects:[
 		{type:'function',func:function(){G.getDict('cultural balance').desc='[cultural balance] is main rule of Cultural trial. Defines the rate of cultural stability in this plane. Reaching <b>50-(amount of times you completed Cultural/2)</b> or <b>'+(G.achievByName['Cultural'].won/2)+'</b> causes the trial to be failed. So be careful!';G.getDict('cultural balance').hidden=false;}},
+				{type:'provide res',what:{'inspiration':10}},
+				{type:'provide res',what:{'authority':5}},
 		],
 	});
 		new G.Trait({
