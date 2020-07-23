@@ -966,6 +966,7 @@ G.props['fastTicksOnResearch']=150;
 				if (G.getRes('influence').amount < G.getRes('authority').amount-(culture/2)){
 				G.gain('influence',culture/2);
 				}
+			G.gain('cultural balance',Math.floor(Math.random()/2))
 	}
 	}
 	G.props['new day lines']=[
@@ -6206,7 +6207,7 @@ if (!document.getElementById(cssId))
 		{
 			if(G.has('beyond the edge') && G.getRes('beyond').amount==0){
 			G.gain('beyond',1)
-				G.lose('population',G.getRes('population').amount*0.7);
+				G.lose('population',G.getRes('population').amount*0.3);
 				G.getRes('happiness').amount=0;G.getRes('health').amount=0;
 				G.getRes('insight').amount=0;G.getRes('insight II').amount=0;
 				G.getRes('culture').amount=0;G.getRes('culture II').amount=0;
@@ -10945,6 +10946,7 @@ getCosts:function()
 		cost:{'insight':20},
 		effects:[
 			{type:'provide res',what:{'education':0.4}},
+			{type:'provide res',what:{'cultural balance':-3}},
 		],
 		req:{'oral tradition':true,'writing':true},
 	});
@@ -10955,6 +10957,7 @@ getCosts:function()
 		cost:{'insight':80},
 		effects:[
 			{type:'provide res',what:{'education':2}},
+			{type:'provide res',what:{'cultural balance':-6}},
 		],
 		req:{'oral tradition':true,'Basic maths':true,'city planning':true},
 	});
