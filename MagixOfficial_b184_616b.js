@@ -6178,6 +6178,22 @@ if (!document.getElementById(cssId))
 			
 		},
 	});
+	new G.Res({
+		name:'beyond',
+		tick:function(me,tick)
+		{
+			if(G.has('beyond the edge') && G.getRes('beyond').amount==0){
+			G.gain('beyond',1)
+				G.lose('population',G.getRes('population').amount*0.7);
+				G.getRes('happiness').amount=0;G.getRes('health').amount=0;
+				G.getRes('insight').amount=0;G.getRes('insight II').amount=0;
+				G.getRes('culture').amount=0;G.getRes('culture II').amount=0;
+				G.getRes('faith').amount=0;G.getRes('faith II').amount=0;
+				G.getRes('influence').amount=0;G.getRes('influence II').amount=0;
+				G.getRes('science').amount=0;
+			}
+		}
+	});
 		/*=====================================================================================
 	ACHIEVEMENTS
 	=======================================================================================*/
@@ -6726,7 +6742,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.9,req:{'se12':'on'}},
 			{type:'mult',value:2,req:{'se03':'on'}},
 		],
-		req:{'oral tradition':true},
+		req:{'oral tradition':true,'t3':false/*Cultural trial condition*/},
 		category:'cultural',
 	});
 	
@@ -7354,7 +7370,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.75,req:{'se11':'on'}},
 		],
 		limitPer:{'population':100},
-		req:{'chieftains':true},
+		req:{'chieftains':true,'t3':false/*Cultural trial condition*/},
 		category:'political',
 		priority:5,
 	});
@@ -7374,7 +7390,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.75,req:{'se11':'on'}},
 		],
 		limitPer:{'population':500},
-		req:{'clans':true},
+		req:{'clans':true,'t3':false/*Cultural trial condition*/},
 		category:'political',
 		priority:5,
 	});
@@ -8659,7 +8675,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.9,req:{'se12':'on'}},
 			{type:'mult',value:2,req:{'se03':'on'}},
 		],
-		req:{'oral tradition':true,'artistic thinking':true},
+		req:{'oral tradition':true,'artistic thinking':true,'t3':false/*Cultural trial condition*/},
 		category:'cultural',
 	});
 		new G.Unit({
@@ -10056,6 +10072,8 @@ getCosts:function()
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
 	    if (G.has('t2')){
               return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.03)}
+            }else if (G.has('te')){
+              return { 'insight' : calcCost('wisdom') , 'culture': calcCost('inspiration', 0.1), 'influence': calcCost('authority', 0.1)}
             }
             else if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
@@ -10104,6 +10122,9 @@ getCosts:function()
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech.wav');
 			audio.play(); 
 			}
+			if(G.has('t3')){
+			G.lose('cultural stability',1)	
+			}
 		},
 		onReroll:function()
 		{
@@ -10133,6 +10154,9 @@ getCosts:function()
 		},
 		buttonTooltip:function()
 		{
+			G.has('t3')){
+			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The costs scales with your <b>Wisdom</b>(for Insight),<b>Inspiration</b>(for Culture) and <b>Authority</b>(for Influence).':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time. This will not involve in stability.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
+			}
 			if(G.hasNot('Eotm') && G.has('t2')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The cost scales with your <b>Wisdom</b> resource.<br>The blood cost scales with <b>Wisdom</b> resource as well.':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
 			}
@@ -13416,7 +13440,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		req:{'tribalism':false},
 		cost:{},
 		effects:[
-			{type:'function',func:function(){G.getDict('monument-building').desc='@unlocks wonder depending on Trial you are currently doing'}},
+			{type:'function',func:function(){G.getDict('monument-building').desc='@unlocks wonder depending on Trial you are currently in'}},
 		],
 	});
 	new G.Trait({
@@ -13903,7 +13927,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'none':{name:'None',desc:'Drinking water is forbidden.<br>Your people will start to die from dehydration.'},
 			'meager':{name:'Meager',desc:'Your people receive half a portion per day.'},
 			'sufficient':{name:'Sufficient',desc:'Your people receive a full portion per day.'},
-			'plentiful':{name:'Plentiful',desc:'Your people receive a portion and a half per day.'},
+			'plentiful':{name:'Plentiful',desc:'Your people receive a portion and a half per day.',req:{'t3':false}},
 		},
 		category:'food',
 	});
@@ -14480,7 +14504,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'I am a personification of Inspiration. Ya met me '+G.getName('ruler')+'! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather <font color="green">culture</font> , <font color="green">influence</font> etc. for ya. (their amounts can over cap but Tu-ria won\'t bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial <font color="green">water rations</font> cannot be set to plentiful(food one can be still be set)! In addition you will be forced to keep cultural stability. Doing anything related to researching, discovering causes stability to go low while doing cultural things will bring it up. Don\'t get too low or too much(it will make trial attempt failed). Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. <br><Br><BR>'+
+                'I am a personification of Inspiration. Ya met me '+G.getName('ruler')+'! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather <font color="green">culture</font> , <font color="green">influence</font> for ya. (their amounts can over cap but Tu-ria won\'t bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial <font color="green">water rations</font> cannot be set to plentiful(food one can be still be set)! In addition you will be forced to keep cultural stability. Doing anything related to researching, discovering causes stability to go low while doing cultural things will bring it up. Don\'t get too low or too much(it will make trial attempt failed). Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. <br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
                 '</div>'+
