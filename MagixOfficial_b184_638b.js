@@ -10101,7 +10101,7 @@ new G.Unit({
 		icon:[18,2],
 		cost:{},
 		use:{'worker':1},
-		upkeep:{'blood':0.01*G.achievByName['Hunted'].won+1},
+		upkeep:{'blood':0.01*G.achievByName['Hunted'].won},
 		effects:[
 			{type:'gather',context:'hunt',amount:1,max:5,req:{'t4':true}},
 ],
