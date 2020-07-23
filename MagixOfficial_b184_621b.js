@@ -10112,12 +10112,12 @@ getCosts:function()
 		onBuy:function(what,index)
 		{
 			G.fastTicks+=G.props['fastTicksOnResearch'];
-			G.gainTech(what);
-			G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
-			G.update['tech']();
 			if(G.has('t3')){
 			G.lose('cultural stability',1)	
 			}
+			G.gainTech(what);
+			G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
+			G.update['tech']();
 			G.popupSquares.spawn(l('chooseOption-'+index+'-'+this.id),l('techBox').children[0]);
 			l('techBox').children[0].classList.add('popIn');
 			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
