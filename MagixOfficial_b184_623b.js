@@ -944,8 +944,30 @@ G.props['fastTicksOnResearch']=150;
 					G.gain('insight',bonus,'Sleepy Insight');
 				}
 		}
+		if(G.has('t3')){
+			if(G.getRes('cultural balance').amount >= 50-(G.achievByName['Cultural'].won/2) || G.getRes('cultural balance').amount<=0+(G.achievByName['Cultural'].won/2)){
+			G.lose('population',G.getRes('population').amount)
+				G.dialogue.popup(function(div){
+            return '<div style="width:320x;min-height:200px;height:75%;">'+
+                '<div class="fancyText title"><font color="red">Trial failed</font></div>'+
+                '<tt><div class="fancyText">You failed Cultural trial</tt>'+
+        '<br>You have been kicked out of this plane.<br>'+
+                '<br><br>'+
+                'But you can try again, by reaching Pantheon again and choose Tu-ria</div><br>'+
+                'Technical note: Start a new game , you know how.'+
+            '</div></div>'
+})
+			}
+				var culture=Math.floor(Math.random()*12);
+				G.Message({type:'important',text:'During this year Tu-ria has brought down to you:<br><b><font color="#ffaaff">'+B(culture)+' Culture</font> and <font color="#ffbbbb>'+(culture/2)+' Influence</font></b>',icon:[10,11,'magixmod']});
+				if (G.getRes('culture').amount < G.getRes('inspiration').amount-culture){
+				G.gain('culture',culture);
+				}
+				if (G.getRes('influence').amount < G.getRes('authority').amount-(culture/2)){
+				G.gain('influence',culture/2);
+				}
 	}
-	
+	}
 	G.props['new day lines']=[
 		'Creatures are lurking.',
 		'Danger abounds.',
@@ -10412,6 +10434,7 @@ getCosts:function()
 		req:{'oral tradition':true},
 		effects:[
 			{type:'provide res',what:{'spirituality':10}},
+			{type:'provide res',what:{'cultural balance':3}},
 		],
 	});
 	
@@ -10422,6 +10445,7 @@ getCosts:function()
 		cost:{'culture':10,'insight':10},
 		req:{'oral tradition':true},
 		effects:[
+			{type:'provide res',what:{'cultural balance':3}},
 		],
 	});
 	
@@ -14506,7 +14530,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'I am a personification of Inspiration. Ya met me '+G.getName('ruler')+'! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather <font color="green">culture</font> , <font color="green">influence</font> for ya. (their amounts can over cap but Tu-ria won\'t bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial <font color="green">water rations</font> cannot be set to plentiful(food one can be still be set)! In addition you will be forced to keep cultural stability. Doing anything related to researching, discovering causes stability to go low while doing cultural things will bring it up. Don\'t get too low or too much(it will make trial attempt failed). Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. <br><Br><BR>'+
+                'I am a personification of Inspiration. Ya met me '+G.getName('ruler')+'! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather <font color="green">culture</font> , <font color="green">influence</font> for ya. (their amounts can over cap but Tu-ria won\'t bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial <font color="green">water rations</font> cannot be set to plentiful(food one can be still be set)! In addition you will be forced to keep cultural stability. Doing anything related to researching, discovering causes stability to go low while doing cultural things will bring it up.(also few researches will increase up the stability) Don\'t get too low or too much(it will make trial attempt failed). Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. <br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
                 '</div>'+
