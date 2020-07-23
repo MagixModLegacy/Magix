@@ -10112,9 +10112,7 @@ getCosts:function()
 		onBuy:function(what,index)
 		{
 			G.fastTicks+=G.props['fastTicksOnResearch'];
-			if(G.has('t3')){
-			G.lose('cultural stability',1)	
-			}
+			
 			G.gainTech(what);
 			G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
 			G.update['tech']();
@@ -10124,6 +10122,9 @@ getCosts:function()
 			{
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech.wav');
 			audio.play(); 
+			}
+			if(G.has('t3')){
+			G.lose('cultural balance',1)	
 			}
 			
 		},
