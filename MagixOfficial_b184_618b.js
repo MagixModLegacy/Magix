@@ -10154,7 +10154,7 @@ getCosts:function()
 		},
 		buttonTooltip:function()
 		{
-			G.has('t3'){
+			if(G.has('t3')){
 			return '<div class="info"><div class="par">'+(this.choices.length==0?'Generate new research opportunities.<br>The costs scales with your <b>Wisdom</b>(for Insight),<b>Inspiration</b>(for Culture) and <b>Authority</b>(for Influence).':'Reroll into new research opportunities if none of the available choices suit you.<br>Cost increases with each reroll, but will decrease again over time. This will not involve in stability.')+'</div><div>Cost : '+G.getCostString(this.getCosts(),true)+'.</div></div>';
 			}
 			if(G.hasNot('Eotm') && G.has('t2')){
