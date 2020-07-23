@@ -2114,6 +2114,12 @@ G.writeMSettingButton=function(obj)
 			if(G.has('t2')){
 				G.getRes('happiness').amount=-1e15//Unhappy trial
 			}
+			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
+			if(G.has('t4')){
+				if(amount>=98){
+					G.lose(me,G.getRes('happiness').amount*0.8)
+			}
+			}
 		},
 		getDisplayAmount:function()
 		{
@@ -2125,6 +2131,9 @@ G.writeMSettingButton=function(obj)
 			}else if(G.has('t2')){
 			if (amount>200) amount=200;
 			if (amount<-200) amount=-200-(G.techN/2)-G.getRes('unhappy').amount;
+			}else if(G.has('t4')){
+			if (amount>98) amount=98;
+			if (amount<-200) amount=-200;
 			}else{
 			if (amount>200) amount=200;
 			if (amount<-200) amount=-200;
@@ -6715,7 +6724,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'gather',what:{'stick':0.035},req:{'gtt1':true}},
 			{type:'gather',context:'gather',what:{'water':0.035},req:{'gtt2':true}},
 		],
-		req:{'tribalism':true},
+		req:{'tribalism':true,'t4':false},
 		category:'production',
 		priority:10,
 	});
@@ -7003,7 +7012,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
 			{type:'mult',value:0,req:{'Hunters & fishers unification':true}},
 		],
-		req:{'fishing':true},
+		req:{'fishing':true,'t4':false},
 		category:'production',
 		priority:5,
 	});
@@ -10047,7 +10056,7 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'Pagoda of culture',
-		desc:'@Leads to <b>Cultural</b> trial completion. //A monument of anger and wrath. A wonder full of cultural sparks for Tu-ria the Seraphin of Inspiration. Place that is beloved by culturists. <><font color="#ffdddd">Without culture your tribe would not even exist...</font>',
+		desc:'@Leads to <b>Cultural</b> trial completion. //A wonder full of cultural sparks for Tu-ria the Seraphin of Inspiration. Place that is beloved by culturists. <><font color="#0adbbd">Without culture your tribe would not even exist...</font>',
 		wonder:'Cultural',
 		icon:[19,26,'magixmod'],
 		wideIcon:[18,26,'magixmod'],
@@ -10056,26 +10065,40 @@ new G.Unit({
 		steps:125,
 		messageOnStart:'You started to build wonder for <b>Tu-ria</b>. <br>People start to bring all the artifacts right to the Pagoda. You are full of hope that it will be enough to make Tu-ria support you even more.',
 		finalStepCost:{'population':175,'gem block':25,'culture':25},
-		finalStepDesc:'175 [population] , 25 [Mana] and some extra materials will be needed to perform final step and let you ascend for some <b>Victory points</b> from this trial.',
+		finalStepDesc:'175 [population,people] , 25 [Mana] and some extra materials will be needed to perform final step and let you ascend for some <b>Victory points</b> from this trial.',
 		use:{'land':10},
 		req:{'monument-building':true,'t3':true},
 		category:'wonder',
 	});
 	new G.Unit({
 		name:'Hartar\'s statue',
-		desc:'@Leads to <b>Hunted</b> trial completion. //A monument of anger and wrath. A wonder for Bersaria the Seraphin of Madness. Tall statue with a mad face and some bonfires. <><font color="#ffdddd">It is insane...</font>',
+		desc:'@Leads to <b>Hunted</b> trial completion. //Statue fully related to patron of this plane: Hartar.<><font color="#ffd000">Fresh meat... might be healthy but only... with sense</font>',
 		wonder:'Hunted',
 		icon:[25,26,'magixmod'],
 		wideIcon:[24,26,'magixmod'],
 		cost:{'basic building materials':250,'gold block':10},
 		costPerStep:{'gold block':15,'Mana':25,'basic building materials':100,'cooked meat':25,'meat':25,'cured meat':25},
 		steps:100,
-		messageOnStart:'You started to build wonder for <b>Bersaria</b>. <br>This statue will have a angry face at top. Terrain is covered by some sort of fog. But you do it to stop the Madness and come back to normal plane. Let the statue be built!',
-		finalStepCost:{'population':(250+(1*G.achievByName['Unhappy'].won+1/10)),'gem block':5,'blood':bloodcost},
-		finalStepDesc:'To perform the final step '+250+(1*G.achievByName['Unhappy'].won+1/10)+'[population,People],5 [gem block]s and '+100+(1*G.achievByName['Unhappy'].won)+'[blood] must be sacrificed in order to escape that plane of Wrath and Madness and award you with <b>Victory points</b>.',
+		messageOnStart:'You started to build statue for <b>Hartar</b>. <br>This statue will have a angry face at top. You eat some meat and stare with hopeful smile that you will finish this trial by that.',
+		finalStepCost:{'population':100,'gem block':5,'blood':25},
+		finalStepDesc:'To perform the final step 25 [blood] , 100 [population,people] must be sacrificed in order to escape that plane of meat fanatics and award you with <b>Victory points</b>.',
 		use:{'land':10},
 		req:{'monument-building':true,'t4':true},
 		category:'wonder',
+	});
+	new G.Unit({
+		name:'hartar\'s servant',
+		desc:'@hunts wild animals for [meat], [bone]s and [hide]s@The servant can\'t be wounded',
+		icon:[18,2],
+		cost:{},
+		use:{'worker':1},
+		//upkeep:{'coin':0.2},
+		effects:[
+			{type:'gather',context:'hunt',amount:1,max:5,req:{'t4':true}},
+],
+		req:{'t4':true},
+		category:'production',
+		priority:5,
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -14592,7 +14615,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'I am patron of hunters! But in my trial you will hunt yourself. You\'ll hunt your weakpoints. In my plane your people won\'t like taste of green willing for tasty meat. [gatherer] and [fisher] doesn\'t exist there too. But you have no time for eating and being happy from taste of hunted deer. Each year 3% of your people will die and [health] will go lower and lower increasing vulnerability to the diseases. Happiness cap for this trial is: from -200% to 98%! You\'ll be able to bring health back to 0 state only once(via policies) but it will consume half of your total food. Build a wonder of my religion. Completing the trial for the first time I will empower all hunting units and [cooked meat],[cured meat] will decay slower.<br><Br><BR>'+
+                'I am patron of hunters! But in my trial you will hunt yourself. You\'ll hunt your weakpoints. In my plane your people won\'t like taste of green willing for tasty meat. <font color="pink">Gatherer</font> and <font color="pink">fisher</font> doesn\'t exist there too. But you have no time for eating and being happy from taste of hunted deer. Each year 3% of your people will die and <font color="pink">Health</font> will go lower and lower increasing vulnerability to the diseases. Happiness cap for this trial is: from -200% to 98%! You\'ll be able to bring health back to 0 state only once(via policies) but it will consume half of your total food. Build a wonder of my religion. Completing the trial for the first time I will empower all hunting units and cooked meat,cured meat will decay slower.<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Unhappy trial begins...<br>The Madness begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
                 '</div>'+
