@@ -2176,6 +2176,9 @@ G.writeMSettingButton=function(obj)
 				var recovery=0.98;
 				me.amount*=recovery;//people recover over time
 			}
+			if(G.has('t4') && G.year>=3){
+			G.lose('health'	,1+(G.year*((G.achievByName['Hunted'].won+1)/3)))
+			}
 		},
 		getDisplayAmount:function()
 		{
