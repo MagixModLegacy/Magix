@@ -384,6 +384,7 @@ G.props['fastTicksOnResearch']=150;
 	{
 		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
 	}
+		
 	G.LoadResources=function()
 	{
 		var resources=[
@@ -392,7 +393,23 @@ G.props['fastTicksOnResearch']=150;
 			'img/iconSheet.png?v=1'
 		];
 	}
-	}
+	if (G.achievByName['mausoleum'].won > 0) {
+      G.Message({
+        type: 'good',
+        text: 'Building the Mausoleum in the past has granted you access to magic! :)',
+        icon: [4, 12, 6, 1, 'magixmod']
+      });
+    }
+ else if(G.achievByName['mausoleum'].won < 1){
+
+  G.Message({
+    type: 'bad',
+    text: 'Building the Mausoleum in the past grants access to magic in the future.',
+    icon: [3, 12, 6, 1, 'magixmod']
+  });
+
+}
+}
 	G.funcs['game over']=function()
 	{
 		var str=G.getName('civ')+' is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
@@ -12324,22 +12341,10 @@ function checkMagic() {
   if (G.achievByName['mausoleum'].won) {
     if (G.achievByName['mausoleum'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
       G.gainTech(gift)
-      G.Message({
-        type: 'good',
-        text: 'Building the Mausoleum in the past has granted you access to magic! :)',
-        icon: [4, 12, 6, 1, 'magixmod']
-      });
     }
 
 }
  else if(G.achievByName['mausoleum'].won < 1){
-
-  G.Message({
-    type: 'bad',
-    text: 'Building the Mausoleum in the past grants access to magic in the future.',
-    icon: [3, 12, 6, 1, 'magixmod']
-  });
-
 }
 }
 checkMagic()
