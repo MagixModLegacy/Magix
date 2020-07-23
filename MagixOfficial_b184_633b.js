@@ -43,6 +43,7 @@ G.props['fastTicksOnResearch']=150;
 	let st9=false
 	let st10=false
 	let st11=false
+	let st12=false
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -735,6 +736,7 @@ G.props['fastTicksOnResearch']=150;
 			'img/iconSheet.png?v=1'
 		];
 	}
+		G.middleText('<font color="aqua">Magix turns 1! Thanks for playing and supporting this mod.<br><hr><br>I have a surprise for you guys</font>','slow')
 	}
 	G.funcs['new year']=function()
 	{
@@ -872,6 +874,10 @@ G.props['fastTicksOnResearch']=150;
 			if(G.techN > 108 && G.techN <=114 && !st11){
 				G.Message({type:'good',text:'You see one of your carver works on gem block. You came closer to see the big gem block and even asked if he can teach you a little of carving. You spend some time with him and carved your first wooden statuette. Then you carved a crown for the statuette. Hooray.',icon:[32,7,'magixmod']});
 				st11=true
+			}
+			if(G.techN > 114 && G.techN <=122 && !st12){
+				G.Message({type:'story2',text:'He did a flip. lol',icon:[24,2,'magixmod']});
+				st12=true
 			}
 		}
 		if(G.has('t2')){
