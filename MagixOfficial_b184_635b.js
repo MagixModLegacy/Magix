@@ -6180,7 +6180,7 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'blood',
-		desc:'You gain blood each year from Madness victims equal to murdered people. Required to glory Bersaria and to research next things with [fear of death] active. You start with 200 [blood] in that case.',
+		desc:'You gain blood each year from Madness victims equal to murdered people. Required to glory Bersaria and to research next things with [fear of death] active. You start with 200 [blood] in that case. <>But the blood is used in Hunted trial as well to keep Hartar\'s servants hunting meat for you.',
 		icon:[33,6,'magixmod'],
 		startWith:200,
 		category:'main',
@@ -10097,11 +10097,11 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'hartar\'s servant',
-		desc:'@hunts wild animals for [meat], [bone]s and [hide]s@The servant can\'t be wounded',
+		desc:'@hunts wild animals for [meat], [bone]s and [hide]s@The servant can\'t be wounded and replaces [gatherer]',
 		icon:[18,2],
 		cost:{},
 		use:{'worker':1},
-		//upkeep:{'coin':0.2},
+		upkeep:{'blood':0.01*G.achievByName['Hunted'].won+1},
 		effects:[
 			{type:'gather',context:'hunt',amount:1,max:5,req:{'t4':true}},
 ],
@@ -13918,7 +13918,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'tribalism':false},
 		cost:{},
 			effects:[
-			
+			{type:'function',func:function(){G.getDict('blood').hidden=false}},
 		],
 	});
 		new G.Tech({
