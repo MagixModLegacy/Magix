@@ -10062,7 +10062,7 @@ new G.Unit({
 		category:'wonder',
 	});
 	new G.Unit({
-		name:'Pagoda of culture',
+		name:'Hartar\'s statue',
 		desc:'@Leads to <b>Cultural</b> trial completion. //A monument of anger and wrath. A wonder for Bersaria the Seraphin of Madness. Tall statue with a mad face and some bonfires. <><font color="#ffdddd">It is insane...</font>',
 		wonder:'Hunted',
 		icon:[25,26,'magixmod'],
