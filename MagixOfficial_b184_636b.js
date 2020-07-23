@@ -10157,7 +10157,7 @@ new G.Unit({
 getCosts:function()
         {
             let calcCost = (name, constGain = 0.025, rollGain = 0.05) => Math.floor(G.getRes(name).amount * (constGain + this.roll * rollGain))
-	    if (G.has('t2')){
+	    if (G.has('t2') && G.has('fear of death')){
               return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.03)}
             }else if (G.has('t3')){
               return { 'insight' : calcCost('wisdom') , 'culture': calcCost('inspiration', 0.1), 'influence': calcCost('authority', 0.1)}
