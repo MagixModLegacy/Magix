@@ -410,6 +410,12 @@ G.props['fastTicksOnResearch']=150;
   });
 
 }
+		//NO EXTRA ORES WITH MAGIX
+		if(G.modsByName['Extra ores(for data.js)']){
+			G.middleText('Sorry',sloweerer)
+				 console.log('I am sorry but Extra Ores is a mod dedicated to data.js not Magix.');
+				console.log('But content from this mod will be available there. Just wait patiently.');
+		}
 }
 	G.funcs['game over']=function()
 	{
