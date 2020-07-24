@@ -8366,8 +8366,8 @@ if (!document.getElementById(cssId))
 		limitPer:{'population':1e5},
 		effects:[
 			{type:'gather',what:{'insight':0.3}},
-			{type:'gather',what:{'science':0.00005}},
-			{type:'gather',what:{'science':0.0000125},req:{'symbolism III':true}},
+			{type:'gather',what:{'science':0.0001}},
+			{type:'gather',what:{'science':0.0000250},req:{'symbolism III':true}},
 			{type:'mult',value:1.1,req:{'bonus1':true}},
 			{type:'mult',value:1.11,req:{'bonus2':true}},
 			{type:'mult',value:1.12,req:{'bonus3':true}},
