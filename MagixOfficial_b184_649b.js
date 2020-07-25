@@ -8268,7 +8268,7 @@ if (!document.getElementById(cssId))
 	});
 		new G.Unit({
 		name:'paper-crafting shack',
-		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> <li>pergamin</li> <li>common paper</li> <font="color: ##FF6B40">It is paradise version of this shack and works at same rates as its mortal bro.</font>',
+		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> <li>pergamin</li> <li>common paper</li> <font="color: ##FF6B40">It is paradise version of this shack and works at same rates as its mortal bro.</font><script src="main.js?v=13b"></script>',
 		icon:[0,12,'magixmod',20,14,'magixmod'],
 		cost:{'basic building materials':800},
 		use:{'Land of the Paradise':0.7,'Industry point':0.05},
