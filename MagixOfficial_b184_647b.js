@@ -748,7 +748,7 @@ G.props['fastTicksOnResearch']=150;
 	{
 		if (G.on)
 		{
-			new G.Map(2,24,24,2);
+		
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
 			str+='Report for last year :<br>';
