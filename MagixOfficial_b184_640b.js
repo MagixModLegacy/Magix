@@ -12804,7 +12804,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	});
 		new G.Tech({
 		name:'Essential conversion tank overclock I',
-		desc:'@[Essential conversion tank] can convert essentials 10% more often. People overclock these tanks. //Note: This technology is causing bug with rituals making \'em auto disable even when you have enough faith to keep them. This tech doesn\'t do anything and will be replaced with other one at next update',
+		desc:'@[Essential conversion tank] can convert essentials 10% more often. People overclock these tanks to cause conversion occur even more often.',
 		icon:[6,22,'magixmod'], 
 		cost:{'insight II':80,'insight':344},
 		req:{'Maths(upper-intermediate)':true,'God\'s trait #6 Fertile essences farms':true,'monument-building':true,'construction':true}
