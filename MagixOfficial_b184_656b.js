@@ -14718,7 +14718,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'wild bugs'},
 			{type:'freshwater fish',chance:0.8,min:0.1,max:0.5},
 			{type:'freshwater',amount:1},
-			{type:'rocky substrate'},
+			{type:'lush rocky substrate'},
 		],
 		modifiers:{'river':0.4,'volcano':0.2,},
 		image:6,
@@ -14919,7 +14919,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		goods:[
 			{type:['lavender'],amount:2},
 			{type:'grass',min:0.75,max:1.1},
-			{type:'rocky substrate'},
+			{type:'lush rocky substrate'},
 			{type:'foxes',min:0.2,max:0.8},
 			{type:'wolves',min:0.1,max:0.75,chance:3},
 			{type:'wild rabbits',chance:0.9,min:0.3,max:0.6},
@@ -15565,6 +15565,20 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':2,'clay':0.35,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
 			'mine':{'stone':1,'copper ore':0.004,'tin ore':0.014,'iron ore':0.05,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.004},
+			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.01},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'lush rocky substrate',
+		desc:'A [lush rocky substrate] is found underneath terrain with lush temperature and stable humidity.//Surface [stone]s may be gathered by hand.//Digging often produces [mud], more [stone]s and occasionally [copper ore,Ores] and a bit less [clay].//Mining provides the best results, outputting a variety of [stone]s, a little bit more rarely [gold ore,Ores], and precious [gems] but less ores like [copper ore,Copper],[tin ore,Tin],[nickel ore,Nickel],[iron ore,Iron]. Also there you will find less [coal]//Quarrying there gives a little bit more [marble],[platinum ore,Platinum].',
+		icon:[33,19,'magixmod'],
+		res:{
+			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
+			'dig':{'mud':2,'clay':0.13,'stone':0.6,'copper ore':0.0079,'tin ore':0.0081,'limestone':0.1,'salt':0.05},
+			'mine':{'stone':1,'copper ore':0.055,'tin ore':0.055,'iron ore':0.025,'gold ore':0.0038,'coal':0.078,'salt':0.1,'gems':0.005},
 			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.01},
 		},
 		affectedBy:['mineral depletion'],
