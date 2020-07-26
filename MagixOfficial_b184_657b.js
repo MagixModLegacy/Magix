@@ -4131,9 +4131,19 @@ G.writeMSettingButton=function(obj)
 			//Platinum and nickel patch
 				if (G.has('prospecting II')){
 					G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
+					G.getDict('lush rocky substrate').res['mine']['nickel ore']=0.025;
+					G.getDict('tundra rocky substrate').res['mine']['nickel ore']=0.032;
+					G.getDict('warm rocky substrate').res['mine']['nickel ore']=0.029;
+					G.getDict('ice desert rocky substrate').res['mine']['nickel ore']=0.035;
+					G.getDict('jungle rocky substrate').res['mine']['nickel ore']=0.01;
 				}
 				if (G.has('quarrying II')){
 					G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;
+					G.getDict('ice desert rocky substrate').res['quarry']['platinum ore']=0.00001;
+					G.getDict('warm rocky substrate').res['quarry']['platinum ore']=0.00001;
+					G.getDict('lush rocky substrate').res['quarry']['platinum ore']=0.000012;
+					G.getDict('tundra rocky substrate').res['quarry']['platinum ore']=0.0000125;
+					G.getDict('jungle rocky substrate').res['quarry']['platinum ore']=0.000007;
 				}
 		},
 		category:'alchemypotions',
@@ -5825,6 +5835,7 @@ if (!document.getElementById(cssId))
 				G.getDict('harvest rituals for flowers').cost = {'faith II':1}
 				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
 				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
+				G.getDict('sleepy insight').cost = {'faith II':3,'insight II':3}
 				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
 				if(G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version']){ //Interaction with laws of food. Specially laws of food free will no longer be free after policy revaluation
 					G.getDict('eat raw meat').cost = {'influence II':2}
@@ -15559,7 +15570,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Goods({
 		name:'jungle rocky substrate',
-		desc:'A [jungle rocky substrate] is found underneath jungles.//Surface [stone]s may be gathered by hand.//Digging often produces way more [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [tin ore,Tin] but less precious [gems] and way less [copper ore,Copper] amounts. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides a little more [platinum ore,Platinum].',
+		desc:'A [jungle rocky substrate] is found underneath jungles.//Surface [stone]s may be gathered by hand.//Digging often produces way more [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [tin ore,Tin] but less precious [gems] and way less [copper ore,Copper] amounts. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides less [platinum ore,Platinum].',
 		icon:[33,18,'magixmod'],
 		res:{
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
