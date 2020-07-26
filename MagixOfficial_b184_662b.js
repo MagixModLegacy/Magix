@@ -14964,6 +14964,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'mudwater',amount:1},
 			{type:'dead rocky substrate'},
 			{type:'animal corpse',min:0.005,max:2.5},
+			{type:'dead fishes',min:0.05,max:0.5,chance:0.5},
+			{type:'spoiled fruits',min:0.05,max:0.3,chance:0.4},
 		],
 		image:17,
 		score:0.5,
@@ -15650,6 +15652,24 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		res:{
 			'gather':{'bone':0.1},
 			'dig':{'bone':0.2}
+		},
+		mult:2,
+	});
+	new G.Goods({
+		name:'dead fishes',
+		desc:'Disgusting smell... Eww. This can give you [spoiled food] out of fishing.',
+		icon:[33,13,'magixmod'],
+		res:{
+			'fish':{'spoiled food':0.01},
+		},
+		mult:2,
+	});
+	new G.Goods({
+		name:'spoiled fruits',
+		desc:'Fruits that are dangerous for health when eaten. Source of [spoiled food].',
+		icon:[33,12,'magixmod'],
+		res:{
+			'gather':{'spoiled food':0.1},	
 		},
 		mult:2,
 	});
