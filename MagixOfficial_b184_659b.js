@@ -14962,7 +14962,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'dead grass'},
 			{type:'wild bugs',min:0.6,max:1.5},
 			{type:'mudwater',amount:1},
-			{type:'rocky substrate'},
+			{type:'dead rocky substrate'},
 		],
 		image:17,
 		score:0.5,
@@ -15613,7 +15613,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Goods({
 		name:'dead rocky substrate',
 		desc:'A [dead rocky substrate] is unique for Dead forest biome.//Surface [stone]s may be gathered by hand.//Digging rarely produces [mud], more [stone]s and occasionally [copper ore,Ores] and [clay].//Mining there is not worthy at all because there you will find almost no [tin ore,Ores]. //Same with quarrying except ([marble] and [platinum ore,Platinum] which is more often than anywhere else). //<font color="#aabbbb">There you will find no [gold ore,Gold] and no [nickel ore,Nickel].</font>',
-		icon:[33,17,'magixmod'],
+		icon:[33,15,'magixmod'],
 		res:{
 			'gather':{'stone':0.25,'clay':0.004,'limestone':0.002},
 			'dig':{'mud':0.5,'clay':0.05,'stone':0.2,'copper ore':0.002,'tin ore':0.002,'limestone':0.025,'salt':0.02},
@@ -15636,7 +15636,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Goods({
 		name:'mudwater',
 		desc:'[mudwater], whether found in some swamps and Dead forests, can be only collected for unhealthy [muddy water].',
-		icon:[33,18,'magixmod'],
+		icon:[33,17,'magixmod'],
 		res:{
 			'gather':{'muddy water':12},
 		},
