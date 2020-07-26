@@ -10325,7 +10325,6 @@ getCosts:function()
 		req:{'speech':true},
 		effects:[
 			{type:'provide res',what:{'inspiration':30,'wisdom':30}},
-			{type:'provide res',what:{'insight':50},req:{'construction':true}}
 			
 		],
 		chance:3,
