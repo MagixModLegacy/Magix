@@ -4140,6 +4140,7 @@ G.writeMSettingButton=function(obj)
 					G.getDict('warm rocky substrate').res['mine']['nickel ore']=0.029;
 					G.getDict('ice desert rocky substrate').res['mine']['nickel ore']=0.035;
 					G.getDict('jungle rocky substrate').res['mine']['nickel ore']=0.01;
+					G.getDict('badlands substrate').res['mine']['nickel ore']=0.011;
 				}
 				if (G.has('quarrying II')){
 					G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;
@@ -4149,6 +4150,7 @@ G.writeMSettingButton=function(obj)
 					G.getDict('tundra rocky substrate').res['quarry']['platinum ore']=0.0000125;
 					G.getDict('jungle rocky substrate').res['quarry']['platinum ore']=0.000007;
 					G.getDict('dead rocky substrate').res['quarry']['platinum ore']=0.00002;
+					G.getDict('badlands substrate').res['quarry']['platinum ore']=0.000013;
 				}
 		},
 		category:'alchemypotions',
@@ -14883,6 +14885,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'freshwater fish',chance:0.6,min:0.1,max:0.5},
 			{type:'freshwater',amount:0.8},
 			{type:'sandy soil',chance:0.3},
+			{type:'ostrich',chance:0.2,min:0.15,max:0.5},
 			{type:'warm rocky substrate'},
 		],
 		image:12,
@@ -14903,6 +14906,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'sugar cane',min:0.05,max:0.15,chance:0.075},
 			{type:'freshwater',amount:0.1},
 			{type:'sandy soil'},
+			{type:'ostrich',chance:0.2,min:0.15,max:0.5},
 			{type:'warm rocky substrate'},
 		],
 		image:11,
@@ -14984,6 +14988,25 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		],
 		image:17,
 		score:0.5,
+	});
+	new G.Land({
+		name:'badlands',
+		names:['Badlands,Mesa'],
+		goods:[
+			{type:'dead tree',chance:0.9,min:0.33,max:1.2},
+			{type:['dead grass','grass'],chance:0.4},
+			{type:'wild bugs',chance:0.8,min:0.1,max:2},
+			{type:'freshwater',min:0.1,max:0.35},
+			{type:'badlands substrate'},
+			{type:'succulents',min:0.07,max:0.6},
+			{type:'wolves',min:0.15,max:0.45,chance:0.33},
+			{type:'foxes',min:0.1,max:0.3,chance:0.25},
+			{type:'sandy soil',chance:0.33},
+			{type:'ostrich',chance:0.4,min:0.21,max:0.5},
+			{type:'wild rabbits',chance:0.045},
+		],
+		image:9,
+		score:2.25,
 	});
 	//TODO : all the following
 	new G.Land({
@@ -15348,8 +15371,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		res:{
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':2,'clay':0.15,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051},
-			'mine':{'stone':1,'copper ore':0.085,'tin ore':0.085,'iron ore':0.04,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005},
-			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.01},
+			'mine':{'stone':0.3,'copper ore':0.085,'tin ore':0.085,'iron ore':0.04,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005,'Various stones':0.3},
+			'quarry':{'cut stone':0.7,'limestone':0.5,'marble':0.01,'Various cut stones':0.3},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -15501,8 +15524,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		G.getDict('grass').res['gather']['vegetable']=0.001;
 		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
 		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
-		G.getDict('rocky substrate').res['mine']['Various stones']=0.075;
-		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
 	new G.Goods({
 		name:'jacaranda',
 		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b> and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
@@ -15551,8 +15572,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		res:{
 			'gather':{'stone':0.2,'clay':0.002,'limestone':0.003},
 			'dig':{'mud':0.1,'clay':0.3,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051,'sand':0.00001},
-			'mine':{'stone':1,'copper ore':0.01,'tin ore':0.08,'iron ore':0.042,'gold ore':0.0052,'coal':0.11,'salt':0.14,'gems':0.003},
-			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.0088},
+			'mine':{'stone':0.8,'copper ore':0.01,'tin ore':0.08,'iron ore':0.042,'gold ore':0.0052,'coal':0.11,'salt':0.14,'gems':0.003,'Various stones':0.2},
+			'quarry':{'cut stone':0.9,'limestone':0.5,'marble':0.0088,'Various cut stones':0.1},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -15565,8 +15586,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		res:{
 			'gather':{'stone':0.2,'clay':0.004,'limestone':0.0035},
 			'dig':{'mud':1.5,'clay':0.2,'stone':0.6,'copper ore':0.006,'tin ore':0.006,'limestone':0.1,'salt':0.051},
-			'mine':{'stone':1,'copper ore':0.09,'tin ore':0.07,'iron ore':0.046,'gold ore':0.0035,'coal':0.16,'salt':0.1,'gems':0.005},
-			'quarry':{'cut stone':1,'limestone':0.62,'marble':0.01},
+			'mine':{'stone':0.95,'copper ore':0.09,'tin ore':0.07,'iron ore':0.046,'gold ore':0.0035,'coal':0.16,'salt':0.1,'gems':0.005,'Various stones':0.05},
+			'quarry':{'cut stone':0.85,'limestone':0.62,'marble':0.01,'Various cut stones':0.15},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -15579,8 +15600,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		res:{
 			'gather':{'stone':0.2,'clay':0.002,'limestone':0.0035},
 			'dig':{'clay':0.2,'stone':0.6,'copper ore':0.001,'tin ore':0.001,'limestone':0.105},
-			'mine':{'stone':1,'copper ore':0.09,'tin ore':0.07,'iron ore':0.06,'gold ore':0.0035,'coal':0.21,'gems':0.0052},
-			'quarry':{'cut stone':1,'limestone':0.62,'marble':0.01},
+			'mine':{'stone':0.944,'copper ore':0.09,'tin ore':0.07,'iron ore':0.06,'gold ore':0.0035,'coal':0.21,'gems':0.0052,'Various stones':0.006},
+			'quarry':{'cut stone':0.999,'limestone':0.62,'marble':0.01,'Various cut stones':0.001},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -15593,8 +15614,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		res:{
 			'gather':{'stone':0.25,'clay':0.007,'limestone':0.005},
 			'dig':{'mud':4.2,'clay':0.45,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
-			'mine':{'stone':1,'copper ore':0.011,'tin ore':0.085,'iron ore':0.02,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005},
-			'quarry':{'cut stone':0.9,'limestone':0.55,'marble':0.011},
+			'mine':{'stone':0.85,'copper ore':0.011,'tin ore':0.085,'iron ore':0.02,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005,'Various stones':0.15},
+			'quarry':{'cut stone':0.81,'limestone':0.55,'marble':0.011,'Various cut stones':0.09},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -15607,8 +15628,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		res:{
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':2,'clay':0.35,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
-			'mine':{'stone':1,'copper ore':0.004,'tin ore':0.014,'iron ore':0.05,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.004},
-			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.01},
+			'mine':{'stone':0.8,'copper ore':0.004,'tin ore':0.014,'iron ore':0.05,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.004,'Various stones':0.2},
+			'quarry':{'cut stone':0.75,'limestone':0.5,'marble':0.01,'Various cut stones':0.25},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -15621,8 +15642,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		res:{
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':2,'clay':0.13,'stone':0.6,'copper ore':0.0079,'tin ore':0.0081,'limestone':0.1,'salt':0.05},
-			'mine':{'stone':1,'copper ore':0.055,'tin ore':0.055,'iron ore':0.025,'gold ore':0.0038,'coal':0.078,'salt':0.1,'gems':0.005},
-			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.01},
+			'mine':{'stone':0.88,'copper ore':0.055,'tin ore':0.055,'iron ore':0.025,'gold ore':0.0038,'coal':0.078,'salt':0.1,'gems':0.005,'Various stones':0.12},
+			'quarry':{'cut stone':0.9,'limestone':0.5,'marble':0.01,'Various cut stones':0.1},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -15635,8 +15656,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		res:{
 			'gather':{'stone':0.25,'clay':0.004,'limestone':0.002},
 			'dig':{'mud':0.5,'clay':0.05,'stone':0.2,'copper ore':0.002,'tin ore':0.002,'limestone':0.025,'salt':0.02},
-			'mine':{'stone':1,'copper ore':0.03,'tin ore':0.03,'iron ore':0.01,'coal':0.04,'salt':0.1,'gems':0.001},
-			'quarry':{'cut stone':0.8,'limestone':0.1,'marble':0.01},
+			'mine':{'stone':0.8,'copper ore':0.03,'tin ore':0.03,'iron ore':0.01,'coal':0.04,'salt':0.1,'gems':0.001,'Various stones':0.2},
+			'quarry':{'cut stone':0.6,'limestone':0.1,'marble':0.01,'Various cut stones':0.2},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -15685,6 +15706,29 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[33,12,'magixmod'],
 		res:{
 			'gather':{'spoiled food':0.1},	
+		},
+		mult:2,
+	});
+		new G.Goods({
+		name:'badlands substrate',
+		desc:'A [badlands substrate] can be only found in badlands biome.//Instead of [stone]s there are [Various stones] that can be gathered by hand.//By digging you can find less [mud] and [clay], more [Various stones] and in little less amounts [copper ore,Soft metal ores]. You won\'t find any [salt] by digging.//Mining provides the best results, outputting a variety of [Various stones], more often [gold ore,Precious ores], [salt] and [gems], but you will find less [coal] there.',
+		icon:[3,29,'magixmod'],
+		res:{
+			'gather':{'Various stones':0.25,'clay':0.005,'limestone':0.005},
+			'dig':{'mud':0.5,'clay':0.05,'Various stones':0.6,'copper ore':0.006,'tin ore':0.006,'limestone':0.11},
+			'mine':{'Various stones':0.97,'copper ore':0.065,'tin ore':0.06,'iron ore':0.035,'gold ore':0.008,'coal':0.03,'salt':0.16,'gems':0.009,'stone':0.03},
+			'quarry':{'cut stone':0.05,'limestone':0.5,'marble':0.01,'Various cut stones':0.95},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'ostrich',
+		desc:'[meat] source that can be found in: <b>Savanna</b>,<b>Desert</b> and <b>Badlands</b>. Ostriches are birds without wings and run very fast making hunting more challenging.',
+		icon:[4,29,'magixmod'],
+		res:{
+			'hunt':{'meat':2,'bone':0.25},
 		},
 		mult:2,
 	});
@@ -15930,7 +15974,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 				else if (tempTile>0.85)
 				{
 					if (landTile=='ocean') biomes.push('tropical ocean');
-					else if (wetTile<0.25) biomes.push('desert');
+					else if (wetTile<=0.18) biomes.push('badlands');
+					else if (wetTile<0.25 && wetTile>0.18) biomes.push('desert');
 					else if (wetTile>0.5 && wetTile <0.75) biomes.push('jungle');
 					else if (wetTile>0.884) biomes.push('dead forest');
 					else biomes.push('savanna');
