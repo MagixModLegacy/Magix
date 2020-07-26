@@ -15023,6 +15023,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'freshwater',min:0.07,max:0.33},
 			{type:'succulents',min:0.5,max:2.25,chance:0.99},
 			{type:'warm rocky substrate'},
+			{type:'sandy soil',min:0.3,max:1.8}
 		],
 		modifiers:{'river':0.1},
 		image:5,
@@ -15989,7 +15990,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 				else if (tempTile>1.1)
 				{
 					if (landTile=='ocean') biomes.push('tropical ocean');
-					if(wetTile>0.175) biomes.push('xeric shrubland');
+					if(wetTile>0.12) biomes.push('xeric shrubland');
 					else biomes.push('desert');
 				}
 				else if (tempTile>0.85)
