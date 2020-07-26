@@ -15725,7 +15725,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Goods({
 		name:'ostrich',
 		desc:'[meat] source that can be found in: <b>Savanna</b>,<b>Desert</b> and <b>Badlands</b>. Ostriches are birds without wings and run very fast making hunting more challenging.',
-		icon:[4,29,'magixmod'],
+		icon:[choose([4,5]),29,'magixmod'],
 		res:{
 			'hunt':{'meat':2,'bone':0.25},
 		},
