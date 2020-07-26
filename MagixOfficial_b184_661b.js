@@ -14931,7 +14931,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		goods:[
 			{type:['lavender'],amount:2},
 			{type:'grass',min:0.75,max:1.1},
-			{type:'lush rocky substrate'},
+			{type:['lush rocky substrate','rocky substrate']},
 			{type:'foxes',min:0.2,max:0.8},
 			{type:'wolves',min:0.1,max:0.75,chance:3},
 			{type:'wild rabbits',chance:0.9,min:0.3,max:0.6},
