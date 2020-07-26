@@ -15989,7 +15989,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 				else if (tempTile>1.1)
 				{
 					if (landTile=='ocean') biomes.push('tropical ocean');
-					if(wetTile>0.33) biomes.push('xeric shrubland');
+					if(wetTile>0.175) biomes.push('xeric shrubland');
 					else biomes.push('desert');
 				}
 				else if (tempTile>0.85)
