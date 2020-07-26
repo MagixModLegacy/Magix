@@ -4144,6 +4144,7 @@ G.writeMSettingButton=function(obj)
 					G.getDict('lush rocky substrate').res['quarry']['platinum ore']=0.000012;
 					G.getDict('tundra rocky substrate').res['quarry']['platinum ore']=0.0000125;
 					G.getDict('jungle rocky substrate').res['quarry']['platinum ore']=0.000007;
+					G.getDict('dead rocky substrate').res['quarry']['platinum ore']=0.00002;
 				}
 		},
 		category:'alchemypotions',
@@ -14729,7 +14730,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'wild bugs'},
 			{type:'freshwater fish',chance:0.8,min:0.1,max:0.5},
 			{type:'freshwater',amount:1},
-			{type:'lush rocky substrate'},
+			{type:['lush rocky substrate','rocky substrate']},
 		],
 		modifiers:{'river':0.4,'volcano':0.2,},
 		image:6,
@@ -14952,7 +14953,20 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		score:3,
 		ocean:true
 	});
-
+		new G.Land({
+		name:'dead forest',
+		names:['Deadlands,Dead forest'],
+		goods:[
+			{type:['dead tree'],amount:3},
+			{type:'forest mushrooms',chance:0.1},
+			{type:'dead grass'},
+			{type:'wild bugs',min:0.6,max:1.5},
+			{type:'mudwater',amount:1},
+			{type:'rocky substrate'},
+		],
+		image:17,
+		score:0.5,
+	});
 	//TODO : all the following
 	new G.Land({
 		name:'mountain',
@@ -15596,6 +15610,38 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		noAmount:true,
 		mult:5,
 	});
+	new G.Goods({
+		name:'dead rocky substrate',
+		desc:'A [dead rocky substrate] is unique for Dead forest biome.//Surface [stone]s may be gathered by hand.//Digging rarely produces [mud], more [stone]s and occasionally [copper ore,Ores] and [clay].//Mining there is not worthy at all because there you will find almost no [tin ore,Ores]. //Same with quarrying except ([marble] and [platinum ore,Platinum] which is more often than anywhere else). //<font color="#aabbbb">There you will find no [gold ore,Gold] and no [nickel ore,Nickel].</font>',
+		icon:[33,17,'magixmod'],
+		res:{
+			'gather':{'stone':0.25,'clay':0.004,'limestone':0.002},
+			'dig':{'mud':0.5,'clay':0.05,'stone':0.2,'copper ore':0.002,'tin ore':0.002,'limestone':0.025,'salt':0.02},
+			'mine':{'stone':1,'copper ore':0.03,'tin ore':0.03,'iron ore':0.01,'coal':0.04,'salt':0.1,'gems':0.001},
+			'quarry':{'cut stone':0.8,'limestone':0.1,'marble':0.01},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:3.85,
+	});
+	new G.Goods({
+		name:'dead grass',
+		desc:'[dead grass] is a bad source of [herb]s; Because it is dead grass there is almost no [fruit]s',
+		icon:[33,16,'magixmod'],
+		res:{
+			'gather':{'fruit':0.1,'stick':0.5},
+		},
+		mult:8.5,
+	});
+	new G.Goods({
+		name:'mudwater',
+		desc:'[mudwater], whether found in some swamps and Dead forests, can be only collected for unhealthy [muddy water].',
+		icon:[33,18,'magixmod'],
+		res:{
+			'gather':{'muddy water':12},
+		},
+		mult:5,
+	});
 	/*=====================================================================================
 	TILE EFFECTS
 	=======================================================================================*/
@@ -15839,7 +15885,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 				{
 					if (landTile=='ocean') biomes.push('tropical ocean');
 					else if (wetTile<0.25) biomes.push('desert');
-					else if (wetTile>0.5) biomes.push('jungle');
+					else if (wetTile>0.5 && wetTile <0.75) biomes.push('jungle');
+					else if (wetTile>0.88) biomes.push('dead forest');
 					else biomes.push('savanna');
 				}
 				else
