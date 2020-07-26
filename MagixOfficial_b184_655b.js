@@ -15503,7 +15503,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	//NEW SUBSTRATES
 		new G.Goods({
 		name:'warm rocky substrate',
-		displayName:'Rocky substrate',
 		desc:'A [warm rocky substrate] is found underneath biomes with warm temperature and low humidity.//Surface [stone]s may be gathered by hand.//This soil contains low amounts of [clay] and negligible amounts of [mud], more [stone]s and occasionally [copper ore,Ores].//Mining provides the best results, outputting a variety of [stone]s, more common [gold ore]s and [salt], but less precious [gems].//Quarrying underneath there provides less [marble]',
 		icon:[33,23,'magixmod'],
 		res:{
@@ -15518,8 +15517,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Goods({
 		name:'tundra rocky substrate',
-		displayName:'Rocky substrate',
-		desc:'A [tundra rocky substrate] is found underneath biomes with low temperatures.//Surface [stone]s may be gathered by hand.//This soil contains less [clay] and [mud], more [stone]s and a little bit less [copper ore,Ores].//Mining provides the best results, outputting a variety of [stone]s, more common [iron ore]s and [coal], but less amounts of ores like [copper ore,Copper] or [tin ore,Tin]. Can\'t forget about [gems]//Quarrying underneath there provides more [limestone] and [platinum ore].',
+		desc:'A [tundra rocky substrate] is found underneath biomes with low temperatures or similar to tundra.//Surface [stone]s may be gathered by hand.//This soil contains less [clay] and [mud], more [stone]s and a little bit less [copper ore,Ores].//Mining provides the best results, outputting a variety of [stone]s, more common [iron ore]s and [coal], but less amounts of ores like [copper ore,Copper] or [tin ore,Tin]. Can\'t forget about [gems]//Quarrying underneath there provides more [limestone] and [platinum ore].',
 		icon:[33,22,'magixmod'],
 		res:{
 			'gather':{'stone':0.2,'clay':0.004,'limestone':0.0035},
@@ -15533,7 +15531,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Goods({
 		name:'ice desert rocky substrate',
-		displayName:'Rocky substrate',
 		desc:'A [ice desert rocky substrate] is found underneath biomes with very low temperatures.//Surface [stone]s may be gathered by hand.//This soil contains no [mud], more [stone]s and [limestone] and rarely [copper ore,Ores].//Mining provides the best results, outputting a variety of [stone]s, way more common [iron ore]s, more common [nickel ore] and [coal], but less amounts of ores like [copper ore,Copper] or [tin ore,Tin]. Can\'t forget about [gems]. There you can find a little bit more of them.//Quarrying underneath there provides more [limestone] and [marble] but way less [Various stones].//<font color="#ffcccc">This substrate contains no [salt].</font>',
 		icon:[33,21,'magixmod'],
 		res:{
@@ -15548,7 +15545,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Goods({
 		name:'wet rocky substrate',
-		displayName:'Rocky substrate',
 		desc:'A [wet rocky substrate] is found underneath terrain with high humidity.//Surface [stone]s may be gathered by hand.//Digging often produces way more [mud] and [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [copper ore,Copper] , and precious [gems]. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides a little more [limestone] and [marble] but less [cut stone].',
 		icon:[33,20,'magixmod'],
 		res:{
@@ -15563,7 +15559,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Goods({
 		name:'jungle rocky substrate',
-		displayName:'Rocky substrate',
 		desc:'A [jungle rocky substrate] is found underneath jungles.//Surface [stone]s may be gathered by hand.//Digging often produces way more [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [tin ore,Tin] but less precious [gems] and way less [copper ore,Copper] amounts. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides a little more [platinum ore,Platinum].',
 		icon:[33,18,'magixmod'],
 		res:{
