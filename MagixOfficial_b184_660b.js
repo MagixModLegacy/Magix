@@ -14963,6 +14963,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'wild bugs',min:0.6,max:1.5},
 			{type:'mudwater',amount:1},
 			{type:'dead rocky substrate'},
+			{type:'animal corpse',min:0.005,max:2.5},
 		],
 		image:17,
 		score:0.5,
@@ -15613,7 +15614,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Goods({
 		name:'dead rocky substrate',
 		desc:'A [dead rocky substrate] is unique for Dead forest biome.//Surface [stone]s may be gathered by hand.//Digging rarely produces [mud], more [stone]s and occasionally [copper ore,Ores] and [clay].//Mining there is not worthy at all because there you will find almost no [tin ore,Ores]. //Same with quarrying except ([marble] and [platinum ore,Platinum] which is more often than anywhere else). //<font color="#aabbbb">There you will find no [gold ore,Gold] and no [nickel ore,Nickel].</font>',
-		icon:[33,15,'magixmod'],
+		icon:[33,16,'magixmod'],
 		res:{
 			'gather':{'stone':0.25,'clay':0.004,'limestone':0.002},
 			'dig':{'mud':0.5,'clay':0.05,'stone':0.2,'copper ore':0.002,'tin ore':0.002,'limestone':0.025,'salt':0.02},
@@ -15627,7 +15628,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Goods({
 		name:'dead grass',
 		desc:'[dead grass] is a bad source of [herb]s; Because it is dead grass there is almost no [fruit]s',
-		icon:[33,16,'magixmod'],
+		icon:[33,15,'magixmod'],
 		res:{
 			'gather':{'fruit':0.1,'stick':0.5},
 		},
@@ -15641,6 +15642,16 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'gather':{'muddy water':12},
 		},
 		mult:5,
+	});
+	new G.Goods({
+		name:'animal corpse',
+		desc:'[animal corpse]s can be only found there. Some of them are dug underground by the ages, so both digging and gathering may provide some [bone]s.',
+		icon:[33,14,'magixmod'],
+		res:{
+			'gather':{'bone':0.1},
+			'dig':{'bone':0.2}
+		},
+		mult:2,
 	});
 	/*=====================================================================================
 	TILE EFFECTS
@@ -15886,7 +15897,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 					if (landTile=='ocean') biomes.push('tropical ocean');
 					else if (wetTile<0.25) biomes.push('desert');
 					else if (wetTile>0.5 && wetTile <0.75) biomes.push('jungle');
-					else if (wetTile>0.88) biomes.push('dead forest');
+					else if (wetTile>0.884) biomes.push('dead forest');
 					else biomes.push('savanna');
 				}
 				else
