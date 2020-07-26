@@ -15021,7 +15021,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'wild bugs'},
 			{type:'freshwater fish',chance:0.03,min:0.1,max:0.3},
 			{type:'freshwater',min:0.07,max:0.33},
-			{type:'succulents',min:0.5,max:2.25,chance:0.99}
+			{type:'succulents',min:0.5,max:2.25,chance:0.99},
 			{type:'warm rocky substrate'},
 		],
 		modifiers:{'river':0.1},
