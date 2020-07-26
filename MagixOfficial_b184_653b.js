@@ -15565,7 +15565,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'jungle rocky substrate',
 		displayName:'rocky substrate',
 		desc:'A [jungle rocky substrate] is found underneath jungles.//Surface [stone]s may be gathered by hand.//Digging often produces way more [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [tin ore,Tin] but less precious [gems] and way less [copper ore,Copper] amounts. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides a little more [platinum ore,Platinum].',
-		icon:[33,19,'magixmod'],
+		icon:[33,18,'magixmod'],
 		res:{
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':2,'clay':0.35,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
