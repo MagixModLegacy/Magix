@@ -14856,7 +14856,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'freshwater fish',chance:0.6,min:0.1,max:0.5},
 			{type:'freshwater',amount:0.8},
 			{type:'sandy soil',chance:0.3},
-			{type:'rocky substrate'},
+			{type:'warm rocky substrate'},
 		],
 		image:12,
 		score:7,
@@ -14876,7 +14876,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'sugar cane',min:0.05,max:0.15,chance:0.075},
 			{type:'freshwater',amount:0.1},
 			{type:'sandy soil'},
-			{type:'rocky substrate'},
+			{type:'warm rocky substrate'},
 		],
 		image:11,
 		score:2,
@@ -15300,12 +15300,12 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	//substrates
 	new G.Goods({
 		name:'rocky substrate',
-		desc:'A [rocky substrate] is found underneath most terrain types.//Surface [stone]s may be gathered by hand.//Digging often produces [mud], more [stone]s and occasionally [copper ore,Ores] and [clay].//Mining provides the best results, outputting a variety of [stone]s, rare [gold ore,Ores], and precious [gems].',
+		desc:'A [rocky substrate] is found underneath terrain with moderate temperature and humidity.//Surface [stone]s may be gathered by hand.//Digging often produces [mud], more [stone]s and occasionally [copper ore,Ores] and [clay].//Mining provides the best results, outputting a variety of [stone]s, rare [gold ore,Ores], and precious [gems].',
 		icon:[11,10],
 		res:{
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
-			'dig':{'mud':2,'clay':0.15,'stone':0.6,'copper ore':0.01,'tin ore':0.01,'limestone':0.1,'salt':0.05},
-			'mine':{'stone':1,'copper ore':0.1,'tin ore':0.1,'iron ore':0.05,'gold ore':0.005,'coal':0.1,'salt':0.1,'gems':0.005},
+			'dig':{'mud':2,'clay':0.15,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051},
+			'mine':{'stone':1,'copper ore':0.085,'tin ore':0.085,'iron ore':0.04,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005},
 			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.01},
 		},
 		affectedBy:['mineral depletion'],
@@ -15500,7 +15500,22 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		affectedBy:['over fishing'],
 		mult:0,
 	});
-	
+	//NEW SUBSTRATES
+		new G.Goods({
+		name:'warm rocky substrate',
+		displayName:'Rocky substrate',
+		desc:'A [warm rocky substrate] is found underneath biomes with warm temperature and low humidity.//Surface [stone]s may be gathered by hand.//This soil contains low amounts of [clay] and negligible amounts of [mud], more [stone]s and occasionally [copper ore,Ores].//Mining provides the best results, outputting a variety of [stone]s, more common [gold ore]s and [salt], but less precious [gems].//Quarrying underneath there provides less [marble]',
+		icon:[33,23,'magixmod'],
+		res:{
+			'gather':{'stone':0.2,'clay':0.002,'limestone':0.003},
+			'dig':{'mud':0.1,'clay':0.3,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051},
+			'mine':{'stone':1,'copper ore':0.01,'tin ore':0.08,'iron ore':0.042,'gold ore':0.0052,'coal':0.11,'salt':0.14,'gems':0.003},
+			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.0088},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
 	/*=====================================================================================
 	TILE EFFECTS
 	=======================================================================================*/
