@@ -15007,6 +15007,27 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		image:9,
 		score:2.25,
 	});
+	new G.Land({
+		name:'xeric shrubland',
+		goods:[
+			{type:'dead tree',min:0.5,max:0.9},
+			{type:'berry bush',chance:0.02,min:0.01,max:0.07},
+			{type:'grass',min:0.5,max:1.5},
+			{type:'vfb1',chance:0.5},
+			{type:'sugar cane',min:0.2,max:0.4,chance:0.075},
+			{type:['wild rabbits','stoats'],chance:0.5},
+			{type:['foxes'],chance:0.5,amount:0.32},
+			{type:['wolves','bears'],chance:0.08,min:0.2,max:0.45},
+			{type:'wild bugs'},
+			{type:'freshwater fish',chance:0.03,min:0.1,max:0.3},
+			{type:'freshwater',min:0.07,max:0.33},
+			{type:'succulents',min:0.5,max:2.25,chance:0.99}
+			{type:'warm rocky substrate'},
+		],
+		modifiers:{'river':0.1},
+		image:5,
+		score:4,
+	});
 	//TODO : all the following
 	new G.Land({
 		name:'mountain',
@@ -15968,6 +15989,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 				else if (tempTile>1.1)
 				{
 					if (landTile=='ocean') biomes.push('tropical ocean');
+					if(wetTile>0.33) biomes.push('xeric shrubland');
 					else biomes.push('desert');
 				}
 				else if (tempTile>0.85)
