@@ -15548,7 +15548,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Goods({
 		name:'wet rocky substrate',
-		displayName:'rocky substrate',
+		displayName:'Rocky substrate',
 		desc:'A [wet rocky substrate] is found underneath terrain with high humidity.//Surface [stone]s may be gathered by hand.//Digging often produces way more [mud] and [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [copper ore,Copper] , and precious [gems]. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides a little more [limestone] and [marble] but less [cut stone].',
 		icon:[33,20,'magixmod'],
 		res:{
@@ -15563,7 +15563,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Goods({
 		name:'jungle rocky substrate',
-		displayName:'rocky substrate',
+		displayName:'Rocky substrate',
 		desc:'A [jungle rocky substrate] is found underneath jungles.//Surface [stone]s may be gathered by hand.//Digging often produces way more [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [tin ore,Tin] but less precious [gems] and way less [copper ore,Copper] amounts. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides a little more [platinum ore,Platinum].',
 		icon:[33,18,'magixmod'],
 		res:{
