@@ -14961,7 +14961,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'forest mushrooms',chance:0.1},
 			{type:'dead grass'},
 			{type:'wild bugs',min:0.6,max:1.5},
-			{type:'mudwater',amount:1},
+			{type:'mudwater',min:0.75,max:1},
 			{type:'dead rocky substrate'},
 			{type:'animal corpse',min:0.005,max:2.5},
 			{type:'dead fishes',min:0.05,max:0.5,chance:0.5},
