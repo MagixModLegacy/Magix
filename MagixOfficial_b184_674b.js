@@ -15974,8 +15974,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 				else if (tempTile>0.85)
 				{
 					if (landTile=='ocean') biomes.push('tropical ocean');
-					else if (wetTile<=0.1) biomes.push('badlands');
-					else if (wetTile<0.25 && wetTile>0.18) biomes.push('desert');
+					else if (wetTile<=0.15) biomes.push('badlands');
+					else if (wetTile<0.25 && wetTile>0.15) biomes.push('desert');
 					else if (wetTile>0.5 && wetTile <0.75) biomes.push('jungle');
 					else if (wetTile>0.884) biomes.push('dead forest');
 					else biomes.push('savanna');
