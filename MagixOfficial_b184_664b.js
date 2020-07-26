@@ -1121,7 +1121,7 @@ G.props['fastTicksOnResearch']=150;
 		G.Message({type:'good',mergeId:'foundTile',textFunc:function(args){
 			if (args.count==1) return 'Our explorers have found a new tile : <b>'+args.tile.land.displayName+'</b>.';
 			else return 'Our explorers have found '+B(args.count)+' new tiles; the latest is <b>'+args.tile.land.displayName+'</b>.';
-			if(args.tile.land.displayName=="Dead forest")G.achievByName['lands of despair'].won+1;
+			if(args.tile.land.displayName=="Dead forest")G.achievByName['lands of despair'].won+1;G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow');
 		},args:{tile:tile,count:1},icon:[14,4]});
 
 	}
@@ -1446,6 +1446,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.techN);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str traits','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.traitN);})+'</b></div>';
+		str+='<div class="par">Dead forests found: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['lands of despair'].won);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
