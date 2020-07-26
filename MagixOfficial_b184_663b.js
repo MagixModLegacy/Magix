@@ -1121,6 +1121,7 @@ G.props['fastTicksOnResearch']=150;
 		G.Message({type:'good',mergeId:'foundTile',textFunc:function(args){
 			if (args.count==1) return 'Our explorers have found a new tile : <b>'+args.tile.land.displayName+'</b>.';
 			else return 'Our explorers have found '+B(args.count)+' new tiles; the latest is <b>'+args.tile.land.displayName+'</b>.';
+			if(args.tile.land.displayName=="Dead forest")G.achievByName['lands of despair'].won+1;
 		},args:{tile:tile,count:1},icon:[14,4]});
 
 	}
@@ -6658,6 +6659,17 @@ if (!document.getElementById(cssId))
 		name:'Talented?',
 		icon:[32,25,'magixmod'],
 		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.15 less land per 1 piece so if unit uses 3 land it will use 2.55 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>. And... it unlocks new theme!',
+		effects:[
+			{type:'addFastTicksOnStart',amount:200},
+			{type:'addFastTicksOnResearch',amount:10},
+		],
+	});
+	new G.Achiev({
+		tier:3,
+		name:'lands of despair',
+		wideIcon:[0,29,'magixmod'],
+		icon:[1,29,'magixmod'],
+		desc:'Find <b>Dead forest</b> biome on your world map. This is rarest biome in the whole mod. This biome is most hostile biome that can exist on this world.',
 		effects:[
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
