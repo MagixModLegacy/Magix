@@ -14894,7 +14894,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'wild bugs',min:1,max:2},
 			{type:'freshwater fish',chance:0.1,min:0.1,max:0.3},
 			{type:'freshwater',amount:1},
-			{type:'rocky substrate'},
+			{type:'jungle rocky substrate'},
 		],
 		image:13,
 		score:8,
@@ -14904,7 +14904,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		goods:[
 			{type:['swampflowers'],amount:1},
 			{type:'grass',chance:3},
-			{type:'rocky substrate'},
+			{type:'wet rocky substrate'},
 			{type:'sugar cane',min:0.1,max:0.7},
 			{type:'crocodiles',min:0.2,max:0.8},
 			{type:'deer',min:0.1,max:0.9,chance:0.9},
@@ -15508,7 +15508,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[33,23,'magixmod'],
 		res:{
 			'gather':{'stone':0.2,'clay':0.002,'limestone':0.003},
-			'dig':{'mud':0.1,'clay':0.3,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051},
+			'dig':{'mud':0.1,'clay':0.3,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051,'sand':0.00001},
 			'mine':{'stone':1,'copper ore':0.01,'tin ore':0.08,'iron ore':0.042,'gold ore':0.0052,'coal':0.11,'salt':0.14,'gems':0.003},
 			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.0088},
 		},
@@ -15537,10 +15537,40 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'A [ice desert rocky substrate] is found underneath biomes with very low temperatures.//Surface [stone]s may be gathered by hand.//This soil contains no [mud], more [stone]s and [limestone] and rarely [copper ore,Ores].//Mining provides the best results, outputting a variety of [stone]s, way more common [iron ore]s, more common [nickel ore] and [coal], but less amounts of ores like [copper ore,Copper] or [tin ore,Tin]. Can\'t forget about [gems]. There you can find a little bit more of them.//Quarrying underneath there provides more [limestone] and [marble] but way less [Various stones].//<font color="#ffcccc">This substrate contains no [salt].</font>',
 		icon:[33,21,'magixmod'],
 		res:{
-			'gather':{'stone':0.2,'clay':0.004,'limestone':0.0035},
+			'gather':{'stone':0.2,'clay':0.002,'limestone':0.0035},
 			'dig':{'clay':0.2,'stone':0.6,'copper ore':0.001,'tin ore':0.001,'limestone':0.105},
 			'mine':{'stone':1,'copper ore':0.09,'tin ore':0.07,'iron ore':0.06,'gold ore':0.0035,'coal':0.21,'gems':0.0052},
 			'quarry':{'cut stone':1,'limestone':0.62,'marble':0.01},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'wet rocky substrate',
+		displayName:'rocky substrate',
+		desc:'A [wet rocky substrate] is found underneath terrain with high humidity.//Surface [stone]s may be gathered by hand.//Digging often produces way more [mud] and [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [copper ore,Copper] , and precious [gems]. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides a little more [limestone] and [marble] but less [cut stone].',
+		icon:[33,20,'magixmod'],
+		res:{
+			'gather':{'stone':0.25,'clay':0.007,'limestone':0.005},
+			'dig':{'mud':4.2,'clay':0.45,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
+			'mine':{'stone':1,'copper ore':0.011,'tin ore':0.085,'iron ore':0.02,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005},
+			'quarry':{'cut stone':0.9,'limestone':0.55,'marble':0.011},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'jungle rocky substrate',
+		displayName:'rocky substrate',
+		desc:'A [jungle rocky substrate] is found underneath jungles.//Surface [stone]s may be gathered by hand.//Digging often produces way more [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [tin ore,Tin] but less precious [gems] and way less [copper ore,Copper] amounts. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides a little more [platinum ore,Platinum].',
+		icon:[33,19,'magixmod'],
+		res:{
+			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
+			'dig':{'mud':2,'clay':0.35,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
+			'mine':{'stone':1,'copper ore':0.004,'tin ore':0.014,'iron ore':0.05,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.004},
+			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.01},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
