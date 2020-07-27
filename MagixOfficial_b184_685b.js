@@ -15027,7 +15027,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		],
 		modifiers:{'river':0.1},
 		image:5,
-		score:4,
+		score:3.8,
 	});
 	//TODO : all the following
 	new G.Land({
