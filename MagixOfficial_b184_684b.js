@@ -15022,7 +15022,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'freshwater fish',chance:0.03,min:0.1,max:0.3},
 			{type:'freshwater',min:0.07,max:0.33},
 			{type:'succulents',min:0.5,max:2.25,chance:0.99},
-			{type:'warm rocky substrate'},
+			{type:['warm rocky substrate','xeric substrate','lush rocky substrate']},
 			{type:'sandy soil',min:0.3,max:1.8}
 		],
 		modifiers:{'river':0.1},
@@ -15752,6 +15752,20 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'hunt':{'meat':2,'bone':0.25},
 		},
 		mult:2,
+	});
+	new G.Goods({
+		name:'xeric substrate',
+		desc:'A [xeric substrate] can be only found at xeric shrublands.//There are [stone]s that can be gathered by hand.//By digging you can find no [clay], less [stone]s and some [copper ore,Ores]. Rarely by digging you can find some [salt].//Mining provides the best results, outputting a variety of [stone]s, more often [gold ore,Precious ores](in fact more fool\'s gold than true gold) and precious [gems].//Quarrying there provides no mythril.',
+		icon:[5,29,'magixmod'],
+		res:{
+			'gather':{'Various stones':0.25,'clay':0.005,'limestone':0.005},
+			'dig':{'mud':2.15,'stone':0.1,'copper ore':0.008,'tin ore':0.008,'limestone':0.13,'salt':0.001},
+			'mine':{'stone':0.9,'copper ore':0.08,'tin ore':0.08,'iron ore':0.04,'gold ore':0.04,'coal':0.07,'salt':0.15,'gems':0.009,'Various stones':0.1},
+			'quarry':{'cut stone':0.05,'limestone':0.5,'marble':0.01,'Various cut stones':0.95},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
 	});
 	/*=====================================================================================
 	TILE EFFECTS
