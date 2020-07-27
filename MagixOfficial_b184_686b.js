@@ -15013,7 +15013,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'dead tree',min:0.5,max:0.9},
 			{type:'berry bush',chance:0.02,min:0.01,max:0.07},
 			{type:'grass',min:0.5,max:1.5},
-			{type:'vfb1',chance:0.5},
+			{type:'vfb1',chance:0.32,min:0.1,max:1},
 			{type:'sugar cane',min:0.2,max:0.4,chance:0.075},
 			{type:['wild rabbits','stoats'],chance:0.5},
 			{type:['foxes'],chance:0.5,amount:0.32},
@@ -15098,6 +15098,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	G.contextNames['mine']='<font color="#707070">Mining</font>';
 	G.contextNames['quarry']='<font color="#9E9E9E">Quarrying</font>';
 	G.contextNames['flowers']='<font color="#80ffaa">Flowers</font>';
+	G.contextNames['deep mine']='<font color="#404040">Deep mining</font>';
+	G.contextNames['deep quarry']='<font color="#999999">Deep quarrying</font>';
 	
 	//plants
 	new G.Goods({
