@@ -15756,7 +15756,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Goods({
 		name:'xeric substrate',
 		desc:'A [xeric substrate] can be only found at xeric shrublands.//There are [stone]s that can be gathered by hand.//By digging you can find no [clay], less [stone]s and some [copper ore,Ores]. Rarely by digging you can find some [salt].//Mining provides the best results, outputting a variety of [stone]s, more often [gold ore,Precious ores](in fact more fool\'s gold than true gold) and precious [gems].//Quarrying there provides no mythril.',
-		icon:[5,29,'magixmod'],
+		icon:[6,29,'magixmod'],
 		res:{
 			'gather':{'Various stones':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':2.15,'stone':0.1,'copper ore':0.008,'tin ore':0.008,'limestone':0.13,'salt':0.001},
