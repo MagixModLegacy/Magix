@@ -1542,6 +1542,11 @@ G.writeMSettingButton=function(obj)
 				base:[],
 				side:['archaic building materials','basic building materials','advanced building materials','precious building materials','material storage'],
 		},
+			'ore':{
+				name:'<font color="#1111F0">Ores</font>',
+				base:[],
+				side:[],
+		},
 			'gear':{
 				name:'<font color="#ddffdd">Gear</font>',
 				base:[],
@@ -2792,28 +2797,28 @@ G.writeMSettingButton=function(obj)
 		desc:'Ore that can be processed into [soft metal ingot]s.',
 		icon:[9,8],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 	new G.Res({
 		name:'iron ore',
 		desc:'Ore that can be processed into [hard metal ingot]s.',
 		icon:[10,8],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 	new G.Res({
 		name:'gold ore',
 		desc:'Ore that can be processed into [precious metal ingot]s.',
 		icon:[11,8],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 	new G.Res({
 		name:'tin ore',
 		desc:'Ore that can be processed into [soft metal ingot]s.',
 		icon:[13,8],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 	
 	new G.Res({
@@ -3318,7 +3323,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Hard mineral. At least you may be able to smelt some cobalt and turn them into ingot of the Cobalt in mortal world.',
 		icon:[8,2,'magixmod'],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 		new G.Res({
 		name:'Scobs',
@@ -3890,7 +3895,7 @@ G.writeMSettingButton=function(obj)
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
-		category:'build',
+		category:'ore',
 	});
 		new G.Res({
 		name:'platinum ore',
@@ -3901,7 +3906,7 @@ G.writeMSettingButton=function(obj)
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
-		category:'build',
+		category:'ore',
 	});
 		new G.Res({
 		name:'platinum ingot',
