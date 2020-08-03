@@ -742,7 +742,6 @@ G.props['fastTicksOnResearch']=150;
 			'img/iconSheet.png?v=1'
 		];
 	}
-		G.middleText('<font color="aqua">Magix turns 1! Thanks for playing and supporting this mod.<br><hr><br>I have a surprise for you guys</font>','slow')
 	}
 	G.funcs['new year']=function()
 	{
