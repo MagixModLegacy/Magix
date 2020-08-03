@@ -6813,6 +6813,7 @@ if (!document.getElementById(cssId))
 		upkeep:{'coin':0.1},
 		effects:[
 			{type:'gather',what:{'culture':0.1}},
+			{type:'addFree',what:{'worker':0.0005},req:{'<font color=" ##00C000">Artistic gray cells</font>':true}},
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'culture':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
@@ -10138,8 +10139,9 @@ new G.Unit({
 	new G.Unit({
 		name:'hartar\'s servant',
 		desc:'@hunts wild animals for [meat], [bone]s and [hide]s@The servant can\'t be wounded and replaces [gatherer]',
-		icon:[18,2],
+		icon:[7,29,'magixmod'],
 		cost:{},
+		limitPer:{'population':3},
 		use:{'worker':1},
 		upkeep:{'blood':0.01+(0.025*G.achievByName['Hunted'].won)},
 		effects:[
@@ -12408,7 +12410,7 @@ autobuy(G.year)
 
 	let gif =  new G.Tech({
         name:'<font color=" ##00C000">Artistic gray cells</font>',
-        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
+        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration] @Also autohires for free 1 [storyteller] but this free one works at 1/2000 of normally hired [storyteller].',
         icon:[4,12,'magixmod',6,12,'magixmod'],
         cost:{},
 	effects:[
@@ -13976,7 +13978,16 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		cost:{'insight':17,'influence':3},
 		icon:[33,25,'magixmod']
 	});
-		
+		new G.Tech({
+		name:'coordination',
+		desc:'[Thief hunter] has better coordination so he has twice as bigger chance to succesfully win <b>guard vs thief</b> confrontation.',
+		icon:[33,27,'magixmod'],
+		req:{'Battling thieves':true},
+		cost:{'insight':250},
+		effects:[
+		],
+		chance:3
+	});	
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
