@@ -6813,7 +6813,7 @@ if (!document.getElementById(cssId))
 		upkeep:{'coin':0.1},
 		effects:[
 			{type:'gather',what:{'culture':0.1}},
-			{type:'addFree',what:{'worker':0.0005},req:{'<font color=" ##00C000">Artistic gray cells</font>':true}},
+			{type:'addFree',what:{'worker':0.0005},req:{'<font color=" ##00C000">Artistic gray cells</font>':true,'oral tradition':true}},
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'culture':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
