@@ -5901,6 +5901,10 @@ if (!document.getElementById(cssId))
 			{
 			G.getDict('Fishers & hunters camp').upkeep = {'food':75,'fire pit':3}
 			}
+			if(G.has('dt17') && G.has('sb4') && G.checkPolicy('se03')=='on'){;
+			G.achievByName['Not so pious people'].won = 1
+			G.middleText('- Completed <font color="cyan">Not so pious people</font> achievement -','slow')
+			}
 			if(G.modsByName['Market mod']){
 				if(G.has('Backshift')){
 					G.getDict('bazaar_buy').use={'worker':2,'land':1}
