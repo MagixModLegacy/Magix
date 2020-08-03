@@ -1157,7 +1157,7 @@ G.props['fastTicksOnResearch']=150;
 			var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
 			happiness=Math.max(-2,Math.min(2,happiness));
 			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
-			else if(G.year>1) mult=1/(Math.pow(2,-happiness+1)/2);
+			else if(G.year>1 && happiness<0) mult=1/(Math.pow(2,-happiness+1)/2);
 		}
 	}
 		return mult;
