@@ -156,6 +156,10 @@ G.setPolicyMode=function(me,mode)
 							var middleText='';
 							var achiev=G.getAchiev(me.unit.wonder);
 							var randomTxtId=Math.floor(Math.random() * 6);	
+							if (G.checkPolicy('Toggle SFX')=='on'){
+			var audio = new Audio('https://www.youtube.com/watch?v=D0HDWQomaWc');
+			audio.play(); 
+			}
 							if (achiev)
 							{
 								if (!achiev.won) middleText='<font color="pink">- Completed the '+achiev.displayName+' victory -</font>'
@@ -10559,7 +10563,7 @@ new G.Unit({
 	new G.Unit({
 		name:'University of the 7 worlds',//WIP WILL BE IMPLEMENTED AFTER UPDATE OF THE WORLD!
 		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
-		wonder:'test',
+		wonder:'Dreamy',
 		icon:[28,26,'magixmod'],
 		wideIcon:[27,26,'magixmod'],
 		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400},
