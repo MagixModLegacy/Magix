@@ -21,7 +21,28 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
-
+G.setPolicyMode=function(me,mode)
+	{
+		//free old mode uses, and assign new mode uses
+		var oldMode=me.mode;
+		var newMode=mode;
+		if (oldMode==newMode) return;
+		//G.undoUse(oldMode.use,me.amount);
+		//G.doUse(newMode.use,me.amount);
+		me.mode=mode;
+		if (me.mode.effects) G.applyKnowEffects(me.mode,false,true);
+		if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+		if (me.binary)
+		{
+			if (mode.id=='off') me.l.classList.add('off');
+			else me.l.classList.remove('off');
+		}
+		if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav');
+			audio.play(); 
+			}
+	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
