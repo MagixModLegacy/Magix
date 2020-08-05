@@ -143,6 +143,7 @@ G.setPolicyMode=function(me,mode)
 						str+='<div class="fancyText par">Wonder completed</div>';
 						str+='<div class="fancyText par">You can now ascend to a higher state of existence, or remain on this mortal plane for as long as you wish.</div>';
 						str+='</div><div class="buttonBox">'+
+							if(G.getAchiev(me.unit.wonder)!=="test"){
 						G.button({text:'<font color="#D4AF37">Ascend</font>',style:'box-shadow:0px 0px 10px 1px #39f;',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;"><div class="par">Ascending will end this game and let you create a new one.</div><div class="par">You will unlock permanent legacy bonuses for completion of this wonder.</div><div class="par">You can decide to do this later; click this wonder again to ascend at any time.</div><div class="par">Only do this when you\'re certain you\'re done with this world! (seriously I mean that)</div></div>';}}(me),onclick:function(me){return function(){
 							//ascend
 							G.dialogue.close();
@@ -157,7 +158,7 @@ G.setPolicyMode=function(me,mode)
 							G.resets++;
 							G.NewGameWithSameMods();
 							G.middleText(middleText,true);
-						}}(instance)})+'<br>'+
+						}}(instance)})}+'<br>'+
 						G.dialogue.getCloseButton('Back')+
 						'</div>';
 					}
@@ -10537,6 +10538,22 @@ new G.Unit({
 		name:'Mausoleum of the Dreamer',
 		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
 		wonder:'Dreamy',
+		icon:[28,26,'magixmod'],
+		wideIcon:[27,26,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400},
+		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight':100,'culture':5,'gems':5},
+		steps:150,
+		messageOnStart:'Your people have started building the <b>Mausoleum of the Dreamer</b>. This monument is the tallest building that exists at the lands of Plain Island. This is how wisdom leads to success.',
+		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
+		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
+		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
+		req:{'language':true},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Mausoleum of the Deamer',
+		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
+		wonder:'test',
 		icon:[28,26,'magixmod'],
 		wideIcon:[27,26,'magixmod'],
 		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400},
