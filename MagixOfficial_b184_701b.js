@@ -34,14 +34,17 @@ G.setPolicyMode=function(me,mode)
 		if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 		if (me.binary)
 		{
-			if (mode.id=='off') me.l.classList.add('off');
-			else me.l.classList.remove('off');
-		}
-		if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			if (mode.id=='off'){ if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 			{
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitch.wav');
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOn.wav');
 			audio.play(); 
-			}
+			}me.l.classList.add('off')};
+			else {if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOff.wav');
+			audio.play(); 
+			}me.l.classList.remove('off')}
+		}
 	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
