@@ -59,16 +59,17 @@ G.setPolicyMode=function(me,mode)
 						G.button({text:'Complete',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;">You need '+G.getCostString(me.finalStepCost,true,false,1)+'.</div>';}}(me),onclick:function(me){return function(){
 							var amount=1;
 							var success=true;
-							if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
-			{
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
-			audio.play(); 
-			}
+							
 							if (!G.testCost(me.unit.finalStepCost,amount)) success=false;
 							//else if (!G.testUse(me.unit.finalStepUse,amount)) success=false;
 							//else if (!G.testUse(me.unit.finalStepRequire,amount)) success=false;
 							if (success)
 							{
+								if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
+			audio.play(); 
+			}
 								G.dialogue.close();
 								G.doCost(me.unit.finalStepCost,amount);
 								
