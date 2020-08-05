@@ -138,7 +138,14 @@ G.setPolicyMode=function(me,mode)
 						G.dialogue.getCloseButton('- Back -')+
 						'</div>';
 					}
-					else if(G.getAchiev(me.unit.wonder)!=="test")
+					else if(G.getUnit('Mausoleum of the Deamer').name=="Mausoleum of the Deamer")
+					{
+						str+='<div class="fancyText par">Wonder completed</div>';
+						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascensions and here is example of that.</div>';
+						G.dialogue.getCloseButton('Back')+
+						'</div>';
+					}
+					else
 					{
 						str+='<div class="fancyText par">Wonder completed</div>';
 						str+='<div class="fancyText par">You can now ascend to a higher state of existence, or remain on this mortal plane for as long as you wish.</div>';
@@ -159,13 +166,6 @@ G.setPolicyMode=function(me,mode)
 							G.NewGameWithSameMods();
 							G.middleText(middleText,true);
 						}}(instance)})+'<br>'+
-						G.dialogue.getCloseButton('Back')+
-						'</div>';
-					}
-					else if(G.getUnit('Mausoleum of the Deamer').name=="Mausoleum of the Deamer")
-					{
-						str+='<div class="fancyText par">Wonder completed</div>';
-						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascensions and here is example of that.</div>';
 						G.dialogue.getCloseButton('Back')+
 						'</div>';
 					}
