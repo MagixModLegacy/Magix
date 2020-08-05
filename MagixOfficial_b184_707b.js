@@ -46,7 +46,60 @@ G.setPolicyMode=function(me,mode)
 			}me.l.classList.remove('off')}
 		}
 	}
-	G.dialogue.popup(function(me,instance){return function(div){
+	G.buyUnit=function(me,amount,any)
+	{
+		//if any is true, by anywhere between 0 and amount; otherwise, fail if we can't buy the precise amount
+		var success=true;
+		amount=Math.round(amount);
+		if (me.unit.wonder && amount>0)
+		{
+			//check requirements
+			if (me.mode==0)
+			{
+				//initial step
+				if (!G.testCost(me.unit.cost,amount)) success=false;
+				else if (!G.testUse(me.unit.use,amount)) success=false;
+				else if (!G.testUse(me.unit.require,amount)) success=false;
+				if (success)
+				{
+					if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
+					G.doCost(me.unit.cost,amount);
+					G.doUse(me.unit.use,amount);
+					G.applyUnitBuyEffects(me,amount);
+					me.mode=2;//start paused
+					me.percent=0;
+					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+					
+					var bounds=me.l.getBoundingClientRect();
+					var posX=bounds.left+bounds.width/2;
+					var posY=bounds.top;
+					for (var i in me.unit.cost)
+					{G.showParticle({x:posX,y:posY,icon:G.dict[i].icon});}
+				}
+			}
+			else if (me.mode==1)
+			{
+				//building in progress; pausing construction
+				if (success)
+				{
+					me.mode=2;
+					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+				}
+			}
+			else if (me.mode==2)
+			{
+				//building in progress; resuming construction
+				if (success)
+				{
+					me.mode=1;
+					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+				}
+			}
+			else if (me.mode==3 || me.mode==4)
+			{
+				//building complete; applying final step
+				//this also handles the step afterwards, when we click the final wonder
+				G.dialogue.popup(function(me,instance){return function(div){
 					var str=
 					'<div style="width:280px;min-height:320px;">'+
 					'<div class="thing standalone'+G.getIconClasses(me,true)+''+(instance.mode==3?' wonderUnbuilt':' wonderBuilt')+'" style="transform:scale(2);position:absolute;left:70px;top:52px;">'+G.getIconStr(me,0,0,true)+'</div>'+
@@ -59,20 +112,17 @@ G.setPolicyMode=function(me,mode)
 						G.button({text:'Complete',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;">You need '+G.getCostString(me.finalStepCost,true,false,1)+'.</div>';}}(me),onclick:function(me){return function(){
 							var amount=1;
 							var success=true;
-							
 							if (!G.testCost(me.unit.finalStepCost,amount)) success=false;
 							//else if (!G.testUse(me.unit.finalStepUse,amount)) success=false;
 							//else if (!G.testUse(me.unit.finalStepRequire,amount)) success=false;
 							if (success)
 							{
-								if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
-			{
+								G.dialogue.close();
+								G.doCost(me.unit.finalStepCost,amount);
+								if (G.checkPolicy('Toggle SFX')=='on'){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
 			audio.play(); 
 			}
-								G.dialogue.close();
-								G.doCost(me.unit.finalStepCost,amount);
-								
 								me.mode=4;
 								me.amount+=1;
 								if (G.getSetting('animations')) triggerAnim(me.l,'plop');
@@ -162,101 +212,7 @@ G.setPolicyMode=function(me,mode)
 		}
 		return success;
 	}
-	G.killUnit=function(me,amount)
-	{
-		amount=Math.round(amount);
-		if (me.unit.wonder)
-		{
-			//can't destroy wonders yet
-			/*
-			if (me.mode>0)
-			{
-				me.mode=0;
-				me.percent=0;
-				
-				//amount=Math.min(amount,me.amount);
-				if (amount>0)
-				{
-					G.applyUnitBuyEffects(me,-amount);
-					G.undoUse(me.unit.use,amount);
-					if (me.amount>0) me.amount-=amount;
-				}
-				if (G.getSetting('animations')) triggerAnim(me.l,'plop');
-			}
-			*/
-		}
-		else
-		{
-			amount=Math.min(amount,me.amount);
-			if (amount>0)
-			{
-				var unidle=me.amount-me.idle;
-				G.applyUnitBuyEffects(me,-amount);
-				G.undoUse(me.unit.use,amount);
-				me.amount-=amount;
-				if (unidle>me.amount)
-				{
-					G.idleUnit(me,unidle-me.amount);
-					//me.idle-=unidle-me.amount;
-				}
-				me.idle-=amount;
-				me.idle=Math.max(0,Math.min(me.amount,me.idle));
-				if (G.tooltip.parent!=me.l && G.getSetting('animations')) triggerAnim(me.l,'plop');
-			}
-		}
-	}
-	G.wasteUnit=function(me,amount)//for when we have more units than we can support
-	{
-		G.killUnit(me,amount);
-	}
 	
-	G.idleUnit=function(me,amount)//make some of the unit idle
-	{
-		amount=Math.ceil(amount);
-		if (amount>0)
-		{
-			me.idle=me.idle+amount;
-			me.idle=Math.min(me.amount,me.idle);
-			G.applyUnitUnidleEffects(me,-amount);
-			G.undoUse(me.unit.staff,amount);
-			G.undoUse(me.mode.use,amount);
-		}
-	}
-	G.unidleUnit=function(me,amount)//make some of the unit active again
-	{
-		amount=Math.ceil(Math.max(0,Math.min(me.idle,amount)));
-		if (amount>0)
-		{
-			var success=true;
-			var newAmount=me.amount-(me.idle-amount);
-			for (var ii in me.unit.upkeep)
-			{
-				var res=G.getRes(ii);
-				var upkeep=me.unit.upkeep[ii]*newAmount;
-				if (upkeep>G.getRes(ii).amount && (!me.unit.alternateUpkeep || !me.unit.alternateUpkeep[ii] || me.unit.upkeep[ii]*newAmount>G.getRes(me.unit.alternateUpkeep[ii]).amount)) success=false;
-			}
-			for (var ii in me.unit.staff)
-			{
-				var res=G.getRes(ii);
-				var use=me.unit.staff[ii];
-				if (res.amount<res.used+use) success=false;
-			}
-			for (var ii in me.mode.use)
-			{
-				var res=G.getRes(ii);
-				var use=me.mode.use[ii];
-				if (res.amount<res.used+use) success=false;
-			}
-			if (success)
-			{
-				me.idle=me.idle-amount;
-				G.applyUnitUnidleEffects(me,amount);
-				G.doUse(me.unit.staff,amount);
-				G.doUse(me.mode.use,amount);
-			}
-		}
-	}
-	)
 	G.selectModeForPolicy=function(me,div)
 	{
 		if (div==G.widget.parent) G.widget.close();
