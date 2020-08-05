@@ -120,7 +120,7 @@ G.setPolicyMode=function(me,mode)
 								G.dialogue.close();
 								G.doCost(me.unit.finalStepCost,amount);
 								if (G.checkPolicy('Toggle SFX')=='on'){
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Ascending.wav');
 			audio.play(); 
 			}
 								me.mode=4;
@@ -14779,7 +14779,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Policy({
 		name:'Toggle SFX',
-		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li>',
+		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li><li>Ascending by wonder</li>',
 		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
