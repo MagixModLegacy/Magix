@@ -148,18 +148,16 @@ G.setPolicyMode=function(me,mode)
 							G.dialogue.close();
 							var middleText='';
 							var achiev=G.getAchiev(me.unit.wonder);
-							var randomTxtId=Math.floor(Math.random() * 6);
-							var randomTxt=function(){
-							if(randomTxtId>=0 && randomTxtId<=1) return '<small>Good job : )</small>';
+							var randomTxtId=Math.floor(Math.random() * 6);	
+							}
+							if (achiev)
+							{
+								if (!achiev.won) middleText='- Completed the '+achiev.displayName+' victory - <br><hr width="40"><br>'+if(randomTxtId>=0 && randomTxtId<=1) return '<small>Good job : )</small>';
 							else if(randomTxtId>1 && randomTxtId<=2) return '<small>Well done : )</small>';
 							else if(randomTxtId>2 && randomTxtId<=3) return '<small>Neat-O</small>';
 							else if(randomTxtId>3 && randomTxtId<=4) return '<small>Oh yeah!</small>';
 							else if(randomTxtId>4 && randomTxtId<=5) return '<small>Cool</small>';
-							else if(randomTxtId>5 && randomTxtId<=6) return '<small>Snazzy</small>';
-							}
-							if (achiev)
-							{
-								if (!achiev.won) middleText='- Completed the '+achiev.displayName+' victory - <br><hr><br>'+randomTxt+'';
+							else if(randomTxtId>5 && randomTxtId<=6) return '<small>Snazzy</small>';+'';
 								achiev.won++;
 							}
 							G.resets++;
