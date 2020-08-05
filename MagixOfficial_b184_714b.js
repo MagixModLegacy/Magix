@@ -8,6 +8,9 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
+	
+	var randomTxtId=Math.floor(Math.random()*6);
+	var txtAchiev=function(){if(randomTxtId>=0 && randomTxtId<=1) return '<small>Good job : )</small>';else if(randomTxtId>1 && randomTxtId<=2) return '<small>Well done : )</small>';else if(randomTxtId>2 && randomTxtId<=3) return '<small>Neat-O</small>';else if(randomTxtId>3 && randomTxtId<=4) return '<small>Oh yeah!</small>';else if(randomTxtId>4 && randomTxtId<=5) return '<small>Cool</small>';else if(randomTxtId>5 && randomTxtId<=6) return '<small>Snazzy</small>'}
 	img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
@@ -151,12 +154,7 @@ G.setPolicyMode=function(me,mode)
 							var randomTxtId=Math.floor(Math.random() * 6);	
 							if (achiev)
 							{
-								if (!achiev.won) middleText='- Completed the '+achiev.displayName+' victory - <br><hr width="40"><br>'+function(){if(randomTxtId>=0 && randomTxtId<=1) return '<small>Good job : )</small>';
-							else if(randomTxtId>1 && randomTxtId<=2) return '<small>Well done : )</small>';
-							else if(randomTxtId>2 && randomTxtId<=3) return '<small>Neat-O</small>';
-							else if(randomTxtId>3 && randomTxtId<=4) return '<small>Oh yeah!</small>';
-							else if(randomTxtId>4 && randomTxtId<=5) return '<small>Cool</small>';
-							else if(randomTxtId>5 && randomTxtId<=6) return '<small>Snazzy</small>';}+'';
+								if (!achiev.won) middleText='- Completed the '+achiev.displayName+' victory - <br><hr width="40"><br>'+txtAchiev+'
 								achiev.won++;
 							}
 							G.resets++;
