@@ -120,7 +120,7 @@ G.setPolicyMode=function(me,mode)
 								G.dialogue.close();
 								G.doCost(me.unit.finalStepCost,amount);
 								if (G.checkPolicy('Toggle SFX')=='on'){
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Ascending.wav');
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
 			audio.play(); 
 			}
 								me.mode=4;
@@ -157,7 +157,7 @@ G.setPolicyMode=function(me,mode)
 							var achiev=G.getAchiev(me.unit.wonder);
 							var randomTxtId=Math.floor(Math.random() * 6);	
 							if (G.checkPolicy('Toggle SFX')=='on'){
-			var audio = new Audio('https://www.youtube.com/watch?v=D0HDWQomaWc');
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Ascending.wav');
 			audio.play(); 
 			}
 							if (achiev)
