@@ -978,7 +978,7 @@ G.props['fastTicksOnResearch']=150;
 				if (G.getRes('influence').amount < G.getRes('authority').amount-(culture/2)){
 				G.gain('influence',culture/2);
 				}
-			G.gain('cultural balance',Math.floor(Math.random()/2))
+			G.gain('cultural balance',Math.random()/2)
 	}
 	}
 	G.props['new day lines']=[
@@ -10133,7 +10133,7 @@ new G.Unit({
 		cost:{'basic building materials':250,'gold block':10},
 		costPerStep:{'gold block':15,'Mana':25,'basic building materials':100,'cooked meat':25,'meat':25,'cured meat':25},
 		steps:100,
-		messageOnStart:'You started to build statue for <b>Hartar</b>. <br>This statue will have a angry face at top. You eat some meat and stare with hopeful smile that you will finish this trial by that.',
+		messageOnStart:'You started to build statue for <b>Hartar</b>. <br>This statue will have a Hartar\'s big statuette at its top. You eat some meat and stare with hopeful smile that you will finish this trial by that.',
 		finalStepCost:{'population':100,'gem block':5,'blood':25},
 		finalStepDesc:'To perform the final step 25 [blood] , 100 [population,people] must be sacrificed in order to escape that plane of meat fanatics and award you with <b>Victory points</b>.',
 		use:{'land':10},
@@ -10154,6 +10154,70 @@ new G.Unit({
 		req:{'t4':true},
 		category:'production',
 		priority:5,
+	});
+		new G.Unit({
+		name:'Fishyar\'s statue',
+		desc:'@Leads to <b>Unfishy</b> trial completion. //Statue with precious platinum fish at the top.<><font color="#ffd000">Fish is tasty but it is not only one source of health. Fishyar gets attracted...</font>',
+		wonder:'Unfishy',
+		icon:[22,26,'magixmod'],
+		wideIcon:[21,26,'magixmod'],
+		cost:{'basic building materials':250,'cut stone':100},
+		costPerStep:{'platinum block':1,'gems':2,'cut stone':3,'water':4500},
+		steps:175,
+		messageOnStart:'You started to build statue for <b>Fishyar</b>. <br>This statue will have precious fish at the top. Feel thirsty for seafood and stare with hopeful smile that you will finish this trial by that.',
+		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
+		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
+		use:{'land':10},
+		req:{'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Fishyar\'s statue',
+		desc:'@Leads to <b>Unfishy</b> trial completion. //Statue with precious platinum fish at the top.<><font color="#ffd000">Fish is tasty but it is not only one source of health. Fishyar gets attracted...</font>',
+		wonder:'Unfishy',
+		icon:[22,26,'magixmod'],
+		wideIcon:[21,26,'magixmod'],
+		cost:{'basic building materials':250,'cut stone':100},
+		costPerStep:{'platinum block':1,'gems':2,'cut stone':3,'water':4500},
+		steps:175,
+		messageOnStart:'You started to build statue for <b>Fishyar</b>. <br>This statue will have precious fish at the top. Feel thirsty for seafood and stare with hopeful smile that you will finish this trial by that.',
+		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
+		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
+		use:{'land':10},
+		req:{'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Fishyar\'s statue',
+		desc:'@Leads to <b>Unfishy</b> trial completion. //Statue with precious platinum fish at the top.<><font color="#44d0aa">Fish is tasty but it is not only one source of health. Fishyar gets attracted...</font>',
+		wonder:'Unfishy',
+		icon:[22,26,'magixmod'],
+		wideIcon:[21,26,'magixmod'],
+		cost:{'basic building materials':250,'cut stone':100},
+		costPerStep:{'platinum block':1,'gems':2,'cut stone':3,'water':4500},
+		steps:175,
+		messageOnStart:'You started to build statue for <b>Fishyar</b>. <br>This statue will have precious fish at the top. Feel thirsty for seafood and stare with hopeful smile that you will finish this trial by that.',
+		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
+		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
+		use:{'land':10},
+		req:{'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Tomb of oceans',
+		desc:'@Leads to <b>Ocean</b> trial completion. //A little bit ruined tomb with a Posi\'zul \'s statue next to it surrounded by huge ocean.<><font color="#ddffdd">The oceans have no equal. No law rules them. No human\'s law can affect the Ocean.</font>',
+		wonder:'Ocean',
+		icon:[2,25,'magixmod'],
+		wideIcon:[1,25,'magixmod'],
+		cost:{'basic building materials':250,'precious metal ingot':5},
+		costPerStep:{'precious metal ingot':15,'strong metal ingot':1,'population':5,'basic building materials':75},
+		steps:125,
+		messageOnStart:'You and your people started to build the <b>Tomb of oceans</b>. <br>Around the ocean, in the middle of Ocean as some people say the wonder for Posi\'zul will stand.',
+		finalStepCost:{'population':1000,'gem block':5,'water':10000},
+		finalStepDesc:'To perform the final step 1000 [population,people] and many more must be sacrificed in order to leave the world of endless waters and award you <b>Victory points</b>.',
+		use:{'land':10},
+		req:{'tribalism':false},
+		category:'wonder',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
