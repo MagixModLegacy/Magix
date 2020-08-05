@@ -256,7 +256,7 @@ G.setPolicyMode=function(me,mode)
 			}
 		}
 	}
-	
+	)
 	G.selectModeForPolicy=function(me,div)
 	{
 		if (div==G.widget.parent) G.widget.close();
