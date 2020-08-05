@@ -138,11 +138,10 @@ G.setPolicyMode=function(me,mode)
 						G.dialogue.getCloseButton('- Back -')+
 						'</div>';
 					}
-					else if(me.name=="Mausoleum of the Deamer")
+					else if(me.name=="University of the 7 worlds")
 					{
 						str+='<div class="fancyText par">Wonder completed</div>';
 						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascensions and here is example of that.</div>';
-						G.dialogue.getCloseButton('Back')+
 						'</div>';
 					}
 					else
@@ -10558,7 +10557,7 @@ new G.Unit({
 		category:'wonder',
 	});
 	new G.Unit({
-		name:'Mausoleum of the Deamer',
+		name:'University of the 7 worlds',//WIP WILL BE IMPLEMENTED AFTER UPDATE OF THE WORLD!
 		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
 		wonder:'test',
 		icon:[28,26,'magixmod'],
@@ -10571,7 +10570,7 @@ new G.Unit({
 		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
 		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
 		req:{'language':true},
-		category:'wonder',
+		category:'civil',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -10669,9 +10668,30 @@ getCosts:function()
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseOption-'+index+'-'+this.id),l('techBox').children[0]);
 			l('techBox').children[0].classList.add('popIn');
-			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			var randomSound=Math.floor(Math.random()*5)
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>=0 && randomSound<=1) //Toggle SFX
 			{
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech.wav');
+			audio.play(); 
+			}
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>1 && randomSound<=2) //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech2.wav');
+			audio.play(); 
+			}
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>2 && randomSound<=3) //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech3.wav');
+			audio.play(); 
+			}
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>3 && randomSound<=4) //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech4.wav');
+			audio.play(); 
+			}
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>4  && randomSound<=5) //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech5.wav');
 			audio.play(); 
 			}
 			if(G.has('t3')){
