@@ -106,10 +106,10 @@ G.setPolicyMode=function(me,mode)
 					'<div class="fancyText title">'+me.displayName+'</div><div class="bitBiggerText scrollBox underTitle shadowed" style="text-align:center;overflow:hidden;top:118px;bottom:50px;">';
 					if (instance.mode==3)
 					{
-						str+='<div class="fancyText par">This wonder only needs one more step to finalize.</div>';
+						str+='<div class="fancyText par"><font color="fuschia">This wonder only needs one more step to finalize.</font></div>';
 						if (me.finalStepDesc) str+='<div class="fancyText par">'+G.parse(me.finalStepDesc)+'</div>';
 						str+='</div><div class="buttonBox">'+
-						G.button({text:'Complete',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;">You need '+G.getCostString(me.finalStepCost,true,false,1)+'.</div>';}}(me),onclick:function(me){return function(){
+						G.button({text:'<font color="lime">Complete</font>',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;">You need '+G.getCostString(me.finalStepCost,true,false,1)+'.</div>';}}(me),onclick:function(me){return function(){
 							var amount=1;
 							var success=true;
 							if (!G.testCost(me.unit.finalStepCost,amount)) success=false;
@@ -135,22 +135,31 @@ G.setPolicyMode=function(me,mode)
 								G.buyUnit(me,amount,true);//show dialogue for step 4
 							}
 						}}(instance)})+'<br>'+
-						G.dialogue.getCloseButton('Back')+
+						G.dialogue.getCloseButton('- Back -')+
 						'</div>';
 					}
 					else
 					{
-						str+='<div class="fancyText par">Wonder complete.</div>';
-						str+='<div class="fancyText par">You may now ascend to a higher state of existence, or remain on this mortal plane for as long as you choose.</div>';
+						str+='<div class="fancyText par">Wonder completed</div>';
+						str+='<div class="fancyText par">You can now ascend to a higher state of existence, or remain on this mortal plane for as long as you wish.</div>';
 						str+='</div><div class="buttonBox">'+
-						G.button({text:'Ascend',style:'box-shadow:0px 0px 10px 1px #39f;',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;"><div class="par">Ascending will end this game and let you create a new one.</div><div class="par">You will unlock permanent legacy bonuses for completion of this wonder.</div><div class="par">You may choose to do this later; click this wonder again to ascend at any time.</div><div class="par">Only do this when you\'re certain you\'re done with this world!</div></div>';}}(me),onclick:function(me){return function(){
+						G.button({text:'<font color="#D4AF37">Ascend</font>',style:'box-shadow:0px 0px 10px 1px #39f;',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;"><div class="par">Ascending will end this game and let you create a new one.</div><div class="par">You will unlock permanent legacy bonuses for completion of this wonder.</div><div class="par">You can decide to do this later; click this wonder again to ascend at any time.</div><div class="par">Only do this when you\'re certain you\'re done with this world! (seriously I mean that)</div></div>';}}(me),onclick:function(me){return function(){
 							//ascend
 							G.dialogue.close();
 							var middleText='';
 							var achiev=G.getAchiev(me.unit.wonder);
+							var randomTxtId=Math.floor(Math.random() * 6);
+							var randomTxt=function(){
+							if(randomTxtId>=0 && randomTxtId<=1) return '<small>Good job : )</small>';
+							else if(randomTxtId>1 && randomTxtId<=2) return '<small>Well done : )</small>';
+							else if(randomTxtId>2 && randomTxtId<=3) return '<small>Neat-O</small>';
+							else if(randomTxtId>3 && randomTxtId<=4) return '<small>Oh yeah!</small>';
+							else if(randomTxtId>4 && randomTxtId<=5) return '<small>Cool</small>';
+							else if(randomTxtId>5 && randomTxtId<=6) return '<small>Snazzy</small>';
+							}
 							if (achiev)
 							{
-								if (!achiev.won) middleText='- Completed the '+achiev.displayName+' victory -';
+								if (!achiev.won) middleText='- Completed the '+achiev.displayName+' victory - <br><hr><br>'+randomTxt+'';
 								achiev.won++;
 							}
 							G.resets++;
