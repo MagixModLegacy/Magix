@@ -10075,8 +10075,8 @@ new G.Unit({
 		messageOnStart:'You started to build wonder for <b>Chra-nos</b>. <br>This pagoda will have a huge clock which is the symbol of the seraphin. Stars on night sky as you noticed mostly often make a shape of clock. <br>It is taller than anything around and also its shadow brings reflexions about passing time to your people.',
 		finalStepCost:{'population':200,'gem block':10},
 		finalStepDesc:'To perform the final step 200[population,People] and 10 [gem block]s must be sacrificed in order to escape that plane of deadly time and award you with <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'monument-building':true,'t1':true,'trial':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'monument-building':true,'t1':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 		new G.Unit({
@@ -10104,8 +10104,8 @@ new G.Unit({
 		messageOnStart:'You started to build wonder for <b>Bersaria</b>. <br>This statue will have a angry face at top. Terrain is covered by some sort of fog. But you do it to stop the Madness and come back to normal plane. Let the statue be built!',
 		finalStepCost:{'population':(250+(1*G.achievByName['Unhappy'].won+1/10)),'gem block':5,'blood':bloodcost},
 		finalStepDesc:'To perform the final step '+250+(1*G.achievByName['Unhappy'].won+1/10)+'[population,People],5 [gem block]s and '+100+(1*G.achievByName['Unhappy'].won)+'[blood] must be sacrificed in order to escape that plane of Wrath and Madness and award you with <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'monument-building':true,'t2':true,'trial':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'monument-building':true,'t2':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10120,8 +10120,8 @@ new G.Unit({
 		messageOnStart:'You started to build wonder for <b>Tu-ria</b>. <br>People start to bring all the artifacts right to the Pagoda. You are full of hope that it will be enough to make Tu-ria support you even more.',
 		finalStepCost:{'population':175,'gem block':25,'culture':25},
 		finalStepDesc:'175 [population,people] , 25 [Mana] and some extra materials will be needed to perform final step and let you ascend for some <b>Victory points</b> from this trial.',
-		use:{'land':10},
-		req:{'monument-building':true,'t3':true,'trial':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'monument-building':true,'t3':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10136,8 +10136,8 @@ new G.Unit({
 		messageOnStart:'You started to build statue for <b>Hartar</b>. <br>This statue will have a Hartar\'s big statuette at its top. You eat some meat and stare with hopeful smile that you will finish this trial by that.',
 		finalStepCost:{'population':100,'gem block':5,'blood':25},
 		finalStepDesc:'To perform the final step 25 [blood] , 100 [population,people] must be sacrificed in order to escape that plane of meat fanatics and award you with <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'monument-building':true,'t4':true,'trial':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'monument-building':true,'t4':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10155,22 +10155,6 @@ new G.Unit({
 		category:'production',
 		priority:5,
 	});
-		new G.Unit({
-		name:'Fishyar\'s statue',
-		desc:'@Leads to <b>Unfishy</b> trial completion. //Statue with precious platinum fish at the top.<><font color="#ffd000">Fish is tasty but it is not only one source of health. Fishyar gets attracted...</font>',
-		wonder:'Unfishy',
-		icon:[22,26,'magixmod'],
-		wideIcon:[21,26,'magixmod'],
-		cost:{'basic building materials':250,'cut stone':100},
-		costPerStep:{'platinum block':1,'gems':2,'cut stone':3,'water':4500},
-		steps:175,
-		messageOnStart:'You started to build statue for <b>Fishyar</b>. <br>This statue will have precious fish at the top. Feel thirsty for seafood and stare with hopeful smile that you will finish this trial by that.',
-		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
-		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'tribalism':true},
-		category:'wonder',
-	});
 	new G.Unit({
 		name:'Platinum fish statue',
 		desc:'@Leads to <b>Unfishy</b> trial completion. //Statue with precious platinum fish at the top.<><font color="#44d0aa">Fish is tasty but it is not only one source of health. Fishyar gets attracted...</font>',
@@ -10183,8 +10167,8 @@ new G.Unit({
 		messageOnStart:'You started to build statue for <b>Fishyar</b>. <br>This statue will have precious fish at the top. Feel thirsty for seafood and stare with hopeful smile that you will finish this trial by that.',
 		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
 		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'tribalism':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'tribalism':false,'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10199,8 +10183,24 @@ new G.Unit({
 		messageOnStart:'You and your people started to build the <b>Tomb of oceans</b>. <br>Around the ocean, in the middle of Ocean as some people say the wonder for Posi\'zul will stand.',
 		finalStepCost:{'population':1000,'gem block':5,'water':10000},
 		finalStepDesc:'To perform the final step 1000 [population,people] and many more must be sacrificed in order to leave the world of endless waters and award you <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'tribalism':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'tribalism':false,'language':true},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'The Herboleum',
+		desc:'@Leads to <b>Herbalism</b> trial completion. //A big monument surrounded by herbs and bushes with berries. Herboleum can attract Herbalia and let you finish this trial.<><font color="lime">Herbs taste bad but edible. This wonder is...<b>...for the mostly acknowledged Herbalist<br> in the Universe...<br>Herbalia</font>',
+		wonder:'Herbalism',
+		icon:[13,25,'magixmod'],
+		wideIcon:[12,25,'magixmod'],
+		cost:{'basic building materials':250,'herb':500,'fruit':1000},
+		costPerStep:{'precious metal ingot':20,'precious building materials':50},
+		steps:100,
+		messageOnStart:'You and your people started to build <b>The Herboleum</b>. <br>Around the dense forest of herbs, bushes and occasionaly small ponds the mostly natural wonder arises being slightly taller than any other people\'s building around.',
+		finalStepCost:{'population':1000,'gem block':5,'herb':10000,'fruit':10000},
+		finalStepDesc:'To perform the final step 1000 [population,people] and some goods must be sacrificed to finish this "healthy" trial and award <b>Victory points</b>.',
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'language':true},
 		category:'wonder',
 	});
 	/*=====================================================================================
