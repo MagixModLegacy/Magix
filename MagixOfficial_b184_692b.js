@@ -10076,7 +10076,7 @@ new G.Unit({
 		finalStepCost:{'population':200,'gem block':10},
 		finalStepDesc:'To perform the final step 200[population,People] and 10 [gem block]s must be sacrificed in order to escape that plane of deadly time and award you with <b>Victory points</b>.',
 		use:{'land':10},
-		req:{'monument-building':true,'t1':true},
+		req:{'monument-building':true,'t1':true,'trial':true},
 		category:'wonder',
 	});
 		new G.Unit({
@@ -10105,7 +10105,7 @@ new G.Unit({
 		finalStepCost:{'population':(250+(1*G.achievByName['Unhappy'].won+1/10)),'gem block':5,'blood':bloodcost},
 		finalStepDesc:'To perform the final step '+250+(1*G.achievByName['Unhappy'].won+1/10)+'[population,People],5 [gem block]s and '+100+(1*G.achievByName['Unhappy'].won)+'[blood] must be sacrificed in order to escape that plane of Wrath and Madness and award you with <b>Victory points</b>.',
 		use:{'land':10},
-		req:{'monument-building':true,'t2':true},
+		req:{'monument-building':true,'t2':true,'trial':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10121,7 +10121,7 @@ new G.Unit({
 		finalStepCost:{'population':175,'gem block':25,'culture':25},
 		finalStepDesc:'175 [population,people] , 25 [Mana] and some extra materials will be needed to perform final step and let you ascend for some <b>Victory points</b> from this trial.',
 		use:{'land':10},
-		req:{'monument-building':true,'t3':true},
+		req:{'monument-building':true,'t3':true,'trial':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10137,7 +10137,7 @@ new G.Unit({
 		finalStepCost:{'population':100,'gem block':5,'blood':25},
 		finalStepDesc:'To perform the final step 25 [blood] , 100 [population,people] must be sacrificed in order to escape that plane of meat fanatics and award you with <b>Victory points</b>.',
 		use:{'land':10},
-		req:{'monument-building':true,'t4':true},
+		req:{'monument-building':true,'t4':true,'trial':true},
 		category:'wonder',
 	});
 	new G.Unit({
