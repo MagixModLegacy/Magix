@@ -149,7 +149,6 @@ G.setPolicyMode=function(me,mode)
 							var middleText='';
 							var achiev=G.getAchiev(me.unit.wonder);
 							var randomTxtId=Math.floor(Math.random() * 6);	
-							}
 							if (achiev)
 							{
 								if (!achiev.won) middleText='- Completed the '+achiev.displayName+' victory - <br><hr width="40"><br>'+function(){if(randomTxtId>=0 && randomTxtId<=1) return '<small>Good job : )</small>';
