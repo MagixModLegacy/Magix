@@ -6167,7 +6167,7 @@ if (!document.getElementById(cssId))
 			{
 			G.getDict('Fishers & hunters camp').upkeep = {'food':75,'fire pit':3}
 			}
-			if(G.has('dt17') && G.has('sb4') && G.checkPolicy('se03')=='on'){;
+			if(G.has('dt17') && G.has('sb4') && G.checkPolicy('se03')=='on' && G.achievByName['Not so pious people'].won == 0){;
 			G.achievByName['Not so pious people'].won = 1
 			G.middleText('- Completed <font color="cyan">Not so pious people</font> achievement -','slow')
 			}
