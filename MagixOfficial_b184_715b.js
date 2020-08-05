@@ -154,7 +154,7 @@ G.setPolicyMode=function(me,mode)
 							var randomTxtId=Math.floor(Math.random() * 6);	
 							if (achiev)
 							{
-								if (!achiev.won) middleText='- Completed the '+achiev.displayName+' victory - <br><hr width="40"><br>'+txtAchiev+'
+								if (!achiev.won) middleText='- Completed the '+achiev.displayName+' victory - <br><hr width="40"><br>'+txtAchiev+''
 								achiev.won++;
 							}
 							G.resets++;
