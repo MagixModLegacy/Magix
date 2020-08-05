@@ -10189,10 +10189,10 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'The Herboleum',
-		desc:'@Leads to <b>Herbalism</b> trial completion. //A big monument surrounded by herbs and bushes with berries. Herboleum can attract Herbalia and let you finish this trial.<><font color="lime">Herbs taste bad but edible. This wonder is...<b>...for the mostly acknowledged Herbalist<br> in the Universe...<br>Herbalia</font>',
+		desc:'@Leads to <b>Herbalism</b> trial completion. //A big monument surrounded by herbs and bushes with berries. Herboleum can attract Herbalia and let you finish this trial.<><font color="lime">Herbs taste bad but edible. This wonder is...<br>...for the mostly acknowledged Herbalist<br> in the Universe...<br>Herbalia</font>',
 		wonder:'Herbalism',
-		icon:[13,25,'magixmod'],
-		wideIcon:[12,25,'magixmod'],
+		icon:[13,26,'magixmod'],
+		wideIcon:[12,26,'magixmod'],
 		cost:{'basic building materials':250,'herb':500,'fruit':1000},
 		costPerStep:{'precious metal ingot':20,'precious building materials':50},
 		steps:100,
