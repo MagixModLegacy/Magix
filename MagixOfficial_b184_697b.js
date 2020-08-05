@@ -10168,7 +10168,7 @@ new G.Unit({
 		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
 		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'tribalism':false,'language':true},
+		req:{'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10184,7 +10184,7 @@ new G.Unit({
 		finalStepCost:{'population':1000,'gem block':5,'water':10000},
 		finalStepDesc:'To perform the final step 1000 [population,people] and many more must be sacrificed in order to leave the world of endless waters and award you <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'tribalism':false,'language':true},
+		req:{'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10199,6 +10199,38 @@ new G.Unit({
 		messageOnStart:'You and your people started to build <b>The Herboleum</b>. <br>Around the dense forest of herbs, bushes and occasionaly small ponds the mostly natural wonder arises being slightly taller than any other people\'s building around.',
 		finalStepCost:{'population':1000,'gem block':5,'herb':10000,'fruit':10000},
 		finalStepDesc:'To perform the final step 1000 [population,people] and some goods must be sacrificed to finish this "healthy" trial and award <b>Victory points</b>.',
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'language':true},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Temple of the Dead',
+		desc:'@Leads to <b>Buried</b> trial completion. //Dark temple built in dead and hostile terrain. A lot of graves around. That may attract Buri\'o dak.<><font color="#F00000">Why is everyone feared of death? Just face it.</font>',
+		wonder:'Buried',
+		icon:[1,26,'magixmod'],
+		wideIcon:[0,26,'magixmod'],
+		cost:{'basic building materials':250,'bone':200,'corpse':20},
+		costPerStep:{'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3},
+		steps:1000,
+		messageOnStart:'Your people have started building the <b>Temple of the Dead</b>. You do not know why but it goes slightly slower than normal. But its shadow spreads fear all around.',
+		finalStepCost:{'population':50,'corpse':40},
+		finalStepDesc:'To perform the final step 50 [population,people] and 40 [corpse]s must be sacrificed to escape this hell once and for all and award 15 <b>Victory points</b>.',
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'language':true},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Faithsoleum',
+		desc:'@Leads to <b>Faithful</b> trial completion. //Faithsoleum is full of light and sparks of religion all around. Its eye is symbol of the Enlightened the Seraphin of Faith<><font color="yellow">Worship to victory.</font>',
+		wonder:'Faithful',
+		icon:[1,27,'magixmod'],
+		wideIcon:[0,27,'magixmod'],
+		cost:{'basic building materials':1000,'gold block':10,'corpse':20},
+		costPerStep:{'basic building materials':400,'precious metal ingot':5,'gems':2,'precious building materials':150,'faith':5},
+		steps:50,
+		messageOnStart:'Your people have started building the <b>Faithsoleum</b>. People rather build this wonder in bigger steps getting inspired by Gods. You say: <b>Worship leads to victory!<br>Religion is a key.</b>',
+		finalStepCost:{'population':250,'spirituality':25,'faith':25},
+		finalStepDesc:'To perform the final step 250 [population,people] and both 25 [faith] & [spirituality] must be sacrificed to escape this pious plane and award <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
 		req:{'language':true},
 		category:'wonder',
