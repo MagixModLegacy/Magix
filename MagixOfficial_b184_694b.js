@@ -10168,27 +10168,11 @@ new G.Unit({
 		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
 		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
 		use:{'land':10},
-		req:{'tribalism':false},
+		req:{'tribalism':true},
 		category:'wonder',
 	});
 	new G.Unit({
-		name:'Fishyar\'s statue',
-		desc:'@Leads to <b>Unfishy</b> trial completion. //Statue with precious platinum fish at the top.<><font color="#ffd000">Fish is tasty but it is not only one source of health. Fishyar gets attracted...</font>',
-		wonder:'Unfishy',
-		icon:[22,26,'magixmod'],
-		wideIcon:[21,26,'magixmod'],
-		cost:{'basic building materials':250,'cut stone':100},
-		costPerStep:{'platinum block':1,'gems':2,'cut stone':3,'water':4500},
-		steps:175,
-		messageOnStart:'You started to build statue for <b>Fishyar</b>. <br>This statue will have precious fish at the top. Feel thirsty for seafood and stare with hopeful smile that you will finish this trial by that.',
-		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
-		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'tribalism':false},
-		category:'wonder',
-	});
-	new G.Unit({
-		name:'Fishyar\'s statue',
+		name:'Platinum fish statue',
 		desc:'@Leads to <b>Unfishy</b> trial completion. //Statue with precious platinum fish at the top.<><font color="#44d0aa">Fish is tasty but it is not only one source of health. Fishyar gets attracted...</font>',
 		wonder:'Unfishy',
 		icon:[22,26,'magixmod'],
@@ -10200,7 +10184,7 @@ new G.Unit({
 		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
 		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
 		use:{'land':10},
-		req:{'tribalism':false},
+		req:{'tribalism':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10216,7 +10200,7 @@ new G.Unit({
 		finalStepCost:{'population':1000,'gem block':5,'water':10000},
 		finalStepDesc:'To perform the final step 1000 [population,people] and many more must be sacrificed in order to leave the world of endless waters and award you <b>Victory points</b>.',
 		use:{'land':10},
-		req:{'tribalism':false},
+		req:{'tribalism':true},
 		category:'wonder',
 	});
 	/*=====================================================================================
