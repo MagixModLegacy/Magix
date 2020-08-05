@@ -138,7 +138,7 @@ G.setPolicyMode=function(me,mode)
 						G.dialogue.getCloseButton('- Back -')+
 						'</div>';
 					}
-					else if(G.getUnit('Mausoleum of the Deamer').name=="Mausoleum of the Deamer")
+					else if(me.name=="Mausoleum of the Deamer")
 					{
 						str+='<div class="fancyText par">Wonder completed</div>';
 						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascensions and here is example of that.</div>';
