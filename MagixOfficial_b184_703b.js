@@ -46,6 +46,80 @@ G.setPolicyMode=function(me,mode)
 			}me.l.classList.remove('off')}
 		}
 	}
+	G.selectModeForPolicy=function(me,div)
+	{
+		if (div==G.widget.parent) G.widget.close();
+		else
+		{
+			G.widget.popup({
+				func:function(widget)
+				{
+					var str='';
+					var me=widget.linked;
+					var proto=me;
+					for (var i in proto.modes)
+					{
+						var mode=proto.modes[i];
+						if (!mode.req || G.checkReq(mode.req))
+						{str+='<div class="button'+(mode.num==me.mode.num?' on':'')+'" id="mode-button-'+mode.num+'">'+mode.name+'</div>';}
+					}
+					widget.l.innerHTML=str;
+					//TODO : how do uses and costs work in this?
+					for (var i in proto.modes)
+					{
+						var mode=proto.modes[i];
+						if (!mode.req || G.checkReq(mode.req))
+						{
+							l('mode-button-'+mode.num).onmouseup=function(target,mode,div){return function(){
+								//released the mouse on this mode button; test if we can switch to this mode, then close the widget
+								if (G.speed>0)
+								{
+									var me=target;
+									var proto=me;
+									if (G.testCost(me.cost,1))
+									{
+										if (!me.mode.use || G.testUse(G.subtractCost(me.mode.use,mode.use),1))
+										{
+											G.doCost(me.cost,1);
+											//remove "on" class from all mode buttons and add it to the current mode button
+											for (var i in proto.modes)
+											{if (l('mode-button-'+proto.modes[i].num)) {l('mode-button-'+proto.modes[i].num).classList.remove('on');}}
+											l('mode-button-'+mode.num).classList.add('on');
+											G.setPolicyMode(me,mode);
+											if (G.checkPolicy('Toggle SFX')=='on'){
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOn.wav');
+			audio.play(); 
+			}
+											if (me.l) G.popupSquares.spawn(l('mode-button-'+mode.num),me.l);
+										}
+									}
+								} else G.cantWhenPaused();
+								widget.closeOnMouseUp=false;//override default behavior
+								widget.close(5);//schedule to close the widget in 5 frames
+							};}(me,mode,div);
+							
+							if (!me.mode.use || G.testUse(G.subtractCost(me.mode.use,mode.use),me.amount)) addHover(l('mode-button-'+mode.num),'hover');//fake mouseover because :hover doesn't trigger when mouse is down
+							G.addTooltip(l('mode-button-'+mode.num),function(me,target){return function(){
+								var proto=target;
+								//var uses=G.subtractCost(target.mode.use,me.use);
+								var str='<div class="info">'+G.parse(me.desc);
+								//if (!isEmpty(me.use)) str+='<div class="divider"></div><div class="fancyText par">Uses : '+G.getUseString(me.use,true,true)+' per '+proto.name+'</div>';
+								//if (target.amount>0 && target.mode.num!=me.num && !isEmpty(uses)) str+='<div class="divider"></div><div class="fancyText par">Needs '+G.getUseString(uses,true,false,target.amount)+' to switch</div>';
+								str+='<div>Changing to this mode costs '+G.getCostString(proto.cost,true,false,1)+'.</div></div>';
+								return str;
+							};}(mode,me),{offY:-8});
+						}
+					}
+				},
+				offX:0,
+				offY:-8,
+				anchor:'top',
+				parent:div,
+				linked:me,
+				closeOnMouseUp:true
+			});
+		}
+	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
