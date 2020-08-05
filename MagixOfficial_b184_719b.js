@@ -138,12 +138,12 @@ G.setPolicyMode=function(me,mode)
 						G.dialogue.getCloseButton('- Back -')+
 						'</div>';
 					}
-					else
+					else if(G.getAchiev(me.unit.wonder)!=="test")
 					{
 						str+='<div class="fancyText par">Wonder completed</div>';
 						str+='<div class="fancyText par">You can now ascend to a higher state of existence, or remain on this mortal plane for as long as you wish.</div>';
 						str+='</div><div class="buttonBox">'+
-							if(G.getAchiev(me.unit.wonder)!=="test"){
+							
 						G.button({text:'<font color="#D4AF37">Ascend</font>',style:'box-shadow:0px 0px 10px 1px #39f;',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;"><div class="par">Ascending will end this game and let you create a new one.</div><div class="par">You will unlock permanent legacy bonuses for completion of this wonder.</div><div class="par">You can decide to do this later; click this wonder again to ascend at any time.</div><div class="par">Only do this when you\'re certain you\'re done with this world! (seriously I mean that)</div></div>';}}(me),onclick:function(me){return function(){
 							//ascend
 							G.dialogue.close();
@@ -158,7 +158,14 @@ G.setPolicyMode=function(me,mode)
 							G.resets++;
 							G.NewGameWithSameMods();
 							G.middleText(middleText,true);
-						}}(instance)})}+'<br>'+
+						}}(instance)})+'<br>'+
+						G.dialogue.getCloseButton('Back')+
+						'</div>';
+					}
+					else if(G.getAchiev(me.unit.wonder)=="test")
+					{
+						str+='<div class="fancyText par">Wonder completed</div>';
+						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascensions and here is example of that.</div>';
 						G.dialogue.getCloseButton('Back')+
 						'</div>';
 					}
