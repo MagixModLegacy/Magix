@@ -10,7 +10,7 @@ func:function(){
 //===========================
 	
 	var randomTxtId=Math.floor(Math.random()*6);
-	let WonderAchievTxt=''
+	var WonderAchievTxt=''
 	var txtAchiev=function(){if(randomTxtId>=0 && randomTxtId<=1) return WonderAchievTxt='<small>Good job : )</small>';else if(randomTxtId>1 && randomTxtId<=2) return WonderAchievTxt='<small>Well done : )</small>';else if(randomTxtId>2 && randomTxtId<=3) return WonderAchievTxt='<small>Neat-O</small>';else if(randomTxtId>3 && randomTxtId<=4) return WonderAchievTxt='<small>Oh yeah!</small>';else if(randomTxtId>4 && randomTxtId<=5) return WonderAchievTxt='<small>Cool</small>';else if(randomTxtId>5 && randomTxtId<=6) return WonderAchievTxt='<small>Snazzy</small>'}
 	img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 var cssId = 'betaCss'; 
