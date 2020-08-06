@@ -1354,8 +1354,8 @@ G.props['fastTicksOnResearch']=150;
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
 			if(G.getRes('wisdom').amount<100){
 		G.gain('wisdom',1)	
-		}}//y1 nerf
-		if(G.year==1){
+		}}//year1 nerf
+		if(G.year==0){
 		G.gain('happiness',0.15)
 		}
 	}
@@ -1441,7 +1441,7 @@ G.props['fastTicksOnResearch']=150;
 			var happiness=(G.getRes('happiness').amount/G.getRes('population').amount)/100;
 			happiness=Math.max(-2,Math.min(2,happiness));
 			if (happiness>=0) mult=(Math.pow(2,happiness+1)/2);
-			else if(G.year>1 && happiness<0) mult=1/(Math.pow(2,-happiness+1)/2);
+			else mult=1/(Math.pow(2,-happiness+1)/2);
 		}
 	}
 		return mult;
