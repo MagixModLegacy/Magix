@@ -1168,16 +1168,16 @@ G.props['fastTicksOnResearch']=150;
 			}
 		}
 		if(G.has('t2')){
-			if(G.getRes('population').amount>=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)){
-				var popinfo=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)
+			if(G.getRes('population').amount>=Math.round(50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))){
+				var popinfo=Math.round(50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))
 				G.gain('unhappy',1)
 				//Murdered by Madness
 				//G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)
 				/////////////////////
-			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+(G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
-				G.lose('adult',(G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
-				G.gain('corpse',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
-				G.gain('blood',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+Math.round((G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
+				G.lose('adult',Math.round((G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))),'The Madness')
+				G.gain('corpse',Math.round((G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))),'The Madness')
+				G.gain('blood',Math.round((G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))),'The Madness')
 				if(G.getRes('happiness').getDisplayAmount()=="-400%"){
 					G.lose('population',G.getRes('population').amount,'The Madness')
 				G.dialogue.popup(function(div){
