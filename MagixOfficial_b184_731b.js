@@ -1354,7 +1354,10 @@ G.props['fastTicksOnResearch']=150;
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
 			if(G.getRes('wisdom').amount<100){
 		G.gain('wisdom',1)	
-		}}
+		}}//y1 nerf
+		if(G.year==1){
+		G.gain('happiness',0.15)
+		}
 	}
 	
 	G.funcs['tracked stat str c1']=function()
