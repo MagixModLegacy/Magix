@@ -141,7 +141,7 @@ G.setPolicyMode=function(me,mode)
 					else if(me.name=="University of the 7 worlds")
 					{
 						str+='<div class="fancyText par">Wonder completed</div>';
-						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascensions and here is example of that.</div>';
+						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascension and here is example of that.</div>';
 						'</div>';
 					}
 					else
@@ -298,6 +298,72 @@ G.setPolicyMode=function(me,mode)
 				closeOnMouseUp:true
 			});
 		}
+	}
+	G.update['trait']=function()
+	{
+		l('traitDiv').innerHTML=
+			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Traits define your civilization as a unique entity, giving small boosts to various aspects of arts, science and lifestyle.</div><div class="par">Your civilization gains random traits over time, consuming resources in the process.</div><div class="par">Events such as celebrations and disasters are also recorded here as memories that fade away over time.</div></div>','infoButton')+
+			'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="traitBox" class="thingBox"></div></div></div>';
+		
+		var str=''+
+			'<div id="civBlurb" class="framed bgMid" style="width:320px;margin:8px auto;padding:10px 16px 4px 16px;"></div>'+
+			G.button({tooltip:'Lets you change the names of various things,<br>such as your civilization, your people, and yourself.',text:'Rename civilization',onclick:function(e){G.dialogue.popup(function(div){
+				var str=
+				'<div class="fancyText title">Name your civilization</div><div class="bitBiggerText scrollBox underTitle">'+
+				'<div class="fancyText par">Your name is '+G.field({text:G.getName('ruler'),tooltip:'This is your name.',oninput:function(val){G.setName('ruler',val);}})+', ruler of '+G.field({text:G.getName('civ'),tooltip:'This is the name of your civilization.',oninput:function(val){G.setName('civ',val);}})+' and the '+G.field({text:G.getName('civadj'),tooltip:'This is an adjective pertaining to your civilization.',oninput:function(val){G.setName('civadj',val);}})+' people.</div>'+
+				'<div class="fancyText par">One '+G.field({text:G.getName('inhab'),tooltip:'This is the word used for someone who belongs to your civilization.',oninput:function(val){G.setName('inhab',val);}})+' among other '+G.field({text:G.getName('inhabs'),tooltip:'This is the plural of the previous word.',oninput:function(val){G.setName('inhabs',val);}})+', you vow to lead your people to greatness and forge a legacy that will stand the test of time.</div>'+
+				'</div><div class="buttonBox">'+
+				G.dialogue.getCloseButton()+
+				'</div>';
+				return str;
+			},'wideDialogue')}})+
+		'';
+		l('extraCultureStuff').innerHTML=str;
+		
+		
+		var strByCat=[];
+		var len=G.knowCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			strByCat[G.knowCategories[iC].id]='';
+		}
+		var len=G.traitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.traitsOwned[i];
+			var str='';
+			str+='<div class="thingWrapper">';
+			str+='<div class="trait thing'+G.getIconClasses(me.trait)+'" id="trait-'+me.id+'">'+
+				G.getIconStr(me.trait,'trait-icon-'+me.id)+
+				'<div class="overlay" id="trait-over-'+me.id+'"></div>'+
+			'</div>';
+			str+='</div>';
+			strByCat[me.trait.category]+=str;
+		}
+		
+		var str='';
+		var len=G.knowCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			if (strByCat[G.knowCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-'+iC+'">'+G.knowCategories[iC].name+'</div>'+strByCat[G.knowCategories[iC].id]+'</div>';
+		}
+		if (str=='') str+='<div class="fancyText bitBiggerText">Your civilization does not have any traits yet.<br>It may develop some over time.</div>';
+		l('traitBox').innerHTML=str;
+		
+		G.addCallbacks();
+		
+		var len=G.traitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.traitsOwned[i];
+			var div=l('trait-'+me.id);if (div) me.l=div; else me.l=0;
+			var div=l('trait-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
+			var div=l('trait-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
+			G.addTooltip(me.l,function(what){return function(){return G.getKnowTooltip(what)};}(me.trait),{offY:-8});
+			if (me.l) me.l.onclick=function(what){return function(){G.clickTrait(what);};}(me);
+		}
+		
+		G.draw['trait']();
 	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
