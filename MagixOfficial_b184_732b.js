@@ -10452,7 +10452,7 @@ new G.Unit({
 		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
 		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10468,7 +10468,7 @@ new G.Unit({
 		finalStepCost:{'population':1000,'gem block':5,'water':10000},
 		finalStepDesc:'To perform the final step 1000 [population,people] and many more must be sacrificed in order to leave the world of endless waters and award you <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10484,7 +10484,7 @@ new G.Unit({
 		finalStepCost:{'population':1000,'gem block':5,'herb':10000,'fruit':10000},
 		finalStepDesc:'To perform the final step 1000 [population,people] and some goods must be sacrificed to finish this "healthy" trial and award <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10500,7 +10500,7 @@ new G.Unit({
 		finalStepCost:{'population':50,'corpse':40},
 		finalStepDesc:'To perform the final step 50 [population,people] and 40 [corpse]s must be sacrificed to escape this hell once and for all and award 15 <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10516,7 +10516,7 @@ new G.Unit({
 		finalStepCost:{'population':250,'spirituality':25,'faith':25},
 		finalStepDesc:'To perform the final step 250 [population,people] and both 25 [faith] & [spirituality] must be sacrificed to escape this pious plane and award <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10532,7 +10532,7 @@ new G.Unit({
 		finalStepCost:{'population':250},
 		finalStepDesc:'To perform the final step 250 [population,people] must be sacrificed to finish this trial and award <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10548,7 +10548,7 @@ new G.Unit({
 		finalStepCost:{'population':100,'precious metal ingot':5},
 		finalStepDesc:'To perform the final step 100 [population,people] and must be sacrificed to finish this trial and award <b>Victory points</b>.',
 		use:{'land':15,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10564,7 +10564,7 @@ new G.Unit({
 		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
 		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
 		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10580,7 +10580,7 @@ new G.Unit({
 		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
 		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
 		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'civil',
 	});
 	/*=====================================================================================
