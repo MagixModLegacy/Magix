@@ -284,7 +284,7 @@ G.setPolicyMode=function(me,mode)
 								var str='<div class="info">'+G.parse(me.desc);
 								//if (!isEmpty(me.use)) str+='<div class="divider"></div><div class="fancyText par">Uses : '+G.getUseString(me.use,true,true)+' per '+proto.name+'</div>';
 								//if (target.amount>0 && target.mode.num!=me.num && !isEmpty(uses)) str+='<div class="divider"></div><div class="fancyText par">Needs '+G.getUseString(uses,true,false,target.amount)+' to switch</div>';
-								str+='<div>Changing to this mode costs '+G.getCostString(proto.cost,true,false,1)+'.</div></div>';
+								str+='<div>Changing to this mode will cost you '+G.getCostString(proto.cost,true,false,1)+'.</div></div>';
 								return str;
 							};}(mode,me),{offY:-8});
 						}
@@ -298,6 +298,10 @@ G.setPolicyMode=function(me,mode)
 				closeOnMouseUp:true
 			});
 		}
+	}
+	G.cantWhenPaused=function()
+	{
+		G.middleText('<font color="#ffffee"><small>Sorry. Can\'t do that when paused!</small></font>');
 	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
