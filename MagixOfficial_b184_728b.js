@@ -302,16 +302,17 @@ G.setPolicyMode=function(me,mode)
 	G.update['trait']=function()
 	{
 		l('traitDiv').innerHTML=
-			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Traits define your civilization as a unique entity, giving small boosts to various aspects of arts, science and lifestyle.</div><div class="par">Your civilization gains random traits over time, consuming resources in the process.</div><div class="par">Events such as celebrations and disasters are also recorded here as memories that fade away over time.</div></div>','infoButton')+
+			G.textWithTooltip('<big>?</big>','<div style="width:240px;text-align:left;"><div class="par">Traits define your civilization as a unique entity, giving small boosts to various aspects of arts, science and lifestyle.</div><div class="par">Your civilization gains random traits over time, consuming resources in the process.</div><div class="par">Events such as celebrations and disasters are also recorded here as memories that fade away over time.</div></div>','infoButton')+
 			'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraCultureStuff" style="text-align:center;margin-bottom:8px;"></div><div id="traitBox" class="thingBox"></div></div></div>';
 		
 		var str=''+
 			'<div id="civBlurb" class="framed bgMid" style="width:320px;margin:8px auto;padding:10px 16px 4px 16px;"></div>'+
-			G.button({tooltip:'Lets you change the names of various things,<br>such as your civilization, your people, and yourself.',text:'Rename civilization',onclick:function(e){G.dialogue.popup(function(div){
+			G.button({tooltip:'Allows you to change the names of various things,<br>such as your civilization, your people, and yourself.',text:'Rename your civilization',onclick:function(e){G.dialogue.popup(function(div){
 				var str=
-				'<div class="fancyText title">Name your civilization</div><div class="bitBiggerText scrollBox underTitle">'+
+				'<div class="fancyText title"><font color="pink">Name your civilization</font></div><div class="bitBiggerText scrollBox underTitle">'+
 				'<div class="fancyText par">Your name is '+G.field({text:G.getName('ruler'),tooltip:'This is your name.',oninput:function(val){G.setName('ruler',val);}})+', ruler of '+G.field({text:G.getName('civ'),tooltip:'This is the name of your civilization.',oninput:function(val){G.setName('civ',val);}})+' and the '+G.field({text:G.getName('civadj'),tooltip:'This is an adjective pertaining to your civilization.',oninput:function(val){G.setName('civadj',val);}})+' people.</div>'+
-				'<div class="fancyText par">One '+G.field({text:G.getName('inhab'),tooltip:'This is the word used for someone who belongs to your civilization.',oninput:function(val){G.setName('inhab',val);}})+' among other '+G.field({text:G.getName('inhabs'),tooltip:'This is the plural of the previous word.',oninput:function(val){G.setName('inhabs',val);}})+', you vow to lead your people to greatness and forge a legacy that will stand the test of time.</div>'+
+				'<div class="fancyText par">One '+G.field({text:G.getName('inhab'),tooltip:'This is the word used for someone who belongs to your civilization.',oninput:function(val){G.setName('inhab',val);}})+' among other '+G.field({text:G.getName('inhabs'),tooltip:'This is the plural of the previous word.',oninput:function(val){G.setName('inhabs',val);}})+', you vow to lead your people to greatness and forge a legacy that will stand the test of time end even longer.</div>'+
+				'<div class="fancyText par">If you would have any motto it would seem like:'+G.field({text:G.getName('motto'),tooltip:'This is yours and your civilization\'s motto.',oninput:function(val){G.setName('motto',val);}})+'</div>'+
 				'</div><div class="buttonBox">'+
 				G.dialogue.getCloseButton()+
 				'</div>';
@@ -347,7 +348,7 @@ G.setPolicyMode=function(me,mode)
 		{
 			if (strByCat[G.knowCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-'+iC+'">'+G.knowCategories[iC].name+'</div>'+strByCat[G.knowCategories[iC].id]+'</div>';
 		}
-		if (str=='') str+='<div class="fancyText bitBiggerText">Your civilization does not have any traits yet.<br>It may develop some over time.</div>';
+		if (str=='') str+='<div class="fancyText bitBiggerText">Your civilization does not have any traits yet.<br>It may develop some over time. Just wait patiently : )</div>';
 		l('traitBox').innerHTML=str;
 		
 		G.addCallbacks();
