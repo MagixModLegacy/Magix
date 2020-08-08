@@ -450,7 +450,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='University of the 7 worlds'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='University of the 7 worlds'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name='<span style="color: #FF0000">Underworld</span>'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -10341,6 +10341,7 @@ if (!document.getElementById(cssId))
     		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
     		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 paradise land at your own but you <b>must</b> follow some of God\'s rules.',
     		wideIcon:[7,4,'magixmod'],
+		wonder:'',
     		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4,'heavenlyTemplePoint':400},
     		effects:[
     			{type:'provide',what:{'Land of the Paradise':26500}},
