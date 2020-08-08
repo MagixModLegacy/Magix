@@ -301,7 +301,16 @@ G.setPolicyMode=function(me,mode)
 	}
 	G.cantWhenPaused=function()
 	{
+		var randText =Math.floor(Math.random()*4)
+		if(randText>=0 && randText<=1){
 		G.middleText('<font color="#ffffee"><small>Sorry. Can\'t do that when paused!</small></font>');
+		}else if(randText>1 && randText<=2){
+		G.middleText('<font color="#ffffee"><small>I can\'t let you change things while time is stopped. ~Chra\'nos</small></font>');
+		}else if(randText>2 && randText<=3){
+		G.middleText('<font color="#ffffee"><small>Unpause the game in order to perform this action.</small></font>');
+		}else if(randText>3 && randText<=4){
+		G.middleText('<font color="#ffffee"><small>You can\'t do that if time is stopped.</small></font>');
+		}
 	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
