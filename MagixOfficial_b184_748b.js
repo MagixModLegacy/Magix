@@ -299,6 +299,7 @@ G.setPolicyMode=function(me,mode)
 			});
 		}
 	}
+	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
 		var randText =Math.floor(Math.random()*10)
@@ -322,6 +323,7 @@ G.setPolicyMode=function(me,mode)
 		G.middleText('<font color="#ffbbaa"><small>Don\'t push. It provides you nothing.</small></font>');
 		}
 	}
+	/////////MODYFING UNIT TAB!!!!!
 		G.update['unit']=function()
 	{
 		l('unitDiv').innerHTML=
@@ -417,7 +419,7 @@ G.setPolicyMode=function(me,mode)
 		G.addCallbacks();
 		
 		
-		G.addTooltip(l('buyAmount'),function(){return '<div style="width:320px;"><div class="barred">Buy amount</div><div class="par">This is how many units you\'ll queue or unqueue at once in a single click.</div><div class="par">Click the + and - buttons to increase or decrease the amount. You can ctrl-click either button to instantly make the amount negative or positive.</div><div class="par">You can also ctrl-click a unit to unqueue an amount instead of queueing it, or shift-click to queue 50 times more.</div></div>';},{offY:-8});
+		G.addTooltip(l('buyAmount'),function(){return '<div style="width:320px;"><div class="barred"><b>Buy amount</b></div><div class="par">This is how many units you\'ll queue or unqueue at once in a single click.</div><div class="par">Click the + and - buttons to increase or decrease the amount. You can ctrl-click either button to instantly make the amount negative or positive.</div><div class="par">You can also ctrl-click a unit to unqueue an amount instead of queueing it, or shift-click to queue 50 times more.</div></div>';},{offY:-8});
 		
 		G.updateBuyAmount();
 		var len=G.unitsOwned.length;
@@ -438,7 +440,7 @@ G.setPolicyMode=function(me,mode)
 				var div=l('unit-split-'+me.id);div.onclick=function(unit,div){return function(){if (G.speed>0) G.splitUnit(unit,div); else G.cantWhenPaused();};}(me,div);
 				G.addTooltip(div,function(me,instance){return function(){if (instance.splitOf) return 'Click to remove this stack of units.'; else return 'Click to split into another unit stack.<br>Different unit stacks can use different modes.'};}(me.unit,me),{offY:-8-16});
 				var div=l('unit-percent-'+me.id);div.onmousedown=function(unit,div){return function(){if (G.speed>0) G.selectPercentForUnit(unit,div); else G.cantWhenPaused();};}(me,div);
-				G.addTooltip(div,function(me,instance){return function(){return 'Click and drag to set unit work capacity.<br>This feature is not yet implemented.'};}(me.unit,me),{offY:8,anchor:'bottom'});
+				G.addTooltip(div,function(me,instance){return function(){return 'Click and drag to set unit work capacity.<br>This feature is not yet implemented... and probably won\'t be.'};}(me.unit,me),{offY:8,anchor:'bottom'});
 			}
 			G.addTooltip(me.l,function(me,instance){return function(){
 				var amount=G.getBuyAmount(instance);
@@ -448,15 +450,15 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>';
+					if(me.unit.name!=='University of the 7 worlds'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders</div>';
 					else
 					{
 						if (instance.mode==0) str+='<div class="fancyText barred">Unbuilt<br>Click to start construction ('+B(me.steps)+' steps)</div>';
 						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
-						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume. test!'))+'</div>';
+						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
 						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
-						else if (instance.mode==4) str+='<div class="fancyText barred">Completed<br>Click to ascend</div>';
+						else if (instance.mode==4 && me.unit.name!=='University of the 7 worlds') str+='<div class="fancyText barred">Completed<br>Click to ascend</div>';
 						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
 					}
 					if (amount<0) amount=0;
@@ -10807,7 +10809,7 @@ new G.Unit({
 		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
 		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
 		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
-		req:{'language':true,'tribalism':false},
+		req:{'language':true},
 		category:'civil',
 	});
 	/*=====================================================================================
