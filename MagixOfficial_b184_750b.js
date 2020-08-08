@@ -323,11 +323,11 @@ G.setPolicyMode=function(me,mode)
 		G.middleText('<font color="#ffbbaa"><small>Don\'t push. It provides you nothing.</small></font>');
 		}
 	}
-	/////////MODYFING UNIT TAB!!!!!
+	/////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
 		l('unitDiv').innerHTML=
-			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Units are the core of your resource production and gathering.</div><div class="par">Units can be <b>queued</b> for purchase by clicking on them; they will then automatically be created over time until they reach the queued amount. Creating units usually takes up resources such as workers or tools; resources shown in red in the tooltip are resources you do not have enough of.<div class="bulleted">click a unit to queue 1</div><div class="bulleted">right-click or ctrl-click to remove 1</div><div class="bulleted">shift-click to queue 50</div><div class="bulleted">shift-right-click or ctrl-shift-click to remove 50</div></div><div class="par">Units usually require some resources to be present; a <b>building</b> will crumble if you do not have the land to support it, or it could go inactive if you lack the workers or tools (it will become active again once you fit the requirements). Some units may also require daily <b>upkeep</b>, such as fresh food or money, without which they will go inactive.</div><div class="par">Furthermore, workers will sometimes grow old, get sick, or die, removing a unit they\'re part of in the process.</div><div class="par">Units that die off will be automatically replaced until they match the queued amount again.</div><div class="par">Some units have different <b>modes</b> of operation, which can affect what they craft or how they act; you can use the small buttons next to such units to change those modes and do other things. One of those buttons is used to <b>split</b> the unit into another stack; each stack can have its own mode.</div></div>','infoButton')+
+			G.textWithTooltip('<big>?</big>','<div style="width:240px;text-align:left;"><div class="par"><li>Units are the core of your resource production and gathering.</li></div><div class="par">Units can be <b>queued</b> for purchase by clicking on them; they will then automatically be created over time until they reach the queued amount. Creating units usually takes up resources such as workers or tools; resources shown in red in the tooltip are resources you do not have enough of.<div class="bulleted">click a unit to queue 1</div><div class="bulleted">right-click or ctrl-click to remove 1</div><div class="bulleted">shift-click to queue 50</div><div class="bulleted">shift-right-click or ctrl-shift-click to remove 50</div></div><div class="par">Units usually require some resources to be present; a <b>building</b> will crumble if you do not have the land to support it, or it could go inactive if you lack the workers or tools (it will become active again once you fit the requirements). Some units may also require daily <b>upkeep</b>, such as fresh food or money, without which they will go inactive.</div><div class="par">Furthermore, workers will sometimes grow old, get sick, or die, removing a unit they\'re part of in the process.</div><div class="par">Units that die off will be automatically replaced until they match the queued amount again.</div><div class="par">Some units have different <b>modes</b> of operation, which can affect what they craft or how they act; you can use the small buttons next to such units to change those modes and do other things. One of those buttons is used to <b>split</b> the unit into another stack; each stack can have its own mode.</div></div>','infoButton')+
 			'<div style="position:absolute;z-index:100;top:0px;left:0px;right:0px;text-align:center;"><div class="flourishL"></div>'+
 				G.button({id:'removeBulk',
 					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">-</span>',
@@ -451,14 +451,14 @@ G.setPolicyMode=function(me,mode)
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
 					if(me.name!=='University of the 7 worlds'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
-					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders</div>';
+					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
 						if (instance.mode==0) str+='<div class="fancyText barred">Unbuilt<br>Click to start construction ('+B(me.steps)+' steps)</div>';
 						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
 						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
 						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
-						else if (instance.mode==4 && me.unit.name!=='University of the 7 worlds') str+='<div class="fancyText barred">Completed<br>Click to ascend</div>';
+						else if (instance.mode==4 && me.unit.name!=='University of the 7 worlds'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>';
 						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
 					}
 					if (amount<0) amount=0;
