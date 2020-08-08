@@ -101,7 +101,7 @@ G.setPolicyMode=function(me,mode)
 				//this also handles the step afterwards, when we click the final wonder
 				G.dialogue.popup(function(me,instance){return function(div){
 					var str=
-					'<div style="width:280px;min-height:320px;">'+
+					'<div style="width:340px;min-height:380px;">'+
 					'<div class="thing standalone'+G.getIconClasses(me,true)+''+(instance.mode==3?' wonderUnbuilt':' wonderBuilt')+'" style="transform:scale(2);position:absolute;left:70px;top:52px;">'+G.getIconStr(me,0,0,true)+'</div>'+
 					'<div class="fancyText title">'+me.displayName+'</div><div class="bitBiggerText scrollBox underTitle shadowed" style="text-align:center;overflow:hidden;top:118px;bottom:50px;">';
 					if (instance.mode==3)
@@ -284,7 +284,7 @@ G.setPolicyMode=function(me,mode)
 								var str='<div class="info">'+G.parse(me.desc);
 								//if (!isEmpty(me.use)) str+='<div class="divider"></div><div class="fancyText par">Uses : '+G.getUseString(me.use,true,true)+' per '+proto.name+'</div>';
 								//if (target.amount>0 && target.mode.num!=me.num && !isEmpty(uses)) str+='<div class="divider"></div><div class="fancyText par">Needs '+G.getUseString(uses,true,false,target.amount)+' to switch</div>';
-								str+='<div>Changing to this mode will cost you '+G.getCostString(proto.cost,true,false,1)+'.</div></div>';
+								str+='<div><b>Changing to this mode will cost you </b>'+G.getCostString(proto.cost,true,false,1)+'.</div></div>';
 								return str;
 							};}(mode,me),{offY:-8});
 						}
@@ -615,14 +615,8 @@ G.props['fastTicksOnResearch']=150;
 			b7++
 			c7++
 		}
-		var a8=G.achievByName['Buried'].won
-		var b8=1
-		var c8=0
-		while(c8<a8){
-		G.gain('victory point',b8)
-			b8++
-			c8++
-		}
+		if(G.achievByName['Buried'].won>=1) G.gain('victory point',15);
+		
 		var a9=G.achievByName['Underground'].won
 		var b9=1
 		var c9=0
@@ -976,14 +970,7 @@ G.props['fastTicksOnResearch']=150;
 			b7++
 			c7++
 		}
-		var a8=G.achievByName['Buried'].won
-		var b8=1
-		var c8=0
-		while(c8<a8){
-		G.gain('victory point',b8)
-			b8++
-			c8++
-		}
+		if(G.achievByName['Buried'].won>=1) G.gain('victory point',15);
 		var a9=G.achievByName['Underground'].won
 		var b9=1
 		var c9=0
