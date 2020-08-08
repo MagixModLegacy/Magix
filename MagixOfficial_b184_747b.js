@@ -541,6 +541,7 @@ G.setPolicyMode=function(me,mode)
 				} else G.cantWhenPaused();
 			};}(me);
 		}
+		}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
