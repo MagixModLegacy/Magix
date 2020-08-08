@@ -450,7 +450,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.unit.name!=='University of the 7 worlds'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='University of the 7 worlds'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders</div>';
 					else
 					{
