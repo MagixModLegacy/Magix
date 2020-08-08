@@ -583,6 +583,7 @@ G.setPolicyMode=function(me,mode)
 			
 			if (G.getSetting('autosave') && G.T%(G.fps*60)==(G.fps*60-1)) G.Save();
 		}
+	}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
