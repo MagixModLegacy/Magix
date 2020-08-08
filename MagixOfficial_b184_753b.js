@@ -10809,7 +10809,7 @@ new G.Unit({
 		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
 		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
 		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
-		req:{'language':true},
+		req:{'language':true,'tribalism':false},
 		category:'civil',
 	});
 	/*=====================================================================================
