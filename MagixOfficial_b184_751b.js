@@ -458,7 +458,7 @@ G.setPolicyMode=function(me,mode)
 						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
 						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
 						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
-						else if (instance.mode==4 && me.unit.name!=='University of the 7 worlds'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>';
+						else if (instance.mode==4 && me.unit.name!=='University of the 7 worlds'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
 						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
 					}
 					if (amount<0) amount=0;
