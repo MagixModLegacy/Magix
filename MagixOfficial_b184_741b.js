@@ -317,11 +317,93 @@ G.setPolicyMode=function(me,mode)
 		}else if(randText>6 && randText<=7){
 		G.middleText('<font color="#b0b0ff"><small>Ask pelletsstarPL(mod creator & Grand Magixian) maybe he will help you.</small></font>');
 		}else if(randText>7 && randText<=8){
-		G.middleText('<font color="#b0b0ff"><small>Log number'+Math.round(Math.random()*32767)+1+'<br>Attempted to perform operation while paused<br>PROCESS INTERRUPTED</small></font>');
+		G.middleText('<font color="lime"><small>Log #'+Math.round(Math.random()*32767)+1+'<br>Attempted to perform operation while paused<br>PROCESS INTERRUPTED</small></font>');
 		}else if(randText>8 && randText<=10){
 		G.middleText('<font color="#ffbbaa"><small>Don\'t push. It provides you nothing.</small></font>');
 		}
 	}
+	G.createTopInterface=function()
+	{
+		var str=''+
+		'<div class="flourishL"></div><div class="framed fancyText bgMid" style="display:inline-block;padding:8px 12px;font-weight:bold;font-size:18px;font-variant:small-caps;" id="date">-</div><div class="flourishR"></div><br>'+
+		'<div class="flourish2L"></div>'+
+		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">0</div>'+
+		G.button({id:'pauseButton',
+			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) 0px 0px;"></div>',
+			tooltip:'Time will be stopped.<br>Generates fast ticks.',
+			onclick:function(){G.setSetting('paused',1);}
+		})+
+		G.button({id:'playButton',
+			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -11px 0px;"></div>',
+			tooltip:'Time will pass by normally - 1 day every second.',
+			onclick:function(){G.setSetting('paused',0);G.setSetting('fast',0);G.setSetting('halffast',0);}
+		})+
+		   G.button({id:'halffastButton',
+			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
+			tooltip:'Time will go by about 15 times faster - half of a month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
+			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',0);;G.setSetting('halffast',1);}}
+		})+
+		G.button({id:'fastButton',
+			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
+			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
+			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);;G.setSetting('halffast',0);}}
+		})+
+		'<div class="flourish2R"></div>';
+		
+		l('topInterface').innerHTML=str;
+		
+		G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses every second, and 300 days make up a year.</div>';},{offY:-8});
+		G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed,<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
+		
+		l('fastTicks').onclick=function(e)
+		{
+			if (G.getSetting('debug'))
+			{
+				//debug : gain fast ticks
+				G.fastTicks+=10*G.getBuyAmount();
+				G.fastTicks=Math.max(0,G.fastTicks);
+			}
+		};
+		
+		G.addCallbacks();
+		G.updateSpeedButtons();
+	}
+	G.settings=[
+		{name:'mapEditMode',type:'int',def:0,onChange:function(){
+			G.editMode=(G.getSetting('mapEditMode'));
+			G.mapEditWithLand=0;
+			var div=l('tileEditButton');
+			if (div && G.editMode==2)
+			{
+				div.style.display='block';
+				if (G.getSetting('animations')) triggerAnim(div,'plop');
+				if (G.land[G.mapEditWithLand])
+				{
+					div.style.background=G.getLandIconBG(G.land[G.mapEditWithLand]);
+					div.style.backgroundPosition=G.getLandIconBGpos(G.land[G.mapEditWithLand]);
+				}
+			}
+			else if (div) div.style.display='none';
+		}},//what are we doing to the map?
+		{name:'paused',type:'toggle',def:0,onChange:function(){G.updateSpeedButtons();}},//is the game currently paused?
+		{name:'fast',type:'toggle',def:1,onChange:function(){G.updateSpeedButtons();}},//is the game currently on fast speed?
+		{name:'halffast',type:'toggle',def:1,onChange:function(){G.updateSpeedButtons();}},//is the game currently on fast speed?
+		{name:'forcePaused',type:'toggle',def:0,onChange:function(){G.updateSpeedButtons();}},//force pause when on
+		{name:'tab',type:'int',def:0,onChange:function(){}},//current tab
+		{name:'showLeads',type:'int',def:0,onChange:function(){}},//show what any given tech or trait will lead to (kinda cheaty/cumbersome)
+		{name:'pauseOnMenus',type:'toggle',def:1,onChange:function(){}},//pause when in menus
+		{name:'atmosphere',type:'toggle',def:1,onChange:function(){}},//show atmospheric messages
+		{name:'particles',type:'toggle',def:1,onChange:function(){}},//show particles
+		{name:'animations',type:'toggle',def:1,onChange:function(){if (G.getSetting('animations')) G.wrapl.classList.add('animationsOn'); else G.wrapl.classList.remove('animationsOn');}},//show animations ("plops" and blue squares)
+		{name:'filters',type:'toggle',def:1,onChange:function(){if (G.getSetting('filters')) G.wrapl.classList.add('filtersOn'); else G.wrapl.classList.remove('filtersOn');}},//use CSS filters
+		{name:'fpsgraph',type:'toggle',def:1,onChange:function(){if (G.getSetting('fpsgraph')) {G.fpsGraph.style.display='block';l('fpsCounter').style.display='block';} else {G.fpsGraph.style.display='none';l('fpsCounter').style.display='none';}}},//show fps graph
+		{name:'debug',type:'toggle',def:0,onChange:function(){if (G.getSetting('debug')) G.wrapl.classList.add('debugOn'); else G.wrapl.classList.remove('debugOn');}},//cheaty debug mode
+		{name:'showAllRes',type:'toggle',def:0,onChange:function(){}},//see all resources
+		{name:'autosave',type:'toggle',def:1,onChange:function(){}},//game will save every minute
+		{name:'buyAny',type:'toggle',def:0,onChange:function(){}},//when bulk-buying, buy any amount up to the demanded amount instead of cancelling if we can't buy the demanded amount
+		{name:'tieredDisplay',type:'toggle',def:0,onChange:function(){if (l('techDiv')) G.update['tech']();}},//techs will be displayed as tiers instead of in the order they were researched
+		{name:'buyAmount',type:'int',def:1,onChange:function(){G.updateBuyAmount();}},//how many units we create/remove at once
+	];
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
@@ -8395,7 +8477,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'convert',from:{'thief':1},into:{'adult':1},every:4,chance:1/4},
 			{type:'convert',from:{'thief':1},into:{'corpse':1},every:4,chance:1/48},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/30},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/50,req:{'coordination':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/25,req:{'coordination':false}},
 		],
 	});
 		new G.Unit({
@@ -14442,7 +14525,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'[Thief hunter] has better coordination so he has twice as bigger chance to succesfully win <b>guard vs thief</b> confrontation.',
 		icon:[33,27,'magixmod'],
 		req:{'Battling thieves':true},
-		cost:{'insight':250},
+		cost:{'insight':260},
 		effects:[
 		],
 		chance:3
