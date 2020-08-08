@@ -301,7 +301,7 @@ G.setPolicyMode=function(me,mode)
 	}
 	G.cantWhenPaused=function()
 	{
-		var randText =Math.floor(Math.random()*8)
+		var randText =Math.floor(Math.random()*10)
 		if(randText>=0 && randText<=1){
 		G.middleText('<font color="#ffffee"><small>Sorry. Can\'t do that when paused!</small></font>');
 		}else if(randText>1 && randText<=2){
@@ -311,13 +311,15 @@ G.setPolicyMode=function(me,mode)
 		}else if(randText>3 && randText<=4){
 		G.middleText('<font color="#faffee"><small>You can\'t do that if time is stopped.</small></font>');
 		}else if(randText>4 && randText<=5){
-		G.middleText('<font color="#ffffee"><small>You can\'t do that here...</small></font>');
+		G.middleText('<font color="#ffff00"><small>You can\'t do that here...</small></font>');
 		}else if(randText>5 && randText<=6){
 		G.middleText('<font color="#b0b0ff"><small>Sorry, but you can\'t rule a frozen civilization.</small></font>');
 		}else if(randText>6 && randText<=7){
 		G.middleText('<font color="#b0b0ff"><small>Ask pelletsstarPL(mod creator & Grand Magixian) maybe he will help you.</small></font>');
 		}else if(randText>7 && randText<=8){
 		G.middleText('<font color="#b0b0ff"><small>Log number'+Math.round(Math.random()*32767)+1+'<br>Attempted to perform operation while paused<br>PROCESS INTERRUPTED</small></font>');
+		}else if(randText>8 && randText<=10){
+		G.middleText('<font color="#ffbbaa"><small>Don\'t push. It provides you nothing.</small></font>');
 		}
 	}
 G.props['fastTicksOnResearch']=150;
