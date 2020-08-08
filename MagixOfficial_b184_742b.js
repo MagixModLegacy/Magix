@@ -341,12 +341,12 @@ G.setPolicyMode=function(me,mode)
 		   G.button({id:'halffastButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
 			tooltip:'Time will go by about 15 times faster - half of a month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
-			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',0);;G.setSetting('halffast',1);}}
+			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',0);G.setSetting('halffast',1);}}
 		})+
 		G.button({id:'fastButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
 			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
-			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);;G.setSetting('halffast',0);}}
+			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);G.setSetting('halffast',0);}}
 		})+
 		'<div class="flourish2R"></div>';
 		
@@ -404,6 +404,185 @@ G.setPolicyMode=function(me,mode)
 		{name:'tieredDisplay',type:'toggle',def:0,onChange:function(){if (l('techDiv')) G.update['tech']();}},//techs will be displayed as tiers instead of in the order they were researched
 		{name:'buyAmount',type:'int',def:1,onChange:function(){G.updateBuyAmount();}},//how many units we create/remove at once
 	];
+	G.Logic=function(forceTick)
+	{
+		//forceTick lets us execute logic and force a tick update
+
+		if (G.sequence=='loading' || G.sequence=='checking' || G.sequence=='updating')
+		{
+			var done=G.LogicModLoading();
+		}
+		else if (G.sequence=='main')
+		{
+			G.oldSpeed=G.speed;
+			G.speed=1;
+			if (G.getSetting('fast')) G.speed=2;
+			if (G.getSetting('halffast')) G.speed=1.5;
+			if (G.getSetting('paused')) G.speed=0;
+			if (G.getSetting('forcePaused')) G.speed=0;
+			if (forceTick) G.speed=1;
+			
+			if (G.speed==0)
+			{
+				//accumulate fast ticks when paused
+				G.nextFastTick--;
+				if (G.nextFastTick<=0) {G.fastTicks++;G.nextFastTick=G.tickDuration;}
+			}
+			
+			if (G.oldSpeed!=G.speed)
+			{
+				if (G.speed==1)
+				{
+					G.wrapl.classList.remove('speed0');
+					G.wrapl.classList.add('speed1');
+					G.wrapl.classList.remove('speed1.5');
+					G.wrapl.classList.remove('speed2');
+				}
+				else if (G.speed==1.5)
+				{
+					G.wrapl.classList.remove('speed0');
+					G.wrapl.classList.remove('speed1');
+					G.wrapl.classList.add('speed1.5');
+					G.wrapl.classList.remove('speed2');
+				}
+				else if (G.speed==1.5)
+				{
+					G.wrapl.classList.remove('speed0');
+					G.wrapl.classList.remove('speed1');
+					G.wrapl.classList.remove('speed1.5');
+					G.wrapl.classList.add('speed2');
+				}
+				else
+				{
+					G.wrapl.classList.add('speed0');
+					G.wrapl.classList.remove('speed1');
+					G.wrapl.classList.remove('speed1.5');
+					G.wrapl.classList.remove('speed2');
+				}
+			}
+			
+			if (G.T>0 && G.oldSpeed!=G.speed)
+			{
+				if (G.speed==0)//just paused
+				{
+					l('foreground').style.display='block';
+					G.middleText('- Pause -<br><small>Press space to unpause</small>');
+				}
+				else if (G.oldSpeed==0)//just unpaused
+				{
+					l('foreground').style.display='none';
+					if (G.T>0) G.middleText('- Unpaused -');
+				}
+				else if (G.speed==1)
+				{
+					G.middleText('- Speed x1 -');
+				}
+				else if (G.speed==1.5)
+				{
+					G.middleText('- Speed x15 -');
+				}
+				else if (G.speed==2)
+				{
+					G.middleText('- Speed x30 -');
+				}
+			}
+			
+			if (G.speed>0)//not paused
+			{
+				if (G.nextTick<=0 || forceTick)
+				{
+					if (G.speed==1.5)
+					{
+						//use up fast ticks when on fast speed
+						G.fastTicks--;
+						if (G.fastTicks<=0) {G.fastTicks=0;G.speed=1;G.setSetting('halffast',0);}
+					}
+					else if (G.speed==2)
+					{
+						//use up fast ticks when on fast speed
+						G.fastTicks--;
+						if (G.fastTicks<=0) {G.fastTicks=0;G.speed=1;G.setSetting('fast',0);}
+					}
+					G.logic['res']();
+					G.logic['unit']();
+					G.logic['land']();
+					G.logic['tech']();
+					G.logic['trait']();
+					
+					//exploring
+					var map=G.currentMap;
+					var updateMap=false;
+					if (G.exploreOwnedTiles && map.tilesByOwner[1].length>0)
+					{
+						G.exploreOwnedTiles=randomFloor(G.exploreOwnedTiles);
+						for (var i=0;i<G.exploreOwnedTiles;i++)
+						{
+							var tile=choose(map.tilesByOwner[1]);
+							if (tile.explored<1)
+							{
+								tile.explored+=0.01;
+								tile.explored=Math.min(tile.explored,1);
+								G.tileToRender(tile);
+								updateMap=true;
+							}
+						}
+					}
+					if (G.exploreNewTiles && map.tilesByOwner[1].length>0)
+					{
+						G.exploreNewTiles=randomFloor(G.exploreNewTiles);
+						for (var i=0;i<G.exploreNewTiles;i++)
+						{
+							var dirs=[];
+							var tile=choose(map.tilesByOwner[1]);
+							var fromLand=true;
+							if (tile.land.ocean) fromLand=false;
+							if (fromLand || G.allowShoreExplore)
+							{
+								if (tile.x>0 && map.tiles[tile.x-1][tile.y].explored==0) dirs.push([-1,0]);
+								if (tile.x<map.w-1 && map.tiles[tile.x+1][tile.y].explored==0) dirs.push([1,0]);
+								if (tile.y>0 && map.tiles[tile.x][tile.y-1].explored==0) dirs.push([0,-1]);
+								if (tile.y<map.h-1 && map.tiles[tile.x][tile.y+1].explored==0) dirs.push([0,1]);
+								if (dirs.length>0)
+								{
+									var dir=choose(dirs);
+									tile=map.tiles[tile.x+dir[0]][tile.y+dir[1]];
+									var isShore=false;
+									if (tile.land.ocean && fromLand) isShore=true;
+									if (G.allowOceanExplore || !tile.land.ocean || isShore)
+									{
+										tile.owner=1;
+										tile.explored+=0.1;
+										G.tileToRender(tile);
+										updateMap=true;
+										G.doFuncWithArgs('found tile',[tile]);
+									}
+								}
+							}
+						}
+					}
+					if (updateMap)
+					{
+						G.updateMapForOwners(map);
+						//G.mapToRefresh=true;
+					}
+					G.exploreOwnedTiles=0;
+					G.exploreNewTiles=0;
+					
+					
+					G.tickChooseBoxes();
+					G.nextTick=(G.speed==1?G.tickDuration:1);
+					G.tick++;
+					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
+					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
+					l('date').innerHTML='Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+				}
+				if (!forceTick) G.nextTick--;
+			}
+			
+			l('fastTicks').innerHTML=G.BT(G.fastTicks);
+			
+			if (G.getSetting('autosave') && G.T%(G.fps*60)==(G.fps*60-1)) G.Save();
+		}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
