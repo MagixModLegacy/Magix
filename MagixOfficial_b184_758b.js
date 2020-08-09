@@ -10915,7 +10915,14 @@ getCosts:function()
 			G.fastTicks+=G.props['fastTicksOnResearch'];
 			
 			G.gainTech(what);
+			var randomMessage=Math.floor(Math.random()*3)
+			if(randomMessage>=0 && randomMessage<=1){
 			G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
+			}else if(randomMessage>1 && randomMessage<=2){
+			G.Message({type:'good tall',text:'Your people have learnt <b>'+what.displayName+'</b>.',icon:what.icon})
+			}else if(randomMessage>2 && randomMessage<=3){
+			G.Message({type:'good tall',text:'Your people has acknowledged with <b>'+what.displayName+'</b>.',icon:what.icon})
+			};
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseOption-'+index+'-'+this.id),l('techBox').children[0]);
 			l('techBox').children[0].classList.add('popIn');
