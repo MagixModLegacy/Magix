@@ -1,14 +1,14 @@
 G.AddData({
 name:'Default dataset',
 author:'pelletsstarPL',
-desc:'Magic! Magic!. Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
+desc:'Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
 manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-	var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
+	img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -21,7 +21,529 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
-
+G.setPolicyMode=function(me,mode)
+	{
+		//free old mode uses, and assign new mode uses
+		var oldMode=me.mode;
+		var newMode=mode;
+		if (oldMode==newMode) return;
+		//G.undoUse(oldMode.use,me.amount);
+		//G.doUse(newMode.use,me.amount);
+		me.mode=mode;
+		if (me.mode.effects) G.applyKnowEffects(me.mode,false,true);
+		if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+		if (me.binary)
+		{
+			if (mode.id=='off'){ 
+				if (G.checkPolicy('Toggle SFX')=='on'){
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOff.wav');
+			audio.play(); 
+			}me.l.classList.add('off')
+			}else{if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOn.wav');
+			audio.play(); 
+			}me.l.classList.remove('off')}
+		}
+	}
+	G.buyUnit=function(me,amount,any)
+	{
+		//if any is true, by anywhere between 0 and amount; otherwise, fail if we can't buy the precise amount
+		var success=true;
+		amount=Math.round(amount);
+		if (me.unit.wonder && amount>0)
+		{
+			//check requirements
+			if (me.mode==0)
+			{
+				//initial step
+				if (!G.testCost(me.unit.cost,amount)) success=false;
+				else if (!G.testUse(me.unit.use,amount)) success=false;
+				else if (!G.testUse(me.unit.require,amount)) success=false;
+				if (success)
+				{
+					if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
+					G.doCost(me.unit.cost,amount);
+					G.doUse(me.unit.use,amount);
+					G.applyUnitBuyEffects(me,amount);
+					me.mode=2;//start paused
+					me.percent=0;
+					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+					
+					var bounds=me.l.getBoundingClientRect();
+					var posX=bounds.left+bounds.width/2;
+					var posY=bounds.top;
+					for (var i in me.unit.cost)
+					{G.showParticle({x:posX,y:posY,icon:G.dict[i].icon});}
+				}
+			}
+			else if (me.mode==1)
+			{
+				//building in progress; pausing construction
+				if (success)
+				{
+					me.mode=2;
+					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+				}
+			}
+			else if (me.mode==2)
+			{
+				//building in progress; resuming construction
+				if (success)
+				{
+					me.mode=1;
+					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+				}
+			}
+			else if (me.mode==3 || me.mode==4)
+			{
+				//building complete; applying final step
+				//this also handles the step afterwards, when we click the final wonder
+				G.dialogue.popup(function(me,instance){return function(div){
+					var str=
+					'<div style="width:280px;min-height:380px;">'+
+					'<div class="thing standalone'+G.getIconClasses(me,true)+''+(instance.mode==3?' wonderUnbuilt':' wonderBuilt')+'" style="transform:scale(2);position:absolute;left:70px;top:52px;">'+G.getIconStr(me,0,0,true)+'</div>'+
+					'<div class="fancyText title">'+me.displayName+'</div><div class="bitBiggerText scrollBox underTitle shadowed" style="text-align:center;overflow:hidden;top:118px;bottom:50px;">';
+					if (instance.mode==3)
+					{
+						str+='<div class="fancyText par"><font color="fuschia">This wonder only needs one more step to finalize.</font></div>';
+						if (me.finalStepDesc) str+='<div class="fancyText par">'+G.parse(me.finalStepDesc)+'</div>';
+						str+='</div><div class="buttonBox">'+
+						G.button({text:'<font color="lime">Complete</font>',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;">You need '+G.getCostString(me.finalStepCost,true,false,1)+'.</div>';}}(me),onclick:function(me){return function(){
+							var amount=1;
+							var success=true;
+							if (!G.testCost(me.unit.finalStepCost,amount)) success=false;
+							//else if (!G.testUse(me.unit.finalStepUse,amount)) success=false;
+							//else if (!G.testUse(me.unit.finalStepRequire,amount)) success=false;
+							if (success)
+							{
+								G.dialogue.close();
+								G.doCost(me.unit.finalStepCost,amount);
+								if (G.checkPolicy('Toggle SFX')=='on'){
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
+			audio.play(); 
+			}
+								me.mode=4;
+								me.amount+=1;
+								if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+								
+								var bounds=me.l.getBoundingClientRect();
+								var posX=bounds.left+bounds.width/2;
+								var posY=bounds.top;
+								for (var i in me.unit.finalStepCost)
+								{G.showParticle({x:posX,y:posY,icon:G.dict[i].icon});}
+								G.buyUnit(me,amount,true);//show dialogue for step 4
+							}
+						}}(instance)})+'<br>'+
+						G.dialogue.getCloseButton('- Back -')+
+						'</div>';
+					}
+					else if(me.name=="University of the 7 worlds")
+					{
+						str+='<div class="fancyText par">Wonder completed</div>';
+						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascension and here is example of that.</div>';
+						'</div>';
+					}
+					else
+					{
+						str+='<div class="fancyText par">Wonder completed</div>';
+						str+='<div class="fancyText par">You can now ascend to a higher state of existence, or remain on this mortal plane for as long as you wish.</div>';
+						str+='</div><div class="buttonBox">'+
+							
+						G.button({text:'<font color="#D4AF37">Ascend</font>',style:'box-shadow:0px 0px 10px 1px #39f;',tooltipFunc:function(me){return function(){return '<div style="max-width:240px;padding:16px 24px;"><div class="par">Ascending will end this game and let you create a new one.</div><div class="par">You will unlock permanent legacy bonuses for completion of this wonder.</div><div class="par">You can decide to do this later; click this wonder again to ascend at any time.</div><div class="par">Only do this when you\'re certain you\'re done with this world! (seriously I mean that)</div></div>';}}(me),onclick:function(me){return function(){
+							//ascend
+							G.dialogue.close();
+							var middleText='';
+							var achiev=G.getAchiev(me.unit.wonder);
+							var randomTxtId=Math.floor(Math.random() * 6);	
+							if (G.checkPolicy('Toggle SFX')=='on'){
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Ascending.wav');
+			audio.play(); 
+			}
+							if (achiev)
+							{
+								if (!achiev.won) middleText='<font color="pink">- Completed the '+achiev.displayName+' victory -</font>'
+								achiev.won++;
+							}
+							G.resets++;
+							G.NewGameWithSameMods();
+							G.middleText(middleText,true);
+						}}(instance)})+'<br>'+
+						G.dialogue.getCloseButton('Back')+
+						'</div>';
+					}
+					str+='</div>';
+					return str;
+				}}(me.unit,me));
+			}
+		}
+		else if (amount>0)
+		{
+			//check requirements
+			if (any)
+			{
+				var originalAmount=amount;
+				var n=0;
+				n=G.testAnyCost(me.unit.cost);
+				if (n!=-1) amount=Math.min(n,amount);
+				n=G.testAnyUse(me.unit.use,amount);
+				if (n!=-1) amount=Math.min(n,amount);
+				n=G.testAnyUse(me.unit.require,amount);
+				if (n!=-1) amount=Math.min(n,amount);
+				//n=G.testAnyUse(me.mode.use,amount);
+				//if (n!=-1) amount=Math.min(n,amount);
+				n=G.testAnyLimit(me.unit.limitPer,G.getUnitAmount(me.unit.name)+amount);
+				if (n!=-1) amount=Math.min(n,amount);
+				if (amount<=0) success=false;
+			}
+			else
+			{
+				if (!G.testCost(me.unit.cost,amount)) success=false;
+				else if (!G.testUse(me.unit.use,amount)) success=false;
+				else if (!G.testUse(me.unit.require,amount)) success=false;//should amount count?
+				//else if (!G.testUse(me.mode.use,amount)) success=false;
+				else if (!G.testLimit(me.unit.limitPer,G.getUnitAmount(me.unit.name)+amount)) success=false;
+			}
+			//actually purchase if we meet the requirements
+			if (success)
+			{
+				G.doCost(me.unit.cost,amount);
+				G.doUse(me.unit.use,amount);
+				//G.doUse(me.mode.use,amount);
+				G.applyUnitBuyEffects(me,amount);
+				me.amount+=amount;
+				me.idle+=amount;
+				if (G.tooltip.parent!=me.l && G.getSetting('animations')) triggerAnim(me.l,'plop');
+				
+				var bounds=me.l.getBoundingClientRect();
+				var posX=bounds.left+bounds.width/2;
+				var posY=bounds.top;
+				for (var i in me.unit.cost)
+				{G.showParticle({x:posX,y:posY,icon:G.dict[i].icon});}
+			}
+		}
+		return success;
+	}
+	
+	G.selectModeForPolicy=function(me,div)
+	{
+		if (div==G.widget.parent) G.widget.close();
+		else
+		{
+			G.widget.popup({
+				func:function(widget)
+				{
+					var str='';
+					var me=widget.linked;
+					var proto=me;
+					for (var i in proto.modes)
+					{
+						var mode=proto.modes[i];
+						if (!mode.req || G.checkReq(mode.req))
+						{str+='<div class="button'+(mode.num==me.mode.num?' on':'')+'" id="mode-button-'+mode.num+'">'+mode.name+'</div>';}
+					}
+					widget.l.innerHTML=str;
+					//TODO : how do uses and costs work in this?
+					for (var i in proto.modes)
+					{
+						var mode=proto.modes[i];
+						if (!mode.req || G.checkReq(mode.req))
+						{
+							l('mode-button-'+mode.num).onmouseup=function(target,mode,div){return function(){
+								//released the mouse on this mode button; test if we can switch to this mode, then close the widget
+								if (G.speed>0)
+								{
+									var me=target;
+									var proto=me;
+									if (G.testCost(me.cost,1))
+									{
+										if (!me.mode.use || G.testUse(G.subtractCost(me.mode.use,mode.use),1))
+										{
+											G.doCost(me.cost,1);
+											//remove "on" class from all mode buttons and add it to the current mode button
+											for (var i in proto.modes)
+											{if (l('mode-button-'+proto.modes[i].num)) {l('mode-button-'+proto.modes[i].num).classList.remove('on');}}
+											l('mode-button-'+mode.num).classList.add('on');
+											G.setPolicyMode(me,mode);
+											if (G.checkPolicy('Toggle SFX')=='on'){
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOn.wav');
+			audio.play(); 
+			}
+											if (me.l) G.popupSquares.spawn(l('mode-button-'+mode.num),me.l);
+										}
+									}
+								} else G.cantWhenPaused();
+								widget.closeOnMouseUp=false;//override default behavior
+								widget.close(5);//schedule to close the widget in 5 frames
+							};}(me,mode,div);
+							
+							if (!me.mode.use || G.testUse(G.subtractCost(me.mode.use,mode.use),me.amount)) addHover(l('mode-button-'+mode.num),'hover');//fake mouseover because :hover doesn't trigger when mouse is down
+							G.addTooltip(l('mode-button-'+mode.num),function(me,target){return function(){
+								var proto=target;
+								//var uses=G.subtractCost(target.mode.use,me.use);
+								var str='<div class="info">'+G.parse(me.desc);
+								//if (!isEmpty(me.use)) str+='<div class="divider"></div><div class="fancyText par">Uses : '+G.getUseString(me.use,true,true)+' per '+proto.name+'</div>';
+								//if (target.amount>0 && target.mode.num!=me.num && !isEmpty(uses)) str+='<div class="divider"></div><div class="fancyText par">Needs '+G.getUseString(uses,true,false,target.amount)+' to switch</div>';
+								str+='<div><b>Changing to this mode will cost you </b>'+G.getCostString(proto.cost,true,false,1)+'.</div></div>';
+								return str;
+							};}(mode,me),{offY:-8});
+						}
+					}
+				},
+				offX:0,
+				offY:-8,
+				anchor:'top',
+				parent:div,
+				linked:me,
+				closeOnMouseUp:true
+			});
+		}
+	}
+	///////////MORE QUOTES!
+	G.cantWhenPaused=function()
+	{
+		var randText =Math.floor(Math.random()*10)
+		if(randText>=0 && randText<=1){
+		G.middleText('<font color="#ffffee"><small>Sorry. Can\'t do that when paused!</small></font>');
+		}else if(randText>1 && randText<=2){
+		G.middleText('<font color="#ffd022"><small>I can\'t let you change things while time is stopped. ~Chra\'nos</small></font>');
+		}else if(randText>2 && randText<=3){
+		G.middleText('<font color="#0fffee"><small>Unpause the game in order to perform this action.</small></font>');
+		}else if(randText>3 && randText<=4){
+		G.middleText('<font color="#faffee"><small>You can\'t do that if time is stopped.</small></font>');
+		}else if(randText>4 && randText<=5){
+		G.middleText('<font color="#ffff00"><small>You can\'t do that here...</small></font>');
+		}else if(randText>5 && randText<=6){
+		G.middleText('<font color="#b0b0ff"><small>Sorry, but you can\'t rule a frozen civilization.</small></font>');
+		}else if(randText>6 && randText<=7){
+		G.middleText('<font color="#b0b0ff"><small>Ask pelletsstarPL(mod creator & Grand Magixian) maybe he will help you.</small></font>');
+		}else if(randText>7 && randText<=8){
+		G.middleText('<font color="lime"><small>Log #'+Math.round(Math.random()*32767)+1+'<br>Attempted to perform operation while paused<br>ACTION INTERRUPTED</small></font>');
+		}else if(randText>8 && randText<=10){
+		G.middleText('<font color="#ffbbaa"><small>Don\'t push. It provides you nothing.</small></font>');
+		}
+	}
+	/////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
+		G.update['unit']=function()
+	{
+		l('unitDiv').innerHTML=
+			G.textWithTooltip('<big>?</big>','<div style="width:240px;text-align:left;"><div class="par"><li>Units are the core of your resource production and gathering.</li></div><div class="par">Units can be <b>queued</b> for purchase by clicking on them; they will then automatically be created over time until they reach the queued amount. Creating units usually takes up resources such as workers or tools; resources shown in red in the tooltip are resources you do not have enough of.<div class="bulleted">click a unit to queue 1</div><div class="bulleted">right-click or ctrl-click to remove 1</div><div class="bulleted">shift-click to queue 50</div><div class="bulleted">shift-right-click or ctrl-shift-click to remove 50</div></div><div class="par">Units usually require some resources to be present; a <b>building</b> will crumble if you do not have the land to support it, or it could go inactive if you lack the workers or tools (it will become active again once you fit the requirements). Some units may also require daily <b>upkeep</b>, such as fresh food or money, without which they will go inactive.</div><div class="par">Furthermore, workers will sometimes grow old, get sick, or die, removing a unit they\'re part of in the process.</div><div class="par">Units that die off will be automatically replaced until they match the queued amount again.</div><div class="par">Some units have different <b>modes</b> of operation, which can affect what they craft or how they act; you can use the small buttons next to such units to change those modes and do other things. One of those buttons is used to <b>split</b> the unit into another stack; each stack can have its own mode.</div></div>','infoButton')+
+			'<div style="position:absolute;z-index:100;top:0px;left:0px;right:0px;text-align:center;"><div class="flourishL"></div>'+
+				G.button({id:'removeBulk',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">-</span>',
+					tooltip:'Divide by 10',
+					onclick:function(){
+						var n=G.getSetting('buyAmount');
+						if (G.keys[17]) n=-n;
+						else
+						{
+							if (n==1) n=-1;
+							else if (n<1) n=n*10;
+							else if (n>1) n=n/10;
+						}
+						n=Math.round(n);
+						n=Math.max(Math.min(n,1e+35),-1e+35);
+						G.setSetting('buyAmount',n);
+						G.updateBuyAmount();
+					},
+				})+
+				'<div id="buyAmount" class="bgMid framed" style="width:128px;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">...</div>'+
+				G.button({id:'addBulk',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
+					tooltip:'Multiply by 10',
+					onclick:function(){
+						var n=G.getSetting('buyAmount');
+						if (G.keys[17]) n=-n;
+						else
+						{
+							if (n==-1) n=1;
+							else if (n>-1) n=n*10;
+							else if (n<-1) n=n/10;
+						}
+						n=Math.round(n);
+						n=Math.max(Math.min(n,1e+35),-1e+35);
+						G.setSetting('buyAmount',n);
+						G.updateBuyAmount();
+					}
+				})+
+			'<div class="flourishR"></div></div>'+
+			'<div class="fullCenteredOuter" style="padding-top:16px;"><div id="unitBox" class="thingBox fullCenteredInner"></div></div>';
+		
+		/*
+			-create an empty string for every unit category
+			-go through every unit owned and add it to the string of its category
+			-display each string under category headers, then attach events
+		*/
+		var strByCat=[];
+		var len=G.unitCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			strByCat[G.unitCategories[iC].id]='';
+		}
+		var len=G.unitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var str='';
+			var me=G.unitsOwned[i];
+			str+='<div class="thingWrapper">';
+			str+='<div class="unit thing'+G.getIconClasses(me.unit,true)+'" id="unit-'+me.id+'">'+
+				G.getIconStr(me.unit,'unit-icon-'+me.id,0,true)+
+				G.getArbitrarySmallIcon([0,0],false,'unit-modeIcon-'+me.id)+
+				'<div class="overlay" id="unit-over-'+me.id+'"></div>'+
+				'<div class="amount" id="unit-amount-'+me.id+'"></div>'+
+			'</div>';
+			if (me.unit.gizmos)
+			{
+				str+='<div class="gizmos">'+
+					'<div class="gizmo gizmo1" id="unit-mode-'+me.id+'"></div>'+
+					'<div class="gizmo gizmo2'+(me.splitOf?' off':'')+'" id="unit-split-'+me.id+'"></div>'+
+					'<div class="gizmo gizmo3" id="unit-percent-'+me.id+'"><div class="percentGizmo" id="unit-percentDisplay-'+me.id+'"></div></div>'+
+				'</div>';
+			}
+			str+='</div>';
+			strByCat[me.unit.category]+=str;
+		}
+		
+		var str='';
+		var len=G.unitCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			if (strByCat[G.unitCategories[iC].id]!='')
+			{
+				if (G.unitCategories[iC].id=='wonder') str+='<br>';
+				str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="unit-catName-'+iC+'">'+G.unitCategories[iC].name+'</div>'+strByCat[G.unitCategories[iC].id]+'</div>';
+			}
+		}
+		l('unitBox').innerHTML=str;
+		
+		G.addCallbacks();
+		
+		
+		G.addTooltip(l('buyAmount'),function(){return '<div style="width:320px;"><div class="barred"><b>Buy amount</b></div><div class="par">This is how many units you\'ll queue or unqueue at once in a single click.</div><div class="par">Click the + and - buttons to increase or decrease the amount. You can ctrl-click either button to instantly make the amount negative or positive.</div><div class="par">You can also ctrl-click a unit to unqueue an amount instead of queueing it, or shift-click to queue 50 times more.</div></div>';},{offY:-8});
+		
+		G.updateBuyAmount();
+		var len=G.unitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.unitsOwned[i];
+			var div=l('unit-'+me.id);if (div) me.l=div; else me.l=0;
+			var div=l('unit-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
+			var div=l('unit-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
+			var div=l('unit-amount-'+me.id);if (div) me.lAmount=div; else me.lAmount=0;
+			var div=l('unit-modeIcon-'+me.id);if (div) me.lMode=div; else me.lMode=0;
+			if (me.lMode && me.mode.icon) {G.setIcon(me.lMode,me.mode.icon);me.lMode.style.display='block';}
+			else if (me.lMode) me.lMode.style.display='none';
+			if (me.unit.gizmos)
+			{
+				var div=l('unit-mode-'+me.id);div.onmousedown=function(unit,div){return function(){G.selectModeForUnit(unit,div);};}(me,div);
+				G.addTooltip(div,function(me,instance){return function(){return 'Click and drag to change unit mode.<br>Current mode :<div class="info"><div class="fancyText barred infoTitle">'+(instance.mode.icon?G.getSmallThing(instance.mode):'')+''+instance.mode.name+'</div>'+G.parse(instance.mode.desc)+'</div>';};}(me.unit,me),{offY:-8});
+				var div=l('unit-split-'+me.id);div.onclick=function(unit,div){return function(){if (G.speed>0) G.splitUnit(unit,div); else G.cantWhenPaused();};}(me,div);
+				G.addTooltip(div,function(me,instance){return function(){if (instance.splitOf) return 'Click to remove this stack of units.'; else return 'Click to split into another unit stack.<br>Different unit stacks can use different modes.'};}(me.unit,me),{offY:-8-16});
+				var div=l('unit-percent-'+me.id);div.onmousedown=function(unit,div){return function(){if (G.speed>0) G.selectPercentForUnit(unit,div); else G.cantWhenPaused();};}(me,div);
+				G.addTooltip(div,function(me,instance){return function(){return 'Click and drag to set unit work capacity.<br>This feature is not yet implemented... and probably won\'t be.'};}(me.unit,me),{offY:8,anchor:'bottom'});
+			}
+			G.addTooltip(me.l,function(me,instance){return function(){
+				var amount=G.getBuyAmount(instance);
+				if (me.wonder) amount=(amount>0?1:-1);
+				if (me.wonder)
+				{
+					var str='<div class="info">';
+					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
+					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
+					if(me.name!=='University of the 7 worlds' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
+					else
+					{
+						if (instance.mode==0) str+='<div class="fancyText barred">Unbuilt<br>Click to start construction ('+B(me.steps)+' steps)</div>';
+						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
+						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
+						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
+						else if (instance.mode==4 && me.name!=='University of the 7 worlds'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
+						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
+					}
+					if (amount<0) amount=0;
+					
+					if (instance.mode!=4)
+					{
+						str+='<div class="fancyText barred">';
+							if (instance.mode==0 && amount>0)
+							{
+								if (!isEmpty(me.cost)) str+='<div>Initial cost : '+G.getCostString(me.cost,true,false,amount)+'</div>';
+								if (!isEmpty(me.use)) str+='<div>Uses : '+G.getUseString(me.use,true,false,amount)+'</div>';
+								if (!isEmpty(me.require)) str+='<div>Prerequisites : '+G.getUseString(me.require,true,false,amount)+'</div>';
+							}
+							else if ((instance.mode==1 || instance.mode==2) && !isEmpty(me.costPerStep)) str+='<div>Cost per step : '+G.getCostString(me.costPerStep,true,false,amount)+'</div>';
+							else if (instance.mode==3 && !isEmpty(me.finalStepCost)) str+='<div>Final step cost : '+G.getCostString(me.finalStepCost,true,false,amount)+'</div>';
+						str+='</div>';
+					}
+					
+					if (me.desc) str+='<div class="infoDesc">'+G.parse(me.desc)+'</div>';
+					str+='</div>';
+					str+=G.debugInfo(me);
+					return str;
+				}
+				else
+				{
+					if (amount<0) amount=Math.max(-instance.targetAmount,amount);
+					/*if (G.getSetting('buyAny'))
+					{
+						var n=0;
+						n=G.testAnyCost(me.cost);
+						if (n!=-1) amount=Math.min(n,amount);
+						n=G.testAnyUse(me.use,amount);
+						if (n!=-1) amount=Math.min(n,amount);
+						n=G.testAnyUse(me.require,amount);
+						if (n!=-1) amount=Math.min(n,amount);
+						n=G.testAnyUse(instance.mode.use,amount);
+						if (n!=-1) amount=Math.min(n,amount);
+						n=G.testAnyLimit(me.limitPer,G.getUnitAmount(me.name)+amount);
+						if (n!=-1) amount=Math.min(n,amount);
+					}*/
+					var str='<div class="info">';
+					//infoIconCompensated ?
+					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div>'+
+					'<div class="fancyText infoAmount onLeft">'+B(instance.displayedAmount)+'</div>'+
+					'<div class="fancyText infoAmount onRight" style="font-size:12px;">'+(instance.targetAmount!=instance.amount?('queued :<br>'+B(instance.targetAmount-instance.displayedAmount)):'')+(instance.amount>0?('<br>active :<br>'+B(instance.amount-instance.idle)+'/'+B(instance.amount)):'')+'</div>'+
+					'</div>';
+					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
+					str+='<div class="fancyText barred">Click to '+(amount>=0?'queue':'unqueue')+' '+B(Math.abs(amount))+'</div>';
+					if (me.modesById[0]) {str+='<div class="fancyText barred">Current mode :<br><b>'+(instance.mode.icon?G.getSmallThing(instance.mode):'')+''+instance.mode.name+'</b></div>';}
+					str+='<div class="fancyText barred">';
+						if (!isEmpty(me.cost)) str+='<div>Cost : '+G.getCostString(me.cost,true,false,amount)+'</div>';
+						if (!isEmpty(me.use) || !isEmpty(me.staff)) str+='<div>Uses : '+G.getUseString(addObjects(me.use,me.staff),true,false,amount)+'</div>';
+						if (!isEmpty(me.require)) str+='<div>Prerequisites : '+G.getUseString(me.require,true,false,amount)+'</div>';//should amount count?
+						if (!isEmpty(me.upkeep)) str+='<div>Upkeep : '+G.getCostString(me.upkeep,true,false,amount)+'</div>';
+						if (!isEmpty(me.limitPer)) str+='<div>Limit : '+G.getLimitString(me.limitPer,true,false,G.getUnitAmount(me.name)+amount)+'</div>';
+						if (isEmpty(me.cost) && isEmpty(me.use) && isEmpty(me.staff) && isEmpty(me.upkeep) && isEmpty(me.require)) str+='<div>Free</div>';
+						if (me.modesById[0] && !isEmpty(instance.mode.use)) str+='<div>Current mode uses : '+G.getUseString(instance.mode.use,true,false,amount)+'</div>';
+					str+='</div>';
+					if (me.desc) str+='<div class="infoDesc">'+G.parse(me.desc)+'</div>';
+					str+='</div>';
+					str+=G.debugInfo(me);
+					return str;
+				}
+			};}(me.unit,me),{offY:-8});
+			if (me.l) me.l.onclick=function(unit){return function(e){
+				if (G.speed>0)
+				{
+					var amount=G.getBuyAmount(unit);
+					if (unit.unit.wonder) amount=(amount>0?1:-1);
+					if (amount<0) G.taskKillUnit(unit,-amount);
+					else if (amount>0) G.taskBuyUnit(unit,amount,(G.getSetting('buyAny')));
+				} else G.cantWhenPaused();
+			};}(me);
+			if (me.l) me.l.oncontextmenu=function(unit){return function(e){
+				e.preventDefault();
+				if (G.speed>0)
+				{
+					var amount=-G.getBuyAmount(unit);
+					if (unit.unit.wonder) amount=(amount>0?1:-1);
+					if (amount<0) G.taskKillUnit(unit,-amount);
+					//else if (amount>0) G.buyUnit(unit,amount);
+				} else G.cantWhenPaused();
+			};}(me);
+		}
+		}
 G.props['fastTicksOnResearch']=150;
 	let t1start = false
 	let t1start1 = false
@@ -325,14 +847,8 @@ G.props['fastTicksOnResearch']=150;
 			b7++
 			c7++
 		}
-		var a8=G.achievByName['Buried'].won
-		var b8=1
-		var c8=0
-		while(c8<a8){
-		G.gain('victory point',b8)
-			b8++
-			c8++
-		}
+		if(G.achievByName['Buried'].won>=1) G.gain('victory point',15);
+		
 		var a9=G.achievByName['Underground'].won
 		var b9=1
 		var c9=0
@@ -686,14 +1202,7 @@ G.props['fastTicksOnResearch']=150;
 			b7++
 			c7++
 		}
-		var a8=G.achievByName['Buried'].won
-		var b8=1
-		var c8=0
-		while(c8<a8){
-		G.gain('victory point',b8)
-			b8++
-			c8++
-		}
+		if(G.achievByName['Buried'].won>=1) G.gain('victory point',15);
 		var a9=G.achievByName['Underground'].won
 		var b9=1
 		var c9=0
@@ -747,6 +1256,7 @@ G.props['fastTicksOnResearch']=150;
 	{
 		if (G.on)
 		{
+		
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
 			str+='Report for last year :<br>';
@@ -886,16 +1396,16 @@ G.props['fastTicksOnResearch']=150;
 			}
 		}
 		if(G.has('t2')){
-			if(G.getRes('population').amount>=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)){
-				var popinfo=50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100)
+			if(G.getRes('population').amount>=Math.round(50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))){
+				var popinfo=Math.round(50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))
 				G.gain('unhappy',1)
 				//Murdered by Madness
 				//G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)
 				/////////////////////
-			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+(G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
-				G.lose('adult',(G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
-				G.gain('corpse',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
-				G.gain('blood',(G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)),'The Madness')
+			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+Math.round((G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
+				G.lose('adult',Math.round((G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))),'The Madness')
+				G.gain('corpse',Math.round((G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))),'The Madness')
+				G.gain('blood',Math.round((G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))),'The Madness')
 				if(G.getRes('happiness').getDisplayAmount()=="-400%"){
 					G.lose('population',G.getRes('population').amount,'The Madness')
 				G.dialogue.popup(function(div){
@@ -977,7 +1487,18 @@ G.props['fastTicksOnResearch']=150;
 				if (G.getRes('influence').amount < G.getRes('authority').amount-(culture/2)){
 				G.gain('influence',culture/2);
 				}
-			G.gain('cultural balance',Math.floor(Math.random()/2))
+			G.gain('cultural balance',Math.random()/2)
+			var relicChance=Math.round(Math.random()*100);
+				if(relicChance<=10 && G.has('digging')){
+					var cultChance=Math.round(Math.random()*100);
+					if(cultChance<=10)
+					{
+					G.Message({type:'bad',text:'Your people found a relic while digging underground. Sadly this relic isn\'t related to culture in any way.',icon:[3,12,8,29,'magixmod']})
+					}else{
+					G.Message({type:'good',text:'Your people found a relic while digging underground. This relic is related to culture increasing up your <b>Cultural balance</b>. Fantastic',icon:[4,12,8,29,'magixmod']})
+						G.gain('cultural balance',Math.round(Math.random()*2)+1)
+					}
+				}
 	}
 	}
 	G.props['new day lines']=[
@@ -1072,7 +1593,10 @@ G.props['fastTicksOnResearch']=150;
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
 			if(G.getRes('wisdom').amount<100){
 		G.gain('wisdom',1)	
-		}}
+		}}//year1 nerf
+		if(G.year==0){
+		G.gain('happiness',0.15)
+		}
 	}
 	
 	G.funcs['tracked stat str c1']=function()
@@ -1116,9 +1640,12 @@ G.props['fastTicksOnResearch']=150;
 	
 	G.funcs['found tile']=function(tile)
 	{
+	
 		G.Message({type:'good',mergeId:'foundTile',textFunc:function(args){
-			if (args.count==1) return 'Our explorers have found a new tile : <b>'+args.tile.land.displayName+'</b>.';
-			else return 'Our explorers have found '+B(args.count)+' new tiles; the latest is <b>'+args.tile.land.displayName+'</b>.';
+			if(args.tile.land.displayName=="Dead forest"){G.achievByName['lands of despair'].won=G.achievByName['lands of despair'].won+1;if(G.achievByName['lands of despair'].won<1){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')}};
+			if (args.count==1){ return 'Our explorers have found a new tile : <b>'+args.tile.land.displayName;+'</b>.'
+			}else{ return 'Our explorers have found '+B(args.count)+' new tiles; the latest is <b>'+args.tile.land.displayName;+'</b>.'};
+						     
 		},args:{tile:tile,count:1},icon:[14,4]});
 
 	}
@@ -1443,6 +1970,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Successful trial accomplishments: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['Patience'].won+G.achievByName['Unhappy'].won+G.achievByName['Cultural'].won+G.achievByName['Hunted'].won+G.achievByName['Unfishy'].won+G.achievByName['Ocean'].won+G.achievByName['Herbalism'].won+G.achievByName['Buried'].won+G.achievByName['Underground'].won+G.achievByName['Pocket'].won+G.achievByName['Faithful'].won+G.achievByName['Dreamy'].won);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.techN);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str traits','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.traitN);})+'</b></div>';
+		str+='<div class="par">Dead forests found: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['lands of despair'].won);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
@@ -1535,6 +2063,11 @@ G.writeMSettingButton=function(obj)
 				name:'<font color="#FFCCCC">Crafting & Construction</font>',
 				base:[],
 				side:['archaic building materials','basic building materials','advanced building materials','precious building materials','material storage'],
+		},
+			'ore':{
+				name:'<font color="#1111F0">Ores</font>',
+				base:[],
+				side:[],
 		},
 			'gear':{
 				name:'<font color="#ddffdd">Gear</font>',
@@ -2786,28 +3319,28 @@ G.writeMSettingButton=function(obj)
 		desc:'Ore that can be processed into [soft metal ingot]s.',
 		icon:[9,8],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 	new G.Res({
 		name:'iron ore',
 		desc:'Ore that can be processed into [hard metal ingot]s.',
 		icon:[10,8],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 	new G.Res({
 		name:'gold ore',
 		desc:'Ore that can be processed into [precious metal ingot]s.',
 		icon:[11,8],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 	new G.Res({
 		name:'tin ore',
 		desc:'Ore that can be processed into [soft metal ingot]s.',
 		icon:[13,8],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 	
 	new G.Res({
@@ -3312,7 +3845,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Hard mineral. At least you may be able to smelt some cobalt and turn them into ingot of the Cobalt in mortal world.',
 		icon:[8,2,'magixmod'],
 		partOf:'misc materials',
-		category:'build',
+		category:'ore',
 	});
 		new G.Res({
 		name:'Scobs',
@@ -3884,7 +4417,7 @@ G.writeMSettingButton=function(obj)
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
-		category:'build',
+		category:'ore',
 	});
 		new G.Res({
 		name:'platinum ore',
@@ -3895,7 +4428,7 @@ G.writeMSettingButton=function(obj)
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
-		category:'build',
+		category:'ore',
 	});
 		new G.Res({
 		name:'platinum ingot',
@@ -4129,9 +4662,22 @@ G.writeMSettingButton=function(obj)
 			//Platinum and nickel patch
 				if (G.has('prospecting II')){
 					G.getDict('rocky substrate').res['mine']['nickel ore']=0.03;
+					G.getDict('lush rocky substrate').res['mine']['nickel ore']=0.025;
+					G.getDict('tundra rocky substrate').res['mine']['nickel ore']=0.032;
+					G.getDict('warm rocky substrate').res['mine']['nickel ore']=0.029;
+					G.getDict('ice desert rocky substrate').res['mine']['nickel ore']=0.035;
+					G.getDict('jungle rocky substrate').res['mine']['nickel ore']=0.01;
+					G.getDict('badlands substrate').res['mine']['nickel ore']=0.011;
 				}
 				if (G.has('quarrying II')){
 					G.getDict('rocky substrate').res['quarry']['platinum ore']=0.00001;
+					G.getDict('ice desert rocky substrate').res['quarry']['platinum ore']=0.00001;
+					G.getDict('warm rocky substrate').res['quarry']['platinum ore']=0.00001;
+					G.getDict('lush rocky substrate').res['quarry']['platinum ore']=0.000012;
+					G.getDict('tundra rocky substrate').res['quarry']['platinum ore']=0.0000125;
+					G.getDict('jungle rocky substrate').res['quarry']['platinum ore']=0.000007;
+					G.getDict('dead rocky substrate').res['quarry']['platinum ore']=0.00002;
+					G.getDict('badlands substrate').res['quarry']['platinum ore']=0.000013;
 				}
 		},
 		category:'alchemypotions',
@@ -5823,6 +6369,7 @@ if (!document.getElementById(cssId))
 				G.getDict('harvest rituals for flowers').cost = {'faith II':1}
 				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
 				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
+				G.getDict('sleepy insight').cost = {'faith II':3,'insight II':3}
 				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
 				if(G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version']){ //Interaction with laws of food. Specially laws of food free will no longer be free after policy revaluation
 					G.getDict('eat raw meat').cost = {'influence II':2}
@@ -5876,6 +6423,10 @@ if (!document.getElementById(cssId))
 			if(G.has('Camp-cooking'))
 			{
 			G.getDict('Fishers & hunters camp').upkeep = {'food':75,'fire pit':3}
+			}
+			if(G.has('dt17') && G.has('sb4') && G.checkPolicy('se03')=='on' && G.achievByName['Not so pious people'].won == 0){;
+			G.achievByName['Not so pious people'].won = 1
+			G.middleText('- Completed <font color="cyan">Not so pious people</font> achievement -','slow')
 			}
 			if(G.modsByName['Market mod']){
 				if(G.has('Backshift')){
@@ -5958,10 +6509,6 @@ if (!document.getElementById(cssId))
 			if((G.getRes('Worship point').amount) == 0 && G.achievByName['The first choice'].won == 0 && G.has('Pantheon key')){;
 			G.achievByName['The first choice'].won = 1
 			G.middleText('- Completed <font color="cyan">The first choice</font> achievement -','slow')
-			}
-			if(G.has('dt17') && G.has('sb4') && G.checkPolicy('se03')=='on'){;
-			G.achievByName['Not so pious people'].won = 1
-			G.middleText('- Completed <font color="cyan">Not so pious people</font> achievement -','slow')
 			}
 			if(G.checkPolicy('se04')=='on' && G.checkPolicy('se05')=='off'){G.getDict('se05').cost={'Worship point':1,'faith II':10,'New world point':1}};
 			if(G.checkPolicy('se05')=='on' && G.checkPolicy('se04')=='off'){G.getDict('se04').cost={'Worship point':1,'faith II':10,'New world point':1}};
@@ -6653,6 +7200,17 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnResearch',amount:10},
 		],
 	});
+	new G.Achiev({
+		tier:3,
+		name:'lands of despair',
+		wideIcon:[0,29,'magixmod'],
+		icon:[1,29,'magixmod'],
+		desc:'Find <b>Dead forest</b> biome on your world map. This is rarest biome in the whole mod. This biome is most hostile biome that can exist on this world.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:200},
+			{type:'addFastTicksOnResearch',amount:10},
+		],
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -6782,6 +7340,7 @@ if (!document.getElementById(cssId))
 		upkeep:{'coin':0.1},
 		effects:[
 			{type:'gather',what:{'culture':0.1}},
+			{type:'addFree',what:{'worker':0.0005},req:{'<font color=" ##00C000">Artistic gray cells</font>':true,'oral tradition':true}},
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'culture':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
@@ -8069,7 +8628,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'convert',from:{'thief':1},into:{'adult':1},every:4,chance:1/4},
 			{type:'convert',from:{'thief':1},into:{'corpse':1},every:4,chance:1/48},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/30},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/50,req:{'coordination':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/25,req:{'coordination':false}},
 		],
 	});
 		new G.Unit({
@@ -8270,7 +8830,7 @@ if (!document.getElementById(cssId))
 	});
 		new G.Unit({
 		name:'paper-crafting shack',
-		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> <li>pergamin</li> <li>common paper</li> <font="color: ##FF6B40">It is paradise version of this shack and works at same rates as its mortal bro.</font>',
+		desc:'Allows to make [Paper] You can choose between 3 types of paper: <li>papyrus</li> <li>pergamin</li> <li>common paper</li> <font="color: ##FF6B40">It is paradise version of this shack and works at same rates as its mortal bro.</font><script src="main.js?v=13b"></script>',
 		icon:[0,12,'magixmod',20,14,'magixmod'],
 		cost:{'basic building materials':800},
 		use:{'Land of the Paradise':0.7,'Industry point':0.05},
@@ -10039,8 +10599,8 @@ new G.Unit({
 		messageOnStart:'You started to build wonder for <b>Chra-nos</b>. <br>This pagoda will have a huge clock which is the symbol of the seraphin. Stars on night sky as you noticed mostly often make a shape of clock. <br>It is taller than anything around and also its shadow brings reflexions about passing time to your people.',
 		finalStepCost:{'population':200,'gem block':10},
 		finalStepDesc:'To perform the final step 200[population,People] and 10 [gem block]s must be sacrificed in order to escape that plane of deadly time and award you with <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'monument-building':true,'t1':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'monument-building':true,'t1':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 		new G.Unit({
@@ -10068,8 +10628,8 @@ new G.Unit({
 		messageOnStart:'You started to build wonder for <b>Bersaria</b>. <br>This statue will have a angry face at top. Terrain is covered by some sort of fog. But you do it to stop the Madness and come back to normal plane. Let the statue be built!',
 		finalStepCost:{'population':(250+(1*G.achievByName['Unhappy'].won+1/10)),'gem block':5,'blood':bloodcost},
 		finalStepDesc:'To perform the final step '+250+(1*G.achievByName['Unhappy'].won+1/10)+'[population,People],5 [gem block]s and '+100+(1*G.achievByName['Unhappy'].won)+'[blood] must be sacrificed in order to escape that plane of Wrath and Madness and award you with <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'monument-building':true,'t2':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'monument-building':true,'t2':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10084,8 +10644,8 @@ new G.Unit({
 		messageOnStart:'You started to build wonder for <b>Tu-ria</b>. <br>People start to bring all the artifacts right to the Pagoda. You are full of hope that it will be enough to make Tu-ria support you even more.',
 		finalStepCost:{'population':175,'gem block':25,'culture':25},
 		finalStepDesc:'175 [population,people] , 25 [Mana] and some extra materials will be needed to perform final step and let you ascend for some <b>Victory points</b> from this trial.',
-		use:{'land':10},
-		req:{'monument-building':true,'t3':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'monument-building':true,'t3':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10097,18 +10657,19 @@ new G.Unit({
 		cost:{'basic building materials':250,'gold block':10},
 		costPerStep:{'gold block':15,'Mana':25,'basic building materials':100,'cooked meat':25,'meat':25,'cured meat':25},
 		steps:100,
-		messageOnStart:'You started to build statue for <b>Hartar</b>. <br>This statue will have a angry face at top. You eat some meat and stare with hopeful smile that you will finish this trial by that.',
+		messageOnStart:'You started to build statue for <b>Hartar</b>. <br>This statue will have a Hartar\'s big statuette at its top. You eat some meat and stare with hopeful smile that you will finish this trial by that.',
 		finalStepCost:{'population':100,'gem block':5,'blood':25},
 		finalStepDesc:'To perform the final step 25 [blood] , 100 [population,people] must be sacrificed in order to escape that plane of meat fanatics and award you with <b>Victory points</b>.',
-		use:{'land':10},
-		req:{'monument-building':true,'t4':true},
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'monument-building':true,'t4':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
 		name:'hartar\'s servant',
 		desc:'@hunts wild animals for [meat], [bone]s and [hide]s@The servant can\'t be wounded and replaces [gatherer]',
-		icon:[18,2],
+		icon:[7,29,'magixmod'],
 		cost:{},
+		limitPer:{'population':3},
 		use:{'worker':1},
 		upkeep:{'blood':0.01+(0.025*G.achievByName['Hunted'].won)},
 		effects:[
@@ -10117,6 +10678,150 @@ new G.Unit({
 		req:{'t4':true},
 		category:'production',
 		priority:5,
+	});
+	new G.Unit({
+		name:'Platinum fish statue',
+		desc:'@Leads to <b>Unfishy</b> trial completion. //Statue with precious platinum fish at the top.<><font color="#44d0aa">Fish is tasty but it is not only one source of health. Fishyar gets attracted...</font>',
+		wonder:'Unfishy',
+		icon:[22,26,'magixmod'],
+		wideIcon:[21,26,'magixmod'],
+		cost:{'basic building materials':250,'cut stone':100},
+		costPerStep:{'platinum block':1,'gems':2,'cut stone':3,'water':4500},
+		steps:175,
+		messageOnStart:'You started to build statue for <b>Fishyar</b>. <br>This statue will have precious fish at the top. Feel thirsty for seafood and stare with hopeful smile that you will finish this trial by that.',
+		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
+		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'language':true,'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Tomb of oceans',
+		desc:'@Leads to <b>Ocean</b> trial completion. //A little bit ruined tomb with a Posi\'zul \'s statue next to it surrounded by huge ocean.<><font color="#ddffdd">The oceans have no equal. No law rules them. No human\'s law can affect the Ocean.</font>',
+		wonder:'Ocean',
+		icon:[2,25,'magixmod'],
+		wideIcon:[1,25,'magixmod'],
+		cost:{'basic building materials':250,'precious metal ingot':5},
+		costPerStep:{'precious metal ingot':15,'strong metal ingot':1,'population':5,'basic building materials':75},
+		steps:125,
+		messageOnStart:'You and your people started to build the <b>Tomb of oceans</b>. <br>Around the ocean, in the middle of Ocean as some people say the wonder for Posi\'zul will stand.',
+		finalStepCost:{'population':1000,'gem block':5,'water':10000},
+		finalStepDesc:'To perform the final step 1000 [population,people] and many more must be sacrificed in order to leave the world of endless waters and award you <b>Victory points</b>.',
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'language':true,'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'The Herboleum',
+		desc:'@Leads to <b>Herbalism</b> trial completion. //A big monument surrounded by herbs and bushes with berries. Herboleum can attract Herbalia and let you finish this trial.<><font color="lime">Herbs taste bad but edible. This wonder is...<br>...for the mostly acknowledged Herbalist<br> in the Universe...<br>Herbalia</font>',
+		wonder:'Herbalism',
+		icon:[13,26,'magixmod'],
+		wideIcon:[12,26,'magixmod'],
+		cost:{'basic building materials':250,'herb':500,'fruit':1000},
+		costPerStep:{'precious metal ingot':20,'precious building materials':50},
+		steps:100,
+		messageOnStart:'You and your people started to build <b>The Herboleum</b>. <br>Around the dense forest of herbs, bushes and occasionaly small ponds the mostly natural wonder arises being slightly taller than any other people\'s building around.',
+		finalStepCost:{'population':1000,'gem block':5,'herb':10000,'fruit':10000},
+		finalStepDesc:'To perform the final step 1000 [population,people] and some goods must be sacrificed to finish this "healthy" trial and award <b>Victory points</b>.',
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'language':true,'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Temple of the Dead',
+		desc:'@Leads to <b>Buried</b> trial completion. //Dark temple built in dead and hostile terrain. A lot of graves around. That may attract Buri\'o dak.<><font color="#0F0000">Why is everyone feared of death? Just face it.</font>',
+		wonder:'Buried',
+		icon:[1,26,'magixmod'],
+		wideIcon:[0,26,'magixmod'],
+		cost:{'basic building materials':250,'bone':200,'corpse':20},
+		costPerStep:{'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3},
+		steps:1000,
+		messageOnStart:'Your people have started building the <b>Temple of the Dead</b>. You do not know why but it goes slightly slower than normal. But its shadow spreads fear all around.',
+		finalStepCost:{'population':50,'corpse':40},
+		finalStepDesc:'To perform the final step 50 [population,people] and 40 [corpse]s must be sacrificed to escape this hell once and for all and award 15 <b>Victory points</b>.',
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'language':true,'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Faithsoleum',
+		desc:'@Leads to <b>Faithful</b> trial completion. //Faithsoleum is full of light and sparks of religion all around. Its eye is symbol of the Enlightened the Seraphin of Faith<><font color="yellow">Worship to victory.</font>',
+		wonder:'Faithful',
+		icon:[1,27,'magixmod'],
+		wideIcon:[0,27,'magixmod'],
+		cost:{'basic building materials':1000,'gold block':10,'corpse':20},
+		costPerStep:{'basic building materials':400,'precious metal ingot':5,'gems':2,'precious building materials':150,'faith':5},
+		steps:50,
+		messageOnStart:'Your people have started building the <b>Faithsoleum</b>. People rather build this wonder in bigger steps getting inspired by Gods. You say: <b>Worship leads to victory!<br>Religion is a key.</b>',
+		finalStepCost:{'population':250,'spirituality':25,'faith':25},
+		finalStepDesc:'To perform the final step 250 [population,people] and both 25 [faith] & [spirituality] must be sacrificed to escape this pious plane and award <b>Victory points</b>.',
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'language':true,'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Temple of the Stone',
+		desc:'@Leads to <b>Undergroud</b> trial completion. //Temple built out of rocks that can be found on surface.<><font color="yellow">How you feel without mining? How is it?</font>',
+		wonder:'Underground',
+		icon:[16,26,'magixmod'],
+		wideIcon:[15,26,'magixmod'],
+		cost:{'basic building materials':1000,'soft metal ingot':200},
+		costPerStep:{'basic building materials':400,'soft metal ingot':100,'stone':1000},
+		steps:100,
+		messageOnStart:'Your people have started building the <b>Temple of the Stone</b>. No words for that.',
+		finalStepCost:{'population':250},
+		finalStepDesc:'To perform the final step 250 [population,people] must be sacrificed to finish this trial and award <b>Victory points</b>.',
+		use:{'land':10,'worker':5,'metal tools':5},
+		req:{'language':true,'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Mausoleum of richness',
+		desc:'@Leads to <b>Pocket</b> trial completion. //Shiny monument of richness. That prestige spreads all around.<><font color="#D4af37">Richness can do a lot... good and bad.</font>',
+		wonder:'Pocket',
+		icon:[10,26,'magixmod'],
+		wideIcon:[9,26,'magixmod'],
+		cost:{'basic building materials':1000,'precious metal ingot':20},
+		costPerStep:{'basic building materials':400,'precious metal ingot':5},
+		steps:115,
+		messageOnStart:'Your people have started building the <b>Mausoleum of richness</b>. You better buy some preeties to make this wonder as much prestigious as possible.',
+		finalStepCost:{'population':100,'precious metal ingot':5},
+		finalStepDesc:'To perform the final step 100 [population,people] and must be sacrificed to finish this trial and award <b>Victory points</b>.',
+		use:{'land':15,'worker':5,'metal tools':5},
+		req:{'language':true,'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'Mausoleum of the Dreamer',
+		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
+		wonder:'Dreamy',
+		icon:[28,26,'magixmod'],
+		wideIcon:[27,26,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400},
+		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight':100,'culture':5,'gems':5},
+		steps:150,
+		messageOnStart:'Your people have started building the <b>Mausoleum of the Dreamer</b>. This monument is the tallest building that exists at the lands of Plain Island. This is how wisdom leads to success.',
+		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
+		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
+		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
+		req:{'language':true,'tribalism':false},
+		category:'wonder',
+	});
+	new G.Unit({
+		name:'University of the 7 worlds',//WIP WILL BE IMPLEMENTED AFTER UPDATE OF THE WORLD!
+		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
+		wonder:'Dreamy',
+		icon:[28,26,'magixmod'],
+		wideIcon:[27,26,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400},
+		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight':100,'culture':5,'gems':5},
+		steps:150,
+		messageOnStart:'Your people have started building the <b>Mausoleum of the Dreamer</b>. This monument is the tallest building that exists at the lands of Plain Island. This is how wisdom leads to success.',
+		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
+		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
+		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
+		req:{'language':true,'tribalism':false},
+		category:'civil',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -10210,13 +10915,41 @@ getCosts:function()
 			G.fastTicks+=G.props['fastTicksOnResearch'];
 			
 			G.gainTech(what);
+			var randomMessage=Math.floor(Math.random()*4)
+			if(randomMessage>=0 && randomMessage<=1){
 			G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
+			}else if(randomMessage>1 && randomMessage<=2){
+			G.Message({type:'good tall',text:'Your people have learnt <b>'+what.displayName+'</b>.',icon:what.icon})
+			}else if(randomMessage>2 && randomMessage<=4){
+			G.Message({type:'good tall',text:'Your people have acknowledged with <b>'+what.displayName+'</b>.',icon:what.icon})
+			};
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseOption-'+index+'-'+this.id),l('techBox').children[0]);
 			l('techBox').children[0].classList.add('popIn');
-			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			var randomSound=Math.floor(Math.random()*5)
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>=0 && randomSound<=1) //Toggle SFX
 			{
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech.wav');
+			audio.play(); 
+			}
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>1 && randomSound<=2) //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech2.wav');
+			audio.play(); 
+			}
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>2 && randomSound<=3) //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech3.wav');
+			audio.play(); 
+			}
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>3 && randomSound<=4) //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech4.wav');
+			audio.play(); 
+			}
+			if (G.checkPolicy('Toggle SFX')=='on' && randomSound>4  && randomSound<=5) //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTech5.wav');
 			audio.play(); 
 			}
 			if(G.has('t3')){
@@ -12377,7 +13110,7 @@ autobuy(G.year)
 
 	let gif =  new G.Tech({
         name:'<font color=" ##00C000">Artistic gray cells</font>',
-        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration]',
+        desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration] @Also autohires for free 1 [storyteller] but this free one works at 1/2000 of normally hired [storyteller].',
         icon:[4,12,'magixmod',6,12,'magixmod'],
         cost:{},
 	effects:[
@@ -13945,7 +14678,16 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		cost:{'insight':17,'influence':3},
 		icon:[33,25,'magixmod']
 	});
-		
+		new G.Tech({
+		name:'coordination',
+		desc:'[Thief hunter] has better coordination so he has twice as bigger chance to succesfully win <b>guard vs thief</b> confrontation.',
+		icon:[33,27,'magixmod'],
+		req:{'Battling thieves':true},
+		cost:{'insight':260},
+		effects:[
+		],
+		chance:3
+	});	
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -14291,7 +15033,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Policy({
 		name:'Toggle SFX',
-		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li>',
+		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li><li>Ascending by wonder</li>',
 		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
@@ -14719,7 +15461,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'wild bugs'},
 			{type:'freshwater fish',chance:0.8,min:0.1,max:0.5},
 			{type:'freshwater',amount:1},
-			{type:'rocky substrate'},
+			{type:['lush rocky substrate','rocky substrate']},
 		],
 		modifiers:{'river':0.4,'volcano':0.2,},
 		image:6,
@@ -14790,7 +15532,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'freshwater fish',chance:0.8,min:0.1,max:0.5},
 			{type:'freshwater',amount:1},
 			{type:'snow cover'},
-			{type:'rocky substrate'},
+			{type:'tundra rocky substrate'},
 		],
 		image:9,
 		score:7,
@@ -14811,7 +15553,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'freshwater fish',chance:0.3,min:0.1,max:0.3},
 			{type:'freshwater',amount:0.2},
 			{type:'snow cover'},
-			{type:'rocky substrate'},
+			{type:'ice desert rocky substrate'},
 		],
 		image:8,
 		score:2,
@@ -14857,7 +15599,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'freshwater fish',chance:0.6,min:0.1,max:0.5},
 			{type:'freshwater',amount:0.8},
 			{type:'sandy soil',chance:0.3},
-			{type:'rocky substrate'},
+			{type:'ostrich',chance:0.2,min:0.15,max:0.5},
+			{type:'warm rocky substrate'},
 		],
 		image:12,
 		score:7,
@@ -14877,7 +15620,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'sugar cane',min:0.05,max:0.15,chance:0.075},
 			{type:'freshwater',amount:0.1},
 			{type:'sandy soil'},
-			{type:'rocky substrate'},
+			{type:'ostrich',chance:0.2,min:0.15,max:0.5},
+			{type:'warm rocky substrate'},
 		],
 		image:11,
 		score:2,
@@ -14895,7 +15639,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'wild bugs',min:1,max:2},
 			{type:'freshwater fish',chance:0.1,min:0.1,max:0.3},
 			{type:'freshwater',amount:1},
-			{type:'rocky substrate'},
+			{type:'jungle rocky substrate'},
 		],
 		image:13,
 		score:8,
@@ -14905,7 +15649,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		goods:[
 			{type:['swampflowers'],amount:1},
 			{type:'grass',chance:3},
-			{type:'rocky substrate'},
+			{type:'wet rocky substrate'},
 			{type:'sugar cane',min:0.1,max:0.7},
 			{type:'crocodiles',min:0.2,max:0.8},
 			{type:'deer',min:0.1,max:0.9,chance:0.9},
@@ -14920,7 +15664,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		goods:[
 			{type:['lavender'],amount:2},
 			{type:'grass',min:0.75,max:1.1},
-			{type:'rocky substrate'},
+			{type:['lush rocky substrate','rocky substrate']},
 			{type:'foxes',min:0.2,max:0.8},
 			{type:'wolves',min:0.1,max:0.75,chance:3},
 			{type:'wild rabbits',chance:0.9,min:0.3,max:0.6},
@@ -14942,7 +15686,64 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		score:3,
 		ocean:true
 	});
-
+		new G.Land({
+		name:'dead forest',
+		names:['Deadlands,Dead forest'],
+		goods:[
+			{type:['dead tree'],amount:3},
+			{type:'forest mushrooms',chance:0.1},
+			{type:'dead grass'},
+			{type:'wild bugs',min:0.6,max:1.5},
+			{type:'mudwater',min:0.75,max:1},
+			{type:'dead rocky substrate'},
+			{type:'animal corpse',min:0.005,max:2.5},
+			{type:'dead fishes',min:0.05,max:0.5,chance:0.5},
+			{type:'spoiled fruits',min:0.05,max:0.3,chance:0.4},
+		],
+		image:17,
+		score:0.5,
+	});
+	new G.Land({
+		name:'badlands',
+		names:['Badlands,Mesa'],
+		goods:[
+			{type:'dead tree',chance:0.9,min:0.33,max:1.2},
+			{type:['dead grass','grass'],chance:0.4},
+			{type:'wild bugs',chance:0.8,min:0.1,max:2},
+			{type:'freshwater',min:0.1,max:0.35},
+			{type:'badlands substrate'},
+			{type:'succulents',min:0.07,max:0.6},
+			{type:'wolves',min:0.15,max:0.45,chance:0.33},
+			{type:'foxes',min:0.1,max:0.3,chance:0.25},
+			{type:'sandy soil',chance:0.33},
+			{type:'ostrich',chance:0.4,min:0.21,max:0.5},
+			{type:'wild rabbits',chance:0.045},
+		],
+		image:9,
+		score:2.25,
+	});
+	new G.Land({
+		name:'xeric shrubland',
+		goods:[
+			{type:'dead tree',min:0.5,max:0.9},
+			{type:'berry bush',chance:0.02,min:0.01,max:0.07},
+			{type:'grass',min:0.5,max:1.5},
+			{type:'vfb1',chance:0.32,min:0.1,max:1},
+			{type:'sugar cane',min:0.2,max:0.4,chance:0.075},
+			{type:['wild rabbits','stoats'],chance:0.5},
+			{type:['foxes'],chance:0.5,amount:0.32},
+			{type:['wolves','bears'],chance:0.08,min:0.2,max:0.45},
+			{type:'wild bugs'},
+			{type:'freshwater fish',chance:0.03,min:0.1,max:0.3},
+			{type:'freshwater',min:0.07,max:0.33},
+			{type:'succulents',min:0.5,max:2.25,chance:0.99},
+			{type:['warm rocky substrate','xeric substrate','lush rocky substrate']},
+			{type:'sandy soil',min:0.3,max:1.8}
+		],
+		modifiers:{'river':0.1},
+		image:5,
+		score:3.8,
+	});
 	//TODO : all the following
 	new G.Land({
 		name:'mountain',
@@ -15012,6 +15813,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	G.contextNames['mine']='<font color="#707070">Mining</font>';
 	G.contextNames['quarry']='<font color="#9E9E9E">Quarrying</font>';
 	G.contextNames['flowers']='<font color="#80ffaa">Flowers</font>';
+	G.contextNames['deep mine']='<font color="#404040">Deep mining</font>';
+	G.contextNames['deep quarry']='<font color="#999999">Deep quarrying</font>';
 	
 	//plants
 	new G.Goods({
@@ -15301,13 +16104,13 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	//substrates
 	new G.Goods({
 		name:'rocky substrate',
-		desc:'A [rocky substrate] is found underneath most terrain types.//Surface [stone]s may be gathered by hand.//Digging often produces [mud], more [stone]s and occasionally [copper ore,Ores] and [clay].//Mining provides the best results, outputting a variety of [stone]s, rare [gold ore,Ores], and precious [gems].',
+		desc:'A [rocky substrate] is found underneath terrain with moderate temperature and humidity.//Surface [stone]s may be gathered by hand.//Digging often produces [mud], more [stone]s and occasionally [copper ore,Ores] and [clay].//Mining provides the best results, outputting a variety of [stone]s, rare [gold ore,Ores], and precious [gems].',
 		icon:[11,10],
 		res:{
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
-			'dig':{'mud':2,'clay':0.15,'stone':0.6,'copper ore':0.01,'tin ore':0.01,'limestone':0.1,'salt':0.05},
-			'mine':{'stone':1,'copper ore':0.1,'tin ore':0.1,'iron ore':0.05,'gold ore':0.005,'coal':0.1,'salt':0.1,'gems':0.005},
-			'quarry':{'cut stone':1,'limestone':0.5,'marble':0.01},
+			'dig':{'mud':2,'clay':0.15,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051},
+			'mine':{'stone':0.3,'copper ore':0.085,'tin ore':0.085,'iron ore':0.04,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005,'Various stones':0.3},
+			'quarry':{'cut stone':0.7,'limestone':0.5,'marble':0.01,'Various cut stones':0.3},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -15459,8 +16262,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		G.getDict('grass').res['gather']['vegetable']=0.001;
 		G.getDict('palm tree').res['gather']['Bamboo']=0.0000035;
 		G.getDict('jungle fruits').res['gather']['Watermelon']=0.00004;
-		G.getDict('rocky substrate').res['mine']['Various stones']=0.075;
-		G.getDict('rocky substrate').res['quarry']['Various cut stones']=0.07;
 	new G.Goods({
 		name:'jacaranda',
 		desc:'The [jacaranda,Jacaranda tree] appears only at <b>Lavender fields</b> and grows in temperate climate. //Can be chopped for [log]s and harvested for [stick]s.',
@@ -15501,7 +16302,188 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		affectedBy:['over fishing'],
 		mult:0,
 	});
-	
+	//NEW SUBSTRATES
+		new G.Goods({
+		name:'warm rocky substrate',
+		desc:'A [warm rocky substrate] is found underneath biomes with warm temperature and low humidity.//Surface [stone]s may be gathered by hand.//This soil contains low amounts of [clay] and negligible amounts of [mud], more [stone]s and occasionally [copper ore,Ores].//Mining provides the best results, outputting a variety of [stone]s, more common [gold ore]s and [salt], but less precious [gems].//Quarrying underneath there provides less [marble]',
+		icon:[33,23,'magixmod'],
+		res:{
+			'gather':{'stone':0.2,'clay':0.002,'limestone':0.003},
+			'dig':{'mud':0.1,'clay':0.3,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051,'sand':0.00001},
+			'mine':{'stone':0.8,'copper ore':0.01,'tin ore':0.08,'iron ore':0.042,'gold ore':0.0052,'coal':0.11,'salt':0.14,'gems':0.003,'Various stones':0.2},
+			'quarry':{'cut stone':0.9,'limestone':0.5,'marble':0.0088,'Various cut stones':0.1},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+		new G.Goods({
+		name:'tundra rocky substrate',
+		desc:'A [tundra rocky substrate] is found underneath biomes with low temperatures or similar to tundra.//Surface [stone]s may be gathered by hand.//This soil contains less [clay] and [mud], more [stone]s and a little bit less [copper ore,Ores].//Mining provides the best results, outputting a variety of [stone]s, more common [iron ore]s and [coal], but less amounts of ores like [copper ore,Copper] or [tin ore,Tin]. Can\'t forget about [gems]//Quarrying underneath there provides more [limestone] and [platinum ore].',
+		icon:[33,22,'magixmod'],
+		res:{
+			'gather':{'stone':0.2,'clay':0.004,'limestone':0.0035},
+			'dig':{'mud':1.5,'clay':0.2,'stone':0.6,'copper ore':0.006,'tin ore':0.006,'limestone':0.1,'salt':0.051},
+			'mine':{'stone':0.95,'copper ore':0.09,'tin ore':0.07,'iron ore':0.046,'gold ore':0.0035,'coal':0.16,'salt':0.1,'gems':0.005,'Various stones':0.05},
+			'quarry':{'cut stone':0.85,'limestone':0.62,'marble':0.01,'Various cut stones':0.15},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'ice desert rocky substrate',
+		desc:'A [ice desert rocky substrate] is found underneath biomes with very low temperatures.//Surface [stone]s may be gathered by hand.//This soil contains no [mud], more [stone]s and [limestone] and rarely [copper ore,Ores].//Mining provides the best results, outputting a variety of [stone]s, way more common [iron ore]s, more common [nickel ore] and [coal], but less amounts of ores like [copper ore,Copper] or [tin ore,Tin]. Can\'t forget about [gems]. There you can find a little bit more of them.//Quarrying underneath there provides more [limestone] and [marble] but way less [Various stones].//<font color="#ffcccc">This substrate contains no [salt].</font>',
+		icon:[33,21,'magixmod'],
+		res:{
+			'gather':{'stone':0.2,'clay':0.002,'limestone':0.0035},
+			'dig':{'clay':0.2,'stone':0.6,'copper ore':0.001,'tin ore':0.001,'limestone':0.105},
+			'mine':{'stone':0.944,'copper ore':0.09,'tin ore':0.07,'iron ore':0.06,'gold ore':0.0035,'coal':0.21,'gems':0.0052,'Various stones':0.006},
+			'quarry':{'cut stone':0.999,'limestone':0.62,'marble':0.01,'Various cut stones':0.001},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'wet rocky substrate',
+		desc:'A [wet rocky substrate] is found underneath terrain with high humidity.//Surface [stone]s may be gathered by hand.//Digging often produces way more [mud] and [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [copper ore,Copper] , and precious [gems]. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides a little more [limestone] and [marble] but less [cut stone].',
+		icon:[33,20,'magixmod'],
+		res:{
+			'gather':{'stone':0.25,'clay':0.007,'limestone':0.005},
+			'dig':{'mud':4.2,'clay':0.45,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
+			'mine':{'stone':0.85,'copper ore':0.011,'tin ore':0.085,'iron ore':0.02,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005,'Various stones':0.15},
+			'quarry':{'cut stone':0.81,'limestone':0.55,'marble':0.011,'Various cut stones':0.09},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'jungle rocky substrate',
+		desc:'A [jungle rocky substrate] is found underneath jungles.//Surface [stone]s may be gathered by hand.//Digging often produces way more [clay], more [stone]s and occasionally [copper ore,Ores] and [clay]. Digging there provides more [limestone] but provides no [salt].//Mining provides the best results, outputting a variety of [stone]s, more common [tin ore,Tin] but less precious [gems] and way less [copper ore,Copper] amounts. Also mining there provides way less [iron ore,Iron] and [nickel ore,Nickel].//Quarrying provides less [platinum ore,Platinum].',
+		icon:[33,18,'magixmod'],
+		res:{
+			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
+			'dig':{'mud':2,'clay':0.35,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
+			'mine':{'stone':0.8,'copper ore':0.004,'tin ore':0.014,'iron ore':0.05,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.004,'Various stones':0.2},
+			'quarry':{'cut stone':0.75,'limestone':0.5,'marble':0.01,'Various cut stones':0.25},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'lush rocky substrate',
+		desc:'A [lush rocky substrate] is found underneath terrain with lush temperature and stable humidity.//Surface [stone]s may be gathered by hand.//Digging often produces [mud], more [stone]s and occasionally [copper ore,Ores] and a bit less [clay].//Mining provides the best results, outputting a variety of [stone]s, a little bit more rarely [gold ore,Ores], and precious [gems] but less ores like [copper ore,Copper],[tin ore,Tin],[nickel ore,Nickel],[iron ore,Iron]. Also there you will find less [coal]//Quarrying there gives a little bit more [marble],[platinum ore,Platinum].',
+		icon:[33,19,'magixmod'],
+		res:{
+			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
+			'dig':{'mud':2,'clay':0.13,'stone':0.6,'copper ore':0.0079,'tin ore':0.0081,'limestone':0.1,'salt':0.05},
+			'mine':{'stone':0.88,'copper ore':0.055,'tin ore':0.055,'iron ore':0.025,'gold ore':0.0038,'coal':0.078,'salt':0.1,'gems':0.005,'Various stones':0.12},
+			'quarry':{'cut stone':0.9,'limestone':0.5,'marble':0.01,'Various cut stones':0.1},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'dead rocky substrate',
+		desc:'A [dead rocky substrate] is unique for Dead forest biome.//Surface [stone]s may be gathered by hand.//Digging rarely produces [mud], more [stone]s and occasionally [copper ore,Ores] and [clay].//Mining there is not worthy at all because there you will find almost no [tin ore,Ores]. //Same with quarrying except ([marble] and [platinum ore,Platinum] which is more often than anywhere else). //<font color="#aabbbb">There you will find no [gold ore,Gold] and no [nickel ore,Nickel].</font>',
+		icon:[33,16,'magixmod'],
+		res:{
+			'gather':{'stone':0.25,'clay':0.004,'limestone':0.002},
+			'dig':{'mud':0.5,'clay':0.05,'stone':0.2,'copper ore':0.002,'tin ore':0.002,'limestone':0.025,'salt':0.02},
+			'mine':{'stone':0.8,'copper ore':0.03,'tin ore':0.03,'iron ore':0.01,'coal':0.04,'salt':0.1,'gems':0.001,'Various stones':0.2},
+			'quarry':{'cut stone':0.6,'limestone':0.1,'marble':0.01,'Various cut stones':0.2},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:3.85,
+	});
+	new G.Goods({
+		name:'dead grass',
+		desc:'[dead grass] is a bad source of [herb]s; Because it is dead grass there is almost no [fruit]s',
+		icon:[33,15,'magixmod'],
+		res:{
+			'gather':{'fruit':0.1,'stick':0.5},
+		},
+		mult:8.5,
+	});
+	new G.Goods({
+		name:'mudwater',
+		desc:'[mudwater], whether found in some swamps and Dead forests, can be only collected for unhealthy [muddy water].',
+		icon:[33,17,'magixmod'],
+		res:{
+			'gather':{'muddy water':12},
+		},
+		mult:5,
+	});
+	new G.Goods({
+		name:'animal corpse',
+		desc:'[animal corpse]s can be only found there. Some of them are dug underground by the ages, so both digging and gathering may provide some [bone]s.',
+		icon:[33,14,'magixmod'],
+		res:{
+			'gather':{'bone':0.1},
+			'dig':{'bone':0.2}
+		},
+		mult:2,
+	});
+	new G.Goods({
+		name:'dead fishes',
+		desc:'Disgusting smell... Eww. This can give you [spoiled food] out of fishing.',
+		icon:[33,13,'magixmod'],
+		res:{
+			'fish':{'spoiled food':0.01},
+		},
+		mult:2,
+	});
+	new G.Goods({
+		name:'spoiled fruits',
+		desc:'Fruits that are dangerous for health when eaten. Source of [spoiled food].',
+		icon:[33,12,'magixmod'],
+		res:{
+			'gather':{'spoiled food':0.1},	
+		},
+		mult:2,
+	});
+		new G.Goods({
+		name:'badlands substrate',
+		desc:'A [badlands substrate] can be only found in badlands biome.//Instead of [stone]s there are [Various stones] that can be gathered by hand.//By digging you can find less [mud] and [clay], more [Various stones] and in little less amounts [copper ore,Soft metal ores]. You won\'t find any [salt] by digging.//Mining provides the best results, outputting a variety of [Various stones], more often [gold ore,Precious ores], [salt] and [gems], but you will find less [coal] there.',
+		icon:[3,29,'magixmod'],
+		res:{
+			'gather':{'Various stones':0.25,'clay':0.005,'limestone':0.005},
+			'dig':{'mud':0.5,'clay':0.05,'Various stones':0.6,'copper ore':0.006,'tin ore':0.006,'limestone':0.11},
+			'mine':{'Various stones':0.97,'copper ore':0.065,'tin ore':0.06,'iron ore':0.035,'gold ore':0.008,'coal':0.03,'salt':0.16,'gems':0.009,'stone':0.03},
+			'quarry':{'cut stone':0.05,'limestone':0.5,'marble':0.01,'Various cut stones':0.95},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
+	new G.Goods({
+		name:'ostrich',
+		desc:'[meat] source that can be found in: <b>Savanna</b>,<b>Desert</b> and <b>Badlands</b>. Ostriches are birds without wings and run very fast making hunting more challenging.',
+		icon:[choose([4,5]),29,'magixmod'],
+		res:{
+			'hunt':{'meat':2,'bone':0.25},
+		},
+		mult:2,
+	});
+	new G.Goods({
+		name:'xeric substrate',
+		desc:'A [xeric substrate] can be only found at xeric shrublands.//There are [stone]s that can be gathered by hand.//By digging you can find no [clay], less [stone]s and some [copper ore,Ores]. Rarely by digging you can find some [salt].//Mining provides the best results, outputting a variety of [stone]s, more often [gold ore,Precious ores](in fact more fool\'s gold than true gold) and precious [gems].//Quarrying there provides no mythril.',
+		icon:[6,29,'magixmod'],
+		res:{
+			'gather':{'Various stones':0.25,'clay':0.005,'limestone':0.005},
+			'dig':{'mud':2.15,'stone':0.1,'copper ore':0.008,'tin ore':0.008,'limestone':0.13,'salt':0.001},
+			'mine':{'stone':0.9,'copper ore':0.08,'tin ore':0.08,'iron ore':0.04,'gold ore':0.04,'coal':0.07,'salt':0.15,'gems':0.009,'Various stones':0.1},
+			'quarry':{'cut stone':0.05,'limestone':0.5,'marble':0.01,'Various cut stones':0.95},
+		},
+		affectedBy:['mineral depletion'],
+		noAmount:true,
+		mult:5,
+	});
 	/*=====================================================================================
 	TILE EFFECTS
 	=======================================================================================*/
@@ -15739,13 +16721,17 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 				else if (tempTile>1.1)
 				{
 					if (landTile=='ocean') biomes.push('tropical ocean');
+					else if(wetTile>0.04) biomes.push('xeric shrubland');
 					else biomes.push('desert');
 				}
 				else if (tempTile>0.85)
 				{
 					if (landTile=='ocean') biomes.push('tropical ocean');
-					else if (wetTile<0.25) biomes.push('desert');
-					else if (wetTile>0.5) biomes.push('jungle');
+					else if (wetTile<=0.12) biomes.push('badlands');
+					else if (wetTile<0.25 && wetTile>0.18) biomes.push('desert');
+					else if(wetTile>0.3 && wetTile<0.385) biomes.push('xeric shrubland');
+					else if (wetTile>0.5 && wetTile <0.75) biomes.push('jungle');
+					else if (wetTile>0.884) biomes.push('dead forest');
 					else biomes.push('savanna');
 				}
 				else
