@@ -10921,7 +10921,7 @@ getCosts:function()
 			}else if(randomMessage>1 && randomMessage<=2){
 			G.Message({type:'good tall',text:'Your people have learnt <b>'+what.displayName+'</b>.',icon:what.icon})
 			}else if(randomMessage>2 && randomMessage<=4){
-			G.Message({type:'good tall',text:'Your people has acknowledged with <b>'+what.displayName+'</b>.',icon:what.icon})
+			G.Message({type:'good tall',text:'Your people have acknowledged with <b>'+what.displayName+'</b>.',icon:what.icon})
 			};
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseOption-'+index+'-'+this.id),l('techBox').children[0]);
