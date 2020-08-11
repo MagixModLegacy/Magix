@@ -21,6 +21,64 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+	G.inspectTile=function(tile)
+	{
+		//display the tile's details in the land section
+		//note : this used to display every territory owned until i realized 3 frames per second doesn't make for a very compelling user experience
+		var str='';
+		//Math.seedrandom(tile.map.seed+'-name-'+tile.x+'/'+tile.y);
+		var name=tile.land.displayName;//choose(tile.land.names);
+		str+='<div class="block framed bgMid fadeIn" id="land-0"><div class="fancyText framed bgMid blockLabel">'+name+'</div><div class="fancyText segmentHeader">Goods</div><div class="thingBox" style="padding:0px;text-align:left;">';
+		var I=0;
+		for (var ii in tile.goods)
+		{
+			var me=G.getGoods(ii);
+			var amount=tile.goods[ii];
+			str+='<div id="landGoods-'+I+'" class="thing standalone'+G.getIconClasses(me)+'">'+G.getIconStr(me);
+			if (!me.noAmount)
+			{
+				var bar=0;
+				if (amount<0.25) bar=0;
+				else if (amount<0.5) bar=1;
+				else if (amount<1.5) bar=2;
+				else if (amount<3) bar=3;
+				else bar=4;
+				str+='<div class="icon" style="'+G.getFreeformIcon(0,289+bar*7,24,6)+'top:100%;"></div>';
+			}
+			str+='</div>';
+			I++;
+		}
+		str+='</div></div>';
+		l('landList').innerHTML=str;
+		var I=0;
+		for (var ii in tile.goods)
+		{
+			var goods=G.getGoods(ii);
+			G.addTooltip(l('landGoods-'+I),function(me,amount){return function(){
+				var str='<div class="info">';
+				str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
+				str+='<div class="fancyText barred infoTitle">'+me.displayName;
+				if (!me.noAmount)
+				{
+					str+='<div class="fancyText infoAmount">';
+					if (amount<0.25) str+='(scarce)';
+					else if (amount<0.5) str+='(few)';
+					else if (amount<1.5) str+='(some)';
+					else if (amount<3) str+='(lots)';
+					else if (amount<3.6) str+='(abundant)';
+					else str+='("a ton")';
+					str+='</div>';
+				}
+				str+='</div>';
+				if (me.desc) str+='<div class="infoDesc">'+G.parse(me.desc)+'</div>';
+				str+='</div>';
+				str+=G.debugInfo(me);
+				return str;
+			};}(goods,tile.goods[ii]),{offY:-8});
+			I++;
+		}
+		//Math.seedrandom();
+	}
 G.setPolicyMode=function(me,mode)
 	{
 		//free old mode uses, and assign new mode uses
@@ -3202,7 +3260,7 @@ G.writeMSettingButton=function(obj)
 	new G.Res({
 		name:'mud',
 		desc:'Dirt saturated with water; found often when foraging or digging.',
-		icon:[0.25,7.25],
+		icon:[0,7],
 		partOf:'archaic building materials',
 		category:'build',
 	});
@@ -15707,7 +15765,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'badlands',
 		names:['Badlands,Mesa'],
 		goods:[
-			{type:'dead tree',chance:0.9,min:0.33,max:1.2},
+			{type:'dead tree',chance:0.9,min:0.33,max:5.2},
 			{type:['dead grass','grass'],chance:0.4},
 			{type:'wild bugs',chance:0.8,min:0.1,max:2},
 			{type:'freshwater',min:0.1,max:0.35},
