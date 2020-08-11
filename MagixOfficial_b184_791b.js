@@ -8,6 +8,14 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
+	
+	
+	
+	
+	
+	
+	
+	//I AM SORRY BUT I HAD TO PASTE THIS MAP CODE FROM MAIN JS THERE IN ORDER TO FIX A BUG WITH BLACK WORLD MAP TILES FOR BIOMES ADDED BY MAGIX!!!!
 	G.Map=function(type,w,h,seed)
 	{
 		//create a new unpopulated map with specified type, width and height, with an optional seed
@@ -213,7 +221,7 @@ func:function(){
 	
 	G.getLandIconBG=function(land)
 	{
-		return 'url(img/terrain.png),url(img/terrain.png)';
+		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
 	}
 	G.getLandIconBGpos=function(land)
 	{
@@ -602,7 +610,7 @@ func:function(){
 		var totalw=map.w;//x2-x1;
 		var totalh=map.h;//y2-y1;
 		
-		var img=Pic('img/terrain.png');
+		var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 		var fog=Pic('img/blot.png');
 		/*
 			the format for terrain.png is (from top to bottom) :
