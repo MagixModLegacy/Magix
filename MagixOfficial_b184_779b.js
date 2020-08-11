@@ -55,7 +55,7 @@ if (!document.getElementById(cssId))
 				else if (amount<0.5) bar=2;
 				else if (amount<1.5) bar=3;
 				else if (amount<3) bar=4;
-				else if (amount<3.6) bar=5;
+				else if (amount<3.5) bar=5;
 				else if (amount<3.9) bar=6;
 				else if (amount<4.3) bar=7;
 				else if (amount<4.75) bar=8;
@@ -87,6 +87,7 @@ if (!document.getElementById(cssId))
 					else if (amount<3) str+='(lots)';
 					else if (amount<3.6) str+='(abundant)';
 					else if (amount<4.7) str+='(crazy amounts)';
+					else if (amount<5.5) str+='(insane amounts)';
 					else str+='(<font color="pink">hella lot</font>)';
 					str+='</div>';
 				}
@@ -15756,7 +15757,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'glacier',
 		goods:[
 			{type:'snow cover',min:0.4,max:3},
-			{type:'Ice',min:2,max:3.5},
+			{type:'Ice',min:2,max:5.7},
 			{type:'seals',min:0.05,max:1,chance:0.2},
 			{type:'saltwater fish',min:0.05,max:0.3,chance:0.01},
 			{type:'freshwater',amount:0.75},
@@ -15771,7 +15772,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		goods:[
 			{type:['dead tree'],amount:3},
 			{type:'forest mushrooms',chance:0.1},
-			{type:'dead grass'},
+			{type:'dead grass',min:3,max:6},
 			{type:'wild bugs',min:0.6,max:1.5},
 			{type:'mudwater',min:0.75,max:1},
 			{type:'dead rocky substrate'},
@@ -15786,7 +15787,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'badlands',
 		names:['Badlands,Mesa'],
 		goods:[
-			{type:'dead tree',chance:0.9,min:0.33,max:5.2},
+			{type:'dead tree',chance:0.9,min:0.33,max:2.5},
 			{type:['dead grass','grass'],chance:0.4},
 			{type:'wild bugs',chance:0.8,min:0.1,max:2},
 			{type:'freshwater',min:0.1,max:0.35},
