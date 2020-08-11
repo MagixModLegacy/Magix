@@ -8,6 +8,33 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
+	G.button=function(obj)
+	{
+		//returns a string for a new button; creates a callback that must be applied after the html has been created, with G.addCallbacks()
+		//obj can have text, tooltip (text that shows on hover), onclick (function executed when button is clicked), classes (CSS classes added to the button), id (force button to have that id)
+		var id=obj.id||('button-'+G.buttonsN);
+		var str='<div '+(obj.style?('style="'+obj.style+'" '):'')+'class="button'+(obj.classes?(' '+obj.classes):'')+'" id="'+id+'">'+(obj.text||'-')+'</div>';
+		if (obj.onclick || obj.tooltip || obj.tooltipFunc)
+		{
+			G.pushCallback(function(id,obj){return function(){
+				if (l(id))
+				{
+					if (obj.tooltip) G.addTooltip(l(id),function(){return obj.tooltip;},{offY:-8});
+					else if (obj.tooltipFunc) G.addTooltip(l(id),obj.tooltipFunc,{offY:-8});
+					if (obj.onclick) {l(id).onclick=obj.onclick;if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/tick.mp3');
+			audio.play(); 
+			}
+					
+				}
+			}};
+				}
+			}}(id,obj));
+		}
+		G.buttonsN++;
+		return str;
+	}
 		G.buildTabs=function()
 	{
 		var str='';
@@ -15172,7 +15199,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Policy({
 		name:'Toggle SFX',
-		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li><li>Ascending by wonder</li>',
+		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li><li>Ascending by wonder</li><li>Switching between tabs</li>',
 		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
