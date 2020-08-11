@@ -221,7 +221,7 @@ func:function(){
 	
 	G.getLandIconBG=function(land)
 	{
-		return 'url(img/terrain.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
+		return 'url(img/terrain.png),url(img/terrain.png)';
 	}
 	G.getLandIconBGpos=function(land)
 	{
