@@ -41,7 +41,7 @@ if (!document.getElementById(cssId))
 		var str='';
 		//Math.seedrandom(tile.map.seed+'-name-'+tile.x+'/'+tile.y);
 		var name=tile.land.displayName;//choose(tile.land.names);
-		str+='<div class="block framed bgMid fadeIn" id="land-0"><div class="fancyText framed bgMid blockLabel">'+name+'</div><div class="fancyText segmentHeader">Goods</div><div class="thingBox" style="padding:0px;text-align:left;">';
+		str+='<div class="block framed bgMid fadeIn" id="land-0"><div class="fancyText framed bgMid blockLabel" style="float:right;">'+name+'</div><div class="fancyText segmentHeader">Goods</div><div class="thingBox" style="padding:0px;text-align:left;">';
 		var I=0;
 		for (var ii in tile.goods)
 		{
