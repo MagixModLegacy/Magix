@@ -57,7 +57,11 @@ if (!document.getElementById(cssId))
 				else if (amount<3) bar=4;
 				else if (amount<3.6) bar=5;
 				else if (amount<3.9) bar=6;
-				else bar=7;
+				else if (amount<4.3) bar=7;
+				else if (amount<4.75) bar=8;
+				else if (amount<5.2) bar=9;
+				else if (amount<5.5) bar=10;
+				else bar=11;
 				str+='<div class="icon" style="background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png);'+G.getFreeformIcon(816,0+bar*7,24,6)+'top:100%;"></div>';
 			}
 			str+='</div>';
@@ -81,7 +85,8 @@ if (!document.getElementById(cssId))
 					else if (amount<1.5) str+='(some)';
 					else if (amount<3) str+='(lots)';
 					else if (amount<3.6) str+='(abundant)';
-					else str+='("a ton")';
+					else if (amount<4.7) str+='(crazy amounts)';
+					else str+='(<font color="pink">hella lot</font>)';
 					str+='</div>';
 				}
 				str+='</div>';
