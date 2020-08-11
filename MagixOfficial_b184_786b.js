@@ -17,46 +17,6 @@ func:function(){
 			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png'
 		];
 	}
-	G.updateMapDisplay=function()
-	{
-		//call whenever we switch maps
-		var str='';
-		var ts=16;//tile size
-		var map=G.currentMap;
-		
-		str+='<div id="mapSurface" style="width:'+(map.w*ts+G.mapW)+'px;height:'+(map.h*ts+G.mapH)+'px;left:'+(-G.mapW/2)+'px;top:'+(-G.mapH/2)+'px;"></div><div id="tileSelector" style="width:'+(ts)+'px;height:'+(ts)+'px;"></div>';
-		l('mapContainer').innerHTML=str;
-		var c=G.renderMap(G.currentMap);
-		c.id='mapCanvas';
-		l('mapContainer').appendChild(c);
-	}
-	G.resizeMapDisplay=function()
-	{
-		//var w=Math.max(128,G.w*0.2);
-		var w=Math.max(128,l('sections').offsetWidth*0.4);
-		var h=l('mapSection').offsetHeight-10;
-		if (l('mapHeader')) h-=l('mapHeader').offsetHeight;
-		w=Math.floor(Math.max(16,w));
-		h=Math.floor(Math.max(16,h));
-		l('cornerMap').style.width=(w)+'px';
-		l('cornerMap').style.height=(h)+'px';
-		
-		if (l('landBox')) l('landBox').style.marginRight=(w+4)+'px';
-		l('mapBreakdown').style.marginRight=(w+4+21)+'px';
-		
-		G.mapW=w;
-		G.mapH=h;
-		
-		if (G.currentMap)
-		{
-			var ts=16;//tile size
-			var map=G.currentMap;
-			l('mapSurface').style.left=(-G.mapW/2)+'px';
-			l('mapSurface').style.top=(-G.mapH/2)+'px';
-			l('mapSurface').style.width=(map.w*ts+G.mapW)+'px';
-			l('mapSurface').style.height=(map.h*ts+G.mapH)+'px';
-		}
-	}
 	G.logicMapDisplay=function()
 	{
 		var editMode=G.editMode;
