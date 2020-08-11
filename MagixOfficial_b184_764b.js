@@ -43,7 +43,7 @@ if (!document.getElementById(cssId))
 				else if (amount<1.5) bar=2;
 				else if (amount<3) bar=3;
 				else bar=4;
-				str+='<div class="icon" style="'+G.getFreeformIcon(0,289+bar*7,10,6)+'top:100%;"></div>';
+				str+='<div class="icon" style="'+G.getFreeformIcon(0,189+bar*7,24,6)+'top:100%;"></div>';
 			}
 			str+='</div>';
 			I++;
