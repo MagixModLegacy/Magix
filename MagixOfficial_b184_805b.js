@@ -25,11 +25,11 @@ func:function(){
 		for (var i in G.tabs)
 		{
 			G.tabs[i].l=l('tab-'+G.tabs[i].id);
-			G.tabs[i].l.onclick=function(tab){return function(){G.setTab(tab);}if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			G.tabs[i].l.onclick=function(tab){return function(){G.setTab(tab);if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 			{
 			var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/tick.mp3');
 			audio.play(); 
-			};}(G.tabs[i]);
+			}};}(G.tabs[i]);
 			if (G.tabs[i].desc) G.addTooltip(G.tabs[i].l,function(tab){return function(){return tab.desc;};}(G.tabs[i]),{offY:-8});
 		}
 		G.setTab(G.tabs[0]);
