@@ -50,12 +50,12 @@ if (!document.getElementById(cssId))
 			str+='<div id="landGoods-'+I+'" class="thing standalone'+G.getIconClasses(me)+'">'+G.getIconStr(me);
 			if (!me.noAmount)
 			{
-				var bar=0;
-				if (amount<0.25) bar=0;
-				else if (amount<0.5) bar=1;
-				else if (amount<1.5) bar=2;
-				else if (amount<3) bar=3;
-				else bar=4;
+				var bar=1;
+				if (amount<0.25) bar=1;
+				else if (amount<0.5) bar=2;
+				else if (amount<1.5) bar=3;
+				else if (amount<3) bar=4;
+				else bar=5;
 				str+='<div class="icon" style="background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png);'+G.getFreeformIcon(816,0+bar*7,24,6)+'top:100%;"></div>';
 			}
 			str+='</div>';
