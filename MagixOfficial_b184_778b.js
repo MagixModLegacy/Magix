@@ -61,7 +61,8 @@ if (!document.getElementById(cssId))
 				else if (amount<4.75) bar=8;
 				else if (amount<5.2) bar=9;
 				else if (amount<5.5) bar=10;
-				else bar=11;
+				else if (amount<6) bar=11;
+				else bar=12;
 				str+='<div class="icon" style="background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png);'+G.getFreeformIcon(816,0+bar*7,24,6)+'top:100%;"></div>';
 			}
 			str+='</div>';
