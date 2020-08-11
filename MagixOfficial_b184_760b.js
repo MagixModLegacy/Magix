@@ -3202,7 +3202,7 @@ G.writeMSettingButton=function(obj)
 	new G.Res({
 		name:'mud',
 		desc:'Dirt saturated with water; found often when foraging or digging.',
-		icon:[0,7],
+		icon:[0.25,7.25],
 		partOf:'archaic building materials',
 		category:'build',
 	});
