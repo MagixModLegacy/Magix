@@ -351,7 +351,7 @@ func:function(){
 						ctx.translate(sx*pullAmount,sy*pullAmount);
 						ctx.scale(s,s);
 						ctx.rotate(r);
-						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+						//ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 						ctx.translate(-sx*pullAmount,-sy*pullAmount);
