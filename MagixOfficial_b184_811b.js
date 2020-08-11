@@ -59,6 +59,7 @@ func:function(){
 					me.l.classList.add('bgLight');
 					if (me.div) l(me.div).style.display='block';
 					if (me.update) G.update[me.update]();
+					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 					if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 			{
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/tick.mp3');
