@@ -603,7 +603,7 @@ func:function(){
 		var totalw=map.w;//x2-x1;
 		var totalh=map.h;//y2-y1;
 
-		var img=Pic('img/terrainMagix.png');
+		var img=function(){if(G.year==0)Pic('img/terrainMagix.png');else Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');}
 		var fog=Pic('img/blot.png');
 		/*
 			the format for terrain.png is (from top to bottom) :
