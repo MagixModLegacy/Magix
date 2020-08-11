@@ -51,18 +51,26 @@ if (!document.getElementById(cssId))
 			if (!me.noAmount)
 			{
 				var bar=1;
-				if (amount<0.25) bar=1;
-				else if (amount<0.5) bar=2;
-				else if (amount<1.5) bar=3;
-				else if (amount<3) bar=4;
-				else if (amount<3.5) bar=5;
-				else if (amount<3.9) bar=6;
-				else if (amount<4.3) bar=7;
-				else if (amount<4.75) bar=8;
-				else if (amount<5.2) bar=9;
-				else if (amount<5.5) bar=10;
-				else if (amount<6) bar=11;
-				else bar=12;
+				if (amount<0.09) bar=1;
+				else if (amount<0.25) bar=2;
+				else if (amount<0.375) bar=3;
+				else if (amount<0.5) bar=4;
+				else if (amount<1) bar=5;
+				else if (amount<1.5) bar=6;
+				else if (amount<2.25) bar=7;
+				else if (amount<3) bar=8;
+				else if (amount<3.25) bar=9;
+				else if (amount<3.5) bar=10;
+				else if (amount<3.9) bar=11;
+				else if (amount<4.3) bar=12;
+				else if (amount<4.75) bar=13;
+				else if (amount<5.2) bar=14;
+				else if (amount<5.5) bar=15;
+				else if (amount<6) bar=16;
+				else if (amount<6.2) bar=17;
+				else if (amount<6.45) bar=18;
+				else if (amount<6.7) bar=19;
+				else bar=20;
 				str+='<div class="icon" style="background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png);'+G.getFreeformIcon(816,0+bar*7,24,6)+'top:100%;"></div>';
 			}
 			str+='</div>';
@@ -81,14 +89,16 @@ if (!document.getElementById(cssId))
 				if (!me.noAmount)
 				{
 					str+='<div class="fancyText infoAmount">';
-					if (amount<0.25) str+='(scarce)';
+					if (amount<0.09) str+='(almost none)';
+					else if (amount<0.25) str+='(scarce)';
 					else if (amount<0.5) str+='(few)';
 					else if (amount<1.5) str+='(some)';
 					else if (amount<3) str+='(lots)';
-					else if (amount<3.6) str+='(abundant)';
+					else if (amount<3.5) str+='(abundant)';
 					else if (amount<4.7) str+='(crazy amounts)';
 					else if (amount<5.5) str+='(insane amounts)';
-					else str+='(<font color="pink">hella lot</font>)';
+					else if (amount<6.1) str+='(<font color="pink">hella lot</font>)';
+					else str+='(unbeliveably lot)';
 					str+='</div>';
 				}
 				str+='</div>';
