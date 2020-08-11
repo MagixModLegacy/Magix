@@ -10808,7 +10808,7 @@ new G.Unit({
 		category:'wonder',
 	});
 	new G.Unit({
-		name:'University of the 7 worlds',//WIP WILL BE IMPLEMENTED AFTER UPDATE OF THE WORLD!
+		name:'scientific university',//WIP WILL BE IMPLEMENTED AFTER UPDATE OF THE WORLD!
 		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
 		wonder:'Dreamy',
 		icon:[28,26,'magixmod'],
