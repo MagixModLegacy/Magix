@@ -24,7 +24,7 @@ if (!document.getElementById(cssId))
 	G.getFreeformIcon=function(x,y,w,h)
 	{
 		//returns a style string
-		return 'background-image:url("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png");background-position:'+(-x*G.iconScale)+'px '+(-y*G.iconScale)+'px;width:'+(w)+'px;height:'+(h)+'px;';
+		return 'background-position:'+(-x*G.iconScale)+'px '+(-y*G.iconScale)+'px;width:'+(w)+'px;height:'+(h)+'px;';
 	}
 	G.inspectTile=function(tile)
 	{
@@ -48,7 +48,7 @@ if (!document.getElementById(cssId))
 				else if (amount<1.5) bar=2;
 				else if (amount<3) bar=3;
 				else bar=4;
-				str+='<div class="icon" style="'+G.getFreeformIcon(0,289+bar*7,24,6)+'top:100%;"></div>';
+				str+='<div class="icon" style="background-image:url("https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png");'+G.getFreeformIcon(0,289+bar*7,24,6)+'top:100%;"></div>';
 			}
 			str+='</div>';
 			I++;
