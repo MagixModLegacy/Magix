@@ -210,7 +210,7 @@ func:function(){
 		else G.redrawMap(G.currentMap);
 		G.tilesToRender=[];
 	}
-	G.renderMap=function(map,obj)
+	G.renderMap
 	{
 		var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 	}
