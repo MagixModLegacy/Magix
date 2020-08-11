@@ -25,11 +25,7 @@ func:function(){
 		for (var i in G.tabs)
 		{
 			G.tabs[i].l=l('tab-'+G.tabs[i].id);
-			G.tabs[i].l.onclick=function(tab){return function(){G.setTab(tab);if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
-			{
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/tick.mp3');
-			audio.play(); 
-			}};}(G.tabs[i]);
+			G.tabs[i].l.onclick=function(tab){return function(){G.setTab(tab);};}(G.tabs[i]);
 			if (G.tabs[i].desc) G.addTooltip(G.tabs[i].l,function(tab){return function(){return tab.desc;};}(G.tabs[i]),{offY:-8});
 		}
 		G.setTab(G.tabs[0]);
@@ -62,6 +58,11 @@ func:function(){
 					me.l.classList.add('bgLight');
 					if (me.div) l(me.div).style.display='block';
 					if (me.update) G.update[me.update]();
+					if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/tick.mp3');
+			audio.play(); 
+			}
 					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 				}
 			}
