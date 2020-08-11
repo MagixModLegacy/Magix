@@ -64,7 +64,6 @@ func:function(){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/tick.mp3');
 			audio.play(); 
 			}
-					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 				}
 			}
 			if (tab.showMap) G.showMap();
