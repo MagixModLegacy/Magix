@@ -56,7 +56,7 @@ if (!document.getElementById(cssId))
 				else if (amount<1.5) bar=2;
 				else if (amount<3) bar=3;
 				else bar=4;
-				str+='<div class="icon" style="'+G.getFreeformIcon(0,289+bar*7,24,6)+'top:100%;"></div>';
+				str+='<div class="icon" style="background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png);'+G.getFreeformIcon(0,289+bar*7,24,6)+'top:100%;"></div>';
 			}
 			str+='</div>';
 			I++;
