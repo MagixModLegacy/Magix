@@ -8,7 +8,68 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-	
+		G.buildTabs=function()
+	{
+		var str='';
+		str+='<div id="sectionTabs" class="tabList"></div>';
+		str+='<div id="mapBreakdown"></div>';
+		str+='<div id="mapSection"></div>';
+		for (var i in G.tabs)
+		{G.tabs[i].div=G.tabs[i].id+'Div';str+='<div id="'+G.tabs[i].div+'" class="subsection'+(G.tabs[i].noScroll?' noScroll':'')+'"></div>';}
+		l('sections').innerHTML=str;
+		G.buildMapDisplay();
+		var str='';
+		for (var i in G.tabs)
+		{str+='<div id="tab-'+G.tabs[i].id+'" class="tab bgMid'+(G.tabs[i].addClass?' '+G.tabs[i].addClass:'')+'">'+G.tabs[i].name+'</div>';}
+		l('sectionTabs').innerHTML=str;
+		for (var i in G.tabs)
+		{
+			G.tabs[i].l=l('tab-'+G.tabs[i].id);
+			G.tabs[i].l.onclick=function(tab){return function(){G.setTab(tab);}if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/tick.mp3');
+			audio.play(); 
+			};}(G.tabs[i]);
+			if (G.tabs[i].desc) G.addTooltip(G.tabs[i].l,function(tab){return function(){return tab.desc;};}(G.tabs[i]),{offY:-8});
+		}
+		G.setTab(G.tabs[0]);
+	}
+	G.setTab=function(tab)
+	{
+		if (tab.popup)
+		{
+			if (G.getSetting('animations')) triggerAnim(tab.l,'plop');
+			G.dialogue.popup(G.tabPopup[tab.id],'bigDialogue',tab.l);
+		}
+		else
+		{
+			G.tab=tab;
+			G.settingsByName['tab'].value=G.tab.I;
+			for (var i in G.tabs)
+			{
+				var me=G.tabs[i];
+				if (me.id!=tab.id)//close other tabs
+				{
+					me.l.classList.remove('on');
+					me.l.classList.remove('bgLight');
+					me.l.classList.add('bgMid');
+					if (me.div) {l(me.div).style.display='none';l(me.div).innerHTML='';}
+				}
+				else//update focused tab
+				{
+					me.l.classList.add('on');
+					me.l.classList.remove('bgMid');
+					me.l.classList.add('bgLight');
+					if (me.div) l(me.div).style.display='block';
+					if (me.update) G.update[me.update]();
+					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
+				}
+			}
+			if (tab.showMap) G.showMap();
+			else G.hideMap();
+			G.particlesReset();
+		}
+	}
 var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -28,7 +89,7 @@ if (!document.getElementById(cssId))
 		var str='';
 		//Math.seedrandom(tile.map.seed+'-name-'+tile.x+'/'+tile.y);
 		var name=tile.land.displayName;//choose(tile.land.names);
-		str+='<div class="block framed bgMid fadeIn" id="land-0"><div class="fancyText framed bgMid blockLabel" style="float:right;">'+name+'</div><div class="fancyText segmentHeader">< - - Goods - - ></div><div class="thingBox" style="padding:0px;text-align:left;">';
+		str+='<div class="block framed bgMid fadeIn" id="land-0"><div class="fancyText framed bgMid blockLabel" style="float:right;">'+name+'</div><div class="fancyText segmentHeader">< - - Goods - - ><br></div><div class="thingBox" style="padding:0px;text-align:left;">';
 		var I=0;
 		for (var ii in tile.goods)
 		{
