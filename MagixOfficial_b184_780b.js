@@ -15573,7 +15573,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'forest',
 		names:['Forest','Forest','Woodland','Swamp','Marsh'],
 		goods:[
-			{type:['oak','birch'],amount:3},
+			{type:['oak','birch'],min:2.75,max:3.6},
 			{type:['oak','birch','dead tree'],chance:0.5},
 			{type:'berry bush',chance:0.6},
 			{type:'forest mushrooms',chance:0.8},
@@ -15642,7 +15642,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'boreal forest',
 		names:['Boreal forest','Pine forest','Taiga'],
 		goods:[
-			{type:['fir tree'],amount:3},
+			{type:['fir tree'],min:2.4,max:4},
 			{type:'berry bush',chance:0.9},
 			{type:'forest mushrooms',chance:0.4},
 			{type:'rb1',chance:0.5},
@@ -15710,7 +15710,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'jungle',
 		names:['Jungle','Tropical forest','Mangrove'],
 		goods:[
-			{type:['palm tree'],amount:3},
+			{type:['palm tree'],min:2.75,max:4},
 			{type:'jungle fruits',chance:1},
 			{type:'grass'},
 			{type:'koalas',chance:0.3},
