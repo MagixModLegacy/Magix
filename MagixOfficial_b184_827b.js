@@ -1,5 +1,6 @@
 G.Map=function(type,w,h,seed)
 	{
+	var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
 		//create a new unpopulated map with specified type, width and height, with an optional seed
 		this.type=type;//type : 0=main, 1=space, 2=moon, 3=other planet
 		this.w=w;
@@ -592,7 +593,7 @@ G.Map=function(type,w,h,seed)
 		var totalw=map.w;//x2-x1;
 		var totalh=map.h;//y2-y1;
 		
-		var img=Pic('img/terrain.png');
+		
 		var fog=Pic('img/blot.png');
 		/*
 			the format for terrain.png is (from top to bottom) :
