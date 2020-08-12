@@ -1,5 +1,94 @@
-G.createMaps=function()//when creating a new game
-{
+G.Map=function(type,w,h,seed)
+	{
+		//create a new unpopulated map with specified type, width and height, with an optional seed
+		this.type=type;//type : 0=main, 1=space, 2=moon, 3=other planet
+		this.w=w;
+		this.h=h;
+		this.computedPlayerRes=[];
+		this.tilesByOwner=[];//lists of tiles indexed by civs owning them ([0]=unexplored)
+		this.territoryByOwner=[];//total amount of explored owned tile percents across all tiles owned by a given civ
+		this.seed=seed||makeSeed(5);
+		
+		var time=Date.now();
+		
+		if (!G.land[0]) throw 'Whoah there! You can\'t generate a map if you don\'t even have one terrain type to default to!';
+		
+		Math.seedrandom(this.seed);
+		this.tiles=[];
+		for (var x=0;x<w;x++)
+		{
+			this.tiles[x]=[];
+			for (var y=0;y<h;y++)
+			{
+				var land=G.land[0];
+				var tile={owner:0,land:land,goods:[],explored:0,effects:[],x:x,y:y,map:this};
+				this.tiles[x][y]=tile;
+			}
+		}
+		
+		var lvl=G.doFuncWithArgs('create map',[w,h]);
+		
+		for (var x=0;x<w;x++)
+		{
+			for (var y=0;y<h;y++)
+			{
+				this.tiles[x][y].land=G.getLand(lvl[x][y]);
+				this.tiles[x][y].goods=G.getRandomLandGoods(this.tiles[x][y].land);
+			}
+		}
+		
+		//console.log('generating map took '+(Date.now()-time)+'ms');
+		
+		G.maps.push(this);
+		Math.seedrandom();
+	}
+	
+	G.computeTilesByOwner=function(map,owner)
+	{
+		//stores a list of tiles owned by the specified owner into map.tilesByOwner[owner]
+		var tiles=[];
+		var tilePercents=0;
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (map.tiles[x][y].owner==owner)
+				{
+					tiles.push(map.tiles[x][y]);
+					if (!map.tiles[x][y].land.ocean) tilePercents+=map.tiles[x][y].explored;//TODO : generalize this
+				}
+			}
+		}
+		map.tilesByOwner[owner]=tiles;
+		map.territoryByOwner[owner]=tilePercents;
+	}
+	G.updateMapForOwners=function(map)
+	{
+		//cache owned tiles and resources for every civ on the map
+		for (var i=0;i<2;i++)
+		{
+			G.computeTilesByOwner(map,i);
+			G.computeOwnedRes(map,i);
+		}
+	}
+	
+	G.revealMap=function(map)
+	{
+		//mark all tiles as explored
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				map.tiles[x][y].owner=1;
+				map.tiles[x][y].explored=1;
+			}
+		}
+		G.updateMapForOwners(map);
+		G.updateMapDisplay();
+	}
+	
+	G.createMaps=function()//when creating a new game
+	{
 		G.currentMap=new G.Map(0,24,24);//main world map
 		
 		//set starting tile by ranking all land tiles by score and picking one
@@ -114,7 +203,7 @@ G.createMaps=function()//when creating a new game
 	
 	G.getLandIconBG=function(land)
 	{
-		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
+		return 'url(img/terrain.png),url(img/terrain.png)';
 	}
 	G.getLandIconBGpos=function(land)
 	{
@@ -503,7 +592,7 @@ G.createMaps=function()//when creating a new game
 		var totalw=map.w;//x2-x1;
 		var totalh=map.h;//y2-y1;
 		
-		var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
+		var img=Pic('img/terrain.png');
 		var fog=Pic('img/blot.png');
 		/*
 			the format for terrain.png is (from top to bottom) :
@@ -625,6 +714,7 @@ G.createMaps=function()//when creating a new game
 						ctx.translate(sx*pullAmount,sy*pullAmount);
 						ctx.scale(s,s);
 						ctx.rotate(r);
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 						ctx.translate(-sx*pullAmount,-sy*pullAmount);
@@ -652,7 +742,10 @@ G.createMaps=function()//when creating a new game
 					{
 						Math.seedrandom(map.seed+'-seaColor-'+x+'/'+y);
 						var px=land.image;var py=0;
-						
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
 					}
 				}
 			}
@@ -685,7 +778,10 @@ G.createMaps=function()//when creating a new game
 					{
 						Math.seedrandom(map.seed+'-landColor-'+x+'/'+y);
 						var px=land.image;var py=0;
-						
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
 					}
 				}
 			}
@@ -722,7 +818,7 @@ G.createMaps=function()//when creating a new game
 						
 						ctx.scale(s,s);
 						ctx.rotate(r);
-					
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 					}
@@ -811,7 +907,7 @@ G.createMaps=function()//when creating a new game
 						
 						ctx.scale(s,s);
 						ctx.rotate(r);
-						
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 					}
@@ -865,7 +961,7 @@ G.createMaps=function()//when creating a new game
 						ctx.translate(sx*pullAmount,sy*pullAmount);
 						ctx.scale(s,s);
 						ctx.rotate(r);
-					
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 						ctx.translate(-sx*pullAmount,-sy*pullAmount);
@@ -920,7 +1016,7 @@ G.createMaps=function()//when creating a new game
 						ctx.translate(sx*pullAmount,sy*pullAmount);
 						ctx.scale(s,s);
 						ctx.rotate(r);
-						
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 						ctx.translate(-sx*pullAmount,-sy*pullAmount);
