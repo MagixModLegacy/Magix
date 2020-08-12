@@ -652,10 +652,7 @@ G.createMaps=function()//when creating a new game
 					{
 						Math.seedrandom(map.seed+'-seaColor-'+x+'/'+y);
 						var px=land.image;var py=0;
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
+						
 					}
 				}
 			}
@@ -688,10 +685,7 @@ G.createMaps=function()//when creating a new game
 					{
 						Math.seedrandom(map.seed+'-landColor-'+x+'/'+y);
 						var px=land.image;var py=0;
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
-						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
+						
 					}
 				}
 			}
@@ -728,7 +722,7 @@ G.createMaps=function()//when creating a new game
 						
 						ctx.scale(s,s);
 						ctx.rotate(r);
-						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+					
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 					}
@@ -817,7 +811,7 @@ G.createMaps=function()//when creating a new game
 						
 						ctx.scale(s,s);
 						ctx.rotate(r);
-						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+						
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 					}
@@ -871,7 +865,7 @@ G.createMaps=function()//when creating a new game
 						ctx.translate(sx*pullAmount,sy*pullAmount);
 						ctx.scale(s,s);
 						ctx.rotate(r);
-						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+					
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 						ctx.translate(-sx*pullAmount,-sy*pullAmount);
@@ -926,7 +920,7 @@ G.createMaps=function()//when creating a new game
 						ctx.translate(sx*pullAmount,sy*pullAmount);
 						ctx.scale(s,s);
 						ctx.rotate(r);
-						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+						
 						ctx.rotate(-r);
 						ctx.scale(1/s,1/s);
 						ctx.translate(-sx*pullAmount,-sy*pullAmount);
