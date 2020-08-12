@@ -2529,7 +2529,7 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		G.updateMapDisplay() //FIX
+		
 	}
 	G.funcs['new year']=function()
 	{
@@ -2866,7 +2866,7 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-
+			
 		}
 		//0/0 insight fix
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
@@ -2876,6 +2876,7 @@ G.props['fastTicksOnResearch']=150;
 		if(G.year==0){
 		G.gain('happiness',0.15)
 		}
+		G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
 	}
 	
 	G.funcs['tracked stat str c1']=function()
