@@ -222,6 +222,7 @@ G.Launch=function()
 		
 		G.Loop();
 	}
+}
 G.AddData({
 name:'Default dataset',
 author:'pelletsstarPL',
