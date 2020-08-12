@@ -1122,7 +1122,6 @@ G.createMaps=function()//when creating a new game
 		ctx.clearRect((tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts));
 		ctx.drawImage(c,(tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts),(tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts));
 	}
-}
 G.AddData({
 name:'Default dataset',
 author:'pelletsstarPL',
