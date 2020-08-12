@@ -1,8 +1,7 @@
 //SORRY GUYS!!!
 //TO MAKE WORLD MAP SUPPORT BIOMES ADDED BY MAGIX I HAD TO PASTE THESE OVER 1K LINES OF CODE. IF THERE WILL BE "SHORTER" WAY TO FIX IT I WILL IMPLEMENT IT!
 //THE PROBLEM WAS THAT WORLD MAP OF COURSE WAS GENERATING BIOMES LIKE LAVENDER FIELDS, DEAD FOREST, SWAMPLANDS, BADLANDS BUT THEIR DISPLAY WAS LIKE: BLACK TILE
-var img = new Image();   // Create new img element
-img.src = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png';
+
 G.Map=function(type,w,h,seed)
 	{
 	
@@ -598,7 +597,8 @@ G.Map=function(type,w,h,seed)
 		var totalw=map.w;//x2-x1;
 		var totalh=map.h;//y2-y1;
 		
-		
+		var img = new Image();   // Create new img element
+		img.src = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png';
 		var fog=Pic('img/blot.png');
 		/*
 			the format for terrain.png is (from top to bottom) :
