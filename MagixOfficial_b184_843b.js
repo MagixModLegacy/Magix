@@ -1,7 +1,14 @@
 //SORRY GUYS!!!
 //TO MAKE WORLD MAP SUPPORT BIOMES ADDED BY MAGIX I HAD TO PASTE THESE OVER 1K LINES OF CODE. IF THERE WILL BE "SHORTER" WAY TO FIX IT I WILL IMPLEMENT IT!
 //THE PROBLEM WAS THAT WORLD MAP OF COURSE WAS GENERATING BIOMES LIKE LAVENDER FIELDS, DEAD FOREST, SWAMPLANDS, BADLANDS BUT THEIR DISPLAY WAS LIKE: BLACK TILE
-
+G.LoadResources=function()
+	{
+		var resources=[
+			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
+			'img/blot.png',
+			'img/iconSheet.png?v=1'
+		];
+	}
 G.Map=function(type,w,h,seed)
 	{
 	
@@ -2194,23 +2201,9 @@ G.props['fastTicksOnResearch']=150;
 		}else if(G.getRes('victory point').amount >=20 && G.getRes('victory point').amount <35 && G.hasNot('bonus4')){
 			G.gainTrait(G.traitByName['bonus4'])
 		}
-		G.getLandIconBG=function(land)
-	{
-		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
-	}
-		G.getLandIconBGpos=function(land)
-	{
-		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
-	}
 		
-	G.LoadResources=function()
-	{
-		var resources=[
-			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
-			'img/blot.png',
-			'img/iconSheet.png?v=1'
-		];
-	}
+		
+	
 	if (G.achievByName['mausoleum'].won > 0) {
       G.Message({
         type: 'good',
