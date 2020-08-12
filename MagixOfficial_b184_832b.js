@@ -1,4 +1,6 @@
-var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
+//var img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
+var img = new Image();   // Create new img element
+img.src = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png';
 G.Map=function(type,w,h,seed)
 	{
 	
