@@ -95,7 +95,7 @@ G.Map=function(type,w,h,seed)
 	
 	G.createMaps=function()//when creating a new game
 	{
-		
+		G.currentMap=new G.Map(0,24,24);
 		
 		//set starting tile by ranking all land tiles by score and picking one
 		var goodTiles=[];
