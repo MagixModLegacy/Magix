@@ -8,7 +8,230 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.p
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
+	G.Launch=function()
+{
+
+	/*=====================================================================================
+	INITIALIZE
+	=======================================================================================*/	
+	G.engineVersion=VERSION;
 	
+	
+	G.LoadResources=function()
+	{
+		var resources=[
+			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
+			'img/blot.png',
+			'img/iconSheet.png?v=1'
+		];
+		var loader=new PicLoader(resources,function(){G.Init();});//load all resources then init the game when done
+	}
+	G.selectVersion=function(e)
+	{
+		var version=G.versionsById[e.target.value];
+		if (version) window.location.href=version.url;
+	}
+	G.Init=function()
+	{
+		G.T=0;
+		G.drawT=0;
+		G.fps=30;
+		
+		G.l=l('game');
+		G.wrapl=l('wrap');
+		G.wrapl.classList.add('skinRock');
+		
+		G.local=true;
+		if (window.location.protocol=='http:' || window.location.protocol=='https:') G.local=false;
+		G.isIE=false;
+		if (document.documentMode || /Edge/.test(navigator.userAgent)) G.isIE=true;
+		
+		if (G.versions)
+		{
+			G.versionsById=[];
+			for (var i in G.versions)
+			{
+				G.versionsById[G.versions[i].version]=G.versions[i];
+			}
+			var str='';
+			str+='<select id="versionsSelect" onchange="G.selectVersion(event);">';
+			for (var i in G.versions)
+			{
+				var version=G.versions[i];
+				str+='<option '+(version.version==G.engineVersion?'selected="selected" ':'')+'value="'+version.version+'">'+version.name+'</option>';
+			}
+			str+='</select>';
+			l('versions').innerHTML=str;
+		}
+		
+		//upscale pixel icons and apply to stylesheet (this is kind of cheaty)
+		//only for Edge and IE since they have """"trouble"""" with nearest-neighbor
+		G.iconScale=1;
+		G.iconURL='img/iconSheet.png?v=1';
+		if (G.isIE)
+		{
+			var img=Pic('img/iconSheet.png?v=1');
+			var c=document.createElement('canvas');c.width=img.width*2;c.height=img.height*2;
+			var ctx=c.getContext('2d');
+			ctx.mozImageSmoothingEnabled=false;
+			ctx.webkitImageSmoothingEnabled=false;
+			ctx.msImageSmoothingEnabled=false;
+			ctx.imageSmoothingEnabled=false;
+			ctx.drawImage(img,0,0,img.width*2,img.height*2);
+			
+			var sheet=(function()
+			{
+				var style=document.createElement('style');
+				style.appendChild(document.createTextNode(''));
+				document.head.appendChild(style);
+				return style.sheet;
+			})();
+			addCSSRule(sheet,'.IE .icon','background-image:url('+c.toDataURL('image/png')+')');
+			G.iconURL=c.toDataURL('image/png');
+			addCSSRule(sheet,'.IE .icon.double','background-image:url('+G.iconURL+'),url('+G.iconURL+')');
+			G.wrapl.classList.add('IE');
+			G.iconScale=2;
+		}
+		
+		
+		G.w=window.innerWidth;
+		G.h=window.innerHeight;
+		G.resizing=false;
+		G.stabilizeResize=function()
+		{
+			G.resizing=false;
+			//change page layout to fit width
+			if (G.w<288*3) {G.wrapl.classList.remove('narrow');G.wrapl.classList.add('narrower');}
+			else if (G.w<384*3) {G.wrapl.classList.remove('narrower');G.wrapl.classList.add('narrow');}
+			else {G.wrapl.classList.remove('narrower');G.wrapl.classList.remove('narrow');}
+			//if (G.tab.id=='unit') G.cacheUnitBounds();
+		}
+		G.resize=function()
+		{
+			G.resizing=true;
+		}
+		window.addEventListener('resize',function(event)
+		{
+			G.w=window.innerWidth;
+			G.h=window.innerHeight;
+			G.resize();
+		});
+		
+		G.mouseDown=false;//mouse button just got pressed
+		G.mouseUp=false;//mouse button just got released
+		G.mousePressed=false;//mouse button is currently down
+		G.clickL=0;//what element got clicked
+		AddEvent(document,'mousedown',function(event){G.mouseDown=true;G.mousePressed=true;G.mouseDragFrom=event.target;G.mouseDragFromX=G.mouseX;G.mouseDragFromY=G.mouseY;});
+		AddEvent(document,'mouseup',function(event){G.mouseUp=true;G.mouseDragFrom=0;});
+		AddEvent(document,'click',function(event){G.clickL=event.target;});
+		
+		G.mouseX=0;
+		G.mouseY=0;
+		G.mouseMoved=0;
+		G.draggedFrames=0;//increment every frame when we're moving the mouse and we're clicking
+		G.GetMouseCoords=function(e)
+		{
+			var posx=0;
+			var posy=0;
+			if (!e) var e=window.event;
+			if (e.pageX||e.pageY)
+			{
+				posx=e.pageX;
+				posy=e.pageY;
+			}
+			else if (e.clientX || e.clientY)
+			{
+				posx=e.clientX+document.body.scrollLeft+document.documentElement.scrollLeft;
+				posy=e.clientY+document.body.scrollTop+document.documentElement.scrollTop;
+			}
+			var x=0;
+			var y=0;
+			G.mouseX=posx-x;
+			G.mouseY=posy-y;
+			G.mouseMoved=1;
+		}
+		AddEvent(document,'mousemove',G.GetMouseCoords);
+		
+		G.Scroll=0;
+		G.handleScroll=function(e)
+		{
+			if (!e) e=event;
+			G.Scroll=(e.detail<0||e.wheelDelta>0)?1:-1;
+		};
+		AddEvent(document,'DOMMouseScroll',G.handleScroll);
+		AddEvent(document,'mousewheel',G.handleScroll);
+		
+		G.keys=[];//key is being held down
+		G.keysD=[];//key was just pressed down
+		G.keysU=[];//key was just pressed up
+		//shift=16, ctrl=17
+		AddEvent(window,'keyup',function(e){
+			if ((document.activeElement.nodeName=='TEXTAREA' || document.activeElement.nodeName=='INPUT') && e.keyCode!=27) return;
+			if (e.keyCode==27) {}//esc
+			else if (e.keyCode==13) {}//enter
+			G.keys[e.keyCode]=0;
+			G.keysD[e.keyCode]=0;
+			G.keysU[e.keyCode]=1;
+		});
+		AddEvent(window,'keydown',function(e){
+			if (!G.keys[e.keyCode])//prevent repeats
+			{
+				if (e.ctrlKey && e.keyCode==83) {e.preventDefault();}//ctrl-s
+				if ((document.activeElement.nodeName=='TEXTAREA' || document.activeElement.nodeName=='INPUT') && e.keyCode!=27) return;
+				if (e.keyCode==32) {e.preventDefault();}//space
+				G.keys[e.keyCode]=1;
+				G.keysD[e.keyCode]=1;
+				G.keysU[e.keyCode]=0;
+				//console.log('Key pressed : '+e.keyCode);
+			}
+		});
+		AddEvent(window,'blur',function(e){
+			G.keys=[];
+			G.keysD=[];
+			G.keysU=[];
+		});
+		
+		//latency compensator stuff
+		G.time=new Date().getTime();
+		G.fpsMeasure=new Date().getTime();
+		G.accumulatedDelay=0;
+		G.catchupLogic=0;
+		G.fpsStartTime=0;
+		G.frameNumber=0;
+		G.getFps=function()
+		{
+			G.frameNumber++;
+			var currentTime=(Date.now()-G.fpsStartTime )/1000;
+			var result=Math.floor((G.frameNumber/currentTime));
+			if (currentTime>1)
+			{
+				G.fpsStartTime=Date.now();
+				G.frameNumber=0;
+			}
+			return result;
+		}
+		G.fpsGraph=l('fpsGraph');
+		G.fpsGraphCtx=G.fpsGraph.getContext('2d');
+		var ctx=G.fpsGraphCtx;
+		ctx.fillStyle='#000';
+		ctx.fillRect(0,0,128,64);
+		G.currentFps=0;
+		G.previousFps=0;
+		
+		G.animIntro=true;
+		G.introDur=G.fps*1;
+				
+		//is there a file save already? if yes, load it, if not, hard-reset and start a new game
+		if (!G.Load())
+		{
+			G.Reset(true);
+			G.NewGame();
+		}
+		
+		G.resize();
+		
+		G.Loop();
+	}
 		
 var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
