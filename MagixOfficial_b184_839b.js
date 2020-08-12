@@ -1217,6 +1217,9 @@ G.Map=function(type,w,h,seed)
 		ctx.clearRect((tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts));
 		ctx.drawImage(c,(tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts),(tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts));
 	}
+
+//////////////////////////////////////////////////////////////
+////////ACTUAL CONTENT
 G.AddData({
 name:'Default dataset',
 author:'pelletsstarPL',
@@ -2533,6 +2536,8 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
+		var img = new Image();   // Create new img element
+img.src = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png';
 	}
 	G.funcs['new year']=function()
 	{
