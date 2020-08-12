@@ -11,7 +11,10 @@
 =================================================================================================================================================================================================================================
                                                           U   P   D   A   T   E                   L  O  G
 							  
-							  
+	improved goods display
+	Fixed world map bug
+	deving a new trial
+	-----------------------------------------------------
 	new biome that is currently most unfriendly biome to the player(very rare due to difficulty)
 	added new types of rocky substrate. Some type will appear and replace default one depending on biome.
 	new goods(well... bads mostly for new biome)
