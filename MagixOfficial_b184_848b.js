@@ -607,17 +607,7 @@ G.Map=function(type,w,h,seed)
 		var img = new Image();   // Create new img element
 		img.src = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png';
 		var fog=Pic('img/blot.png');
-		/*
-			the format for terrain.png is (from top to bottom) :
-				-colors - the map will pick 4 colors at random from this square to draw the tile
-				-heightmap 1 - will be drawn on the tile in overlay mode; must be black and white, have values centered around pure gray, and have transparent edges
-				-color detail 1 - colors will be drawn over the heightmap in hard-light mode; should also have transparent edges
-				-heightmap 2 - a possible variation
-				-color detail 2 - a possible variation
-			furthermore, the leftmost 2 columns are reserved for land chunks (drawn together in lighten mode)
-		*/
 		
-		//create fog map (draw all tiles with explored>0 as blots on a transparent background)
 		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
 		var ctx=c.getContext('2d');
 		ctx.translate(ts/2,ts/2);
@@ -692,8 +682,6 @@ G.Map=function(type,w,h,seed)
 		var imgOutline=c;
 		if (breakdown) toDiv.appendChild(c);
 		if (verbose) {console.log('	OUTLINE took 		'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
-		
-		//create base heightmap by patching together random chunks of land (the transparency also makes this a mask for the coastline)
 		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
 		var ctx=c.getContext('2d');
 		ctx.globalCompositeOperation='lighten';
