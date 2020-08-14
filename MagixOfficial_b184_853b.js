@@ -16492,7 +16492,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Policy({
 		name:'Pocket',
 		desc:'starts [se10] trial. Will warn you before start.',
-		icon:[24,18,'magixmod',26,25,'magixmod',1,22,'magixmod'],
+		icon:[24,18,'magixmod',20,25,'magixmod',1,22,'magixmod'],
 		cost:{'insight II':1,'influence II':1},
 		startMode:'off',		
 		req:{'se04':'on'},
@@ -16502,7 +16502,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
             return '<div style="width:580px;min-height:550px;height:75%;">'+
                 '<div class="fancyText title"><font color="#d4af37" size="5">- - Hunted - -</font></div>'+
 				'<div class="fancyText">The Hartar\'s trial</font></div><br>'+
-				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/4.png" width="72" height="72"/>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/10.png" width="72" height="72"/>'+
                 '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
