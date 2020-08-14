@@ -16129,6 +16129,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'silver':{name:'Silver',desc:'Switches to silver theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'golden':{name:'Golden',desc:'Switches to golden theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'black':{name:'Black',desc:'Switches to black theme. Reward for <b>Talented?</b> achievement.',req:{'<font color="orange">Smaller shacks</font>':true}},
+			'wooden':{name:'Wooden',desc:'Switches to wooden theme. Reward for completing Buried trial for the first... and the last time.',req:{'<font color="orange">Smaller shacks</font>':true}},
 		},
 		category:'mag',
 	});
