@@ -7840,11 +7840,6 @@ if (!document.getElementById(cssId))
 			if(G.has('<font color="orange">Smaller shacks</font>') && G.has('backshift at farms')){
 				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
-			if(G.hasNot('monument-building')){
-				G.getDict('pagoda of passing time').cost={'land':1e20}
-			}else{
-				G.getDict('pagoda of passing time').cost={'basic building materials':225}
-			}
 			//STORAGE NERFS
 			G.getDict('Fire essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Fire essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Fire essence storage')+1/15))};
 			G.getDict('Water essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Water essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Water essence storage')+1/15))};
@@ -16670,6 +16665,33 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'+2':{name:'<font color="#ff884d">+2</font>',desc:'A 9.5% chance to receive 0.25 to 2 [insight] at the start of new year.'},
 			'+3':{name:'<font color="#ff8066">+3</font>',desc:'A 10.25% chance to receive 0.15 to 1.5 [insight] at the start of new year.'},
 		},
+	});
+	new G.Policy({
+		name:'Pocket',
+		desc:'starts [se10] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',26,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se04':'on'},
+		category:'trial',
+		effects:[
+			{type:'function',func:function(){G.dialogue.popup(function(div){
+            return '<div style="width:580px;min-height:550px;height:75%;">'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Hunted - -</font></div>'+
+				'<div class="fancyText">The Hartar\'s trial</font></div><br>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/4.png" width="72" height="72"/>'+
+                '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
+'<br><br><Br><br>'+
+				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
+                '<br>Trial rules<br>'+
+                'I am patron of hunters! But in my trial you will hunt yourself. You\'ll hunt your weakpoints. In my plane your people won\'t like taste of green willing for tasty meat. <font color="pink">Gatherer</font> and <font color="pink">fisher</font> doesn\'t exist there too. But you have no time for eating and being happy from taste of hunted deer. Each year 3% of your people will die and <font color="pink">Health</font> will go lower and lower increasing vulnerability to the diseases. Happiness cap for this trial is: from -200% to 98%! You\'ll be able to bring health back to 0 state only once(via policies) but it will consume half of your total food. Build a wonder of my religion. Completing the trial for the first time I will empower all hunting units and cooked meat,cured meat will decay slower.<br><Br><BR>'+
+'<div class="fancyText title">Tell me your choice...</div>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t4']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Hunted trial has been started. You are in Hartar\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Hunted trial begins...<br>The meat rush begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Hunted','off')}})+'</center>'+
+                '</div>'+
+            '</div><div class="buttonBox">'+
+            '</div></div>'
+})}}
+				],
 	});
 	/*=====================================================================================
 	LANDS
