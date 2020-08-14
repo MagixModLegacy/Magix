@@ -11873,7 +11873,7 @@ new G.Unit({
 		finalStepCost:{'population':100,'precious metal ingot':5},
 		finalStepDesc:'To perform the final step 100 [population,people] and must be sacrificed to finish this trial and award <b>Victory points</b>.',
 		use:{'land':15,'worker':5,'metal tools':5},
-		req:{'language':true,'tribalism':false},
+		req:{'monument-building':true,'t10':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
