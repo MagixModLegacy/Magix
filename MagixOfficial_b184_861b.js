@@ -7659,6 +7659,7 @@ if (!document.getElementById(cssId))
 				if(G.checkPolicy('reset health level')=='activate'){  //hunted special policy
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
 			}
+			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
