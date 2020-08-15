@@ -4964,20 +4964,6 @@ G.writeMSettingButton=function(obj)
 		displayUsed:true,
 	});
 		new G.Res({
-		name:'Cactus spikes',
-		desc:'Spikes out of [cactus]. May wound... a lot!',
-		icon:[12,0,'magixmod'],
-		category:'misc',
-		partOf:'misc materials',
-	});
-		new G.Res({
-		name:'Sunflower seeds',
-		desc:'Edible seeds out of [Sunflower].',
-		icon:[12,1,'magixmod'],
-		category:'food',
-		partOf:'food',
-	});
-		new G.Res({
 		name:'Painting',
 		desc:'The paint made by Painter. People are proud from its beauty.',
 		icon:[12,4,'magixmod'],
@@ -11421,7 +11407,7 @@ if (!document.getElementById(cssId))
 //New Wonder. The portal to Plain Island. If possible I make it being built same way as Mausoleum
 		new G.Unit({
     		name:'<span style="color: #E0CE00">Plain island portal</span>',
-    		desc:'@opens a portal to a huge <b>Plain Island</b>A creation made of ideas of wizards and dreams of population more exactly kids.//A Dream comes real. You will grant +25000 max land upon activation of portal',
+    		desc:'@opens a portal to a huge <b>Plain Island</b>A creation made of ideas of wizards and dreams of population more exactly kids.//A Dream comes real. You will grant +25000 [Land of the Plain Island] upon activation of portal',
     		wideIcon:[7,3,'magixmod'],
     		cost:{'precious building materials':5000,'insight':1500,'faith':100,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750},
     		effects:[
@@ -11436,7 +11422,7 @@ if (!document.getElementById(cssId))
 	});
 		new G.Unit({
     		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
-    		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 paradise land at your own but you <b>must</b> follow some of God\'s rules.',
+    		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules.',
     		wideIcon:[7,4,'magixmod'],
     		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4,'heavenlyTemplePoint':400},
     		effects:[
@@ -12995,7 +12981,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'quarrying II',
-		desc:'@[quarry] can now dig for [Various cut stones] by new special mode. @<b>"Advanced quarry stone" mode and "Quarry other stones mode(non advanced)" has 1.7% chance to gain 6 to 13 [platinum ore]s .',
+		desc:'@[quarry] can now dig for [Various cut stones] by new special mode. @<b>"Advanced quarry stone" mode and "Quarry other stones mode(non advanced)" are now able to gather [platinum ore,Platinum].',
 		icon:[10,12,'magixmod'],
 		cost:{'insight':355},
 		req:{'prospecting II':true,'quarrying':true},
@@ -16530,13 +16516,24 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 				],
 	});
 		new G.Policy({
-		name:'Reset health level',
+		name:'reset health level',
 		desc:'Only available while in Hunted. Resets health to 0%. Available only once per each Hunted attempt.',
 		icon:[21,29,'magixmod'],
 		cost:{'influence':1},
-		startMode:'off',
+		startMode:'inactive',
+		modes:{
+		'inactive':{name:'Inactive',desc:'Ability is currently unused'},
+		'activate':{name:'Activate',desc:'Active this ability'},
+		'alreadyused':{name:'Already used',req:{'tribalism':false}},
+		},
 		req:{'t4':true,'trial':true},
 		category:'Florists',
+		effects:[
+			{type:'function',func:function(){if(G.checkPolicy('reset health level')=='activate')){
+				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0;  G.setPolicyModeByName('reset health level','alreadyused');
+			}
+							}}
+		],
 	});
 	/*=====================================================================================
 	LANDS
