@@ -4652,7 +4652,7 @@ G.writeMSettingButton=function(obj)
 		name:'precious metal ingot',
 		desc:'Metal with little industrial usefulness but imbued with valuable aesthetics.//Includes gold and silver.',
 		icon:[11,9],
-		partOf:'misc materials',
+		
 		category:'build',
 	});
 	
@@ -7670,6 +7670,7 @@ if (!document.getElementById(cssId))
 			G.getDict('Dark essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Dark essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Dark essence storage')+1/15))};
 			G.getDict('Lightning essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Lightning essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Lightning essence storage')+1/15))};
 			G.getDict('Holy essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Holy essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Holy essence storage')+1/15))};
+			if(G.hasNot('t10')){G.getDict('precious metal ingot').partOf='misc materials'}//this resource will not decay during Pocket but normally without active trial will
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -15533,7 +15534,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'dit1u2',
 		displayName:'Clay trend II',
-		desc:'[clay] trend makes [digger]s dig more [clay]s for you.',
+		desc:'[clay] trend makes [digger]s dig more [clay] for you.',
 		icon:[23,28,'magixmod'],
 		req:{'dit1':true,'Policy revaluation':true},
 		cost:{'insight II':100,'culture II':35,'influence II':10},
@@ -15543,7 +15544,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'dit2u2',
 		displayName:'Mud trend II',
-		desc:'[mud] trend makes [digger]s gather more [clay]s for you.',
+		desc:'[mud] trend makes [digger]s gather more [mud] for you.',
 		icon:[24,28,'magixmod'],
 		req:{'dit2':true,'Policy revaluation':true},
 		cost:{'insight II':100,'culture II':35,'influence II':10},
@@ -16395,7 +16396,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
                 '<br>Trial rules<br>'+
                 'Enter the plane where I will show you that the time is mo\' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [around 0.01% to 0.5%]. In addition Dreamers in this plane don\'t exist and nobody knows who are they but I will bring down to you some , random amount of <font color="aqua">Insight</font> each year(in this trial amount of <font color="aqua">Insight</font> can be equal to 160% of <font color="aqua">Wisdom</font> amount).Finish the trial by building mai wonder and ascend your soul to me.I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first trial completion<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Patience trial begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Patience','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Patience trial begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Patience','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -16422,7 +16423,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
                 '<br>Trial rules<br>'+
                 'I am a Madness. This plane is full of anger... No way to make\'em happy. You will have to handle it. In fact people\'s happiness will be always at -200% level and can\'t be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Reaching -400% happiness causes Madness to kick you out of this plane. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Unhappy trial begins...<br>The Madness begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Unhappy trial begins...<br>The Madness begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -16449,7 +16450,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
                 '<br>Trial rules<br>'+
                 'I am a personification of Inspiration. Ya met me '+G.getName('ruler')+'! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather <font color="green">culture</font> , <font color="green">influence</font> for ya. (their amounts can over cap but Tu-ria won\'t bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial <font color="green">water rations</font> cannot be set to plentiful(food one can be still be set)! In addition you will be forced to keep cultural stability. Doing anything related to researching, discovering causes stability to go low while doing cultural things will bring it up.(also few researches will increase up the stability) Don\'t get too low or too much(it will make trial attempt failed). Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. <br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t3']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Cultural','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t3']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Cultural','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -16476,7 +16477,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
                 '<br>Trial rules<br>'+
                 'I am patron of hunters! But in my trial you will hunt yourself. You\'ll hunt your weakpoints. In my plane your people won\'t like taste of green willing for tasty meat. <font color="pink">Gatherer</font> and <font color="pink">fisher</font> doesn\'t exist there too. But you have no time for eating and being happy from taste of hunted deer. Each year 3% of your people will die and <font color="pink">Health</font> will go lower and lower increasing vulnerability to the diseases. Happiness cap for this trial is: from -200% to 98%! You\'ll be able to bring health back to 0 state only once(via policies) but it will consume half of your total food. Build a wonder of my religion. Completing the trial for the first time I will empower all hunting units and cooked meat,cured meat will decay slower.<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t4']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Hunted trial has been started. You are in Hartar\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Hunted trial begins...<br>The meat rush begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Hunted','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t4']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Hunted trial has been started. You are in Hartar\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Hunted trial begins...<br>The meat rush begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Hunted','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -16513,20 +16514,29 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'function',func:function(){G.dialogue.popup(function(div){
             return '<div style="width:580px;min-height:550px;height:75%;">'+
                 '<div class="fancyText title"><font color="#d4af37" size="5">- - Pocket - -</font></div>'+
-				'<div class="fancyText">The Hartar\'s trial</font></div><br>'+
+				'<div class="fancyText">The Mamuun\'s trial</font></div><br>'+
 				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/10.png" width="72" height="72"/>'+
                 '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'I am patron of hunters! But in my trial you will hunt yourself. You\'ll hunt your weakpoints. In my plane your people won\'t like taste of green willing for tasty meat. <font color="pink">Gatherer</font> and <font color="pink">fisher</font> doesn\'t exist there too. But you have no time for eating and being happy from taste of hunted deer. Each year 3% of your people will die and <font color="pink">Health</font> will go lower and lower increasing vulnerability to the diseases. Happiness cap for this trial is: from -200% to 98%! You\'ll be able to bring health back to 0 state only once(via policies) but it will consume half of your total food. Build a wonder of my religion. Completing the trial for the first time I will empower all hunting units and cooked meat,cured meat will decay slower.<br><Br><BR>'+
+                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Pocket\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Pocket\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
 })}}
 				],
+	});
+		new G.Policy({
+		name:'Reset health level',
+		desc:'Only available while in Hunted. Resets health to 0%. Available only once per each Hunted attempt.',
+		icon:[21,29,'magixmod'],
+		cost:{'influence':1},
+		startMode:'off',
+		req:{'t4':true,'trial':true},
+		category:'Florists',
 	});
 	/*=====================================================================================
 	LANDS
@@ -16813,7 +16823,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Land({
 		name:'dead forest',
-		names:['Deadlands,Dead forest'],
+		names:['Deadlands','Dead forest'],
 		goods:[
 			{type:['dead tree'],amount:3},
 			{type:'forest mushrooms',chance:0.1},
