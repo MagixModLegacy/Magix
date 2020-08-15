@@ -16534,7 +16534,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[24,18,'magixmod',20,25,'magixmod',1,22,'magixmod'],
 		cost:{'insight II':1,'influence II':1},
 		startMode:'off',		
-		req:{'se04':'on'},
+		req:{'se10':'on'},
 		category:'trial',
 		effects:[
 			{type:'function',func:function(){G.dialogue.popup(function(div){
@@ -16555,7 +16555,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 })}}
 				],
 	});
-		new G.Policy({
+	/*	new G.Policy({
 		name:'reset health level',
 		desc:'Only available while in Hunted. Resets health to 0%. Available only once per each Hunted attempt.',
 		icon:[21,29,'magixmod'],
@@ -16568,7 +16568,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		},
 		req:{'t4':true,'trial':true},
 		category:'Florists',
-	});
+	});*/
 	/*=====================================================================================
 	LANDS
 	=======================================================================================*/
