@@ -2533,8 +2533,8 @@ G.props['fastTicksOnResearch']=150;
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
-			G.getDict('wooden coin').desc='1st tier of currency used by Pocket trial. To get 1 [silver coin] you will need: '+100*(G.achievByName['Pocket'].won*3+1)+' [wooden coin]s. Can be used to buy primary, archaic resources.',
-			G.getDict('silver coin').desc='1st tier of currency used by Pocket trial. To get 1 [golden coin] you will need: '+100*(G.achievByName['Pocket'].won*3+1)+' [wooden coin]s. Can be used to buy primary, archaic resources.',
+			G.getDict('wooden coin').desc='1st tier of currency used by Pocket trial. To get 1 [silver coin] you will need: '+100*(G.achievByName['Pocket'].won*3+1)+' [wooden coin]s. Can be used to buy primary, archaic resources.';
+			G.getDict('silver coin').desc='1st tier of currency used by Pocket trial. To get 1 [golden coin] you will need: '+100*(G.achievByName['Pocket'].won*3+1)+' [wooden coin]s. Can be used to buy primary, archaic resources.';
 			if(t1start==true)
 			{
 				var insight=Math.floor(Math.random() * (33/(G.achievByName['Patience'].won+1)));
