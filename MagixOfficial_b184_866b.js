@@ -1861,6 +1861,7 @@ G.props['fastTicksOnResearch']=150;
 	let st10=false
 	let st11=false
 	let st12=false
+	let mamuun = 100*(G.achievByName['Pocket'].won+1)
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -7868,7 +7869,7 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'wooden coin',
-		desc:'1st tier of currency used by Pocket trial. To get 1 [silver coin] you will need: '+G.selfUpdatingText(function(){return B(100*(G.achievByName['Pocket'].won+1))})+' [wooden coin]s. Can be used to buy primary, archaic resources.',
+		desc:'1st tier of currency used by Pocket trial. To get 1 [silver coin] you will need: '+mamuun+' [wooden coin]s. Can be used to buy primary, archaic resources.',
 		category:'misc',
 		icon:[5,25,'magixmod'],
 		tick:function(me,tick)
@@ -7878,7 +7879,7 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'silver coin',
-		desc:'2nd tier of currency used by Pocket trial. To get 1 [golden coin] you will need: '+G.selfUpdatingText(function(){return B(100*(G.achievByName['Pocket'].won+1))})+' [silver coin]s. Can be used to buy basic resources.',
+		desc:'2nd tier of currency used by Pocket trial. To get 1 [golden coin] you will need: '+mamuun+' [silver coin]s. Can be used to buy basic resources.',
 		category:'misc',
 		icon:[6,25,'magixmod'],
 		tick:function(me,tick)
@@ -8316,6 +8317,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnResearch',amount:10},
 		],
 	});
+	
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
