@@ -1861,7 +1861,7 @@ G.props['fastTicksOnResearch']=150;
 	let st10=false
 	let st11=false
 	let st12=false
-	let mamuun = 100*(G.achievByName['Pocket'].won+1)
+	
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -15812,6 +15812,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'Wizard complex':true,'Belief in portals':true},
 		cost:{'insight':1000},
 	});
+	let mamuun = 100*(G.achievByName['Pocket'].won+1)
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
