@@ -7867,7 +7867,7 @@ if (!document.getElementById(cssId))
 			}
 		}
 	});
-	new G.Res({
+	/*new G.Res({
 		name:'wooden coin',
 		desc:'1st tier of currency used by Pocket trial. To get 1 [silver coin] you will need: 100*((times you have completed Pocket*3)+1) [wooden coin]s. Can be used to buy primary, archaic resources.',
 		category:'misc',
@@ -7896,7 +7896,7 @@ if (!document.getElementById(cssId))
 		{
 			
 		},
-	});
+	});*/
 		/*=====================================================================================
 	ACHIEVEMENTS
 	=======================================================================================*/
