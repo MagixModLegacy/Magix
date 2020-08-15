@@ -2532,7 +2532,7 @@ G.props['fastTicksOnResearch']=150;
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
-			
+			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
 			if(t1start==true)
 			{
 				var insight=Math.floor(Math.random() * (33/(G.achievByName['Patience'].won+1)));
@@ -2865,7 +2865,7 @@ G.props['fastTicksOnResearch']=150;
 		if(G.year==0){
 		G.gain('happiness',0.15)
 		}
-		G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
+		
 	}
 	
 	G.funcs['tracked stat str c1']=function()
