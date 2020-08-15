@@ -16517,6 +16517,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Only available while in Hunted. Resets health to 0%. Available only once per each Hunted attempt.',
 		icon:[21,29,'magixmod'],
 		cost:{'influence':1},
+			family:'test',
 		startMode:'inactive',
 		modes:{
 		'inactive':{name:'Inactive',desc:'Ability is currently unused'},
@@ -16525,9 +16526,9 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		},
 		req:{'t4':true,'trial':true},
 		category:'Florists',
-		effects:[
+		effectsOn:[
 			{type:'function',func:function(){if(G.checkPolicy('reset health level')=='activate'){
-				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0;  G.setPolicyModeByName('reset health level','alreadyused');
+				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
 			}
 							}}
 		],
