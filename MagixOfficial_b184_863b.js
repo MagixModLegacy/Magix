@@ -7866,6 +7866,36 @@ if (!document.getElementById(cssId))
 			}
 		}
 	});
+	new G.Res({
+		name:'wooden coin',
+		desc:'1st tier of currency used by Pocket trial. To get 1 [silver coin] you will need: '+100*(G.achievByName['Pocket'].won+1)+' [wooden coin]s. Can be used to buy primary, archaic resources.',
+		category:'misc',
+		icon:[5,25,'magixmod'],
+		tick:function(me,tick)
+		{
+			
+		},
+	});
+	new G.Res({
+		name:'silver coin',
+		desc:'2nd tier of currency used by Pocket trial. To get 1 [golden coin] you will need: '+100*(G.achievByName['Pocket'].won+1)+' [silver coin]s. Can be used to buy basic resources.',
+		category:'misc',
+		icon:[6,25,'magixmod'],
+		tick:function(me,tick)
+		{
+			
+		},
+	});
+	new G.Res({
+		name:'golden coin',
+		desc:'3rd and the highest tier of currency used by Pocket trial. Can be used to buy most expensive resources.',
+		category:'misc',
+		icon:[7,25,'magixmod'],
+		tick:function(me,tick)
+		{
+			
+		},
+	});
 		/*=====================================================================================
 	ACHIEVEMENTS
 	=======================================================================================*/
@@ -12674,7 +12704,7 @@ getCosts:function()
 		desc:'<span style="color: #00A012">Your wizards discovered way to make a portal and now they plan to open a new dimension. What would it mean? It means, more place to build, more housing, more everything!</span>',
 		icon:[2,1,'magixmod'], 
 		cost:{'insight':1400,'culture':30,'Mana':2500,'influence':70},
-		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true},
+		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true,'valid portal frame':true},
 	});
 		new G.Tech({
 		name:'Crafting a glass',
@@ -15772,6 +15802,13 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'function',func:function(){}}
 		],
 		
+	});
+	new G.Tech({
+		name:'valid portal frame',
+		desc:'Before wizards will be able to open a gate to new world they must know some rules. Without valid frame portal will not open or worse , it may explode.',
+		icon:[10,29,'magixmod'],
+		req:{'Wizard complex':true,'Belief in portals':true},
+		cost:{'insight':1000},
 	});
 	/*=====================================================================================
 	POLICIES
