@@ -7656,11 +7656,11 @@ if (!document.getElementById(cssId))
 			G.getDict('Dark essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Dark essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Dark essence storage')+1/15))};
 			G.getDict('Lightning essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Lightning essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Lightning essence storage')+1/15))};
 			G.getDict('Holy essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Holy essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Holy essence storage')+1/15))};
-			if(G.hasNot('t10')){G.getDict('precious metal ingot').partOf='misc materials'}//this resource will not decay during Pocket but normally without active trial will
+			/*if(G.hasNot('t10')){G.getDict('precious metal ingot').partOf='misc materials'}//this resource will not decay during Pocket but normally without active trial will
 				if(G.checkPolicy('reset health level')=='activate'){  //hunted special policy
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
 			}
-			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
+			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};*/
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
