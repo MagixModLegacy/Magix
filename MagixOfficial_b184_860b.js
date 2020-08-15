@@ -7656,6 +7656,9 @@ if (!document.getElementById(cssId))
 			G.getDict('Lightning essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Lightning essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Lightning essence storage')+1/15))};
 			G.getDict('Holy essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Holy essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Holy essence storage')+1/15))};
 			if(G.hasNot('t10')){G.getDict('precious metal ingot').partOf='misc materials'}//this resource will not decay during Pocket but normally without active trial will
+				if(G.checkPolicy('reset health level')=='activate'){  //hunted special policy
+				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -16517,7 +16520,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Only available while in Hunted. Resets health to 0%. Available only once per each Hunted attempt.',
 		icon:[21,29,'magixmod'],
 		cost:{'influence':1},
-			family:'test',
 		startMode:'inactive',
 		modes:{
 		'inactive':{name:'Inactive',desc:'Ability is currently unused'},
@@ -16526,12 +16528,6 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		},
 		req:{'t4':true,'trial':true},
 		category:'Florists',
-		effectsOn:[
-			{type:'function',func:function(){if(G.checkPolicy('reset health level')=='activate'){
-				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
-			}
-							}}
-		],
 	});
 	/*=====================================================================================
 	LANDS
