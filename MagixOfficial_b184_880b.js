@@ -11930,19 +11930,16 @@ new G.Unit({
 		category:'civil',
 	});
 	new G.Unit({
-    		name:'Dark wormhole',
-    		desc:'A wormhole built in the depths of the Underworld where darkness is everywhere. The wormhole provides over 20M[burial spot] but requires upkeep. It just looks cheap. Furthermore the [Dark wormhole] may get new abilities.',
-    		icon:[23,29,'magixmod'],
-    		cost:{'gem block':4,'precious building materials':5e3},
+    		name:'Bank',
+    		desc:'Can store the money making them decay slower. You always start with 1. The more times you completed Pocket, the less [Bank] can store [silver coin,Money] for you.',
+    		icon:[22,29,'magixmod'],
+    		cost:{'basic building materials':100},
     		effects:[
-    			{type:'provide',what:{'burial spot':2.4e7}},
-			{type:'provide',what:{'corpsedecaypoint':1}},
     		],
-		upkeep:{'Dark essence':30,'Mana':90,'Magic essences':1},
-    		use:{'Land of the Underworld':10,'worker':5,'Instructor':3},
-    		req:{'Burial wormhole 2/2':true},
-    		limitPer:{'land':3000,'population':50000},
-    		category:'civil',
+		startWith:1,
+    		use:{'land':1,'worker':1},
+    		req:{'t10':true,'trial':true},
+    		category:'trial',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
