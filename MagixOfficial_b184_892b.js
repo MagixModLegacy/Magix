@@ -11929,7 +11929,6 @@ new G.Unit({
 		req:{'language':true,'tribalism':false},
 		category:'civil',
 	});
-	var provide=6000/(G.achievByName['Pocket'].won+1);
 	new G.Unit({
     		name:'bank',
     		desc:'Can store the money making them decay slower. You always start with 1. The more times you completed Pocket, the less [bank] can store [silver coin,Money] for you.',
@@ -11937,7 +11936,7 @@ new G.Unit({
     		cost:{'basic building materials':100},
     		effects:[
 			{type:'addFree',what:{'worker':2,'land':2,'basic building materials':200},req:{'t10':true}},
-			{type:'provide',what:{'burial spot':provide}},
+			{type:'provide',what:{'burial spot':6000/(G.achievByName['Pocket'].won+1);}},
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
