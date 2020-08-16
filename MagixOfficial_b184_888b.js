@@ -9119,7 +9119,7 @@ if (!document.getElementById(cssId))
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
 			{type:'provide',what:{'burial spot':1},req:{'Spiritual piety':false}},
-			{type:'provide',what:{'burial spot':3},req:{'Spiritual piety':true}},
+			{type:'provide',what:{'burial spot':3},req:{'Spiritual piety':true}},'
 			//{type:'waste',chance:1/100,desired:true},
 			{type:'function',func:function(me){
 				var buried=G.getRes('burial spot').used;
@@ -11929,6 +11929,7 @@ new G.Unit({
 		req:{'language':true,'tribalism':false},
 		category:'civil',
 	});
+	var provide=6000/(G.achievByName['Pocket'].won+1);
 	new G.Unit({
     		name:'bank',
     		desc:'Can store the money making them decay slower. You always start with 1. The more times you completed Pocket, the less [bank] can store [silver coin,Money] for you.',
@@ -11936,6 +11937,7 @@ new G.Unit({
     		cost:{'basic building materials':100},
     		effects:[
 			{type:'addFree',what:{'worker':2,'land':2,'basic building materials':200},req:{'t10':true}},
+			{type:'provide',what:{'burial spot':provide}},
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
