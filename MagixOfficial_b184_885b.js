@@ -7661,6 +7661,7 @@ if (!document.getElementById(cssId))
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
+			if (G.getUnitAmount('Bank')==0) G.getUnitByName('Bank').amount=1; //startWith does not work with units that can't be unlocked at very start of a game
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -11935,10 +11936,8 @@ new G.Unit({
     		icon:[22,29,'magixmod'],
     		cost:{'basic building materials':100},
     		effects:[
-			{type:'add',what:{'worker':1,'basic building materials':100},req:{'t10':true}},
-			{type:'function',func:function(me){
-					if (G.getUnitAmount('Bank')==0) G.getUnitByName('Bank').amount=1; //startWith does not work with units that can't be unlocked at very start of a game
-			},req:{'t10':true}},
+			{type:'addFree',what:{'worker':1,'basic building materials':100},req:{'t10':true}},
+			
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
