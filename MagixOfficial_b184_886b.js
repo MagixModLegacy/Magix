@@ -7661,7 +7661,6 @@ if (!document.getElementById(cssId))
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
-			if (G.getUnitAmount('Bank')==0) G.getUnitByName('Bank').amount=1; //startWith does not work with units that can't be unlocked at very start of a game
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -11931,13 +11930,33 @@ new G.Unit({
 		category:'civil',
 	});
 	new G.Unit({
-    		name:'Bank',
+    		name:'bank',
     		desc:'Can store the money making them decay slower. You always start with 1. The more times you completed Pocket, the less [Bank] can store [silver coin,Money] for you.',
     		icon:[22,29,'magixmod'],
     		cost:{'basic building materials':100},
     		effects:[
-			{type:'addFree',what:{'worker':1,'basic building materials':100},req:{'t10':true}},
-			
+    		],
+    		use:{'land':1,'worker':1},
+    		req:{'t10':true,'trial':true},
+    		category:'trial',
+	});
+	new G.Unit({
+    		name:'cantor',
+    		desc:'Exchanges: '+100*(G.achievByName['Pocket'].won*3+1)+' coins of lower tier into 1 coin of higher tier. For example: '+100*(G.achievByName['Pocket'].won*3+1)+' of [wooden coin]s will be exchanged into 1 [silver coin]',
+    		icon:[23,29,'magixmod'],
+    		cost:{'basic building materials':100},
+    		effects:[
+    		],
+    		use:{'land':1,'worker':1},
+    		req:{'t10':true,'trial':true},
+    		category:'trial',
+	});
+	new G.Unit({
+    		name:'shop',
+    		desc:'Thanks to the Shop you can buy resources that you only could craft. Remember: they can still decay so keep that in mind and use \'em quickly so they won\'t waste. Amount of times you completed Pocket does not affect decay speed.',
+    		icon:[24,29,'magixmod'],
+    		cost:{'basic building materials':100},
+    		effects:[
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
