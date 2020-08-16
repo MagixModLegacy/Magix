@@ -8339,6 +8339,7 @@ if (!document.getElementById(cssId))
 		{id:'plainisleunit',name:'Plain Island'},
 		{id:'paradiseunit',name:'Paradise'},
 		{id:'alchemy',name:'Alchemy'},
+		{id:'trial',name:'Trial'},
 		{id:'guard',name:'<span style="color:#ff66cc">Army & Guards</span>'},
 	);
 	
@@ -11916,8 +11917,8 @@ new G.Unit({
 		name:'scientific university',//WIP WILL BE IMPLEMENTED AFTER UPDATE OF THE WORLD!
 		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
 		wonder:'Dreamy',
-		icon:[28,26,'magixmod'],
-		wideIcon:[27,26,'magixmod'],
+		icon:[13,29,'magixmod'],
+		wideIcon:[12,29,'magixmod'],
 		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400},
 		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight':100,'culture':5,'gems':5},
 		steps:150,
@@ -11927,6 +11928,21 @@ new G.Unit({
 		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
 		req:{'language':true,'tribalism':false},
 		category:'civil',
+	});
+	new G.Unit({
+    		name:'Dark wormhole',
+    		desc:'A wormhole built in the depths of the Underworld where darkness is everywhere. The wormhole provides over 20M[burial spot] but requires upkeep. It just looks cheap. Furthermore the [Dark wormhole] may get new abilities.',
+    		icon:[23,29,'magixmod'],
+    		cost:{'gem block':4,'precious building materials':5e3},
+    		effects:[
+    			{type:'provide',what:{'burial spot':2.4e7}},
+			{type:'provide',what:{'corpsedecaypoint':1}},
+    		],
+		upkeep:{'Dark essence':30,'Mana':90,'Magic essences':1},
+    		use:{'Land of the Underworld':10,'worker':5,'Instructor':3},
+    		req:{'Burial wormhole 2/2':true},
+    		limitPer:{'land':3000,'population':50000},
+    		category:'civil',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
