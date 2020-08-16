@@ -2855,7 +2855,6 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-			if(G.getUnitByName('bank').amount<=2)G.getUnitByName('bank').amount=2;
 		}
 		//0/0 insight fix
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
