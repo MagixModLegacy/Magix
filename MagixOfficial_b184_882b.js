@@ -11935,7 +11935,7 @@ new G.Unit({
     		icon:[22,29,'magixmod'],
     		cost:{'basic building materials':100},
     		effects:[
-			{type:'addFree',what:{'worker':1,'basic building materials':100},req:{'t10':true}}
+			{type:'add',what:{'worker':1,'basic building materials':100},req:{'t10':true}}
     		],
 		startWith:1,
     		use:{'land':1,'worker':1},
