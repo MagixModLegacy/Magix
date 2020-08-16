@@ -11931,10 +11931,11 @@ new G.Unit({
 	});
 	new G.Unit({
     		name:'bank',
-    		desc:'Can store the money making them decay slower. You always start with 1. The more times you completed Pocket, the less [Bank] can store [silver coin,Money] for you.',
+    		desc:'Can store the money making them decay slower. You always start with 1. The more times you completed Pocket, the less [bank] can store [silver coin,Money] for you.',
     		icon:[22,29,'magixmod'],
     		cost:{'basic building materials':100},
     		effects:[
+			{type:'addFree',what:{'worker':2,'land':2,'basic building materials':200},req:{'t10':true}},
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
