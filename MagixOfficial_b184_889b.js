@@ -9119,7 +9119,7 @@ if (!document.getElementById(cssId))
 		//require:{'worker':1,'knapped tools':1},
 		effects:[
 			{type:'provide',what:{'burial spot':1},req:{'Spiritual piety':false}},
-			{type:'provide',what:{'burial spot':3},req:{'Spiritual piety':true}},'
+			{type:'provide',what:{'burial spot':3},req:{'Spiritual piety':true}},
 			//{type:'waste',chance:1/100,desired:true},
 			{type:'function',func:function(me){
 				var buried=G.getRes('burial spot').used;
