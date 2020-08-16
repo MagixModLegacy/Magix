@@ -11935,9 +11935,11 @@ new G.Unit({
     		icon:[22,29,'magixmod'],
     		cost:{'basic building materials':100},
     		effects:[
-			{type:'add',what:{'worker':1,'basic building materials':100},req:{'t10':true}}
+			{type:'add',what:{'worker':1,'basic building materials':100},req:{'t10':true}},
+			{type:'function',func:function(me){
+					if (G.getUnitAmount('Bank')==0) G.getUnitByName('Bank').amount=1; //startWith does not work with units that can't be unlocked at very start of a game
+			},mode:'diggers',req:{'t10':true}},
     		],
-		startWith:1,
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
     		category:'trial',
