@@ -11930,6 +11930,19 @@ new G.Unit({
 		category:'civil',
 	});
 	new G.Unit({
+    		name:'money stockpile',
+    		desc:'Can store the money making them decay slower. You always start with 1. The more times you completed Pocket, the less [bank] can store [silver coin,Money] for you.',
+    		icon:[22,29,'magixmod'],
+    		effects:[
+			{type:'provide',what:{'burial spot':10000}},
+    		],
+    		use:{'land':1,'worker':1},
+		limitPer:{'land':1e7},
+		startWith:1,
+    		req:{'t10':true,'trial':true},
+    		category:'trial',
+	});
+	new G.Unit({
     		name:'bank',
     		desc:'Can store the money making them decay slower. You always start with 1. The more times you completed Pocket, the less [bank] can store [silver coin,Money] for you.',
     		icon:[22,29,'magixmod'],
