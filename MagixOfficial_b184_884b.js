@@ -11938,7 +11938,7 @@ new G.Unit({
 			{type:'add',what:{'worker':1,'basic building materials':100},req:{'t10':true}},
 			{type:'function',func:function(me){
 					if (G.getUnitAmount('Bank')==0) G.getUnitByName('Bank').amount=1; //startWith does not work with units that can't be unlocked at very start of a game
-			},mode:'diggers',req:{'t10':true}},
+			},req:{'t10':true}},
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
