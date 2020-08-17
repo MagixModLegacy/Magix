@@ -3245,12 +3245,9 @@ G.writeMSettingButton=function(obj)
 		if (G.sequence=='main')
 		{
 			str+='<center>'+G.button({text:'<',tooltip:'View the C1 achievements',onclick:function(){displayC1=true;displayC2=false;}})+''+G.button({text:'>',tooltip:'View the C2 achievements',onclick:function(){displayC1=false;displayC2=true;}})+'</center><div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
-			if(displayC1==true)
-			{
 			for (var i in G.achievByTier)
 			{
 				str+='<div class="tier thingBox">';
-				if(G.achievByTier.civ==0){
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
@@ -3260,16 +3257,13 @@ G.writeMSettingButton=function(obj)
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
 					'</div>';
-				}
 				}
 				str+='<div class="divider"></div>';
 				str+='</div>';
 			}
-			}else if(displayC2==true && G.achiev.civ==1){
 			for (var i in G.achievByTier)
 			{
 				str+='<div class="tier thingBox">';
-				if(G.achievByTier.civ==1){
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
@@ -3280,7 +3274,7 @@ G.writeMSettingButton=function(obj)
 						'</div>'+
 					'</div>';
 				}
-				}
+				
 				str+='<div class="divider"></div>';
 				str+='</div>';
 			}
