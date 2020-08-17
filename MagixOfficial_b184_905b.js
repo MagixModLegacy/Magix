@@ -2864,7 +2864,6 @@ G.props['fastTicksOnResearch']=150;
 		if(G.year==1){
 		G.gain('happiness',0.15)
 		}
-		G.getDict('bank').effects.push={type:'provide',what:{'burial spot':6000-G.achievByName['Pocket'].won*100}};
 	}
 	
 	G.funcs['tracked stat str c1']=function()
@@ -11951,6 +11950,7 @@ new G.Unit({
     		cost:{'basic building materials':100},
     		effects:[
 			{type:'addFree',what:{'worker':2,'land':2,'basic building materials':200},req:{'t10':true}},
+			{type:'provide',what:{'burial spot':6000-G.getAchiev('Pocket').won*250}};
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
