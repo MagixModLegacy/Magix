@@ -11932,6 +11932,7 @@ new G.Unit({
     		name:'money stockpile',
     		desc:'Can store the money making them decay slower. You always start with 1. Amount of money that [money stockpile] can store is not affected by Pocket completions. Due to trial rules you do not need [stockpiling] to unlock this unit.',
     		icon:[25,29,'magixmod'],
+		cost:{'archaic building materials':50},
     		effects:[
 			{type:'provide',what:{'burial spot':10000}},
     		],
@@ -11948,8 +11949,6 @@ new G.Unit({
     		icon:[22,29,'magixmod'],
     		cost:{'basic building materials':100},
     		effects:[
-			{type:'addFree',what:{'worker':2,'land':2,'basic building materials':200},req:{'t10':true}},
-			
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
@@ -11963,6 +11962,10 @@ new G.Unit({
     		effects:[
     		],
 		gizmos:true,
+		modes:{
+			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert '+100*(G.getAchiev('Pocket').won*3+1)+' [wooden coin]s into 1 [silver coin]'},
+			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert '+100*(G.getAchiev('Pocket').won*3+1)+' [silver coin]s into 1 [golden coin]'},
+		},
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
     		category:'trial',
