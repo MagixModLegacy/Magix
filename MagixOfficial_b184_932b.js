@@ -12013,7 +12013,7 @@ new G.Unit({
 	});
 	new G.Unit({
     		name:'shop',
-    		desc:'Thanks to the Shop you can buy resources that you only could craft. Remember: they can still decay so keep that in mind and use \'em quickly so they won\'t waste. Amount of times you completed Pocket does not affect decay speed.',
+    		desc:'Thanks to the Shop and worker you hired you can order resources that you only could craft. Remember: they can still decay so keep that in mind and use \'em quickly so they won\'t waste. Amount of times you completed Pocket does not affect decay speed.',
     		icon:[24,29,'magixmod'],
     		cost:{'basic building materials':100},
 		modes:{
@@ -12021,6 +12021,9 @@ new G.Unit({
 			'precious ingot':{name:'Precious ingot',icon:[30,19,'magixmod',11,9],desc:'Buy 10 [precious metal ingot]s for 150 [golden coin]s.'},
 			'woodpack':{name:'Woodpack',icon:[30,19,'magixmod',1,6],desc:'Buy 200 [log]s and 100 [lumber] for 30 [golden coin]s and 75 [silver coin]s.'},
 			'brickpack':{name:'Pack of bricks',icon:[30,19,'magixmod',3,8],desc:'Buy 100 [brick]s for 30 [golden coin]s , 75 [wooden coin]s , 50 [silver coin]s.'},
+			'toolpack':{name:'Pack of tools',icon:[30,19,'magixmod',1,9],desc:'Buy pack of: 10x [knapped tools] , 5 [stone tools] and 1 set of [metal tools] for: 15 [golden coin]s and 90 [silver coin]s.'},
+			'weaponpack':{name:'Pack of weaponry',icon:[30,19,'magixmod',5,9],desc:'Buy pack of: 12x [stone weapons] , 2[metal weapons] and 1 [armor set] for: 17 [golden coin]s.'},
+			'gempack':{name:'Pack of gems',icon:[30,19,'magixmod',17,8,7,9],desc:'Buy 2 [gem block]s and 40 [gems] for: 75 [golden coin]s.'},
 		},
     		effects:[
     		],
