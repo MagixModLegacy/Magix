@@ -3163,7 +3163,7 @@ G.writeMSettingButton=function(obj)
 		this.won=0;//how many times we've achieved this achievement (may also be used to track other info about the achievement)
 		this.visible=true;
 		this.icon=[0,0];
-		this.civ='people' //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah
+		this.civ=0 //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah . 0 stands for people... 1 for ... ???
 		
 		for (var i in obj) this[i]=obj[i];
 		this.id=G.achiev.length;
@@ -7920,6 +7920,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:300*3},
 			{type:'addFastTicksOnResearch',amount:150}
 		],
+		civ:0
 	});
 //Temple achiev
 		new G.Achiev({
@@ -7933,6 +7934,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:300},
 			{type:'addFastTicksOnResearch',amount:25}	
 		],
+			civ:0
 	});
 //skull achiev
 		new G.Achiev({
@@ -7946,6 +7948,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:300},
 			{type:'addFastTicksOnResearch',amount:25}	
 		],
+			civ:0
 	});
 
 		new G.Achiev({
@@ -7959,7 +7962,8 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
-		visible:false
+		visible:false,
+			civ:0
 	});
 		new G.Achiev({
 		tier:0,
@@ -7972,7 +7976,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
-			
+			civ:0
 	});
 		new G.Achiev({
 		tier:0,
@@ -7985,7 +7989,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
-			
+			civ:0
 	});
 		new G.Achiev({
 		tier:1,
@@ -7998,6 +8002,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:15},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:2,
@@ -8010,12 +8015,14 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:2000},
 			{type:'addFastTicksOnResearch',amount:175}
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:1,
 		icon:[25,19,'magixmod'],
 		name:'Level up',
 		desc:'Obtain [Eotm] trait during the run. This trait unlocks second tier of [insight] , [culture] , [faith] and [influence] which are required for further researches.',
+			civ:0
 	});
 		new G.Achiev({
 		tier:0,
@@ -8026,12 +8033,14 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:25},
 			{type:'addFastTicksOnResearch',amount:5}
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:0,
 		icon:[23,21,'magixmod'],
 		name:'Apprentice',
 		desc:'Get 100 or more technologies in a single run.',
+			civ:0
 	});
 		new G.Achiev({
 		tier:1,
@@ -8042,6 +8051,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5}
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:1,
@@ -8051,6 +8061,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:2,
@@ -8061,6 +8072,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:100},
 			{type:'addFastTicksOnResearch',amount:10}
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:0,
@@ -8071,6 +8083,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:100},
 			{type:'addFastTicksOnResearch',amount:10}
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:1,
@@ -8081,6 +8094,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:10}
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:2,
@@ -8090,6 +8104,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'addFastTicksOnStart',amount:40},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:2,
@@ -8102,18 +8117,21 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:15},
 		],
+			civ:0
 	});
 			new G.Achiev({
 		icon:[16,24,'magixmod'],
 		tier:1,
 		name:'Familiar',
 		desc:'Get 200 or more technologies in a single run.',
+				civ:0
 	});
 				new G.Achiev({
 		icon:[23,24,'magixmod'],
 		tier:0,
 		name:'3rd party',
 		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
+				civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8126,6 +8144,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8138,6 +8157,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8150,6 +8170,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8162,6 +8183,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8174,6 +8196,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8186,6 +8209,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8198,6 +8222,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8210,6 +8235,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8222,6 +8248,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8234,6 +8261,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8246,6 +8274,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 		new G.Achiev({
 		tier:3,
@@ -8258,6 +8287,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
+			civ:0
 	});
 	new G.Achiev({
 		tier:2,
@@ -8271,6 +8301,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:250},
 			{type:'addFastTicksOnResearch',amount:25},
 		],
+		civ:0
 	});
 	new G.Achiev({
 		tier:2,
@@ -8280,6 +8311,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'addFastTicksOnStart',amount:100},
 		],
+		civ:0
 	});
 		new G.Achiev({
 		tier:2,
@@ -8289,6 +8321,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
 		],
+			civ:0
 	});
 	new G.Achiev({
 		tier:2,
@@ -8298,6 +8331,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'addFastTicksOnStart',amount:90},
 		],
+		civ:0
 	});
 	new G.Achiev({
 		tier:2,
@@ -8308,6 +8342,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
 		],
+		civ:0
 	});
 	new G.Achiev({
 		tier:3,
@@ -8319,6 +8354,7 @@ if (!document.getElementById(cssId))
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
 		],
+		civ:0
 	});
 	
 	/*=====================================================================================
@@ -8546,7 +8582,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.03,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
-		req:{'stone-knapping':true},
+		req:{'stone-knapping':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -8592,7 +8628,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'stone':0.05},into:{'statuette':0.05},every:5,mode:'stone statuettes',req:{'cart1':true}},
 			{type:'convert',from:{'log':0.05},into:{'Wooden statuette':0.05},every:5,mode:'wood statuettes',req:{'cart2':true}},
 		],
-		req:{'carving':true},
+		req:{'carving':true,'t10':false},
 		category:'crafting',
 	});
 	
@@ -8630,7 +8666,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
 			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'},
 			],
-		req:{'sewing':true},
+		req:{'sewing':true,'t10':false},
 		category:'crafting',
 	});
 	new G.Unit({
@@ -8668,7 +8704,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'hunt',what:{'hide':1},req:{'htt1':true}},
 			{type:'gather',context:'hunt',what:{'meat':1},req:{'htt2':true}},
 		],
-		req:{'hunting':true},
+		req:{'hunting':true,'t10':false},
 		category:'production',
 		priority:5,
 	});
@@ -8756,7 +8792,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'craft precious pots'},
 			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'}
 		],
-		req:{'pottery':true},
+		req:{'pottery':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -8779,7 +8815,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.05,req:{'Better kiln construction':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		gizmos:true,
-		req:{'masonry':true},
+		req:{'masonry':true,'t10':false},
 		category:'crafting',
 	});
 	
@@ -8848,7 +8884,7 @@ if (!document.getElementById(cssId))
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
 		],
 		gizmos:true,
-		req:{'quarrying':true},
+		req:{'quarrying':true,'t10':false},
 		category:'production',
 	});
 	new G.Unit({
@@ -8950,7 +8986,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.1,req:{'Improved furnace construction':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		gizmos:true,
-		req:{'smelting':true},
+		req:{'smelting':true,'t10':false},
 		category:'crafting',
 	});
 	new G.Unit({
@@ -8990,7 +9026,7 @@ if (!document.getElementById(cssId))
 			//TODO : better metal tools, weapons etc
 		],
 		gizmos:true,
-		req:{'smelting':true},
+		req:{'smelting':true,'t10':false},
 		category:'crafting',
 	});
 			
@@ -9006,7 +9042,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'chop',amount:1,max:1},
 			{type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1}
 		],
-		req:{'woodcutting':true},
+		req:{'woodcutting':true,'t10':false},
 		category:'production',
 	});
 	new G.Unit({
@@ -9030,7 +9066,7 @@ if (!document.getElementById(cssId))
 			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		gizmos:true,
-		req:{'carpentry':true},
+		req:{'carpentry':true,'t10':false},
 		category:'crafting',
 	});
 	
@@ -9962,7 +9998,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false}},
 			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false}},
 		],
-		req:{'papercrafting':true,'Paradise crafting':true},
+		req:{'papercrafting':true,'Paradise crafting':true,'t10':false},
 		category:'paradiseunit',
 	});
 		new G.Unit({
@@ -10678,7 +10714,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'Mo\' concrete':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.05,req:{'Mo\' concrete':true,'<font color="maroon">Caretaking</font>':true}},
 		],
-		req:{'construction':true,'Concrete making':true},
+		req:{'construction':true,'Concrete making':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -11027,7 +11063,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'leather':5},into:{'Dried leather':5},every:20},
 			{type:'mult',value:2,req:{'More capacious racks':true}},
 		],
-		req:{'Sewing II':true},
+		req:{'Sewing II':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -11104,7 +11140,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
-		req:{'Crafting a juice':true},
+		req:{'Crafting a juice':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
