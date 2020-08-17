@@ -7613,6 +7613,9 @@ if (!document.getElementById(cssId))
 			G.getDict('succulents').res['gather']['herb']=3;
 			G.getDict('jungle fruits').res['gather']['herb']=1;
 			}
+			if(G.has('t10')){
+			G.getDict('grass').res['gather']['wooden coin']=0.2;
+			}
 			if(G.modsByName['Thot Mod']){
 				G.getDict('thot').req={'philosophy':true}
 				if(G.hasNot('philosophy')){
@@ -12004,7 +12007,7 @@ new G.Unit({
     		name:'cantor',
     		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
     		icon:[23,29,'magixmod'],
-    		cost:{'basic building materials':100},
+    		cost:{'archaic building materials':200,'wooden coin':90},
     		effects:[
     		],
 		gizmos:true,
