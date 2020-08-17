@@ -11963,8 +11963,8 @@ new G.Unit({
     		],
 		gizmos:true,
 		modes:{
-			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert '+100*(G.getAchiev('Pocket').won*3+1)+' [wooden coin]s into 1 [silver coin]'},
-			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert '+100*(G.getAchiev('Pocket').won*3+1)+' [silver coin]s into 1 [golden coin]'},
+			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert '+100*(G.getAchiev('Pocket').won*3+1)+' [wooden coin]s into 1 [silver coin].'},
+			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert '+100*(G.getAchiev('Pocket').won*3+1)+' [silver coin]s into 1 [golden coin].'},
 		},
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
