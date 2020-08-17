@@ -11954,18 +11954,18 @@ new G.Unit({
     		req:{'t10':true,'trial':true},
     		category:'trial',
 	});
-	var value=100*(G.achievByName['Pocket'].won*3+1)
+	
 	new G.Unit({
     		name:'cantor',
-    		desc:'Exchanges: '+value+' coins of lower tier into 1 coin of higher tier. For example: '+G.selfUpdatingText(function(){return B(100*(G.achievByName['Pocket'].won*3+1))})+' of [wooden coin]s will be exchanged into 1 [silver coin]',
+    		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
     		icon:[23,29,'magixmod'],
     		cost:{'basic building materials':100},
     		effects:[
     		],
 		gizmos:true,
 		modes:{
-			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert '+G.selfUpdatingText(function(){return B(100*(G.achievByName['Pocket'].won*3+1))})+' [wooden coin]s into 1 [silver coin].'},
-			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert '+G.selfUpdatingText(function(){return B(100*(G.achievByName['Pocket'].won*3+1))})+' [silver coin]s into 1 [golden coin].'},
+			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert  [wooden coin]s into 1 [silver coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
+			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert  [silver coin]s into 1 [golden coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
 		},
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
