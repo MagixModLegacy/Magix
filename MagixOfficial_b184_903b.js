@@ -7660,7 +7660,7 @@ if (!document.getElementById(cssId))
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
-			G.getDict('bank').effects={type:'provide',what:{'burial spot':6000-G.achievByName['Pocket'].won*100}};
+			G.getDict('bank').effects.push={type:'provide',what:{'burial spot':6000-G.achievByName['Pocket'].won*100}};
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
