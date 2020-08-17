@@ -3241,9 +3241,12 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Dead forests found: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['lands of despair'].won);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
+		let displayC1=true;let displayC2=false;
 		if (G.sequence=='main')
 		{
-			str+='<center>'+G.button({text:'<',tooltip:'View the C1 achievements',onclick:function(){}})+''+G.button({text:'>',tooltip:'View the C2 achievements',onclick:function(){}})+'</center><div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
+			str+='<center>'+G.button({text:'<',tooltip:'View the C1 achievements',onclick:function(){displayC1=true;displayC2=false;}})+''+G.button({text:'>',tooltip:'View the C2 achievements',onclick:function(){displayC1=false;displayC2=true;}})+'</center><div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
+			if(displayC1==true && G.achiev.civ==0)
+			{
 			for (var i in G.achievByTier)
 			{
 				str+='<div class="tier thingBox">';
@@ -3260,7 +3263,24 @@ G.writeMSettingButton=function(obj)
 				str+='<div class="divider"></div>';
 				str+='</div>';
 			}
-			
+			}else if(displayC2==true && G.achiev.civ==1){
+			for (var i in G.achievByTier)
+			{
+				str+='<div class="tier thingBox">';
+				for (var ii in G.achievByTier[i])
+				{
+					var me=G.achievByTier[i][ii];
+					str+='<div class="thingWrapper">'+
+						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
+						G.getIconStr(me,'achiev-icon-'+me.id)+
+						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
+						'</div>'+
+					'</div>';
+				}
+				str+='<div class="divider"></div>';
+				str+='</div>';
+			}
+			}
 			G.arbitraryCallback(function(){
 				for (var i in G.achievByTier)
 				{
