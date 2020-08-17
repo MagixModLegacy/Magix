@@ -15805,7 +15805,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Now fishing context contains [Ink]. <>Fishers from camp now are able to gather [Ink] out of some squids.',
 		icon:[32,19,'magixmod'],
 		req:{'Outstanding wisdom':true,'Hunters & fishers unification':true},
-		cost:{'insight II':290,'science':20},
+		cost:{'insight II':267,'science':20},
 	});
 	new G.Trait({
 		name:'bonus1',
