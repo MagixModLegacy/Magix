@@ -7659,7 +7659,7 @@ if (!document.getElementById(cssId))
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
-			
+			G.getDict('bank').effects=[{type:'provide',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}];
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -11950,7 +11950,7 @@ new G.Unit({
     		cost:{'basic building materials':100},
     		effects:[
 			{type:'addFree',what:{'worker':2,'land':2,'basic building materials':200},req:{'t10':true}},
-			{type:'add',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}
+			
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
