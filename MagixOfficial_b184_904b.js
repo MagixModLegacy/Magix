@@ -2860,11 +2860,11 @@ G.props['fastTicksOnResearch']=150;
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
 			if(G.getRes('wisdom').amount<100){
 		G.gain('wisdom',1)	
-		}}//year1 nerf
-		if(G.year==0){
+		}}//year1&2 nerf
+		if(G.year==1){
 		G.gain('happiness',0.15)
 		}
-		
+		G.getDict('bank').effects.push={type:'provide',what:{'burial spot':6000-G.achievByName['Pocket'].won*100}};
 	}
 	
 	G.funcs['tracked stat str c1']=function()
@@ -7660,7 +7660,7 @@ if (!document.getElementById(cssId))
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
-			G.getDict('bank').effects.push={type:'provide',what:{'burial spot':6000-G.achievByName['Pocket'].won*100}};
+			
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
