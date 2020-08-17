@@ -11930,9 +11930,8 @@ new G.Unit({
 	});
 	new G.Unit({
     		name:'money stockpile',
-    		desc:'Can store the money making them decay slower. You always start with 1.',
-		startWith:1,
-    		icon:[22,29,'magixmod'],
+    		desc:'Can store the money making them decay slower. You always start with 1. Amount of money that [money stockpile] can store is not affected by Pocket completions. Due to trial rules you do not need [stockpiling] to unlock this unit.',
+    		icon:[25,29,'magixmod'],
     		effects:[
 			{type:'provide',what:{'burial spot':10000}},
     		],
@@ -11963,6 +11962,7 @@ new G.Unit({
     		cost:{'basic building materials':100},
     		effects:[
     		],
+		gizmos:true,
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
     		category:'trial',
@@ -11975,6 +11975,7 @@ new G.Unit({
     		effects:[
     		],
     		use:{'land':1,'worker':1},
+		gizmos:true,
     		req:{'t10':true,'trial':true},
     		category:'trial',
 	});
