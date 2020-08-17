@@ -3278,7 +3278,7 @@ G.writeMSettingButton=function(obj)
 				str+='<div class="divider"></div>';
 				str+='</div>';
 			}
-			}
+			
 			G.arbitraryCallback(function(){
 				for (var i in G.achievByTier)
 				{
