@@ -3243,7 +3243,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
 		{
-			str+=''+G.button({text:'<',onclick:function(){}})+'<p style="float:right;">'+G.button({text:'>',onclick:function(){}})+'</p><div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
+			str+=''+G.button({text:'<',tooltip:'View the C1 achievements',onclick:function(){}})+'<p style="float:right;">'+G.button({text:'>',tooltip:'View the C2 achievements',onclick:function(){}})+'</p><div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
 			for (var i in G.achievByTier)
 			{
 				str+='<div class="tier thingBox">';
@@ -11982,7 +11982,9 @@ new G.Unit({
     		cost:{'basic building materials':100},
 		modes:{
 			'cut stone pack':{name:'Cut stone pack',icon:[30,19,'magixmod',2,12,'magixmod'],desc:'Buy bulk of 150 [cut stone] and 150 [Various cut stones] for 20 [golden coin]s and 50 [silver coin]s'},
-			'stg':{name:'Silver to Golden',icon:[30,19,'magixmod',27,29,'magixmod'],desc:'Cantor will convert  [silver coin]s into 1 [golden coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
+			'precious ingot':{name:'Precious ingot',icon:[30,19,'magixmod',11,9],desc:'Buy 10 [precious metal ingot]s for 150 [golden coin]s.'},
+			'woodpack':{name:'Woodpack',icon:[30,19,'magixmod',1,6],desc:'Buy 200 [log]s and 100 [lumber] for 30 [golden coin]s and 75 [silver coin]s.'},
+			'brickpack':{name:'Pack of bricks',icon:[30,19,'magixmod',3,8],desc:'Buy 100 [brick]s for 30 [golden coin]s , 75 [wooden coin]s , 50 [silver coin]s.'},
 		},
     		effects:[
     		],
