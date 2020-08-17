@@ -7660,6 +7660,7 @@ if (!document.getElementById(cssId))
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
 			G.getDict('bank').effects=[{type:'provide',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}];
+			G.getDict('cantor').effects=[{type:'convert',from:{'wooden coin':100*(G.getAchiev('Pocket').won*3+1)},into:{'wooden coin':1},every:1,mode:'wts'},{type:'convert',from:{'silver coin':100*(G.getAchiev('Pocket').won*3+1)},into:{'golden coin':1},every:1,mode:'stg'}];
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -11976,6 +11977,10 @@ new G.Unit({
     		desc:'Thanks to the Shop you can buy resources that you only could craft. Remember: they can still decay so keep that in mind and use \'em quickly so they won\'t waste. Amount of times you completed Pocket does not affect decay speed.',
     		icon:[24,29,'magixmod'],
     		cost:{'basic building materials':100},
+		modes:{
+			'cut stone pack':{name:'Cut stone pack',icon:[30,19,'magixmod',2,12,'magixmod'],desc:'Buy bulk of 150 [cut stone] and 150 [Various cut stones] for 20 [golden coin]s and 50 [silver coin]s'},
+			'stg':{name:'Silver to Golden',icon:[30,19,'magixmod',27,29,'magixmod'],desc:'Cantor will convert  [silver coin]s into 1 [golden coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
+		},
     		effects:[
     		],
     		use:{'land':1,'worker':1},
