@@ -3163,6 +3163,7 @@ G.writeMSettingButton=function(obj)
 		this.won=0;//how many times we've achieved this achievement (may also be used to track other info about the achievement)
 		this.visible=true;
 		this.icon=[0,0];
+		this.civ='people' //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah
 		
 		for (var i in obj) this[i]=obj[i];
 		this.id=G.achiev.length;
@@ -3242,7 +3243,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
 		{
-			str+='<div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
+			str+=''+G.button({text:'<',onclick:function(){G.dialogue.popup(function(div){)}})+'<div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
 			for (var i in G.achievByTier)
 			{
 				str+='<div class="tier thingBox">';
