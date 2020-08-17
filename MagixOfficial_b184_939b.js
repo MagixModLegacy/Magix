@@ -1861,6 +1861,7 @@ G.props['fastTicksOnResearch']=150;
 	let st10=false
 	let st11=false
 	let st12=false
+	let displayC1=true;let displayC2=false;
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -3241,7 +3242,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Dead forests found: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['lands of despair'].won);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
-		let displayC1=true;let displayC2=false;
+		
 		if (G.sequence=='main')
 		{
 			str+='<center>'+G.button({text:'<',tooltip:'View the C1 achievements',onclick:function(){displayC1=true;displayC2=false;}})+''+G.button({text:'>',tooltip:'View the C2 achievements',onclick:function(){displayC1=false;displayC2=true;}})+'</center><div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
