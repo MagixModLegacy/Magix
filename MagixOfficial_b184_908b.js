@@ -11950,7 +11950,7 @@ new G.Unit({
     		cost:{'basic building materials':100},
     		effects:[
 			{type:'addFree',what:{'worker':2,'land':2,'basic building materials':200},req:{'t10':true}},
-			{type:'provide',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}
+			{type:'add',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}
     		],
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
