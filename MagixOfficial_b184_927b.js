@@ -3243,7 +3243,7 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		if (G.sequence=='main')
 		{
-			str+=''+G.button({text:'<',onclick:function(){G.dialogue.popup(function(div){}}))+'<div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
+			str+=''+G.button({text:'<',onclick:function(){}})+'<div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>'+G.button({text:'<',onclick:function(){}})+'';
 			for (var i in G.achievByTier)
 			{
 				str+='<div class="tier thingBox">';
