@@ -11954,9 +11954,10 @@ new G.Unit({
     		req:{'t10':true,'trial':true},
     		category:'trial',
 	});
+	var value=100*(G.achievByName['Pocket'].won*3+1)
 	new G.Unit({
     		name:'cantor',
-    		desc:'Exchanges: '+G.selfUpdatingText(function(){return B(100*(G.achievByName['Pocket'].won*3+1))})+' coins of lower tier into 1 coin of higher tier. For example: '+G.selfUpdatingText(function(){return B(100*(G.achievByName['Pocket'].won*3+1))})+' of [wooden coin]s will be exchanged into 1 [silver coin]',
+    		desc:'Exchanges: '+value+' coins of lower tier into 1 coin of higher tier. For example: '+G.selfUpdatingText(function(){return B(100*(G.achievByName['Pocket'].won*3+1))})+' of [wooden coin]s will be exchanged into 1 [silver coin]',
     		icon:[23,29,'magixmod'],
     		cost:{'basic building materials':100},
     		effects:[
