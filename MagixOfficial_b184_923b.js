@@ -7268,7 +7268,7 @@ if (!document.getElementById(cssId))
 		{
 		}
 	});
-		var value=(G.achievByName['Pocket'].won*3+1)*100;
+		var value=(G.getAchiev('Pocket').won*3+1)*100;
 	new G.Res({
 		name:'faith II',
 		desc:'[faith II] derives from all things divine, from meditation to sacrifices.//'+limitDesc('[spirituality II]')+'//Some cultural traits and technologies depend on faith. This is higher tier essential. <><font color="aqua">You need to know that each 500 [faith] can be converted into 1 [faith II] point.</font>',
