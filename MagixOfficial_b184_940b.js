@@ -15923,7 +15923,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Before wizards will be able to open a gate to new world they must know some rules. Without valid frame portal will not open or worse , it may explode.',
 		icon:[10,29,'magixmod'],
 		req:{'Wizard complex':true,'Belief in portals':true},
-		cost:{'insight':1000},
+		cost:{'insight':1015},
 	});
 	/*=====================================================================================
 	POLICIES
