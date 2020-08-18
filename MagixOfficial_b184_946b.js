@@ -7867,10 +7867,12 @@ if (!document.getElementById(cssId))
 		name:'beyond',
 		tick:function(me,tick)
 		{
-			if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode==4 && me.amount<=2){
+			if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode==4 && me.amount<2){
 				G.gain(me,1);
 				G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'insight':250};
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').costPerStep={'insight':250};
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'insight':250};
 			}
 			if(G.has('beyond the edge') && G.getRes('beyond').amount==2){
 			G.gain('beyond',1)
