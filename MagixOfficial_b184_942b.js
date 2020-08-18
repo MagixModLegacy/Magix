@@ -11492,7 +11492,7 @@ if (!document.getElementById(cssId))
     		name:'<span style="color: #E0CE00">Plain island portal</span>',
     		desc:'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +25000 [Land of the Plain Island] upon activation of portal. Stage 1 of 2',
     		wideIcon:[7,3,'magixmod'],
-		wonder:'',
+		wonder:'.',
     		cost:{'precious building materials':5000,'insight':1500,'faith':100,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750},
     		effects:[
     			{type:'provide',what:{'Land of the Plain Island':25000}},
