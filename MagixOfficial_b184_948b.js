@@ -7920,7 +7920,7 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick)
 		{
 			if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode==4 && me.amount<2){
-				G.gain(me,1);
+				G.gain('beyond',1);
 				G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'insight':250};
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').costPerStep={'insight':250};
