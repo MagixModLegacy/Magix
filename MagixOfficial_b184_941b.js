@@ -7867,7 +7867,8 @@ if (!document.getElementById(cssId))
 		name:'beyond',
 		tick:function(me,tick)
 		{
-			if(G.has('beyond the edge') && G.getRes('beyond').amount==0){
+			
+			if(G.has('beyond the edge') && G.getRes('beyond').amount==2){
 			G.gain('beyond',1)
 				G.lose('population',G.getRes('population').amount*0.3);
 				G.getRes('happiness').amount=0;G.getRes('health').amount=0;
@@ -11489,14 +11490,17 @@ if (!document.getElementById(cssId))
 //New Wonder. The portal to Plain Island. If possible I make it being built same way as Mausoleum
 		new G.Unit({
     		name:'<span style="color: #E0CE00">Plain island portal</span>',
-    		desc:'@opens a portal to a huge <b>Plain Island</b>A creation made of ideas of wizards and dreams of population more exactly kids.//A Dream comes real. You will grant +25000 [Land of the Plain Island] upon activation of portal',
+    		desc:'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +25000 [Land of the Plain Island] upon activation of portal. Stage 1 of 2',
     		wideIcon:[7,3,'magixmod'],
+		wonder:'',
     		cost:{'precious building materials':5000,'insight':1500,'faith':100,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750},
     		effects:[
     			{type:'provide',what:{'Land of the Plain Island':25000}},
 			{type:'provide',what:{'Plain Island emblem':1}},
     		],
     		use:{'land':10},
+		steps:25,
+		
 		messageOnStart:'You built a portal to Plain Island. It is big isle. On this island you may build houses , mines and other but not these one you built in your mortal world. You will unlock new category of buildings, a little bit better but limited housing. You may gain new minerals, who know maybe new food or anything else you did not see anytime earlier.',
     		req:{'First portal to new world':true,'Belief in portals':true},
     		limitPer:{'land':100000000000000},//It is something like max 1
