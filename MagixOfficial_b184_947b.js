@@ -7863,6 +7863,58 @@ if (!document.getElementById(cssId))
 			
 		},
 	});
+	
+	
+	/////PORTAL PUSH!!!
+	new G.Unit({
+    		name:'<span style="color: #E0CE00">Plain island portal</span>',
+    		desc:'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 1 of 2',
+    		wideIcon:[7,3,'magixmod'],
+		wonder:'.',
+		cost:{'marble':100,'gems':10},
+		costPerStep:{'marble':25,'basic building materials':5,'Mana':3500},
+		finalStepCost:{'population':100,'Magic essences':1000,'beyond':-1/*debug resource*/},
+    		//-50% of this ... 2/2 stage final cost:{'precious building materials':5000,'insight':1500,'faith':100,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750},
+    		effects:[
+    			{type:'provide',what:{'Land of the Plain Island':28000}},
+			{type:'provide',what:{'Plain Island emblem':1}},
+    		],
+    		use:{'land':10},
+		steps:25,
+		
+		messageOnStart:'You built a portal to Plain Island. It is big isle. On this island you may build houses , mines and other but not these one you built in your mortal world. You will unlock new category of buildings, a little bit better but limited housing. You may gain new minerals, who know maybe new food or anything else you did not see anytime earlier.',
+    		req:{'First portal to new world':true,'Belief in portals':true},
+    		limitPer:{'land':100000000000000},//It is something like max 1
+    		category:'dimensions',
+	});
+		new G.Unit({
+    		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
+    		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules.',
+    		wideIcon:[7,4,'magixmod'],
+    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4,'heavenlyTemplePoint':400},
+    		effects:[
+    			{type:'provide',what:{'Land of the Paradise':26500}},
+			{type:'provide',what:{'Paradise emblem':1}},
+    		],
+    		use:{'land':10},
+    		req:{'Second portal to new world':true,'Belief in portals':true},
+    		limitPer:{'land':100000000000000},//It is something like max 1
+    		category:'dimensions',
+	});
+		new G.Unit({
+    		name:'<span style="color: #FF0000">Underworld</span>',
+    		desc:'Now you may enter right into the Underworld. A new creepy, unstable, dangerous world will become open for you',
+    		wideIcon:[7,5,'magixmod'],
+    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':95000,'Water essence':47500,'Dark essence':157500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':10750},
+    		effects:[
+			{type:'provide',what:{'Underworld emblem':1}},
+			{type:'provide',what:{'Land of the Underworld':150}}
+    		],
+    		use:{'land':1},
+    		req:{'A feeling from the Underworld':true,'Third passage to new world':true},
+    		limitPer:{'land':100000000000000},//It is something like max 1
+    		category:'dimensions',
+	});
 	new G.Res({
 		name:'beyond',
 		tick:function(me,tick)
@@ -11494,55 +11546,7 @@ if (!document.getElementById(cssId))
 		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
 	);
 //New Wonder. The portal to Plain Island. If possible I make it being built same way as Mausoleum
-		new G.Unit({
-    		name:'<span style="color: #E0CE00">Plain island portal</span>',
-    		desc:'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 1 of 2',
-    		wideIcon:[7,3,'magixmod'],
-		wonder:'.',
-		cost:{'marble':100,'gems':10},
-		costPerStep:{'marble':25,'basic building materials':5,'Mana':3500},
-		finalStepCost:{'population':100,'Magic essences':1000,'beyond':-1/*debug resource*/},
-    		//-50% of this ... 2/2 stage final cost:{'precious building materials':5000,'insight':1500,'faith':100,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750},
-    		effects:[
-    			{type:'provide',what:{'Land of the Plain Island':28000}},
-			{type:'provide',what:{'Plain Island emblem':1}},
-    		],
-    		use:{'land':10},
-		steps:25,
 		
-		messageOnStart:'You built a portal to Plain Island. It is big isle. On this island you may build houses , mines and other but not these one you built in your mortal world. You will unlock new category of buildings, a little bit better but limited housing. You may gain new minerals, who know maybe new food or anything else you did not see anytime earlier.',
-    		req:{'First portal to new world':true,'Belief in portals':true},
-    		limitPer:{'land':100000000000000},//It is something like max 1
-    		category:'dimensions',
-	});
-		new G.Unit({
-    		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
-    		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules.',
-    		wideIcon:[7,4,'magixmod'],
-    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4,'heavenlyTemplePoint':400},
-    		effects:[
-    			{type:'provide',what:{'Land of the Paradise':26500}},
-			{type:'provide',what:{'Paradise emblem':1}},
-    		],
-    		use:{'land':10},
-    		req:{'Second portal to new world':true,'Belief in portals':true},
-    		limitPer:{'land':100000000000000},//It is something like max 1
-    		category:'dimensions',
-	});
-		new G.Unit({
-    		name:'<span style="color: #FF0000">Underworld</span>',
-    		desc:'Now you may enter right into the Underworld. A new creepy, unstable, dangerous world will become open for you',
-    		wideIcon:[7,5,'magixmod'],
-    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':95000,'Water essence':47500,'Dark essence':157500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':10750},
-    		effects:[
-			{type:'provide',what:{'Underworld emblem':1}},
-			{type:'provide',what:{'Land of the Underworld':150}}
-    		],
-    		use:{'land':1},
-    		req:{'A feeling from the Underworld':true,'Third passage to new world':true},
-    		limitPer:{'land':100000000000000},//It is something like max 1
-    		category:'dimensions',
-	});
 //New wonder. Temple of heaven.
 		new G.Unit({
 		name:'temple of heaven',
