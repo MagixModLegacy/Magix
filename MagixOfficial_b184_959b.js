@@ -12015,22 +12015,26 @@ new G.Unit({
     		req:{'t10':true,'trial':true},
     		category:'trial',
 	});
-	var loops=(G.achievByName['Pocket'].won*3+1);
-				var loopPrfm= 0;
+	
 	new G.Unit({
     		name:'cantor',
     		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
     		icon:[23,29,'magixmod'],
     		cost:{'archaic building materials':200,'wooden coin':90},
     		effects:[
-			{type:'function',func:function(me){
-				
+			/*{type:'function',func:function(me){
+				var loops=(G.achievByName['Pocket'].won*3+1);
+				var loopPrfm= 0;
 				while(loopPrfm<loops){
 					G.lose('wooden coin',100);
-					G.gain('silver coin',1);
 					loopPrfm++;
 				}
-				
+				G.gain('silver coin',1);
+			},mode:'wts'},*/
+			{type:'function',func:function(me){
+				 G.lose('wooden coin',G.achievByName['Pocket'].won * 300 + 100);
+                G.gain('silver coin',1);
+			
 			},mode:'wts'},
 			{type:'function',func:function(me){
 				if(G.getRes('silver coin').amount >= (G.achievByName['Pocket'].won*3+1)*100){G.lose('silver',(G.achievByName['Pocket'].won*3+1)*100);G.gain('golden coin',1);};
