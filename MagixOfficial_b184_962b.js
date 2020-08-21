@@ -8373,7 +8373,13 @@ if (!document.getElementById(cssId))
 			
 		},
 	});
-
+		new G.Res({
+		name:'cantor debug res',
+		tick:function(me,tick)
+		{
+			me.amount=100*(G.getAchiev('Pocket').won*3+1)
+		},
+	});
 	
 	/*=====================================================================================
 	UNITS
@@ -12023,20 +12029,10 @@ new G.Unit({
     		cost:{'archaic building materials':200,'wooden coin':90},
     		effects:[
 			{type:'function',func:function(me){
-				var loops=(G.achievByName['Pocket'].won*3+1);
-				var loopPrfm= 0;
-				while(loopPrfm<loops){
-					G.lose('wooden coin',100);
-					loopPrfm++;
-					if(loops-loopPrfm==1) G.gain('silver coin',1);
-				}
-				
-			},mode:'wts'},
-			/*{type:'function',func:function(me){
-				 G.lose('wooden coin',G.achievByName['Pocket'].won * 300 + 100);
+				 G.lose('wooden coin',G.getRes('cantor debug res').amount);
                 G.gain('silver coin',1);
 			
-			},mode:'wts'},*/
+			},mode:'wts'},
 			{type:'function',func:function(me){
 				if(G.getRes('silver coin').amount >= (G.achievByName['Pocket'].won*3+1)*100){G.lose('silver',(G.achievByName['Pocket'].won*3+1)*100);G.gain('golden coin',1);};
 			
