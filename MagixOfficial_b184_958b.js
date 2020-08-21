@@ -12015,7 +12015,8 @@ new G.Unit({
     		req:{'t10':true,'trial':true},
     		category:'trial',
 	});
-	
+	var loops=(G.achievByName['Pocket'].won*3+1);
+				var loopPrfm= 0;
 	new G.Unit({
     		name:'cantor',
     		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
@@ -12023,8 +12024,7 @@ new G.Unit({
     		cost:{'archaic building materials':200,'wooden coin':90},
     		effects:[
 			{type:'function',func:function(me){
-				var loops=(G.achievByName['Pocket'].won*3+1);
-				var loopPrfm= 0;
+				
 				while(loopPrfm<loops){
 					G.lose('wooden coin',100);
 					G.gain('silver coin',1);
