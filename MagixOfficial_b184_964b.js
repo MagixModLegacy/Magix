@@ -1603,7 +1603,7 @@ G.setPolicyMode=function(me,mode)
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
-		var randText =Math.floor(Math.random()*10)
+		var randText =Math.floor(Math.random()*13)
 		if(randText>=0 && randText<=1){
 		G.middleText('<font color="#ffffee"><small>Sorry. Can\'t do that when paused!</small></font>');
 		}else if(randText>1 && randText<=2){
@@ -1620,8 +1620,14 @@ G.setPolicyMode=function(me,mode)
 		G.middleText('<font color="#b0b0ff"><small>Ask pelletsstarPL(mod creator & Grand Magixian) maybe he will help you.</small></font>');
 		}else if(randText>7 && randText<=8){
 		G.middleText('<font color="lime"><small>Log #'+Math.round(Math.random()*32767)+1+'<br>Attempted to perform operation while paused<br>ACTION INTERRUPTED</small></font>');
-		}else if(randText>8 && randText<=10){
+		}else if(randText>8 && randText<=9){
 		G.middleText('<font color="#ffbbaa"><small>Don\'t push. It provides you nothing.</small></font>');
+		}else if(randText>9 && randText<=10){
+		G.middleText('<font color="cyan"><small>Oh no, no. Don\'t think I will let you do this like that. >:)</small></font>');
+		}else if(randText>10 && randText<=11){
+		G.middleText('<font color="#aa00ff"><small>No doing things when paused in the halls.</small></font>');
+		}else if(randText>10 && randText<=13){
+		G.middleText('<font color="#a0F0b0"><small>Uh uh. Unpause at 1st.</small></font>');
 		}
 	}
 	/////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
