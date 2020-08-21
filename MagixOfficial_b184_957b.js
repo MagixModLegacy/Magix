@@ -12027,9 +12027,10 @@ new G.Unit({
 				var loopPrfm= 0;
 				while(loopPrfm<loops){
 					G.lose('wooden coin',100);
+					G.gain('silver coin',1);
 					loopPrfm++;
 				}
-				if(loops-loopPrfm==1) G.gain('silver coin',1);
+				
 			},mode:'wts'},
 			{type:'function',func:function(me){
 				if(G.getRes('silver coin').amount >= (G.achievByName['Pocket'].won*3+1)*100){G.lose('silver',(G.achievByName['Pocket'].won*3+1)*100);G.gain('golden coin',1);};
