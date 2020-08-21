@@ -8328,10 +8328,19 @@ if (!document.getElementById(cssId))
 				G.gain('beyond',1);
 				G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'insight':250};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').costPerStep={'insight':250};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'insight':250};
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').steps=75;
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').costPerStep={'Mana':4000,'Dark essence':200,'Fire essence':250,'Nature essence':300,'Wind essence':150,'Water essence':500,'Lightning essence':225};
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepDesc='Perform a final step to activate this portal';
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'Land of the Plain Island':-28000/*Bonus provided by portal activation*/,'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000};
+			}else if(me.amount>=3){
+					G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=4;
+					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
+					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
 			}
-			if(G.has('beyond the edge') && G.getRes('beyond').amount==2){
+			if(G.has('beyond the edge') && G.getRes('beyond').amount==3){
 			G.gain('beyond',1)
 				G.lose('population',G.getRes('population').amount*0.3);
 				G.getRes('happiness').amount=0;G.getRes('health').amount=0;
