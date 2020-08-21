@@ -12029,7 +12029,7 @@ new G.Unit({
     		cost:{'archaic building materials':200,'wooden coin':90},
     		effects:[
 			{type:'function',func:function(me){
-				 G.lose('wooden coin',G.getRes('cantor debug res').amount);
+				 G.lose('wooden coin',1*G.getRes('cantor debug res').amount);
                 G.gain('silver coin',1);
 			
 			},mode:'wts'},
