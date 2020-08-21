@@ -12023,11 +12023,7 @@ new G.Unit({
     		cost:{'archaic building materials':200,'wooden coin':90},
     		effects:[
 			{type:'function',func:function(me){
-				if(G.getRes('wooden coin').amount >= (G.achievByName['Pocket'].won*3+1)*100){G.lose('wooden coin',(G.achievByName['Pocket'].won*3+1)*100);G.gain('silver coin',1);};
-			
-			},mode:'wts'},
-			{type:'function',func:function(me){
-				var loops=(G.getAchiev('Pocket').won*3+1);
+				var loops=(G.achievByName['Pocket'].won*3+1);
 				var loopPrfm= 0;
 				while(loopPrfm<loops){
 					G.lose('wooden coin',100);
