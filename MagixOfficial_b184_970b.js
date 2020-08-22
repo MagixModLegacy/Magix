@@ -11993,8 +11993,8 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'scientific university',//WIP WILL BE IMPLEMENTED AFTER UPDATE OF THE WORLD!
-		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
-		wonder:'Dreamy',
+		desc:'@This wonder is different than others. You cannot ascend via  [scientific university,University] but you can unlock bonuses, upgrades for your great civilization. <>Settled at the lands of Plain Island, university where all dreamers, thots, gurus, outstanders meet to discover and research new never-met before things. Who knows what will they discover? Maybe they will build up first computer or... time machine... Nobody knows.',
+		wonder:'.',
 		icon:[13,29,'magixmod'],
 		wideIcon:[12,29,'magixmod'],
 		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400},
@@ -12004,7 +12004,7 @@ new G.Unit({
 		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
 		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
 		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
-		req:{'language':true,'tribalism':false},
+		req:{'wonder \'o science':true},
 		category:'civil',
 	});
 	new G.Unit({
