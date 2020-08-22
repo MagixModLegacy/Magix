@@ -15990,7 +15990,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'Outstanders club':true,'monument-building III':true},
 		cost:{'insight II':310},
 	});
-	let Mamuun1st =  new G.Know({
+	let Mamuun1st =  new G.Trait({
         name:'well stored',
 	displayName:'<font color="gold">Well stored I</font>',
         desc:'All storage units provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].',
@@ -15998,7 +15998,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
         cost:{},
 	effects:[
 	],	
-        req:{'tribalism':false}
+        req:{'tribalism':false},
+		category:'knowledge'
     });
 function checkMamuun1st() {
   if (G.achievByName['Pocket'].won) {
