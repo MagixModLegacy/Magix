@@ -16004,7 +16004,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 function checkMamuun1st() {
   if (G.achievByName['Pocket'].won) {
     if (G.achievByName['Pocket'].won > 0 && G.hasNot('well stored') && G.achievByName['Pocket'].won < 2){
-      G.gainTech(Mamuun1st)
+      G.gainTrait(Mamuun1st)
     }
 }
 }
@@ -16025,12 +16025,12 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
 	effects:[
 	],	
         req:{'tribalism':false},
-		category:'knowledge'
+		category:'knowledge',
     });
 function checkMamuun2nd() {
   if (G.achievByName['Pocket'].won) {
     if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
-      G.gainTech(Mamuun2nd)
+      G.gainTrait(Mamuun2nd)
     }
 }
 }
