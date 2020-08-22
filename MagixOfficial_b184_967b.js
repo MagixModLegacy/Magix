@@ -12081,6 +12081,31 @@ new G.Unit({
     		req:{'t10':true,'trial':true},
     		category:'trial',
 	});
+	new G.Unit({
+    		name:'cantor',
+    		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
+    		icon:[23,29,'magixmod'],
+    		cost:{'archaic building materials':200,'wooden coin':90},
+    		effects:[
+			{type:'function',func:function(me){
+				 G.lose('wooden coin',1*G.getRes('cantor debug res').amount);
+                G.gain('silver coin',1);
+			
+			},mode:'wts'},
+			{type:'function',func:function(me){
+				if(G.getRes('silver coin').amount >= (G.achievByName['Pocket'].won*3+1)*100){G.lose('silver',(G.achievByName['Pocket'].won*3+1)*100);G.gain('golden coin',1);};
+			
+			},mode:'stg'},
+    		],
+		gizmos:true,
+		modes:{
+			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert  [wooden coin]s into 1 [silver coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
+			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert  [silver coin]s into 1 [golden coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
+		},
+    		use:{'land':1,'worker':1},
+    		req:{'t10':true,'trial':true},
+    		category:'trial',
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
