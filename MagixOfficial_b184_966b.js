@@ -12044,29 +12044,22 @@ new G.Unit({
 	});
 	
 	new G.Unit({
-    		name:'cantor',
-    		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
+    		name:'hovel with garden',
+    		desc:'@provides 8 [housing] and can gather [Ambrosium shard]s for you. Rarely can provide you few [fruit]s or/and [vegetable]s.',
     		icon:[23,29,'magixmod'],
-    		cost:{'archaic building materials':200,'wooden coin':90},
+    		cost:{'basic building materials':90},
     		effects:[
-			{type:'function',func:function(me){
-				 G.lose('wooden coin',1*G.getRes('cantor debug res').amount);
-                G.gain('silver coin',1);
-			
-			},mode:'wts'},
-			{type:'function',func:function(me){
-				if(G.getRes('silver coin').amount >= (G.achievByName['Pocket'].won*3+1)*100){G.lose('silver',(G.achievByName['Pocket'].won*3+1)*100);G.gain('golden coin',1);};
-			
-			},mode:'stg'},
+			{type:'provide',what:{'housing':8}},
+			{type:'gather',what:{'Ambrosium shard':0.04}},
+			{type:'gather',what:{'fruits':0.02},chance:1/50},
+			{type:'gather',what:{'vegetable':0.04},chance:1/50},
+			{type:'mult',value:1.1,req:{'Fertile bushes':true}},
+			{type:'mult',value:1.1,req:{'backshift for farms':true}},
     		],
-		gizmos:true,
-		modes:{
-			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert  [wooden coin]s into 1 [silver coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
-			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert  [silver coin]s into 1 [golden coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
-		},
-    		use:{'land':1,'worker':1},
-    		req:{'t10':true,'trial':true},
-    		category:'trial',
+		limitPer:{'land':21,'population':125},
+    		use:{'Land of the Paradise':1},
+    		req:{'Paradise housing':true},
+    		category:'paradiseunit',
 	});
 	new G.Unit({
     		name:'shop',
@@ -14937,7 +14930,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 			new G.Tech({
 		name:'Fertile bushes',
-		desc:'[house,Next-to house berrybushes] are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :)',
+		desc:'[house,Next-to house berrybushes] are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :) Also [hovel with garden] gains 10% more.',
 		icon:[1,24,'magixmod'],
 		cost:{'insight II':100,'culture II':20,'insight':50},
 		req:{'Hunters & fishers unification':true,'Next-to house berrybushes':true},
@@ -15188,7 +15181,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'backshift at farms',
-		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech.',
+		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech. Also [hovel with garden] gains 10% more.',
 		icon:[31,14,'magixmod'],
 		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5,'insight':293},
 		req:{'improved windmill motors':true,'<font color="maroon">Moderation</font>':true},
