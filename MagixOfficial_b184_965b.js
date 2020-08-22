@@ -1899,7 +1899,7 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
-		
+		G.getRes('cantor debug res').amount=100*(G.getAchiev('Pocket').won*3+1);
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -8398,7 +8398,7 @@ if (!document.getElementById(cssId))
 		name:'cantor debug res',
 		tick:function(me,tick)
 		{
-			me.amount=100*(G.getAchiev('Pocket').won*3+1)
+			
 		},
 	});
 	
