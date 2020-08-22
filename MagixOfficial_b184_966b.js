@@ -8139,8 +8139,7 @@ if (!document.getElementById(cssId))
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
 			G.getDict('bank').effects=[{type:'provide',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}];
-		
-			G.getDict('cantor').effects=[{type:'convert',from:{'wooden coin':value},into:{'silver coin':1},every:1,mode:'wts'},{type:'convert',from:{'silver coin':value},into:{'golden coin':1},every:1,mode:'stg'}];
+
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
