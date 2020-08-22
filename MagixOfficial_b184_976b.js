@@ -9309,6 +9309,8 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'added food storage':400}},
 			{type:'provide',what:{'added material storage':400}},
 			{type:'provide',what:{'added food storage':80,'added material storage':80},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added food storage':140,'added material storage':140},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':220,'added material storage':200},req:{'well stored 2':true}},
 			{type:'waste',chance:0.8/1000}
 		],
 		req:{'stockpiling':true},
@@ -9324,6 +9326,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':1000}},
 			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added material storage':350},req:{'well stored':true}},
+			{type:'provide',what:{'added material storage':550},req:{'well stored 2':true}},
 			{type:'waste',chance:0.1/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.02/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.014/1000,req:{'improved construction':true}},
@@ -9342,6 +9346,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':4000}},
 			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added material storage':1400},req:{'well stored':true}},
+			{type:'provide',what:{'added material storage':2200},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
@@ -9358,7 +9364,9 @@ if (!document.getElementById(cssId))
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'added food storage':1000}},
-			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added food storage':200},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added food storage':350},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':550},req:{'well stored 2':true}},
 			{type:'waste',chance:0.01/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.002/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.0014/1000,req:{'improved construction':true}},
@@ -9377,6 +9385,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added food storage':4000}},
 			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added food storage':1400},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':2200},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
@@ -10095,6 +10105,8 @@ if (!document.getElementById(cssId))
 		use:{'Land of the Paradise':3,'Industry point':0.2},
 		staff:{'worker':2},
 		effects:[
+			{type:'provide',what:{'added material storage':2100},req:{'well stored':true}},
+			{type:'provide',what:{'added material storage':3300},req:{'well stored 2':true}},
 			{type:'provide',what:{'added material storage':6000}},
 			{type:'waste',chance:0.001/1000}
 		],
@@ -10133,6 +10145,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':3000}},
 			{type:'provide',what:{'food storage':3000}},
+			{type:'provide',what:{'added food storage':1050,'added material storage':1050},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':1650,'added material storage':1650},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/1000}
 		],
 		req:{'stockpiling':true,'construction':true,'<span style="color: ##FF0900">Paradise building</span>':true},
@@ -10886,6 +10900,8 @@ if (!document.getElementById(cssId))
 		cost:{'basic building materials':1500,'glass':5},
 		use:{'Land of the Plain Island':1,'worker':3},
 		effects:[
+			{type:'provide',what:{'added food storage':1750},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':2750},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
@@ -11737,6 +11753,8 @@ new G.Unit({
 		staff:{'worker':6,'armor set':6,'metal weapons':6,'Instructor':1},
 		effects:[
 			{type:'provide',what:{'added material storage':9000}},
+			{type:'provide',what:{'added material storage':3150},req:{'well stored':true}},
+			{type:'provide',what:{'added material storage':4950},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/100000000}
 		],
 		req:{'Storage at the bottom of the world':true},
@@ -15993,7 +16011,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	let Mamuun1st =  new G.Trait({
         name:'well stored',
 	displayName:'<font color="gold">Well stored I</font>',
-        desc:'All storage units provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].',
+        desc:'All storage units(except Essences storages) provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].',
         icon:[12,15,'magixmod',13,15,'magixmod'],
         cost:{},
 	effects:[
@@ -16019,7 +16037,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
 	let Mamuun2nd =  new G.Trait({
         name:'well stored 2',
 	displayName:'<font color="#d0ab34">Well stored II</font>',
-        desc:'All storage units provide 55% more storage. You reached maximum bonus that Mamuun can provide to you for completing Pocket. Bonus does not stack with [Spell of capacity].',
+        desc:'All storage units(except Essences storages) provide 55% more storage. You reached maximum bonus that Mamuun can provide to you for completing Pocket. Bonus does not stack with [Spell of capacity].',
         icon:[11,15,'magixmod',13,15,'magixmod'],
         cost:{},
 	effects:[
