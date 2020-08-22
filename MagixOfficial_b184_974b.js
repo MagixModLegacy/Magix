@@ -16029,7 +16029,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
     });
 function checkMamuun2nd() {
   if (G.achievByName['Pocket'].won) {
-    if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored')){
+    if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
       G.gainTech(Mamuun2nd)
     }
 }
