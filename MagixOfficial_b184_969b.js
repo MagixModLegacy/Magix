@@ -1899,7 +1899,6 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
-		G.getRes('cantor debug res').amount=100*(G.getAchiev('Pocket').won*3+1);
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -8393,13 +8392,6 @@ if (!document.getElementById(cssId))
 			
 		},
 	});
-		new G.Res({
-		name:'cantor debug res',
-		tick:function(me,tick)
-		{
-			
-		},
-	});
 	
 	/*=====================================================================================
 	UNITS
@@ -11525,7 +11517,7 @@ if (!document.getElementById(cssId))
 		new G.Unit({
     		name:'<span style="color: #E0CE00">Plain island portal</span>',
     		desc:'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 1 of 2',
-    		wideIcon:[7,3,'magixmod'],
+    		wideIcon:[28,29,'magixmod'],
 		wonder:'.',
 		cost:{'marble':100,'gems':10},
 		costPerStep:{'marble':25,'basic building materials':5,'Mana':3500},
@@ -12045,7 +12037,7 @@ new G.Unit({
 	new G.Unit({
     		name:'hovel with garden',
     		desc:'@provides 8 [housing] and can gather [Ambrosium shard]s for you. Rarely can provide you few [fruit]s or/and [vegetable]s.',
-    		icon:[23,29,'magixmod'],
+    		icon:[9,6,'magixmod'],
     		cost:{'basic building materials':90},
     		effects:[
 			{type:'provide',what:{'housing':8}},
@@ -12088,12 +12080,13 @@ new G.Unit({
     		cost:{'archaic building materials':200,'wooden coin':90},
     		effects:[
 			{type:'function',func:function(me){
-				 G.lose('wooden coin',1*G.getRes('cantor debug res').amount);
+				 G.lose('wooden coin',100*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
                 G.gain('silver coin',1);
 			
 			},mode:'wts'},
 			{type:'function',func:function(me){
-				if(G.getRes('silver coin').amount >= (G.achievByName['Pocket'].won*3+1)*100){G.lose('silver',(G.achievByName['Pocket'].won*3+1)*100);G.gain('golden coin',1);};
+				 G.lose('silver coin',100*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
+                G.gain('golden coin',1);
 			
 			},mode:'stg'},
     		],
@@ -15989,6 +15982,13 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		icon:[10,29,'magixmod'],
 		req:{'Wizard complex':true,'Belief in portals':true},
 		cost:{'insight':1015},
+	});
+	new G.Tech({
+		name:'wonder \'o science',
+		desc:'Unlocks [scientific university]. [scientific university] is a wonder that can be upgraded. To unlock further tiers you need to complete Trials at higher levels meaning higher difficulty. University by itself can provide way more [education] and [wisdom II]. Also it may lead to some new discoveries.',
+		icon:[11,29,'magixmod'],
+		req:{'Outstanders club':true,'monument-building III':true},
+		cost:{'insight II':310},
 	});
 	/*=====================================================================================
 	POLICIES
