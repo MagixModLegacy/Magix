@@ -15990,6 +15990,31 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'Outstanders club':true,'monument-building III':true},
 		cost:{'insight II':310},
 	});
+	let Mamuun1st =  new G.Know({
+        name:'well stored',
+	displayName:'<font color="gold">Well stored I</font>',
+        desc:'All storage units provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].',
+        icon:[12,15,'magixmod',13,15,'magixmod'],
+        cost:{},
+	effects:[
+	],	
+        req:{'tribalism':false}
+    });
+function checkMamuun1st() {
+  if (G.achievByName['Pocket'].won) {
+    if (G.achievByName['Pocket'].won > 0 && G.hasNot('well stored') && G.achievByName['Pocket'].won < 2){
+      G.gainTech(Mamuun1st)
+    }
+}
+}
+checkMamuun1st()
+const oldNewGameMamuun1st = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkMamuun1st()
+  }
+})
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
