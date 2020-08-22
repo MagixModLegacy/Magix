@@ -12053,7 +12053,7 @@ new G.Unit({
 			{type:'gather',what:{'fruits':0.02},chance:1/50},
 			{type:'gather',what:{'vegetable':0.04},chance:1/50},
 			{type:'mult',value:1.1,req:{'Fertile bushes':true}},
-			{type:'mult',value:1.1,req:{'backshift for farms':true}},
+			{type:'mult',value:1.1,req:{'backshift at farms':true}},
     		],
 		limitPer:{'land':21,'population':125},
     		use:{'Land of the Paradise':1},
