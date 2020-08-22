@@ -13,7 +13,7 @@ G.Map=function(type,w,h,seed)
 	{
 	
 		//create a new unpopulated map with specified type, width and height, with an optional seed
-		this.type=type;//type : 0=main, 1=space, 2=moon, 3=other planet
+		this.type=type;
 		this.w=w;
 		this.h=h;
 		this.computedPlayerRes=[];
@@ -16014,6 +16014,32 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
   apply: function(target, thisArg, args) {
     target(...args)
     checkMamuun1st()
+  }
+})
+	let Mamuun2nd =  new G.Trait({
+        name:'well stored 2',
+	displayName:'<font color="#d0ab34">Well stored II</font>',
+        desc:'All storage units provide 55% more storage. You reached maximum bonus that Mamuun can provide to you for completing Pocket. Bonus does not stack with [Spell of capacity].',
+        icon:[11,15,'magixmod',13,15,'magixmod'],
+        cost:{},
+	effects:[
+	],	
+        req:{'tribalism':false},
+		category:'knowledge'
+    });
+function checkMamuun2nd() {
+  if (G.achievByName['Pocket'].won) {
+    if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored')){
+      G.gainTech(Mamuun2nd)
+    }
+}
+}
+checkMamuun2nd()
+const oldNewGameMamuun2nd = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkMamuun2nd()
   }
 })
 	/*=====================================================================================
