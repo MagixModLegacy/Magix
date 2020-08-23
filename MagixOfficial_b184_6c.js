@@ -11844,7 +11844,7 @@ new G.Unit({
 		use:{'worker':1},
 		limitPer:{'population':38000},
 		effects:[
-			{type:'provide',what:{'wisdom II':5,'education':0.2}},
+			{type:'provide',what:{'wisdom II':5.25,'education':0.2}},
 		],
 		req:{'Outstanding wisdom':true},
 		category:'discovery',
