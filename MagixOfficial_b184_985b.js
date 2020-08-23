@@ -1873,6 +1873,7 @@ G.props['fastTicksOnResearch']=150;
 	let st10=false
 	let st11=false
 	let st12=false
+	let st13=false
 	let displayC1=true;let displayC2=false;
 		G.funcs['new game blurb']=function()
 	{   
@@ -2673,6 +2674,10 @@ G.props['fastTicksOnResearch']=150;
 			if(G.techN > 114 && G.techN <=122 && !st12){
 				G.Message({type:'story2',text:'He did a flip. lol',icon:[24,2,'magixmod']});
 				st12=true
+			}
+			if(G.techN > 122 && G.techN <=132 && !st13){
+				G.Message({type:'story1',text:'You look confused a little bit , but still your presence motivates your '+G.getName('inhabs')+' to discover more and more. But about what you are confused.',icon:[7,30,'magixmod']});
+				st13=true
 			}
 		}
 		if(G.has('t2')){
