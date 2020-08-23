@@ -8352,7 +8352,7 @@ if (!document.getElementById(cssId))
 					G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=4;
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
-					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal.',
+					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal.';
 			}
 			if(G.has('beyond the edge') && G.getRes('beyond').amount==3){
 			G.gain('beyond',1)
