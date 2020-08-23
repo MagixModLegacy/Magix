@@ -2716,7 +2716,7 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 				if(G.getRes('chance').amount<=2.75 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
 					G.gain('insight II',bonus,'Sleepy Insight')}
-		}}
+		}
 		if(G.checkPolicy('sleepy insight')=="-2"){
 			var bonus=Math.floor(Math.random() * 9)+9
 			if(G.hasNot('Eotm')){
@@ -2726,6 +2726,7 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 				if(G.getRes('chance').amount<=4.5 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
 					G.gain('insight II',bonus,'Sleepy Insight')}
+			
 		}
 		if(G.checkPolicy('sleepy insight')=="-1"){
 			var bonus=Math.floor(Math.random() * 7)+5
