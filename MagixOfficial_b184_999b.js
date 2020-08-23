@@ -1625,7 +1625,7 @@ G.setPolicyMode=function(me,mode)
 		}else if(randText>9 && randText<=10){
 		G.middleText('<font color="cyan"><small>Oh no, no. Don\'t think I will let you do this like that. >:)</small></font>');
 		}else if(randText>10 && randText<=11){
-		G.middleText('<font color="#aa00ff"><small>No doing things when paused in the halls.</small></font>');
+		G.middleText('<font color="#aa00ff"><small>No doing things when paused in the halls.<br>'+Math.round(Math.random()*30)+' seconds. Detention for you.</small></font>');
 		}else if(randText>10 && randText<=13){
 		G.middleText('<font color="#a0F0b0"><small>Uh uh. Unpause at 1st.</small></font>');
 		}
@@ -2790,7 +2790,7 @@ G.props['fastTicksOnResearch']=150;
                 'But you can try again, by reaching Pantheon again and choose Tu-ria</div><br>'+
                 'Technical note: Start a new game , you know how.'+
             '</div></div>'
-	})
+})
 			}
 				var culture=Math.floor(Math.random()*12);
 				G.Message({type:'important',text:'During this year Tu-ria has brought down to you:<br><b><font color="#aaffcc">'+B(culture)+' Culture</font></b> and <b><font color="#ffbbbb">'+(culture/2)+' Influence</font></b>',icon:[10,11,'magixmod']});
@@ -2812,7 +2812,7 @@ G.props['fastTicksOnResearch']=150;
 						G.gain('cultural balance',Math.round(Math.random()*2)+1)
 					}
 				}
-	
+	}
 	}
 	G.props['new day lines']=[
 		'Creatures are lurking.',
@@ -2906,7 +2906,7 @@ G.props['fastTicksOnResearch']=150;
 			if(G.getRes('wisdom').amount<100){
 		G.gain('wisdom',1)	
 		}}//year1&2 nerf
-		if(G.year<=1){
+		if(G.year==1){
 		G.gain('happiness',0.15)
 		}
 	}
@@ -8129,7 +8129,7 @@ if (!document.getElementById(cssId))
 					G.getDict('thot').icon=[0,0,'thotSheet']
 				}
 				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
-				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. If [Sleepy insight] unlocked you will have a chance for [insight II] instead of [insight,insight I]. //[thot] limit per is increased and becomes 75% less efficient.';
+				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. //[thot] limit per is increased and becomes 75% less efficient'
 				G.getDict('philosophy II').desc='[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
 			}
 			if(G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.achievByName['Extremely smart'].won >= 1 && G.achievByName['Man of essences'].won >= 1 && G.achievByName['Magical'].won >= 1 && G.achievByName['Next to the God'].won >= 1 && G.achievByName['The first choice'].won >= 1 && G.achievByName['Trait-or'].won >= 1 && G.achievByName['Not so pious people'].won >= 1 && G.achievByName['Talented?'].won == 0){ //Experienced
@@ -14390,7 +14390,7 @@ autobuy(G.year)
 		new G.Trait({
 		name:'Eotm',
 		displayName:'Evolution of the minds',
-		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. If [Sleepy insight] unlocked you will have a chance for [insight II] instead of [insight,insight I].',
+		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained.',
 		icon:[25,19,'magixmod'],
 		cost:{'culture':1000,'insight':1000,'influence':300,'faith':300},
 		chance:190,
@@ -16097,7 +16097,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'Send your people beyond the edge of the world for the second time. You will lose 40% of your current [population] , all remaining [adult]s will become [sick] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 5.5% of your total land for your people(7% in total). It may help you but there is a huger than before risk. The further you push beyond the edge the stronger scourge will fall on you and your civilization.</font>',
 		req:{'beyond the edge':true,'wonder \'o science':true},
 		cost:{'insight II':340,'science':26,'culture II':24},
-		icon:[0,30,'magixmod'],
+		icon:[0,30,'magixmod']
 	});
 	/*=====================================================================================
 	POLICIES
