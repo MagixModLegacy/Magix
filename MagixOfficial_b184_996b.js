@@ -1625,7 +1625,7 @@ G.setPolicyMode=function(me,mode)
 		}else if(randText>9 && randText<=10){
 		G.middleText('<font color="cyan"><small>Oh no, no. Don\'t think I will let you do this like that. >:)</small></font>');
 		}else if(randText>10 && randText<=11){
-		G.middleText('<font color="#aa00ff"><small>No doing things when paused in the halls.<br>'+Math.round(Math.random()*30)+' seconds. Detention for you.</small></font>');
+		G.middleText('<font color="#aa00ff"><small>No doing things when paused in the halls.</small></font>');
 		}else if(randText>10 && randText<=13){
 		G.middleText('<font color="#a0F0b0"><small>Uh uh. Unpause at 1st.</small></font>');
 		}
