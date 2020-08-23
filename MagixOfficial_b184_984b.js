@@ -12015,7 +12015,7 @@ new G.Unit({
 		icon:[13,29,'magixmod'],
 		wideIcon:[12,29,'magixmod'],
 		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400,'science':20},
-		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight II':125,'science':5,'gems':100,'wisdom II':-0.5,'education II':-0.25,'Mana':1e4},
+		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight II':125,'science':5,'gems':100,'wisdom II':-0.5,'education':-0.25,'Mana':1e4},
 		steps:200,
 		messageOnStart:'The construction of Scientific University has been started. It is the complex of education where each knowledge can be deepened. You are proud of that.',
 		finalStepCost:{'population':1000,'insight II':100,'wisdom':250,'science':50,'wisdom II':-25,'education':-25},
