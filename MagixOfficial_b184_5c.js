@@ -16105,6 +16105,44 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 			{type:'provide res',what:{'education':2}},
 		]
 	});
+	new G.Tech({
+		name:'mirrors',
+		desc:'People now know how mirror works and even how to make mirror effect.',
+		req:{'Burial in new world':true},
+		cost:{'insight':600},
+		icon:[8,30,'magixmod'],
+		effects:[
+			{type:'provide res',what:{'wisdom II':20}},
+			{type:'provide res',what:{'education':2}},
+		]
+	});
+	new G.Tech({
+		name:'parallel theory 1/3',
+		desc:'What if you can make mirror work like portal? //This part of theory is about whole concept.',
+		req:{'Laws of physics(intermediate)':true,'mirrors':true},
+		cost:{'insight':1600},
+		icon:[27,27,'magixmod',9,30,'magixmod'],
+		effects:[
+		]
+	});
+	new G.Tech({
+		name:'parallel theory 2/3',
+		desc:'What if you can make mirror work like portal? //This part of theory is about portal and stability.',
+		req:{'Laws of physics(intermediate)':true,'parallel theory 1/3':true,'symbolism III':true},
+		cost:{'insight II':150},
+		icon:[26,27,'magixmod',9,30,'magixmod'],
+		effects:[
+		]
+	});
+	new G.Tech({
+		name:'parallel theory 3/3',
+		desc:'What if you can make mirror work like portal? //This part is related to misc things about mirror world concept.',
+		req:{'parallel theory 2/3':true,'wonder \'o science':true},
+		cost:{'insight II':400,'science':60,'culture II':30,'faith II':30,'influence II':25},
+		icon:[25,27,'magixmod',9,30,'magixmod'],
+		effects:[
+		]
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
