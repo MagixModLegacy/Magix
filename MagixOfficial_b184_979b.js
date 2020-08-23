@@ -1765,7 +1765,7 @@ G.setPolicyMode=function(me,mode)
 						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
 						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
 						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
-						else if (instance.mode==4 && me.name!=='University of the 7 worlds'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
+						else if (instance.mode==4 && me.name!=='scientific university'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
 						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
 					}
 					if (amount<0) amount=0;
@@ -8343,14 +8343,16 @@ if (!document.getElementById(cssId))
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').steps=75;
+				'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 2 of 2',
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').costPerStep={'Mana':4000,'Dark essence':200,'Fire essence':250,'Nature essence':300,'Wind essence':150,'Water essence':500,'Lightning essence':225};
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepDesc='Perform a final step to activate this portal';
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'Land of the Plain Island':-28000/*Bonus provided by portal activation*/,'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000};
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/,'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000};
 			}else if(me.amount>=3){
 					G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=4;
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
+				'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal.',
 			}
 			if(G.has('beyond the edge') && G.getRes('beyond').amount==3){
 			G.gain('beyond',1)
@@ -11540,11 +11542,6 @@ if (!document.getElementById(cssId))
 		cost:{'marble':100,'gems':10},
 		costPerStep:{'marble':25,'basic building materials':5,'Mana':3500},
 		finalStepCost:{'population':100,'Magic essences':1000,'beyond':-1/*debug resource*/},
-    		//-50% of this ... 2/2 stage final cost:{'precious building materials':5000,'insight':1500,'faith':100,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750},
-    		effects:[
-    			{type:'provide',what:{'Land of the Plain Island':28000}},
-			{type:'provide',what:{'Plain Island emblem':1}},
-    		],
     		use:{'land':10},
 		steps:25,
     		req:{'First portal to new world':true,'Belief in portals':true},
@@ -12017,12 +12014,12 @@ new G.Unit({
 		wonder:'.',
 		icon:[13,29,'magixmod'],
 		wideIcon:[12,29,'magixmod'],
-		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400},
-		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight':100,'culture':5,'gems':5},
-		steps:150,
-		messageOnStart:'Your people have started building the <b>Mausoleum of the Dreamer</b>. This monument is the tallest building that exists at the lands of Plain Island. This is how wisdom leads to success.',
-		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
-		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
+		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400,'science':20},
+		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight II':125,'science':5,'gems':100,'wisdom II':-0.5,'education II':-0.25,'Mana':1e4},
+		steps:200,
+		messageOnStart:'The construction of Scientific University has been started. It is the complex of education where each knowledge can be deepened. You are proud of that.',
+		finalStepCost:{'population':1000,'insight II':100,'wisdom':250,'science':50,'wisdom II':-25,'education':-25},
+		finalStepDesc:'To finish this stage of [scientific university,University] you need to sacrifice some resources. To unlock next stage remember that you will need to gain more [victory point]s. After each stage finish you will unlock new researches.',
 		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
 		req:{'wonder \'o science':true},
 		category:'civil',
