@@ -16121,7 +16121,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'What if you can make mirror work like portal? //This part of theory is about whole concept.',
 		req:{'Laws of physics(intermediate)':true,'mirrors':true},
 		cost:{'insight':1600},
-		icon:[27,27,'magixmod',9,30,'magixmod'],
+		icon:[28,27,'magixmod',9,30,'magixmod'],
 		effects:[
 		]
 	});
@@ -16130,7 +16130,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'What if you can make mirror work like portal? //This part of theory is about portal and stability.',
 		req:{'Laws of physics(intermediate)':true,'parallel theory 1/3':true,'symbolism III':true},
 		cost:{'insight II':150},
-		icon:[26,27,'magixmod',9,30,'magixmod'],
+		icon:[27,27,'magixmod',9,30,'magixmod'],
 		effects:[
 		]
 	});
@@ -16139,7 +16139,16 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'What if you can make mirror work like portal? //This part is related to misc things about mirror world concept.',
 		req:{'parallel theory 2/3':true,'wonder \'o science':true},
 		cost:{'insight II':400,'science':60,'culture II':30,'faith II':30,'influence II':25},
-		icon:[25,27,'magixmod',9,30,'magixmod'],
+		icon:[26,27,'magixmod',9,30,'magixmod'],
+		effects:[
+		]
+	});
+	new G.Tech({
+		name:'mirror world',
+		desc:'Unlocks a [grand mirror] which will double your [land] amount. It compounds with bonuses from: [beyond the edge] and [beyond the edge II]. Costs , display depends on chosen by your people path. In fact it is a passage to exact copy of world you met before your civilization have set their first shelter/dwelling. Make sure you fullfill upkeep of that because if you do not then [grand mirror] will disable and you will lose your land.',
+		req:{'parallel theory 3/3':true,'wonder \'o science':true},
+		cost:{'insight II':400,'science':62,'culture II':38},
+		icon:[10,30,'magixmod'],
 		effects:[
 		]
 	});
