@@ -8137,7 +8137,7 @@ if (!document.getElementById(cssId))
 			G.middleText('- All achievements  from tier <font color="orange">3</font> completed! - </br> </hr> <small>All crafting units and few non-crafting units that use overworld land since the next run will use 15% less land. In addition you can pick <font color="aqua">1 of 5</font> researches instead of <font color="aqua">1 of 4</font></small>','slow')
 			}
 			if(G.has('Outstanders club')){
-			G.getDict('The Outstander').limitPer = {'population':28000}
+			G.getDict('The Outstander').limitPer = {'population':26500}
 			}
 				if(G.has('<font color="orange">Smaller shacks</font>')){
 			G.getDict('blacksmith workshop').use = {'land':0.85}
@@ -11802,7 +11802,7 @@ new G.Unit({
 		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'cloud':4500,'Ambrosium shard':1000,'godTemplePoint':-1},
 		steps:400,
 		messageOnStart:'The construction of The <b>Temple of the Paradise</b> has been started. Now you are full of hope that it will someday make the God appear next to you and show his true good-natured face.',
-		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':1000,'spirituality':25,'godTemplePoint':-100},
+		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':725,'spirituality':25,'godTemplePoint':-100},
 		finalStepDesc:'To complete the wonder and be even closer to the God you must perform this final step 25k [population,people] must be sacrificed... and many other ingredients.',
 		use:{'Land of the Paradise':30},
 		req:{'monument-building III':true},
@@ -11839,10 +11839,10 @@ new G.Unit({
 	});
 		new G.Unit({
 		name:'The Outstander',
-		desc:'[The Outstander] has a lot of knowledge and is very smart. Who knows if he is some sort of erudite. They doesn\'t seem like erudites for real. People call Outstanders like this one Guru\'s children.<>Provides 5 [wisdom II] and 1 [education] per each 5 [The Outstander,Outstanders] obtained.',
+		desc:'[The Outstander] has a lot of knowledge and is very smart. Who knows if he is some sort of erudite. They doesn\'t seem like erudites for real. People call Outstanders like this one Guru\'s children.<>Provides 5 [wisdom II](1 extra per each 4 [The Outstander,Outstanders] obtained) and 1 [education] per each 5 [The Outstander,Outstanders] obtained.',
 		icon:[12,28,'magixmod'],
 		use:{'worker':1},
-		limitPer:{'population':40000},
+		limitPer:{'population':38000},
 		effects:[
 			{type:'provide',what:{'wisdom II':5,'education':0.2}},
 		],
@@ -15430,12 +15430,14 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 })
 		new G.Tech({
 		name:'Pantheon key',
-		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab.',
+		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab. //Provides: 25 [spirituality II] and 15 [authority II].',
 		icon:[4,25,'magixmod'],
 		req:{'Life in faith':true,'monument-building III':true},
 		cost:{'insight II':100,'faith II':10,'culture II':30,'godTemplePoint':500,'faith':80},
 		effects:[
-			{type:'provide res',what:{'Worship point':4}},		
+			{type:'provide res',what:{'Worship point':4}},	
+			{type:'provide res',what:{'spirituality II':25}},
+			{type:'provide res',what:{'authority II':15}},
 		]
 	});
   	new G.Tech({
@@ -15639,7 +15641,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Decreases the [land] limit per for [paradise shelter]s by 4 points. It means more shelters. <>More shelters = more housing = more people @Provides 15 [wisdom II] .',
 		icon:[10,27,'magixmod'],
 		req:{'Paradise shelters':true,'<font color="maroon">Caretaking</font>':true},
-		cost:{'insight II':200,'science':14,'influence II':1},
+		cost:{'insight II':200,'science':14,'influence II':1,'insight':500},
 		effects:[
 			{type:'provide res',what:{'wisdom II':15}},
 		],
@@ -15890,7 +15892,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Tech({
 		name:'Outstanders club',
-		desc:'Decreases [population] limit per one [The Outstander] from 40k to 28k. Provides extra 5 [wisdom II]',
+		desc:'Decreases [population] limit per one [The Outstander] from 38k to 26.5k. Provides extra 5 [wisdom II]',
 		icon:[14,28,'magixmod'],
 		req:{'Outstanding wisdom':true},
 		cost:{'insight II':300,'science':15,'culture II':25},
@@ -16038,7 +16040,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Unlocks [scientific university]. [scientific university] is a wonder that can be upgraded. To unlock further tiers you need to complete Trials at higher levels meaning higher difficulty. University by itself can provide way more [education] and [wisdom II]. Also it may lead to some new discoveries.',
 		icon:[11,29,'magixmod'],
 		req:{'Outstanders club':true,'monument-building III':true},
-		cost:{'insight II':310},
+		cost:{'insight II':310,'culture II':25,'culture':65},
 	});
 	let Mamuun1st =  new G.Trait({
         name:'well stored',
@@ -16097,7 +16099,11 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'Send your people beyond the edge of the world for the second time. You will lose 40% of your current [population] , all remaining [adult]s will become [sick] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 5.5% of your total land for your people(7% in total). It may help you but there is a huger than before risk. The further you push beyond the edge the stronger scourge will fall on you and your civilization.</font>',
 		req:{'beyond the edge':true,'wonder \'o science':true},
 		cost:{'insight II':340,'science':26,'culture II':24},
-		icon:[0,30,'magixmod']
+		icon:[0,30,'magixmod'],
+		effects:[
+			{type:'provide res',what:{'wisdom II':20}},
+			{type:'provide res',what:{'education':2}},
+		]
 	});
 	/*=====================================================================================
 	POLICIES
