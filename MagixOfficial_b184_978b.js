@@ -4351,7 +4351,7 @@ G.writeMSettingButton=function(obj)
 			if(G.hasNot('beyond the edge')){
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
 			}else if(G.has('beyond the edge II') && G.has('beyond the edge')){
-			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100)*1.06;
+			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100)*1.07;
 			}else if(G.has('beyond the edge')){
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100)*1.015;
 			}
