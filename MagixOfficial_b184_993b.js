@@ -2715,7 +2715,7 @@ G.props['fastTicksOnResearch']=150;
 				
 			}else{
 				if(G.getRes('chance').amount<=2.75 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
-					G.gain('insight II',bonus,'Sleepy Insight')}}
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}
 		if(G.checkPolicy('sleepy insight')=="-2"){
 			var bonus=Math.floor(Math.random() * 9)+9;
@@ -2725,7 +2725,7 @@ G.props['fastTicksOnResearch']=150;
 				
 			}else{
 				if(G.getRes('chance').amount<=4.5 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
-					G.gain('insight II',bonus,'Sleepy Insight')}}
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}
 		if(G.checkPolicy('sleepy insight')=="-1"){
 			var bonus=Math.floor(Math.random() * 7)+5;
@@ -2789,7 +2789,7 @@ G.props['fastTicksOnResearch']=150;
                 'But you can try again, by reaching Pantheon again and choose Tu-ria</div><br>'+
                 'Technical note: Start a new game , you know how.'+
             '</div></div>'
-})
+	})
 			}
 				var culture=Math.floor(Math.random()*12);
 				G.Message({type:'important',text:'During this year Tu-ria has brought down to you:<br><b><font color="#aaffcc">'+B(culture)+' Culture</font></b> and <b><font color="#ffbbbb">'+(culture/2)+' Influence</font></b>',icon:[10,11,'magixmod']});
