@@ -2707,48 +2707,75 @@ G.props['fastTicksOnResearch']=150;
 		}
 		}
 		//SLEPPY INSIGHT
-	
 		if(G.checkPolicy('sleepy insight')=="-3"){
-			var bonus=Math.floor(Math.random() * 14)+13
+			var bonus=Math.floor(Math.random() * 14)+13;
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=2.75 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
+					G.gain('insight',bonus,'Sleepy Insight')}
+				}
+			}else{
+				if(G.getRes('chance').amount<=2.75 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}}
 		if(G.checkPolicy('sleepy insight')=="-2"){
 			var bonus=Math.floor(Math.random() * 9)+9
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=4.5 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
-		}}
+					G.gain('insight',bonus,'Sleepy Insight')}
+				}
+			}else{
+				if(G.getRes('chance').amount<=4.5 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
+		}
 		if(G.checkPolicy('sleepy insight')=="-1"){
 			var bonus=Math.floor(Math.random() * 7)+5
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=5 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
-		}}
+					G.gain('insight',bonus,'Sleepy Insight')}
+				}
+			}else{
+				if(G.getRes('chance').amount<=5 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
+		}
 		if(G.checkPolicy('sleepy insight')=="0"){
 			var bonus=Math.floor(Math.random() * 6)+3
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=7 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
+					G.gain('insight',bonus,'Sleepy Insight')}
 				}
+			}else{
+				if(G.getRes('chance').amount<=7 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}
 		if(G.checkPolicy('sleepy insight')=="+1"){
 			var bonus=Math.floor(Math.random() * 4)+1
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=8 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
+					G.gain('insight',bonus,'Sleepy Insight')}
 				}
-			
+			}else{
+				if(G.getRes('chance').amount<=8 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}
 		if(G.checkPolicy('sleepy insight')=="+2"){
 			var bonus=Math.floor(Math.random() * 1.75)+0.25
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=9.5 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
+					G.gain('insight',bonus,'Sleepy Insight')}
 				}
-			
+			}else{
+				if(G.getRes('chance').amount<=9.5 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}
 		if(G.checkPolicy('sleepy insight')=="+3"){
-			
-			var bonus=Math.floor(Math.random() * 1.35)+0.15
+			var bonus=Math.floor(Math.random() * 1.35)+1.15
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=10.25 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
+					G.gain('insight',bonus,'Sleepy Insight')}
 				}
+			}else{
+				if(G.getRes('chance').amount<=10.25 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}
 		if(G.has('t3')){
 			if(G.getRes('cultural balance').amount >= 50-(G.achievByName['Cultural'].won/2) || G.getRes('cultural balance').amount<=0+(G.achievByName['Cultural'].won/2)){
@@ -2878,7 +2905,7 @@ G.props['fastTicksOnResearch']=150;
 			if(G.getRes('wisdom').amount<100){
 		G.gain('wisdom',1)	
 		}}//year1&2 nerf
-		if(G.year==1){
+		if(G.year<=1){
 		G.gain('happiness',0.15)
 		}
 	}
@@ -8101,7 +8128,7 @@ if (!document.getElementById(cssId))
 					G.getDict('thot').icon=[0,0,'thotSheet']
 				}
 				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
-				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. //[thot] limit per is increased and becomes 75% less efficient'
+				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. If [sleepy insight] unlocked you will have a chance for [insight II] instead of [insight,insight I]. //[thot] limit per is increased and becomes 75% less efficient.'
 				G.getDict('philosophy II').desc='[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
 			}
 			if(G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.achievByName['Extremely smart'].won >= 1 && G.achievByName['Man of essences'].won >= 1 && G.achievByName['Magical'].won >= 1 && G.achievByName['Next to the God'].won >= 1 && G.achievByName['The first choice'].won >= 1 && G.achievByName['Trait-or'].won >= 1 && G.achievByName['Not so pious people'].won >= 1 && G.achievByName['Talented?'].won == 0){ //Experienced
@@ -14362,7 +14389,7 @@ autobuy(G.year)
 		new G.Trait({
 		name:'Eotm',
 		displayName:'Evolution of the minds',
-		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained.',
+		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. If [sleepy insight] unlocked you will have a chance for [insight II] instead of [insight,insight I].',
 		icon:[25,19,'magixmod'],
 		cost:{'culture':1000,'insight':1000,'influence':300,'faith':300},
 		chance:190,
@@ -15971,7 +15998,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Tech({
 		name:'sleep-speech',
-		desc:'@Unlocks special ability related to dreaming potential. <b>Sleepy insight</b>.. @Sleepy insight can be controlled by policy that will decide about: chance for bonus and power of it.<>Sleepy insight: a chance to obtain some [insight] at start of the new year.(amount and chance can be controlled by [sleepy insight] policy)',
+		desc:'@Unlocks special ability related to dreaming potential. <b>Sleepy insight</b>.. @Sleepy insight can be controlled by policy that will decide about: chance for bonus and power of it.<>Sleepy insight: a chance to obtain some ['+G.selfUpdatingText(function(){if(G.hasNot('Eotm')) return 'insight' else return 'insight II'})+'] at start of the new year.(amount and chance can be controlled by [sleepy insight] policy)',
 		req:{'ritualism':true,'<font color="aqua">Genius feeling</font>':true},
 		cost:{'insight':17,'influence':3},
 		icon:[33,25,'magixmod']
