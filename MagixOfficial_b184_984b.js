@@ -1433,7 +1433,7 @@ G.setPolicyMode=function(me,mode)
 						G.dialogue.getCloseButton('- Back -')+
 						'</div>';
 					}
-					else if(me.name=="University of the 7 worlds")
+					else if(me.name=="scientific university")
 					{
 						str+='<div class="fancyText par">Wonder completed</div>';
 						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascension and here is example of that.</div>';
