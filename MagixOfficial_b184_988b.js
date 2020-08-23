@@ -15998,7 +15998,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Tech({
 		name:'sleep-speech',
-		desc:'@Unlocks special ability related to dreaming potential. <b>Sleepy insight</b>.. @Sleepy insight can be controlled by policy that will decide about: chance for bonus and power of it.<>Sleepy insight: a chance to obtain some ['+G.selfUpdatingText(function(){if(G.hasNot('Eotm')) return 'insight' else return 'insight II'})+'] at start of the new year.(amount and chance can be controlled by [sleepy insight] policy)',
+		desc:'@Unlocks special ability related to dreaming potential. <b>Sleepy insight</b>.. @Sleepy insight can be controlled by policy that will decide about: chance for bonus and power of it.<>Sleepy insight: a chance to obtain some ['+G.selfUpdatingText(function(){if(G.hasNot('Eotm')){ return "insight"}else{ return "insight II"}})+'] at start of the new year.(amount and chance can be controlled by [sleepy insight] policy)',
 		req:{'ritualism':true,'<font color="aqua">Genius feeling</font>':true},
 		cost:{'insight':17,'influence':3},
 		icon:[33,25,'magixmod']
