@@ -2707,7 +2707,7 @@ G.props['fastTicksOnResearch']=150;
 		}
 		}
 		//SLEPPY INSIGHT
-		/*
+		
 		if(G.checkPolicy('sleepy insight')=="-3"){
 			var bonus=Math.floor(Math.random() * 14)+13;
 			if(G.hasNot('Eotm')){
@@ -2777,7 +2777,7 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 				if(G.getRes('chance').amount<=10.25 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
 					G.gain('insight II',bonus,'Sleepy Insight')}
-		}*/
+		}
 		if(G.has('t3')){
 			if(G.getRes('cultural balance').amount >= 50-(G.achievByName['Cultural'].won/2) || G.getRes('cultural balance').amount<=0+(G.achievByName['Cultural'].won/2)){
 			G.lose('population',G.getRes('population').amount)
@@ -18211,4 +18211,4 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		return lvl;
 	}
 }
-});
+}});
