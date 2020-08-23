@@ -2811,7 +2811,7 @@ G.props['fastTicksOnResearch']=150;
 						G.gain('cultural balance',Math.round(Math.random()*2)+1)
 					}
 				}
-	}
+	
 	}
 	G.props['new day lines']=[
 		'Creatures are lurking.',
