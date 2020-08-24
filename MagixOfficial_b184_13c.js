@@ -16171,11 +16171,18 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	new G.Tech({
 		name:'mirror world',
 		desc:'Unlocks a [grand mirror] which will double your [land] amount. It compounds with bonuses from: [beyond the edge] and [beyond the edge II]. Costs , display depends on chosen by your people path. In fact it is a passage to exact copy of world you met before your civilization have set their first shelter/dwelling. Make sure you fullfill upkeep of that because if you do not then [grand mirror] will disable and you will lose your land.',
-		req:{'parallel theory 3/3':true,'wonder \'o science':true},
+		req:{'parallel theory 3/3':true,'wonder \'o science':true,'Bigger university':true},
 		cost:{'insight II':400,'science':62,'culture II':38},
 		icon:[10,30,'magixmod'],
 		effects:[
 		]
+	});
+	new G.Tech({
+		name:'Bigger university',
+		desc:'@Unlocks 2nd level of [scientific university]. Requires 4 [victory point]s to level up. Unlocks [mirror world].',
+		icon:[9,29,'magixmod'],
+		cost:{'insight II':400,'university point':300,'science':50},
+		req:{'wonder\'o science':true,'Wizardd complex':true},
 	});
 	/*=====================================================================================
 	POLICIES
