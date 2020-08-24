@@ -1343,12 +1343,12 @@ G.setPolicyMode=function(me,mode)
 			}else{
 				if (mode.id=='off'){ 
 				if (G.checkPolicy('Toggle SFX')=='on'){
-				var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/spirit.mp3');
+				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/spiritReject.wav');
 				audio.play(); 
 				}me.l.classList.add('off')
 				}else{if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 				{
-				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/spiritReject.wav');
+				var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/spirit.mp3');
 				audio.play(); 
 				}me.l.classList.remove('off')}
 			}
