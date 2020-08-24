@@ -1360,10 +1360,6 @@ G.setPolicyMode=function(me,mode)
 		//if any is true, by anywhere between 0 and amount; otherwise, fail if we can't buy the precise amount
 		var success=true;
 		amount=Math.round(amount);
-		if (G.checkPolicy('Toggle SFX')=='on'){
-			var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/buy4.mp3');
-			audio.play(); 
-			}
 		if (me.unit.wonder && amount>0)
 		{
 			//check requirements
