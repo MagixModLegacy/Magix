@@ -2836,6 +2836,7 @@ G.props['fastTicksOnResearch']=150;
 					}
 				}
 	}
+		if(G.has('t4'))G.lose('population',G.getRes('population').amount*0.03);
 	}
 	G.props['new day lines']=[
 		'Creatures are lurking.',
@@ -8454,6 +8455,28 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'university point',
+	});
+	let MirrorMESG=false
+	new G.Res({
+		name:'emblem \'o mirror',
+		desc:'A thing you will get from opening the [grand mirror]. Not so needed to unlock further researching. A pass for further things and more adventures. You can obtain only one Emblem of this type. <b>@Cloning the world via magic. The more portals you\'ll open the more unstability you may bring on you and your '+G.getName('inhabs')+' . It is time to stop... before something bad happens.</b>',
+		icon:[11,30,'magixmod'],
+		tick:function(me,tick)
+		{
+			if (me.amount>=1 && !MirrorMESG){ 
+				G.Message({type:'emblemobtain',text:'<b>Your people finally made Grand Mirror work like a portla. Out of nowhere an Emblem appears behind you. It is cold in touch and perfectly symetrical. An emblem has a warning carved onto it. <br></b><li>Pro tip: hover on Emblem in <b>Essentials resource category</b> to read a message.',icon:[12,19,'magixmod']});
+				MirrorMESG = true
+			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audioEmblem = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedEmblem.mp3');
+			audioEmblem.play();
+			}
+			}
+			if (G.has('mirror world')){
+			me.hidden=true
+			}
+		},	
+		category:'main',
 	});
 	/*=====================================================================================
 	UNITS
@@ -16172,7 +16195,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'mirror world',
 		desc:'Unlocks a [grand mirror] which will double your [land] amount. It compounds with bonuses from: [beyond the edge] and [beyond the edge II]. Costs , display depends on chosen by your people path. In fact it is a passage to exact copy of world you met before your civilization have set their first shelter/dwelling. Make sure you fullfill upkeep of that because if you do not then [grand mirror] will disable and you will lose your land.',
 		req:{'parallel theory 3/3':true,'wonder \'o science':true,'Bigger university':true},
-		cost:{'insight II':400,'science':62,'culture II':38},
+		cost:{'insight II':400,'science':62,'culture II':38,'mirror emblem':1},
 		icon:[10,30,'magixmod'],
 		effects:[
 		]
