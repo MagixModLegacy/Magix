@@ -1329,7 +1329,7 @@ G.setPolicyMode=function(me,mode)
 		if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 		if (me.binary)
 		{
-			if(me.category!="pantheon"){
+			if(me.category!="Florists"){
 				if (mode.id=='off'){ 
 				if (G.checkPolicy('Toggle SFX')=='on'){
 				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOff.wav');
