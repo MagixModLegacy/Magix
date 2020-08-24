@@ -1652,6 +1652,11 @@ G.setPolicyMode=function(me,mode)
 						n=Math.max(Math.min(n,1e+35),-1e+35);
 						G.setSetting('buyAmount',n);
 						G.updateBuyAmount();
+						if (G.checkPolicy('Toggle SFX')=='on'){
+						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
+						audio.play(); 
+						}
+						
 					},
 				})+
 				'<div id="buyAmount" class="bgMid framed" style="width:128px;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">...</div>'+
@@ -1671,6 +1676,10 @@ G.setPolicyMode=function(me,mode)
 						n=Math.max(Math.min(n,1e+35),-1e+35);
 						G.setSetting('buyAmount',n);
 						G.updateBuyAmount();
+						if (G.checkPolicy('Toggle SFX')=='on'){
+						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
+						audio.play(); 
+						}
 					}
 				})+
 			'<div class="flourishR"></div></div>'+
