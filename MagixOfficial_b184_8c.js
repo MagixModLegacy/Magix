@@ -1329,16 +1329,30 @@ G.setPolicyMode=function(me,mode)
 		if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 		if (me.binary)
 		{
-			if (mode.id=='off'){ 
+			if(me.category!="pantheon"){
+				if (mode.id=='off'){ 
 				if (G.checkPolicy('Toggle SFX')=='on'){
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOff.wav');
-			audio.play(); 
-			}me.l.classList.add('off')
-			}else{if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
-			{
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOn.wav');
-			audio.play(); 
-			}me.l.classList.remove('off')}
+				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOff.wav');
+				audio.play(); 
+				}me.l.classList.add('off')
+				}else{if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+				{
+				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOn.wav');
+				audio.play(); 
+				}me.l.classList.remove('off')}
+			}else{
+				if (mode.id=='off'){ 
+				if (G.checkPolicy('Toggle SFX')=='on'){
+				var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/spirit.mp3');
+				audio.play(); 
+				}me.l.classList.add('off')
+				}else{if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+				{
+				var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/spirit.mp3');
+				audio.play(); 
+				}me.l.classList.remove('off')}
+			}
+			
 		}
 	}
 	G.buyUnit=function(me,amount,any)
