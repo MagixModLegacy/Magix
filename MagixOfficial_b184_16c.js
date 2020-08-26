@@ -16192,11 +16192,20 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		]
 	});
 	new G.Tech({
-		name:'mirror world',
+		name:'mirror world 1/2',
 		desc:'Unlocks a [grand mirror] which will double your [land] amount. It compounds with bonuses from: [beyond the edge] and [beyond the edge II]. Costs , display depends on chosen by your people path. In fact it is a passage to exact copy of world you met before your civilization have set their first shelter/dwelling. Make sure you fullfill upkeep of that because if you do not then [grand mirror] will disable and you will lose your land.',
 		req:{'parallel theory 3/3':true,'wonder \'o science':true,'Bigger university':true},
-		cost:{'insight II':400,'science':62,'culture II':38,'mirror emblem':1},
-		icon:[10,30,'magixmod'],
+		cost:{'insight II':400,'science':62,'culture II':38},
+		icon:[27,3,'magixmod',10,30,'magixmod'],
+		effects:[
+		]
+	});
+	new G.Tech({
+		name:'mirror world 2/2',
+		desc:'From that point amount of main [land] is doubled. Enjoy... It is seriously time to stop. <b><br>The more worlds you open the more unstable world will become...</b>',
+		req:{'mirror world 1/2':true},
+		cost:{'insight II':420,'science':62,'culture II':38,'faith II':30,'emblem \'o mirror':1},
+		icon:[27,2,'magixmod',10,30,'magixmod'],
 		effects:[
 		]
 	});
