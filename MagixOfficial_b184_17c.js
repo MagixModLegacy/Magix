@@ -4407,6 +4407,8 @@ G.writeMSettingButton=function(obj)
 		{
 			if(G.hasNot('beyond the edge')){
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
+			}else if(G.has('mirror world 2/2') && G.has('beyond the edge II') && G.has('beyond the edge')){
+			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100)*1.07*2;
 			}else if(G.has('beyond the edge II') && G.has('beyond the edge')){
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100)*1.07;
 			}else if(G.has('beyond the edge')){
@@ -16214,7 +16216,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'@Unlocks 2nd level of [scientific university]. Requires 4 [victory point]s to level up. Unlocks [mirror world].',
 		icon:[9,29,'magixmod'],
 		cost:{'insight II':400,'university point':300,'science':50},
-		req:{'wonder\'o science':true,'Wizardd complex':true},
+		req:{'wonder\'o science':true,'Wizard complex':true},
 	});
 	/*=====================================================================================
 	POLICIES
