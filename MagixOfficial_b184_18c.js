@@ -8474,7 +8474,7 @@ if (!document.getElementById(cssId))
 			audioEmblem.play();
 			}
 			}
-			if (G.has('mirror world')){
+			if (G.has('mirror world 2/2')){
 			me.hidden=true
 			}
 		},	
