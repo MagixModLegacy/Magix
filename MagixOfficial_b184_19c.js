@@ -2613,11 +2613,11 @@ G.props['fastTicksOnResearch']=150;
 			if (G.year>=109 && G.year<=121 && !madeThievesWarn && G.hasNot('t1') && G.hasNot('t2')){
        				 G.Message({type:'bad',text:'<b><span style="color: #FFA500">Beware of thievery!</span></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <span style "color= aqua">Happiness</span> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
 				madeThievesWarn = true
-				}else if(G.year>=109 && G.year<=121 && !madeThievesWarn && G.has('t1') || G.has('t2')){
+				}else if(G.has('t1') || G.has('t2'){if(G.year>=109 && G.year<=121 && !madeThievesWarn &&){
        				 G.Message({type:'important',text:'You got used to Thieves and fact that they appear after year 110. But in this plane Thieves doesn\'t exist. It is good for you.',icon:[28,2,'magixmod',23,0,'magixmod']});
 				madeThievesWarn = true
-				}
-			
+				}}
+								    
 			if (G.year>=29 && G.year<=31 && !madeWarnToolDecayMesg){
        				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made have started decaying.</font> <li>This doesn\'t seem good.</li></b>',icon:[24,6,'magixmod']});
 				madeWarnToolDecayMesg = true
