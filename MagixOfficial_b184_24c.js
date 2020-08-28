@@ -16242,7 +16242,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Tech({
 		name:'Bigger university',
-		desc:'@Unlocks 2nd level of [scientific university]. Requires 4 [victory point]s to level up. Unlocks [mirror world].',
+		desc:'@Unlocks 2nd level of [scientific university]. Requires 4 [victory point]s to level up. Unlocks [grand mirror].',
 		icon:[9,29,'magixmod'],
 		cost:{'insight II':400,'university point':300,'science':50},
 		req:{'wonder\'o science':true,'Wizard complex':true},
