@@ -1453,7 +1453,7 @@ G.setPolicyMode=function(me,mode)
 						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascension and here is example of that.</div>';
 						'</div>';
 					}
-					else if(me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #E0CE00">Plain island portal</span>' || me.name!=='<span style="color: #FF0000">Underworld</span>')
+					else if(me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #E0CE00">Plain island portal</span>' || me.name!=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror')
 					{
 						str+='<div class="fancyText par">Portal activated</div>';
 						str+='<div class="fancyText par">Now you can unlock new things, discover and most important settle more people.</div>';
@@ -1780,7 +1780,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -8199,6 +8199,8 @@ if (!document.getElementById(cssId))
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
 			G.getDict('bank').effects=[{type:'provide',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}];
+			 if(G.has('<font color="maroon">Caretaking</font>')){G.getDict('grand mirror').wideIcon=[1,30,'magixmod'];}
+				else if(G.has('<font color="maroon">Moderation</font>')){G.getDict('grand mirror').wideIcon=[4,30,'magixmod'];me.cost={'strong metal ingot':1500,'cobalt ingot':500,'precious building materials':1000,'basic building materials':250};me.upkeep={'coal':100,'Mana':100,'Magic essences':50}}
 
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -8416,6 +8418,19 @@ if (!document.getElementById(cssId))
 			if(G.has('beyond the edge') && G.getRes('beyond').amount==3){
 			G.gain('beyond',1)
 				G.lose('population',G.getRes('population').amount*0.3);
+				G.getRes('happiness').amount=0;G.getRes('health').amount=0;
+				G.getRes('insight').amount=0;G.getRes('insight II').amount=0;
+				G.getRes('culture').amount=0;G.getRes('culture II').amount=0;
+				G.getRes('faith').amount=0;G.getRes('faith II').amount=0;
+				G.getRes('influence').amount=0;G.getRes('influence II').amount=0;
+				G.getRes('science').amount=0;
+			}
+			if(G.has('beyond the edge II') && G.getRes('beyond').amount==4){
+			G.gain('beyond',1)
+				var toSick=G.getRes('adult',amount);
+				G.lose('adult',toSick);
+				G.gain('sick',toSick);
+				G.lose('population',G.getRes('population').amount*0.4);
 				G.getRes('happiness').amount=0;G.getRes('health').amount=0;
 				G.getRes('insight').amount=0;G.getRes('insight II').amount=0;
 				G.getRes('culture').amount=0;G.getRes('culture II').amount=0;
@@ -12205,11 +12220,9 @@ new G.Unit({
     		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
     		icon:[],
 		wonder:'.',
+		steps:50,
+		finalStepDesc:'Perform final step to gain an [emblem \'o mirror]. You will need it.',
     		effects:[
-			{type:'function',func:function(me){
-				 if(G.has('<font color="maroon">Caretaking</font>')){G.getDict('grand mirror').icon=[1,30,'magixmod'];}
-				else if(G.has('<font color="maroon">Moderation</font>')){G.getDict('grand mirror').icon=[4,30,'magixmod'];me.cost={'strong metal ingot':1500,'cobalt ingot':500,'precious building materials':1000,'basic building materials':250};me.upkeep={'coal':100,'Mana':100,'Magic essences':50}}
-			}}
     		],
     		use:{'land':25,'worker':10},
     		req:{'t10':true,'trial':true},
