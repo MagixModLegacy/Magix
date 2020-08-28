@@ -8457,6 +8457,7 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'university point',
+		icon:[8,12,6,4]
 	});
 	let MirrorMESG=false
 	new G.Res({
@@ -12198,6 +12199,21 @@ new G.Unit({
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
     		category:'trial',
+	});
+	new G.Unit({
+    		name:'grand mirror',
+    		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
+    		icon:[],
+		wonder:'.',
+    		effects:[
+			{type:'function',func:function(me){
+				 if(G.has('<font color="maroon">Caretaking</font>')){G.getDict('grand mirror').icon=[1,30,'magixmod'];}
+				else if(G.has('<font color="maroon">Moderation</font>')){G.getDict('grand mirror').icon=[4,30,'magixmod'];me.cost={'strong metal ingot':1500,'cobalt ingot':500,'precious building materials':1000,'basic building materials':250};me.upkeep={'coal':100,'Mana':100,'Magic essences':50}}
+			}}
+    		],
+    		use:{'land':25,'worker':10},
+    		req:{'t10':true,'trial':true},
+    		category:'dimensions',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
