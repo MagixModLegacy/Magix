@@ -1780,7 +1780,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -8199,8 +8199,8 @@ if (!document.getElementById(cssId))
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
 			G.getDict('bank').effects=[{type:'provide',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}];
-			 if(G.has('<font color="maroon">Caretaking</font>')){G.getDict('grand mirror').wideIcon=[1,30,'magixmod'];}
-				else if(G.has('<font color="maroon">Moderation</font>')){G.getDict('grand mirror').wideIcon=[4,30,'magixmod'];me.cost={'strong metal ingot':1500,'cobalt ingot':500,'precious building materials':1000,'basic building materials':250};me.upkeep={'coal':100,'Mana':100,'Magic essences':50}}
+			 if(G.has('<font color="maroon">Caretaking</font>')){G.getDict('grand mirror').wideIcon=[1,30,'magixmod'],G.getDict('grand mirror').cost={'Magic essences':250000,'cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'platinum ingot':350};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1000,'basic building materials':250,'gems':5000};}
+				else if(G.has('<font color="maroon">Moderation</font>')){G.getDict('grand mirror').wideIcon=[4,30,'magixmod'];G.getDict('grand mirror').cost={'strong metal ingot':7500,'cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'Basic factory equipment':500};G.getDict('grand mirror').upkeep={'coal':100,'Mana':100,'Magic essences':50};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1300,'basic building materials':250,'hard metal ingot':150,'coal':3000,'log':4000};}
 
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -12196,20 +12196,20 @@ new G.Unit({
     		cost:{'archaic building materials':200,'wooden coin':90},
     		effects:[
 			{type:'function',func:function(me){
-				 G.lose('wooden coin',100*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
+				 G.lose('wooden coin',50*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
                 G.gain('silver coin',1);
 			
 			},mode:'wts'},
 			{type:'function',func:function(me){
-				 G.lose('silver coin',100*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
+				 G.lose('silver coin',50*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
                 G.gain('golden coin',1);
 			
 			},mode:'stg'},
     		],
 		gizmos:true,
 		modes:{
-			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert  [wooden coin]s into 1 [silver coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
-			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert  [silver coin]s into 1 [golden coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">100*(Pocket trial completions*3+1)</font></b>'},
+			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert  [wooden coin]s into 1 [silver coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">50*(Pocket trial completions*3+1)</font></b>'},
+			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert  [silver coin]s into 1 [golden coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">50*(Pocket trial completions*3+1)</font></b>'},
 		},
     		use:{'land':1,'worker':1},
     		req:{'t10':true,'trial':true},
