@@ -8198,7 +8198,7 @@ if (!document.getElementById(cssId))
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
 			}
 			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
-			G.getDict('bank').effects=[{type:'provide',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}];
+			G.getDict('bank').effects=[{type:'provide',what:{'money storage':-G.getAchiev('Pocket').won*250+6000}}];
 			 if(G.has('<font color="maroon">Caretaking</font>')){G.getDict('grand mirror').wideIcon=[1,30,'magixmod'],G.getDict('grand mirror').cost={'Magic essences':250000,'Cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'platinum ingot':350};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1000,'basic building materials':250,'gems':5000};}
 				else if(G.has('<font color="maroon">Moderation</font>')){G.getDict('grand mirror').wideIcon=[4,30,'magixmod'];G.getDict('grand mirror').cost={'strong metal ingot':7500,'Cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'Basic factory equipment':500};G.getDict('grand mirror').upkeep={'coal':100,'Mana':100,'Magic essences':50};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1300,'basic building materials':250,'hard metal ingot':150,'coal':3000,'log':4000};}
 ///UNIVERSITY LEVELLING
@@ -8544,6 +8544,7 @@ if (!document.getElementById(cssId))
 		{id:'paradiseunit',name:'Paradise'},
 		{id:'alchemy',name:'Alchemy'},
 		{id:'trial',name:'Trial'},
+		{id:'underworld',name:'Underworld'},
 		{id:'guard',name:'<span style="color:#ff66cc">Army & Guards</span>'},
 	);
 	
@@ -9681,6 +9682,7 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		effects:[
 			{type:'explore',explored:0.1,unexplored:0},
+			{type:'mult',value:2.5,req:{'t10':true}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','wanderer got lost','wanderers got lost'),chance:1/100}
 		],
 		req:{'speech':true},
@@ -9695,6 +9697,7 @@ if (!document.getElementById(cssId))
 		staff:{'stone tools':1},
 		effects:[
 			{type:'explore',explored:0,unexplored:0.01},
+			{type:'mult',value:2.5,req:{'t10':true}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','scout got lost','scouts got lost'),chance:1/300}
 		],
 		req:{'scouting':true},
@@ -11652,7 +11655,7 @@ if (!document.getElementById(cssId))
     		use:{'Land of the Underworld':10,'worker':5,'Instructor':3},
     		req:{'Burial wormhole 2/2':true},
     		limitPer:{'land':3000,'population':50000},
-    		category:'civil',
+    		category:'underworld',
 	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
@@ -11882,7 +11885,7 @@ new G.Unit({
 			{type:'waste',chance:0.001/100000000}
 		],
 		req:{'Storage at the bottom of the world':true},
-		category:'storage',
+		category:'underworld',
 	});
 	new G.Unit({
 		name:'Temple of the Paradise',
@@ -12155,7 +12158,7 @@ new G.Unit({
     		icon:[25,29,'magixmod'],
 		cost:{'archaic building materials':50},
     		effects:[
-			{type:'provide',what:{'burial spot':10000}},
+			{type:'provide',what:{'money storage':10000}},
     		],
     		use:{'land':1},
 		limitPer:{'land':1e7},
@@ -12193,6 +12196,19 @@ new G.Unit({
     		use:{'Land of the Paradise':1},
     		req:{'Paradise housing':true},
     		category:'paradiseunit',
+	});
+	new G.Unit({
+    		name:'fort',
+    		desc:'@provides 30 housing. Uses 6 guards to protect civillians from cruel possesed dark powers.',
+    		icon:[8,6,'magixmod'],
+    		cost:{'basic building materials':800,'strong metal ingot':400,'Cobalt ingot':100},
+    		effects:[
+			{type:'provide',what:{'housing':30}},
+    		],
+		limitPer:{'land':21,'population':125,'Land of the Underoworld':8},
+    		use:{'Land of the Underoworld':1,'Wand':10,'armor set':10,'metal weapons':10,'worker':6,'Instructor':1},
+    		req:{'Underworld building 2/2':true},
+    		category:'underworld',
 	});
 	new G.Unit({
     		name:'shop',
@@ -16912,7 +16928,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'I am a Madness. This plane is full of anger... No way to make\'em happy. You will have to handle it. In fact people\'s happiness will be always at -200% level and can\'t be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Reaching -400% happiness causes Madness to kick you out of this plane. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!<br><Br><BR>'+
+                'I am a Madness. This plane is full of anger... No way to make\'em happy. You will have to handle it. In fact people\'s happiness will be always at -200% level and can\'t be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Reaching -400% happiness causes Madness to kick you out of this plane. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee Thieve hunters are al-most unharmable!<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Unhappy trial begins...<br>The Madness begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
                 '</div>'+
@@ -17011,7 +17027,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
+                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. Also exploring units are 2.5x as efficient. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Pocket\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
                 '</div>'+
