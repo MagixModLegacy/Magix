@@ -12217,11 +12217,12 @@ new G.Unit({
 	});
 	new G.Unit({
     		name:'grand mirror',
-    		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
+    		desc:'A door to world that is exact copy of mortal world.',
     		icon:[],
 		wonder:'.',
 		steps:50,
 		finalStepDesc:'Perform final step to gain an [emblem \'o mirror]. You will need it.',
+		finalStepCost:{'emblem \'o mirror':-1,'Magic essences':1e6,'Mana':450000},
     		effects:[
     		],
     		use:{'land':25,'worker':10},
