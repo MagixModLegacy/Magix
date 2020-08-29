@@ -8446,9 +8446,9 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').cost={'basic building materials':2400,'precious building materials':1200,'Magic essences':3000,'Mana':40000,'science':60};
 			G.getDict('scientific university').costPerStep={'basic building materials':1450,'precious metal ingot':500,'insight II':320,'science':35,'gems':1000,'wisdom II':-0.55,'education':-0.3,'Mana':4e4,'university point':-1};
 			G.getDict('scientific university').finalStepCost={'population':3000,'insight II':425,'wisdom':350,'science':100,'wisdom II':-25,'education':-25,'university point':-100};
-			//G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
+			G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
 			}};
-			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==400)G.getUnitByName('scientific university').mode==4;//G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
+			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==400){G.getUnitByName('scientific university').mode==4;G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];}
 		}
 	});
 	new G.Res({
