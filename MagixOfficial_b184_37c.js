@@ -8507,6 +8507,21 @@ if (!document.getElementById(cssId))
 		},	
 		category:'main',
 	});
+	new G.Res({
+		name:'money storage',
+		desc:'Each [money storage] unit lowers the rate of decay or theft for one unit of your money. [wooden coin] uses 0.1 point of storage, [silver coin] uses 1 and [golden coin] uses 5 pts.//The number on the left is how much material storage is occupied, while the number on the right is how much you have in total. //Note: This is only available while in Pocket trial.',
+		icon:[12,30,'magixmod'],
+		tick:function(me,tick)
+		{
+			me.used=(G.getRes('wooden coin').amount/10)+(G.getRes('silver coin').amount)+(G.getRes('golden coin').amount*5);
+		},
+		getDisplayAmount:function()
+		{
+			return B(Math.min(this.displayedAmount,this.displayedUsedAmount))+'<wbr>/'+B(this.displayedAmount);
+		},
+		displayUsed:true,
+		category:'demog'
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
