@@ -8201,7 +8201,16 @@ if (!document.getElementById(cssId))
 			G.getDict('bank').effects=[{type:'provide',what:{'burial spot':-G.getAchiev('Pocket').won*250+6000}}];
 			 if(G.has('<font color="maroon">Caretaking</font>')){G.getDict('grand mirror').wideIcon=[1,30,'magixmod'],G.getDict('grand mirror').cost={'Magic essences':250000,'Cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'platinum ingot':350};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1000,'basic building materials':250,'gems':5000};}
 				else if(G.has('<font color="maroon">Moderation</font>')){G.getDict('grand mirror').wideIcon=[4,30,'magixmod'];G.getDict('grand mirror').cost={'strong metal ingot':7500,'Cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'Basic factory equipment':500};G.getDict('grand mirror').upkeep={'coal':100,'Mana':100,'Magic essences':50};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1300,'basic building materials':250,'hard metal ingot':150,'coal':3000,'log':4000};}
-
+///UNIVERSITY LEVELLING
+			if(G.getUnitByName('scientific university').mode==4 && G.has('Bigger university') && G.getRes('university point').amount==300 && G.getRes('victory point').amount >=4){
+			G.getUnitByName('scientific university').mode==0;
+			G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
+			G.getDict('scientific university').steps=300;
+			G.getDict('scientific university').cost={'basic building materials':2400,'precious building materials':1200,'Magic essences':3000,'Mana':40000,'science':60};
+			G.getDict('scientific university').costPerStep={'basic building materials':1450,'precious metal ingot':500,'insight II':320,'science':35,'gems':1000,'wisdom II':-0.55,'education':-0.3,'Mana':4e4,'university point':-1};
+			G.getDict('scientific university').finalStepCost={'population':3000,'insight II':425,'wisdom':350,'science':100,'wisdom II':-25,'education':-25,'university point':-100};
+			};
+			if(G.getUnitByName('scientific university').mode==4 && G.has('Bigger university') && G.getRes('university point').amount==300))G.getUnitByName('scientific university').mode==4;
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -16246,7 +16255,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'@Unlocks 2nd level of [scientific university]. Requires 4 [victory point]s to level up. Unlocks [grand mirror].',
 		icon:[9,29,'magixmod'],
 		cost:{'insight II':400,'university point':300,'science':50},
-		req:{'wonder\'o science':true,'Wizard complex':true},
+		req:{'wonder \'o science':true,'Wizard complex':true},
 	});
 	/*=====================================================================================
 	POLICIES
