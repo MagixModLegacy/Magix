@@ -8210,7 +8210,7 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').costPerStep={'basic building materials':1450,'precious metal ingot':500,'insight II':320,'science':35,'gems':1000,'wisdom II':-0.55,'education':-0.3,'Mana':4e4,'university point':-1};
 			G.getDict('scientific university').finalStepCost={'population':3000,'insight II':425,'wisdom':350,'science':100,'wisdom II':-25,'education':-25,'university point':-100};
 			};
-			if(G.getUnitByName('scientific university').mode==4 && G.has('Bigger university') && G.getRes('university point').amount==300)G.getUnitByName('scientific university').mode==4;
+			if(G.getUnitByName('scientific university').mode==4 && G.has('Bigger university') && G.getRes('university point').amount==300)G.getUnitByName('scientific university').mode==4;G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -12226,8 +12226,9 @@ new G.Unit({
 	});
 	new G.Unit({
     		name:'grand mirror',
-    		desc:'A door to world that is exact copy of mortal world.',
-    		icon:[],
+    		desc:'A door to world that is exact copy of mortal world. //<b><font color="fuschia">Isn\'t it weird that you have MIRRORED world and terrain only duplicated but any housing , crafting shacks did not? Well... maybe it is better for you.</font></b>',
+    		icon:[0,0],
+		wideIcon:[0,0],
 		wonder:'.',
 		steps:50,
 		finalStepDesc:'Perform final step to gain an [emblem \'o mirror]. You will need it.',
