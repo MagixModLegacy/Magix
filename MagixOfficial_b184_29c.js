@@ -8210,7 +8210,7 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').costPerStep={'basic building materials':1450,'precious metal ingot':500,'insight II':320,'science':35,'gems':1000,'wisdom II':-0.55,'education':-0.3,'Mana':4e4,'university point':-1};
 			G.getDict('scientific university').finalStepCost={'population':3000,'insight II':425,'wisdom':350,'science':100,'wisdom II':-25,'education':-25,'university point':-100};
 			};
-			if(G.getUnitByName('scientific university').mode==4 && G.has('Bigger university') && G.getRes('university point').amount==300))G.getUnitByName('scientific university').mode==4;
+			if(G.getUnitByName('scientific university').mode==4 && G.has('Bigger university') && G.getRes('university point').amount==300)G.getUnitByName('scientific university').mode==4;
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
