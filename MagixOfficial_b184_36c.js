@@ -12207,14 +12207,16 @@ new G.Unit({
     		cost:{'archaic building materials':200,'wooden coin':90},
     		effects:[
 			{type:'function',func:function(me){
+				if(G.getRes('wooden coin').amount>=50*(G.getAchiev('Pocket').won*3+1)){
 				 G.lose('wooden coin',50*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
                 G.gain('silver coin',1);
-			
+				}
 			},mode:'wts'},
 			{type:'function',func:function(me){
+				if(G.getRes('wooden coin').amount>=50*(G.getAchiev('Pocket').won*3+1)){
 				 G.lose('silver coin',50*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
                 G.gain('golden coin',1);
-			
+				}
 			},mode:'stg'},
     		],
 		gizmos:true,
