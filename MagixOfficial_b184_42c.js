@@ -8458,7 +8458,10 @@ if (!document.getElementById(cssId))
 		icon:[5,25,'magixmod'],
 		tick:function(me,tick)
 		{
-			
+			if(G.getRes('money storage').used==G.getRes('money storage').amount){
+			var toSpoil=me.amount*0.004*G.achievByName['Pocket'].won;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			}
 		},
 	});
 	new G.Res({
@@ -8468,7 +8471,10 @@ if (!document.getElementById(cssId))
 		icon:[6,25,'magixmod'],
 		tick:function(me,tick)
 		{
-			
+			if(G.getRes('money storage').used==G.getRes('money storage').amount){
+			var toSpoil=me.amount*0.004*G.achievByName['Pocket'].won;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			}
 		},
 	});
 	new G.Res({
@@ -8478,7 +8484,10 @@ if (!document.getElementById(cssId))
 		icon:[7,25,'magixmod'],
 		tick:function(me,tick)
 		{
-			
+			if(G.getRes('money storage').used==G.getRes('money storage').amount){
+			var toSpoil=me.amount*0.004*G.achievByName['Pocket'].won;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			}
 		},
 	});
 	new G.Res({
