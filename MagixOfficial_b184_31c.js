@@ -8202,7 +8202,7 @@ if (!document.getElementById(cssId))
 			 if(G.has('<font color="maroon">Caretaking</font>')){G.getDict('grand mirror').wideIcon=[1,30,'magixmod'],G.getDict('grand mirror').cost={'Magic essences':250000,'Cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'platinum ingot':350};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1000,'basic building materials':250,'gems':5000};}
 				else if(G.has('<font color="maroon">Moderation</font>')){G.getDict('grand mirror').wideIcon=[4,30,'magixmod'];G.getDict('grand mirror').cost={'strong metal ingot':7500,'Cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'Basic factory equipment':500};G.getDict('grand mirror').upkeep={'coal':100,'Mana':100,'Magic essences':50};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1300,'basic building materials':250,'hard metal ingot':150,'coal':3000,'log':4000};}
 ///UNIVERSITY LEVELLING
-			if(G.getUnitByName('scientific university').mode==4 && G.has('Bigger university') && G.getRes('university point').amount==300 && G.getRes('victory point').amount >=4){
+			if(G.getUnitByName('scientific university').mode==4 && G.has('Bigger university') && G.getRes('university point').amount==0 && G.getRes('victory point').amount >=4){
 			G.getUnitByName('scientific university').mode==0;
 			G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
 			G.getDict('scientific university').steps=300;
