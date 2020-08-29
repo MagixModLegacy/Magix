@@ -12206,7 +12206,7 @@ new G.Unit({
 			{type:'provide',what:{'housing':30}},
     		],
 		limitPer:{'land':21,'population':125,'Land of the Underoworld':8},
-    		use:{'Land of the Underoworld':1,'Wand':10,'armor set':10,'metal weapons':10,'worker':6,'Instructor':1},
+    		use:{'Land of the Underworld':1,'Wand':10,'armor set':10,'metal weapons':10,'worker':6,'Instructor':1},
     		req:{'Underworld building 2/2':true},
     		category:'underworld',
 	});
