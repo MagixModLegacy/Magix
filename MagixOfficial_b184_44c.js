@@ -16232,7 +16232,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'beyond the edge II',
 		desc:'Send your people beyond the edge of the world for the second time. You will lose 40% of your current [population] , all remaining [adult]s will become [sick] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 5.5% of your total land for your people(7% in total). It may help you but there is a huger than before risk. The further you push beyond the edge the stronger scourge will fall on you and your civilization.</font>',
 		req:{'beyond the edge':true,'wonder \'o science':true},
-		cost:{'insight II':340,'science':26,'culture II':24},
+		cost:{'insight II':345,'science':26,'culture II':24},
 		icon:[0,30,'magixmod'],
 		effects:[
 			{type:'provide res',what:{'wisdom II':20}},
@@ -16299,7 +16299,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'Bigger university',
 		desc:'@Unlocks 2nd level of [scientific university]. Requires 4 [victory point]s to level up. Unlocks [grand mirror].',
 		icon:[9,29,'magixmod'],
-		cost:{'insight II':400,'university point':300,'science':50},
+		cost:{'insight II':426,'university point':300,'science':50},
 		req:{'wonder \'o science':true,'Wizard complex':true},
 	});
 	/*=====================================================================================
