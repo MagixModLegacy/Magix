@@ -16174,7 +16174,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Unlocks [scientific university]. [scientific university] is a wonder that can be upgraded. To unlock further tiers you need to complete Trials at higher levels meaning higher difficulty. University by itself can provide way more [education] and [wisdom II]. Also it may lead to some new discoveries.',
 		icon:[11,29,'magixmod'],
 		req:{'Outstanders club':true,'monument-building III':true},
-		cost:{'insight II':310,'culture II':25,'culture':65},
+		cost:{'insight II':305,'culture II':25,'culture':65},
 	});
 	let Mamuun1st =  new G.Trait({
         name:'well stored',
@@ -16243,7 +16243,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'mirrors',
 		desc:'People now know how mirror works and even how to make mirror effect.',
 		req:{'Burial in new world':true},
-		cost:{'insight':600},
+		cost:{'insight':615},
 		icon:[8,30,'magixmod'],
 		effects:[
 			{type:'provide res',what:{'wisdom II':20}},
