@@ -1,14 +1,1232 @@
+//SORRY GUYS!!!
+//TO MAKE WORLD MAP SUPPORT BIOMES ADDED BY MAGIX I HAD TO PASTE THESE OVER 1K LINES OF CODE. IF THERE WILL BE "SHORTER" WAY TO FIX IT I WILL IMPLEMENT IT!
+//THE PROBLEM WAS THAT WORLD MAP OF COURSE WAS GENERATING BIOMES LIKE LAVENDER FIELDS, DEAD FOREST, SWAMPLANDS, BADLANDS BUT THEIR DISPLAY WAS LIKE: BLACK TILE
+G.LoadResources=function()
+	{
+		var resources=[
+			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
+			'img/blot.png',
+			'img/iconSheet.png?v=1'
+		];
+	}
+G.Map=function(type,w,h,seed)
+	{
+	
+		//create a new unpopulated map with specified type, width and height, with an optional seed
+		this.type=type;
+		this.w=w;
+		this.h=h;
+		this.computedPlayerRes=[];
+		this.tilesByOwner=[];//lists of tiles indexed by civs owning them ([0]=unexplored)
+		this.territoryByOwner=[];//total amount of explored owned tile percents across all tiles owned by a given civ
+		this.seed=seed||makeSeed(5);
+		
+		var time=Date.now();
+		
+		if (!G.land[0]) throw 'Whoah there! You can\'t generate a map if you don\'t even have one terrain type to default to!';
+		
+		Math.seedrandom(this.seed);
+		this.tiles=[];
+		for (var x=0;x<w;x++)
+		{
+			this.tiles[x]=[];
+			for (var y=0;y<h;y++)
+			{
+				var land=G.land[0];
+				var tile={owner:0,land:land,goods:[],explored:0,effects:[],x:x,y:y,map:this};
+				this.tiles[x][y]=tile;
+			}
+		}
+		
+		var lvl=G.doFuncWithArgs('create map',[w,h]);
+		
+		for (var x=0;x<w;x++)
+		{
+			for (var y=0;y<h;y++)
+			{
+				this.tiles[x][y].land=G.getLand(lvl[x][y]);
+				this.tiles[x][y].goods=G.getRandomLandGoods(this.tiles[x][y].land);
+			}
+		}
+		
+		//console.log('generating map took '+(Date.now()-time)+'ms');
+		
+		G.maps.push(this);
+		Math.seedrandom();
+	}
+	
+	G.computeTilesByOwner=function(map,owner)
+	{
+		//stores a list of tiles owned by the specified owner into map.tilesByOwner[owner]
+		var tiles=[];
+		var tilePercents=0;
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (map.tiles[x][y].owner==owner)
+				{
+					tiles.push(map.tiles[x][y]);
+					if (!map.tiles[x][y].land.ocean) tilePercents+=map.tiles[x][y].explored;//TODO : generalize this
+				}
+			}
+		}
+		map.tilesByOwner[owner]=tiles;
+		map.territoryByOwner[owner]=tilePercents;
+	}
+	G.updateMapForOwners=function(map)
+	{
+		//cache owned tiles and resources for every civ on the map
+		for (var i=0;i<2;i++)
+		{
+			G.computeTilesByOwner(map,i);
+			G.computeOwnedRes(map,i);
+		}
+	}
+	
+	G.revealMap=function(map)
+	{
+		//mark all tiles as explored
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				map.tiles[x][y].owner=1;
+				map.tiles[x][y].explored=1;
+			}
+		}
+		G.updateMapForOwners(map);
+		G.updateMapDisplay();
+	}
+	
+	G.createMaps=function()//when creating a new game
+	{
+		G.currentMap=new G.Map(0,24,24);
+		
+		//set starting tile by ranking all land tiles by score and picking one
+		var goodTiles=[];
+		for (var x=1;x<G.currentMap.w-1;x++)
+		{
+			for (var y=1;y<G.currentMap.h-1;y++)
+			{
+				var land=G.currentMap.tiles[x][y].land;
+				if (!land.ocean) goodTiles.push([x,y,(land.score||0)+Math.random()*2]);
+			}
+		}
+		goodTiles.sort(function(a,b){return b[2]-a[2]});
+		var tile=0;
+		if (G.startingType==2) tile=choose(goodTiles);//just drop me wherever
+		else
+		{
+			var ind=0;
+			if (G.startingType==1) ind=Math.floor((0.85+Math.random()*0.15)*goodTiles.length);//15% worst
+			//ind=Math.floor((0.3+Math.random()*0.4)*goodTiles.length);//30% to 70% average
+			else ind=Math.floor((Math.random()*0.15)*goodTiles.length);//15% nicest
+			tile=goodTiles[ind];
+		}
+		tile=G.currentMap.tiles[tile[0]][tile[1]];
+		tile.owner=1;
+		tile.explored=10/100;//create one tile, a tenth of it explored
+		
+		G.updateMapForOwners(G.currentMap);
+		
+		G.updateMapDisplay();
+		G.centerMap(G.currentMap);
+	}
+	G.centerMap=function(map)
+	{
+		//center the map on the average of explored tiles
+		var ts=16;
+		var x1=0,y1=0,x2=map.w,y2=map.h;
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (map.tiles[x][y].explored>0) {x1=Math.max(x,x1);y1=Math.max(y,y1);x2=Math.min(x,x2);y2=Math.min(y,y2);}
+			}
+		}
+		var px=Math.floor((x2+x1)/2)+0.5;
+		var py=Math.floor((y2+y1)/2)+0.5;
+		G.mapOffXT=-(px*G.mapZoomT)*ts;
+		G.mapOffYT=-(py*G.mapZoomT)*ts;
+	}
+	G.mapToRedraw=false;
+	G.redrawMap=function(map)
+	{
+		G.mapToRedraw=false;
+		var ts=16;
+		var c=G.renderMap(map);
+		var ctx=l('mapCanvas').getContext('2d');
+		ctx.clearRect(0,0,map.w*ts,map.h*ts);
+		ctx.drawImage(c,0,0);
+	}
+	G.mapToRefresh=false;
+	G.refreshMap=function(map)
+	{
+		G.mapToRefresh=false;
+		G.computeOwnedRes(map,1);
+	}
+	
+	G.getRandomTile=function(map)
+	{
+		return map.tiles[Math.floor(Math.random()*map.w)][Math.floor(Math.random()*map.h)];
+	}
+	
+	G.getRandomLandGoods=function(land)
+	{
+		var goods=[];
+		for (var i in land.goods)
+		{
+			var me=land.goods[i];
+			var chance=1;if (typeof me.chance!=='undefined') chance=me.chance;
+			var min=1;var max=1;
+			if (typeof me.amount!=='undefined') min=me.amount;max=min;
+			if (typeof me.min!=='undefined') min=me.min;
+			if (typeof me.max!=='undefined') max=me.max;
+			if (Math.random()<chance)
+			{
+				var type='';if (Array.isArray(me.type)) type=choose(me.type); else type=me.type;
+				if (!goods[type]) goods[type]=0;
+				goods[type]+=Math.random()*(max-min)+min;
+			}
+		}
+		return goods;
+	}
+	
+	G.getResFromGoods=function(goods)//turn a list of goods into their associated resources
+	{
+		var res=[];
+		for (var i in goods)
+		{
+			var me=G.getGoods(i);
+			var mult=goods[i]*(me.mult||1);
+			for (var ii in me.res)
+			{
+				for (var iii in me.res[ii])
+				{
+					if (!res[ii]) res[ii]=[];
+					if (!res[ii][iii]) res[ii][iii]=0;
+					res[ii][iii]+=me.res[ii][iii]*mult;
+				}
+			}
+		}
+		return res;
+	}
+	
+	G.getLandIconBG=function(land)
+	{
+		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
+	}
+	G.getLandIconBGpos=function(land)
+	{
+		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
+	}
+	G.initMap=function()
+	{
+		G.mapVisible=0;
+		G.mapW=16;
+		G.mapH=16;
+		G.mapOffX=0;
+		G.mapOffY=0;
+		G.mapOffXT=0;
+		G.mapOffYT=0;
+		G.mapZoom=0.01;
+		G.mapZoomT=2;
+		G.mouseDragFromX=0;
+		G.mouseDragFromY=0;
+		G.mouseDragFrom=0;
+		G.mapIsDisplayingTooltip=false;
+		G.mapSelectingTileX=-1;
+		G.mapSelectingTileY=-1;
+		G.mapEditWithLand=0;
+		G.editMode=0;
+		G.inspectingTile=0;
+		G.tilesToRender=[];
+		
+		var div=l('tileEditButton');
+		if (div && G.land[G.mapEditWithLand])
+		{
+			div.style.background=G.getLandIconBG(G.land[G.mapEditWithLand]);
+			div.style.backgroundPosition=G.getLandIconBGpos(G.land[G.mapEditWithLand]);
+		}
+	}
+	G.showMap=function()
+	{
+		G.mapVisible=true;
+		l('mapSection').style.display='block';
+	}
+	G.hideMap=function()
+	{
+		G.mapVisible=false;
+		l('mapSection').style.display='none';
+	}
+	G.buildMapDisplay=function()
+	{
+		var str='';
+		str+='<div id="mapHeader" class="fancyText framed bgLight">World Map'+
+		'<div class="ifDebug">'+
+		'<div class="divider"></div>'+
+		'<div class="framed" style="display:none;cursor:pointer;width:32px;height:32px;position:absolute;left:0px;bottom:0px;" id="tileEditButton"></div>'+
+		//'<div class="image" style="width:9px;height:9px;background:url(img/miscButtonIcons.png) 0px -1px;"></div>'
+		G.writeSettingButton({id:'editMode1',name:'mapEditMode',text:'<div class="image" style="width:10px;height:9px;background:url(img/miscButtonIcons.png) -18px -1px;"></div>',tooltip:'<div class="barred">View mode</div>Clicking a map tile will simply display its info.',value:0,siblings:['editMode1','editMode2','editMode3']})+
+		G.writeSettingButton({id:'editMode2',name:'mapEditMode',text:'<div class="image" style="width:10px;height:9px;background:url(img/miscButtonIcons.png) -39px -1px;"></div>',tooltip:'<div class="barred">Explore mode</div>Clicking a map tile will toggle its exploration level.<br>Note : hold ctrl to edit without scrolling.',value:1,siblings:['editMode1','editMode2','editMode3']})+
+		G.writeSettingButton({id:'editMode3',name:'mapEditMode',text:'<div class="image" style="width:10px;height:9px;background:url(img/miscButtonIcons.png) -28px -1px;"></div>',tooltip:'<div class="barred">Edit mode</div>Clicking a map tile will edit its terrain.<br>Tile changes will not be saved.<br>This is mostly for testing and fun for the time being.<br>Note : hold ctrl to edit without scrolling.',value:2,siblings:['editMode1','editMode2','editMode3']})+
+		'</div>'+
+		'</div>';
+		str+='<div class="framed map noAlias" id="cornerMap"><div id="mapOverlay"></div><div id="tileFocus" class="framed simple"></div><div id="mapContainer"></div></div>';
+		
+		l('mapSection').innerHTML=str;
+		
+		
+		//land edit widget
+		var div=l('tileEditButton');
+		G.addTooltip(div,function(){
+			var str='Click and drag to select a terrain type<br>to place when in edit mode.';
+			if (G.land[G.mapEditWithLand]) str+='<div class="divider"></div>Current terrain :<br><b>'+G.land[G.mapEditWithLand].displayName+'</b>';
+			return str;},{offY:-8});
+
+		div.onmousedown=function(div){return function(){
+			if (div==G.widget.parent) G.widget.close();
+			else
+			{
+				G.widget.popup({
+					func:function(widget)
+					{
+						var str='';
+						str+='<div style="width:208px;"><div class="barred fancyText">Tile edit tool</div><div class="thingBox">';
+						var I=0;
+						var len=G.land.length;
+						for (var i=0;i<len;i++)
+						{
+							var land=G.land[i];
+							str+='<div id="tileEditLand-'+I+'" class="framed simple'+(G.mapEditWithLand==I?' on':'')+'" style="cursor:pointer;display:inline-block;width:32px;height:32px;background:'+G.getLandIconBG(land)+';background-position:'+G.getLandIconBGpos(land)+';"></div>';
+							I++;
+						}
+						str+='</div></div>';
+						widget.l.innerHTML=str;
+						
+						var I=0;
+						var len=G.land.length;
+						for (var i=0;i<len;i++)
+						{
+							var land=G.land[i];
+							l('tileEditLand-'+I).onmouseup=function(land){return function(){
+								G.mapEditWithLand=land;
+								var button=l('tileEditButton');
+								button.style.background=G.getLandIconBG(G.land[G.mapEditWithLand]);
+								button.style.backgroundPosition=G.getLandIconBGpos(G.land[G.mapEditWithLand]);
+								if (G.getSetting('animations')) triggerAnim(button,'plop');
+								var I=0;
+								var len=G.land.length;
+								for (var i=0;i<len;i++)
+								{
+									var me=G.land[i];
+									if (G.mapEditWithLand==me.id) l('tileEditLand-'+I).classList.add('on');
+									else l('tileEditLand-'+I).classList.remove('on');
+									I++;
+								}
+								widget.closeOnMouseUp=false;//override default behavior
+								widget.close(5);//schedule to close the widget in 5 frames
+							};}(land.id);
+							G.addTooltip(l('tileEditLand-'+I),function(land){return function(){return land.displayName;};}(land));
+							I++;
+						}
+					},
+					offX:-8,
+					offY:0,
+					anchor:choose(['left']),
+					parent:div,
+					closeOnMouseUp:true
+				});
+			}
+		};}(div);
+	}
+	G.updateMapDisplay=function()
+	{
+		//call whenever we switch maps
+		var str='';
+		var ts=16;//tile size
+		var map=G.currentMap;
+		
+		str+='<div id="mapSurface" style="width:'+(map.w*ts+G.mapW)+'px;height:'+(map.h*ts+G.mapH)+'px;left:'+(-G.mapW/2)+'px;top:'+(-G.mapH/2)+'px;"></div><div id="tileSelector" style="width:'+(ts)+'px;height:'+(ts)+'px;"></div>';
+		l('mapContainer').innerHTML=str;
+		var c=G.renderMap(G.currentMap);
+		c.id='mapCanvas';
+		l('mapContainer').appendChild(c);
+	}
+	G.resizeMapDisplay=function()
+	{
+		//var w=Math.max(128,G.w*0.2);
+		var w=Math.max(128,l('sections').offsetWidth*0.4);
+		var h=l('mapSection').offsetHeight-10;
+		if (l('mapHeader')) h-=l('mapHeader').offsetHeight;
+		w=Math.floor(Math.max(16,w));
+		h=Math.floor(Math.max(16,h));
+		l('cornerMap').style.width=(w)+'px';
+		l('cornerMap').style.height=(h)+'px';
+		
+		if (l('landBox')) l('landBox').style.marginRight=(w+4)+'px';
+		l('mapBreakdown').style.marginRight=(w+4+21)+'px';
+		
+		G.mapW=w;
+		G.mapH=h;
+		
+		if (G.currentMap)
+		{
+			var ts=16;//tile size
+			var map=G.currentMap;
+			l('mapSurface').style.left=(-G.mapW/2)+'px';
+			l('mapSurface').style.top=(-G.mapH/2)+'px';
+			l('mapSurface').style.width=(map.w*ts+G.mapW)+'px';
+			l('mapSurface').style.height=(map.h*ts+G.mapH)+'px';
+		}
+	}
+	G.logicMapDisplay=function()
+	{
+		var editMode=G.editMode;
+		if (!G.getSetting('debug')) editMode=0;
+		
+		//move the map around with the mouse
+		if (G.mapVisible)
+		{
+			var mapl=l('mapContainer');
+			var cornerMap=l('cornerMap');
+			var mapSurface=l('mapSurface');
+			var displayW=G.mapW;
+			var displayH=G.mapH;
+			var bounds=mapSurface.getBoundingClientRect();
+			var bounds2=l('mapOverlay').getBoundingClientRect();
+			var mouseOnMap=(G.mouseX>=bounds2.left && G.mouseX<bounds2.right && G.mouseY>=bounds2.top && G.mouseY<bounds2.bottom);
+
+			
+			var ts=16;//tile size
+			var map=G.currentMap;
+			
+			if (G.mouseDragFrom==mapSurface && !G.keys[17])//drag (not when ctrl is pressed)
+			{
+				G.mapOffXT+=G.mouseX-G.mouseDragFromX;
+				G.mapOffYT+=G.mouseY-G.mouseDragFromY;
+				G.mouseDragFromX=G.mouseX;
+				G.mouseDragFromY=G.mouseY;
+			}
+			
+			var x1=0;
+			var x2=-map.w*ts*G.mapZoomT;
+			var y1=0;
+			var y2=-map.h*ts*G.mapZoomT;
+			if (G.mapOffXT>x1) G.mapOffXT=x1;
+			if (G.mapOffXT<x2) G.mapOffXT=x2;
+			if (G.mapOffYT>y1) G.mapOffYT=y1;
+			if (G.mapOffYT<y2) G.mapOffYT=y2;
+			
+			if (mouseOnMap && G.Scroll>0 && G.mapZoomT==1)
+			{
+				G.mapZoomT=2;
+				G.mapOffXT*=2;
+				G.mapOffYT*=2;
+				G.tooltip.close();
+			}
+			else if (mouseOnMap && G.Scroll<0 && G.mapZoomT==2)
+			{
+				G.mapZoomT=1;
+				G.mapOffXT/=2;
+				G.mapOffYT/=2;
+				G.tooltip.close();
+			}
+			
+			var smooth=0.75;
+			G.mapOffX+=(G.mapOffXT-G.mapOffX)*smooth;
+			G.mapOffY+=(G.mapOffYT-G.mapOffY)*smooth;
+			G.mapZoom+=(G.mapZoomT-G.mapZoom)*smooth;
+			mapl.style.left=(displayW/2+G.mapOffX)+'px';
+			mapl.style.top=(displayH/2+G.mapOffY)+'px';
+			mapl.style.transform='scale('+G.mapZoom+')';
+			cornerMap.style.backgroundPosition=(displayW/2+G.mapOffX*0.8)+'px '+(displayH/2+G.mapOffY*0.8)+'px';
+			cornerMap.style.backgroundSize=Math.floor(G.mapZoom*512)+'px '+Math.floor(G.mapZoom*512)+'px';
+			
+			//pick tile
+			var tileSelector=l('tileSelector');
+			var tileX=Math.floor(((G.mouseX-bounds.left)/G.mapZoom-displayW/2)/ts);
+			var tileY=Math.floor(((G.mouseY-bounds.top)/G.mapZoom-displayH/2)/ts);
+			var changedTile=false;
+			if (G.mapSelectingTileX!=tileX || G.mapSelectingTileY!=tileY) changedTile=true;
+			G.mapSelectingTileX=tileX;
+			G.mapSelectingTileY=tileY;
+			tileSelector.style.left=(tileX*ts)+'px';
+			tileSelector.style.top=(tileY*ts)+'px';
+			
+			var tileFocus=l('tileFocus');
+			if (G.inspectingTile)
+			{
+				tileFocus.style.left=(displayW/2+G.mapOffX+(G.inspectingTile.x*ts)*G.mapZoom)+'px';
+				tileFocus.style.top=(displayH/2+G.mapOffY+(G.inspectingTile.y*ts)*G.mapZoom)+'px';
+				tileFocus.style.width=(G.mapZoom*ts)+'px';
+				tileFocus.style.height=(G.mapZoom*ts)+'px';
+				tileFocus.style.display='block';
+			}
+			else tileFocus.style.display='none';
+			
+			var mouseInBounds=(tileX>=0 && tileX<map.w && tileY>=0 && tileY<map.h && mouseOnMap);
+			
+			if (editMode==0 && mouseInBounds && map.tiles[tileX][tileY].explored>0 && G.inspectingTile!=map.tiles[tileX][tileY] && ((G.mouseUp && G.draggedFrames<3) || (G.keys[17] && changedTile && G.mousePressed)) && l('landList'))
+			{
+				//click to display details about tile
+				G.inspectingTile=map.tiles[tileX][tileY];
+				G.inspectTile(G.inspectingTile);
+				G.popupSquares.spawn(l('tileSelector'),l('land-0'));
+			}
+			
+			
+			//click to explore/unexplore a tile; ctrl-click to affect multiple tiles without scrolling the map
+			if (editMode==1 && ((!G.keys[17] && G.draggedFrames<3 && G.clickL==mapSurface && mouseInBounds) || ((changedTile || G.mouseDown) && G.keys[17] && G.mousePressed && mouseInBounds)))
+			{
+				var tile=G.currentMap.tiles[tileX][tileY];
+				if (G.keys[17] && G.mouseDown) G.mapEditWithLand=(tile.explored==0)?1:0;
+				if (G.keys[17]) tile.explored=G.mapEditWithLand;
+				else {if (tile.explored>0) tile.explored=0; else tile.explored=1;}
+				tile.owner=1;
+				G.tileToRender(tile);
+				G.updateMapForOwners(G.currentMap);
+				changedTile=true;
+			}
+			//click to set a tile; ctrl-click to draw multiple tiles without scrolling the map
+			if (editMode==2 && ((!G.keys[17] && G.draggedFrames<3 && G.clickL==mapSurface && mouseInBounds) || ((changedTile || G.mouseDown) && G.keys[17] && G.mousePressed && mouseInBounds)))
+			{
+				var tile=G.currentMap.tiles[tileX][tileY];
+				G.setTile(tileX,tileY,G.mapEditWithLand);
+				G.tileToRender(tile);
+				G.updateMapForOwners(G.currentMap);
+				changedTile=true;
+			}
+			
+			var tooltipToShow=0;
+			if (mouseOnMap && changedTile)
+			{
+				if (mouseInBounds)
+				{
+					tooltipToShow='<div class="info">'+
+					'<div class="fancyText barred infoTitle">Unexplored</div>'+
+					'<div class="fancyText barred">Start exploring and you may encounter this tile and its secrets.</div>'+
+					'</div>';
+				}
+				else
+				{
+					tooltipToShow='<div class="info">'+
+					'<div class="fancyText barred infoTitle">The edge of the world</div>'+
+					'<div class="fancyText barred">No sane soul would explore past this point.</div>'+
+					'</div>';
+				}
+			}
+			
+			if (mouseInBounds && map.tiles[tileX][tileY].explored>0 && !G.Scroll)
+			{
+				//display tooltip
+				if (changedTile)
+				{
+					var tile=map.tiles[tileX][tileY];
+					var me=tile.land;
+					//Math.seedrandom(tile.map.seed+'-name-'+tile.x+'/'+tile.y);
+					var name=me.displayName;//choose(me.names);
+					var str='<div class="info">';
+					str+='<div class="fancyText barred infoTitle">'+name+'</div>';
+					str+='<div class="fancyText barred">Explored : '+Math.floor(tile.explored*100)+'%</div>';
+					if (editMode==0) str+='<div class="fancyText barred">Click to see details</div>';
+					else if (editMode==1) str+='<div class="fancyText barred">Click to unexplore</div>';
+					else if (editMode==2) str+='<div class="fancyText barred">Click to change terrain</div>';
+					if (me.desc) str+='<div class="infoDesc">'+G.parse(me.desc)+'</div>';
+					str+='</div>';
+					//this should also iterate through tile modifiers and display their info too
+					//Math.seedrandom();
+					tooltipToShow=str;
+				}
+			}
+			
+			if (tooltipToShow)
+			{
+				G.tooltip.func=function(str){return function(){return str;}}(tooltipToShow);
+				//G.tooltip.parent=tileSelector;
+				//G.tooltip.popup({offY:-8});
+				G.tooltip.parent=l('cornerMap');
+				G.tooltip.popup({anchor:'left',offX:-6});
+				G.mapIsDisplayingTooltip=true;
+			}
+			else if ((!mouseOnMap || changedTile) && G.mapIsDisplayingTooltip)
+			{
+				G.tooltip.close();
+				G.mapIsDisplayingTooltip=false;
+			}
+		}
+	}
+	G.tileToRender=function(tile)
+	{
+		if (!G.tilesToRender.includes(tile)) G.tilesToRender.push(tile);
+	}
+	G.renderTiles=function()
+	{
+		if (G.tilesToRender.length<5)
+		{
+			for (var i in G.tilesToRender)
+			{
+				var tile=G.tilesToRender[i];
+				G.renderTile(tile.map,tile.x,tile.y);
+			}
+		}
+		else G.redrawMap(G.currentMap);
+		G.tilesToRender=[];
+	}
+	G.renderMap=function(map,obj)
+	{
+		var time=Date.now();
+		var timeStep=Date.now();
+		var verbose=false;
+		var breakdown=false;//visually break down map-drawing into steps, handy to understand what's happening
+		var toDiv=l('mapBreakdown');
+		if (breakdown) toDiv.style.display='block';
+		
+		if (verbose) {console.log('Now rendering map.');}
+		
+		Math.seedrandom(map.seed);
+		
+		var ts=16;//tile size
+		
+		var colorShift=true;
+		var seaFoam=true;
+		//var x1=5,y1=5,x2=x1+3,y2=y1+3;
+		var x1=0,y1=0,x2=map.w,y2=map.h;
+		if (obj)
+		{
+			if (obj.x1) x1=obj.x1;
+			if (obj.x2) x2=obj.x2;
+			if (obj.y1) y1=obj.y1;
+			if (obj.y2) y2=obj.y2;
+		}
+		
+		var totalw=map.w;//x2-x1;
+		var totalh=map.h;//y2-y1;
+		
+		var img = new Image();   // Create new img element
+		img.src = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png';
+		var fog=Pic('img/blot.png');
+		
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.translate(ts/2,ts/2);
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var tile=map.tiles[x][y];
+					if (tile.explored>0)
+					{
+						ctx.globalAlpha=tile.explored*0.9+0.1;
+						Math.seedrandom(map.seed+'-fog-'+x+'/'+y);
+						var s=1;
+						//"pull" the center to other explored tiles
+						var sx=0;var sy=0;var neighbors=0;
+						if (x==0 || map.tiles[x-1][y].explored>0) {sx-=1;neighbors++;}
+						if (x==map.w-1 || map.tiles[x+1][y].explored>0) {sx+=1;neighbors++;}
+						if (y==0 || map.tiles[x][y-1].explored>0) {sy-=1;neighbors++;}
+						if (y==map.h-1 || map.tiles[x][y+1].explored>0) {sy+=1;neighbors++;}
+						s*=0.6+0.1*(neighbors);
+						sx+=Math.random()*2-1;
+						sy+=Math.random()*2-1;
+						var pullAmount=2;
+						
+						var px=choose([0]);var py=choose([0]);
+						var r=Math.random()*Math.PI*2;
+						
+						ctx.translate(sx*pullAmount,sy*pullAmount);
+						ctx.scale(s,s);
+						ctx.rotate(r);
+						ctx.drawImage(fog,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+						ctx.rotate(-r);
+						ctx.scale(1/s,1/s);
+						ctx.translate(-sx*pullAmount,-sy*pullAmount);
+					}
+				}
+				ctx.translate(0,ts);
+			}
+			ctx.translate(ts,-map.h*ts);
+		}
+		ctx.globalAlpha=1;
+		var imgFog=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	FOG took 			'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.drawImage(imgFog,0,0);
+		var oldc=c;
+		
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.drawImage(oldc,0,0);
+		ctx.drawImage(c,-1,0);
+		ctx.drawImage(c,1,0);
+		ctx.drawImage(c,0,-1);
+		ctx.drawImage(c,0,1);
+		ctx.globalCompositeOperation='destination-out';
+		ctx.drawImage(oldc,0,0);
+		ctx.drawImage(oldc,0,0);
+		ctx.drawImage(oldc,0,0);
+		ctx.drawImage(oldc,0,0);
+		ctx.drawImage(oldc,0,0);
+		ctx.globalCompositeOperation='source-in';
+		ctx.beginPath();
+		ctx.rect(0,0,map.w*ts,map.h*ts);
+		ctx.fillStyle='rgb(200,150,100)';
+		ctx.fill();
+		oldc=0;
+		var imgOutline=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	OUTLINE took 		'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.globalCompositeOperation='lighten';
+		ctx.translate(ts/2,ts/2);
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var land=map.tiles[x][y].land;
+					if (!land.ocean)
+					{
+						Math.seedrandom(map.seed+'-base-'+x+'/'+y);
+						var s=1;
+						//"pull" the center to other land tiles
+						var sx=0;var sy=0;var neighbors=0;
+						if (x==0 || !map.tiles[x-1][y].land.ocean) {sx-=1;neighbors++;}
+						if (x==map.w-1 || !map.tiles[x+1][y].land.ocean) {sx+=1;neighbors++;}
+						if (y==0 || !map.tiles[x][y-1].land.ocean) {sy-=1;neighbors++;}
+						if (y==map.h-1 || !map.tiles[x][y+1].land.ocean) {sy+=1;neighbors++;}
+						s*=0.6+0.1*(neighbors);
+						if (neighbors==0) s*=0.65+Math.random()*0.35;//island
+						sx+=Math.random()*2-1;
+						sy+=Math.random()*2-1;
+						var pullAmount=4;
+						
+						var px=choose([0,1]);var py=choose([0,1,2,3,4]);
+						var r=Math.random()*Math.PI*2;
+						
+						ctx.translate(sx*pullAmount,sy*pullAmount);
+						ctx.scale(s,s);
+						ctx.rotate(r);
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+						ctx.rotate(-r);
+						ctx.scale(1/s,1/s);
+						ctx.translate(-sx*pullAmount,-sy*pullAmount);
+					}
+				}
+				ctx.translate(0,ts);
+			}
+			ctx.translate(ts,-map.h*ts);
+		}
+		var imgBase=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	HEIGHTMAP took 		'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		//create colors for sea and land
+		var c=document.createElement('canvas');c.width=totalw*2;c.height=totalh*2;//sea
+		var ctx=c.getContext('2d');
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var land=map.tiles[x][y].land;
+					if (land.ocean)
+					{
+						Math.seedrandom(map.seed+'-seaColor-'+x+'/'+y);
+						var px=land.image;var py=0;
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
+					}
+				}
+			}
+		}
+		ctx.globalCompositeOperation='destination-over';//bleed
+		ctx.drawImage(c,1,0);
+		ctx.drawImage(c,-1,0);
+		ctx.drawImage(c,0,-1);
+		ctx.drawImage(c,0,1);
+		ctx.globalCompositeOperation='source-over';//blur
+		ctx.globalAlpha=0.25;
+		ctx.drawImage(c,2,0);
+		ctx.drawImage(c,-2,0);
+		ctx.drawImage(c,0,-2);
+		ctx.drawImage(c,0,2);
+		var imgSea=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	MICROCOLORS took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		var c=document.createElement('canvas');c.width=totalw*2;c.height=totalh*2;//land
+		var ctx=c.getContext('2d');
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var land=map.tiles[x][y].land;
+					if (!land.ocean)
+					{
+						Math.seedrandom(map.seed+'-landColor-'+x+'/'+y);
+						var px=land.image;var py=0;
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2,y*2+1,1,1);
+						ctx.drawImage(img,px*32+Math.random()*30+1,py*32+Math.random()*30+1,1,1,x*2+1,y*2+1,1,1);
+					}
+				}
+			}
+		}
+		ctx.globalCompositeOperation='destination-over';//bleed
+		ctx.drawImage(c,1,0);
+		ctx.drawImage(c,-1,0);
+		ctx.drawImage(c,0,-1);
+		ctx.drawImage(c,0,1);
+		var imgLand=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	LAND COLORS took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		
+		//sea color
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.drawImage(imgSea,0,0,map.w*ts,map.h*ts);
+		ctx.globalCompositeOperation='source-over';
+		ctx.translate(ts/2,ts/2);
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var land=map.tiles[x][y].land;
+					if (land.ocean)
+					{
+						Math.seedrandom(map.seed+'-detail-'+x+'/'+y);
+						var px=land.image;var py=choose([2,4]);
+						var r=Math.random()*Math.PI*2;
+						var s=0.9+Math.random()*0.3;
+						
+						ctx.scale(s,s);
+						ctx.rotate(r);
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+						ctx.rotate(-r);
+						ctx.scale(1/s,1/s);
+					}
+				}
+				ctx.translate(0,ts);
+			}
+			ctx.translate(ts,-map.h*ts);
+		}
+		var imgSeaColor=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	SEA COLORS took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		if (seaFoam)
+		{
+			var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+			var ctx=c.getContext('2d');
+			ctx.drawImage(imgBase,0,0);
+			var size=4;
+			ctx.globalAlpha=0.25;
+			ctx.drawImage(c,-size,0);
+			ctx.drawImage(c,size,0);
+			ctx.drawImage(c,0,-size);
+			ctx.drawImage(c,0,size);
+			ctx.drawImage(c,-size,0);
+			ctx.drawImage(c,size,0);
+			ctx.drawImage(c,0,-size);
+			ctx.drawImage(c,0,size);
+			ctx.globalAlpha=1;
+			ctx.globalCompositeOperation='destination-out';
+			ctx.drawImage(imgBase,-1,0);
+			ctx.drawImage(imgBase,1,0);
+			ctx.drawImage(imgBase,0,-1);
+			ctx.drawImage(imgBase,0,1);
+			ctx.globalCompositeOperation='source-in';
+			ctx.beginPath();
+			ctx.rect(0,0,map.w*ts,map.h*ts);
+			ctx.fillStyle='rgb(255,255,255)';
+			ctx.fill();
+			var imgEdges=c;
+			if (breakdown) toDiv.appendChild(c);
+			c=imgSeaColor;ctx=c.getContext('2d');
+			ctx.setTransform(1,0,0,1,0,0);
+			ctx.globalCompositeOperation='overlay';
+			ctx.drawImage(imgEdges,0,0);
+			ctx.drawImage(imgEdges,0,0);
+			if (verbose) {console.log('	FOAM took 			'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		}
+		
+		//draw land shadow on the sea
+		c=imgSeaColor;ctx=c.getContext('2d');
+		ctx.globalCompositeOperation='destination-out';
+		ctx.globalAlpha=0.5;
+		ctx.drawImage(imgBase,2,2);
+		ctx.drawImage(imgBase,4,4);
+		ctx.globalCompositeOperation='destination-over';
+		ctx.globalAlpha=1;
+		ctx.beginPath();
+		ctx.rect(0,0,map.w*ts,map.h*ts);
+		ctx.fillStyle='rgb(0,0,0)';
+		ctx.fill();
+		if (verbose) {console.log('	SEA SHADOW took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		//sea heightmap
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		//fill with dark base
+		ctx.beginPath();
+		ctx.rect(0,0,map.w*ts,map.h*ts);
+		ctx.fillStyle='rgb(64,64,64)';
+		ctx.fill();
+		ctx.globalCompositeOperation='overlay';
+		ctx.translate(ts/2,ts/2);
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var land=map.tiles[x][y].land;
+					if (land.ocean)
+					{
+						Math.seedrandom(map.seed+'-detail-'+x+'/'+y);
+						var px=land.image;var py=choose([1,3]);
+						var r=Math.random()*Math.PI*2;
+						var s=0.9+Math.random()*0.3;
+						
+						ctx.scale(s,s);
+						ctx.rotate(r);
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+						ctx.rotate(-r);
+						ctx.scale(1/s,1/s);
+					}
+				}
+				ctx.translate(0,ts);
+			}
+			ctx.translate(ts,-map.h*ts);
+		}
+		var imgSeaHeight=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	SEA HEIGHTMAP took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.drawImage(imgBase,0,0,map.w*ts,map.h*ts);//draw the coastline
+		ctx.globalCompositeOperation='source-in';
+		ctx.drawImage(imgLand,0,0,map.w*ts,map.h*ts);//draw land colors within the coastline
+		ctx.globalCompositeOperation='destination-over';
+		ctx.drawImage(imgSeaColor,0,0,map.w*ts,map.h*ts);//draw sea colors behind the coastline
+		if (verbose) {console.log('	COMPOSITING took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		//add color details for each tile
+		ctx.globalCompositeOperation='source-over';
+		ctx.translate(ts/2,ts/2);
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var land=map.tiles[x][y].land;
+					if (!land.ocean)
+					{
+						Math.seedrandom(map.seed+'-detail-'+x+'/'+y);
+						var s=1;
+						//"pull"
+						var sx=0;var sy=0;var neighbors=0;
+						if (x==0 || !map.tiles[x-1][y].land.ocean) {sx-=1;neighbors++;}
+						if (x==map.w-1 || !map.tiles[x+1][y].land.ocean) {sx+=1;neighbors++;}
+						if (y==0 || !map.tiles[x][y-1].land.ocean) {sy-=1;neighbors++;}
+						if (y==map.h-1 || !map.tiles[x][y+1].land.ocean) {sy+=1;neighbors++;}
+						s*=0.6+0.1*(neighbors);
+						if (neighbors==0) s*=0.65+Math.random()*0.35;//island
+						sx+=Math.random()*2-1;
+						sy+=Math.random()*2-1;
+						var pullAmount=4;
+						
+						var px=land.image;var py=choose([2,4]);
+						var r=Math.random()*Math.PI*2;
+						
+						ctx.translate(sx*pullAmount,sy*pullAmount);
+						ctx.scale(s,s);
+						ctx.rotate(r);
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+						ctx.rotate(-r);
+						ctx.scale(1/s,1/s);
+						ctx.translate(-sx*pullAmount,-sy*pullAmount);
+					}
+				}
+				ctx.translate(0,ts);
+			}
+			ctx.translate(ts,-map.h*ts);
+		}
+		var imgColor=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	COLOR DETAIL took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		//add heightmap details for each tile in overlay blending mode
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		//fill with dark base
+		ctx.beginPath();
+		ctx.rect(0,0,map.w*ts,map.h*ts);
+		ctx.fillStyle='rgb(32,32,32)';
+		ctx.fill();
+		ctx.drawImage(imgSeaHeight,0,0,map.w*ts,map.h*ts);//draw the sea heightmap
+		ctx.drawImage(imgBase,0,0,map.w*ts,map.h*ts);//draw the coastline
+		ctx.globalCompositeOperation='overlay';
+		ctx.translate(ts/2,ts/2);
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				if (x>=x1 && x<x2 && y>=y1 && y<y2)
+				{
+					var land=map.tiles[x][y].land;
+					if (!land.ocean)
+					{
+						Math.seedrandom(map.seed+'-detail-'+x+'/'+y);
+						var s=1;
+						//"pull"
+						var sx=0;var sy=0;var neighbors=0;
+						if (x==0 || !map.tiles[x-1][y].land.ocean) {sx-=1;neighbors++;}
+						if (x==map.w-1 || !map.tiles[x+1][y].land.ocean) {sx+=1;neighbors++;}
+						if (y==0 || !map.tiles[x][y-1].land.ocean) {sy-=1;neighbors++;}
+						if (y==map.h-1 || !map.tiles[x][y+1].land.ocean) {sy+=1;neighbors++;}
+						s*=0.6+0.1*(neighbors);
+						if (neighbors==0) s*=0.65+Math.random()*0.35;//island
+						sx+=Math.random()*2-1;
+						sy+=Math.random()*2-1;
+						var pullAmount=4;
+						
+						var px=land.image;var py=choose([1,3]);
+						var r=Math.random()*Math.PI*2;
+						
+						ctx.translate(sx*pullAmount,sy*pullAmount);
+						ctx.scale(s,s);
+						ctx.rotate(r);
+						ctx.drawImage(img,px*32+1,py*32+1,30,30,-ts,-ts,32,32);
+						ctx.rotate(-r);
+						ctx.scale(1/s,1/s);
+						ctx.translate(-sx*pullAmount,-sy*pullAmount);
+					}
+				}
+				ctx.translate(0,ts);
+			}
+			ctx.translate(ts,-map.h*ts);
+		}
+		var imgHeight=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	HEIGHT DETAIL took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		//embossing
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.drawImage(imgHeight,1,1);
+		ctx.beginPath();
+		ctx.rect(0,0,map.w*ts,map.h*ts);
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.globalCompositeOperation='difference';
+		ctx.fill();//invert
+		ctx.globalCompositeOperation='source-over';
+		ctx.globalAlpha=0.5;
+		ctx.drawImage(imgHeight,0,0);//create emboss
+		ctx.globalCompositeOperation='hard-light';
+		ctx.globalAlpha=1;
+		ctx.drawImage(c,0,0);
+		//ctx.drawImage(c,0,0);
+		var imgEmboss1=c;
+		if (breakdown) toDiv.appendChild(c);
+		
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.drawImage(imgHeight,1,1);
+		ctx.beginPath();
+		ctx.rect(0,0,map.w*ts,map.h*ts);
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.globalCompositeOperation='difference';
+		ctx.fill();//invert
+		ctx.globalCompositeOperation='source-over';
+		ctx.globalAlpha=0.5;
+		ctx.drawImage(imgHeight,-1,-1);//create emboss
+		ctx.globalCompositeOperation='hard-light';
+		ctx.globalAlpha=1;
+		//ctx.drawImage(c,0,0);
+		var imgEmboss2=c;
+		if (breakdown) toDiv.appendChild(c);
+		
+		//ambient occlusion (highpass)
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.drawImage(imgHeight,0,0);
+		var size=2;
+		ctx.globalAlpha=0.5;
+		ctx.drawImage(c,-size,0);
+		ctx.drawImage(c,size,0);
+		ctx.drawImage(c,0,-size);
+		ctx.drawImage(c,0,size);
+		ctx.globalAlpha=1;
+		ctx.beginPath();
+		ctx.rect(0,0,map.w*ts,map.h*ts);
+		ctx.fillStyle='rgb(255,255,255)';
+		ctx.globalCompositeOperation='difference';
+		ctx.fill();//invert
+		ctx.globalCompositeOperation='source-over';
+		ctx.globalAlpha=0.5;
+		ctx.drawImage(imgHeight,0,0);
+		ctx.globalCompositeOperation='overlay';
+		ctx.drawImage(c,0,0);
+		ctx.drawImage(c,0,0);
+		var imgAO=c;
+		if (breakdown) toDiv.appendChild(c);
+		if (verbose) {console.log('	RELIEF took 		'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		//add emboss and color
+		var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+		var ctx=c.getContext('2d');
+		ctx.drawImage(imgEmboss1,0,0);
+		ctx.globalCompositeOperation='overlay';
+		ctx.drawImage(imgEmboss2,1,1);//combine both emboss passes
+		/*ctx.globalAlpha=0.5;
+		ctx.drawImage(imgHeight,0,0);
+		ctx.globalAlpha=1;*/
+		ctx.globalCompositeOperation='hard-light';
+		ctx.drawImage(imgColor,0,0);//add color
+		ctx.globalCompositeOperation='overlay';
+		ctx.drawImage(imgAO,0,0);//add AO
+		var imgFinal=c;
+		if (verbose) {console.log('	COMPOSITING 2 took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		//blots (big spots of random color to give the map some unity)
+		Math.seedrandom(map.seed+'-blots');
+		ctx.globalCompositeOperation='soft-light';
+		ctx.globalAlpha=0.25;
+		for (var i=0;i<4;i++)
+		{
+			var x=Math.random()*map.w*ts;
+			var y=Math.random()*map.h*ts;
+			var s=Math.max(map.w,map.h)*ts;
+			var grd=ctx.createRadialGradient(x,y,0,x,y,s/2);
+			grd.addColorStop(0,'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')');
+			grd.addColorStop(1,'rgb(128,128,128)');
+			ctx.fillStyle=grd;
+			ctx.fillRect(x-s/2,y-s/2,s,s);
+		}
+		if (verbose) {console.log('	BLOTS took 			'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		if (colorShift)
+		{
+			//heck, why not. slight channel-shifting
+			var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+			var ctx=c.getContext('2d');
+			ctx.drawImage(imgFinal,0,0);
+			ctx.globalCompositeOperation='multiply';
+			ctx.beginPath();
+			ctx.rect(0,0,map.w*ts,map.h*ts);
+			ctx.fillStyle='rgb(255,0,0)';
+			ctx.fill();
+			var imgRed=c;
+			var c=document.createElement('canvas');c.width=totalw*ts;c.height=totalh*ts;
+			var ctx=c.getContext('2d');
+			ctx.drawImage(imgFinal,0,0);
+			ctx.globalCompositeOperation='multiply';
+			ctx.beginPath();
+			ctx.rect(0,0,map.w*ts,map.h*ts);
+			ctx.fillStyle='rgb(0,255,255)';
+			ctx.fill();
+			var imgCyan=c;
+			//if (breakdown) toDiv.appendChild(c);
+			if (verbose) {console.log('	COLORSHIFT took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		}
+		
+		c=imgFinal;ctx=c.getContext('2d');
+		if (colorShift)
+		{
+			ctx.globalCompositeOperation='lighten';
+			ctx.globalAlpha=0.5;
+			ctx.drawImage(imgRed,-1,-1);
+			ctx.drawImage(imgCyan,1,1);
+		}
+		ctx.globalAlpha=1;
+		ctx.globalCompositeOperation='soft-light';
+		ctx.beginPath();
+		ctx.rect(0,0,map.w*ts,map.h*ts);
+		ctx.fillStyle='rgb(160,128,96)';
+		ctx.fill();//some slight sepia to finish it up
+		
+		ctx.globalCompositeOperation='destination-in';
+		ctx.drawImage(imgFog,0,0);//fog
+		ctx.globalCompositeOperation='source-over';
+		ctx.drawImage(imgOutline,0,0);//outline
+		
+		ctx.globalCompositeOperation='source-over';
+		ctx.globalAlpha=1;
+		
+		if (breakdown) toDiv.appendChild(c);
+		else
+		{
+			//flush
+			var imgBase=0;
+			var imgFog=0;
+			var imgOutline=0;
+			var imgSea=0;
+			var imgLand=0;
+			var imgSeaColor=0;
+			var imgColor=0;
+			var imgEdges=0;
+			var imgSeaHeight=0;
+			var imgHeight=0;
+			var imgEmboss1=0;
+			var imgEmboss2=0;
+			var imgAO=0;
+			var imgFinal=0;
+			var imgRed=0;
+			var imgCyan=0;
+		}
+		Math.seedrandom();
+		if (verbose) {console.log('	FINAL STEPS took 	'+(Date.now()-timeStep)+'ms');timeStep=Date.now();}
+		
+		if (verbose) console.log('Rendering map took '+(Date.now()-time)+'ms.');
+		return c;
+	}
+	
+	G.renderTile=function(map,tileX,tileY)
+	{
+		//re-render a specific tile (invokes G.renderMap with constrained bounds)
+		//to speed things up, we're only re-rendering a 5x5 block of tiles centered around the specified tile and copying the central 3x3 block back to the canvas
+		var ts=16;
+		var c=G.renderMap(map,{x1:tileX-3,y1:tileY-3,x2:tileX+5,y2:tileY+5});
+		var ctx=l('mapCanvas').getContext('2d');
+		ctx.clearRect((tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts));
+		ctx.drawImage(c,(tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts),(tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts));
+	}
+
+//////////////////////////////////////////////////////////////
+////////ACTUAL CONTENT
 G.AddData({
 name:'Default dataset',
 author:'pelletsstarPL',
 desc:'Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
 manifest:'ModManifest.js',
-sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
+sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-	img=Pic('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png');
+
+		
 var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -21,6 +1239,83 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+	G.inspectTile=function(tile)
+	{
+		//display the tile's details in the land section
+		//note : this used to display every territory owned until i realized 3 frames per second doesn't make for a very compelling user experience
+		var str='';
+		//Math.seedrandom(tile.map.seed+'-name-'+tile.x+'/'+tile.y);
+		var name=tile.land.displayName;//choose(tile.land.names);
+		str+='<div class="block framed bgMid fadeIn" id="land-0"><div class="fancyText framed bgMid blockLabel" style="float:right;">'+name+'</div><div class="fancyText segmentHeader">< - - Goods - - ><br><br><br></div><div class="thingBox" style="padding:0px;text-align:left;">';
+		var I=0;
+		for (var ii in tile.goods)
+		{
+			var me=G.getGoods(ii);
+			var amount=tile.goods[ii];
+			str+='<div id="landGoods-'+I+'" class="thing standalone'+G.getIconClasses(me)+'">'+G.getIconStr(me);
+			if (!me.noAmount)
+			{
+				var bar=1;
+				if (amount<0.09) bar=1;
+				else if (amount<0.25) bar=2;
+				else if (amount<0.375) bar=3;
+				else if (amount<0.5) bar=4;
+				else if (amount<1) bar=5;
+				else if (amount<1.5) bar=6;
+				else if (amount<2.25) bar=7;
+				else if (amount<3) bar=8;
+				else if (amount<3.25) bar=9;
+				else if (amount<3.5) bar=10;
+				else if (amount<3.9) bar=11;
+				else if (amount<4.3) bar=12;
+				else if (amount<4.75) bar=13;
+				else if (amount<5.2) bar=14;
+				else if (amount<5.5) bar=15;
+				else if (amount<6) bar=16;
+				else if (amount<6.2) bar=17;
+				else if (amount<6.45) bar=18;
+				else if (amount<6.7) bar=19;
+				else bar=20;
+				str+='<div class="icon" style="background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png);'+G.getFreeformIcon(816,0+bar*7,24,6)+'top:100%;"></div>';
+			}
+			str+='</div>';
+			I++;
+		}
+		str+='</div></div>';
+		l('landList').innerHTML=str;
+		var I=0;
+		for (var ii in tile.goods)
+		{
+			var goods=G.getGoods(ii);
+			G.addTooltip(l('landGoods-'+I),function(me,amount){return function(){
+				var str='<div class="info">';
+				str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
+				str+='<div class="fancyText barred infoTitle">'+me.displayName;
+				if (!me.noAmount)
+				{
+					str+='<div class="fancyText infoAmount">';
+					if (amount<0.09) str+='(almost none)';
+					else if (amount<0.25) str+='(scarce)';
+					else if (amount<0.5) str+='(few)';
+					else if (amount<1.5) str+='(some)';
+					else if (amount<3) str+='(lots)';
+					else if (amount<3.5) str+='(abundant)';
+					else if (amount<4.7) str+='(crazy amounts)';
+					else if (amount<5.5) str+='(insane amounts)';
+					else if (amount<6.1) str+='(<font color="pink">hella lot</font>)';
+					else str+='(unbeliveably lot)';
+					str+='</div>';
+				}
+				str+='</div>';
+				if (me.desc) str+='<div class="infoDesc">'+G.parse(me.desc)+'</div>';
+				str+='</div>';
+				str+=G.debugInfo(me);
+				return str;
+			};}(goods,tile.goods[ii]),{offY:-8});
+			I++;
+		}
+		//Math.seedrandom();
+	}
 G.setPolicyMode=function(me,mode)
 	{
 		//free old mode uses, and assign new mode uses
@@ -34,16 +1329,30 @@ G.setPolicyMode=function(me,mode)
 		if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 		if (me.binary)
 		{
-			if (mode.id=='off'){ 
+			if(me.category!="Florists"){
+				if (mode.id=='off'){ 
 				if (G.checkPolicy('Toggle SFX')=='on'){
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOff.wav');
-			audio.play(); 
-			}me.l.classList.add('off')
-			}else{if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
-			{
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOn.wav');
-			audio.play(); 
-			}me.l.classList.remove('off')}
+				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOff.wav');
+				audio.play(); 
+				}me.l.classList.add('off')
+				}else{if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+				{
+				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOn.wav');
+				audio.play(); 
+				}me.l.classList.remove('off')}
+			}else{
+				if (mode.id=='off'){ 
+				if (G.checkPolicy('Toggle SFX')=='on'){
+				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/spiritReject.wav');
+				audio.play(); 
+				}me.l.classList.add('off')
+				}else{if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+				{
+				var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/spirit.mp3');
+				audio.play(); 
+				}me.l.classList.remove('off')}
+			}
+			
 		}
 	}
 	G.buyUnit=function(me,amount,any)
@@ -138,10 +1447,16 @@ G.setPolicyMode=function(me,mode)
 						G.dialogue.getCloseButton('- Back -')+
 						'</div>';
 					}
-					else if(me.name=="University of the 7 worlds")
+					else if(me.name=="scientific university")
 					{
 						str+='<div class="fancyText par">Wonder completed</div>';
 						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascension and here is example of that.</div>';
+						'</div>';
+					}
+					else if(me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #E0CE00">Plain island portal</span>' || me.name!=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror')
+					{
+						str+='<div class="fancyText par">Portal activated</div>';
+						str+='<div class="fancyText par">Now you can unlock new things, discover and most important settle more people.</div>';
 						'</div>';
 					}
 					else
@@ -302,7 +1617,7 @@ G.setPolicyMode=function(me,mode)
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
-		var randText =Math.floor(Math.random()*10)
+		var randText =Math.floor(Math.random()*13)
 		if(randText>=0 && randText<=1){
 		G.middleText('<font color="#ffffee"><small>Sorry. Can\'t do that when paused!</small></font>');
 		}else if(randText>1 && randText<=2){
@@ -319,8 +1634,14 @@ G.setPolicyMode=function(me,mode)
 		G.middleText('<font color="#b0b0ff"><small>Ask pelletsstarPL(mod creator & Grand Magixian) maybe he will help you.</small></font>');
 		}else if(randText>7 && randText<=8){
 		G.middleText('<font color="lime"><small>Log #'+Math.round(Math.random()*32767)+1+'<br>Attempted to perform operation while paused<br>ACTION INTERRUPTED</small></font>');
-		}else if(randText>8 && randText<=10){
+		}else if(randText>8 && randText<=9){
 		G.middleText('<font color="#ffbbaa"><small>Don\'t push. It provides you nothing.</small></font>');
+		}else if(randText>9 && randText<=10){
+		G.middleText('<font color="cyan"><small>Oh no, no. Don\'t think I will let you do this like that. >:)</small></font>');
+		}else if(randText>10 && randText<=11){
+		G.middleText('<font color="#aa00ff"><small>No doing things when paused in the halls.<br>'+Math.round(Math.random()*30)+' seconds. Detention for you.</small></font>');
+		}else if(randText>10 && randText<=13){
+		G.middleText('<font color="#a0F0b0"><small>Uh uh. Unpause at 1st.</small></font>');
 		}
 	}
 	/////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
@@ -345,6 +1666,11 @@ G.setPolicyMode=function(me,mode)
 						n=Math.max(Math.min(n,1e+35),-1e+35);
 						G.setSetting('buyAmount',n);
 						G.updateBuyAmount();
+						if (G.checkPolicy('Toggle SFX')=='on'){
+						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
+						audio.play(); 
+						}
+						
 					},
 				})+
 				'<div id="buyAmount" class="bgMid framed" style="width:128px;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">...</div>'+
@@ -364,6 +1690,10 @@ G.setPolicyMode=function(me,mode)
 						n=Math.max(Math.min(n,1e+35),-1e+35);
 						G.setSetting('buyAmount',n);
 						G.updateBuyAmount();
+						if (G.checkPolicy('Toggle SFX')=='on'){
+						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
+						audio.play(); 
+						}
 					}
 				})+
 			'<div class="flourishR"></div></div>'+
@@ -450,7 +1780,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='University of the 7 worlds' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -458,7 +1788,7 @@ G.setPolicyMode=function(me,mode)
 						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
 						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
 						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
-						else if (instance.mode==4 && me.name!=='University of the 7 worlds'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
+						else if (instance.mode==4 && me.name!=='scientific university'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
 						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
 					}
 					if (amount<0) amount=0;
@@ -566,6 +1896,8 @@ G.props['fastTicksOnResearch']=150;
 	let st10=false
 	let st11=false
 	let st12=false
+	let st13=false
+	let displayC1=true;let displayC2=false;
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -586,11 +1918,11 @@ G.props['fastTicksOnResearch']=150;
 		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
 		return str;
+			
 	}
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
-		
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -893,23 +2225,9 @@ G.props['fastTicksOnResearch']=150;
 		}else if(G.getRes('victory point').amount >=20 && G.getRes('victory point').amount <35 && G.hasNot('bonus4')){
 			G.gainTrait(G.traitByName['bonus4'])
 		}
-		G.getLandIconBG=function(land)
-	{
-		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
-	}
-		G.getLandIconBGpos=function(land)
-	{
-		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
-	}
 		
-	G.LoadResources=function()
-	{
-		var resources=[
-			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
-			'img/blot.png',
-			'img/iconSheet.png?v=1'
-		];
-	}
+		
+	
 	if (G.achievByName['mausoleum'].won > 0) {
       G.Message({
         type: 'good',
@@ -1235,22 +2553,7 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		G.getLandIconBG=function(land)
-	{
-		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
-	}
-		G.getLandIconBGpos=function(land)
-	{
-		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
-	}
-	G.LoadResources=function()
-	{
-		var resources=[
-			'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png',
-			'img/blot.png',
-			'img/iconSheet.png?v=1'
-		];
-	}
+		
 	}
 	G.funcs['new year']=function()
 	{
@@ -1265,6 +2568,7 @@ G.props['fastTicksOnResearch']=150;
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
+			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
 			if(t1start==true)
 			{
 				var insight=Math.floor(Math.random() * (33/(G.achievByName['Patience'].won+1)));
@@ -1306,14 +2610,14 @@ G.props['fastTicksOnResearch']=150;
 				}
 			}
 			
-			if (G.year>=109 && G.year<=121 && !madeThievesWarn && G.hasNot('t1')){
+			if (G.year>=109 && G.year<=121 && !madeThievesWarn && G.hasNot('t1') && G.hasNot('t2')){
        				 G.Message({type:'bad',text:'<b><span style="color: #FFA500">Beware of thievery!</span></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <span style "color= aqua">Happiness</span> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
 				madeThievesWarn = true
-				}else if(G.year>=109 && G.year<=121 && !madeThievesWarn && G.has('t1')){
+				}else if(G.has('t1') || G.has('t2')){if(G.year>=109 && G.year<=121 && !madeThievesWarn){
        				 G.Message({type:'important',text:'You got used to Thieves and fact that they appear after year 110. But in this plane Thieves doesn\'t exist. It is good for you.',icon:[28,2,'magixmod',23,0,'magixmod']});
 				madeThievesWarn = true
-				}
-			
+				}}
+								    
 			if (G.year>=29 && G.year<=31 && !madeWarnToolDecayMesg){
        				 G.Message({type:'important',text:'<font color="gray"><b>Your people noticed that tools they made have started decaying.</font> <li>This doesn\'t seem good.</li></b>',icon:[24,6,'magixmod']});
 				madeWarnToolDecayMesg = true
@@ -1394,10 +2698,14 @@ G.props['fastTicksOnResearch']=150;
 				G.Message({type:'story2',text:'He did a flip. lol',icon:[24,2,'magixmod']});
 				st12=true
 			}
+			if(G.techN > 122 && G.techN <=132 && !st13){
+				G.Message({type:'story1',text:'You look confused a little bit , but still your presence motivates your '+G.getName('inhabs')+' to discover more and more. But about what you are confused.',icon:[7,30,'magixmod']});
+				st13=true
+			}
 		}
 		if(G.has('t2')){
-			if(G.getRes('population').amount>=Math.round(50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))){
-				var popinfo=Math.round(50-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))
+			if(G.getRes('population').amount>=Math.round(125-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))){
+				var popinfo=Math.round(125-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))
 				G.gain('unhappy',1)
 				//Murdered by Madness
 				//G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)
@@ -1422,49 +2730,77 @@ G.props['fastTicksOnResearch']=150;
 		}
 		}
 		//SLEPPY INSIGHT
-	
+		
 		if(G.checkPolicy('sleepy insight')=="-3"){
-			var bonus=Math.floor(Math.random() * 14)+13
+			var bonus=Math.floor(Math.random() * 14)+13;
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=2.75 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
+					G.gain('insight',bonus,'Sleepy Insight')}
+				
+			}else{
+				if(G.getRes('chance').amount<=2.75 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}}
 		if(G.checkPolicy('sleepy insight')=="-2"){
-			var bonus=Math.floor(Math.random() * 9)+9
+			var bonus=Math.floor(Math.random() * 9)+9;
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=4.5 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
+					G.gain('insight',bonus,'Sleepy Insight')}
+				
+			}else{
+				if(G.getRes('chance').amount<=4.5 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}}
 		if(G.checkPolicy('sleepy insight')=="-1"){
-			var bonus=Math.floor(Math.random() * 7)+5
+			var bonus=Math.floor(Math.random() * 7)+5;
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=5 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
+					G.gain('insight',bonus,'Sleepy Insight')}
+				
+			}else{
+				if(G.getRes('chance').amount<=5 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
 		}}
 		if(G.checkPolicy('sleepy insight')=="0"){
-			var bonus=Math.floor(Math.random() * 6)+3
+			var bonus=Math.floor(Math.random() * 6)+3;
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=7 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
-				}
-		}
+					G.gain('insight',bonus,'Sleepy Insight')}
+				
+			}else{
+				if(G.getRes('chance').amount<=7 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
+		}}
 		if(G.checkPolicy('sleepy insight')=="+1"){
-			var bonus=Math.floor(Math.random() * 4)+1
+			var bonus=Math.floor(Math.random() * 4)+1;
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=8 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
-				}
-			
-		}
+					G.gain('insight',bonus,'Sleepy Insight')}
+				
+			}else{
+				if(G.getRes('chance').amount<=8 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
+		}}
 		if(G.checkPolicy('sleepy insight')=="+2"){
-			var bonus=Math.floor(Math.random() * 1.75)+0.25
+			var bonus=Math.floor(Math.random() * 1.75)+0.25;
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=9.5 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
-				}
-			
-		}
+					G.gain('insight',bonus,'Sleepy Insight')}
+				
+			}else{
+				if(G.getRes('chance').amount<=9.5 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
+		}}
 		if(G.checkPolicy('sleepy insight')=="+3"){
-			
-			var bonus=Math.floor(Math.random() * 1.35)+0.15
+			var bonus=Math.floor(Math.random() * 1.35)+1.15;
+			if(G.hasNot('Eotm')){
 				if(G.getRes('chance').amount<=10.25 && G.getRes('insight').amount < G.getRes('wisdom').amount-bonus){
-					G.gain('insight',bonus,'Sleepy Insight');
-				}
-		}
+					G.gain('insight',bonus,'Sleepy Insight')}
+				
+			}else{
+				if(G.getRes('chance').amount<=10.25 && G.getRes('insight II').amount < G.getRes('wisdom II').amount-bonus){
+					G.gain('insight II',bonus,'Sleepy Insight')}
+		}}
 		if(G.has('t3')){
 			if(G.getRes('cultural balance').amount >= 50-(G.achievByName['Cultural'].won/2) || G.getRes('cultural balance').amount<=0+(G.achievByName['Cultural'].won/2)){
 			G.lose('population',G.getRes('population').amount)
@@ -1500,6 +2836,7 @@ G.props['fastTicksOnResearch']=150;
 					}
 				}
 	}
+		if(G.has('t4'))G.lose('population',G.getRes('population').amount*0.03);
 	}
 	G.props['new day lines']=[
 		'Creatures are lurking.',
@@ -1587,14 +2924,13 @@ G.props['fastTicksOnResearch']=150;
 			}
 			
 			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-
 		}
 		//0/0 insight fix
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
 			if(G.getRes('wisdom').amount<100){
 		G.gain('wisdom',1)	
-		}}//year1 nerf
-		if(G.year==0){
+		}}//year1&2 nerf
+		if(G.year==1){
 		G.gain('happiness',0.15)
 		}
 	}
@@ -1896,6 +3232,7 @@ G.writeMSettingButton=function(obj)
 		this.won=0;//how many times we've achieved this achievement (may also be used to track other info about the achievement)
 		this.visible=true;
 		this.icon=[0,0];
+		this.civ=0 //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah . 0 stands for people... 1 for ... ???
 		
 		for (var i in obj) this[i]=obj[i];
 		this.id=G.achiev.length;
@@ -1973,25 +3310,29 @@ G.writeMSettingButton=function(obj)
 		str+='<div class="par">Dead forests found: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['lands of despair'].won);})+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
+		
 		if (G.sequence=='main')
 		{
-			str+='<div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
+			str+='<center>'+G.button({text:'<',tooltip:'View the C1 achievements',onclick:function(){displayC1=true;displayC2=false;}})+''+G.button({text:'>',tooltip:'View the C2 achievements',onclick:function(){displayC1=false;displayC2=true;}})+'</center><div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
 			for (var i in G.achievByTier)
 			{
 				str+='<div class="tier thingBox">';
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
+					if(me.civ==0 && displayC1==true){
 					str+='<div class="thingWrapper">'+
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
 					'</div>';
+					}
 				}
 				str+='<div class="divider"></div>';
 				str+='</div>';
 			}
+			
 			
 			G.arbitraryCallback(function(){
 				for (var i in G.achievByTier)
@@ -2035,6 +3376,462 @@ G.writeMSettingButton=function(obj)
 		var blob=new Blob([text],{type:'text/plain;charset=utf-8'});
 		saveAs(blob,filename+'.txt');
 	}
+			/*=====================================================================================
+	ACHIEVEMENTS
+	=======================================================================================*/
+	
+	G.legacyBonuses.push(
+		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
+		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
+	);
+	
+	//do NOT remove or reorder achievements or saves WILL get corrupted
+	
+	new G.Achiev({
+		tier:0,
+		name:'mausoleum',
+		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
+		fromUnit:'mausoleum',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300*3},
+			{type:'addFastTicksOnResearch',amount:150}
+		],
+		civ:0
+	});
+//Temple achiev
+		new G.Achiev({
+		tier:1,
+		name:'Heavenly',
+		wideIcon:[0,11,'magixmod'],
+		icon:[1,11,'magixmod'],
+		desc:'Your soul has been sent to Paradise as archangel with power of top Temple tower in an beautiful stone monument the purpose of which takes root in a pure religious thought.',
+		fromWonder:'Heavenly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+			civ:0
+	});
+//skull achiev
+		new G.Achiev({
+		tier:1,
+		name:'Deadly, revenantic',
+		wideIcon:[0,16,'magixmod'],
+		icon:[1,16,'magixmod'],
+		desc:'You escaped and your soul got escorted right into the world of Underwold... you may discover it sometime.',
+		fromWonder:'Deadly, revenantic',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25}	
+		],
+			civ:0
+	});
+
+		new G.Achiev({
+		tier:0,
+		name:'Sacrificed for culture',
+		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
+		icon:[6,12,'magixmod'],
+		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+		visible:false,
+			civ:0
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Democration',
+		wideIcon:[5,13,'magixmod'],
+		icon:[6,13,'magixmod'],
+		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
+		fromWonder:'Democration',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:0,
+		name:'Insight-ly',
+		wideIcon:[choose([0,3,6]),17,'magixmod'],
+		icon:[choose([1,4,7]),17,'magixmod'],
+		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
+		fromWonder:'Insight-ly',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:75},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:1,
+		name:'"In the underworld"',
+		wideIcon:[7,5,'magixmod'],
+		icon:[9,5,'magixmod'],
+		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
+		fromWonder:'"In the underworld"',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:15},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:2,
+		wideIcon:[27,20,'magixmod'],
+		icon:[28,20,'magixmod'],
+		name:'<font color="DA4f37">Mausoleum eternal</font>',
+		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve [mausoleum] to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
+		fromWonder:'<font color="DA4f37">Mausoleum eternal</font>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:2000},
+			{type:'addFastTicksOnResearch',amount:175}
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:1,
+		icon:[25,19,'magixmod'],
+		name:'Level up',
+		desc:'Obtain [Eotm] trait during the run. This trait unlocks second tier of [insight] , [culture] , [faith] and [influence] which are required for further researches.',
+			civ:0
+	});
+		new G.Achiev({
+		tier:0,
+		icon:[25,21,'magixmod'],
+		name:'Metropoly',
+		desc:'Manage to get 500k [population,people] in one run.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:25},
+			{type:'addFastTicksOnResearch',amount:5}
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:0,
+		icon:[23,21,'magixmod'],
+		name:'Apprentice',
+		desc:'Get 100 or more technologies in a single run.',
+			civ:0
+	});
+		new G.Achiev({
+		tier:1,
+		icon:[26,9,'magixmod'],
+		name:'Lucky 9',
+		desc:'Obtain the [dt9] .',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5}
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:1,
+		icon:[26,21,'magixmod'],
+		name:'Traitsman',
+		desc:'Make your tribe attract 30 traits.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:2,
+		icon:[27,21,'magixmod'],
+		name:'Extremely smart',
+		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing <font color="DA4f37">Mausoleum eternal</font> unlocks you [Theme changer] .',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+			{type:'addFastTicksOnResearch',amount:10}
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:0,
+		icon:[29,21,'magixmod'],
+		name:'Experienced',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: +100 [fruit]s at start of each next game</b>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+			{type:'addFastTicksOnResearch',amount:10}
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:1,
+		icon:[29,22,'magixmod'],
+		name:'Smart',
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:10}
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:2,
+		icon:[12,22,'magixmod'],
+		name:'Man of essences',
+		desc:'Obtain [Magic adept] trait. Manage to get 2.1M [Magic essences]. //Obtaining it may unlock a new wonder.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:40},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:2,
+		name:'Magical',
+		wideIcon:[9,22,'magixmod'],
+		icon:[10,22,'magixmod'],
+		desc:'<b>You decided to sacrifice yourself for magic.</br>You decided that putting yourself at coffin that there was lying will attract some glory.</br>You were right</b> //This achievement will: @Unlock you a new theme @Increase effect of <b>Wizard towers</b> by 5% without increasing their upkeep cost. //This achievement will unlock you way further technologies such like [hunting III] or [fishing III] .',
+		fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:15},
+		],
+			civ:0
+	});
+			new G.Achiev({
+		icon:[16,24,'magixmod'],
+		tier:1,
+		name:'Familiar',
+		desc:'Get 200 or more technologies in a single run.',
+				civ:0
+	});
+				new G.Achiev({
+		icon:[23,24,'magixmod'],
+		tier:0,
+		name:'3rd party',
+		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
+				civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Patience',
+		wideIcon:[3,26,'magixmod'],
+		icon:[4,26,'magixmod'],
+		desc:'Complete Chra-nos trial for the first time. Your determination led you to victory. //Complete this trial again to gain extra Victory Points.',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Unhappy',
+		wideIcon:[6,26,'magixmod'],
+		icon:[7,26,'magixmod'],
+		desc:'Complete Bersaria\'s trial for the first time. Your determination and calmness led you to victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Cultural',
+		wideIcon:[18,26,'magixmod'],
+		icon:[19,26,'magixmod'],
+		desc:'Complete Tu-ria\'s trial for the first time. Your artistic thinking led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Hunted',
+		wideIcon:[24,26,'magixmod'],
+		icon:[25,26,'magixmod'],
+		desc:'Complete Hartar\'s trial for the first time. Making people being masters at hunting and showing \'em what brave really is led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Unfishy',
+		wideIcon:[21,26,'magixmod'],
+		icon:[22,26,'magixmod'],
+		desc:'Complete Fishyar\'s trial for the first time. Making people believe that life without fish is not boring led you to the victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Ocean',
+		wideIcon:[1,25,'magixmod'],
+		icon:[2,25,'magixmod'],
+		desc:'Complete Posi\'zul\'s trial for the first time. Living at the endless ocean is not impossible and you are example of that. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Herbalism',
+		wideIcon:[12,26,'magixmod'],
+		icon:[13,26,'magixmod'],
+		desc:'Complete Herbalia\'s trial for the first time. Herbs are not that bad! //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Buried',
+		wideIcon:[0,26,'magixmod'],
+		icon:[1,26,'magixmod'],
+		desc:'Complete Buri\'o dak \'s trial for the first and the last time. Death lurks everywhere but it is still easy deal for you!',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Underground',
+		wideIcon:[15,26,'magixmod'],
+		icon:[16,26,'magixmod'],
+		desc:'Complete Moai\'s trial for the first time. Stone leads to victory! //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Pocket',
+		wideIcon:[9,26,'magixmod'],
+		icon:[10,26,'magixmod'],
+		desc:'Complete Mamuun\'s trial for the first time. Seems like you have got a trading skills! This can lead to victory. //Complete this trial again to gain extra Victory Points. 2nd victory of this trial increases bonus from the trial',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Faithful',
+		wideIcon:[0,27,'magixmod'],
+		icon:[1,27,'magixmod'],
+		desc:'Complete Enlightened\'s trial for the first time. Belief and faith is everything. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+		new G.Achiev({
+		tier:3,
+		name:'Dreamy',
+		wideIcon:[27,26,'magixmod'],
+		icon:[28,26,'magixmod'],
+		desc:'Complete Okar the Seer\'s trial for the first time. Knowledge leads to victory. //Complete this trial again to gain extra Victory Points',
+		//fromWonder:'Magical',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+			{type:'addFastTicksOnResearch',amount:5},
+		],
+			civ:0
+	});
+	new G.Achiev({
+		tier:2,
+		name:'Next to the God',
+		displayName:'<font color="yellow">Next to the God</font>',
+		wideIcon:[8,25,'magixmod'],
+		icon:[9,25,'magixmod'],
+		desc:'Ascend by the Temple of the Paradise... You managed to be very close to the God. But this step will make it easier. Because you had to sacrifice so much time reaching that far this achievement has plenty of rewards. Here are the rewards you will get for it: @Chance for [culture of the afterlife] is tripled. Same to [The God\'s call]. @[An opposite side of belief] has 10% bigger chance to occur.(Note: not 10 percent points! Chance for it is multiplied by 1.1!) @You will start each next run with +1 [faith] and [spirituality] @You will unlock the Pantheon! Just build this wonder again(nope you won\'t need to ascend once more by it, just complete it and buy tech that will finally unlock it for you). @This achievement will unlock you <b><font color="orange">3</font> new themes!</b>',
+		fromWonder:'Next to the God',
+		effects:[
+			{type:'addFastTicksOnStart',amount:250},
+			{type:'addFastTicksOnResearch',amount:25},
+		],
+		civ:0
+	});
+	new G.Achiev({
+		tier:2,
+		name:'The first choice',
+		icon:[11,25,'magixmod'],
+		desc:'Spend your all [Worship point]s for the first time to pick Seraphins that your people will worship.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:100},
+		],
+		civ:0
+	});
+		new G.Achiev({
+		tier:2,
+		name:'Trait-or',
+		icon:[12,25,'magixmod'],
+		desc:'Manage your wonderful tribe to adopt 50 traits.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:50},
+		],
+			civ:0
+	});
+	new G.Achiev({
+		tier:2,
+		name:'Not so pious people',
+		icon:[32,26,'magixmod'],
+		desc:'Get: @2 traits that will lower your [faith] income @Choose Seraphin that decreases [faith] income as well. To make this achievement possible [dt13] is not required.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:90},
+		],
+		civ:0
+	});
+	new G.Achiev({
+		tier:2,
+		name:'Talented?',
+		icon:[32,25,'magixmod'],
+		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.15 less land per 1 piece so if unit uses 3 land it will use 2.55 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>. And... it unlocks new theme!',
+		effects:[
+			{type:'addFastTicksOnStart',amount:200},
+			{type:'addFastTicksOnResearch',amount:10},
+		],
+		civ:0
+	});
+	new G.Achiev({
+		tier:3,
+		name:'lands of despair',
+		wideIcon:[0,29,'magixmod'],
+		icon:[1,29,'magixmod'],
+		desc:'Find <b>Dead forest</b> biome on your world map. This is rarest biome in the whole mod. This biome is most hostile biome that can exist on this world.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:200},
+			{type:'addFastTicksOnResearch',amount:10},
+		],
+		civ:0
+	});
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
@@ -2610,6 +4407,10 @@ G.writeMSettingButton=function(obj)
 		{
 			if(G.hasNot('beyond the edge')){
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100);
+			}else if(G.has('mirror world 2/2') && G.has('beyond the edge II') && G.has('beyond the edge')){
+			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100)*1.07*2;
+			}else if(G.has('beyond the edge II') && G.has('beyond the edge')){
+			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100)*1.07;
 			}else if(G.has('beyond the edge')){
 			me.amount=Math.ceil(G.currentMap.territoryByOwner[1]*100)*1.015;
 			}
@@ -3384,7 +5185,7 @@ G.writeMSettingButton=function(obj)
 		name:'precious metal ingot',
 		desc:'Metal with little industrial usefulness but imbued with valuable aesthetics.//Includes gold and silver.',
 		icon:[11,9],
-		partOf:'misc materials',
+		
 		category:'build',
 	});
 	
@@ -3694,20 +5495,6 @@ G.writeMSettingButton=function(obj)
 		icon:[6,4,'magixmod'],
 		category:'gear',
 		displayUsed:true,
-	});
-		new G.Res({
-		name:'Cactus spikes',
-		desc:'Spikes out of [cactus]. May wound... a lot!',
-		icon:[12,0,'magixmod'],
-		category:'misc',
-		partOf:'misc materials',
-	});
-		new G.Res({
-		name:'Sunflower seeds',
-		desc:'Edible seeds out of [Sunflower].',
-		icon:[12,1,'magixmod'],
-		category:'food',
-		partOf:'food',
 	});
 		new G.Res({
 		name:'Painting',
@@ -4833,6 +6620,20 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
+				if (G.checkPolicy('Theme changer')=='wooden'){
+		var cssId = 'woodenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/woodentheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
 		},
 		category:'alchemypotions',
 	});
@@ -5260,7 +7061,7 @@ if (!document.getElementById(cssId))
 		partOf:'population',
 		tick:function(me,tick)
 		{
-		if (G.year>109 && G.hasNot('t1')){ //Spawning rate
+		if (G.year>109 && G.hasNot('t1') && G.hasNot('t2')){ //Spawning rate
  		   var n = G.getRes('adult').amount * 0.00001
 		   if(G.checkPolicy('se02')=='on'){
   		  G.gain('thief',n*1.01,'unhappiness');
@@ -5314,7 +7115,6 @@ if (!document.getElementById(cssId))
 		desc:'This defines the amount of dyes crafted out of flowers, which you have currently in total.',
 		icon:[11,7,'magixmod'],
 		partOf:'misc materials',
-		meta:true,
 		tick:function(me,tick){
   const thieves = G.getDict("thief")//I slide in thieves stealing ability ;)
   const chances = [
@@ -5889,199 +7689,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Light gray dye',
-		desc:'Dye used in art and many other.',
-		icon:[11,0,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Cyan dye',
-		desc:'Dye used in art and many other.',
-		icon:[10,0,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Gray dye',
-		desc:'Dye used in art and many other.',
-		icon:[11,1,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Brown dye',
-		desc:'Dye used in art and many other.',
-		icon:[10,1,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Purple dye',
-		desc:'Dye used in art and many other.',
-		icon:[10,2,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'White dye',
-		desc:'Dye used in art and many other.',
-		icon:[11,2,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Green dye',
-		desc:'Dye used in art and many other.',
-		icon:[10,3,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Pink dye',
-		desc:'Dye used in art and many other.',
-		icon:[11,3,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Blue dye',
-		desc:'Dye used in art and many other.',
-		icon:[10,4,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Lime dye',
-		desc:'Dye used in art and many other.',
-		icon:[11,4,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Black dye',
-		desc:'Dye used in art and many other.',
-		icon:[10,5,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Light blue dye',
-		desc:'Dye used in art and many other.',
-		icon:[11,5,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Yellow dye',
-		desc:'Dye used in art and many other.',
-		icon:[10,6,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Orange dye',
-		desc:'Dye used in art and many other.',
-		icon:[11,6,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Red dye',
-		desc:'Dye used in art and many other.',
-		icon:[10,7,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
-		new G.Res({
-		name:'Magenta dye',
-		desc:'Dye used in art and many other.',
-		icon:[10,8,'magixmod'],
-		partOf:'Dyes',
-		tick:function(me,tick)
-		{
-			var toSpoil=me.amount*0.01;
-			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-		},
-		category:'flowersanddyes',
-	});
+		});
 		let UnderworldMESG = false
 		new G.Res({
 		name:'Underworld emblem',
@@ -6194,7 +7802,7 @@ if (!document.getElementById(cssId))
 		{
 		}
 	});
-	
+		var value=(G.getAchiev('Pocket').won*3+1)*100;
 	new G.Res({
 		name:'faith II',
 		desc:'[faith II] derives from all things divine, from meditation to sacrifices.//'+limitDesc('[spirituality II]')+'//Some cultural traits and technologies depend on faith. This is higher tier essential. <><font color="aqua">You need to know that each 500 [faith] can be converted into 1 [faith II] point.</font>',
@@ -6203,6 +7811,7 @@ if (!document.getElementById(cssId))
 		limit:'spirituality II',
 		tick:function(me,tick)
 		{
+			
 			if (G.has('dt13')){
 			var toSpoil=me.amount*0.0002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
@@ -6532,6 +8141,10 @@ if (!document.getElementById(cssId))
 			G.getDict('succulents').res['gather']['herb']=3;
 			G.getDict('jungle fruits').res['gather']['herb']=1;
 			}
+			if(G.has('t10')){
+			G.getDict('grass').res['gather']['wooden coin']=0.2;
+			G.getDict('succulents').res['gather']['wooden coin']=0.1;
+			}
 			if(G.modsByName['Thot Mod']){
 				G.getDict('thot').req={'philosophy':true}
 				if(G.hasNot('philosophy')){
@@ -6542,7 +8155,7 @@ if (!document.getElementById(cssId))
 					G.getDict('thot').icon=[0,0,'thotSheet']
 				}
 				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
-				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. //[thot] limit per is increased and becomes 75% less efficient'
+				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. @[sleepy insight] now gives [insight II] instead of [insight]. Same chances. //[thot] limit per is increased and becomes 75% less efficient'
 				G.getDict('philosophy II').desc='[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
 			}
 			if(G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.achievByName['Extremely smart'].won >= 1 && G.achievByName['Man of essences'].won >= 1 && G.achievByName['Magical'].won >= 1 && G.achievByName['Next to the God'].won >= 1 && G.achievByName['The first choice'].won >= 1 && G.achievByName['Trait-or'].won >= 1 && G.achievByName['Not so pious people'].won >= 1 && G.achievByName['Talented?'].won == 0){ //Experienced
@@ -6550,7 +8163,7 @@ if (!document.getElementById(cssId))
 			G.middleText('- All achievements  from tier <font color="orange">3</font> completed! - </br> </hr> <small>All crafting units and few non-crafting units that use overworld land since the next run will use 15% less land. In addition you can pick <font color="aqua">1 of 5</font> researches instead of <font color="aqua">1 of 4</font></small>','slow')
 			}
 			if(G.has('Outstanders club')){
-			G.getDict('The Outstander').limitPer = {'population':28000}
+			G.getDict('The Outstander').limitPer = {'population':26500}
 			}
 				if(G.has('<font color="orange">Smaller shacks</font>')){
 			G.getDict('blacksmith workshop').use = {'land':0.85}
@@ -6572,11 +8185,6 @@ if (!document.getElementById(cssId))
 			if(G.has('<font color="orange">Smaller shacks</font>') && G.has('backshift at farms')){
 				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
-			if(G.hasNot('monument-building')){
-				G.getDict('pagoda of passing time').cost={'land':1e20}
-			}else{
-				G.getDict('pagoda of passing time').cost={'basic building materials':225}
-			}
 			//STORAGE NERFS
 			G.getDict('Fire essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Fire essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Fire essence storage')+1/15))};
 			G.getDict('Water essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Water essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Water essence storage')+1/15))};
@@ -6585,6 +8193,25 @@ if (!document.getElementById(cssId))
 			G.getDict('Dark essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Dark essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Dark essence storage')+1/15))};
 			G.getDict('Lightning essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Lightning essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Lightning essence storage')+1/15))};
 			G.getDict('Holy essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Holy essence storage')+1/15)),'glass':(30*(G.getUnitAmount('Holy essence storage')+1/15))};
+			if(G.hasNot('t10')){G.getDict('precious metal ingot').partOf='misc materials'}//this resource will not decay during Pocket but normally without active trial will
+				if(G.checkPolicy('reset health level')=='activate'){  //hunted special policy
+				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
+			}
+			if(G.checkPolicy('reset health level')=='alreadyused'){G.getDict('reset health level').cost={'land':1e5}};
+			G.getDict('bank').effects=[{type:'provide',what:{'money storage':-G.getAchiev('Pocket').won*250+6000}}];
+			 if(G.has('<font color="maroon">Caretaking</font>')){G.getDict('grand mirror').wideIcon=[1,30,'magixmod'],G.getDict('grand mirror').cost={'Magic essences':250000,'Cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'platinum ingot':350};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1000,'basic building materials':250,'gems':5000};}
+				else if(G.has('<font color="maroon">Moderation</font>')){G.getDict('grand mirror').wideIcon=[4,30,'magixmod'];G.getDict('grand mirror').cost={'strong metal ingot':7500,'Cobalt ingot':500,'precious building materials':1000,'basic building materials':250,'Basic factory equipment':500};G.getDict('grand mirror').upkeep={'coal':100,'Mana':100,'Magic essences':50};G.getDict('grand mirror').costPerStep={'Magic essences':25000,'precious building materials':1300,'basic building materials':250,'hard metal ingot':150,'coal':3000,'log':4000};}
+///UNIVERSITY LEVELLING
+			if(G.getUnitByName('scientific university').mode==4){
+				if(G.has('Bigger university') && G.getRes('university point').amount==0 && G.getRes('victory point').amount >=4){
+			G.getUnitByName('scientific university').mode=0;
+			G.getDict('scientific university').steps=300;
+			G.getDict('scientific university').cost={'basic building materials':2400,'precious building materials':1200,'Magic essences':3000,'Mana':40000,'science':90};
+			G.getDict('scientific university').costPerStep={'basic building materials':1450,'precious metal ingot':500,'insight II':320,'science':75,'gems':1000,'wisdom II':-0.6,'education':-0.35,'Mana':4e4,'university point':-1};
+			G.getDict('scientific university').finalStepCost={'population':3000,'insight II':425,'wisdom':350,'science':100,'wisdom II':-25,'education':-25,'university point':-100};
+			G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
+			}};
+			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==400){G.getUnitByName('scientific university').mode==4;G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -6775,11 +8402,30 @@ if (!document.getElementById(cssId))
 			
 		},
 	});
+	
 	new G.Res({
 		name:'beyond',
 		tick:function(me,tick)
 		{
-			if(G.has('beyond the edge') && G.getRes('beyond').amount==0){
+			if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode==4 && me.amount<2){
+				G.gain('beyond',1);
+				G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'insight':250};
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').steps=75;
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 2 of 2',
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').costPerStep={'Mana':4000,'Dark essence':200,'Fire essence':250,'Nature essence':300,'Wind essence':150,'Water essence':500,'Lightning essence':225};
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepDesc='Perform a final step to activate this portal';
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000};
+			}else if(me.amount>=3){
+					G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=4;
+					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
+					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
+					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal.';
+			}
+			if(G.has('beyond the edge') && G.getRes('beyond').amount==3){
 			G.gain('beyond',1)
 				G.lose('population',G.getRes('population').amount*0.3);
 				G.getRes('happiness').amount=0;G.getRes('health').amount=0;
@@ -6789,427 +8435,101 @@ if (!document.getElementById(cssId))
 				G.getRes('influence').amount=0;G.getRes('influence II').amount=0;
 				G.getRes('science').amount=0;
 			}
+			if(G.has('beyond the edge II') && G.getRes('beyond').amount==4){
+			G.gain('beyond',1)
+				var toSick=G.getRes('adult',amount);
+				G.lose('adult',toSick);
+				G.gain('sick',toSick);
+				G.lose('population',G.getRes('population').amount*0.4);
+				G.getRes('happiness').amount=0;G.getRes('health').amount=0;
+				G.getRes('insight').amount=0;G.getRes('insight II').amount=0;
+				G.getRes('culture').amount=0;G.getRes('culture II').amount=0;
+				G.getRes('faith').amount=0;G.getRes('faith II').amount=0;
+				G.getRes('influence').amount=0;G.getRes('influence II').amount=0;
+				G.getRes('science').amount=0;
+			}
+			
 		}
 	});
-		/*=====================================================================================
-	ACHIEVEMENTS
-	=======================================================================================*/
-	
-	G.legacyBonuses.push(
-		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
-		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
-	);
-	
-	//do NOT remove or reorder achievements or saves WILL get corrupted
-	
-	new G.Achiev({
-		tier:0,
-		name:'mausoleum',
-		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
-		fromUnit:'mausoleum',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300*3},
-			{type:'addFastTicksOnResearch',amount:150}
-		],
+	new G.Res({
+		name:'wooden coin',
+		desc:'1st tier of currency used by Pocket trial. To get 1 [silver coin] you will need: 100*((times you have completed Pocket*3)+1) [wooden coin]s. Can be used to buy primary, archaic resources.',
+		category:'misc',
+		icon:[5,25,'magixmod'],
+		tick:function(me,tick)
+		{
+			if(G.getRes('money storage').used==G.getRes('money storage').amount){
+			var toSpoil=me.amount*0.004*G.achievByName['Pocket'].won;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			}
+		},
 	});
-//Temple achiev
-		new G.Achiev({
-		tier:1,
-		name:'Heavenly',
-		wideIcon:[0,11,'magixmod'],
-		icon:[1,11,'magixmod'],
-		desc:'Your soul has been sent to Paradise as archangel with power of top Temple tower in an beautiful stone monument the purpose of which takes root in a pure religious thought.',
-		fromWonder:'Heavenly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300},
-			{type:'addFastTicksOnResearch',amount:25}	
-		],
+	new G.Res({
+		name:'silver coin',
+		desc:'2nd tier of currency used by Pocket trial. To get 1 [golden coin] you will need: 100*((times you have completed Pocket*3)+1) [silver coin]s. Can be used to buy basic resources.',
+		category:'misc',
+		icon:[6,25,'magixmod'],
+		tick:function(me,tick)
+		{
+			if(G.getRes('money storage').used==G.getRes('money storage').amount){
+			var toSpoil=me.amount*0.004*G.achievByName['Pocket'].won;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			}
+		},
 	});
-//skull achiev
-		new G.Achiev({
-		tier:1,
-		name:'Deadly, revenantic',
-		wideIcon:[0,16,'magixmod'],
-		icon:[1,16,'magixmod'],
-		desc:'You escaped and your soul got escorted right into the world of Underwold... you may discover it sometime.',
-		fromWonder:'Deadly, revenantic',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300},
-			{type:'addFastTicksOnResearch',amount:25}	
-		],
+	new G.Res({
+		name:'golden coin',
+		desc:'3rd and the highest tier of currency used by Pocket trial. Can be used to buy most expensive resources.',
+		category:'misc',
+		icon:[7,25,'magixmod'],
+		tick:function(me,tick)
+		{
+			if(G.getRes('money storage').used==G.getRes('money storage').amount){
+			var toSpoil=me.amount*0.004*G.achievByName['Pocket'].won;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			}
+		},
 	});
-
-		new G.Achiev({
-		tier:0,
-		name:'Sacrificed for culture',
-		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
-		icon:[6,12,'magixmod'],
-		desc:'You sacrificed yourself in the name of [culture]. That choice made your previous people more inspirated and filled with strong artistic powers. It made big profits and they may get on much higher cultural level since now. They will miss you. <b>But now you will obtain +3 [culture] & [inspiration] at start of each next run!</b>',
-		fromWonder:'Insight-ly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-		visible:false
+	new G.Res({
+		name:'university point',
+		icon:[8,12,6,4]
 	});
-		new G.Achiev({
-		tier:0,
-		name:'Democration',
-		wideIcon:[5,13,'magixmod'],
-		icon:[6,13,'magixmod'],
-		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
-		fromWonder:'Democration',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-			
+	let MirrorMESG=false
+	new G.Res({
+		name:'emblem \'o mirror',
+		desc:'A thing you will get from opening the [grand mirror]. Not so needed to unlock further researching. A pass for further things and more adventures. You can obtain only one Emblem of this type. <b>@Cloning the world via magic. The more portals you\'ll open the more unstability you may bring on you and your '+G.getName('inhabs')+' . It is time to stop... before something bad happens.</b>',
+		icon:[11,30,'magixmod'],
+		tick:function(me,tick)
+		{
+			if (me.amount>=1 && !MirrorMESG){ 
+				G.Message({type:'emblemobtain',text:'<b>Your people finally made Grand Mirror work like a portla. Out of nowhere an Emblem appears behind you. It is cold in touch and perfectly symetrical. An emblem has a warning carved onto it. <br></b><li>Pro tip: hover on Emblem in <b>Essentials resource category</b> to read a message.',icon:[12,19,'magixmod']});
+				MirrorMESG = true
+			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+			{
+			var audioEmblem = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedEmblem.mp3');
+			audioEmblem.play();
+			}
+			}
+			if (G.has('mirror world 2/2')){
+			me.hidden=true
+			}
+		},	
+		category:'main',
 	});
-		new G.Achiev({
-		tier:0,
-		name:'Insight-ly',
-		wideIcon:[choose([0,3,6]),17,'magixmod'],
-		icon:[choose([1,4,7]),17,'magixmod'],
-		desc:'You sacrificed your soul for the Dreamers Orb. That choice was unexpectable but glorious. It made dreamers more acknowledged and people got much smarter by sacrifice of yours. They will miss you. <b>But this made a profit... +6 [insight] at start of each next run!</b>',
-		fromWonder:'Insight-ly',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:75},
-		],
-			
-	});
-		new G.Achiev({
-		tier:1,
-		name:'"In the underworld"',
-		wideIcon:[7,5,'magixmod'],
-		icon:[9,5,'magixmod'],
-		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
-		fromWonder:'"In the underworld"',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:15},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		wideIcon:[27,20,'magixmod'],
-		icon:[28,20,'magixmod'],
-		name:'<font color="DA4f37">Mausoleum eternal</font>',
-		desc:'You have been laid to rest serveral times in the Mausoleum , an ancient stone monument the purpose of which takes root in archaic religious thought. Evolved to unforgetable historical monument. <b>Evolve [mausoleum] to stage 10/10 then ascend by it 11th time to obtain this massive fast tick bonus. <li><font color="aqua">In addition obtaining this achievement doubles chance to summon [belief in the afterlife] trait in each next run after obtaining this achievement.</font></li></b>',
-		fromWonder:'<font color="DA4f37">Mausoleum eternal</font>',
-		effects:[
-			{type:'addFastTicksOnStart',amount:2000},
-			{type:'addFastTicksOnResearch',amount:175}
-		],
-	});
-		new G.Achiev({
-		tier:1,
-		icon:[25,19,'magixmod'],
-		name:'Level up',
-		desc:'Obtain [Eotm] trait during the run. This trait unlocks second tier of [insight] , [culture] , [faith] and [influence] which are required for further researches.',
-	});
-		new G.Achiev({
-		tier:0,
-		icon:[25,21,'magixmod'],
-		name:'Metropoly',
-		desc:'Manage to get 500k [population,people] in one run.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:25},
-			{type:'addFastTicksOnResearch',amount:5}
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		icon:[23,21,'magixmod'],
-		name:'Apprentice',
-		desc:'Get 100 or more technologies in a single run.',
-	});
-		new G.Achiev({
-		tier:1,
-		icon:[26,9,'magixmod'],
-		name:'Lucky 9',
-		desc:'Obtain the [dt9] .',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5}
-		],
-	});
-		new G.Achiev({
-		tier:1,
-		icon:[26,21,'magixmod'],
-		name:'Traitsman',
-		desc:'Make your tribe attract 30 traits.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		icon:[27,21,'magixmod'],
-		name:'Extremely smart',
-		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing <font color="DA4f37">Mausoleum eternal</font> unlocks you [Theme changer] .',
-		effects:[
-			{type:'addFastTicksOnStart',amount:100},
-			{type:'addFastTicksOnResearch',amount:10}
-		],
-	});
-		new G.Achiev({
-		tier:0,
-		icon:[29,21,'magixmod'],
-		name:'Experienced',
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: +100 [fruit]s at start of each next game</b>',
-		effects:[
-			{type:'addFastTicksOnStart',amount:100},
-			{type:'addFastTicksOnResearch',amount:10}
-		],
-	});
-		new G.Achiev({
-		tier:1,
-		icon:[29,22,'magixmod'],
-		name:'Smart',
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:10}
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		icon:[12,22,'magixmod'],
-		name:'Man of essences',
-		desc:'Obtain [Magic adept] trait. Manage to get 2.1M [Magic essences]. //Obtaining it may unlock a new wonder.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:40},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		name:'Magical',
-		wideIcon:[9,22,'magixmod'],
-		icon:[10,22,'magixmod'],
-		desc:'<b>You decided to sacrifice yourself for magic.</br>You decided that putting yourself at coffin that there was lying will attract some glory.</br>You were right</b> //This achievement will: @Unlock you a new theme @Increase effect of <b>Wizard towers</b> by 5% without increasing their upkeep cost. //This achievement will unlock you way further technologies such like [hunting III] or [fishing III] .',
-		fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:150},
-			{type:'addFastTicksOnResearch',amount:15},
-		],
-	});
-			new G.Achiev({
-		icon:[16,24,'magixmod'],
-		tier:1,
-		name:'Familiar',
-		desc:'Get 200 or more technologies in a single run.',
-	});
-				new G.Achiev({
-		icon:[23,24,'magixmod'],
-		tier:0,
-		name:'3rd party',
-		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Patience',
-		wideIcon:[3,26,'magixmod'],
-		icon:[4,26,'magixmod'],
-		desc:'Complete Chra-nos trial for the first time. Your determination led you to victory. //Complete this trial again to gain extra Victory Points.',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Unhappy',
-		wideIcon:[6,26,'magixmod'],
-		icon:[7,26,'magixmod'],
-		desc:'Complete Bersaria\'s trial for the first time. Your determination and calmness led you to victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Cultural',
-		wideIcon:[18,26,'magixmod'],
-		icon:[19,26,'magixmod'],
-		desc:'Complete Tu-ria\'s trial for the first time. Your artistic thinking led you to the victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Hunted',
-		wideIcon:[24,26,'magixmod'],
-		icon:[25,26,'magixmod'],
-		desc:'Complete Hartar\'s trial for the first time. Making people being masters at hunting and showing \'em what brave really is led you to the victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Unfishy',
-		wideIcon:[21,26,'magixmod'],
-		icon:[22,26,'magixmod'],
-		desc:'Complete Fishyar\'s trial for the first time. Making people believe that life without fish is not boring led you to the victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Ocean',
-		wideIcon:[1,25,'magixmod'],
-		icon:[2,25,'magixmod'],
-		desc:'Complete Posi\'zul\'s trial for the first time. Living at the endless ocean is not impossible and you are example of that. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Herbalism',
-		wideIcon:[12,26,'magixmod'],
-		icon:[13,26,'magixmod'],
-		desc:'Complete Herbalia\'s trial for the first time. Herbs are not that bad! //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Buried',
-		wideIcon:[0,26,'magixmod'],
-		icon:[1,26,'magixmod'],
-		desc:'Complete Buri\'o dak \'s trial for the first and the last time. Death lurks everywhere but it is still easy deal for you!',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Underground',
-		wideIcon:[15,26,'magixmod'],
-		icon:[16,26,'magixmod'],
-		desc:'Complete Moai\'s trial for the first time. Stone leads to victory! //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Pocket',
-		wideIcon:[9,26,'magixmod'],
-		icon:[10,26,'magixmod'],
-		desc:'Complete Mamuun\'s trial for the first time. Seems like you have got a trading skills! This can lead to victory. //Complete this trial again to gain extra Victory Points. 2nd victory of this trial increases bonus from the trial',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Faithful',
-		wideIcon:[0,27,'magixmod'],
-		icon:[1,27,'magixmod'],
-		desc:'Complete Enlightened\'s trial for the first time. Belief and faith is everything. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-		new G.Achiev({
-		tier:3,
-		name:'Dreamy',
-		wideIcon:[27,26,'magixmod'],
-		icon:[28,26,'magixmod'],
-		desc:'Complete Okar the Seer\'s trial for the first time. Knowledge leads to victory. //Complete this trial again to gain extra Victory Points',
-		//fromWonder:'Magical',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-			{type:'addFastTicksOnResearch',amount:5},
-		],
-	});
-	new G.Achiev({
-		tier:2,
-		name:'Next to the God',
-		displayName:'<font color="yellow">Next to the God</font>',
-		wideIcon:[8,25,'magixmod'],
-		icon:[9,25,'magixmod'],
-		desc:'Ascend by the Temple of the Paradise... You managed to be very close to the God. But this step will make it easier. Because you had to sacrifice so much time reaching that far this achievement has plenty of rewards. Here are the rewards you will get for it: @Chance for [culture of the afterlife] is tripled. Same to [The God\'s call]. @[An opposite side of belief] has 10% bigger chance to occur.(Note: not 10 percent points! Chance for it is multiplied by 1.1!) @You will start each next run with +1 [faith] and [spirituality] @You will unlock the Pantheon! Just build this wonder again(nope you won\'t need to ascend once more by it, just complete it and buy tech that will finally unlock it for you). @This achievement will unlock you <b><font color="orange">3</font> new themes!</b>',
-		fromWonder:'Next to the God',
-		effects:[
-			{type:'addFastTicksOnStart',amount:250},
-			{type:'addFastTicksOnResearch',amount:25},
-		],
-	});
-	new G.Achiev({
-		tier:2,
-		name:'The first choice',
-		icon:[11,25,'magixmod'],
-		desc:'Spend your all [Worship point]s for the first time to pick Seraphins that your people will worship.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:100},
-		],
-	});
-		new G.Achiev({
-		tier:2,
-		name:'Trait-or',
-		icon:[12,25,'magixmod'],
-		desc:'Manage your wonderful tribe to adopt 50 traits.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:50},
-		],
-	});
-	new G.Achiev({
-		tier:2,
-		name:'Not so pious people',
-		icon:[32,26,'magixmod'],
-		desc:'Get: @2 traits that will lower your [faith] income @Choose Seraphin that decreases [faith] income as well. To make this achievement possible [dt13] is not required.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:90},
-		],
-	});
-	new G.Achiev({
-		tier:2,
-		name:'Talented?',
-		icon:[32,25,'magixmod'],
-		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.15 less land per 1 piece so if unit uses 3 land it will use 2.55 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>. And... it unlocks new theme!',
-		effects:[
-			{type:'addFastTicksOnStart',amount:200},
-			{type:'addFastTicksOnResearch',amount:10},
-		],
-	});
-	new G.Achiev({
-		tier:3,
-		name:'lands of despair',
-		wideIcon:[0,29,'magixmod'],
-		icon:[1,29,'magixmod'],
-		desc:'Find <b>Dead forest</b> biome on your world map. This is rarest biome in the whole mod. This biome is most hostile biome that can exist on this world.',
-		effects:[
-			{type:'addFastTicksOnStart',amount:200},
-			{type:'addFastTicksOnResearch',amount:10},
-		],
+	new G.Res({
+		name:'money storage',
+		desc:'Each [money storage] unit lowers the rate of decay or theft for one unit of your money. [wooden coin] uses 0.1 point of storage, [silver coin] uses 1 and [golden coin] uses 5 pts.//The number on the left is how much material storage is occupied, while the number on the right is how much you have in total. //Note: This is only available while in Pocket trial.',
+		icon:[12,30,'magixmod'],
+		tick:function(me,tick)
+		{
+			me.used=(G.getRes('wooden coin').amount/10)+(G.getRes('silver coin').amount)+(G.getRes('golden coin').amount*5);
+		},
+		getDisplayAmount:function()
+		{
+			return B(Math.min(this.displayedAmount,this.displayedUsedAmount))+'<wbr>/'+B(this.displayedAmount);
+		},
+		displayUsed:true,
+		category:'demog'
 	});
 	/*=====================================================================================
 	UNITS
@@ -7232,6 +8552,8 @@ if (!document.getElementById(cssId))
 		{id:'plainisleunit',name:'Plain Island'},
 		{id:'paradiseunit',name:'Paradise'},
 		{id:'alchemy',name:'Alchemy'},
+		{id:'trial',name:'Trial'},
+		{id:'underworld',name:'Underworld'},
 		{id:'guard',name:'<span style="color:#ff66cc">Army & Guards</span>'},
 	);
 	
@@ -7389,46 +8711,44 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'stick':1,'stone':1},into:{'bow':1},every:10,mode:'bows'},
 			{type:'convert',from:{'stick':15},into:{'basket':1},every:10,mode:'baskets'},
 			{type:'convert',from:{'stick':4,'stone':2},into:{'Wand':1},every:5,mode:'craftwands'},
-			{type:'convert',from:{'Black dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
-        		{type:'convert',from:{'Brown dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
-        		{type:'convert',from:{'Blue dye':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
+			{type:'convert',from:{'Dyes':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:4,mode:'craftink'},
 			{type:'convert',from:{'Thread':35,'Dried leather':1},into:{'Fishing net':1},every:5,mode:'craftnet'},
 			{type:'convert',from:{'Thread':1.5,'herb':0.75},into:{'First aid things':1},every:5,mode:'craftfirstaid'},
        			{type:'convert',from:{'Thread':0.5,'herb':1},into:{'First aid things':1},every:5,mode:'craftfirstaid'},
        			{type:'convert',from:{'Thread':2,'herb':1.5,'hide':1},into:{'First aid things':1},every:7,mode:'craftfirstaid'},
-			{type:'convert',from:{'Lavender':2},into:{'Purple dye':1},every:5,mode:'dyes1'},
-        		{type:'convert',from:{'Salvia':3},into:{'Magenta dye':1},every:5,mode:'dyes1'},
-        		{type:'convert',from:{'Bachelor\'s button':2},into:{'Blue dye':1},every:5,mode:'dyes1'},
-       			{type:'convert',from:{'Desert rose':2},into:{'Magenta dye':1},every:5,mode:'dyes1'},
-        		{type:'convert',from:{'Cosmos':2},into:{'Magenta dye':1},every:5,mode:'dyes1'},
-       			{type:'convert',from:{'Pink rose':3},into:{'Pink dye':1},every:5,mode:'dyes1'},
-        		{type:'convert',from:{'Pink tulip':2},into:{'Pink dye':1},every:5,mode:'dyes1'},
-        		{type:'convert',from:{'Coreopsis':2},into:{'Yellow dye':1},every:5,mode:'dyes1'},
-        		{type:'convert',from:{'Crown imperial':2},into:{'Orange dye':1},every:5,mode:'dyes2'},
-       			{type:'convert',from:{'Cyan rose':2},into:{'Cyan dye':1},every:5,mode:'dyes2'},
-        		{type:'convert',from:{'Himalayan blue poopy':2},into:{'Cyan dye':1},every:5,mode:'dyes2'},
-       			{type:'convert',from:{'Cockscomb':2},into:{'Red dye':1},every:5,mode:'dyes2'},
-        		{type:'convert',from:{'Red tulip':2},into:{'Red dye':1},every:5,mode:'dyes2'},
-        		{type:'convert',from:{'Green Zinnia':3},into:{'Green dye':1},every:5,mode:'dyes2'},
-        		{type:'convert',from:{'cactus':2},into:{'Green dye':1,'Cactus spikes':3},every:5,mode:'dyes2'},
-        		{type:'convert',from:{'Lime rose':2},into:{'Lime dye':1},every:5,mode:'dyes2'},
-        		{type:'convert',from:{'Lime tulip':2},into:{'Lime dye':1},every:5,mode:'dyes3'},
-        		{type:'convert',from:{'Azure bluet':4},into:{'Light gray dye':1},every:5,mode:'dyes3'},
-       			{type:'convert',from:{'Daisy':2},into:{'Light gray dye':1},every:5,mode:'dyes3'},
-        		{type:'convert',from:{'Sunflower':1},into:{'Yellow dye':1,'Sunflower seeds':3},every:7,mode:'dyes3'},
-        		{type:'convert',from:{'Dandelion':2},into:{'Yellow dye':1},every:5,mode:'dyes3'},
-        		{type:'convert',from:{'Black lily':3},into:{'Black dye':1},every:5,mode:'dyes3'},
-        		{type:'convert',from:{'Black Hollyhock':2},into:{'Black dye':1},every:5,mode:'dyes3'},
-        		{type:'convert',from:{'Cattail':2},into:{'Brown dye':1},every:5,mode:'dyes3'},
+			{type:'convert',from:{'Lavender':2},into:{'Dyes':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Salvia':3},into:{'Dyes':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Bachelor\'s button':2},into:{'Dyes':1},every:5,mode:'dyes1'},
+       			{type:'convert',from:{'Desert rose':2},into:{'Dyes':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Cosmos':2},into:{'Dyes':1},every:5,mode:'dyes1'},
+       			{type:'convert',from:{'Pink rose':3},into:{'Dyes':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Pink tulip':2},into:{'Dyes':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Coreopsis':2},into:{'Dyes':1},every:5,mode:'dyes1'},
+        		{type:'convert',from:{'Crown imperial':2},into:{'Dyes':1},every:5,mode:'dyes2'},
+       			{type:'convert',from:{'Cyan rose':2},into:{'Dyes':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Himalayan blue poopy':2},into:{'Dyes':1},every:5,mode:'dyes2'},
+       			{type:'convert',from:{'Cockscomb':2},into:{'Dyes':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Red tulip':2},into:{'Dyes':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Green Zinnia':3},into:{'Dyes':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'cactus':2},into:{'Dyes':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Lime rose':2},into:{'Dyes':1},every:5,mode:'dyes2'},
+        		{type:'convert',from:{'Lime tulip':2},into:{'Dyes':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Azure bluet':4},into:{'Dyes':1},every:5,mode:'dyes3'},
+       			{type:'convert',from:{'Daisy':2},into:{'Dyes':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Sunflower':1},into:{'Dyes':1},every:7,mode:'dyes3'},
+        		{type:'convert',from:{'Dandelion':2},into:{'Dyes':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Black lily':3},into:{'Dyes':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Black Hollyhock':2},into:{'Dyes':1},every:5,mode:'dyes3'},
+        		{type:'convert',from:{'Cattail':2},into:{'Dyes':1},every:5,mode:'dyes3'},
 			{type:'convert',from:{'stick':3,'stone':2},into:{'Crossbow':1},every:5,req:{'Hunting II':true},mode:'bows'},
         		{type:'convert',from:{'lumber':1,'stone':25},into:{'Crossbow belt':20},every:5,req:{'Hunting II':true},mode:'bows'},
-    			{type:'convert',from:{'Flax':3},into:{'Light blue dye':1},every:5,mode:'dyes4'},
-        		{type:'convert',from:{'Blue orchid':2},into:{'Light blue dye':1},every:5,mode:'dyes4'},
-        		{type:'convert',from:{'White tulip':2},into:{'White dye':1},every:5,mode:'dyes4'},
-        		{type:'convert',from:{'Lily of the Valley':3},into:{'White dye':1},every:5,mode:'dyes4'},
-        		{type:'convert',from:{'Brown flower':2},into:{'Brown dye':1},every:5,mode:'dyes4'},
-        		{type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:5,mode:'dyes4'},
-       		 	{type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:5,mode:'dyes4'},
+    			{type:'convert',from:{'Flax':3},into:{'Dyes':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Blue orchid':2},into:{'Dyes':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'White tulip':2},into:{'Dyes':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Lily of the Valley':3},into:{'Dyes':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Brown flower':2},into:{'Dyes':1},every:5,mode:'dyes4'},
+        		{type:'convert',from:{'Gray rose':3},into:{'Dyes':1},every:5,mode:'dyes4'},
+       		 	{type:'convert',from:{'Gray tulip':2},into:{'Dyes':1},every:5,mode:'dyes4'},
         		{type:'convert',from:{'Paper':30,'hide':1},into:{'Empty book':1},every:7,mode:'craftbook'},
 			{type:'convert',from:{'Magic essences':2,'Beet seeds':1,'Mana':0.5},into:{'Essenced seeds':1},every:7,mode:'enchseeds'},
 			{type:'mult',value:1.2,req:{'ground stone tools':true}},
@@ -7437,7 +8757,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.03,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
-		req:{'stone-knapping':true},
+		req:{'stone-knapping':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -7483,7 +8803,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'stone':0.05},into:{'statuette':0.05},every:5,mode:'stone statuettes',req:{'cart1':true}},
 			{type:'convert',from:{'log':0.05},into:{'Wooden statuette':0.05},every:5,mode:'wood statuettes',req:{'cart2':true}},
 		],
-		req:{'carving':true},
+		req:{'carving':true,'t10':false},
 		category:'crafting',
 	});
 	
@@ -7521,7 +8841,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
 			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'},
 			],
-		req:{'sewing':true},
+		req:{'sewing':true,'t10':false},
 		category:'crafting',
 	});
 	new G.Unit({
@@ -7559,7 +8879,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'hunt',what:{'hide':1},req:{'htt1':true}},
 			{type:'gather',context:'hunt',what:{'meat':1},req:{'htt2':true}},
 		],
-		req:{'hunting':true},
+		req:{'hunting':true,'t10':false},
 		category:'production',
 		priority:5,
 	});
@@ -7647,7 +8967,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'craft precious pots'},
 			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'}
 		],
-		req:{'pottery':true},
+		req:{'pottery':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -7670,7 +8990,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.05,req:{'Better kiln construction':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		gizmos:true,
-		req:{'masonry':true},
+		req:{'masonry':true,'t10':false},
 		category:'crafting',
 	});
 	
@@ -7739,7 +9059,7 @@ if (!document.getElementById(cssId))
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
 		],
 		gizmos:true,
-		req:{'quarrying':true},
+		req:{'quarrying':true,'t10':false},
 		category:'production',
 	});
 	new G.Unit({
@@ -7841,7 +9161,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.1,req:{'Improved furnace construction':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		gizmos:true,
-		req:{'smelting':true},
+		req:{'smelting':true,'t10':false},
 		category:'crafting',
 	});
 	new G.Unit({
@@ -7881,7 +9201,7 @@ if (!document.getElementById(cssId))
 			//TODO : better metal tools, weapons etc
 		],
 		gizmos:true,
-		req:{'smelting':true},
+		req:{'smelting':true,'t10':false},
 		category:'crafting',
 	});
 			
@@ -7897,7 +9217,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'chop',amount:1,max:1},
 			{type:'gather',context:'gather',what:{'Scobs': 0.1},amount:1,max:1}
 		],
-		req:{'woodcutting':true},
+		req:{'woodcutting':true,'t10':false},
 		category:'production',
 	});
 	new G.Unit({
@@ -7921,7 +9241,7 @@ if (!document.getElementById(cssId))
 			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
 		],
 		gizmos:true,
-		req:{'carpentry':true},
+		req:{'carpentry':true,'t10':false},
 		category:'crafting',
 	});
 	
@@ -8128,6 +9448,8 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'added food storage':400}},
 			{type:'provide',what:{'added material storage':400}},
 			{type:'provide',what:{'added food storage':80,'added material storage':80},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added food storage':140,'added material storage':140},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':220,'added material storage':200},req:{'well stored 2':true}},
 			{type:'waste',chance:0.8/1000}
 		],
 		req:{'stockpiling':true},
@@ -8143,6 +9465,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':1000}},
 			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added material storage':350},req:{'well stored':true}},
+			{type:'provide',what:{'added material storage':550},req:{'well stored 2':true}},
 			{type:'waste',chance:0.1/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.02/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.014/1000,req:{'improved construction':true}},
@@ -8161,6 +9485,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':4000}},
 			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added material storage':1400},req:{'well stored':true}},
+			{type:'provide',what:{'added material storage':2200},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
@@ -8177,7 +9503,9 @@ if (!document.getElementById(cssId))
 		//require:{'worker':2,'stone tools':2},
 		effects:[
 			{type:'provide',what:{'added food storage':1000}},
-			{type:'provide',what:{'added material storage':200},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added food storage':200},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added food storage':350},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':550},req:{'well stored 2':true}},
 			{type:'waste',chance:0.01/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.002/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.0014/1000,req:{'improved construction':true}},
@@ -8196,6 +9524,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added food storage':4000}},
 			{type:'provide',what:{'added material storage':800},req:{'Spell of capacity':true}},
+			{type:'provide',what:{'added food storage':1400},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':2200},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
@@ -8361,6 +9691,7 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		effects:[
 			{type:'explore',explored:0.1,unexplored:0},
+			{type:'mult',value:2.5,req:{'t10':true}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','wanderer got lost','wanderers got lost'),chance:1/100}
 		],
 		req:{'speech':true},
@@ -8375,6 +9706,7 @@ if (!document.getElementById(cssId))
 		staff:{'stone tools':1},
 		effects:[
 			{type:'explore',explored:0,unexplored:0.01},
+			{type:'mult',value:2.5,req:{'t10':true}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','scout got lost','scouts got lost'),chance:1/300}
 		],
 		req:{'scouting':true},
@@ -8453,37 +9785,37 @@ if (!document.getElementById(cssId))
 		req:{'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true},
 		category:'crafting',
 		effects:[
-			({type:'convert',from:{'Lavender':2},into:{'Purple dye':10},every:2}),
-		({type:'convert',from:{'Salvia':6},into:{'Magenta dye':2},every:3}),
-		({type:'convert',from:{'Bachelor\'s button':6},into:{'Blue dye':2},every:2}),
-		({type:'convert',from:{'Desert rose':6},into:{'Magenta dye':2},every:3}),
-		({type:'convert',from:{'Cosmos':4},into:{'Magenta dye':2},every:2}),
-		({type:'convert',from:{'Pink rose':6},into:{'Pink dye':2},every:3}),
-		({type:'convert',from:{'Pink tulip':4},into:{'Pink dye':2},every:2}),
-		({type:'convert',from:{'Coreopsis':4},into:{'Yellow dye':2},every:3}),
-		({type:'convert',from:{'Crown imperial':4},into:{'Orange dye':2},every:2}),
-		({type:'convert',from:{'Cyan rose':4},into:{'Cyan dye':2},every:3}),
-		({type:'convert',from:{'Himalayan blue poopy':4},into:{'Cyan dye':2},every:3}),
-		({type:'convert',from:{'Cockscomb':4},into:{'Red dye':2},every:2}),
-		({type:'convert',from:{'Red tulip':4},into:{'Red dye':2},every:3}),
-		({type:'convert',from:{'Green Zinnia':6},into:{'Green dye':2},every:3}),
-		({type:'convert',from:{'cactus':4},into:{'Green dye':2,'Cactus spikes':4},every:3}),
-		({type:'convert',from:{'Lime rose':4},into:{'Lime dye':2},every:3}),
-		({type:'convert',from:{'Lime tulip':4},into:{'Lime dye':2},every:3}),
-		({type:'convert',from:{'Azure bluet':8},into:{'Light gray dye':2},every:3}),
-		({type:'convert',from:{'Daisy':4},into:{'Light gray dye':2},every:3}),
-		({type:'convert',from:{'Sunflower':2},into:{'Yellow dye':2,'Sunflower seeds':6},every:4}),
-		({type:'convert',from:{'Dandelion':4},into:{'Yellow dye':2},every:3}),
-		({type:'convert',from:{'Black lily':6},into:{'Black dye':2},every:3}),
-		({type:'convert',from:{'Black Hollyhock':4},into:{'Black dye':2},every:3}),
-		({type:'convert',from:{'Cattail':4},into:{'Brown dye':2},every:3}),
-		({type:'convert',from:{'Flax':3},into:{'Light blue dye':1},every:3}),
-		({type:'convert',from:{'Blue orchid':2},into:{'Light blue dye':1},every:3}),
-		({type:'convert',from:{'White tulip':2},into:{'White dye':1},every:3}),
-		({type:'convert',from:{'Lily of the Valley':3},into:{'White dye':1},every:3}),
-		({type:'convert',from:{'Brown flower':2},into:{'Brown dye':1},every:3}),
-		({type:'convert',from:{'Gray rose':3},into:{'Gray dye':1},every:3}),
-		({type:'convert',from:{'Gray tulip':2},into:{'Gray dye':1},every:3}),
+			({type:'convert',from:{'Lavender':2},into:{'Dyes':6},every:2}),
+		({type:'convert',from:{'Salvia':6},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Bachelor\'s button':6},into:{'Dyes':2},every:2}),
+		({type:'convert',from:{'Desert rose':6},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Cosmos':4},into:{'Dyes':2},every:2}),
+		({type:'convert',from:{'Pink rose':6},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Pink tulip':4},into:{'Dyes':2},every:2}),
+		({type:'convert',from:{'Coreopsis':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Crown imperial':4},into:{'Dyes':2},every:2}),
+		({type:'convert',from:{'Cyan rose':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Himalayan blue poopy':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Cockscomb':4},into:{'Dyes':2},every:2}),
+		({type:'convert',from:{'Red tulip':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Green Zinnia':6},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'cactus':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Lime rose':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Lime tulip':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Azure bluet':8},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Daisy':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Sunflower':2},into:{'Dyes':2},every:4}),
+		({type:'convert',from:{'Dandelion':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Black lily':6},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Black Hollyhock':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Cattail':4},into:{'Dyes':2},every:3}),
+		({type:'convert',from:{'Flax':3},into:{'Dyes':1},every:3}),
+		({type:'convert',from:{'Blue orchid':2},into:{'Dyes':1},every:3}),
+		({type:'convert',from:{'White tulip':2},into:{'WDyes':1},every:3}),
+		({type:'convert',from:{'Lily of the Valley':3},into:{'Dyes':1},every:3}),
+		({type:'convert',from:{'Brown flower':2},into:{'Dyes':1},every:3}),
+		({type:'convert',from:{'Gray rose':3},into:{'Dyes':1},every:3}),
+		({type:'convert',from:{'Gray tulip':2},into:{'Dyes':1},every:3}),
 			//Production influence
 		{type:'mult',value:0.5,req:{'Hovel of colours production rates':0.5}},
 		{type:'mult',value:1.5,req:{'Hovel of colours production rates':1.5}},
@@ -8853,7 +10185,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false}},
 			{type:'mult',value:1.25,req:{'Even mo\' paper':true,'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false}},
 		],
-		req:{'papercrafting':true,'Paradise crafting':true},
+		req:{'papercrafting':true,'Paradise crafting':true,'t10':false},
 		category:'paradiseunit',
 	});
 		new G.Unit({
@@ -8914,6 +10246,8 @@ if (!document.getElementById(cssId))
 		use:{'Land of the Paradise':3,'Industry point':0.2},
 		staff:{'worker':2},
 		effects:[
+			{type:'provide',what:{'added material storage':2100},req:{'well stored':true}},
+			{type:'provide',what:{'added material storage':3300},req:{'well stored 2':true}},
 			{type:'provide',what:{'added material storage':6000}},
 			{type:'waste',chance:0.001/1000}
 		],
@@ -8952,6 +10286,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'added material storage':3000}},
 			{type:'provide',what:{'food storage':3000}},
+			{type:'provide',what:{'added food storage':1050,'added material storage':1050},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':1650,'added material storage':1650},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/1000}
 		],
 		req:{'stockpiling':true,'construction':true,'<span style="color: ##FF0900">Paradise building</span>':true},
@@ -9569,7 +10905,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'Mo\' concrete':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.05,req:{'Mo\' concrete':true,'<font color="maroon">Caretaking</font>':true}},
 		],
-		req:{'construction':true,'Concrete making':true},
+		req:{'construction':true,'Concrete making':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -9705,6 +11041,8 @@ if (!document.getElementById(cssId))
 		cost:{'basic building materials':1500,'glass':5},
 		use:{'Land of the Plain Island':1,'worker':3},
 		effects:[
+			{type:'provide',what:{'added food storage':1750},req:{'well stored':true}},
+			{type:'provide',what:{'added food storage':2750},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
 			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
@@ -9918,7 +11256,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'leather':5},into:{'Dried leather':5},every:20},
 			{type:'mult',value:2,req:{'More capacious racks':true}},
 		],
-		req:{'Sewing II':true},
+		req:{'Sewing II':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -9995,7 +11333,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.25,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
-		req:{'Crafting a juice':true},
+		req:{'Crafting a juice':true,'t10':false},
 		category:'crafting',
 	});
 		new G.Unit({
@@ -10326,31 +11664,29 @@ if (!document.getElementById(cssId))
     		use:{'Land of the Underworld':10,'worker':5,'Instructor':3},
     		req:{'Burial wormhole 2/2':true},
     		limitPer:{'land':3000,'population':50000},
-    		category:'civil',
+    		category:'underworld',
 	});
 	G.legacyBonuses.push(
 		{id:'addFastTicksOnStart',name:'+[X] free fast ticks',desc:'Additional fast ticks when starting a new game.',icon:[0,0],func:function(obj){G.fastTicks+=obj.amount;},context:'new'},
 		{id:'addFastTicksOnResearch',name:'+[X] fast ticks from research',desc:'Additional fast ticks when completing research.',icon:[0,0],func:function(obj){G.props['fastTicksOnResearch']+=obj.amount;}}
 	);
-//New Wonder. The portal to Plain Island. If possible I make it being built same way as Mausoleum
+
 		new G.Unit({
     		name:'<span style="color: #E0CE00">Plain island portal</span>',
-    		desc:'@opens a portal to a huge <b>Plain Island</b>A creation made of ideas of wizards and dreams of population more exactly kids.//A Dream comes real. You will grant +25000 max land upon activation of portal',
-    		wideIcon:[7,3,'magixmod'],
-    		cost:{'precious building materials':5000,'insight':1500,'faith':100,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750},
-    		effects:[
-    			{type:'provide',what:{'Land of the Plain Island':25000}},
-			{type:'provide',what:{'Plain Island emblem':1}},
-    		],
+    		desc:'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 1 of 2',
+    		wideIcon:[28,29,'magixmod'],
+		wonder:'.',
+		cost:{'marble':100,'gems':10},
+		costPerStep:{'marble':25,'basic building materials':5,'Mana':3500},
+		finalStepCost:{'population':100,'Magic essences':1000,'beyond':-1/*debug resource*/},
     		use:{'land':10},
-		messageOnStart:'You built a portal to Plain Island. It is big isle. On this island you may build houses , mines and other but not these one you built in your mortal world. You will unlock new category of buildings, a little bit better but limited housing. You may gain new minerals, who know maybe new food or anything else you did not see anytime earlier.',
+		steps:25,
     		req:{'First portal to new world':true,'Belief in portals':true},
-    		limitPer:{'land':100000000000000},//It is something like max 1
     		category:'dimensions',
 	});
 		new G.Unit({
     		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
-    		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 paradise land at your own but you <b>must</b> follow some of God\'s rules.',
+    		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules.',
     		wideIcon:[7,4,'magixmod'],
     		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4,'heavenlyTemplePoint':400},
     		effects:[
@@ -10553,10 +11889,12 @@ new G.Unit({
 		staff:{'worker':6,'armor set':6,'metal weapons':6,'Instructor':1},
 		effects:[
 			{type:'provide',what:{'added material storage':9000}},
+			{type:'provide',what:{'added material storage':3150},req:{'well stored':true}},
+			{type:'provide',what:{'added material storage':4950},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/100000000}
 		],
 		req:{'Storage at the bottom of the world':true},
-		category:'storage',
+		category:'underworld',
 	});
 	new G.Unit({
 		name:'Temple of the Paradise',
@@ -10568,7 +11906,7 @@ new G.Unit({
 		costPerStep:{'basic building materials':1000,'precious building materials':500,'gold block':10,'platinum block':1,'cloud':4500,'Ambrosium shard':1000,'godTemplePoint':-1},
 		steps:400,
 		messageOnStart:'The construction of The <b>Temple of the Paradise</b> has been started. Now you are full of hope that it will someday make the God appear next to you and show his true good-natured face.',
-		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':1000,'spirituality':25,'godTemplePoint':-100},
+		finalStepCost:{'wisdom':125,'population':25000,'precious building materials':24500,'gem block':500,'insight':1000,'Ambrosium shard':10000,'Essence of the Holiness':225000,'faith II':15,'faith':725,'spirituality':25,'godTemplePoint':-100},
 		finalStepDesc:'To complete the wonder and be even closer to the God you must perform this final step 25k [population,people] must be sacrificed... and many other ingredients.',
 		use:{'Land of the Paradise':30},
 		req:{'monument-building III':true},
@@ -10605,12 +11943,12 @@ new G.Unit({
 	});
 		new G.Unit({
 		name:'The Outstander',
-		desc:'[The Outstander] has a lot of knowledge and is very smart. Who knows if he is some sort of erudite. They doesn\'t seem like erudites for real. People call Outstanders like this one Guru\'s children.<>Provides 5 [wisdom II] and 1 [education] per each 5 [The Outstander,Outstanders] obtained.',
+		desc:'[The Outstander] has a lot of knowledge and is very smart. Who knows if he is some sort of erudite. They doesn\'t seem like erudites for real. People call Outstanders like this one Guru\'s children.<>Provides 5 [wisdom II](1 extra per each 4 [The Outstander,Outstanders] obtained) and 1 [education] per each 5 [The Outstander,Outstanders] obtained.',
 		icon:[12,28,'magixmod'],
 		use:{'worker':1},
-		limitPer:{'population':40000},
+		limitPer:{'population':38000},
 		effects:[
-			{type:'provide',what:{'wisdom II':5,'education':0.2}},
+			{type:'provide',what:{'wisdom II':5.25,'education':0.2}},
 		],
 		req:{'Outstanding wisdom':true},
 		category:'discovery',
@@ -10788,7 +12126,7 @@ new G.Unit({
 		finalStepCost:{'population':100,'precious metal ingot':5},
 		finalStepDesc:'To perform the final step 100 [population,people] and must be sacrificed to finish this trial and award <b>Victory points</b>.',
 		use:{'land':15,'worker':5,'metal tools':5},
-		req:{'language':true,'tribalism':false},
+		req:{'monument-building':true,'t10':true,'trial':true,'language':true},
 		category:'wonder',
 	});
 	new G.Unit({
@@ -10808,20 +12146,142 @@ new G.Unit({
 		category:'wonder',
 	});
 	new G.Unit({
-		name:'University of the 7 worlds',//WIP WILL BE IMPLEMENTED AFTER UPDATE OF THE WORLD!
-		desc:'@Leads to <b>Dreamy</b> trial completion. //Monument where the acknowledged dead lie. Tall monument<><font color="#D4a000">Wisdom is key... that can open a lot of doors.</font>',
-		wonder:'Dreamy',
-		icon:[28,26,'magixmod'],
-		wideIcon:[27,26,'magixmod'],
-		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400},
-		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight':100,'culture':5,'gems':5},
-		steps:150,
-		messageOnStart:'Your people have started building the <b>Mausoleum of the Dreamer</b>. This monument is the tallest building that exists at the lands of Plain Island. This is how wisdom leads to success.',
-		finalStepCost:{'population':1000,'insight':100,'wisdom':100},
-		finalStepDesc:'To perform the final step 1000 [population,people] and both 100 [wisdom],[insight] must be sacrificed to leave the plane of Wisdom and award <b>Victory points</b>. This',
+		name:'scientific university',
+		desc:'@This wonder is different than others. You cannot ascend via  [scientific university,University] but you can unlock bonuses, upgrades for your great civilization. <>Settled at the lands of Plain Island, university where all dreamers, thots, gurus, outstanders meet to discover and research new never-met before things. Who knows what will they discover? Maybe they will build up first computer or... time machine... Nobody knows.',
+		wonder:'.',
+		icon:[13,29,'magixmod'],
+		wideIcon:[12,29,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':400,'Magic essences':300,'Mana':400,'science':20},
+		costPerStep:{'basic building materials':400,'precious metal ingot':50,'insight II':160,'science':5,'gems':100,'wisdom II':-0.5,'education':-0.25,'Mana':1e4,'university point':-1},
+		steps:200,
+		messageOnStart:'The construction of Scientific University has been started. It is the complex of education where each knowledge can be deepened. You are proud of that.',
+		finalStepCost:{'population':1000,'insight II':100,'wisdom':250,'science':50,'wisdom II':-25,'education':-25,'university point':-100},
+		finalStepDesc:'To finish this stage of [scientific university,University] you need to sacrifice some resources. To unlock next stage remember that you will need to gain more [victory point]s. After each stage finish you will unlock new researches.',
 		use:{'Land of the Plain Island':15,'worker':5,'metal tools':5},
-		req:{'language':true,'tribalism':false},
+		req:{'wonder \'o science':true},
 		category:'civil',
+	});
+	new G.Unit({
+    		name:'money stockpile',
+    		desc:'Can store the money making them decay slower. You always start with 1. Amount of money that [money stockpile] can store is not affected by Pocket completions. Due to trial rules you do not need [stockpiling] to unlock this unit.',
+    		icon:[25,29,'magixmod'],
+		cost:{'archaic building materials':50},
+    		effects:[
+			{type:'provide',what:{'money storage':10000}},
+    		],
+    		use:{'land':1},
+		limitPer:{'land':1e7},
+    		req:{'t10':true,'trial':true},
+    		category:'trial',
+	});
+	
+	
+	new G.Unit({
+    		name:'bank',
+    		desc:'Can store the money making them decay slower. The more times you completed Pocket, the less [bank] can store [silver coin,Money] for you.',
+    		icon:[22,29,'magixmod'],
+    		cost:{'basic building materials':100},
+    		effects:[
+    		],
+    		use:{'land':1,'worker':1},
+    		req:{'t10':true,'trial':true},
+    		category:'trial',
+	});
+	
+	new G.Unit({
+    		name:'hovel with garden',
+    		desc:'@provides 8 [housing] and can gather [Ambrosium shard]s for you. Rarely can provide you few [fruit]s or/and [vegetable]s.',
+    		icon:[9,6,'magixmod'],
+    		cost:{'basic building materials':90},
+    		effects:[
+			{type:'provide',what:{'housing':8}},
+			{type:'gather',what:{'Ambrosium shard':0.04}},
+			{type:'gather',what:{'fruits':0.02},chance:1/50},
+			{type:'gather',what:{'vegetable':0.04},chance:1/50},
+			{type:'mult',value:1.1,req:{'Fertile bushes':true}},
+			{type:'mult',value:1.1,req:{'backshift at farms':true}},
+    		],
+		limitPer:{'land':21,'population':125},
+    		use:{'Land of the Paradise':1},
+    		req:{'Paradise housing':true},
+    		category:'paradiseunit',
+	});
+	new G.Unit({
+    		name:'fort',
+    		desc:'@provides 30 housing. Uses 6 guards to protect civillians from cruel possesed dark powers.',
+    		icon:[8,6,'magixmod'],
+    		cost:{'basic building materials':800,'strong metal ingot':400,'Cobalt ingot':100},
+    		effects:[
+			{type:'provide',what:{'housing':30}},
+    		],
+		limitPer:{'land':21,'population':125,'Land of the Underworld':8},
+    		use:{'Land of the Underworld':1,'Wand':10,'armor set':10,'metal weapons':10,'worker':6,'Instructor':1},
+    		req:{'Underworld building 2/2':true},
+    		category:'underworld',
+	});
+	new G.Unit({
+    		name:'shop',
+    		desc:'Thanks to the Shop and worker you hired you can order resources that you only could craft. Remember: they can still decay so keep that in mind and use \'em quickly so they won\'t waste. Amount of times you completed Pocket does not affect decay speed.',
+    		icon:[24,29,'magixmod'],
+    		cost:{'basic building materials':100},
+		modes:{
+			'cut stone pack':{name:'Cut stone pack',icon:[30,19,'magixmod',2,12,'magixmod'],desc:'Buy bulk of 150 [cut stone] and 150 [Various cut stones] for 20 [golden coin]s and 50 [silver coin]s'},
+			'precious ingot':{name:'Precious ingot',icon:[30,19,'magixmod',11,9],desc:'Buy 10 [precious metal ingot]s for 150 [golden coin]s.'},
+			'woodpack':{name:'Woodpack',icon:[30,19,'magixmod',1,6],desc:'Buy 200 [log]s and 100 [lumber] for 30 [golden coin]s and 75 [silver coin]s.'},
+			'brickpack':{name:'Pack of bricks',icon:[30,19,'magixmod',3,8],desc:'Buy 100 [brick]s for 30 [golden coin]s , 75 [wooden coin]s , 50 [silver coin]s.'},
+			'toolpack':{name:'Pack of tools',icon:[30,19,'magixmod',1,9],desc:'Buy pack of: 10x [knapped tools] , 5 [stone tools] and 1 set of [metal tools] for: 15 [golden coin]s and 90 [silver coin]s.'},
+			'weaponpack':{name:'Pack of weaponry',icon:[30,19,'magixmod',5,9],desc:'Buy pack of: 12x [stone weapons] , 2[metal weapons] and 1 [armor set] for: 17 [golden coin]s.'},
+			'gempack':{name:'Pack of gems',icon:[30,19,'magixmod',17,8,7,9],desc:'Buy 2 [gem block]s and 40 [gems] for: 75 [golden coin]s.'},
+		},
+    		effects:[
+    		],
+    		use:{'land':1,'worker':1},
+		gizmos:true,
+    		req:{'t10':true,'trial':true},
+    		category:'trial',
+	});
+	new G.Unit({
+    		name:'cantor',
+    		desc:'Exchanges coins of lower tier into 1 coin of higher tier. For example: 100 of <b>x</b> currency will be exchanged into 1 <b>y</b> currency.',
+    		icon:[23,29,'magixmod'],
+    		cost:{'archaic building materials':200,'wooden coin':90},
+    		effects:[
+			{type:'function',func:function(me){
+				if(G.getRes('wooden coin').amount>=50*(G.getAchiev('Pocket').won*3+1)){
+				 G.lose('wooden coin',50*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
+                G.gain('silver coin',1);
+				}
+			},mode:'wts'},
+			{type:'function',func:function(me){
+				if(G.getRes('wooden coin').amount>=50*(G.getAchiev('Pocket').won*3+1)){
+				 G.lose('silver coin',50*(G.getAchiev('Pocket').won*3+1),'currency exchange(Cantor)');
+                G.gain('golden coin',1);
+				}
+			},mode:'stg'},
+    		],
+		gizmos:true,
+		modes:{
+			'wts':{name:'Wooden to Silver',icon:[26,29,'magixmod'],desc:'Cantor will convert  [wooden coin]s into 1 [silver coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">50*(Pocket trial completions*3+1)</font></b>'},
+			'stg':{name:'Silver to Golden',icon:[27,29,'magixmod'],desc:'Cantor will convert  [silver coin]s into 1 [golden coin].<br> Amount of required coins of lower tier is defined by this formula:<br><b><font color="aqua">50*(Pocket trial completions*3+1)</font></b>'},
+		},
+    		use:{'land':1,'worker':1},
+    		req:{'t10':true,'trial':true},
+    		category:'trial',
+	});
+	new G.Unit({
+    		name:'grand mirror',
+    		desc:'A door to world that is exact copy of mortal world. //<b><font color="fuschia">Isn\'t it weird that you have MIRRORED world and terrain only duplicated but any housing , crafting shacks did not? Well... maybe it is better for you.</font></b>',
+    		icon:[0,0],
+		wideIcon:[0,0],
+		wonder:'.',
+		steps:50,
+		finalStepDesc:'Perform final step to gain an [emblem \'o mirror]. You will need it.',
+		finalStepCost:{'emblem \'o mirror':-1,'Magic essences':1e6,'Mana':450000},
+    		effects:[
+    		],
+    		use:{'land':25,'worker':10},
+    		req:{'mirror world 1/2':true},
+    		category:'dimensions',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -11601,7 +13061,7 @@ getCosts:function()
 		desc:'<span style="color: #00A012">Your wizards discovered way to make a portal and now they plan to open a new dimension. What would it mean? It means, more place to build, more housing, more everything!</span>',
 		icon:[2,1,'magixmod'], 
 		cost:{'insight':1400,'culture':30,'Mana':2500,'influence':70},
-		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true},
+		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true,'valid portal frame':true},
 	});
 		new G.Tech({
 		name:'Crafting a glass',
@@ -11909,7 +13369,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'quarrying II',
-		desc:'@[quarry] can now dig for [Various cut stones] by new special mode. @<b>"Advanced quarry stone" mode and "Quarry other stones mode(non advanced)" has 1.7% chance to gain 6 to 13 [platinum ore]s .',
+		desc:'@[quarry] can now dig for [Various cut stones] by new special mode. @<b>"Advanced quarry stone" mode and "Quarry other stones mode(non advanced)" are now able to gather [platinum ore,Platinum].',
 		icon:[10,12,'magixmod'],
 		cost:{'insight':355},
 		req:{'prospecting II':true,'quarrying':true},
@@ -13064,7 +14524,7 @@ autobuy(G.year)
 		new G.Trait({
 		name:'Eotm',
 		displayName:'Evolution of the minds',
-		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained.',
+		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. @[sleepy insight] now gives [insight II] instead of [insight]. Same chances.',
 		icon:[25,19,'magixmod'],
 		cost:{'culture':1000,'insight':1000,'influence':300,'faith':300},
 		chance:190,
@@ -13671,7 +15131,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 			new G.Tech({
 		name:'Fertile bushes',
-		desc:'[house,Next-to house berrybushes] are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :)',
+		desc:'[house,Next-to house berrybushes] are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :) Also [hovel with garden] gains 10% more.',
 		icon:[1,24,'magixmod'],
 		cost:{'insight II':100,'culture II':20,'insight':50},
 		req:{'Hunters & fishers unification':true,'Next-to house berrybushes':true},
@@ -13922,7 +15382,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMagical, {
 	});
 		new G.Tech({
 		name:'backshift at farms',
-		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech.',
+		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech. Also [hovel with garden] gains 10% more.',
 		icon:[31,14,'magixmod'],
 		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5,'insight':293},
 		req:{'improved windmill motors':true,'<font color="maroon">Moderation</font>':true},
@@ -14104,12 +15564,14 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 })
 		new G.Tech({
 		name:'Pantheon key',
-		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab.',
+		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab. //Provides: 25 [spirituality II] and 15 [authority II].',
 		icon:[4,25,'magixmod'],
 		req:{'Life in faith':true,'monument-building III':true},
 		cost:{'insight II':100,'faith II':10,'culture II':30,'godTemplePoint':500,'faith':80},
 		effects:[
-			{type:'provide res',what:{'Worship point':4}},		
+			{type:'provide res',what:{'Worship point':4}},	
+			{type:'provide res',what:{'spirituality II':25}},
+			{type:'provide res',what:{'authority II':15}},
 		]
 	});
   	new G.Tech({
@@ -14313,7 +15775,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 		desc:'Decreases the [land] limit per for [paradise shelter]s by 4 points. It means more shelters. <>More shelters = more housing = more people @Provides 15 [wisdom II] .',
 		icon:[10,27,'magixmod'],
 		req:{'Paradise shelters':true,'<font color="maroon">Caretaking</font>':true},
-		cost:{'insight II':200,'science':14,'influence II':1},
+		cost:{'insight II':200,'science':14,'influence II':1,'insight':500},
 		effects:[
 			{type:'provide res',what:{'wisdom II':15}},
 		],
@@ -14448,7 +15910,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'dit1u2',
 		displayName:'Clay trend II',
-		desc:'[clay] trend makes [digger]s dig more [clay]s for you.',
+		desc:'[clay] trend makes [digger]s dig more [clay] for you.',
 		icon:[23,28,'magixmod'],
 		req:{'dit1':true,'Policy revaluation':true},
 		cost:{'insight II':100,'culture II':35,'influence II':10},
@@ -14458,7 +15920,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	new G.Tech({
 		name:'dit2u2',
 		displayName:'Mud trend II',
-		desc:'[mud] trend makes [digger]s gather more [clay]s for you.',
+		desc:'[mud] trend makes [digger]s gather more [mud] for you.',
 		icon:[24,28,'magixmod'],
 		req:{'dit2':true,'Policy revaluation':true},
 		cost:{'insight II':100,'culture II':35,'influence II':10},
@@ -14564,7 +16026,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 	new G.Tech({
 		name:'Outstanders club',
-		desc:'Decreases [population] limit per one [The Outstander] from 40k to 28k. Provides extra 5 [wisdom II]',
+		desc:'Decreases [population] limit per one [The Outstander] from 38k to 26.5k. Provides extra 5 [wisdom II]',
 		icon:[14,28,'magixmod'],
 		req:{'Outstanding wisdom':true},
 		cost:{'insight II':300,'science':15,'culture II':25},
@@ -14587,7 +16049,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		desc:'Now fishing context contains [Ink]. <>Fishers from camp now are able to gather [Ink] out of some squids.',
 		icon:[32,19,'magixmod'],
 		req:{'Outstanding wisdom':true,'Hunters & fishers unification':true},
-		cost:{'insight II':290,'science':20},
+		cost:{'insight II':267,'science':20},
 	});
 	new G.Trait({
 		name:'bonus1',
@@ -14688,6 +16150,158 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		],
 		chance:3
 	});	
+	new G.Trait({
+		name:'t10',
+		displayName:'Mamuun\'s trial',
+		desc:'You are during Pocket trial',
+		icon:[20,25,'magixmod',5,22,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+			effects:[
+			{type:'function',func:function(){}}
+		],
+		
+	});
+	new G.Tech({
+		name:'valid portal frame',
+		desc:'Before wizards will be able to open a gate to new world they must know some rules. Without valid frame portal will not open or worse , it may explode.',
+		icon:[10,29,'magixmod'],
+		req:{'Wizard complex':true,'Belief in portals':true},
+		cost:{'insight':1015},
+	});
+	new G.Tech({
+		name:'wonder \'o science',
+		desc:'Unlocks [scientific university]. [scientific university] is a wonder that can be upgraded. To unlock further tiers you need to complete Trials at higher levels meaning higher difficulty. University by itself can provide way more [education] and [wisdom II]. Also it may lead to some new discoveries.',
+		icon:[11,29,'magixmod'],
+		req:{'Outstanders club':true,'monument-building III':true},
+		cost:{'insight II':305,'culture II':25,'culture':65},
+	});
+	let Mamuun1st =  new G.Trait({
+        name:'well stored',
+	displayName:'<font color="gold">Well stored I</font>',
+        desc:'All storage units(except Essences storages) provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].',
+        icon:[12,15,'magixmod',13,15,'magixmod'],
+        cost:{},
+	effects:[
+	],	
+        req:{'tribalism':false},
+		category:'knowledge'
+    });
+function checkMamuun1st() {
+  if (G.achievByName['Pocket'].won) {
+    if (G.achievByName['Pocket'].won > 0 && G.hasNot('well stored') && G.achievByName['Pocket'].won < 2){
+      G.gainTrait(Mamuun1st)
+    }
+}
+}
+checkMamuun1st()
+const oldNewGameMamuun1st = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkMamuun1st()
+  }
+})
+	let Mamuun2nd =  new G.Trait({
+        name:'well stored 2',
+	displayName:'<font color="#d0ab34">Well stored II</font>',
+        desc:'All storage units(except Essences storages) provide 55% more storage. You reached maximum bonus that Mamuun can provide to you for completing Pocket. Bonus does not stack with [Spell of capacity].',
+        icon:[11,15,'magixmod',13,15,'magixmod'],
+        cost:{},
+	effects:[
+	],	
+        req:{'tribalism':false},
+		category:'knowledge',
+    });
+function checkMamuun2nd() {
+  if (G.achievByName['Pocket'].won) {
+    if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
+      G.gainTrait(Mamuun2nd)
+    }
+}
+}
+checkMamuun2nd()
+const oldNewGameMamuun2nd = G.NewGameConfirm.bind({})
+G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
+  apply: function(target, thisArg, args) {
+    target(...args)
+    checkMamuun2nd()
+  }
+})
+	new G.Tech({
+		name:'beyond the edge II',
+		desc:'Send your people beyond the edge of the world for the second time. You will lose 40% of your current [population] , all remaining [adult]s will become [sick] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 5.5% of your total land for your people(7% in total). It may help you but there is a huger than before risk. The further you push beyond the edge the stronger scourge will fall on you and your civilization.</font>',
+		req:{'beyond the edge':true,'wonder \'o science':true},
+		cost:{'insight II':345,'science':26,'culture II':24},
+		icon:[0,30,'magixmod'],
+		effects:[
+			{type:'provide res',what:{'wisdom II':20}},
+			{type:'provide res',what:{'education':2}},
+		]
+	});
+	new G.Tech({
+		name:'mirrors',
+		desc:'People now know how mirror works and even how to make mirror effect.',
+		req:{'Burial in new world':true},
+		cost:{'insight':615},
+		icon:[8,30,'magixmod'],
+		effects:[
+			{type:'provide res',what:{'wisdom II':20}},
+			{type:'provide res',what:{'education':2}},
+		]
+	});
+	new G.Tech({
+		name:'parallel theory 1/3',
+		desc:'What if you can make mirror work like portal? //This part of theory is about whole concept.',
+		req:{'Laws of physics(intermediate)':true,'mirrors':true},
+		cost:{'insight':1600},
+		icon:[28,27,'magixmod',9,30,'magixmod'],
+		effects:[
+		]
+	});
+	new G.Tech({
+		name:'parallel theory 2/3',
+		desc:'What if you can make mirror work like portal? //This part of theory is about portal and stability.',
+		req:{'Laws of physics(intermediate)':true,'parallel theory 1/3':true,'symbolism III':true},
+		cost:{'insight II':150},
+		icon:[27,27,'magixmod',9,30,'magixmod'],
+		effects:[
+		]
+	});
+	new G.Tech({
+		name:'parallel theory 3/3',
+		desc:'What if you can make mirror work like portal? //This part is related to misc things about mirror world concept.',
+		req:{'parallel theory 2/3':true,'wonder \'o science':true},
+		cost:{'insight II':400,'science':60,'culture II':30,'faith II':30,'influence II':25},
+		icon:[26,27,'magixmod',9,30,'magixmod'],
+		effects:[
+		]
+	});
+	new G.Tech({
+		name:'mirror world 1/2',
+		desc:'Unlocks a [grand mirror] which will double your [land] amount. It compounds with bonuses from: [beyond the edge] and [beyond the edge II]. Costs , display depends on chosen by your people path. In fact it is a passage to exact copy of world you met before your civilization have set their first shelter/dwelling. Make sure you fullfill upkeep of that because if you do not then [grand mirror] will disable and you will lose your land.',
+		req:{'parallel theory 3/3':true,'wonder \'o science':true,'Bigger university':true},
+		cost:{'insight II':400,'science':62,'culture II':38},
+		icon:[27,3,'magixmod',10,30,'magixmod'],
+		effects:[
+		]
+	});
+	new G.Tech({
+		name:'mirror world 2/2',
+		desc:'From that point amount of main [land] is doubled. Enjoy... It is seriously time to stop. <b><br>The more worlds you open the more unstable world will become...</b>',
+		req:{'mirror world 1/2':true},
+		cost:{'insight II':420,'science':62,'culture II':38,'faith II':30,'emblem \'o mirror':1},
+		icon:[27,2,'magixmod',10,30,'magixmod'],
+		effects:[
+		]
+	});
+	new G.Tech({
+		name:'Bigger university',
+		desc:'@Unlocks 2nd level of [scientific university]. Requires 4 [victory point]s to level up. Unlocks [grand mirror].',
+		icon:[9,29,'magixmod'],
+		cost:{'insight II':426,'university point':300,'science':50},
+		req:{'wonder \'o science':true,'Wizard complex':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -15033,7 +16647,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Policy({
 		name:'Toggle SFX',
-		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li><li>Ascending by wonder</li>',
+		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li><li>Ascending by wonder</li><li>Switching between tabs</li>',
 		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
@@ -15058,6 +16672,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'silver':{name:'Silver',desc:'Switches to silver theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'golden':{name:'Golden',desc:'Switches to golden theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'black':{name:'Black',desc:'Switches to black theme. Reward for <b>Talented?</b> achievement.',req:{'<font color="orange">Smaller shacks</font>':true}},
+			'wooden':{name:'Wooden',desc:'Switches to wooden theme. Reward for completing Buried trial for the first... and the last time.',req:{'<font color="orange">Smaller shacks</font>':true}},
 		},
 		category:'mag',
 	});
@@ -15297,7 +16912,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
                 '<br>Trial rules<br>'+
                 'Enter the plane where I will show you that the time is mo\' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [around 0.01% to 0.5%]. In addition Dreamers in this plane don\'t exist and nobody knows who are they but I will bring down to you some , random amount of <font color="aqua">Insight</font> each year(in this trial amount of <font color="aqua">Insight</font> can be equal to 160% of <font color="aqua">Wisdom</font> amount).Finish the trial by building mai wonder and ascend your soul to me.I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first trial completion<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Patience trial begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Patience','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Patience trial begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Patience','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -15322,9 +16937,9 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'I am a Madness. This plane is full of anger... No way to make\'em happy. You will have to handle it. In fact people\'s happiness will be always at -200% level and can\'t be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Reaching -400% happiness causes Madness to kick you out of this plane. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee [Thief hunter,Thieve hunters] are al-most unharmable!<br><Br><BR>'+
+                'I am a Madness. This plane is full of anger... No way to make\'em happy. You will have to handle it. In fact people\'s happiness will be always at -200% level and can\'t be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Reaching -400% happiness causes Madness to kick you out of this plane. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee Thieve hunters are al-most unharmable!<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Unhappy trial begins...<br>The Madness begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.getRes('corpse').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Unhappy trial begins...<br>The Madness begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -15351,7 +16966,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
                 '<br>Trial rules<br>'+
                 'I am a personification of Inspiration. Ya met me '+G.getName('ruler')+'! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather <font color="green">culture</font> , <font color="green">influence</font> for ya. (their amounts can over cap but Tu-ria won\'t bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial <font color="green">water rations</font> cannot be set to plentiful(food one can be still be set)! In addition you will be forced to keep cultural stability. Doing anything related to researching, discovering causes stability to go low while doing cultural things will bring it up.(also few researches will increase up the stability) Don\'t get too low or too much(it will make trial attempt failed). Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. <br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t3']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Cultural','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t3']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Cultural','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -15378,7 +16993,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
                 '<br>Trial rules<br>'+
                 'I am patron of hunters! But in my trial you will hunt yourself. You\'ll hunt your weakpoints. In my plane your people won\'t like taste of green willing for tasty meat. <font color="pink">Gatherer</font> and <font color="pink">fisher</font> doesn\'t exist there too. But you have no time for eating and being happy from taste of hunted deer. Each year 3% of your people will die and <font color="pink">Health</font> will go lower and lower increasing vulnerability to the diseases. Happiness cap for this trial is: from -200% to 98%! You\'ll be able to bring health back to 0 state only once(via policies) but it will consume half of your total food. Build a wonder of my religion. Completing the trial for the first time I will empower all hunting units and cooked meat,cured meat will decay slower.<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('worker').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t4']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Hunted trial has been started. You are in Hartar\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Hunted trial begins...<br>The meat rush begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Hunted','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t4']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Hunted trial has been started. You are in Hartar\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Hunted trial begins...<br>The meat rush begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Hunted','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -15402,6 +17017,47 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			'+2':{name:'<font color="#ff884d">+2</font>',desc:'A 9.5% chance to receive 0.25 to 2 [insight] at the start of new year.'},
 			'+3':{name:'<font color="#ff8066">+3</font>',desc:'A 10.25% chance to receive 0.15 to 1.5 [insight] at the start of new year.'},
 		},
+	});
+	new G.Policy({
+		name:'Pocket',
+		desc:'starts [se10] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',20,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se10':'on'},
+		category:'trial',
+		effects:[
+			{type:'function',func:function(){G.dialogue.popup(function(div){
+            return '<div style="width:580px;min-height:550px;height:75%;">'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Pocket - -</font></div>'+
+				'<div class="fancyText">The Mamuun\'s trial</font></div><br>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/10.png" width="72" height="72"/>'+
+                '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
+'<br><br><Br><br>'+
+				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
+                '<br>Trial rules<br>'+
+                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. Also exploring units are 2.5x as efficient. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
+'<div class="fancyText title">Tell me your choice...</div>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Pocket\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '</div>'+
+            '</div><div class="buttonBox">'+
+            '</div></div>'
+})}}
+				],
+	});
+		new G.Policy({
+		name:'reset health level',
+		desc:'Only available while in Hunted. Resets health to 0%. Available only once per each Hunted attempt.',
+		icon:[21,29,'magixmod'],
+		cost:{'influence':1},
+		startMode:'inactive',
+		modes:{
+		'inactive':{name:'Inactive',desc:'Ability is currently unused'},
+		'activate':{name:'Activate',desc:'Active this ability'},
+		'alreadyused':{name:'Already used',req:{'tribalism':false}},
+		},
+		req:{'t4':true,'trial':true},
+		category:'Florists',
 	});
 	/*=====================================================================================
 	LANDS
@@ -15493,7 +17149,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'forest',
 		names:['Forest','Forest','Woodland','Swamp','Marsh'],
 		goods:[
-			{type:['oak','birch'],amount:3},
+			{type:['oak','birch'],min:2.75,max:3.6},
 			{type:['oak','birch','dead tree'],chance:0.5},
 			{type:'berry bush',chance:0.6},
 			{type:'forest mushrooms',chance:0.8},
@@ -15562,7 +17218,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'boreal forest',
 		names:['Boreal forest','Pine forest','Taiga'],
 		goods:[
-			{type:['fir tree'],amount:3},
+			{type:['fir tree'],min:2.4,max:4},
 			{type:'berry bush',chance:0.9},
 			{type:'forest mushrooms',chance:0.4},
 			{type:'rb1',chance:0.5},
@@ -15630,7 +17286,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'jungle',
 		names:['Jungle','Tropical forest','Mangrove'],
 		goods:[
-			{type:['palm tree'],amount:3},
+			{type:['palm tree'],min:2.75,max:4},
 			{type:'jungle fruits',chance:1},
 			{type:'grass'},
 			{type:'koalas',chance:0.3},
@@ -15677,7 +17333,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'glacier',
 		goods:[
 			{type:'snow cover',min:0.4,max:3},
-			{type:'Ice',min:2,max:3.5},
+			{type:'Ice',min:2,max:5.7},
 			{type:'seals',min:0.05,max:1,chance:0.2},
 			{type:'saltwater fish',min:0.05,max:0.3,chance:0.01},
 			{type:'freshwater',amount:0.75},
@@ -15688,11 +17344,11 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Land({
 		name:'dead forest',
-		names:['Deadlands,Dead forest'],
+		names:['Deadlands','Dead forest'],
 		goods:[
 			{type:['dead tree'],amount:3},
 			{type:'forest mushrooms',chance:0.1},
-			{type:'dead grass'},
+			{type:'dead grass',min:3,max:6},
 			{type:'wild bugs',min:0.6,max:1.5},
 			{type:'mudwater',min:0.75,max:1},
 			{type:'dead rocky substrate'},
@@ -15707,7 +17363,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'badlands',
 		names:['Badlands,Mesa'],
 		goods:[
-			{type:'dead tree',chance:0.9,min:0.33,max:1.2},
+			{type:'dead tree',chance:0.9,min:0.33,max:2.5},
 			{type:['dead grass','grass'],chance:0.4},
 			{type:'wild bugs',chance:0.8,min:0.1,max:2},
 			{type:'freshwater',min:0.1,max:0.35},
@@ -15719,7 +17375,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'ostrich',chance:0.4,min:0.21,max:0.5},
 			{type:'wild rabbits',chance:0.045},
 		],
-		image:9,
+		image:18,
 		score:2.25,
 	});
 	new G.Land({
@@ -15741,7 +17397,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 			{type:'sandy soil',min:0.3,max:1.8}
 		],
 		modifiers:{'river':0.1},
-		image:5,
+		image:19,
 		score:3.8,
 	});
 	//TODO : all the following
@@ -16517,6 +18173,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
+	
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
@@ -16738,8 +18395,8 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 				{
 					if (landTile=='ocean') biomes.push('ocean');
 					else if (wetTile<0.25) biomes.push('shrubland');
-					else if (wetTile>0.5 && wetTile<0.74) biomes.push('forest');
-					else if (wetTile>0.74) biomes.push('lavender fields');
+					else if (wetTile>0.5 && wetTile<0.78) biomes.push('forest');
+					else if (wetTile>0.78) biomes.push('lavender fields');
 					else biomes.push('prairie');
 				}
 				if (biomes.length==0) biomes.push('prairie');
