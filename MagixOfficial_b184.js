@@ -11953,7 +11953,6 @@ new G.Unit({
 		req:{'Outstanding wisdom':true},
 		category:'discovery',
 	});
-	var bloodcost=100+(1*G.achievByName['Unhappy'].won)
 	new G.Unit({
 		name:'statue of Madness',
 		desc:'@Leads to <b>Unhappy</b> trial completion. //A monument of anger and wrath. A wonder for Bersaria the Seraphin of Madness. Tall statue with a mad face and some bonfires. <><font color="#ffdddd">It is insane...</font>',
@@ -11961,10 +11960,10 @@ new G.Unit({
 		icon:[7,26,'magixmod'],
 		wideIcon:[6,26,'magixmod'],
 		cost:{'basic building materials':250,'gold block':10},
-		costPerStep:{'gold block':15,'blood':(10*(G.achievByName['Unhappy'].won+1.2)),'basic building materials':100,'gem block':1},
+		costPerStep:{'gold block':15,'blood':(2*(G.achievByName['Unhappy'].won+1.2)),'basic building materials':100,'gem block':1},
 		steps:100,
 		messageOnStart:'You started to build wonder for <b>Bersaria</b>. <br>This statue will have a angry face at top. Terrain is covered by some sort of fog. But you do it to stop the Madness and come back to normal plane. Let the statue be built!',
-		finalStepCost:{'population':(250+(1*G.achievByName['Unhappy'].won+1/10)),'gem block':5,'blood':bloodcost},
+		finalStepCost:{'population':(50+(1*G.achievByName['Unhappy'].won+1/10)),'gem block':5,'blood':75},
 		finalStepDesc:'To perform the final step '+250+(1*G.achievByName['Unhappy'].won+1/10)+'[population,People],5 [gem block]s and '+100+(1*G.achievByName['Unhappy'].won)+'[blood] must be sacrificed in order to escape that plane of Wrath and Madness and award you with <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
 		req:{'monument-building':true,'t2':true,'trial':true,'language':true},
