@@ -1453,7 +1453,7 @@ G.setPolicyMode=function(me,mode)
 						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascension and here is example of that.</div>';
 						'</div>';
 					}
-					else if(me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #E0CE00">Plain island portal</span>' || me.name!=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror' && me.name!='mausoleum')
+					else if(me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #E0CE00">Plain island portal</span>' || me.name!=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror' && me.name!=='mausoleum')
 					{
 						str+='<div class="fancyText par">Portal activated</div>';
 						str+='<div class="fancyText par">Now you can unlock new things, discover and most important settle more people.</div>';
