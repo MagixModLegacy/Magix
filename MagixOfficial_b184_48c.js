@@ -1239,6 +1239,48 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+		G.rerollChooseBox=function(me)
+	{
+		//check if we match the costs; if yes, research or reroll
+		var costs=me.getCosts();
+		var success=true;
+		if (!G.testCost(costs,1)) success=false;
+			var randomTxt=Math.Round(Math.Random()*4);
+			if(randomTxt>=0 && randomTxt<=1){
+		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#ffdddd">There is nothing more to research for now.</font></small>');}
+			}else if(randomTxt>1 && randomTxt<=2){
+		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#ccccff">Wait patiently. There will be something to research... unless you researched everything , then yeah. There is the end.</font></small>');}
+			}else if(randomTxt>2 && randomTxt<=3){
+		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#aaffdd">The mod has over 250 available techs. If you have that much it may be the end.</font></small>');}
+			}else if(randomTxt>3 && randomTxt<=4){
+		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#777777">More techs coming soon :)</font></small>');}
+			}
+		if (success)
+		{
+			G.doCost(costs,1);
+			
+			var bounds=l('chooseIgniter-'+me.id).getBoundingClientRect();
+			var posX=bounds.left+bounds.width/2;
+			var posY=bounds.top;
+			for (var i in costs)
+			{G.showParticle({x:posX,y:posY,icon:G.dict[i].icon});}
+			
+			me.justUsed=true;
+			me.choices=[];
+			var choices=me.getCards();
+			var n=Math.min(choices.length,me.choicesN);
+			for (var i=0;i<n;i++)
+			{
+				var choice=choose(choices);
+				if (!me.choices.includes(choice)) me.choices.push(choice);
+				//var index=choices.indexOf(choice);
+				//choices.splice(index,1);//no duplicates
+			}
+			me.onReroll();
+			G.refreshChooseBox(me);
+			me.justUsed=false;
+		}
+	}
 	G.inspectTile=function(tile)
 	{
 		//display the tile's details in the land section
