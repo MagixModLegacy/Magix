@@ -1245,7 +1245,7 @@ if (!document.getElementById(cssId))
 		var costs=me.getCosts();
 		var success=true;
 		if (!G.testCost(costs,1)) success=false;
-			var randomTxt=Math.Round(Math.Random()*4);
+			var randomTxt=Math.round(Math.random()*4);
 			if(randomTxt>=0 && randomTxt<=1){
 		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#ffdddd">There is nothing more to research for now.</font></small>');}
 			}else if(randomTxt>1 && randomTxt<=2){
