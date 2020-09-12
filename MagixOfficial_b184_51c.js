@@ -14816,7 +14816,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	});
 		new G.Tech({
 		name:'symbolism II',
-		desc:'@increases [symbolism] bonus from 50 to 70%. Still boost has the same targets as it had before.',
+		desc:'@increases [symbolism] bonus from 50 to 70%. Still boost has the same targets as it had before and [druid]s in extra.',
 		icon:[29,6,'magixmod'],
 		cost:{'culture II':15,'insight II':10},
 		req:{'oral tradition':true,'ritualism II':true,'Improved rhetoric':true,'Richer language':true,'symbolism':true},
@@ -16361,6 +16361,33 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		cost:{'insight II':426,'university point':300,'science':50},
 		req:{'wonder \'o science':true,'Wizard complex':true},
 	});
+	new G.Tech({
+		name:'druidism',
+		desc:'@unlocks [druid] @Gathers more [faith] and [happiness] than [soothsayer] but is limited.',
+		icon:[25,30,'magixmod'],
+		cost:{'insight':30,'faith':5,'culture':25},
+		req:{'ritualism':true,'symbolism':true},
+	});
+	new G.Trait({
+        name:'druidsymbolism1',
+	displayName:'Druid\'s symbolism of happiness',
+        desc:'[druid] gathers 33% more [happiness].',
+        icon:[27,30,'magixmod'],
+        cost:{},
+	effects:[
+	],	
+        req:{'druidism':true,'druidsymbolism2':false},
+    });
+	new G.Trait({
+        name:'droidsymbolism2',
+	displayName:'Druid\'s symbolism of faith',
+        desc:'[druid] gathers 18% more [faith].',
+        icon:[28,30,'magixmod'],
+        cost:{},
+	effects:[
+	],	
+        req:{'druidism':true,'druidsymbolism1':false},
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
