@@ -13219,21 +13219,21 @@ getCosts:function()
 		desc:'@Now at the Lands of Plain island you may start opening farms to let your people make more [Berries] & [Watermelon]. You are doing it here because you may have trouble to find free land in your mortal world.<>',
 		icon:[16,2,'magixmod'],
 		cost:{'insight':575},
-		req:{'construction II':true},
+		req:{'construction II':true,'gardening':true},
 	});
 		new G.Tech({
 		name:'Crafting a juice',
 		desc:'@Makes juices possible to be crafted. Any [fruit] + [sugar] + [water] = [Juices]. Be careful. Juices may spoil same like normal water. Spoiled juice grants even more <b>unhappiness and unhealth<b> than normal muddy water.<>',
 		icon:[16,4,'magixmod'],
 		cost:{'insight':495,'wisdom':50},
-		req:{'Farms in the new land':true},
+		req:{'Farms in the new land':true,'gardening':true},
 	});
 		new G.Tech({
 		name:'Farm of the Sugar cane',
 		desc:'@Makes [Sugar cane] farm possible to be built. This farm will have increased upkeep cost and will need more people to run.<>',
 		icon:[15,7,'magixmod'],
 		cost:{'insight':495,'wisdom':50},
-		req:{'Farms in the new land':true},
+		req:{'Farms in the new land':true,'gardening':true},
 	});
 		new G.Tech({
 		name:'Precious pottery',
@@ -16376,7 +16376,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	displayName:'Druid\'s symbolism of happiness',
         desc:'[druid] gathers 33% more [happiness].',
         icon:[27,30,'magixmod'],
-        cost:{},
+        cost:{'faith':5,'culture':15},
 	effects:[
 	],	
         req:{'druidism':true,'druidsymbolism2':false},
@@ -16387,11 +16387,22 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	displayName:'Druid\'s symbolism of faith',
         desc:'[druid] gathers 18% more [faith].',
         icon:[28,30,'magixmod'],
-        cost:{},
+        cost:{'faith':5,'culture':15},
 	effects:[
 	],	
         req:{'druidism':true,'druidsymbolism1':false},
 	chance:100
+    });
+	new G.Trait({
+        name:'gardening',
+        desc:'A key for farms. People learn how to make a irrigation system. Thanks to it they may start thinking about making some small gardens, then expand them to farms or even plantations.',
+        icon:[10,0,'magixmod'],
+        cost:{'insight':40},
+	effects:[
+	],	
+        req:{'druidism':true,'city-planning':true},
+	chance:75,
+		category:'knowledge'
     });
 	/*=====================================================================================
 	POLICIES
