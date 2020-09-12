@@ -8135,7 +8135,12 @@ if (!document.getElementById(cssId))
 				G.getDict('granary').icon=[30,7,'magixmod']
 				G.getDict('stockpile').icon=[30,6,'magixmod']
 				G.getDict('well').icon=[30,5,'magixmod']
+				if(G.hasNot('furnace modernization')){
 				G.getDict('furnace').icon=[30,4,'magixmod']
+				}else{
+					G.getDict('furnace').icon=[11,0,'magixmod']
+					G.getDict('furnace').displayName='Blackium furnace';
+				}
 				G.getDict('well of the Plain Island').icon=[30,3,'magixmod']
 				G.getDict('carver').icon=[30,2,'magixmod']
 				G.getDict('firekeeper').icon=[30,1,'magixmod']
@@ -16257,7 +16262,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	let Mamuun1st =  new G.Trait({
         name:'well stored',
 	displayName:'<font color="gold">Well stored I</font>',
-        desc:'All storage units(except Essences storages) provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].',
+        desc:'<font color="#aaaaff">All storage units(except Essences storages) provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].</font>',
         icon:[12,15,'magixmod',13,15,'magixmod'],
         cost:{},
 	effects:[
@@ -16283,7 +16288,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
 	let Mamuun2nd =  new G.Trait({
         name:'well stored 2',
 	displayName:'<font color="#d0ab34">Well stored II</font>',
-        desc:'All storage units(except Essences storages) provide 55% more storage. You reached maximum bonus that Mamuun can provide to you for completing Pocket. Bonus does not stack with [Spell of capacity].',
+        desc:'<font color="#aaaaff">All storage units(except Essences storages) provide 55% more storage. You reached maximum bonus that Mamuun can provide to you for completing Pocket. Bonus does not stack with [Spell of capacity].</font>',
         icon:[11,15,'magixmod',13,15,'magixmod'],
         cost:{},
 	effects:[
@@ -16452,10 +16457,19 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Tech({
 		name:'prospecting III',
-		desc:'[prospecting] now affects: @[mine]s - Minerals from context <b>Deep mining</b> (adds also Any mode but this one will only mine via context Deep mining) @[quarry,Quarries] - New mode that will gather 3x more minerals that can be only obtained by quarrying but 6x less of resources other than minerals.',
+		desc:'[prospecting] improvements: @[mine]s - Minerals from context <b>Deep mining</b> (adds also Any mode but this one will only mine via context Deep mining) @[quarry,Quarries] - New mode that will gather 3x more minerals that can be only obtained by quarrying but 6x less of resources other than minerals.',
 		icon:[11,1,'magixmod'],
 		cost:{'insight II':200,'science':15,'influence II':5},
 		req:{'quarrying II':true,'cozy building':true,'deep mining & quarrying':true,'Eotm':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'furnace modernization',
+		desc:'<b>Furnace</b> becomes <B>Blackium furnace</b>. Requires 3x as more upkeep but: can smelt plenty of new ores and is 2% more efficient regardless of path chosen by your people.',
+		icon:[8,12,11,0,'magixmod',0,18,'magixmod'],
+		cost:{'insight II':225,'science':15},
+		req:{'quarrying III':true,'mining II':true,'deep mining & quarrying':true,'Mo\' beauty':true},
 		effects:[
 		],
 	});
