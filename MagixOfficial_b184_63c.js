@@ -9106,6 +9106,7 @@ if (!document.getElementById(cssId))
 			'quarry':{name:'Quarry stone',icon:[0,8],desc:'Produce [cut stone] and other minerals.',use:{'worker':3,'stone tools':3}},
 			'advanced quarry':{name:'Advanced quarry stone',icon:[8,12,0,8],desc:'Produce [cut stone] and other minerals at a superior rate with metal tools.',use:{'worker':3,'metal tools':3}},
 			'quarryotherstones':{name:'Quarry other stones',icon:[3,12,'magixmod'],desc:'Strike the Earth for other than common [cut stone] stones.',req:{'quarrying II':true},use:{'worker':3,'metal tools':3}},
+			'quarrydeepores':{name:'Quarry deep for minerals',icon:[8,12,33,30,'magixmod'],desc:'Quarry for resources that are in Deep Quarrying territory context. In this mode you will gather 3x more ores but 6x less resources other than ores.',req:{'prospecting III':true},use:{'worker':8,'metal tools':8}},
 		},
 		effects:[
 			{type:'gather',context:'quarry',amount:5,max:10,every:3,mode:'quarry'},
@@ -16451,7 +16452,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Tech({
 		name:'prospecting III',
-		desc:'[prospecting] now affects: @[mine]s - Minerals from context <b>Deep mining</b> (adds also Any mode but this one will only mine via context Deep mining) @[quarry,Quarries] - New mode that will gather 3x more minerals that can be only obtained by quarrying but 3x less of resources other than minerals.',
+		desc:'[prospecting] now affects: @[mine]s - Minerals from context <b>Deep mining</b> (adds also Any mode but this one will only mine via context Deep mining) @[quarry,Quarries] - New mode that will gather 3x more minerals that can be only obtained by quarrying but 6x less of resources other than minerals.',
 		icon:[11,1,'magixmod'],
 		cost:{'insight II':200,'science':15,'influence II':5},
 		req:{'quarrying II':true,'cozy building':true,'deep mining & quarrying':true,'Eotm':true},
