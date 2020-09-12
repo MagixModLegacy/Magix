@@ -9295,9 +9295,9 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
-			{type:'gather',what:{'faith':0.05},req:{'symbolism':true,'symbolism II':false}},
-			{type:'gather',what:{'faith':0.07},req:{'symbolism II':true}},
+			{type:'gather',what:{'faith':0.02,'happiness':0.2}},
+			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false}},
+			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
@@ -12324,6 +12324,24 @@ new G.Unit({
     		req:{'mirror world 1/2':true},
     		category:'dimensions',
 	});
+	new G.Unit({
+		name:'druid',
+		desc:'@generates [faith] and [happiness] every now and then<>[druid]s merge with nature and its spirits to bring down faith and hope to any people around\'em.',
+		icon:[26,30,'magixmod'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.3},
+		limitPer:{'population':10},
+		effects:[
+			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
+			{type:'gather',what:{'faith':0.05},req:{'symbolism II':true}},
+			{type:'mult',value:2/3,req:{'dt16':true}},
+			{type:'mult',value:1.25,req:{'se11':'on'}},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
+		],
+		req:{'ritualism':true},
+		category:'spiritual',
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -14526,7 +14544,7 @@ autobuy(G.year)
 			new G.Trait({
 		name:'dt16',
 		displayName:'Devil\'s trait #16 Worse soothsaying',
-		desc:'Soothsayer gains 33% less [faith].',
+		desc:'[soothsayer]s and [druid]s gain 33% less [faith].',
 		icon:[26,16,'magixmod'],
 		cost:{'culture':100},
 		chance:150,
