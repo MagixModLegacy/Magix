@@ -8594,6 +8594,68 @@ if (!document.getElementById(cssId))
 		displayUsed:true,
 		category:'demog'
 	});
+	new G.Res({
+		name:'lead ore',
+		desc:'Ore that can be processed into [hard metal ingot]s.',
+		icon:[10,4,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'mythril ore',
+		desc:'Ore that is harder to find than gold and silver. Can be processed into [mythril ingot]s.',
+		icon:[10,3,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'zinc ore',
+		desc:'Ore that can be processed into [hard metal ingot]s. Zinc is a slightly brittle metal at room temperature.',
+		icon:[11,3,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'osmium ore',
+		desc:'Ore that can be processed into [soft metal ingot]s. It is a hard, brittle, bluish-white metal.',
+		icon:[10,2,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'blackium ore',
+		desc:'Ore that can be processed into [strong metal ingot]s.',
+		icon:[11,2,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'mystical metal ingot',
+		desc:'Can be used to craft [various metals block].',
+		icon:[11,6,'magixmod'],
+		partOf:'misc materials',
+		category:'build',
+	});
+   new G.Res({
+		name:'unknownium ore',
+		desc:'unknown ore ¯\_(ツ)_/¯',
+		icon:[10,5,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+   new G.Res({
+		name:'dinium ore',
+		desc:'What to do with that ore? Seems like furnaces cannot smelt it.',
+		icon:[10,6,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+    new G.Res({
+		name:'pyrite',
+		desc:'A fool\'s gold. Cannot be smelted for [precious metal ingot]. Most commonly it is a waste.',
+		icon:[10,4,'magixmod'],
+		category:'ore',
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -9120,6 +9182,9 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'quarry',amount:10,max:30,every:3,mode:'advanced quarry'},
 			{type:'gather',context:'quarry',what:{'Various cut stones':5},mode:'quarryotherstones'},
 			{type:'gather',context:'quarry',what:{'oil':13},req:{'Oil-digging':true}},
+			//deepquarry
+			{type:'gather',context:'quarry',what:{'cut stone':0.17},max:0.88,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'Various cut stones':0.17},max:0.88,mode:'quarrydeepores'},
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
 		],
 		gizmos:true,
