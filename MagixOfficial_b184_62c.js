@@ -16410,7 +16410,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
     });
 	new G.Trait({
         name:'gardening',
-        desc:'A key for farms. People learn how to make a irrigation system. Thanks to it they may start thinking about making some small gardens, then expand them to farms or even plantations.',
+        desc:'<font color="#aaffff">A key for farms. People learn how to make a irrigation system. Thanks to it they may start thinking about making some small gardens, then expand them to farms or even plantations.</font>',
         icon:[10,0,'magixmod'],
         cost:{'insight':40},
 	effects:[
@@ -16421,7 +16421,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
     });
 	  new G.Tech({
 		name:'deep mining & quarrying',
-		desc:'@Unlocks two new territory contexts: Deep mining and Deep quarrying<>',
+		desc:'@Unlocks two new territory contexts: Deep mining and Deep quarrying',
 		icon:[10,1,'magixmod'],
 		cost:{'insight II':125,'influence II':10,'science':5},
 		req:{'A leaf of wisdom':true,'prospecting II':true},
@@ -16430,6 +16430,33 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
       	{type:'show context',what:['deep quarry']},
     {type:'function',func:function(){}}
     ]
+	});
+	new G.Tech({
+		name:'mining II',
+		desc:'Strike the earth... even stronger! For new minerals, new mystical wonders. @[mine]s can mine even deeper. To unlock prospecting for them get [prospecting III] research.',
+		icon:[12,1,'magixmod'],
+		cost:{'insight II':170,'science':12,'culture II':8},
+		req:{'digging':true,'construction':true,'Eotm':true,'deep mining & quarrying':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'quarrying III',
+		desc:'Quarries can reach even deeper discovering new resources. However some minerals can be only gathered via quarrying. @If [prospecting III] obtained it will unlock new mode that will mainly focus on gathering these minerals.',
+		icon:[12,0,'magixmod'],
+		cost:{'insight II':170,'science':12,'faith II':4,'culture II':2,'influence II':2},
+		req:{'quarrying II':true,'cozy building':true,'deep mining & quarrying':true,'Eotm':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'prospecting III',
+		desc:'[prospecting] now affects: @[mine]s - Minerals from context <b>Deep mining</b> (adds also Any mode but this one will only mine via context Deep mining) @[quarry,Quarries] - New mode that will gather 3x more minerals that can be only obtained by quarrying but 3x less of resources other than minerals.',
+		icon:[11,1,'magixmod'],
+		cost:{'insight II':200,'science':15,'influence II':5},
+		req:{'quarrying II':true,'cozy building':true,'deep mining & quarrying':true,'Eotm':true},
+		effects:[
+		],
 	});
 	/*=====================================================================================
 	POLICIES
