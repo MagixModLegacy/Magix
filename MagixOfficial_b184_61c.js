@@ -16423,7 +16423,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'deep mining & quarrying',
 		desc:'@Unlocks two new territory contexts: Deep mining and Deep quarrying<>',
 		icon:[10,1,'magixmod'],
-		cost:{'insight II':100,'influence II':10,'science':5},
+		cost:{'insight II':125,'influence II':10,'science':5},
 		req:{'A leaf of wisdom':true,'prospecting II':true},
     effects:[
     	{type:'show context',what:['deep mine']},
