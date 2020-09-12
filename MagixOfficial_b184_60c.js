@@ -1940,6 +1940,8 @@ G.props['fastTicksOnResearch']=150;
 	let st11=false
 	let st12=false
 	let st13=false
+	let st14=false
+	let st15=false
 	let displayC1=true;let displayC2=false;
 		G.funcs['new game blurb']=function()
 	{   
@@ -2748,6 +2750,14 @@ G.props['fastTicksOnResearch']=150;
 			if(G.techN > 127 && G.techN <=138 && !st13){
 				G.Message({type:'story1',text:'You look confused a little bit , but still your presence motivates your '+G.getName('inhabs')+' to discover more and more. But about what you are confused.',icon:[7,30,'magixmod']});
 				st13=true
+			}
+			if(G.techN > 139 && G.techN <=143 && !st14){
+				G.Message({type:'story2',text:'People has written book as they call it: "Book of Grand Herbalist" . It is all about herbalism proffesion. People related to druidism are preety proud of that.',icon:[30,30,'magixmod']});
+				st14=true
+			}
+			if(G.techN > 143 && G.techN <=151 && !st15){
+				G.Message({type:'story1',text:'Their creativity has no limits... definitely.',icon:[31,30,'magixmod']});
+				st15=true
 			}
 		}
 		if(G.has('t2')){
@@ -16409,6 +16419,18 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	chance:75,
 		category:'knowledge'
     });
+	  new G.Tech({
+		name:'deep mining & quarrying',
+		desc:'@Unlocks two new territory contexts: Deep mining and Deep quarrying<>',
+		icon:[10,1,'magixmod'],
+		cost:{'insight II':100,'influence II':10,'science':5},
+		req:{'A leaf of wisdom':true,'prospecting II':true},
+    effects:[
+    	{type:'show context',what:['deep mine']},
+      	{type:'show context',what:['deep quarry']},
+    {type:'function',func:function(){}}
+    ]
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
