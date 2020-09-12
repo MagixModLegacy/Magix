@@ -1926,6 +1926,7 @@ G.props['fastTicksOnResearch']=150;
 	let madeThanks4playmesg = false
 	let backupmesg = false
 	let milleniummesg = false
+	let Secondmilleniummesg = false
 	let st1=false
 	let st2=false
 	let st3=false
@@ -2686,20 +2687,24 @@ G.props['fastTicksOnResearch']=150;
        				 G.Message({type:'good',text:'Woah! It\'s been <b>1 thousand</b> years since your tribe started their existence. Your playing supports mod author and motivates for further updates. <br><b>Thank you ;)</b> <br><font color="lime"><tt>Continue enjoying Magix expansion.</tt></font>',icon:[27,23,'magixmod']});
 				milleniummesg = true
 				}
+			if (G.year>=1999 && G.year<=2005 && !Secondmilleniummesg){
+       				 G.Message({type:'good',text:'OMG! It\'s been <b>2 thousand</b> years since your tribe started their wonderful existence. Also I am sure that your adventure with Magix is not over yet. Your playing supports mod author and motivates for further updates. <br><b>Thank you ;)</b> <br><font color="lime"><tt>Continue enjoying Magix expansion.</tt></font>',icon:[32,30,'magixmod']});
+				Secondmilleniummesg = true
+				}
 			////STORYLINE////
-			if(G.techN >= 24 && G.techN <=33 && !st1){
+			if(G.techN >= 25 && G.techN <=34 && !st1){
 				G.Message({type:'story1',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
 				st1=true
 			}
-			if(G.techN > 34 && G.techN <=45 && !st2){
+			if(G.techN > 35 && G.techN <=46 && !st2){
 				G.Message({type:'story2',text:'All things go with its correct way'});
 				st2=true
 			}
-			if(G.techN > 46 && G.techN <=49 && !st3){
+			if(G.techN > 47 && G.techN <=52 && !st3){
 				G.Message({type:'story1',text:'You want some mirror. But sadly no one can craft glass mirror yet. Luckily you didn\'t forget that you can use water surface as some sort of a mirror.',icon:[32,14,'magixmod']});
 				st3=true
 			}
-			if(G.techN > 54 && G.techN <=64 && !st4){
+			if(G.techN > 56 && G.techN <=69 && !st4){
 				if(G.resets==0){
 				G.Message({type:'story2',text:'You think that you should ascend someday no matter what. You fell it so strongly.',icon:[32,13,'magixmod']});
 				st4=true
@@ -2708,39 +2713,39 @@ G.props['fastTicksOnResearch']=150;
 				st4=true
 			}
 			}
-			if(G.techN > 67 && G.techN <=75 && !st5){
+			if(G.techN > 69 && G.techN <=77 && !st5){
 				G.Message({type:'story1',text:'You organize storytelling at the beach. Well. Some wolf was lurking to wound some of your '+G.getName('inhabs')+' but some hunter takes it down before the tragedy.',icon:[7,11]});
 				st5=true
 			}
-			if(G.techN > 76 && G.techN <=81 && !st6){
+			if(G.techN > 77 && G.techN <=83 && !st6){
 				G.Message({type:'good',text:'Some of your people believe that our existence may make a lot of good for this world... And that hope spreads.',icon:[32,11,'magixmod']});
 				st6=true
 			}
-			if(G.techN > 83 && G.techN <=90 && !st7){
+			if(G.techN > 83 && G.techN <=92 && !st7){
 				G.Message({type:'story2',text:'One of dreamers asks you how are you today. You answer that you are fine. While you talking with this dreamer some firekeeper comes to you with water pot and some cured seafood. Great ; )',icon:[32,10,'magixmod']});
 				st7=true
 			}
-			if(G.techN > 90 && G.techN <=94 && !st8){
+			if(G.techN > 93 && G.techN <=99 && !st8){
 				G.Message({type:'bad',text:'You had a nightmare someday. You saw there brutally wounded '+G.getName('inhab')+' . It really shocked and feared you.',icon:[32,9,'magixmod']});
 				st8=true
 			}
-			if(G.techN > 94 && G.techN <=99 && !st9){
+			if(G.techN > 99 && G.techN <=106 && !st9){
 				G.Message({type:'good',text:'While wandering you noticed some angel waving at you. But you didn\'t understand what the angel did say to you. You are full of hope that it is some greeting.',icon:[32,8,'magixmod']});
 				st9=true
 			}
-			if(G.techN > 102 && G.techN <=107 && !st10){
+			if(G.techN > 108 && G.techN <=112 && !st10){
 				G.Message({type:'story1',text:'This angel appears in your dreams. Now it said clearly that Paradise will be open for you and your tribe. You clearly remembered his words: <br><b><font color="#FFFED6">Dear '+G.getName('ruler')+' . I am so proud of you<br> and people you rule. They are sign that shows how worthy people are. <br>You teached them a lot.<br.Someday the Paradise will be open for you '+G.getName('ruler')+'and your '+G.getName('inhabs')+'</font></b>',icon:[32,8,'magixmod']});
 				st10=true
 			}
-			if(G.techN > 108 && G.techN <=114 && !st11){
+			if(G.techN > 112 && G.techN <=119 && !st11){
 				G.Message({type:'good',text:'You see one of your carver works on gem block. You came closer to see the big gem block and even asked if he can teach you a little of carving. You spend some time with him and carved your first wooden statuette. Then you carved a crown for the statuette. Hooray.',icon:[32,7,'magixmod']});
 				st11=true
 			}
-			if(G.techN > 114 && G.techN <=122 && !st12){
+			if(G.techN > 119 && G.techN <=127 && !st12){
 				G.Message({type:'story2',text:'He did a flip. lol',icon:[24,2,'magixmod']});
 				st12=true
 			}
-			if(G.techN > 122 && G.techN <=132 && !st13){
+			if(G.techN > 127 && G.techN <=138 && !st13){
 				G.Message({type:'story1',text:'You look confused a little bit , but still your presence motivates your '+G.getName('inhabs')+' to discover more and more. But about what you are confused.',icon:[7,30,'magixmod']});
 				st13=true
 			}
@@ -16400,7 +16405,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
         cost:{'insight':40},
 	effects:[
 	],	
-        req:{'druidism':true,'city-planning':true},
+        req:{'druidism':true,'city planning':true},
 	chance:75,
 		category:'knowledge'
     });
