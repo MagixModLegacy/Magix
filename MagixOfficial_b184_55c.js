@@ -16372,7 +16372,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Trait({
         name:'druidsymbolism1',
-	displayName:'Druid\'s symbolism of happiness',
+	displayName:'Druid\'s symbolism of happiness.',
         desc:'[druid] gathers 33% more [happiness].',
         icon:[27,30,'magixmod'],
         cost:{},
@@ -16382,8 +16382,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	chance:100
     });
 	new G.Trait({
-        name:'droidsymbolism2',
-	displayName:'Druid\'s symbolism of faith',
+        name:'druidsymbolism2',
+	displayName:'Druid\'s symbolism of faith.',
         desc:'[druid] gathers 18% more [faith].',
         icon:[28,30,'magixmod'],
         cost:{},
