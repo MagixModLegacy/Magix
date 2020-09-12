@@ -7876,7 +7876,8 @@ if (!document.getElementById(cssId))
 			G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia"> Due to obtaining [Manufacture units I] this unit becomes useless and won\'t produce anything, anymore.</font></b>'
 			}
 			if(G.has('ritualism II')){
-			G.getDict('soothsayer').icon = [28,3,'magixmod']
+			G.getDict('soothsayer').icon = [28,3,'magixmod'];
+			G.getDict('druid').icon = [29,30,'magixmod']
 			G.getDict('wisdom rituals').cost = {'faith II':1},
 			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod'],
 			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
@@ -16367,12 +16368,12 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'druidism',
 		desc:'@unlocks [druid] @Gathers more [faith] and [happiness] than [soothsayer] but is limited.',
 		icon:[25,30,'magixmod'],
-		cost:{'insight':30,'faith':5,'culture':25},
-		req:{'ritualism':true,'symbolism':true},
+		cost:{'insight':35,'faith':5,'culture':25},
+		req:{'ritualism':true,'symbolism':true,'language':true},
 	});
 	new G.Trait({
         name:'druidsymbolism1',
-	displayName:'Druid\'s symbolism of happiness.',
+	displayName:'Druid\'s symbolism of happiness',
         desc:'[druid] gathers 33% more [happiness].',
         icon:[27,30,'magixmod'],
         cost:{},
@@ -16383,7 +16384,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
     });
 	new G.Trait({
         name:'druidsymbolism2',
-	displayName:'Druid\'s symbolism of faith.',
+	displayName:'Druid\'s symbolism of faith',
         desc:'[druid] gathers 18% more [faith].',
         icon:[28,30,'magixmod'],
         cost:{},
