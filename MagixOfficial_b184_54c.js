@@ -9295,7 +9295,7 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'gather',what:{'faith':0.02,'happiness':0.2}},
+			{type:'gather',what:{'faith':0.02,'happiness':0.1}},
 			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
@@ -12334,6 +12334,8 @@ new G.Unit({
 		limitPer:{'population':10},
 		effects:[
 			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
+			{type:'gather',what:{'faith':0.018},req:{'druidsymbolism2':true}},
+			{type:'gather',what:{'happiness':0.066},req:{'druidsymbolism1':true}},
 			{type:'gather',what:{'faith':0.05},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
@@ -16377,6 +16379,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	effects:[
 	],	
         req:{'druidism':true,'druidsymbolism2':false},
+	chance:100
     });
 	new G.Trait({
         name:'droidsymbolism2',
@@ -16387,6 +16390,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	effects:[
 	],	
         req:{'druidism':true,'druidsymbolism1':false},
+	chance:100
     });
 	/*=====================================================================================
 	POLICIES
