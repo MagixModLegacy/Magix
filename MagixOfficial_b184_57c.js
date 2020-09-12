@@ -16368,7 +16368,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'druidism',
 		desc:'@unlocks [druid] @Gathers more [faith] and [happiness] than [soothsayer] but is limited.',
 		icon:[25,30,'magixmod'],
-		cost:{'insight':35,'faith':5,'culture':25},
+		cost:{'insight':35,'faith':5,'culture':25,'influence':10},
 		req:{'ritualism':true,'symbolism':true,'language':true},
 	});
 	new G.Trait({
