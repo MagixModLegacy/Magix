@@ -2989,6 +2989,9 @@ G.props['fastTicksOnResearch']=150;
 		if(G.has('time measuring 1/2')){
 		var str='<div class="messageTimestamp" title="'+'year '+(G.year+1)+', day '+(G.day+1)+'">'+'Y:'+(G.year+1)+'</div>'+
 		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
+		}else{
+		var str='<div class="messageTimestamp"></div>'+
+		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';	
 		}
 		if (mergeWith) mergeWith.l.innerHTML=str;
 		else
