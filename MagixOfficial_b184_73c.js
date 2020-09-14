@@ -2708,7 +2708,7 @@ G.props['fastTicksOnResearch']=150;
 			}
 			if(G.techN > 56 && G.techN <=69 && !st4){
 				if(G.resets==0){
-				G.Message({type:'story2',text:'You think that you should ascend someday no matter what. You fell it so strongly.',icon:[32,13,'magixmod']});
+				G.Message({type:'story2',text:'You think that you should ascend someday no matter what. You feel it so strongly.',icon:[32,13,'magixmod']});
 				st4=true
 				}else if(G.resets>=1){
 					G.Message({type:'story2',text:'You wonder how your tribe will look and how advanced it will become within next centuries.',icon:[32,12,'magixmod']});
@@ -2939,6 +2939,85 @@ G.props['fastTicksOnResearch']=150;
 		'Some dangerous creature sleeps calmly.',
 		'From far a sounds of a falling tree can be heard',
 	];
+	G.Message=function(obj)
+	{
+		//syntax :
+		//G.Message({type:'important',text:'This is a message.'});
+		//.type is optional
+		var me={};
+		me.type='normal';
+		for (var i in obj) {me[i]=obj[i];}
+		var scrolled=!(Math.abs(G.messagesWrapl.scrollTop-(G.messagesWrapl.scrollHeight-G.messagesWrapl.offsetHeight))<3);//is the message list not scrolled at the bottom? (if yes, don't update the scroll - the player probably manually scrolled it)
+		
+		me.date=G.year*300+G.day;
+		var text=me.text||me.textFunc(me.args);
+		
+		var mergeWith=0;
+		if (me.mergeId)
+		{
+			//this is a system where similar messages merge together if they're within 100 days of each other, in order to reduce spam
+			//simply declare a .mergeId to activate merging on this message with others like it
+			//syntax :
+			//var cakes=10;G.Message({type:'important',mergeId:'newCakes',textFunc:function(args){return 'We\'ve baked '+args.n+' new cakes.';},args:{n:cakes}});
+			//numeric arguments will be added to the old ones unless .replaceOnly is true
+			
+			for (var i in G.messages)
+			{
+				var other=G.messages[i];
+				if (other.id==me.mergeId && me.date-other.date<100) mergeWith=other;
+			}
+			me.id=me.mergeId;
+		}
+		if (mergeWith)
+		{
+			me.date=other.date;
+			if (me.replaceOnly)
+			{
+				for (var i in me.args)
+				{mergeWith.args[i]=me.args[i];}
+			}
+			else
+			{
+				for (var i in me.args)
+				{
+					if (!isNaN(parseFloat(me.args[i]))) mergeWith.args[i]+=me.args[i];
+					else mergeWith.args[i]=me.args[i];
+				}
+			}
+			text=me.textFunc(mergeWith.args);
+		}
+		if(G.has('time measuring 1/2')){
+		var str='<div class="messageTimestamp" title="'+'year '+(G.year+1)+', day '+(G.day+1)+'">'+'Y:'+(G.year+1)+'</div>'+
+		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
+		}
+		if (mergeWith) mergeWith.l.innerHTML=str;
+		else
+		{
+			var div=document.createElement('div');
+			div.innerHTML=str;
+			div.className='message popInVertical '+(me.type).replaceAll(' ','Message ')+'Message';
+			G.messagesl.appendChild(div);
+			me.l=div;
+			G.messages.push(me);
+			if (G.messages.length>G.maxMessages)
+			{
+				var el=G.messagesl.firstChild;
+				for (var i in G.messages)
+				{
+					if (G.messages[i].l==el)
+					{
+						G.messages.splice(i,1);
+						break;
+					}
+				}
+				G.messagesl.removeChild(el);
+				//G.messages.pop();
+				//G.messagesl.removeChild(G.messagesl.firstChild);
+			}
+			if (!scrolled) G.messagesWrapl.scrollTop=G.messagesWrapl.scrollHeight-G.messagesWrapl.offsetHeight;
+		}
+		G.addCallbacks();
+	}
 		G.Logic=function(forceTick)
 	{
 		//forceTick lets us execute logic and force a tick update
