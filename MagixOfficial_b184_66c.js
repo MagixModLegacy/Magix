@@ -8140,6 +8140,7 @@ if (!document.getElementById(cssId))
 				}else{
 					G.getDict('furnace').icon=[11,0,'magixmod']
 					G.getDict('furnace').displayName='Blackium furnace';
+					G.getDict('furnace').upkeep:{'log':3,'coal':3,'Lightning essence':2};
 				}
 				G.getDict('well of the Plain Island').icon=[30,3,'magixmod']
 				G.getDict('carver').icon=[30,2,'magixmod']
@@ -18001,8 +18002,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':2,'clay':0.15,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051},
-			'mine':{'stone':0.3,'copper ore':0.085,'tin ore':0.085,'iron ore':0.04,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005,'Various stones':0.3},
+			'mine':{'stone':0.3,'copper ore':0.085,'tin ore':0.085,'iron ore':0.04,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.003,'Various stones':0.3,'pyrite':0.001,/*'osmium ore':0.003*/},
 			'quarry':{'cut stone':0.7,'limestone':0.5,'marble':0.01,'Various cut stones':0.3},
+			'deep mine':{'pyrite':0.065,'zinc ore':0.03,'dinium ore':0.04,'gems':0.005},
+			'deep quarry':{'lead ore':0.04,'mythril ore':0.02,'blackium ore':0.03,'salt':0.001,'unknownium ore':0.03},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18202,8 +18205,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'stone':0.2,'clay':0.002,'limestone':0.003},
 			'dig':{'mud':0.1,'clay':0.3,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051,'sand':0.00001},
-			'mine':{'stone':0.8,'copper ore':0.01,'tin ore':0.08,'iron ore':0.042,'gold ore':0.0052,'coal':0.11,'salt':0.14,'gems':0.003,'Various stones':0.2},
+			'mine':{'stone':0.8,'copper ore':0.01,'tin ore':0.08,'iron ore':0.042,'gold ore':0.0052,'coal':0.11,'salt':0.14,'gems':0.004,'Various stones':0.2/*no osmium*/,'pyrite':0.0015},
 			'quarry':{'cut stone':0.9,'limestone':0.5,'marble':0.0088,'Various cut stones':0.1},
+			'deep mine':{'pyrite':0.07,'zinc ore':0.02,'dinium ore':0.042,'gems':0.007},
+			'deep quarry':{'lead ore':0.03,'mythril ore':0.027,'blackium ore':0.05,'unknownium ore':0.025},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18216,8 +18221,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'stone':0.2,'clay':0.004,'limestone':0.0035},
 			'dig':{'mud':1.5,'clay':0.2,'stone':0.6,'copper ore':0.006,'tin ore':0.006,'limestone':0.1,'salt':0.051},
-			'mine':{'stone':0.95,'copper ore':0.09,'tin ore':0.07,'iron ore':0.046,'gold ore':0.0035,'coal':0.16,'salt':0.1,'gems':0.005,'Various stones':0.05},
+			'mine':{'stone':0.95,'copper ore':0.09,'tin ore':0.07,'iron ore':0.046,'gold ore':0.0035,'coal':0.16,'salt':0.1,'gems':0.005,'Various stones':0.05,'pyrite':0.02/*osmium 0.041*/},
 			'quarry':{'cut stone':0.85,'limestone':0.62,'marble':0.01,'Various cut stones':0.15},
+			'deep mine':{'pyrite':0.02,'zinc ore':0.03,'dinium ore':0.06,'gems':0.003},
+			'deep quarry':{'lead ore':0.04,'mythril ore':0.015,'blackium ore':0.025,'unknownium ore':0.02,'salt':0.001},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18230,8 +18237,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'stone':0.2,'clay':0.002,'limestone':0.0035},
 			'dig':{'clay':0.2,'stone':0.6,'copper ore':0.001,'tin ore':0.001,'limestone':0.105},
-			'mine':{'stone':0.944,'copper ore':0.09,'tin ore':0.07,'iron ore':0.06,'gold ore':0.0035,'coal':0.21,'gems':0.0052,'Various stones':0.006},
+			'mine':{'stone':0.944,'copper ore':0.09,'tin ore':0.07,'iron ore':0.06,'gold ore':0.0035,'coal':0.21,'gems':0.0052,'Various stones':0.006/*osmium 0.04*/},
 			'quarry':{'cut stone':0.999,'limestone':0.62,'marble':0.01,'Various cut stones':0.001},
+			'deep mine':{'zinc ore':0.07,'dinium ore':0.06,'gems':0.003},
+			'deep quarry':{'lead ore':0.08,'mythril ore':0.019,'blackium ore':0.01,'unknownium ore':0.05},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18246,6 +18255,9 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 			'dig':{'mud':4.2,'clay':0.45,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
 			'mine':{'stone':0.85,'copper ore':0.011,'tin ore':0.085,'iron ore':0.02,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005,'Various stones':0.15},
 			'quarry':{'cut stone':0.81,'limestone':0.55,'marble':0.011,'Various cut stones':0.09},
+			'deep mine':{'pyrite':1,'zinc ore':0.04,'dinium ore':0.01,'gems':0.002},
+			'deep quarry':{'lead ore':0.045,'mythril ore':0.032,'unknownium ore':0.06},
+			
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18260,6 +18272,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 			'dig':{'mud':2,'clay':0.35,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
 			'mine':{'stone':0.8,'copper ore':0.004,'tin ore':0.014,'iron ore':0.05,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.004,'Various stones':0.2},
 			'quarry':{'cut stone':0.75,'limestone':0.5,'marble':0.01,'Various cut stones':0.25},
+			'deep mine':{'zinc ore':0.01,'dinium ore':0.04},
+			'deep quarry':{'lead ore':0.05,'mythril ore':0.032,'unknownium ore':0.04},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18274,6 +18288,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 			'dig':{'mud':2,'clay':0.13,'stone':0.6,'copper ore':0.0079,'tin ore':0.0081,'limestone':0.1,'salt':0.05},
 			'mine':{'stone':0.88,'copper ore':0.055,'tin ore':0.055,'iron ore':0.025,'gold ore':0.0038,'coal':0.078,'salt':0.1,'gems':0.005,'Various stones':0.12},
 			'quarry':{'cut stone':0.9,'limestone':0.5,'marble':0.01,'Various cut stones':0.1},
+			'deep mine':{'pyrite':0.05,'zinc ore':0.035,'dinium ore':0.045,'gems':0.001},
+			'deep quarry':{'lead ore':0.046,'mythril ore':0.024,'blackium ore':0.034,'salt':0.001,'unknownium ore':0.034},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18285,9 +18301,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		icon:[33,16,'magixmod'],
 		res:{
 			'gather':{'stone':0.25,'clay':0.004,'limestone':0.002},
-			'dig':{'mud':0.5,'clay':0.05,'stone':0.2,'copper ore':0.002,'tin ore':0.002,'limestone':0.025,'salt':0.02},
+			'dig':{'mud':0.5,'clay':0.05,'stone':0.2,'copper ore':0.002,'tin ore':0.002,'limestone':0.025,'salt':0.02/*osmium 0.001*/},
 			'mine':{'stone':0.8,'copper ore':0.03,'tin ore':0.03,'iron ore':0.01,'coal':0.04,'salt':0.1,'gems':0.001,'Various stones':0.2},
 			'quarry':{'cut stone':0.6,'limestone':0.1,'marble':0.01,'Various cut stones':0.2},
+			
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18346,8 +18363,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'Various stones':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':0.5,'clay':0.05,'Various stones':0.6,'copper ore':0.006,'tin ore':0.006,'limestone':0.11},
-			'mine':{'Various stones':0.97,'copper ore':0.065,'tin ore':0.06,'iron ore':0.035,'gold ore':0.008,'coal':0.03,'salt':0.16,'gems':0.009,'stone':0.03},
+			'mine':{'Various stones':0.97,'copper ore':0.065,'tin ore':0.06,'iron ore':0.035,'gold ore':0.008,'coal':0.03,'salt':0.16,'gems':0.009,'stone':0.03/*osmium 0.01*/},
 			'quarry':{'cut stone':0.05,'limestone':0.5,'marble':0.01,'Various cut stones':0.95},
+			'deep mine':{'pyrite':0.001,'zinc ore':0.05,'dinium ore':0.041},
+			'deep quarry':{'mythril ore':0.01,'blackium ore':0.032,'unknownium ore':0.02},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
