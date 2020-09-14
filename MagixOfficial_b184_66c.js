@@ -2990,6 +2990,7 @@ G.props['fastTicksOnResearch']=150;
 		if(G.year==1){
 		G.gain('happiness',0.15)
 		}
+		//Time measuring tech. It will have 2 levels. Here goes the code:
 	}
 	
 	G.funcs['tracked stat str c1']=function()
@@ -8140,7 +8141,7 @@ if (!document.getElementById(cssId))
 				}else{
 					G.getDict('furnace').icon=[11,0,'magixmod']
 					G.getDict('furnace').displayName='Blackium furnace';
-					G.getDict('furnace').upkeep:{'log':3,'coal':3,'Lightning essence':2};
+					G.getDict('furnace').upkeep={'log':3,'coal':3,'Lightning essence':2};
 				}
 				G.getDict('well of the Plain Island').icon=[30,3,'magixmod']
 				G.getDict('carver').icon=[30,2,'magixmod']
