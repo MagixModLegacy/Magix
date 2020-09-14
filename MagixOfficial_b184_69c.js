@@ -8662,7 +8662,7 @@ if (!document.getElementById(cssId))
    new G.Res({
 		name:'dinium ore',
 		desc:'What to do with that ore? Seems like furnaces cannot smelt it.',
-		icon:[10,6,'magixmod'],
+		icon:[11,5,'magixmod'],
 		partOf:'misc materials',
 		category:'ore',
 	});
