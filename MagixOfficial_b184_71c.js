@@ -2990,21 +2990,7 @@ G.props['fastTicksOnResearch']=150;
 		if(G.year<=1){
 		G.gain('happiness',0.15)
 		}
-		//Time measuring tech. It will have 2 levels. Here goes the code:
-		if(G.hasNot('time measuring 1/2')){
-			l('date').innerHTML='No one knows time yet';
-   			G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">Obtain <b>Time Measuring 1/2</b> research to display current date<br>(you\'ll see Year).<br> Despite of that you do not see current date events related to time may still occur.</div>';},{offY:-8});
-			    
-			    }
-		else if(G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
-			l('date').innerHTML='Yearff '+(G.year+1)+' in '+G.getName('civ');
-   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>Sometime a new year starts. To see days obtain <b>Time measuring</b> 2/2 research.</div>';},{offY:-8});
-			    
-			    }else if(G.has('time measuring 1/2') && G.has('time measuring 2/2')){
-			l('date').innerHTML='Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
-   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses ....every second, and 300 days make up a year.</div>';},{offY:-8});
-			    
-			    }
+		
 	}
 	
 	G.funcs['tracked stat str c1']=function()
@@ -4445,6 +4431,21 @@ G.writeMSettingButton=function(obj)
 			if(G.has('respect for the corpse')){
 				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
+			//Time measuring tech. It will have 2 levels. Here goes the code:
+		if(G.hasNot('time measuring 1/2')){
+			l('date').innerHTML='No one knows time yet';
+   			G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">Obtain <b>Time Measuring 1/2</b> research to display current date<br>(you\'ll see Year).<br> Despite of that you do not see current date events related to time may still occur.</div>';},{offY:-8});
+			    
+			    }
+		else if(G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
+			l('date').innerHTML='Yearff '+(G.year+1)+' in '+G.getName('civ');
+   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>Sometime a new year starts. To see days obtain <b>Time measuring</b> 2/2 research.</div>';},{offY:-8});
+			    
+			    }else if(G.has('time measuring 1/2') && G.has('time measuring 2/2')){
+			l('date').innerHTML='Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses ....every second, and 300 days make up a year.</div>';},{offY:-8});
+			    
+			    }
 		},	
 	});
 	new G.Res({
