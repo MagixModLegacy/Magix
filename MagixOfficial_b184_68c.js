@@ -2991,6 +2991,20 @@ G.props['fastTicksOnResearch']=150;
 		G.gain('happiness',0.15)
 		}
 		//Time measuring tech. It will have 2 levels. Here goes the code:
+		if(G.hasNot('time measuring 1/2')){
+			l('date').innerHTML='No one knows time yet';
+   			G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">Obtain <b>Time Measuring 1/2</b> research to display current date<br>(you\'ll see Year).<br> Despite of that you do not see current date events related to time may still occur.</div>';},{offY:-8});
+			    
+			    }
+		if(G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
+			l('date').innerHTML='Yearff '+(G.year+1)+' in '+G.getName('civ');
+   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>Sometime a new year starts. To see days obtain <b>Time measuring</b> 2/2 research.</div>';},{offY:-8});
+			    
+			    }if(G.has('time measuring 1/2') && G.has('time measuring 2/2')){
+			l('date').innerHTML='Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses ....every second, and 300 days make up a year.</div>';},{offY:-8});
+			    
+			    }
 	}
 	
 	G.funcs['tracked stat str c1']=function()
@@ -16540,6 +16554,27 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		effects:[
 		],
 	});
+	new G.Tech({
+        name:'time measuring 1/2',
+        desc:'People know how to measure time. Now you\'ll be able to see which year is currently. //To expand it and see days obtain 2nd part of this research.',
+        icon:[27,3,'magixmod',34,30,'magixmod'],
+        cost:{'insight':50},
+	effects:[
+	],	
+        req:{'Intermediate maths':true},
+	chance:10
+    });
+	new G.Trait({
+        name:'time measuring 2/2',
+        desc:'<font color="#aaffff">Now you will see which year and day currently is.</font>',
+        icon:[27,2,'magixmod',34,30,'magixmod'],
+        cost:{'insight':400},
+	effects:[
+	],	
+        req:{'time measuring 1/2':true,'Belief in portals':true},
+	chance:75,
+		category:'knowledge'
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
