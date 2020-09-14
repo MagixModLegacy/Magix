@@ -8445,6 +8445,7 @@ if (!document.getElementById(cssId))
 					G.getDict('furnace').icon=[11,0,'magixmod']
 					G.getDict('furnace').displayName='Blackium furnace';
 					G.getDict('furnace').upkeep={'log':3,'coal':3,'Lightning essence':2};
+					G.getDict('furnace').cost={'basic building materials':115,'blackium ore':50,'coal':75};
 				}
 				G.getDict('well of the Plain Island').icon=[30,3,'magixmod']
 				G.getDict('carver').icon=[30,2,'magixmod']
@@ -9570,7 +9571,8 @@ if (!document.getElementById(cssId))
 			'steel':{name:'Steel alloying',icon:[12,9],desc:'Cast [strong metal ingot]s out of 19 [iron ore]s and 1 [coal] each.',use:{'worker':2,'metal tools':2},req:{'steel-making':true}},
 			'cobalt':{name:'Cobalt smelting',icon:[14,0,'magixmod'],desc:'Cast 1[Cobalt ingot] out of 8[Cobalt ore].',req:{'Cobalt-working':true},use:{'worker':2,'metal tools':2,'stone tools':1}},
 	  		'nickel':{name:'Nickel smelting',icon:[10,9],desc:'Cast 1[hard metal ingot] out of 6[nickel ore]s each.',req:{'prospecting II':true,'nickel-working':true},use:{'worker':2,'metal tools':2}},
-			'platinum':{name:'Platinum smelting',icon:[3,11,'magixmod'],desc:'Cast 1[platinum ingot] out of 5[platinum ore]s each.',req:{'prospecting II':true,'platinum-working':true},use:{'worker':2,'metal tools':2}},  
+			'platinum':{name:'Platinum smelting',icon:[3,11,'magixmod'],desc:'Cast 1[platinum ingot] out of 5[platinum ore]s each.',req:{'prospecting II':true,'platinum-working':true},use:{'worker':2,'metal tools':2}}, 
+			'osmium':{name:'Osmium smelting',icon:[9,9],desc:'Cast [soft metal ingot]s out of 4 [osmium ore]s each.',req:{'deep mining & quarrying':true,'osmium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}};
 			},
 		effects:[
 			{type:'convert',from:{'copper ore':5},into:{'soft metal ingot':1},repeat:3,mode:'copper'},
@@ -9582,6 +9584,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'Cobalt ore':8},into:{'Cobalt ingot':1},every:5,mode:'cobalt'},
 			{type:'convert',from:{'nickel ore':6},into:{'hard metal ingot':1},every:5,mode:'nickel'},
 			{type:'convert',from:{'platinum ore':5},into:{'platinum ingot':1},every:5,mode:'platinum'},
+			{type:'convert',from:{'osmium ore':4},into:{'hard metal ingot':1},every:5,mode:'osmium'},
 			{type:'mult',value:0.95,req:{'dt4':true},mode:'gold'},
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'bronze'},
@@ -9687,7 +9690,7 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'gather',what:{'faith':0.02,'happiness':0.1}},
+			{type:'gather',what:{'faith':0.012,'happiness':0.07}},
 			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
@@ -16864,6 +16867,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	chance:75,
 		category:'knowledge'
     });
+	new G.Tech({
+		name:'osmium-working',
+		desc:'@[furnace]s can now make [soft metal ingot]s from [osmium ore]<>',
+		icon:[16,30,'magixmod'],
+		cost:{'insight II':180},
+		req:{'mining II':true,'furnace modernization':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
