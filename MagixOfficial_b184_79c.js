@@ -16814,7 +16814,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'mining II',
 		desc:'Strike the earth... even stronger! For new minerals, new mystical wonders. @[mine]s can mine even deeper. To unlock prospecting for them get [prospecting III] research.',
 		icon:[12,1,'magixmod'],
-		cost:{'insight II':170,'science':12,'culture II':8},
+		cost:{'insight II':190,'science':12,'culture II':8},
 		req:{'digging':true,'construction':true,'Eotm':true,'deep mining & quarrying':true},
 		effects:[
 		],
@@ -16871,7 +16871,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'osmium-working',
 		desc:'@[furnace]s can now make [soft metal ingot]s from [osmium ore]<>',
 		icon:[16,30,'magixmod'],
-		cost:{'insight II':182,'science':2},
+		cost:{'insight II':183,'science':2},
 		req:{'mining II':true,'furnace modernization':true},
 	});
 	new G.Tech({
