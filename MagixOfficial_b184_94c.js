@@ -16914,7 +16914,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
   new G.Tech({
 		name:'mythril-working',
-		desc:'@[furnace]s can now make [precious metal ingot]s from [mythril ore]@[blacksmith workshop] can now forge [mythril block] out of [mythril ingot]s.<>',
+		desc:'@[furnace]s can now make [precious metal ingot]s from [mythril ore]@[blacksmith workshop] can now forge [mythril block] out of [mystical metal ingot]s.<>',
 		icon:[14,30,'magixmod'],
 		cost:{'insight II':200,'science':5},
 		req:{'mining II':true,'furnace modernization':true},
@@ -16929,14 +16929,14 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 
  new G.Tech({
 		name:'blackium-working',
-		desc:'@[furnace]s can now make [strong metal ingot]s from [blackium ore]<>',
+		desc:'@[furnace]s can now make [mystical metal ingot]s from [blackium ore]<>',
 		icon:[17,30,'magixmod'],
 		cost:{'insight II':180},
 		req:{'mining II':true,'furnace modernization':true},
 	});
 	new G.Tech({
 		name:'dinium & unknownium working',
-		desc:'@[furnace]s can now make [soft metal ingot]s from [osmium ore]<>',
+		desc:'@[furnace]s can now make [mystical metal ingot]s from [dinium ore] and [unknownium ore]. However there is 50% chance that it will succed.<>',
 		icon:[18,30,'magixmod'],
 		cost:{'insight II':300,'science':30},
 		req:{'mining II':true,'furnace modernization':true,'wonder \'o science':true,'osmium-working':true,'blackium-working':true,'zinc-working':true,'mythril-working':true,'lead-working':true},
@@ -16951,6 +16951,53 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
         req:{'oral tradition':true},
 	chance:12,
 		category:'knowledge'
+    });
+	new G.Tech({
+		name:'block-smithery',
+		desc:'@Unlocks [block-smith workshop]. Subtype of [blacksmith workshop] which will forge blocks out of precious resources. @Due to it original [blacksmith workshop] will no longer forge blocks. @Uses [Land of the Plain Island].<>',
+		icon:[20,30,'magixmod'],
+		cost:{'insight II':340,'science':40},
+		req:{'dinium & unknownium working':true,'mirror world 1/2':true},
+	});
+	//Homelesness mechanic. Homelesness trait can occur post year 500. Has 3 levels. 1st injures health but most of crafting units can provide rarely some housing
+	//2nd type injures health less and provides some housing
+	//3rd type does not injure health and does not cause some crafting units to provide some housing
+	new G.Trait({
+        name:'homelessRed',
+	displayName:'Homelesness',
+        desc:'Some crafting units(that use land!) can provide housing. This trait defines that homelessness will make people very mad. Also it harms health.',
+        icon:[21,30,'magixmod'],
+        cost:{'culture':100},
+	effects:[
+	],	
+        req:{'oral tradition':true,'tribalism':false},
+	chance:750,
+		category:'main'
+		
+    });
+	new G.Trait({
+        name:'homelessYellow',
+	displayName:'Homelesness',
+        desc:'Rarely some crafting units(that use land!) can provide housing. This trait defines that homelessness will not make people very angry and mad. Due to it [health] level won\'t be injured badly. It would be like -1% to -2%.',
+        icon:[22,30,'magixmod'],
+        cost:{'culture':100},
+	effects:[
+	],	
+        req:{'oral tradition':true,'tribalism':false},
+	chance:750,
+		category:'main'
+    });
+	new G.Trait({
+        name:'homelessGreen',
+	displayName:'Homelesness',
+        desc:'No crafting units(that use land!) will provide housing. No providing = no problem , no health injury, no happiness level drop.',
+        icon:[23,30,'magixmod'],
+        cost:{'culture':100},
+	effects:[
+	],	
+        req:{'oral tradition':true,'tribalism':false},
+	chance:750,
+		category:'main'
     });
 	/*=====================================================================================
 	POLICIES
