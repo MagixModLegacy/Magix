@@ -2604,7 +2604,7 @@ G.props['fastTicksOnResearch']=150;
 	{
 		if (G.on)
 		{
-		
+		if(G.has('time measuring 1/2') && G.has('primary time measure')){
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
 			str+='Report for last year :<br>';
@@ -2613,6 +2613,20 @@ G.props['fastTicksOnResearch']=150;
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
+		}else if(G.has('primary time measure') && G.hasNot('time measuring 1/2')){
+			var txt = ''+G.year+'';
+  var res = txt.endsWith(00)
+			if(res==true){
+			var str='';
+			str+='It is now the century <b>'+Math.floor(((G.year/100)+1))+'</b>.<br>';
+			str+='Report for last long period of time... this century :<br>';
+			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
+			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			G.getRes('born this year').amount=0;
+			G.getRes('died this year').amount=0;
+			G.Message({type:'important',text:str,icon:[0,3]});
+			}
+		}
 			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
 			if(t1start==true)
 			{
@@ -16849,7 +16863,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'furnace modernization',
 		desc:'<b>Furnace</b> becomes <B>Blackium furnace</b>. Requires 3x as more upkeep but: can smelt plenty of new ores and is 2% more efficient regardless of path chosen by your people.',
 		icon:[8,12,11,0,'magixmod',0,18,'magixmod'],
-		cost:{'insight II':225,'science':15},
+		cost:{'insight II':235,'science':15},
 		req:{'quarrying III':true,'mining II':true,'deep mining & quarrying':true,'Mo\' beauty':true},
 		effects:[
 		],
