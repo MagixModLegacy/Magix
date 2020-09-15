@@ -8603,6 +8603,9 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
 			}};
 			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==400){G.getUnitByName('scientific university').mode==4;G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];}
+			if(G.has('Plain island building')){
+					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
+		}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -9712,9 +9715,9 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'gather',what:{'faith':0.012,'happiness':0.07}},
-			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false}},
-			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true}},
+			{type:'gather',what:{'faith':0.012,'happiness':0.07},chance:1/8.5},
+			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false},chance:1/6},
+			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true},chance:1/6},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
@@ -10061,12 +10064,13 @@ if (!document.getElementById(cssId))
 		gizmos:true,
 		modes:{
 			'off':G.MODE_OFF,
-			'gatherers':{name:'Gatherer\'s lodge',icon:[0,2],desc:'Hire [gatherer]s until there are 5 for each of this lodge.',req:{'tribalism':true}},
-			'hunters':{name:'Hunter\'s lodge',icon:[18,2],desc:'Hire [hunter]s until there are 5 for each of this lodge.',req:{'hunting':true}},
-			'fishers':{name:'Fisher\'s lodge',icon:[17,2],desc:'Hire [fisher]s until there are 5 for each of this lodge.',req:{'fishing':true}},
-			'diggers':{name:'Digger\'s lodge',icon:[7,2],desc:'Hire [digger]s until there are 5 for each of this lodge.',req:{'digging':true}},
-			'woodcutters':{name:'Woodcutter\'s lodge',icon:[8,2],desc:'Hire [woodcutter]s until there are 5 for each of this lodge.',req:{'woodcutting':true}},
-			'artisans':{name:'Artisan\'s lodge',icon:[6,2],desc:'Hire [artisan]s until there are 5 for each of this lodge.',req:{'stone-knapping':true}},
+			'gatherers':{name:'Gatherer\'s lodge',icon:[0,2],desc:'Hire [gatherer]s until there are 6 for each of this lodge.',req:{'tribalism':true}},
+			'hunters':{name:'Hunter\'s lodge',icon:[18,2],desc:'Hire [hunter]s until there are 6 for each of this lodge.',req:{'hunting':true}},
+			'fishers':{name:'Fisher\'s lodge',icon:[17,2],desc:'Hire [fisher]s until there are 6 for each of this lodge.',req:{'fishing':true}},
+			'diggers':{name:'Digger\'s lodge',icon:[7,2],desc:'Hire [digger]s until there are 6 for each of this lodge.',req:{'digging':true}},
+			'woodcutters':{name:'Woodcutter\'s lodge',icon:[8,2],desc:'Hire [woodcutter]s until there are 6 for each of this lodge.',req:{'woodcutting':true}},
+			'artisans':{name:'Artisan\'s lodge',icon:[6,2],desc:'Hire [artisan]s until there are 6 for each of this lodge.',req:{'stone-knapping':true}},
+			'florists':{name:'Florist\'s lodge',icon:[7,11,'magixmod'],desc:'Hire [florist]s until there are 6 for each of this lodge.',req:{'plant lore':true}},
 		},
 		effects:[
 		/*{type:'function',func:function(me){
@@ -15206,7 +15210,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	=======================================*/
 		new G.Tech({
 		name:'guilds unite',
-		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 5 to 100. <>NOTE: Useless for now but applies new icons to [lodge] , [guild quarters]',
+		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 6 to 100. <>NOTE: Useless for now but applies new icons to [lodge] , [guild quarters]',
 		icon:[29,8,'magixmod'],
 		cost:{'insight II':20,'culture II':10,'influence II':5,'insight':45},
 		req:{'cities':true,'construction II':true,'code of law II':true},
