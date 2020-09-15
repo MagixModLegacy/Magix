@@ -2615,7 +2615,7 @@ G.props['fastTicksOnResearch']=150;
 			G.Message({type:'important',text:str,icon:[0,3]});
 		}else if(G.has('primary time measure') && G.hasNot('time measuring 1/2')){
 			var txt = ''+G.year+'';
-  var res = txt.endsWith(00)
+  var res = txt.endsWith("00")
 			if(res==true){
 			var str='';
 			str+='It is now the century <b>'+Math.floor(((G.year/100)+1))+'</b>.<br>';
