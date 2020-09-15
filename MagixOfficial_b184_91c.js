@@ -9597,7 +9597,12 @@ if (!document.getElementById(cssId))
 			'cobalt':{name:'Cobalt smelting',icon:[14,0,'magixmod'],desc:'Cast 1 [Cobalt ingot] out of 8[Cobalt ore].',req:{'Cobalt-working':true},use:{'worker':2,'metal tools':2,'stone tools':1}},
 	  		'nickel':{name:'Nickel smelting',icon:[10,9],desc:'Cast 1 [hard metal ingot] out of 6[nickel ore]s each.',req:{'prospecting II':true,'nickel-working':true},use:{'worker':2,'metal tools':2}},
 			'platinum':{name:'Platinum smelting',icon:[3,11,'magixmod'],desc:'Cast 1 [platinum ingot] out of 5[platinum ore]s each.',req:{'prospecting II':true,'platinum-working':true},use:{'worker':2,'metal tools':2}}, 
+			//deep quarrymining
 			'osmium':{name:'Osmium smelting',icon:[9,9],desc:'Cast [soft metal ingot]s out of 4 [osmium ore]s each.',req:{'deep mining & quarrying':true,'osmium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+			'lead':{name:'Lead smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 6 [lead ore]s each.',req:{'deep mining & quarrying':true,'lead-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+  			'mythril':{name:'Mythril smelting',icon:[3,2,'extraores'],desc:'Cast [mythril ingot]s out of 6 [mythril ore]s and 1 [gold ore] each.',req:{'deep mining & quarrying':true,'mythril-working':true,'furnace modernization':true,use:{'metal tools':2,'worker':2}},
+			 'blackium':{name:'Blackium alloying',icon:[12,9],desc:'Cast [strong metal ingot]s out of 6 [blackium ore]s each.',req:{'deep mining & quarrying':true,'blackium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+ 			 'zinc':{name:'Zinc smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 7 [zinc ore]s each.',req:{'deep mining & quarrying':true,'zinc-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
 			},
 		effects:[
 			{type:'convert',from:{'copper ore':5},into:{'soft metal ingot':1},repeat:3,mode:'copper'},
