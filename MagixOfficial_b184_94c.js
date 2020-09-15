@@ -16964,8 +16964,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	//3rd type does not injure health and does not cause some crafting units to provide some housing
 	new G.Trait({
         name:'homelessRed',
-	displayName:'Homelesness',
-        desc:'Some crafting units(that use land!) can provide housing. This trait defines that homelessness will make people very mad. Also it harms health.',
+	displayName:'Homelessness',
+        desc:'Some crafting units(that use land!) can provide housing. This trait defines that homelessness will make people very mad. Also it harms [health].',
         icon:[21,30,'magixmod'],
         cost:{'culture':100},
 	effects:[
@@ -16977,7 +16977,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
     });
 	new G.Trait({
         name:'homelessYellow',
-	displayName:'Homelesness',
+	displayName:'Homelessness',
         desc:'Rarely some crafting units(that use land!) can provide housing. This trait defines that homelessness will not make people very angry and mad. Due to it [health] level won\'t be injured badly. It would be like -1% to -2%.',
         icon:[22,30,'magixmod'],
         cost:{'culture':100},
@@ -16989,7 +16989,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
     });
 	new G.Trait({
         name:'homelessGreen',
-	displayName:'Homelesness',
+	displayName:'Homelessness',
         desc:'No crafting units(that use land!) will provide housing. No providing = no problem , no health injury, no happiness level drop.',
         icon:[23,30,'magixmod'],
         cost:{'culture':100},
