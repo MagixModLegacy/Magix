@@ -10039,12 +10039,12 @@ if (!document.getElementById(cssId))
 		gizmos:true,
 		modes:{
 			'off':G.MODE_OFF,
-			'gatherers':{name:'Gatherer\'s lodge',desc:'Hire [gatherer]s until there are 5 for each of this lodge.',req:{'tribalism':true}},
-			'hunters':{name:'Hunter\'s lodge',desc:'Hire [hunter]s until there are 5 for each of this lodge.',req:{'hunting':true}},
-			'fishers':{name:'Fisher\'s lodge',desc:'Hire [fisher]s until there are 5 for each of this lodge.',req:{'fishing':true}},
-			'diggers':{name:'Digger\'s lodge',desc:'Hire [digger]s until there are 5 for each of this lodge.',req:{'digging':true}},
-			'woodcutters':{name:'Woodcutter\'s lodge',desc:'Hire [woodcutter]s until there are 5 for each of this lodge.',req:{'woodcutting':true}},
-			'artisans':{name:'Artisan\'s lodge',desc:'Hire [artisan]s until there are 5 for each of this lodge.',req:{'stone-knapping':true}},
+			'gatherers':{name:'Gatherer\'s lodge',icon:[0,2],desc:'Hire [gatherer]s until there are 5 for each of this lodge.',req:{'tribalism':true}},
+			'hunters':{name:'Hunter\'s lodge',icon:[18,2],desc:'Hire [hunter]s until there are 5 for each of this lodge.',req:{'hunting':true}},
+			'fishers':{name:'Fisher\'s lodge',icon:[17,2],desc:'Hire [fisher]s until there are 5 for each of this lodge.',req:{'fishing':true}},
+			'diggers':{name:'Digger\'s lodge',icon:[7,2],desc:'Hire [digger]s until there are 5 for each of this lodge.',req:{'digging':true}},
+			'woodcutters':{name:'Woodcutter\'s lodge',icon:[8,2],desc:'Hire [woodcutter]s until there are 5 for each of this lodge.',req:{'woodcutting':true}},
+			'artisans':{name:'Artisan\'s lodge',icon:[6,2],desc:'Hire [artisan]s until there are 5 for each of this lodge.',req:{'stone-knapping':true}},
 		},
 		effects:[
 		/*{type:'function',func:function(me){
@@ -10100,10 +10100,10 @@ if (!document.getElementById(cssId))
 		gizmos:true,
 		modes:{
 			'off':G.MODE_OFF,
-			'potters':{name:'Potters\' guild',desc:'Hire [potter]s until there are 5 for each of this guild.',req:{'pottery':true}},
-			'carpenters':{name:'Carpenters\' guild',desc:'Build [carpenter workshop]s until there are 5 for each of this guild.',req:{'carpentry':true}},
-			'blacksmiths':{name:'Blacksmiths\' guild',desc:'Build [blacksmith workshop]s until there are 5 for each of this guild.',req:{'smelting':true}},
-			'thief hunters':{name:'Thief hunters\' guild',desc:'Hire [Thief hunter]s until there are 25 for each of this guild.',req:{'guilds unite':true,'Battling thieves':true}},
+			'potters':{name:'Potters\' guild',icon:[20,2],desc:'Hire [potter]s until there are 5 for each of this guild.',req:{'pottery':true}},
+			'carpenters':{name:'Carpenters\' guild',icon:[27,2,25,2],desc:'Build [carpenter workshop]s until there are 5 for each of this guild.',req:{'carpentry':true}},
+			'blacksmiths':{name:'Blacksmiths\' guild',icon:[26,2,25,2],desc:'Build [blacksmith workshop]s until there are 5 for each of this guild.',req:{'smelting':true}},
+			'thief hunters':{name:'Thief hunters\' guild',icon:[4,13,'magixmod'],desc:'Hire [Thief hunter]s until there are 25 for each of this guild.',req:{'guilds unite':true,'Battling thieves':true}},
 		},
 		effects:[
 			/*{type:'function',func:function(me){
