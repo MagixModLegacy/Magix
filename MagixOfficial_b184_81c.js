@@ -16926,7 +16926,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	effects:[
 	],	
         req:{'oral tradition':true},
-	chance:75,
+	chance:12,
 		category:'knowledge'
     });
 	/*=====================================================================================
