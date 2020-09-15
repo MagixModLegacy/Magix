@@ -16871,8 +16871,44 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'osmium-working',
 		desc:'@[furnace]s can now make [soft metal ingot]s from [osmium ore]<>',
 		icon:[16,30,'magixmod'],
+		cost:{'insight II':182,'science':2},
+		req:{'mining II':true,'furnace modernization':true},
+	});
+	new G.Tech({
+		name:'lead-working',
+		desc:'@[furnace]s can now make [hard metal ingot]s from [lead ore]<>',
+		icon:[13,30,'magixmod'],
+		cost:{'insight II':183,'science':2},
+		req:{'mining II':true,'furnace modernization':true},
+	});
+  new G.Tech({
+		name:'mythril-working',
+		desc:'@[furnace]s can now make [precious metal ingot]s from [mythril ore]@[blacksmith workshop] can now forge [mythril block] out of [mythril ingot]s.<>',
+		icon:[14,30,'magixmod'],
+		cost:{'insight II':200,'science':5},
+		req:{'mining II':true,'furnace modernization':true},
+	});
+  new G.Tech({
+		name:'zinc-working',
+		desc:'@[furnace]s can now make [hard metal ingot]s from [zinc ore]<>',
+		icon:[15,30,'magixmod'],
+		cost:{'insight II':183,'science':2},
+		req:{'mining II':true,'furnace modernization':true},
+	});
+
+ new G.Tech({
+		name:'blackium-working',
+		desc:'@[furnace]s can now make [strong metal ingot]s from [blackium ore]<>',
+		icon:[17,30,'magixmod'],
 		cost:{'insight II':180},
 		req:{'mining II':true,'furnace modernization':true},
+	});
+	new G.Tech({
+		name:'dinium & unknownium working',
+		desc:'@[furnace]s can now make [soft metal ingot]s from [osmium ore]<>',
+		icon:[18,30,'magixmod'],
+		cost:{'insight II':300,'science':30},
+		req:{'mining II':true,'furnace modernization':true,'Wonder\'o science':true,'osmium-working':true,'blackium-working':true,'zinc-working':true,'mythril-working':true,'lead-working':true},
 	});
 	/*=====================================================================================
 	POLICIES
