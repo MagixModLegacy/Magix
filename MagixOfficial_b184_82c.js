@@ -2987,7 +2987,7 @@ G.props['fastTicksOnResearch']=150;
 			text=me.textFunc(mergeWith.args);
 		}
 		if(G.has('primary time measure') && G.hasNot('time measuring 1/2')){
-		var str='<div class="messageTimestamp" title="'+'century'+((G.year/100)+1)+'">'+'Y:'+((G.year/100)+1)+'</div>'+
+		var str='<div class="messageTimestamp" title="'+'century'+Math.floor((G.year/100)+1)+'">'+'C:'+((G.year/100)+1)+'</div>'+
 		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
 		}
 		else if(G.has('primary time measure') && G.has('time measuring 1/2')){
@@ -3181,7 +3181,7 @@ G.props['fastTicksOnResearch']=150;
 			    
 			    }
 		else if(G.has('primary time measure') && G.hasNot('time measuring 1/2') && G.hasNot('time measuring 2/2')){
-			l('date').innerHTML='Century '+((G.year/100)+1)+' in '+G.getName('civ');
+			l('date').innerHTML='Century '+Math.floor((G.year/100)+1)+' in '+G.getName('civ');
    			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>Sometime people start a new centrury. To see years obtain <b>Time measuring</b> 1/2 research.</div>';},{offY:-8});
 			    
 			    }else if(G.has('primary time measure') && G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
