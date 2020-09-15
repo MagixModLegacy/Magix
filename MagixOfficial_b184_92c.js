@@ -9600,9 +9600,9 @@ if (!document.getElementById(cssId))
 			//deep quarrymining
 			'osmium':{name:'Osmium smelting',icon:[9,9],desc:'Cast [soft metal ingot]s out of 4 [osmium ore]s each.',req:{'deep mining & quarrying':true,'osmium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
 			'lead':{name:'Lead smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 6 [lead ore]s each.',req:{'deep mining & quarrying':true,'lead-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
-  			'mythril':{name:'Mythril smelting',icon:[3,2,'extraores'],desc:'Cast [mythril ingot]s out of 6 [mythril ore]s and 1 [gold ore] each.',req:{'deep mining & quarrying':true,'mythril-working':true,'furnace modernization':true,use:{'metal tools':2,'worker':2}},
-			 'blackium':{name:'Blackium alloying',icon:[12,9],desc:'Cast [strong metal ingot]s out of 6 [blackium ore]s each.',req:{'deep mining & quarrying':true,'blackium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
- 			 'zinc':{name:'Zinc smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 7 [zinc ore]s each.',req:{'deep mining & quarrying':true,'zinc-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+  			'mythril':{name:'Mythril smelting',icon:[11,6,'magixmod'],desc:'Cast [mythril ingot]s out of 6 [mythril ore]s and 1 [gold ore] each.',req:{'deep mining & quarrying':true,'mythril-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+			'blackium':{name:'Blackium alloying',icon:[12,9],desc:'Cast [strong metal ingot]s out of 6 [blackium ore]s each.',req:{'deep mining & quarrying':true,'blackium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+ 			'zinc':{name:'Zinc smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 7 [zinc ore]s each.',req:{'deep mining & quarrying':true,'zinc-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
 			},
 		effects:[
 			{type:'convert',from:{'copper ore':5},into:{'soft metal ingot':1},repeat:3,mode:'copper'},
