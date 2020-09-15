@@ -16916,7 +16916,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'@[furnace]s can now make [soft metal ingot]s from [osmium ore]<>',
 		icon:[18,30,'magixmod'],
 		cost:{'insight II':300,'science':30},
-		req:{'mining II':true,'furnace modernization':true,'Wonder\'o science':true,'osmium-working':true,'blackium-working':true,'zinc-working':true,'mythril-working':true,'lead-working':true},
+		req:{'mining II':true,'furnace modernization':true,'wonder\'o science':true,'osmium-working':true,'blackium-working':true,'zinc-working':true,'mythril-working':true,'lead-working':true},
 	});
 		new G.Trait({
         name:'primary time measure',
