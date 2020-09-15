@@ -2986,7 +2986,11 @@ G.props['fastTicksOnResearch']=150;
 			}
 			text=me.textFunc(mergeWith.args);
 		}
-		if(G.has('time measuring 1/2')){
+		if(G.has('primary time measure') && G.hasNot('time measuring 1/2')){
+		var str='<div class="messageTimestamp" title="'+'century'+((G.year/100)+1)+'''">'+'Y:'+((G.year/100)+1)+'</div>'+
+		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
+		}
+		else if(G.has('primary time measure') && G.has('time measuring 1/2')){
 		var str='<div class="messageTimestamp" title="'+'year '+(G.year+1)+', day '+(G.day+1)+'">'+'Y:'+(G.year+1)+'</div>'+
 		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
 		}else{
@@ -3171,16 +3175,20 @@ G.props['fastTicksOnResearch']=150;
 					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
 					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
 					//Time measuring tech. It will have 2 levels. Here goes the code:
-		if(G.hasNot('time measuring 1/2')){
-			l('date').innerHTML='No one knows time yet';
-   			G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">Obtain <b>Time Measuring 1/2</b> research to display current date<br>(you\'ll see Year).<br> Despite of that you do not see current date events related to time may still occur.</div>';},{offY:-8});
+		if(G.hasNot('time measuring 1/2') && G.hasNot('primary time measure')){
+			l('date').innerHTML='No '+G.getName('civ')+' knows the time yet';
+   			G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">While researching people may get <b>Primary time measure</b> knowledge to display current date<br>(you\'ll see Centuries).<br> Despite of that you do not see current date events related to time may still occur.</div>';},{offY:-8});
 			    
 			    }
-		else if(G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
+		else if(G.has('primary time measure') && G.hasNot('time measuring 1/2') && G.hasNot('time measuring 2/2')){
+			l('date').innerHTML='Century '+((G.year/100)+1)+' in '+G.getName('civ');
+   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>Sometime people start a new centrury. To see years obtain <b>Time measuring</b> 1/2 research.</div>';},{offY:-8});
+			    
+			    }else if(G.has('primary time measure') && G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
 			l('date').innerHTML='Year '+(G.year+1)+' in '+G.getName('civ');
    			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>Sometime a new year starts. To see days obtain <b>Time measuring</b> 2/2 research.</div>';},{offY:-8});
 			    
-			    }else if(G.has('time measuring 1/2') && G.has('time measuring 2/2')){
+			    }else if(G.has('primary time measure') && G.has('time measuring 1/2') && G.has('time measuring 2/2')){
 			l('date').innerHTML='Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
    			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses ....every second, and 300 days make up a year.</div>';},{offY:-8});
 			    
@@ -16910,6 +16918,17 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		cost:{'insight II':300,'science':30},
 		req:{'mining II':true,'furnace modernization':true,'Wonder\'o science':true,'osmium-working':true,'blackium-working':true,'zinc-working':true,'mythril-working':true,'lead-working':true},
 	});
+		new G.Trait({
+        name:'primary time measure',
+        desc:'<font color="#aaffff">People now can measure passing time in centuries. </font>',
+        icon:[34,29,'magixmod'],
+        cost:{'culture':10},
+	effects:[
+	],	
+        req:{'oral tradition':true},
+	chance:75,
+		category:'knowledge'
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
