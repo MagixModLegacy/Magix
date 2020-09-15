@@ -8603,7 +8603,7 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
 			}};
 			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==400){G.getUnitByName('scientific university').mode==4;G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];}
-			if(G.has('Plain island building')){
+			if(G.has('<span style="color: ##FF0900">Plain island building</span>')){
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
 		}
 		},
