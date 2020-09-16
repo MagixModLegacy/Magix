@@ -4781,7 +4781,7 @@ G.writeMSettingButton=function(obj)
 		},
 		getMult:function(me)
 		{
-			me.amount=me.amount+G.getRes('homeless housing').amount;
+			G.getRes('housing').amount=G.getRes('housing').amount+G.getRes('homeless housing').amount;
 		}
 	});
 	new G.Res({
