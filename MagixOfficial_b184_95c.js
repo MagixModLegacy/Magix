@@ -4779,6 +4779,10 @@ G.writeMSettingButton=function(obj)
 		{
 			return B(Math.min(this.displayedAmount,G.getRes('population').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
 		},
+		getMult:function()
+		{
+			me.amount=me.amount+G.getRes('homeless housing').amount;
+		}
 	});
 	new G.Res({
 		name:'land',
@@ -8986,6 +8990,43 @@ if (!document.getElementById(cssId))
 		desc:'A fool\'s gold. Cannot be smelted for [precious metal ingot]. Most commonly it is a waste.',
 		icon:[10,4,'magixmod'],
 		category:'ore',
+	});
+	new G.Res({
+		name:'homelessness housing',
+		tick:function(me)
+		{
+			if(G.has('homelessYellow')){
+			var amount=0;
+			amount+=G.getUnit('blacksmith workshop').amount*0.1;
+			amount+=G.getUnit('warehouse').amount*0.33;
+			amount+=G.getUnit('carpentry workshop').amount*0.05;
+			amount+=G.getUnit('Lodge of writers').amount*0.1;
+			amount+=G.getUnit('barn').amount*0.2;
+			amount+=G.getUnit('stockpile').amount*0.01;
+			amount+=G.getUnit('Paradise blacksmith workshop').amount*0.1;
+			amount+=G.getUnit('Carpenter workshop').amount*0.05;
+			amount+=G.getUnit('Floored warehouse').amount*0.33;
+			amount+=G.getUnit('hardened warehouse').amount*0.33;
+			amount+=G.getUnit('Hovel of colours').amount*0.05;
+			amount+=G.getUnit('Holy orchard').amount*0.15;
+			me.amount=amount;
+			}else if(G.has('homelessRed')){
+			var amount=0;
+			amount+=G.getUnit('blacksmith workshop').amount*0.15;
+			amount+=G.getUnit('warehouse').amount*1;
+			amount+=G.getUnit('carpentry workshop').amount*0.1;
+			amount+=G.getUnit('Lodge of writers').amount*0.25;
+			amount+=G.getUnit('barn').amount*0.8;
+			amount+=G.getUnit('stockpile').amount*0.02;
+			amount+=G.getUnit('Paradise blacksmith workshop').amount*0.15;
+			amount+=G.getUnit('Carpenter workshop').amount*0.1;
+			amount+=G.getUnit('Floored warehouse').amount*0.5;
+			amount+=G.getUnit('hardened warehouse').amount*0.5;
+			amount+=G.getUnit('Hovel of colours').amount*0.1;
+			amount+=G.getUnit('Holy orchard').amount*0.25;
+			me.amount=amount;
+			}
+		},
 	});
 	/*=====================================================================================
 	UNITS
