@@ -4779,7 +4779,7 @@ G.writeMSettingButton=function(obj)
 		{
 			return B(Math.min(this.displayedAmount,G.getRes('population').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
 		},
-		getMult:function()
+		getMult:function(me)
 		{
 			me.amount=me.amount+G.getRes('homeless housing').amount;
 		}
