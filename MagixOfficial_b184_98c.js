@@ -4779,10 +4779,6 @@ G.writeMSettingButton=function(obj)
 		{
 			return B(Math.min(this.displayedAmount,G.getRes('population').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
 		},
-		getMult:function(me)
-		{
-			G.getRes('housing').amount=G.getRes('housing').amount+G.getRes('homeless housing').amount;
-		}
 	});
 	new G.Res({
 		name:'land',
@@ -9133,6 +9129,7 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'insight':0.1}},
+			{type:'provide',what:{'housing':3},req:{'oral tradition':true}},
 			{type:'gather',what:{'insight':0.04},req:{'philosophy':false,'symbolism':true}},
 			{type:'gather',what:{'insight':0.05},req:{'philosophy':true,'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
