@@ -3210,9 +3210,11 @@ G.props['fastTicksOnResearch']=150;
 				}
 				if (!forceTick) G.nextTick--;
 			}
-			
+			if(G.hasNot('time measuring 2/2')){
+			l('fastTicks').innerHTML=''+G.fastTicks+' fast ticks';
+			}else{
 			l('fastTicks').innerHTML=G.BT(G.fastTicks);
-			
+			}
 			if (G.getSetting('autosave') && G.T%(G.fps*60)==(G.fps*60-1)) G.Save();
 		}
 		
@@ -8986,43 +8988,6 @@ if (!document.getElementById(cssId))
 		desc:'A fool\'s gold. Cannot be smelted for [precious metal ingot]. Most commonly it is a waste.',
 		icon:[10,4,'magixmod'],
 		category:'ore',
-	});
-	new G.Res({
-		name:'homelessness housing',
-		tick:function(me)
-		{
-			if(G.has('homelessYellow')){
-			var amount=0;
-			amount+=G.getUnit('blacksmith workshop').amount*0.1;
-			amount+=G.getUnit('warehouse').amount*0.33;
-			amount+=G.getUnit('carpentry workshop').amount*0.05;
-			amount+=G.getUnit('Lodge of writers').amount*0.1;
-			amount+=G.getUnit('barn').amount*0.2;
-			amount+=G.getUnit('stockpile').amount*0.01;
-			amount+=G.getUnit('Paradise blacksmith workshop').amount*0.1;
-			amount+=G.getUnit('Carpenter workshop').amount*0.05;
-			amount+=G.getUnit('Floored warehouse').amount*0.33;
-			amount+=G.getUnit('hardened warehouse').amount*0.33;
-			amount+=G.getUnit('Hovel of colours').amount*0.05;
-			amount+=G.getUnit('Holy orchard').amount*0.15;
-			me.amount=amount;
-			}else if(G.has('homelessRed')){
-			var amount=0;
-			amount+=G.getUnit('blacksmith workshop').amount*0.15;
-			amount+=G.getUnit('warehouse').amount*1;
-			amount+=G.getUnit('carpentry workshop').amount*0.1;
-			amount+=G.getUnit('Lodge of writers').amount*0.25;
-			amount+=G.getUnit('barn').amount*0.8;
-			amount+=G.getUnit('stockpile').amount*0.02;
-			amount+=G.getUnit('Paradise blacksmith workshop').amount*0.15;
-			amount+=G.getUnit('Carpenter workshop').amount*0.1;
-			amount+=G.getUnit('Floored warehouse').amount*0.5;
-			amount+=G.getUnit('hardened warehouse').amount*0.5;
-			amount+=G.getUnit('Hovel of colours').amount*0.1;
-			amount+=G.getUnit('Holy orchard').amount*0.25;
-			me.amount=amount;
-			}
-		},
 	});
 	/*=====================================================================================
 	UNITS
@@ -16997,46 +16962,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		cost:{'insight II':340,'science':40},
 		req:{'dinium & unknownium working':true,'mirror world 1/2':true},
 	});
-	//Homelesness mechanic. Homelesness trait can occur post year 500. Has 3 levels. 1st injures health but most of crafting units can provide rarely some housing
-	//2nd type injures health less and provides some housing
-	//3rd type does not injure health and does not cause some crafting units to provide some housing
-	new G.Trait({
-        name:'homelessRed',
-	displayName:'Homelessness',
-        desc:'Some crafting units(that use land!) can provide housing. This trait defines that homelessness will make people very mad. Also it harms [health].',
-        icon:[21,30,'magixmod'],
-        cost:{'culture':100},
-	effects:[
-	],	
-        req:{'oral tradition':true,'tribalism':false},
-	chance:750,
-		category:'main'
-		
-    });
-	new G.Trait({
-        name:'homelessYellow',
-	displayName:'Homelessness',
-        desc:'Rarely some crafting units(that use land!) can provide housing. This trait defines that homelessness will not make people very angry and mad. Due to it [health] level won\'t be injured badly. It would be like -1% to -2%.',
-        icon:[22,30,'magixmod'],
-        cost:{'culture':100},
-	effects:[
-	],	
-        req:{'oral tradition':true,'tribalism':false},
-	chance:750,
-		category:'main'
-    });
-	new G.Trait({
-        name:'homelessGreen',
-	displayName:'Homelessness',
-        desc:'No crafting units(that use land!) will provide housing. No providing = no problem , no health injury, no happiness level drop.',
-        icon:[23,30,'magixmod'],
-        cost:{'culture':100},
-	effects:[
-	],	
-        req:{'oral tradition':true,'tribalism':false},
-	chance:750,
-		category:'main'
-    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
