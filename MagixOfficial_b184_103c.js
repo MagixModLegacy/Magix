@@ -9519,6 +9519,12 @@ if (!document.getElementById(cssId))
 			//deepquarry
 			{type:'gather',context:'quarry',what:{'cut stone':0.17},max:0.88,mode:'quarrydeepores'},
 			{type:'gather',context:'quarry',what:{'Various cut stones':0.17},max:0.88,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'lead ore':10},max:30,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'blackium ore':10},max:30,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'mythril ore':10},max:30,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'unknownium ore':10},max:30,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'salt':1},max:3,mode:'quarrydeepores',chance:1/6},
+			/////
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
 		],
 		gizmos:true,
@@ -9535,6 +9541,7 @@ if (!document.getElementById(cssId))
 		modes:{
 			'off':G.MODE_OFF,
 			'any':{name:'Any',icon:[8,8],desc:'Mine without focusing on specific ores.',use:{'worker':3,'stone tools':3}},
+			'any(deepmine)':{name:'Any',icon:[24,18,'magixmod',8,8],desc:'Mine without focusing on specific ores way deeper.',use:{'worker':6,'metal tools':6},req:{'mining II':true}},
 			'coal':{name:'Coal',icon:[12,8],desc:'Mine for [coal] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'salt':{name:'Salt',icon:[11,7],desc:'Mine for [salt].',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'copper':{name:'Copper',icon:[9,8],desc:'Mine for [copper ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
@@ -9562,6 +9569,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			{type:'mult',value:1.05,req:{'Mining strategy':true}},
+			///////
+			//Deepmining
+			{type:'gather',context:'mine',what:{'iron ore':50},max:30,mode:'iron'},
 			/////////////////////////
 			//MOAI BOOSTS
 			{type:'mult',value:1.25,req:{'se09':'on'},mode:'tin'},
