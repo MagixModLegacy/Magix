@@ -9603,9 +9603,10 @@ if (!document.getElementById(cssId))
 			//deep quarrymining
 			'osmium':{name:'Osmium smelting',icon:[9,9],desc:'Cast [soft metal ingot]s out of 4 [osmium ore]s each.',req:{'deep mining & quarrying':true,'osmium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
 			'lead':{name:'Lead smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 6 [lead ore]s each.',req:{'deep mining & quarrying':true,'lead-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
-  			'mythril':{name:'Mythril smelting',icon:[11,6,'magixmod'],desc:'Cast [mythril ingot]s out of 6 [mythril ore]s and 1 [gold ore] each.',req:{'deep mining & quarrying':true,'mythril-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+  			'mythril':{name:'Mythril smelting',icon:[11,6,'magixmod'],desc:'Cast [mystical metal ingot]s out of 6 [mythril ore]s and 1 [gold ore] each.',req:{'deep mining & quarrying':true,'mythril-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
 			'blackium':{name:'Blackium alloying',icon:[12,9],desc:'Cast [strong metal ingot]s out of 6 [blackium ore]s each.',req:{'deep mining & quarrying':true,'blackium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
  			'zinc':{name:'Zinc smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 7 [zinc ore]s each.',req:{'deep mining & quarrying':true,'zinc-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+			'unk':{name:'Dinium & unknownium alloying',icon:[11,6,'magixmod'],desc:'Cast 2 [mystical metal ingot]s out of 4 [dinium ore]s , 3 [copper ore]s , 1 [coal] and 4 [unknownium ore] each. Chance to succed: 95%',req:{'deep mining & quarrying':true,'dinium & unknownium working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
 			},
 		effects:[
 			{type:'convert',from:{'copper ore':5},into:{'soft metal ingot':1},repeat:3,mode:'copper'},
@@ -9617,7 +9618,14 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'Cobalt ore':8},into:{'Cobalt ingot':1},every:5,mode:'cobalt'},
 			{type:'convert',from:{'nickel ore':6},into:{'hard metal ingot':1},every:5,mode:'nickel'},
 			{type:'convert',from:{'platinum ore':5},into:{'platinum ingot':1},every:5,mode:'platinum'},
+			//Deep ores
 			{type:'convert',from:{'osmium ore':4},into:{'hard metal ingot':1},every:5,mode:'osmium'},
+			{type:'convert',from:{'lead ore':6},into:{'hard metal ingot':1},every:5,mode:'lead'},
+  			{type:'convert',from:{'mythril ore':6,'gold ore':1},into:{'mystical metal ingot':1},every:5,mode:'mythril'},
+ 			{type:'convert',from:{'blackium ore':6},into:{'strong metal ingot':1},every:5,mode:'blackium'},
+  			{type:'convert',from:{'zinc ore':7},into:{'hard metal ingot':1},every:5,mode:'zinc'},
+			{type:'convert',from:{'dinium ore':4,'copper ore':3,'coal':1,'unknownium ore':4},into:{'mystical metal ingot':2},every:3,mode:'unk',chance:95/100},
+			//Mults
 			{type:'mult',value:0.95,req:{'dt4':true},mode:'gold'},
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'bronze'},
@@ -9645,12 +9653,12 @@ if (!document.getElementById(cssId))
 			'off':G.MODE_OFF,
 			'metal tools':{name:'Forge tools from soft metals',icon:[2,9],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
 			'hard metal tools':{name:'Forge tools from hard metals',icon:[2,9],desc:'Forge 3 [metal tools] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1},req:{}},
-			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true}},
+			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true,'block-smithery':false}},
 			'forgeweapon':{name:'Forge weapons out of soft metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 2[soft metal ingot]s each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},  
 			'forgeweaponhard':{name:'Forge weapons out of hard metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 1[hard metal ingot] each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
 			'forgearmor':{name:'Forge armor out of soft metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 8[soft metal ingot]s each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
 			'forgearmorhard':{name:'Forge armor out of hard metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 5[hard metal ingot] each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
-			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
+			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true,'block-smithery':false},use:{'worker':1,'metal tools':1,'stone tools':1}},
 			'factgear':{name:'Forge factory equipment',icon:[9,18,'magixmod'],desc:'Forge [Basic factory equipment] out of 11[hard metal ingot]s each.',req:{'Advanced casting':true},use:{'worker':3,'metal tools':3,'Instructor':1}},
 		},
 		effects:[
@@ -9661,6 +9669,8 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'forgeweaponhard'},
 			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':1},every:4,mode:'forgearmor'},
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'gold blocks'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'platinum block'},
 			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'},
 			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
@@ -10437,7 +10447,7 @@ if (!document.getElementById(cssId))
 	});
 		new G.Unit({
 		name:'Bakery',
-		desc:'<font color=" ##FF7F50">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
+		desc:'@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.',
 		icon:[24,10,'magixmod'],
 		cost:{'basic building materials':100},
 		use:{'land':1,'Instructor':1},
@@ -10612,7 +10622,7 @@ if (!document.getElementById(cssId))
 	});
 	new G.Unit({
 		name:'explosive mine',
-		desc:'@extracts ores, [coal] and [stone] out of the ground using <span style="color: #FF002a"> Dynamite</span> . <span style="color: #FF002a">Has even bigger chances to collapse due to used in work material</span>The workers in [mine]s blasts deep into the earth to provide all kinds of minerals. @cannot be [prospecting,prospected] like normal [mine] .',
+		desc:'@extracts ores, [coal] and [stone] out of the ground using <span style="color: #FF002a"> Dynamite</span> . <span style="color: #FF002a">Has even bigger chances to collapse due to used in work material</span><br>The workers in [mine]s blasts deep into the earth to provide all kinds of minerals. @cannot be [prospecting,prospected] like normal [mine] .',
 		icon:[16,15,'magixmod'],
 		cost:{'archaic building materials':400},
 		use:{'land':3},
@@ -11579,8 +11589,8 @@ if (!document.getElementById(cssId))
 			'off':G.MODE_OFF,
 			'metal tools':{name:'Forge tools from soft metals',icon:[2,9],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
 			'hard metal tools':{name:'Forge tools from hard metals',icon:[2,9],desc:'Forge 3 [metal tools] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1},req:{}},
-			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true}},
-			'platinum block':{name:'Forge platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10 [platinum ingot]s each.',use:{'worker':1,'stone tools':1},req:{'platinum-working':true}},
+			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true,'block-smithery':false}},
+			'platinum block':{name:'Forge platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10 [platinum ingot]s each.',use:{'worker':1,'stone tools':1},req:{'platinum-working':true,'block-smithery':false}},
 			'metal weapon':{name:'Forge weapons from soft metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1,'metal tools':1},req:{'Weapon blacksmithery':true}},
 			'hard metal weapon':{name:'Forge weapons from hard metals',icon:[15,11,'magixmod'],desc:'Forge 3 [metal weapons] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1,'stone tools':1},req:{'Weapon blacksmithery':true}},
 			'metal armor':{name:'Forge armor from soft metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 8 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1,'metal tools':1,'Instructor':0.25},req:{'Armor blacksmithery':true}},
@@ -11591,6 +11601,8 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'hard metal ingot':1},into:{'metal tools':3},repeat:3,mode:'hard metal tools'},
 			{type:'convert',from:{'precious metal ingot':10},into:{'gold block':1},mode:'gold blocks'},
 			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},mode:'platinum block'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'gold blocks'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'platinum block'},
 			{type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'hard metal weapon'},
 			{type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},every:3,repeat:1,mode:'metal weapon'},
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:3,repeat:1,mode:'hard metal armor'},
