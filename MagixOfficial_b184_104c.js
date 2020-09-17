@@ -7428,6 +7428,31 @@ if (!document.getElementById(cssId))
 			G.Message({type:'bad',text:'<b>Beware of Wild corpses!.</b> Since you obtained[<span style="color: red">Revenants</span>] as you noticed the Wild Corpses started to appear. They cause your [Dark essence] to leak and even worse they will kill your people. Slay them at any way you can.',icon:[24,0,'magixmod']});
 			madeWarnCorpseMesg = true
 			}
+			const corpses = G.getDict('wild corpse')
+  const chances = [
+    {
+      type: "hurt",
+      below: 0.9
+    },
+    {
+      type: "nothing",
+      below: 1
+    }
+  ]
+  const chance = Math.random()
+  let action
+  //Find what to do
+  for(let i = 0; !action; i++){
+    if(chance < chances[i].below)
+      action = chances[i].type
+  }
+  //Execute
+    switch(action){
+      case "hurt":
+        G.lose("adult", corpses.amount*0.45, "wild corpse encounter")
+        G.gain("wounded", corpses.amount*0.45, "wild corpse encounter")
+        break
+  }
 		},
 		category:'demog',
 	});
