@@ -16936,7 +16936,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
         cost:{'insight':50},
 	effects:[
 	],	
-        req:{'Intermediate maths':true},
+        req:{'Intermediate maths':true,'primary time measure':true},
 	chance:10
     });
 	new G.Trait({
