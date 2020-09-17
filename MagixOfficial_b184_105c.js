@@ -3210,8 +3210,10 @@ G.props['fastTicksOnResearch']=150;
 				}
 				if (!forceTick) G.nextTick--;
 			}
-			if(G.hasNot('time measuring 2/2')){
+			if(G.hasNot('time measuring 2/2') && G.hasNot('time measuring 1/2')){
 			l('fastTicks').innerHTML=''+B(G.fastTicks)+' fast ticks';
+			}else if(G.has('time measuring 1/2')){
+			l('fastTicks').innerHTML=''+B(G.fastTicks/300)+' years';
 			}else{
 			l('fastTicks').innerHTML=G.BT(G.fastTicks);
 			}
