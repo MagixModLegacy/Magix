@@ -7451,8 +7451,8 @@ if (!document.getElementById(cssId))
   //Execute
     switch(action){
       case "hurt":
-        G.lose("adult", corpses.amount*0.45, "wild corpse encounter")
-        G.gain("wounded", corpses.amount*0.45, "wild corpse encounter")
+        G.lose("adult", corpses.amount*0.3, "wild corpse encounter")
+        G.gain("wounded", corpses.amount*0.3, "wild corpse encounter")
         break
   }
 		},
@@ -7557,8 +7557,8 @@ if (!document.getElementById(cssId))
 	G.lose("basic building materials", thieves.amount*0.1, "stolen")
         break
       case "hurt":
-        G.lose("adult", thieves.amount*0.45, "thieves hurting people")
-        G.gain("wounded", thieves.amount*0.45, "thieves hurting people")
+        G.lose("adult", thieves.amount*0.25, "thieves hurting people")
+        G.gain("wounded", thieves.amount*0.25, "thieves hurting people")
         break
   }
 },
