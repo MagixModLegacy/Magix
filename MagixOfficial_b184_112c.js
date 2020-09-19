@@ -4766,10 +4766,10 @@ G.writeMSettingButton=function(obj)
 			if(G.has('respect for the corpse')){
 				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
-			if(G.has('<span style="color: red">Revenants</span>') && G.getRes('Dark essence').amount>0){
-				G.lose('corpse',G.getRes('corpse').amount*0.01,'revenge of corpses');
-				G.lose('Dark essence',0.1,'revenge of corpses');
-				G.gain('wild corpse',G.getRes('corpse').amount*0.01,'revenge of corpses');
+			if(G.has('<span style="color: red">Revenants</span>') && G.getRes('Dark essence').amount>1000){
+				G.lose('corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
+				G.lose('Dark essence',0.15,'revenge of corpses');
+				G.gain('wild corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
 			}
 		},	
 	});
