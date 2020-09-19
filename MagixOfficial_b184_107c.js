@@ -3192,7 +3192,7 @@ G.props['fastTicksOnResearch']=150;
 		if(G.hasNot('time measuring 1/2') && G.hasNot('primary time measure')){
 			l('date').innerHTML='No '+G.getName('civ')+' knows the time yet';
    			G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">While researching people may get <b>Primary time measure</b> knowledge to display current date<br>(you\'ll see Centuries).<br> Despite of that you do not see current date events related to time may still occur.</div>';},{offY:-8});
-			    
+			 G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed</b>.</div>';},{offY:-8});   
 			    }
 		else if(G.has('primary time measure') && G.hasNot('time measuring 1/2') && G.hasNot('time measuring 2/2')){
 			l('date').innerHTML='Century '+Math.floor(((G.year/100)+1))+' in '+G.getName('civ');
@@ -3201,7 +3201,7 @@ G.props['fastTicksOnResearch']=150;
 			    
 			    }else if(G.has('primary time measure') && G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
 			l('date').innerHTML='Year '+(G.year+1)+' in '+G.getName('civ');
-				    	G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed,<br>advancing your civilization by <b>'+Math.floor(G.fastTicks/300)+'</b>.</div>';},{offY:-8});
+				    	G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed,<br>advancing your civilization by <b>'+Math.floor(G.fastTicks/300)+' years</b>.</div>';},{offY:-8});
    			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>Sometime a new year starts. To see days obtain <b>Time measuring</b> 2/2 research.</div>';},{offY:-8});
 			    
 			    }else if(G.has('primary time measure') && G.has('time measuring 1/2') && G.has('time measuring 2/2')){
@@ -3209,7 +3209,7 @@ G.props['fastTicksOnResearch']=150;
 			G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed,<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
    			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses ....every second, and 300 days make up a year.</div>';},{offY:-8});
 			    
-			    }
+			    }    
 				}
 				if (!forceTick) G.nextTick--;
 			}
