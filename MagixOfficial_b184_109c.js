@@ -4289,10 +4289,7 @@ G.writeMSettingButton=function(obj)
 	
 	new G.Res({name:'died this year',hidden:true});
 	new G.Res({name:'born this year',hidden:true});
-	 new G.Res({
-		name:'slain corpse',
-		icon:[3,15,'magixmod'],
-	});
+	
 	
 	var numbersInfo='//The number on the left is how many are in use, while the number on the right is how many you have in total.';
 	
@@ -4705,7 +4702,7 @@ G.writeMSettingButton=function(obj)
 	});
 	new G.Res({
 		name:'corpse',
-		desc:'[corpse,Corpses] are the remains of [population,People] that died, whether from old age, accident, disease, starvation or war.//Corpses left in the open air tend to spread diseases and make people unhappy, which gets even worse as superstitions develop. To mitigate this, you need a [burial spot] for each corpse. //While fighting against [wild corpse]s and succed the fight , corpse will become [slain corpse]. Currently you have <b>'+G.getRes('slain corpse').amount+'</b> of them.',
+		desc:'[corpse,Corpses] are the remains of [population,People] that died, whether from old age, accident, disease, starvation or war.//Corpses left in the open air tend to spread diseases and make people unhappy, which gets even worse as superstitions develop. To mitigate this, you need a [burial spot] for each corpse.',
 		startWith:0,
 		icon:[8,3],
 		tick:function(me,tick)
@@ -9026,7 +9023,10 @@ if (!document.getElementById(cssId))
 		icon:[10,4,'magixmod'],
 		category:'ore',
 	});
-	 
+	  new G.Res({
+		name:'slain corpse',
+		icon:[3,15,'magixmod'],
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
