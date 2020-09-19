@@ -2610,8 +2610,10 @@ G.props['fastTicksOnResearch']=150;
 			str+='Report for last year :<br>';
 			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
 			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			str+='&bull; <b>Soldiers defeats</b> : '+B(G.getRes('died this year').amount)+'<br>';
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
+			G.getRes('soldiers defeats').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
 		}else if(G.has('primary time measure') && G.hasNot('time measuring 1/2')){
 			var txt = ''+G.year+'';
@@ -2622,8 +2624,10 @@ G.props['fastTicksOnResearch']=150;
 			str+='Report for last long period of time... this century :<br>';
 			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
 			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			str+='&bull; <b>Soldiers defeats</b> : '+B(G.getRes('died this year').amount)+'<br>';
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
+			G.getRes('soldiers defeats').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
 			}
 		}
@@ -4762,9 +4766,9 @@ G.writeMSettingButton=function(obj)
 			if(G.has('respect for the corpse')){
 				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
-			if(G.has('<span style="color: red">Revenants</span>')){
+			if(G.has('<span style="color: red">Revenants</span>') && G.getRes('Dark essence').amount>0){
 				G.lose('corpse',G.getRes('corpse').amount*0.01,'revenge of corpses');
-				G.lose('dark essence',0.1,'revenge of corpses');
+				G.lose('Dark essence',0.1,'revenge of corpses');
 				G.gain('wild corpse',G.getRes('corpse').amount*0.01,'revenge of corpses');
 			}
 		},	
@@ -9025,8 +9029,9 @@ if (!document.getElementById(cssId))
 	});
 	  new G.Res({
 		name:'slain corpse',
-		icon:[3,15,'magixmod'],
+		icon:[3,16,'magixmod'],
 	});
+	new G.Res({name:'soldiers defeats',hidden:true});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -10195,7 +10200,7 @@ if (!document.getElementById(cssId))
 			'potters':{name:'Potters\' guild',icon:[20,2],desc:'Hire [potter]s until there are 5 for each of this guild.',req:{'pottery':true}},
 			'carpenters':{name:'Carpenters\' guild',icon:[27,2,25,2],desc:'Build [carpenter workshop]s until there are 5 for each of this guild.',req:{'carpentry':true}},
 			'blacksmiths':{name:'Blacksmiths\' guild',icon:[26,2,25,2],desc:'Build [blacksmith workshop]s until there are 5 for each of this guild.',req:{'smelting':true}},
-			'thief hunters':{name:'Thief hunters\' guild',icon:[4,13,'magixmod'],desc:'Hire [Thief hunter]s until there are 25 for each of this guild.',req:{'guilds unite':true,'Battling thieves':true}},
+			'hunters':{name:'Thief hunters\' & Corpse slayers guild',icon:[4,13,'magixmod'],desc:'Hire [Thief hunter]s and [corpse slayer]s until there are 25 for each of this guild.',req:{'guilds unite':true,'Battling thieves':true}},
 		},
 		effects:[
 			/*{type:'function',func:function(me){
@@ -10489,8 +10494,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'convert',from:{'thief':1},into:{'adult':1},every:4,chance:1/4},
 			{type:'convert',from:{'thief':1},into:{'corpse':1},every:4,chance:1/48},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/50,req:{'coordination':true}},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/25,req:{'coordination':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/50,req:{'coordination':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/25,req:{'coordination':false}},
 		],
 	});
 		new G.Unit({
@@ -12832,6 +12837,21 @@ new G.Unit({
 		],
 		req:{'ritualism':true},
 		category:'spiritual',
+	});
+	new G.Unit({
+		name:'corpse slayer',
+		desc:'Hunts for [wild corpse]s and does a takedown on\'em. Has a chance to become wounded while encounter. //Once slain [wild corpse] cannot revive again.',
+		icon:[24,30,'magixmod'],
+		cost:{},
+		use:{'worker':1,'metal weapons':1,'armor set':1},
+		req:{'Battling thieves':true,'coordination':true,'<span style="color: red">Revenants</span>':true},
+		category:'guard',
+		priority:5,
+		effects:[
+			{type:'convert',from:{'wild corpse':1},into:{'slain corpse':1},every:4,chance:1/4},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/50,req:{'coordination':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/25,req:{'coordination':false}},
+		],
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -16692,7 +16712,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Tech({
 		name:'coordination',
-		desc:'[Thief hunter] has better coordination so he has twice as bigger chance to succesfully win <b>guard vs thief</b> confrontation.',
+		desc:'[Thief hunter] has better coordination so he has twice as bigger chance to succesfully win <b>guard vs thief</b> confrontation. Also it may lead to unlock more types of guard.',
 		icon:[33,27,'magixmod'],
 		req:{'Battling thieves':true},
 		cost:{'insight':260},
