@@ -3219,9 +3219,9 @@ G.props['fastTicksOnResearch']=150;
 			}
 			if(G.hasNot('time measuring 2/2') && G.hasNot('time measuring 1/2')){
 			l('fastTicks').innerHTML=''+B(G.fastTicks)+' fast ticks';
-			}else if(G.has('time measuring 1/2')){
+			}else if(G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
 			l('fastTicks').innerHTML=''+B(G.fastTicks/300)+' years';
-			}else{
+			}else if(G.has('time measuring 1/2') && G.has('time measuring 2/2')){
 			l('fastTicks').innerHTML=G.BT(G.fastTicks);
 			}
 			if (G.getSetting('autosave') && G.T%(G.fps*60)==(G.fps*60-1)) G.Save();
@@ -8566,6 +8566,14 @@ if (!document.getElementById(cssId))
 			G.getDict('seals').res['hunt']['hide']=0.5;
 			G.getDict('crocodiles').res['hunt']['leather']=0.5;
 			}
+			//OSMIUM SPAWN
+			if(G.has('mining II')){
+			G.getDict('rocky substrate').res['mine']['osmium ore']=0.003;
+			G.getDict('tundra rocky substrate').res['mine']['osmium ore']=0.0041;
+			G.getDict('ice desert rocky substrate').res['mine']['osmium ore']=0.004;
+			G.getDict('dead rocky substrate').res['mine']['osmium ore']=0.0005;
+			G.getDict('badlands rocky substrate').res['mine']['osmium ore']=0.001;
+			}
 			if(G.has('herbalism')){
 			G.getDict('grass').res['gather']['herb']=10;
 			G.getDict('berry bush').res['gather']['herb']=0.25;
@@ -9025,7 +9033,7 @@ if (!document.getElementById(cssId))
     new G.Res({
 		name:'pyrite',
 		desc:'A fool\'s gold. Cannot be smelted for [precious metal ingot]. Most commonly it is a waste.',
-		icon:[10,4,'magixmod'],
+		icon:[11,4,'magixmod'],
 		category:'ore',
 	});
 	  new G.Res({
@@ -9592,6 +9600,8 @@ if (!document.getElementById(cssId))
 			'tin':{name:'Tin',icon:[13,8],desc:'Mine for [tin ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'iron':{name:'Iron',icon:[10,8],desc:'Mine for [iron ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'gold':{name:'Gold',icon:[11,8],desc:'Mine for [gold ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'zinc':{name:'Zinc',icon:[11,3,'magixmod'],desc:'Mine for [zinc ore] with x5 efficiency.',req:{'prospecting III':true},use:{'worker':3,'metal tools':3}},
+			'dinium':{name:'Dinium',icon:[11,5,'magixmod'],desc:'Mine for [dinium ore] with x3 efficiency.',req:{'prospecting III':true},use:{'worker':3,'metal tools':3}},
 			'nickel':{name:'Nickel',icon:[9,12,'magixmod'],desc:'Mine for [nickel ore] with 5x efficiency.',req:{'prospecting II':true},use:{'worker':3,'metal tools':3}},
 			'ostones':{name:'Other stones',icon:[3,12,'magixmod'],desc:'Mine for other stones with 3x efficiency than common [stone].',req:{'prospecting II':true},use:{'worker':3,'metal tools':3}}
 		},
@@ -9603,6 +9613,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'mine',what:{'copper ore':50},max:30,mode:'copper'},
 			{type:'gather',context:'mine',what:{'tin ore':50},max:30,mode:'tin'},
 			{type:'gather',context:'mine',what:{'iron ore':50},max:30,mode:'iron'},
+			{type:'gather',context:'mine',what:{'zinc ore':50},max:10,mode:'zinc'},
+			{type:'gather',context:'mine',what:{'dinium ore':30},max:10,mode:'dinium'},
 			{type:'gather',context:'mine',what:{'gold ore':50},max:30,mode:'gold'},
 			{type:'gather',context:'mine',what:{'nickel ore':40},max:25,mode:'nickel'},
 			{type:'gather',context:'mine',what:{'Various stones':30},max:25,mode:'ostones'},
@@ -11956,6 +11968,7 @@ if (!document.getElementById(cssId))
 		upkeep:{'fire pit':3},
 		effects:[
 			{type:'convert',from:{'corpse':14,'pot':14},into:{'Urn':14},every:5},
+			{type:'convert',from:{'slain corpse':14,'pot':14},into:{'Urn':14},every:15},
 		],
 		category:'civil'
 	});
