@@ -8572,7 +8572,7 @@ if (!document.getElementById(cssId))
 			G.getDict('tundra rocky substrate').res['mine']['osmium ore']=0.0041;
 			G.getDict('ice desert rocky substrate').res['mine']['osmium ore']=0.004;
 			G.getDict('dead rocky substrate').res['mine']['osmium ore']=0.0005;
-			G.getDict('badlands rocky substrate').res['mine']['osmium ore']=0.001;
+			G.getDict('badlands substrate').res['mine']['osmium ore']=0.001;
 			}
 			if(G.has('herbalism')){
 			G.getDict('grass').res['gather']['herb']=10;
