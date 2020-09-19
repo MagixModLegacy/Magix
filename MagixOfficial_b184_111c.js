@@ -7461,9 +7461,10 @@ if (!document.getElementById(cssId))
   }
   //Execute
     switch(action){
+		   
       case "hurt":
-        G.lose("adult", corpses.amount*0.3, "wild corpse encounter")
-        G.gain("wounded", corpses.amount*0.3, "wild corpse encounter")
+        G.lose("adult", corpses.amount*0.0011, "wild corpse encounter")
+        G.gain("wounded", corpses.amount*0.0011, "wild corpse encounter")
         break
   }
 		},
