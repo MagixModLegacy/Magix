@@ -4289,7 +4289,10 @@ G.writeMSettingButton=function(obj)
 	
 	new G.Res({name:'died this year',hidden:true});
 	new G.Res({name:'born this year',hidden:true});
-
+	 new G.Res({
+		name:'slain corpse',
+		icon:[3,15,'magixmod'],
+	});
 	
 	var numbersInfo='//The number on the left is how many are in use, while the number on the right is how many you have in total.';
 	
@@ -9023,10 +9026,7 @@ if (!document.getElementById(cssId))
 		icon:[10,4,'magixmod'],
 		category:'ore',
 	});
-	  new G.Res({
-		name:'slain corpse',
-		icon:[3,15,'magixmod'],
-	});
+	 
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
