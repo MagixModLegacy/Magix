@@ -4702,7 +4702,7 @@ G.writeMSettingButton=function(obj)
 	});
 	new G.Res({
 		name:'corpse',
-		desc:'[corpse,Corpses] are the remains of [population,People] that died, whether from old age, accident, disease, starvation or war.//Corpses left in the open air tend to spread diseases and make people unhappy, which gets even worse as superstitions develop. To mitigate this, you need a [burial spot] for each corpse.',
+		desc:'[corpse,Corpses] are the remains of [population,People] that died, whether from old age, accident, disease, starvation or war.//Corpses left in the open air tend to spread diseases and make people unhappy, which gets even worse as superstitions develop. To mitigate this, you need a [burial spot] for each corpse. //While fighting against [wild corpse]s and succed the fight , corpse will become [slain corpse]. Currently you have <b>'+G.getRes('slain corpse').amount+'</b> of them.',
 		startWith:0,
 		icon:[8,3],
 		tick:function(me,tick)
@@ -4762,7 +4762,11 @@ G.writeMSettingButton=function(obj)
 			if(G.has('respect for the corpse')){
 				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
-			
+			if(G.has('<span style="color: red">Revenants</span>')){
+				G.lose('corpse',G.getRes('corpse').amount*0.01,'revenge of corpses');
+				G.lose('dark essence',0.1,'revenge of corpses');
+				G.gain('wild corpse',G.getRes('corpse').amount*0.01,'revenge of corpses');
+			}
 		},	
 	});
 	new G.Res({
@@ -9018,6 +9022,10 @@ if (!document.getElementById(cssId))
 		desc:'A fool\'s gold. Cannot be smelted for [precious metal ingot]. Most commonly it is a waste.',
 		icon:[10,4,'magixmod'],
 		category:'ore',
+	});
+	  new G.Res({
+		name:'slain corpse',
+		icon:[3,15,'magixmod'],
 	});
 	/*=====================================================================================
 	UNITS
