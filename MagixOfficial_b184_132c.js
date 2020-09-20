@@ -10192,7 +10192,7 @@ if (!document.getElementById(cssId))
 			'diggers':{name:'Digger\'s lodge',icon:[7,2],desc:'Hire [digger]s until there are 6 for each of this lodge.',req:{'digging':true}},
 			'woodcutters':{name:'Woodcutter\'s lodge',icon:[8,2],desc:'Hire [woodcutter]s until there are 6 for each of this lodge.',req:{'woodcutting':true}},
 			'artisans':{name:'Artisan\'s lodge',icon:[6,2],desc:'Hire [artisan]s until there are 6 for each of this lodge.',req:{'stone-knapping':true}},
-			'florists':{name:'Florist\'s lodge',icon:[7,11,'magixmod'],desc:'Hire [florist]s until there are 6 for each of this lodge.',req:{'plant lore':true}},
+			'florists':{name:'Florist\'s lodge',icon:[7,11,'magixmod'],desc:'Hire [Florist]s until there are 6 for each of this lodge.',req:{'plant lore':true}},
 		},
 		effects:[
 		/*{type:'function',func:function(me){
