@@ -8983,7 +8983,7 @@ if (!document.getElementById(cssId))
 	});
   new G.Res({
 		name:'mythril ore',
-		desc:'Ore that is harder to find than gold and silver. Can be processed into [various metal ingot]s.',
+		desc:'Ore that is harder to find than gold and silver. Can be processed into [mystical metal ingot]s.',
 		icon:[10,3,'magixmod'],
 		partOf:'misc materials',
 		category:'ore',
@@ -12874,7 +12874,7 @@ new G.Unit({
 			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/25,req:{'coordination':false}},
 		],
 	});
-	new G.Unit({
+	/*new G.Unit({
 		name:'block-smith workshop',
 		desc:'@forges blocks out of ingots<>The [block-smith workshop,Block-smith] forges [various metal block]s out of metals.',
 		icon:[19,30,'magixmod'],
@@ -12900,7 +12900,7 @@ new G.Unit({
 		gizmos:true,
 		req:{'smelting':true,'block-smithery':true},
 		category:'plainisleunit',
-	});
+	});*/
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
