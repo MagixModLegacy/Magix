@@ -17133,7 +17133,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'People will now wash their hands. However they do not know how to make a soap. At least water can clean hands. Raises up a little bit [health] level.',
 		icon:[8,18,'magixmod'],
 		req:{'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false},
-		cost:{'insight':400},
+		cost:{'insight':435},
 		effects:[
 		],
 		chance:3
@@ -17144,7 +17144,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'People will now wash their hands. However they do not know how to make a soap also focused on technological progress more than on their health they\'ll forget to do it sometime.. At least water can clean hands. Raises up a little bit [health] level.',
 		icon:[34,24,'magixmod'],
 		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false},
-		cost:{'insight':400},
+		cost:{'insight':435},
 		effects:[
 		],
 		chance:3
