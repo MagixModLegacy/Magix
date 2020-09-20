@@ -8566,13 +8566,26 @@ if (!document.getElementById(cssId))
 			G.getDict('seals').res['hunt']['hide']=0.5;
 			G.getDict('crocodiles').res['hunt']['leather']=0.5;
 			}
-			//OSMIUM SPAWN
+			//OSMIUM , MODERNIUM AND CARETAKIUM SPAWN
 			if(G.has('mining II')){
 			G.getDict('rocky substrate').res['mine']['osmium ore']=0.003;
 			G.getDict('tundra rocky substrate').res['mine']['osmium ore']=0.0041;
 			G.getDict('ice desert rocky substrate').res['mine']['osmium ore']=0.004;
 			G.getDict('dead rocky substrate').res['mine']['osmium ore']=0.0005;
 			G.getDict('badlands substrate').res['mine']['osmium ore']=0.001;
+				if(G.has('<font color="maroon">Caretaking</font>')){
+					G.getDict('rocky substrate').res['deep mine']['caretakium ore']=0.02;
+					G.getDict('tundra rocky substrate').res['deep mine']['caretakium ore']=0.002;
+					G.getDict('ice desert rocky substrate').res['deep mine']['caretakium ore']=0.001;
+					G.getDict('badlands substrate').res['deep mine']['caretakium ore']=0.01;
+					G.getDict('lush rocky substrate').res['deep mine']['caretakium ore']=0.015;
+				}else if(G.has('<font color="maroon">Moderation</font>')){
+					G.getDict('rocky substrate').res['deep mine']['modernium ore']=0.01;
+					G.getDict('tundra rocky substrate').res['deep mine']['modernium ore']=0.002;
+					G.getDict('ice desert rocky substrate').res['deep mine']['modernium ore']=0.001;
+					G.getDict('badlands substrate').res['deep mine']['modernium ore']=0.01;
+					G.getDict('lush rocky substrate').res['deep mine']['modernium ore']=0.015;
+				}
 			}
 			if(G.has('herbalism')){
 			G.getDict('grass').res['gather']['herb']=10;
@@ -9047,6 +9060,18 @@ if (!document.getElementById(cssId))
 		icon:[10,6,'magixmod'],
 		partOf:'precious building materials',
 		category:'build',
+	});
+	 new G.Res({//WIP
+		name:'modernium ore',
+		desc:'Red almost pink ore. To process a ingot from it you have a low chance for that. At least it can be smelt into random things like [coal]. Only obtainable if people will be led by [<font color="maroon">Moderation</font>].// <font color="fuschia">InDev</font>',
+		icon:[10,8,'magixmod'],
+		category:'ore',
+	}); 
+	new G.Res({//WIP
+		name:'caretakium ore',
+		desc:'Dark green ore. To process a ingot from it you have a low chance for that. At least it can be used in some other purposes like forging blocks. Some people say it can be like a herb... but unedible. Only obtainable if people will be led by [<font color="maroon">Caretaking</font>].// <font color="fuschia">InDev</font>',
+		icon:[10,7,'magixmod'],
+		category:'ore',
 	});
 	/*=====================================================================================
 	UNITS
