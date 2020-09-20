@@ -9041,13 +9041,13 @@ if (!document.getElementById(cssId))
 		icon:[3,16,'magixmod'],
 	});
 	new G.Res({name:'soldiers defeats',hidden:true});
-	/* G.Res({
+	G.Res({
 		name:'various metals block',
 		desc:'A valuable, if unreliable construction material. Can be crafted by using: [mythril ore,Mythril],[dinium ore],[blackium ore] and many more.',
 		icon:[10,6,'magixmod'],
 		partOf:'precious building materials',
 		category:'build',
-	});*/
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
