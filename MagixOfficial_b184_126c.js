@@ -12870,8 +12870,8 @@ new G.Unit({
 		priority:5,
 		effects:[
 			{type:'convert',from:{'wild corpse':1},into:{'slain corpse':1},every:4,chance:1/4},
-			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/50,req:{'coordination':true}},
-			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/25,req:{'coordination':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/50,req:{'coordination':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/25,req:{'coordination':false}},
 		],
 	});
 	new G.Unit({
