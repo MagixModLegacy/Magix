@@ -4922,11 +4922,6 @@ G.writeMSettingButton=function(obj)
 			if(G.has('t4') && G.year>=3){
 			G.lose('health'	,1+(G.year*((G.achievByName['Hunted'].won+1)/3)))
 			}
-			if(G.has('handwashC')){
-				if(G.getRes('health').amount<0){G.gain(me,-me.amount*0.0004,'handwashing')}else{G.gain(me,me.amount*0.0004,'handwashing')};
-			}else if(G.has('handwashM')){
-				if(G.getRes('health').amount<0){G.gain(me,-me.amount*0.0001,'handwashing')}else{G.gain(me,me.amount*0.0001,'handwashing')};
-			}
 		},
 		getDisplayAmount:function()
 		{
@@ -5214,6 +5209,12 @@ G.writeMSettingButton=function(obj)
 				var spent=G.lose('health',randomFloor(toSpoil),'Buri\'o Dak');
 				}
 			}
+			if(G.has('handwashC')){
+				if(G.getRes('health').amount<0){G.gain('health',-G.getRes('health').amount*0.0004,'handwashing')}else{G.gain('health',G.getRes('health').amount*0.0004,'handwashing')};
+			}else if(G.has('handwashM')){
+				if(G.getRes('health').amount<0){G.gain('health',-G.getRes('health').amount*0.0001,'handwashing')}else{G.gain('health',G.getRes('health').amount*0.0001,'handwashing')};
+			}
+
 		},
 		category:'food',
 	});
