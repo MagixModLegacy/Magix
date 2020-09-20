@@ -17121,6 +17121,26 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		cost:{'insight II':340,'science':40},
 		req:{'dinium & unknownium working':true,'mirror world 1/2':true},
 	});
+	new G.Tech({
+		name:'handwashC',
+		desc:'People will now wash their hands. However they do not know how to make a soap. At least water can clean hands. Raises up a little bit [health] level.',
+		icon:[8,18,'magixmod'],
+		req:{'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false},
+		cost:{'insight':400},
+		effects:[
+		],
+		chance:3
+	});	
+	new G.Tech({
+		name:'handwashM',
+		desc:'People will now wash their hands. However they do not know how to make a soap also focused on technological progress more than on their health they\'ll forget to do it sometime.. At least water can clean hands. Raises up a little bit [health] level.',
+		icon:[34,24,'magixmod'],
+		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false},
+		cost:{'insight':400},
+		effects:[
+		],
+		chance:3
+	});	
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
