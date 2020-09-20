@@ -8983,7 +8983,7 @@ if (!document.getElementById(cssId))
 	});
   new G.Res({
 		name:'mythril ore',
-		desc:'Ore that is harder to find than gold and silver. Can be processed into [mythril ingot]s.',
+		desc:'Ore that is harder to find than gold and silver. Can be processed into [various metal ingot]s.',
 		icon:[10,3,'magixmod'],
 		partOf:'misc materials',
 		category:'ore',
@@ -12876,14 +12876,14 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'block-smith workshop',
-		desc:'@forges metal goods out of ingots<>The [block-smith workshop,Block-smith] forges [various metal block]s out of metals.',
+		desc:'@forges blocks out of ingots<>The [block-smith workshop,Block-smith] forges [various metal block]s out of metals.',
 		icon:[19,30,'magixmod'],
 		cost:{'basic building materials':100},
 		use:{'Land of the Plain Island':1},
 		//TODO: EACH MODE HAS ITS OWN ICON. WILL BE ADDED NEXT PATCH
 		modes:{
 			'off':G.MODE_OFF,
-			'mythril':{name:'mythril block',icon:[34,25,'magixmod'],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
+			'mythril':{name:'Forge mythril blocks',icon:[34,25,'magixmod'],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
 			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true,'block-smithery':false}},
 			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true,'block-smithery':false},use:{'worker':1,'metal tools':1,'stone tools':1}},
 		},
