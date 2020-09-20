@@ -4922,6 +4922,11 @@ G.writeMSettingButton=function(obj)
 			if(G.has('t4') && G.year>=3){
 			G.lose('health'	,1+(G.year*((G.achievByName['Hunted'].won+1)/3)))
 			}
+			if(G.has('handwashC')){
+			if(me.amount<0){G.gain(me,-me.amount*0.0004,'handwashing')}else{G.gain(me,me.amount*0.0004,'handwashing')};
+			}else if(G.has('handwashM')){
+			if(me.amount<0){G.gain(me,-me.amount*0.0001,'handwashing')}else{G.gain(me,me.amount*0.0001,'handwashing')};
+			}
 		},
 		getDisplayAmount:function()
 		{
@@ -17123,6 +17128,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Tech({
 		name:'handwashC',
+		displayName:'Handwashing',
 		desc:'People will now wash their hands. However they do not know how to make a soap. At least water can clean hands. Raises up a little bit [health] level.',
 		icon:[8,18,'magixmod'],
 		req:{'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false},
@@ -17133,6 +17139,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});	
 	new G.Tech({
 		name:'handwashM',
+		displayName:'Handwashing',
 		desc:'People will now wash their hands. However they do not know how to make a soap also focused on technological progress more than on their health they\'ll forget to do it sometime.. At least water can clean hands. Raises up a little bit [health] level.',
 		icon:[34,24,'magixmod'],
 		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false},
