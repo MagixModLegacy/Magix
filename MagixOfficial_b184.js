@@ -1221,7 +1221,7 @@ author:'pelletsstarPL',
 desc:'Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
 manifest:'ModManifest.js',
-sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
+sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4Ta.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
@@ -1239,6 +1239,48 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+		G.rerollChooseBox=function(me)
+	{
+		//check if we match the costs; if yes, research or reroll
+		var costs=me.getCosts();
+		var success=true;
+		if (!G.testCost(costs,1)) success=false;
+			var randomTxt=Math.round(Math.random()*4);
+			if(randomTxt>=0 && randomTxt<=1){
+		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#ffdddd">There is nothing more to research for now.</font></small>');}
+			}else if(randomTxt>1 && randomTxt<=2){
+		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#ccccff">Wait patiently. There will be something to research... unless you researched everything , then yeah. There is the end.</font></small>');}
+			}else if(randomTxt>2 && randomTxt<=3){
+		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#aaffdd">The mod has over 250 available techs. If you have that much it may be the end.</font></small>');}
+			}else if(randomTxt>3 && randomTxt<=4){
+		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#777777">More techs coming soon :)</font></small>');}
+			}
+		if (success)
+		{
+			G.doCost(costs,1);
+			
+			var bounds=l('chooseIgniter-'+me.id).getBoundingClientRect();
+			var posX=bounds.left+bounds.width/2;
+			var posY=bounds.top;
+			for (var i in costs)
+			{G.showParticle({x:posX,y:posY,icon:G.dict[i].icon});}
+			
+			me.justUsed=true;
+			me.choices=[];
+			var choices=me.getCards();
+			var n=Math.min(choices.length,me.choicesN);
+			for (var i=0;i<n;i++)
+			{
+				var choice=choose(choices);
+				if (!me.choices.includes(choice)) me.choices.push(choice);
+				//var index=choices.indexOf(choice);
+				//choices.splice(index,1);//no duplicates
+			}
+			me.onReroll();
+			G.refreshChooseBox(me);
+			me.justUsed=false;
+		}
+	}
 	G.inspectTile=function(tile)
 	{
 		//display the tile's details in the land section
@@ -1884,6 +1926,7 @@ G.props['fastTicksOnResearch']=150;
 	let madeThanks4playmesg = false
 	let backupmesg = false
 	let milleniummesg = false
+	let Secondmilleniummesg = false
 	let st1=false
 	let st2=false
 	let st3=false
@@ -1897,6 +1940,8 @@ G.props['fastTicksOnResearch']=150;
 	let st11=false
 	let st12=false
 	let st13=false
+	let st14=false
+	let st15=false
 	let displayC1=true;let displayC2=false;
 		G.funcs['new game blurb']=function()
 	{   
@@ -2559,15 +2604,33 @@ G.props['fastTicksOnResearch']=150;
 	{
 		if (G.on)
 		{
-		
+		if(G.has('time measuring 1/2') && G.has('primary time measure')){
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
 			str+='Report for last year :<br>';
 			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
 			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			str+='&bull; <b>Soldiers defeats</b> : '+B(G.getRes('died this year').amount)+'<br>';
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
+			G.getRes('soldiers defeats').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
+		}else if(G.has('primary time measure') && G.hasNot('time measuring 1/2')){
+			var txt = ''+G.year+'';
+  var res = txt.endsWith("00")
+			if(res==true){
+			var str='';
+			str+='It is now the century <b>'+Math.floor(((G.year/100)+1))+'</b>.<br>';
+			str+='Report for last long period of time... this century :<br>';
+			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
+			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			str+='&bull; <b>Soldiers defeats</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			G.getRes('born this year').amount=0;
+			G.getRes('died this year').amount=0;
+			G.getRes('soldiers defeats').amount=0;
+			G.Message({type:'important',text:str,icon:[0,3]});
+			}
+		}
 			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
 			if(t1start==true)
 			{
@@ -2644,63 +2707,75 @@ G.props['fastTicksOnResearch']=150;
        				 G.Message({type:'good',text:'Woah! It\'s been <b>1 thousand</b> years since your tribe started their existence. Your playing supports mod author and motivates for further updates. <br><b>Thank you ;)</b> <br><font color="lime"><tt>Continue enjoying Magix expansion.</tt></font>',icon:[27,23,'magixmod']});
 				milleniummesg = true
 				}
+			if (G.year>=1999 && G.year<=2005 && !Secondmilleniummesg){
+       				 G.Message({type:'good',text:'OMG! It\'s been <b>2 thousand</b> years since your tribe started their wonderful existence. Also I am sure that your adventure with Magix is not over yet. Your playing supports mod author and motivates for further updates. <br><b>Thank you ;)</b> <br><font color="lime"><tt>Continue enjoying Magix expansion.</tt></font>',icon:[32,30,'magixmod']});
+				Secondmilleniummesg = true
+				}
 			////STORYLINE////
-			if(G.techN >= 24 && G.techN <=33 && !st1){
+			if(G.techN >= 25 && G.techN <=34 && !st1){
 				G.Message({type:'story1',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
 				st1=true
 			}
-			if(G.techN > 34 && G.techN <=45 && !st2){
+			if(G.techN > 35 && G.techN <=46 && !st2){
 				G.Message({type:'story2',text:'All things go with its correct way'});
 				st2=true
 			}
-			if(G.techN > 46 && G.techN <=49 && !st3){
+			if(G.techN > 47 && G.techN <=52 && !st3){
 				G.Message({type:'story1',text:'You want some mirror. But sadly no one can craft glass mirror yet. Luckily you didn\'t forget that you can use water surface as some sort of a mirror.',icon:[32,14,'magixmod']});
 				st3=true
 			}
-			if(G.techN > 54 && G.techN <=64 && !st4){
+			if(G.techN > 56 && G.techN <=69 && !st4){
 				if(G.resets==0){
-				G.Message({type:'story2',text:'You think that you should ascend someday no matter what. You fell it so strongly.',icon:[32,13,'magixmod']});
+				G.Message({type:'story2',text:'You think that you should ascend someday no matter what. You feel it so strongly.',icon:[32,13,'magixmod']});
 				st4=true
 				}else if(G.resets>=1){
 					G.Message({type:'story2',text:'You wonder how your tribe will look and how advanced it will become within next centuries.',icon:[32,12,'magixmod']});
 				st4=true
 			}
 			}
-			if(G.techN > 67 && G.techN <=75 && !st5){
+			if(G.techN > 69 && G.techN <=77 && !st5){
 				G.Message({type:'story1',text:'You organize storytelling at the beach. Well. Some wolf was lurking to wound some of your '+G.getName('inhabs')+' but some hunter takes it down before the tragedy.',icon:[7,11]});
 				st5=true
 			}
-			if(G.techN > 76 && G.techN <=81 && !st6){
+			if(G.techN > 77 && G.techN <=83 && !st6){
 				G.Message({type:'good',text:'Some of your people believe that our existence may make a lot of good for this world... And that hope spreads.',icon:[32,11,'magixmod']});
 				st6=true
 			}
-			if(G.techN > 83 && G.techN <=90 && !st7){
+			if(G.techN > 83 && G.techN <=92 && !st7){
 				G.Message({type:'story2',text:'One of dreamers asks you how are you today. You answer that you are fine. While you talking with this dreamer some firekeeper comes to you with water pot and some cured seafood. Great ; )',icon:[32,10,'magixmod']});
 				st7=true
 			}
-			if(G.techN > 90 && G.techN <=94 && !st8){
+			if(G.techN > 93 && G.techN <=99 && !st8){
 				G.Message({type:'bad',text:'You had a nightmare someday. You saw there brutally wounded '+G.getName('inhab')+' . It really shocked and feared you.',icon:[32,9,'magixmod']});
 				st8=true
 			}
-			if(G.techN > 94 && G.techN <=99 && !st9){
+			if(G.techN > 99 && G.techN <=106 && !st9){
 				G.Message({type:'good',text:'While wandering you noticed some angel waving at you. But you didn\'t understand what the angel did say to you. You are full of hope that it is some greeting.',icon:[32,8,'magixmod']});
 				st9=true
 			}
-			if(G.techN > 102 && G.techN <=107 && !st10){
+			if(G.techN > 108 && G.techN <=112 && !st10){
 				G.Message({type:'story1',text:'This angel appears in your dreams. Now it said clearly that Paradise will be open for you and your tribe. You clearly remembered his words: <br><b><font color="#FFFED6">Dear '+G.getName('ruler')+' . I am so proud of you<br> and people you rule. They are sign that shows how worthy people are. <br>You teached them a lot.<br.Someday the Paradise will be open for you '+G.getName('ruler')+'and your '+G.getName('inhabs')+'</font></b>',icon:[32,8,'magixmod']});
 				st10=true
 			}
-			if(G.techN > 108 && G.techN <=114 && !st11){
+			if(G.techN > 112 && G.techN <=119 && !st11){
 				G.Message({type:'good',text:'You see one of your carver works on gem block. You came closer to see the big gem block and even asked if he can teach you a little of carving. You spend some time with him and carved your first wooden statuette. Then you carved a crown for the statuette. Hooray.',icon:[32,7,'magixmod']});
 				st11=true
 			}
-			if(G.techN > 114 && G.techN <=122 && !st12){
+			if(G.techN > 119 && G.techN <=127 && !st12){
 				G.Message({type:'story2',text:'He did a flip. lol',icon:[24,2,'magixmod']});
 				st12=true
 			}
-			if(G.techN > 122 && G.techN <=132 && !st13){
+			if(G.techN > 127 && G.techN <=138 && !st13){
 				G.Message({type:'story1',text:'You look confused a little bit , but still your presence motivates your '+G.getName('inhabs')+' to discover more and more. But about what you are confused.',icon:[7,30,'magixmod']});
 				st13=true
+			}
+			if(G.techN > 139 && G.techN <=143 && !st14){
+				G.Message({type:'story2',text:'People has written book as they call it: "Book of Grand Herbalist" . It is all about herbalism proffesion. People related to druidism are preety proud of that.',icon:[30,30,'magixmod']});
+				st14=true
+			}
+			if(G.techN > 143 && G.techN <=151 && !st15){
+				G.Message({type:'story1',text:'Their creativity has no limits... definitely.',icon:[31,30,'magixmod']});
+				st15=true
 			}
 		}
 		if(G.has('t2')){
@@ -2882,7 +2957,324 @@ G.props['fastTicksOnResearch']=150;
 		'Some dangerous creature sleeps calmly.',
 		'From far a sounds of a falling tree can be heard',
 	];
+	G.Message=function(obj)
+	{
+		//syntax :
+		//G.Message({type:'important',text:'This is a message.'});
+		//.type is optional
+		var me={};
+		me.type='normal';
+		for (var i in obj) {me[i]=obj[i];}
+		var scrolled=!(Math.abs(G.messagesWrapl.scrollTop-(G.messagesWrapl.scrollHeight-G.messagesWrapl.offsetHeight))<3);//is the message list not scrolled at the bottom? (if yes, don't update the scroll - the player probably manually scrolled it)
 		
+		me.date=G.year*300+G.day;
+		var text=me.text||me.textFunc(me.args);
+		
+		var mergeWith=0;
+		if (me.mergeId)
+		{
+			//this is a system where similar messages merge together if they're within 100 days of each other, in order to reduce spam
+			//simply declare a .mergeId to activate merging on this message with others like it
+			//syntax :
+			//var cakes=10;G.Message({type:'important',mergeId:'newCakes',textFunc:function(args){return 'We\'ve baked '+args.n+' new cakes.';},args:{n:cakes}});
+			//numeric arguments will be added to the old ones unless .replaceOnly is true
+			
+			for (var i in G.messages)
+			{
+				var other=G.messages[i];
+				if (other.id==me.mergeId && me.date-other.date<100) mergeWith=other;
+			}
+			me.id=me.mergeId;
+		}
+		if (mergeWith)
+		{
+			me.date=other.date;
+			if (me.replaceOnly)
+			{
+				for (var i in me.args)
+				{mergeWith.args[i]=me.args[i];}
+			}
+			else
+			{
+				for (var i in me.args)
+				{
+					if (!isNaN(parseFloat(me.args[i]))) mergeWith.args[i]+=me.args[i];
+					else mergeWith.args[i]=me.args[i];
+				}
+			}
+			text=me.textFunc(mergeWith.args);
+		}
+		if(G.has('primary time measure') && G.hasNot('time measuring 1/2')){
+		var str='<div class="messageTimestamp" title="'+'century '+Math.floor(((G.year/100)+1))+'">'+'C:'+Math.floor(((G.year/100)+1))+'</div>'+
+		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
+		}
+		else if(G.has('primary time measure') && G.has('time measuring 1/2')){
+		var str='<div class="messageTimestamp" title="'+'year '+(G.year+1)+', day '+(G.day+1)+'">'+'Y:'+(G.year+1)+'</div>'+
+		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';
+		}else{
+		var str='<div class="messageTimestamp"></div>'+
+		'<div class="messageContent'+(me.icon?' hasIcon':'')+'">'+(me.icon?(G.getArbitraryIcon(me.icon)):'')+'<span class="messageText">'+text+'</span></div>';	
+		}
+		if (mergeWith) mergeWith.l.innerHTML=str;
+		else
+		{
+			var div=document.createElement('div');
+			div.innerHTML=str;
+			div.className='message popInVertical '+(me.type).replaceAll(' ','Message ')+'Message';
+			G.messagesl.appendChild(div);
+			me.l=div;
+			G.messages.push(me);
+			if (G.messages.length>G.maxMessages)
+			{
+				var el=G.messagesl.firstChild;
+				for (var i in G.messages)
+				{
+					if (G.messages[i].l==el)
+					{
+						G.messages.splice(i,1);
+						break;
+					}
+				}
+				G.messagesl.removeChild(el);
+				//G.messages.pop();
+				//G.messagesl.removeChild(G.messagesl.firstChild);
+			}
+			if (!scrolled) G.messagesWrapl.scrollTop=G.messagesWrapl.scrollHeight-G.messagesWrapl.offsetHeight;
+		}
+		G.addCallbacks();
+	}
+		G.Logic=function(forceTick)
+	{
+		//forceTick lets us execute logic and force a tick update
+
+		if (G.sequence=='loading' || G.sequence=='checking' || G.sequence=='updating')
+		{
+			var done=G.LogicModLoading();
+		}
+		else if (G.sequence=='main')
+		{
+			G.oldSpeed=G.speed;
+			G.speed=1;
+			if (G.getSetting('fast')) G.speed=2;
+			if (G.getSetting('paused')) G.speed=0;
+			if (G.getSetting('forcePaused')) G.speed=0;
+			if (forceTick) G.speed=1;
+			
+			if (G.speed==0)
+			{
+				//accumulate fast ticks when paused
+				G.nextFastTick--;
+				if (G.nextFastTick<=0) {G.fastTicks++;G.nextFastTick=G.tickDuration;}
+			}
+			
+			if (G.oldSpeed!=G.speed)
+			{
+				if (G.speed==1)
+				{
+					G.wrapl.classList.remove('speed0');
+					G.wrapl.classList.add('speed1');
+					G.wrapl.classList.remove('speed2');
+				}
+				else if (G.speed==2)
+				{
+					G.wrapl.classList.remove('speed0');
+					G.wrapl.classList.remove('speed1');
+					G.wrapl.classList.add('speed2');
+				}
+				else
+				{
+					G.wrapl.classList.add('speed0');
+					G.wrapl.classList.remove('speed1');
+					G.wrapl.classList.remove('speed2');
+				}
+			}
+			
+			if (G.T>0 && G.oldSpeed!=G.speed)
+			{
+				if (G.speed==0)//just paused
+				{
+					l('foreground').style.display='block';
+					G.middleText('- Pause -<br><small>Press space to unpause</small>');
+				}
+				else if (G.oldSpeed==0)//just unpaused
+				{
+					l('foreground').style.display='none';
+					if (G.T>0) G.middleText('- Unpaused -');
+				}
+				else if (G.speed==1)
+				{
+					G.middleText('- Speed x1 -');
+				}
+				else if (G.speed==2)
+				{
+					G.middleText('- Speed x30 -');
+				}
+			}
+			
+			if (G.speed>0)//not paused
+			{
+				if (G.nextTick<=0 || forceTick)
+				{
+					if (G.speed==2)
+					{
+						//use up fast ticks when on fast speed
+						G.fastTicks--;
+						if (G.fastTicks<=0) {G.fastTicks=0;G.speed=1;G.setSetting('fast',0);}
+					}
+					G.logic['res']();
+					G.logic['unit']();
+					G.logic['land']();
+					G.logic['tech']();
+					G.logic['trait']();
+					
+					//exploring
+					var map=G.currentMap;
+					var updateMap=false;
+					if (G.exploreOwnedTiles && map.tilesByOwner[1].length>0)
+					{
+						G.exploreOwnedTiles=randomFloor(G.exploreOwnedTiles);
+						for (var i=0;i<G.exploreOwnedTiles;i++)
+						{
+							var tile=choose(map.tilesByOwner[1]);
+							if (tile.explored<1)
+							{
+								tile.explored+=0.01;
+								tile.explored=Math.min(tile.explored,1);
+								G.tileToRender(tile);
+								updateMap=true;
+							}
+						}
+					}
+					if (G.exploreNewTiles && map.tilesByOwner[1].length>0)
+					{
+						G.exploreNewTiles=randomFloor(G.exploreNewTiles);
+						for (var i=0;i<G.exploreNewTiles;i++)
+						{
+							var dirs=[];
+							var tile=choose(map.tilesByOwner[1]);
+							var fromLand=true;
+							if (tile.land.ocean) fromLand=false;
+							if (fromLand || G.allowShoreExplore)
+							{
+								if (tile.x>0 && map.tiles[tile.x-1][tile.y].explored==0) dirs.push([-1,0]);
+								if (tile.x<map.w-1 && map.tiles[tile.x+1][tile.y].explored==0) dirs.push([1,0]);
+								if (tile.y>0 && map.tiles[tile.x][tile.y-1].explored==0) dirs.push([0,-1]);
+								if (tile.y<map.h-1 && map.tiles[tile.x][tile.y+1].explored==0) dirs.push([0,1]);
+								if (dirs.length>0)
+								{
+									var dir=choose(dirs);
+									tile=map.tiles[tile.x+dir[0]][tile.y+dir[1]];
+									var isShore=false;
+									if (tile.land.ocean && fromLand) isShore=true;
+									if (G.allowOceanExplore || !tile.land.ocean || isShore)
+									{
+										tile.owner=1;
+										tile.explored+=0.1;
+										G.tileToRender(tile);
+										updateMap=true;
+										G.doFuncWithArgs('found tile',[tile]);
+									}
+								}
+							}
+						}
+					}
+					if (updateMap)
+					{
+						G.updateMapForOwners(map);
+						//G.mapToRefresh=true;
+					}
+					G.exploreOwnedTiles=0;
+					G.exploreNewTiles=0;
+					
+					
+					G.tickChooseBoxes();
+					G.nextTick=(G.speed==1?G.tickDuration:1);
+					G.tick++;
+					if (G.day>0 || G.tick>1) {G.day++;G.totalDays++;G.furthestDay=Math.max(G.furthestDay,G.day+G.year*300);G.doFunc('new day');}
+					if (G.day>300) {G.day=0;G.year++;G.doFunc('new year');}
+					//Time measuring tech. It will have 2 levels. Here goes the code:
+		if(G.hasNot('time measuring 1/2') && G.hasNot('primary time measure')){
+			l('date').innerHTML='No '+G.getName('civ')+' knows the time yet';
+   			G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">While researching people may get <b>Primary time measure</b> knowledge to display current date<br>(you\'ll see Centuries).<br> Despite of that you do not see current date events related to time may still occur.</div>';},{offY:-8});
+			 G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed</b>.</div>';},{offY:-8});   
+			    }
+		else if(G.has('primary time measure') && G.hasNot('time measuring 1/2') && G.hasNot('time measuring 2/2')){
+			l('date').innerHTML='Century '+Math.floor(((G.year/100)+1))+' in '+G.getName('civ');
+			G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed</b>.</div>';},{offY:-8});
+   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>Sometime people start a new centrury. To see years obtain <b>Time measuring</b> 1/2 research.</div>';},{offY:-8});
+			    
+			    }else if(G.has('primary time measure') && G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
+			l('date').innerHTML='Year '+(G.year+1)+' in '+G.getName('civ');
+				    	G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed,<br>advancing your civilization by <b>'+Math.floor(G.fastTicks/300)+' years</b>.</div>';},{offY:-8});
+   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>Sometime a new year starts. To see days obtain <b>Time measuring</b> 2/2 research.</div>';},{offY:-8});
+			    
+			    }else if(G.has('primary time measure') && G.has('time measuring 1/2') && G.has('time measuring 2/2')){
+			l('date').innerHTML='Year '+(G.year+1)+', day '+(G.day+1)+' in '+G.getName('civ');
+			G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed,<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
+   			 G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses ....every second, and 300 days make up a year.</div>';},{offY:-8});
+			    
+			    }    
+				}
+				if (!forceTick) G.nextTick--;
+			}
+			if(G.hasNot('time measuring 2/2') && G.hasNot('time measuring 1/2')){
+			l('fastTicks').innerHTML=''+B(G.fastTicks)+' fast ticks';
+			}else if(G.has('time measuring 1/2') && G.hasNot('time measuring 2/2')){
+			l('fastTicks').innerHTML=''+B(G.fastTicks/300)+' years';
+			}else if(G.has('time measuring 1/2') && G.has('time measuring 2/2')){
+			l('fastTicks').innerHTML=G.BT(G.fastTicks);
+			}
+			if (G.getSetting('autosave') && G.T%(G.fps*60)==(G.fps*60-1)) G.Save();
+		}
+		
+		if (G.mapToRefresh) G.refreshMap(G.currentMap);
+		if (G.mapToRedraw) G.redrawMap(G.currentMap);
+		
+		if (G.shouldRunReqs)
+		{
+			G.runUnitReqs();
+			G.runPolicyReqs();
+			G.update['unit']();
+			G.shouldRunReqs=0;
+		}
+		
+		G.logicMapDisplay();
+		G.widget.update();
+		if (G.T%5==0) G.tooltip.refresh();
+		G.tooltip.update();
+		G.infoPopup.update();
+		G.popupSquares.update();
+		G.updateMessages();
+		
+		//keyboard shortcuts
+		if (G.keysD[27]) {G.dialogue.close();}//esc
+		if (G.sequence=='main')
+		{
+			if (G.keys[17] && G.keysD[83]) {G.Save();}//ctrl-s
+			if (G.keysD[32])//space
+			{
+				if (G.getSetting('paused')) G.setSetting('paused',0);
+				else G.setSetting('paused',1)
+			}
+		}
+		
+		G.logic['particles']();
+		
+		if (G.T%5==0 && G.resizing) {G.stabilizeResize();}
+		
+		if (G.mouseUp) G.mousePressed=false;
+		G.mouseDown=false;
+		G.mouseUp=false;
+		if (G.mouseMoved && G.mousePressed) G.draggedFrames++; else if (!G.mousePressed) G.draggedFrames=0;
+		G.mouseMoved=0;
+		G.Scroll=0;
+		G.clickL=0;
+		G.keysD=[];
+		G.keysU=[];
+		if (document.activeElement.nodeName=='TEXTAREA' || document.activeElement.nodeName=='INPUT') G.keys=[];
+		
+		G.T++;
+	}
 	shuffle(G.props['new day lines']);
 	G.funcs['new day']=function()
 	{
@@ -2930,9 +3322,10 @@ G.props['fastTicksOnResearch']=150;
 			if(G.getRes('wisdom').amount<100){
 		G.gain('wisdom',1)	
 		}}//year1&2 nerf
-		if(G.year==1){
+		if(G.year<=1){
 		G.gain('happiness',0.15)
 		}
+		
 	}
 	
 	G.funcs['tracked stat str c1']=function()
@@ -3900,7 +4293,7 @@ G.writeMSettingButton=function(obj)
 	
 	new G.Res({name:'died this year',hidden:true});
 	new G.Res({name:'born this year',hidden:true});
-
+	
 	
 	var numbersInfo='//The number on the left is how many are in use, while the number on the right is how many you have in total.';
 	
@@ -4373,6 +4766,11 @@ G.writeMSettingButton=function(obj)
 			if(G.has('respect for the corpse')){
 				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
+			if(G.has('<span style="color: red">Revenants</span>') && G.getRes('Dark essence').amount>1000){
+				G.lose('corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
+				G.lose('Dark essence',0.15,'revenge of corpses');
+				G.gain('wild corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
+			}
 		},	
 	});
 	new G.Res({
@@ -4811,6 +5209,12 @@ G.writeMSettingButton=function(obj)
 				var spent=G.lose('health',randomFloor(toSpoil),'Buri\'o Dak');
 				}
 			}
+			if(G.has('handwashC')){
+				if(G.getRes('health').amount<0){G.gain('health',-G.getRes('health').amount*0.0004,'handwashing')}else{G.gain('health',G.getRes('health').amount*0.0004,'handwashing')};
+			}else if(G.has('handwashM')){
+				if(G.getRes('health').amount<0){G.gain('health',-G.getRes('health').amount*0.0001,'handwashing')}else{G.gain('health',G.getRes('health').amount*0.0001,'handwashing')};
+			}
+
 		},
 		category:'food',
 	});
@@ -7043,6 +7447,32 @@ if (!document.getElementById(cssId))
 			G.Message({type:'bad',text:'<b>Beware of Wild corpses!.</b> Since you obtained[<span style="color: red">Revenants</span>] as you noticed the Wild Corpses started to appear. They cause your [Dark essence] to leak and even worse they will kill your people. Slay them at any way you can.',icon:[24,0,'magixmod']});
 			madeWarnCorpseMesg = true
 			}
+			const corpses = G.getDict('wild corpse')
+  const chances = [
+    {
+      type: "hurt",
+      below: 0.9
+    },
+    {
+      type: "nothing",
+      below: 1
+    }
+  ]
+  const chance = Math.random()
+  let action
+  //Find what to do
+  for(let i = 0; !action; i++){
+    if(chance < chances[i].below)
+      action = chances[i].type
+  }
+  //Execute
+    switch(action){
+		   
+      case "hurt":
+        G.lose("adult", corpses.amount*0.0011, "wild corpse encounter")
+        G.gain("wounded", corpses.amount*0.0011, "wild corpse encounter")
+        break
+  }
 		},
 		category:'demog',
 	});
@@ -7145,8 +7575,8 @@ if (!document.getElementById(cssId))
 	G.lose("basic building materials", thieves.amount*0.1, "stolen")
         break
       case "hurt":
-        G.lose("adult", thieves.amount*0.45, "thieves hurting people")
-        G.gain("wounded", thieves.amount*0.45, "thieves hurting people")
+        G.lose("adult", thieves.amount*0.25, "thieves hurting people")
+        G.gain("wounded", thieves.amount*0.25, "thieves hurting people")
         break
   }
 },
@@ -7834,7 +8264,8 @@ if (!document.getElementById(cssId))
 			G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia"> Due to obtaining [Manufacture units I] this unit becomes useless and won\'t produce anything, anymore.</font></b>'
 			}
 			if(G.has('ritualism II')){
-			G.getDict('soothsayer').icon = [28,3,'magixmod']
+			G.getDict('soothsayer').icon = [28,3,'magixmod'];
+			G.getDict('druid').icon = [29,30,'magixmod']
 			G.getDict('wisdom rituals').cost = {'faith II':1},
 			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod'],
 			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
@@ -8077,7 +8508,14 @@ if (!document.getElementById(cssId))
 				G.getDict('granary').icon=[30,7,'magixmod']
 				G.getDict('stockpile').icon=[30,6,'magixmod']
 				G.getDict('well').icon=[30,5,'magixmod']
+				if(G.hasNot('furnace modernization')){
 				G.getDict('furnace').icon=[30,4,'magixmod']
+				}else{
+					G.getDict('furnace').icon=[11,0,'magixmod']
+					G.getDict('furnace').displayName='Blackium furnace';
+					G.getDict('furnace').upkeep={'log':3,'coal':3,'Lightning essence':2};
+					G.getDict('furnace').cost={'basic building materials':115,'blackium ore':50,'coal':75};
+				}
 				G.getDict('well of the Plain Island').icon=[30,3,'magixmod']
 				G.getDict('carver').icon=[30,2,'magixmod']
 				G.getDict('firekeeper').icon=[30,1,'magixmod']
@@ -8133,6 +8571,27 @@ if (!document.getElementById(cssId))
 			G.getDict('wolves').res['hunt']['hide']=0.5;
 			G.getDict('seals').res['hunt']['hide']=0.5;
 			G.getDict('crocodiles').res['hunt']['leather']=0.5;
+			}
+			//OSMIUM , MODERNIUM AND CARETAKIUM SPAWN
+			if(G.has('mining II')){
+			G.getDict('rocky substrate').res['mine']['osmium ore']=0.003;
+			G.getDict('tundra rocky substrate').res['mine']['osmium ore']=0.0041;
+			G.getDict('ice desert rocky substrate').res['mine']['osmium ore']=0.004;
+			G.getDict('dead rocky substrate').res['mine']['osmium ore']=0.0005;
+			G.getDict('badlands substrate').res['mine']['osmium ore']=0.001;
+				if(G.has('<font color="maroon">Caretaking</font>')){
+					G.getDict('rocky substrate').res['deep mine']['caretakium ore']=0.02;
+					G.getDict('tundra rocky substrate').res['deep mine']['caretakium ore']=0.002;
+					G.getDict('ice desert rocky substrate').res['deep mine']['caretakium ore']=0.001;
+					G.getDict('badlands substrate').res['deep mine']['caretakium ore']=0.01;
+					G.getDict('lush rocky substrate').res['deep mine']['caretakium ore']=0.015;
+				}else if(G.has('<font color="maroon">Moderation</font>')){
+					G.getDict('rocky substrate').res['deep mine']['modernium ore']=0.01;
+					G.getDict('tundra rocky substrate').res['deep mine']['modernium ore']=0.002;
+					G.getDict('ice desert rocky substrate').res['deep mine']['modernium ore']=0.001;
+					G.getDict('badlands substrate').res['deep mine']['modernium ore']=0.01;
+					G.getDict('lush rocky substrate').res['deep mine']['modernium ore']=0.015;
+				}
 			}
 			if(G.has('herbalism')){
 			G.getDict('grass').res['gather']['herb']=10;
@@ -8212,6 +8671,9 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
 			}};
 			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==400){G.getUnitByName('scientific university').mode==4;G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];}
+			if(G.has('<span style="color: ##FF0900">Plain island building</span>')){
+					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
+		}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -8531,6 +8993,92 @@ if (!document.getElementById(cssId))
 		displayUsed:true,
 		category:'demog'
 	});
+	new G.Res({
+		name:'lead ore',
+		desc:'Ore that can be processed into [hard metal ingot]s.',
+		icon:[10,4,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'mythril ore',
+		desc:'Ore that is harder to find than gold and silver. Can be processed into [mystical metal ingot]s.',
+		icon:[10,3,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'zinc ore',
+		desc:'Ore that can be processed into [hard metal ingot]s. Zinc is a slightly brittle metal at room temperature.',
+		icon:[11,3,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'osmium ore',
+		desc:'Ore that can be processed into [soft metal ingot]s. It is a hard, brittle, bluish-white metal.',
+		icon:[10,2,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'blackium ore',
+		desc:'Ore that can be processed into [strong metal ingot]s.',
+		icon:[11,2,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+  new G.Res({
+		name:'mystical metal ingot',
+		desc:'Can be used to craft [various metal block].',
+		icon:[11,6,'magixmod'],
+		partOf:'misc materials',
+		category:'build',
+	});
+   new G.Res({
+		name:'unknownium ore',
+		desc:'unknown ore ¯\_(ツ)_/¯',
+		icon:[10,5,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+   new G.Res({
+		name:'dinium ore',
+		desc:'What to do with that ore? Seems like furnaces cannot smelt it.',
+		icon:[11,5,'magixmod'],
+		partOf:'misc materials',
+		category:'ore',
+	});
+    new G.Res({
+		name:'pyrite',
+		desc:'A fool\'s gold. Cannot be smelted for [precious metal ingot]. Most commonly it is a waste.',
+		icon:[11,4,'magixmod'],
+		category:'ore',
+	});
+	  new G.Res({
+		name:'slain corpse',
+		icon:[3,16,'magixmod'],
+	});
+	new G.Res({name:'soldiers defeats',hidden:true});
+	new G.Res({
+		name:'various metal block',
+		desc:'A valuable, if unreliable construction material. Can be crafted by using: [mythril ore,Mythril],[dinium ore],[blackium ore] and many more.',
+		icon:[10,6,'magixmod'],
+		partOf:'precious building materials',
+		category:'build',
+	});
+	 new G.Res({//WIP
+		name:'modernium ore',
+		desc:'Red almost pink ore. To process a ingot from it you have a low chance for that. At least it can be smelt into random things like [coal]. Only obtainable if people will be led by [<font color="maroon">Moderation</font>].// <font color="fuschia">InDev</font>',
+		icon:[10,8,'magixmod'],
+		category:'ore',
+	}); 
+	new G.Res({//WIP
+		name:'caretakium ore',
+		desc:'Dark green ore. To process a ingot from it you have a low chance for that. At least it can be used in some other purposes like forging blocks. Some people say it can be like a herb... but unedible. Only obtainable if people will be led by [<font color="maroon">Caretaking</font>].// <font color="fuschia">InDev</font>',
+		icon:[10,7,'magixmod'],
+		category:'ore',
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -8586,7 +9134,7 @@ if (!document.getElementById(cssId))
 				changed/=workers;
 				G.wasteUnit(me,changed);
 				
-				if (changed>0) G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
+				if (changed>0 && me.unit.name!='thief hunter' && me.unit.name!='corpse slayer') G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
 						return args.str.replaceAll('\\[people\\]',(args.n==1?args.single:args.plural)).replaceAll('\\[X\\]',B(args.n));
 					},args:{n:changed,str:message,single:single,plural:plural},icon:me.unit.icon});
 			}
@@ -8636,6 +9184,7 @@ if (!document.getElementById(cssId))
 		//upkeep:{'coin':0.2},
 		effects:[
 			{type:'gather',what:{'insight':0.1}},
+			{type:'provide',what:{'housing':3},req:{'oral tradition':true}},
 			{type:'gather',what:{'insight':0.04},req:{'philosophy':false,'symbolism':true}},
 			{type:'gather',what:{'insight':0.05},req:{'philosophy':true,'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'insight':0.07},req:{'symbolism II':true}},
@@ -9048,6 +9597,7 @@ if (!document.getElementById(cssId))
 			'quarry':{name:'Quarry stone',icon:[0,8],desc:'Produce [cut stone] and other minerals.',use:{'worker':3,'stone tools':3}},
 			'advanced quarry':{name:'Advanced quarry stone',icon:[8,12,0,8],desc:'Produce [cut stone] and other minerals at a superior rate with metal tools.',use:{'worker':3,'metal tools':3}},
 			'quarryotherstones':{name:'Quarry other stones',icon:[3,12,'magixmod'],desc:'Strike the Earth for other than common [cut stone] stones.',req:{'quarrying II':true},use:{'worker':3,'metal tools':3}},
+			'quarrydeepores':{name:'Quarry deep for minerals',icon:[8,12,33,30,'magixmod'],desc:'Quarry for resources that are in Deep Quarrying territory context. In this mode you will gather 3x more ores but 6x less resources other than ores.',req:{'prospecting III':true},use:{'worker':8,'metal tools':8}},
 		},
 		effects:[
 			{type:'gather',context:'quarry',amount:5,max:10,every:3,mode:'quarry'},
@@ -9056,6 +9606,15 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'quarry',amount:10,max:30,every:3,mode:'advanced quarry'},
 			{type:'gather',context:'quarry',what:{'Various cut stones':5},mode:'quarryotherstones'},
 			{type:'gather',context:'quarry',what:{'oil':13},req:{'Oil-digging':true}},
+			//deepquarry
+			{type:'gather',context:'quarry',what:{'cut stone':0.17},max:0.88,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'Various cut stones':0.17},max:0.88,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'lead ore':10},max:30,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'blackium ore':10},max:30,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'mythril ore':10},max:30,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'unknownium ore':10},max:30,mode:'quarrydeepores'},
+			{type:'gather',context:'quarry',what:{'salt':1},max:3,mode:'quarrydeepores',chance:1/6},
+			/////
 			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
 		],
 		gizmos:true,
@@ -9072,12 +9631,15 @@ if (!document.getElementById(cssId))
 		modes:{
 			'off':G.MODE_OFF,
 			'any':{name:'Any',icon:[8,8],desc:'Mine without focusing on specific ores.',use:{'worker':3,'stone tools':3}},
+			'any(deepmine)':{name:'Any',icon:[24,18,'magixmod',8,8],desc:'Mine without focusing on specific ores way deeper.',use:{'worker':6,'metal tools':6},req:{'mining II':true}},
 			'coal':{name:'Coal',icon:[12,8],desc:'Mine for [coal] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'salt':{name:'Salt',icon:[11,7],desc:'Mine for [salt].',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'copper':{name:'Copper',icon:[9,8],desc:'Mine for [copper ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'tin':{name:'Tin',icon:[13,8],desc:'Mine for [tin ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'iron':{name:'Iron',icon:[10,8],desc:'Mine for [iron ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
 			'gold':{name:'Gold',icon:[11,8],desc:'Mine for [gold ore] with x5 efficiency.',req:{'prospecting':true},use:{'worker':3,'metal tools':3}},
+			'zinc':{name:'Zinc',icon:[11,3,'magixmod'],desc:'Mine for [zinc ore] with x5 efficiency.',req:{'prospecting III':true},use:{'worker':3,'metal tools':3}},
+			'dinium':{name:'Dinium',icon:[11,5,'magixmod'],desc:'Mine for [dinium ore] with x3 efficiency.',req:{'prospecting III':true},use:{'worker':3,'metal tools':3}},
 			'nickel':{name:'Nickel',icon:[9,12,'magixmod'],desc:'Mine for [nickel ore] with 5x efficiency.',req:{'prospecting II':true},use:{'worker':3,'metal tools':3}},
 			'ostones':{name:'Other stones',icon:[3,12,'magixmod'],desc:'Mine for other stones with 3x efficiency than common [stone].',req:{'prospecting II':true},use:{'worker':3,'metal tools':3}}
 		},
@@ -9089,6 +9651,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'mine',what:{'copper ore':50},max:30,mode:'copper'},
 			{type:'gather',context:'mine',what:{'tin ore':50},max:30,mode:'tin'},
 			{type:'gather',context:'mine',what:{'iron ore':50},max:30,mode:'iron'},
+			{type:'gather',context:'mine',what:{'zinc ore':50},max:10,mode:'zinc'},
+			{type:'gather',context:'mine',what:{'dinium ore':30},max:10,mode:'dinium'},
 			{type:'gather',context:'mine',what:{'gold ore':50},max:30,mode:'gold'},
 			{type:'gather',context:'mine',what:{'nickel ore':40},max:25,mode:'nickel'},
 			{type:'gather',context:'mine',what:{'Various stones':30},max:25,mode:'ostones'},
@@ -9099,6 +9663,9 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'copper'},
 			{type:'mult',value:0.95,req:{'dt6':true},mode:'tin'},
 			{type:'mult',value:1.05,req:{'Mining strategy':true}},
+			///////
+			//Deepmining
+			{type:'gather',context:'mine',what:{'iron ore':50},max:30,mode:'iron'},
 			/////////////////////////
 			//MOAI BOOSTS
 			{type:'mult',value:1.25,req:{'se09':'on'},mode:'tin'},
@@ -9134,9 +9701,16 @@ if (!document.getElementById(cssId))
 			'gold':{name:'Gold smelting',icon:[11,9],desc:'Cast [precious metal ingot]s out of 5 [gold ore]s each.',use:{'worker':2,'metal tools':2},req:{'gold-working':true}},
 			'bronze':{name:'Bronze alloying',icon:[10,9],desc:'Cast [hard metal ingot]s out of 8 [copper ore]s and 2 [tin ore]s each.',use:{'worker':2,'metal tools':2},req:{'bronze-working':true}},
 			'steel':{name:'Steel alloying',icon:[12,9],desc:'Cast [strong metal ingot]s out of 19 [iron ore]s and 1 [coal] each.',use:{'worker':2,'metal tools':2},req:{'steel-making':true}},
-			'cobalt':{name:'Cobalt smelting',icon:[14,0,'magixmod'],desc:'Cast 1[Cobalt ingot] out of 8[Cobalt ore].',req:{'Cobalt-working':true},use:{'worker':2,'metal tools':2,'stone tools':1}},
-	  		'nickel':{name:'Nickel smelting',icon:[10,9],desc:'Cast 1[hard metal ingot] out of 6[nickel ore]s each.',req:{'prospecting II':true,'nickel-working':true},use:{'worker':2,'metal tools':2}},
-			'platinum':{name:'Platinum smelting',icon:[3,11,'magixmod'],desc:'Cast 1[platinum ingot] out of 5[platinum ore]s each.',req:{'prospecting II':true,'platinum-working':true},use:{'worker':2,'metal tools':2}},  
+			'cobalt':{name:'Cobalt smelting',icon:[14,0,'magixmod'],desc:'Cast 1 [Cobalt ingot] out of 8[Cobalt ore].',req:{'Cobalt-working':true},use:{'worker':2,'metal tools':2,'stone tools':1}},
+	  		'nickel':{name:'Nickel smelting',icon:[10,9],desc:'Cast 1 [hard metal ingot] out of 6[nickel ore]s each.',req:{'prospecting II':true,'nickel-working':true},use:{'worker':2,'metal tools':2}},
+			'platinum':{name:'Platinum smelting',icon:[3,11,'magixmod'],desc:'Cast 1 [platinum ingot] out of 5[platinum ore]s each.',req:{'prospecting II':true,'platinum-working':true},use:{'worker':2,'metal tools':2}}, 
+			//deep quarrymining
+			'osmium':{name:'Osmium smelting',icon:[9,9],desc:'Cast [soft metal ingot]s out of 4 [osmium ore]s each.',req:{'deep mining & quarrying':true,'osmium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+			'lead':{name:'Lead smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 6 [lead ore]s each.',req:{'deep mining & quarrying':true,'lead-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+  			'mythril':{name:'Mythril smelting',icon:[11,6,'magixmod'],desc:'Cast [mystical metal ingot]s out of 6 [mythril ore]s and 1 [gold ore] each.',req:{'deep mining & quarrying':true,'mythril-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+			'blackium':{name:'Blackium alloying',icon:[12,9],desc:'Cast [strong metal ingot]s out of 6 [blackium ore]s each.',req:{'deep mining & quarrying':true,'blackium-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+ 			'zinc':{name:'Zinc smelting',icon:[10,9],desc:'Cast [hard metal ingot]s out of 7 [zinc ore]s each.',req:{'deep mining & quarrying':true,'zinc-working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
+			'unk':{name:'Dinium & unknownium alloying',icon:[11,6,'magixmod'],desc:'Cast 2 [mystical metal ingot]s out of 4 [dinium ore]s , 3 [copper ore]s , 1 [coal] and 4 [unknownium ore] each. Chance to succed: 95%',req:{'deep mining & quarrying':true,'dinium & unknownium working':true,'furnace modernization':true},use:{'metal tools':2,'worker':2}},
 			},
 		effects:[
 			{type:'convert',from:{'copper ore':5},into:{'soft metal ingot':1},repeat:3,mode:'copper'},
@@ -9148,6 +9722,14 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'Cobalt ore':8},into:{'Cobalt ingot':1},every:5,mode:'cobalt'},
 			{type:'convert',from:{'nickel ore':6},into:{'hard metal ingot':1},every:5,mode:'nickel'},
 			{type:'convert',from:{'platinum ore':5},into:{'platinum ingot':1},every:5,mode:'platinum'},
+			//Deep ores
+			{type:'convert',from:{'osmium ore':4},into:{'hard metal ingot':1},every:5,mode:'osmium'},
+			{type:'convert',from:{'lead ore':6},into:{'hard metal ingot':1},every:5,mode:'lead'},
+  			{type:'convert',from:{'mythril ore':6,'gold ore':1},into:{'mystical metal ingot':1},every:5,mode:'mythril'},
+ 			{type:'convert',from:{'blackium ore':6},into:{'strong metal ingot':1},every:5,mode:'blackium'},
+  			{type:'convert',from:{'zinc ore':7},into:{'hard metal ingot':1},every:5,mode:'zinc'},
+			{type:'convert',from:{'dinium ore':4,'copper ore':3,'coal':1,'unknownium ore':4},into:{'mystical metal ingot':2},every:3,mode:'unk',chance:95/100},
+			//Mults
 			{type:'mult',value:0.95,req:{'dt4':true},mode:'gold'},
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'iron'},
 			{type:'mult',value:0.95,req:{'dt5':true},mode:'bronze'},
@@ -9175,12 +9757,12 @@ if (!document.getElementById(cssId))
 			'off':G.MODE_OFF,
 			'metal tools':{name:'Forge tools from soft metals',icon:[2,9],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
 			'hard metal tools':{name:'Forge tools from hard metals',icon:[2,9],desc:'Forge 3 [metal tools] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1},req:{}},
-			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true}},
+			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true,'block-smithery':false}},
 			'forgeweapon':{name:'Forge weapons out of soft metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 2[soft metal ingot]s each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},  
 			'forgeweaponhard':{name:'Forge weapons out of hard metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 1[hard metal ingot] each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
 			'forgearmor':{name:'Forge armor out of soft metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 8[soft metal ingot]s each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
 			'forgearmorhard':{name:'Forge armor out of hard metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 5[hard metal ingot] each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
-			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
+			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true,'block-smithery':false},use:{'worker':1,'metal tools':1,'stone tools':1}},
 			'factgear':{name:'Forge factory equipment',icon:[9,18,'magixmod'],desc:'Forge [Basic factory equipment] out of 11[hard metal ingot]s each.',req:{'Advanced casting':true},use:{'worker':3,'metal tools':3,'Instructor':1}},
 		},
 		effects:[
@@ -9191,6 +9773,8 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'forgeweaponhard'},
 			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':1},every:4,mode:'forgearmor'},
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'gold blocks'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'platinum block'},
 			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'},
 			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
@@ -9253,9 +9837,9 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
-			{type:'gather',what:{'faith':0.05},req:{'symbolism':true,'symbolism II':false}},
-			{type:'gather',what:{'faith':0.07},req:{'symbolism II':true}},
+			{type:'gather',what:{'faith':0.012,'happiness':0.07},chance:1/8.5},
+			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false},chance:1/6},
+			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true},chance:1/6},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
@@ -9602,12 +10186,13 @@ if (!document.getElementById(cssId))
 		gizmos:true,
 		modes:{
 			'off':G.MODE_OFF,
-			'gatherers':{name:'Gatherer\'s lodge',desc:'Hire [gatherer]s until there are 5 for each of this lodge.',req:{'tribalism':true}},
-			'hunters':{name:'Hunter\'s lodge',desc:'Hire [hunter]s until there are 5 for each of this lodge.',req:{'hunting':true}},
-			'fishers':{name:'Fisher\'s lodge',desc:'Hire [fisher]s until there are 5 for each of this lodge.',req:{'fishing':true}},
-			'diggers':{name:'Digger\'s lodge',desc:'Hire [digger]s until there are 5 for each of this lodge.',req:{'digging':true}},
-			'woodcutters':{name:'Woodcutter\'s lodge',desc:'Hire [woodcutter]s until there are 5 for each of this lodge.',req:{'woodcutting':true}},
-			'artisans':{name:'Artisan\'s lodge',desc:'Hire [artisan]s until there are 5 for each of this lodge.',req:{'stone-knapping':true}},
+			'gatherers':{name:'Gatherer\'s lodge',icon:[0,2],desc:'Hire [gatherer]s until there are 6 for each of this lodge.',req:{'tribalism':true}},
+			'hunters':{name:'Hunter\'s lodge',icon:[18,2],desc:'Hire [hunter]s until there are 6 for each of this lodge.',req:{'hunting':true}},
+			'fishers':{name:'Fisher\'s lodge',icon:[17,2],desc:'Hire [fisher]s until there are 6 for each of this lodge.',req:{'fishing':true}},
+			'diggers':{name:'Digger\'s lodge',icon:[7,2],desc:'Hire [digger]s until there are 6 for each of this lodge.',req:{'digging':true}},
+			'woodcutters':{name:'Woodcutter\'s lodge',icon:[8,2],desc:'Hire [woodcutter]s until there are 6 for each of this lodge.',req:{'woodcutting':true}},
+			'artisans':{name:'Artisan\'s lodge',icon:[6,2],desc:'Hire [artisan]s until there are 6 for each of this lodge.',req:{'stone-knapping':true}},
+			'florists':{name:'Florist\'s lodge',icon:[7,11,'magixmod'],desc:'Hire [Florist]s until there are 6 for each of this lodge.',req:{'plant lore':true}},
 		},
 		effects:[
 		/*{type:'function',func:function(me){
@@ -9663,10 +10248,10 @@ if (!document.getElementById(cssId))
 		gizmos:true,
 		modes:{
 			'off':G.MODE_OFF,
-			'potters':{name:'Potters\' guild',desc:'Hire [potter]s until there are 5 for each of this guild.',req:{'pottery':true}},
-			'carpenters':{name:'Carpenters\' guild',desc:'Build [carpenter workshop]s until there are 5 for each of this guild.',req:{'carpentry':true}},
-			'blacksmiths':{name:'Blacksmiths\' guild',desc:'Build [blacksmith workshop]s until there are 5 for each of this guild.',req:{'smelting':true}},
-			'thief hunters':{name:'Thief hunters\' guild',desc:'Hire [Thief hunter]s until there are 25 for each of this guild.',req:{'guilds unite':true,'Battling thieves':true}},
+			'potters':{name:'Potters\' guild',icon:[20,2],desc:'Hire [potter]s until there are 5 for each of this guild.',req:{'pottery':true}},
+			'carpenters':{name:'Carpenters\' guild',icon:[27,2,25,2],desc:'Build [carpenter workshop]s until there are 5 for each of this guild.',req:{'carpentry':true}},
+			'blacksmiths':{name:'Blacksmiths\' guild',icon:[26,2,25,2],desc:'Build [blacksmith workshop]s until there are 5 for each of this guild.',req:{'smelting':true}},
+			'hunters':{name:'Thief hunters\' & Corpse slayers guild',icon:[4,13,'magixmod'],desc:'Hire [Thief hunter]s and [corpse slayer]s until there are 25 for each of this guild.',req:{'guilds unite':true,'Battling thieves':true}},
 		},
 		effects:[
 			/*{type:'function',func:function(me){
@@ -9960,13 +10545,13 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'convert',from:{'thief':1},into:{'adult':1},every:4,chance:1/4},
 			{type:'convert',from:{'thief':1},into:{'corpse':1},every:4,chance:1/48},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/50,req:{'coordination':true}},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'),chance:1/25,req:{'coordination':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/50,req:{'coordination':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/25,req:{'coordination':false}},
 		],
 	});
 		new G.Unit({
 		name:'Bakery',
-		desc:'<font color=" ##FF7F50">@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.</font>',
+		desc:'@converts crafted by [Windmill] [flour] into [bread]. Requires fuel to work.',
 		icon:[24,10,'magixmod'],
 		cost:{'basic building materials':100},
 		use:{'land':1,'Instructor':1},
@@ -10141,7 +10726,7 @@ if (!document.getElementById(cssId))
 	});
 	new G.Unit({
 		name:'explosive mine',
-		desc:'@extracts ores, [coal] and [stone] out of the ground using <span style="color: #FF002a"> Dynamite</span> . <span style="color: #FF002a">Has even bigger chances to collapse due to used in work material</span>The workers in [mine]s blasts deep into the earth to provide all kinds of minerals. @cannot be [prospecting,prospected] like normal [mine] .',
+		desc:'@extracts ores, [coal] and [stone] out of the ground using <span style="color: #FF002a"> Dynamite</span> . <span style="color: #FF002a">Has even bigger chances to collapse due to used in work material</span><br>The workers in [mine]s blasts deep into the earth to provide all kinds of minerals. @cannot be [prospecting,prospected] like normal [mine] .',
 		icon:[16,15,'magixmod'],
 		cost:{'archaic building materials':400},
 		use:{'land':3},
@@ -11108,8 +11693,8 @@ if (!document.getElementById(cssId))
 			'off':G.MODE_OFF,
 			'metal tools':{name:'Forge tools from soft metals',icon:[2,9],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
 			'hard metal tools':{name:'Forge tools from hard metals',icon:[2,9],desc:'Forge 3 [metal tools] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1},req:{}},
-			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true}},
-			'platinum block':{name:'Forge platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10 [platinum ingot]s each.',use:{'worker':1,'stone tools':1},req:{'platinum-working':true}},
+			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true,'block-smithery':false}},
+			'platinum block':{name:'Forge platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10 [platinum ingot]s each.',use:{'worker':1,'stone tools':1},req:{'platinum-working':true,'block-smithery':false}},
 			'metal weapon':{name:'Forge weapons from soft metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1,'metal tools':1},req:{'Weapon blacksmithery':true}},
 			'hard metal weapon':{name:'Forge weapons from hard metals',icon:[15,11,'magixmod'],desc:'Forge 3 [metal weapons] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1,'stone tools':1},req:{'Weapon blacksmithery':true}},
 			'metal armor':{name:'Forge armor from soft metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 8 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1,'metal tools':1,'Instructor':0.25},req:{'Armor blacksmithery':true}},
@@ -11120,6 +11705,8 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'hard metal ingot':1},into:{'metal tools':3},repeat:3,mode:'hard metal tools'},
 			{type:'convert',from:{'precious metal ingot':10},into:{'gold block':1},mode:'gold blocks'},
 			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},mode:'platinum block'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'gold blocks'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'platinum block'},
 			{type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'hard metal weapon'},
 			{type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},every:3,repeat:1,mode:'metal weapon'},
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:3,repeat:1,mode:'hard metal armor'},
@@ -11419,6 +12006,7 @@ if (!document.getElementById(cssId))
 		upkeep:{'fire pit':3},
 		effects:[
 			{type:'convert',from:{'corpse':14,'pot':14},into:{'Urn':14},every:5},
+			{type:'convert',from:{'slain corpse':14,'pot':14},into:{'Urn':14},every:15},
 		],
 		category:'civil'
 	});
@@ -12281,6 +12869,74 @@ new G.Unit({
     		use:{'land':25,'worker':10},
     		req:{'mirror world 1/2':true},
     		category:'dimensions',
+	});
+	new G.Unit({
+		name:'druid',
+		desc:'@generates [faith] and [happiness] every now and then<>[druid]s merge with nature and its spirits to bring down faith and hope to any people around\'em.',
+		icon:[26,30,'magixmod'],
+		cost:{},
+		use:{'worker':1},
+		upkeep:{'coin':0.3},
+		limitPer:{'population':10},
+		effects:[
+			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
+			{type:'gather',what:{'faith':0.018},req:{'druidsymbolism2':true}},
+			{type:'gather',what:{'happiness':0.066},req:{'druidsymbolism1':true}},
+			{type:'gather',what:{'faith':0.05},req:{'symbolism II':true}},
+			{type:'mult',value:2/3,req:{'dt16':true}},
+			{type:'mult',value:1.25,req:{'se11':'on'}},
+			{type:'mult',value:0.95,req:{'se03':'on'}},
+		],
+		req:{'ritualism':true},
+		category:'spiritual',
+	});
+	new G.Unit({
+		name:'corpse slayer',
+		desc:'Hunts for [wild corpse]s and does a takedown on\'em. Has a chance to become wounded while encounter. //Once slain [wild corpse] cannot revive again.',
+		icon:[24,30,'magixmod'],
+		cost:{},
+		use:{'worker':1,'metal weapons':1,'armor set':1},
+		req:{'Battling thieves':true,'coordination':true,'<span style="color: red">Revenants</span>':true},
+		category:'guard',
+		priority:5,
+		effects:[
+			{type:'convert',from:{'wild corpse':1},into:{'slain corpse':1},every:4,chance:1/4},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/50,req:{'coordination':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/25,req:{'coordination':false}},
+		],
+	});
+	new G.Unit({
+		name:'block-smith workshop',
+		desc:'@forges blocks out of ingots<>The [block-smith workshop,Block-smith] forges [various metal block]s out of metals.',
+		icon:[19,30,'magixmod'],
+		cost:{'basic building materials':100},
+		use:{'Land of the Plain Island':1},
+		modes:{
+			'off':G.MODE_OFF,
+			'mythril':{name:'Forge mythril blocks',icon:[34,25,'magixmod'],desc:'Forge [various metal block] out of 30 [mythril ore]s  , 3[mystical metal ingot]s ,1 [strong metal ingot]s and 5 [coal] each.',use:{'worker':1,'stone tools':1,'metal tools':1},req:{}},
+			'blackium':{name:'Forge blackium blocks',icon:[34,28,'magixmod'],desc:'Forge [various metal block] out of 40 [blackium ore]s , 3[mystical metal ingot]s , 1 [strong metal ingot] and 15 [coal] each.',use:{'worker':1,'stone tools':1,'metal tools':1},req:{}},
+			'dinium':{name:'Forge dinium blocks',icon:[34,27,'magixmod'],desc:'Forge [various metal block] out of 15 [dinium ore]s , 4[mystical metal ingot]s, 5 [coal] and 2 [strong metal ingot]s',use:{'worker':1,'stone tools':1,'metal tools':1},req:{}},
+			'unknownium':{name:'Forge unknownium blocks',icon:[34,26,'magixmod'],desc:'Forge [various metal block] out of 15 [unknownium ore]s , 3[mystical metal ingot]s, 5[coal] and 3 [strong metal ingot]s',use:{'worker':1,'stone tools':1,'metal tools':1},req:{}},
+			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1,'metal tools':1},req:{'gold-working':true}},
+			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
+		},
+		effects:[
+			{type:'convert',from:{'precious metal ingot':10},into:{'gold block':1},every:6,mode:'gold blocks'},
+			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:6,mode:'platinum blocks'},
+			{type:'convert',from:{'mythril ore':30,'mystical metal ingot':3,'coal':5,'strong metal ingot':1},into:{'various metal block':1},every:6,mode:'mythril'},
+			{type:'convert',from:{'blackium ore':40,'mystical metal ingot':3,'coal':15,'strong metal ingot':1},into:{'various metal block':1},every:6,mode:'blackium'},
+			{type:'convert',from:{'dinium ore':15,'mystical metal ingot':4,'coal':5,'strong metal ingot':2},into:{'various metal block':1},every:6,mode:'dinium'},
+			{type:'convert',from:{'unknownium ore':15,'mystical metal ingot':3,'coal':5,'strong metal ingot':3},into:{'various metal block':1},every:6,mode:'unknownium'},
+			{type:'mult',value:0.95,req:{'dt1':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
+			//TODO : better metal tools, weapons etc
+		],
+		gizmos:true,
+		req:{'smelting':true,'block-smithery':true},
+		category:'plainisleunit',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -13156,21 +13812,21 @@ getCosts:function()
 		desc:'@Now at the Lands of Plain island you may start opening farms to let your people make more [Berries] & [Watermelon]. You are doing it here because you may have trouble to find free land in your mortal world.<>',
 		icon:[16,2,'magixmod'],
 		cost:{'insight':575},
-		req:{'construction II':true},
+		req:{'construction II':true,'gardening':true},
 	});
 		new G.Tech({
 		name:'Crafting a juice',
 		desc:'@Makes juices possible to be crafted. Any [fruit] + [sugar] + [water] = [Juices]. Be careful. Juices may spoil same like normal water. Spoiled juice grants even more <b>unhappiness and unhealth<b> than normal muddy water.<>',
 		icon:[16,4,'magixmod'],
 		cost:{'insight':495,'wisdom':50},
-		req:{'Farms in the new land':true},
+		req:{'Farms in the new land':true,'gardening':true},
 	});
 		new G.Tech({
 		name:'Farm of the Sugar cane',
 		desc:'@Makes [Sugar cane] farm possible to be built. This farm will have increased upkeep cost and will need more people to run.<>',
 		icon:[15,7,'magixmod'],
 		cost:{'insight':495,'wisdom':50},
-		req:{'Farms in the new land':true},
+		req:{'Farms in the new land':true,'gardening':true},
 	});
 		new G.Tech({
 		name:'Precious pottery',
@@ -14484,7 +15140,7 @@ autobuy(G.year)
 			new G.Trait({
 		name:'dt16',
 		displayName:'Devil\'s trait #16 Worse soothsaying',
-		desc:'Soothsayer gains 33% less [faith].',
+		desc:'[soothsayer]s and [druid]s gain 33% less [faith].',
 		icon:[26,16,'magixmod'],
 		cost:{'culture':100},
 		chance:150,
@@ -14727,7 +15383,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	=======================================*/
 		new G.Tech({
 		name:'guilds unite',
-		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 5 to 100. <>NOTE: Useless for now but applies new icons to [lodge] , [guild quarters]',
+		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 6 to 100. <>NOTE: Useless for now but applies new icons to [lodge] , [guild quarters]',
 		icon:[29,8,'magixmod'],
 		cost:{'insight II':20,'culture II':10,'influence II':5,'insight':45},
 		req:{'cities':true,'construction II':true,'code of law II':true},
@@ -14756,7 +15412,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 	});
 		new G.Tech({
 		name:'symbolism II',
-		desc:'@increases [symbolism] bonus from 50 to 70%. Still boost has the same targets as it had before.',
+		desc:'@increases [symbolism] bonus from 50 to 70%. Still boost has the same targets as it had before and [druid]s in extra.',
 		icon:[29,6,'magixmod'],
 		cost:{'culture II':15,'insight II':10},
 		req:{'oral tradition':true,'ritualism II':true,'Improved rhetoric':true,'Richer language':true,'symbolism':true},
@@ -16141,7 +16797,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	});
 		new G.Tech({
 		name:'coordination',
-		desc:'[Thief hunter] has better coordination so he has twice as bigger chance to succesfully win <b>guard vs thief</b> confrontation.',
+		desc:'[Thief hunter] has better coordination so he has twice as bigger chance to succesfully win <b>guard vs thief</b> confrontation. Also it may lead to unlock more types of guard.',
 		icon:[33,27,'magixmod'],
 		req:{'Battling thieves':true},
 		cost:{'insight':260},
@@ -16178,7 +16834,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 	let Mamuun1st =  new G.Trait({
         name:'well stored',
 	displayName:'<font color="gold">Well stored I</font>',
-        desc:'All storage units(except Essences storages) provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].',
+        desc:'<font color="#aaaaff">All storage units(except Essences storages) provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].</font>',
         icon:[12,15,'magixmod',13,15,'magixmod'],
         cost:{},
 	effects:[
@@ -16204,7 +16860,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
 	let Mamuun2nd =  new G.Trait({
         name:'well stored 2',
 	displayName:'<font color="#d0ab34">Well stored II</font>',
-        desc:'All storage units(except Essences storages) provide 55% more storage. You reached maximum bonus that Mamuun can provide to you for completing Pocket. Bonus does not stack with [Spell of capacity].',
+        desc:'<font color="#aaaaff">All storage units(except Essences storages) provide 55% more storage. You reached maximum bonus that Mamuun can provide to you for completing Pocket. Bonus does not stack with [Spell of capacity].</font>',
         icon:[11,15,'magixmod',13,15,'magixmod'],
         cost:{},
 	effects:[
@@ -16301,6 +16957,198 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		cost:{'insight II':426,'university point':300,'science':50},
 		req:{'wonder \'o science':true,'Wizard complex':true},
 	});
+	new G.Tech({
+		name:'druidism',
+		desc:'@unlocks [druid] @Gathers more [faith] and [happiness] than [soothsayer] but is limited.',
+		icon:[25,30,'magixmod'],
+		cost:{'insight':35,'faith':5,'culture':25,'influence':10},
+		req:{'ritualism':true,'symbolism':true,'language':true},
+	});
+	new G.Trait({
+        name:'druidsymbolism1',
+	displayName:'Druid\'s symbolism of happiness',
+        desc:'[druid] gathers 33% more [happiness].',
+        icon:[27,30,'magixmod'],
+        cost:{'faith':5,'culture':15},
+	effects:[
+	],	
+        req:{'druidism':true,'druidsymbolism2':false},
+	chance:100
+    });
+	new G.Trait({
+        name:'druidsymbolism2',
+	displayName:'Druid\'s symbolism of faith',
+        desc:'[druid] gathers 18% more [faith].',
+        icon:[28,30,'magixmod'],
+        cost:{'faith':5,'culture':15},
+	effects:[
+	],	
+        req:{'druidism':true,'druidsymbolism1':false},
+	chance:100
+    });
+	new G.Trait({
+        name:'gardening',
+        desc:'<font color="#aaffff">A key for farms. People learn how to make a irrigation system. Thanks to it they may start thinking about making some small gardens, then expand them to farms or even plantations.</font>',
+        icon:[10,0,'magixmod'],
+        cost:{'insight':40},
+	effects:[
+	],	
+        req:{'druidism':true,'city planning':true},
+	chance:75,
+		category:'knowledge'
+    });
+	  new G.Tech({
+		name:'deep mining & quarrying',
+		desc:'@Unlocks two new territory contexts: Deep mining and Deep quarrying',
+		icon:[10,1,'magixmod'],
+		cost:{'insight II':125,'influence II':10,'science':5},
+		req:{'A leaf of wisdom':true,'prospecting II':true},
+    effects:[
+    	{type:'show context',what:['deep mine']},
+      	{type:'show context',what:['deep quarry']},
+    {type:'function',func:function(){}}
+    ]
+	});
+	new G.Tech({
+		name:'mining II',
+		desc:'Strike the earth... even stronger! For new minerals, new mystical wonders. @[mine]s can mine even deeper. To unlock prospecting for them get [prospecting III] research.',
+		icon:[12,1,'magixmod'],
+		cost:{'insight II':190,'science':12,'culture II':8},
+		req:{'digging':true,'construction':true,'Eotm':true,'deep mining & quarrying':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'quarrying III',
+		desc:'Quarries can reach even deeper discovering new resources. However some minerals can be only gathered via quarrying. @If [prospecting III] obtained it will unlock new mode that will mainly focus on gathering these minerals.',
+		icon:[12,0,'magixmod'],
+		cost:{'insight II':170,'science':12,'faith II':4,'culture II':2,'influence II':2},
+		req:{'quarrying II':true,'cozy building':true,'deep mining & quarrying':true,'Eotm':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+		name:'prospecting III',
+		desc:'[prospecting] improvements: @[mine]s - Minerals from context <b>Deep mining</b> (adds also Any mode but this one will only mine via context Deep mining) @[quarry,Quarries] - New mode that will gather 3x more minerals that can be only obtained by quarrying but 6x less of resources other than minerals.',
+		icon:[11,1,'magixmod'],
+		cost:{'insight II':200,'science':15,'influence II':5},
+		req:{'quarrying II':true,'cozy building':true,'deep mining & quarrying':true,'Eotm':true},
+		effects:[
+		],
+	});
+		new G.Tech({
+		name:'furnace modernization',
+		desc:'<b>Furnace</b> becomes <B>Blackium furnace</b>. Requires 3x as more upkeep but: can smelt plenty of new ores and is 2% more efficient regardless of path chosen by your people.',
+		icon:[8,12,11,0,'magixmod',0,18,'magixmod'],
+		cost:{'insight II':235,'science':15},
+		req:{'quarrying III':true,'mining II':true,'deep mining & quarrying':true,'Mo\' beauty':true},
+		effects:[
+		],
+	});
+	new G.Tech({
+        name:'time measuring 1/2',
+        desc:'People know how to measure time. Now you\'ll be able to see which year is currently. //To expand it and see days obtain 2nd part of this research.',
+        icon:[27,3,'magixmod',34,30,'magixmod'],
+        cost:{'insight':50},
+	effects:[
+	],	
+        req:{'Intermediate maths':true,'primary time measure':true},
+	chance:10
+    });
+	new G.Trait({
+        name:'time measuring 2/2',
+        desc:'<font color="#aaffff">Now you will see which year and day currently is.</font>',
+        icon:[27,2,'magixmod',34,30,'magixmod'],
+        cost:{'insight':400},
+	effects:[
+	],	
+        req:{'time measuring 1/2':true,'Belief in portals':true},
+	chance:75,
+		category:'knowledge'
+    });
+	new G.Tech({
+		name:'osmium-working',
+		desc:'@[furnace]s can now make [soft metal ingot]s from [osmium ore]<>',
+		icon:[16,30,'magixmod'],
+		cost:{'insight II':183,'science':2},
+		req:{'mining II':true,'furnace modernization':true},
+	});
+	new G.Tech({
+		name:'lead-working',
+		desc:'@[furnace]s can now make [hard metal ingot]s from [lead ore]<>',
+		icon:[13,30,'magixmod'],
+		cost:{'insight II':183,'science':2},
+		req:{'mining II':true,'furnace modernization':true},
+	});
+  new G.Tech({
+		name:'mythril-working',
+		desc:'@[furnace]s can now make [precious metal ingot]s from [mythril ore]@[blacksmith workshop] can now forge [mythril block] out of [mystical metal ingot]s.<>',
+		icon:[14,30,'magixmod'],
+		cost:{'insight II':200,'science':5},
+		req:{'mining II':true,'furnace modernization':true},
+	});
+  new G.Tech({
+		name:'zinc-working',
+		desc:'@[furnace]s can now make [hard metal ingot]s from [zinc ore]<>',
+		icon:[15,30,'magixmod'],
+		cost:{'insight II':183,'science':2},
+		req:{'mining II':true,'furnace modernization':true},
+	});
+
+ new G.Tech({
+		name:'blackium-working',
+		desc:'@[furnace]s can now make [mystical metal ingot]s from [blackium ore]<>',
+		icon:[17,30,'magixmod'],
+		cost:{'insight II':180},
+		req:{'mining II':true,'furnace modernization':true},
+	});
+	new G.Tech({
+		name:'dinium & unknownium working',
+		desc:'@[furnace]s can now make [mystical metal ingot]s from [dinium ore] and [unknownium ore]. However there is 50% chance that it will succed.<>',
+		icon:[18,30,'magixmod'],
+		cost:{'insight II':300,'science':30},
+		req:{'mining II':true,'furnace modernization':true,'wonder \'o science':true,'osmium-working':true,'blackium-working':true,'zinc-working':true,'mythril-working':true,'lead-working':true},
+	});
+		new G.Trait({
+        name:'primary time measure',
+        desc:'<font color="#aaffff">People now can measure passing time in centuries. </font>',
+        icon:[34,29,'magixmod'],
+        cost:{'culture':10},
+	effects:[
+	],	
+        req:{'oral tradition':true},
+	chance:12,
+		category:'knowledge'
+    });
+	new G.Tech({
+		name:'block-smithery',
+		desc:'@Unlocks [block-smith workshop]. Subtype of [blacksmith workshop] which will forge blocks out of precious resources. @Due to it original [blacksmith workshop] will no longer forge blocks. @Uses [Land of the Plain Island].<>',
+		icon:[20,30,'magixmod'],
+		cost:{'insight II':340,'science':40},
+		req:{'dinium & unknownium working':true,'mirror world 1/2':true},
+	});
+	new G.Tech({
+		name:'handwashC',
+		displayName:'Handwashing',
+		desc:'People will now wash their hands. However they do not know how to make a soap. At least water can clean hands. Raises up a little bit [health] level.',
+		icon:[8,18,'magixmod'],
+		req:{'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false},
+		cost:{'insight':435},
+		effects:[
+		],
+		chance:3
+	});	
+	new G.Tech({
+		name:'handwashM',
+		displayName:'Handwashing',
+		desc:'People will now wash their hands. However they do not know how to make a soap also focused on technological progress more than on their health they\'ll forget to do it sometime.. At least water can clean hands. Raises up a little bit [health] level.',
+		icon:[34,24,'magixmod'],
+		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false},
+		cost:{'insight':435},
+		effects:[
+		],
+		chance:3
+	});	
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
@@ -17764,8 +18612,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'stone':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':2,'clay':0.15,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051},
-			'mine':{'stone':0.3,'copper ore':0.085,'tin ore':0.085,'iron ore':0.04,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005,'Various stones':0.3},
+			'mine':{'stone':0.3,'copper ore':0.085,'tin ore':0.085,'iron ore':0.04,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.003,'Various stones':0.3,'pyrite':0.001,/*'osmium ore':0.003*/},
 			'quarry':{'cut stone':0.7,'limestone':0.5,'marble':0.01,'Various cut stones':0.3},
+			'deep mine':{'pyrite':0.065,'zinc ore':0.03,'dinium ore':0.04,'gems':0.005},
+			'deep quarry':{'lead ore':0.04,'mythril ore':0.02,'blackium ore':0.03,'salt':0.001,'unknownium ore':0.03},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -17965,8 +18815,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'stone':0.2,'clay':0.002,'limestone':0.003},
 			'dig':{'mud':0.1,'clay':0.3,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.1,'salt':0.051,'sand':0.00001},
-			'mine':{'stone':0.8,'copper ore':0.01,'tin ore':0.08,'iron ore':0.042,'gold ore':0.0052,'coal':0.11,'salt':0.14,'gems':0.003,'Various stones':0.2},
+			'mine':{'stone':0.8,'copper ore':0.01,'tin ore':0.08,'iron ore':0.042,'gold ore':0.0052,'coal':0.11,'salt':0.14,'gems':0.004,'Various stones':0.2/*no osmium*/,'pyrite':0.0015},
 			'quarry':{'cut stone':0.9,'limestone':0.5,'marble':0.0088,'Various cut stones':0.1},
+			'deep mine':{'pyrite':0.07,'zinc ore':0.02,'dinium ore':0.042,'gems':0.007},
+			'deep quarry':{'lead ore':0.03,'mythril ore':0.027,'blackium ore':0.05,'unknownium ore':0.025},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -17979,8 +18831,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'stone':0.2,'clay':0.004,'limestone':0.0035},
 			'dig':{'mud':1.5,'clay':0.2,'stone':0.6,'copper ore':0.006,'tin ore':0.006,'limestone':0.1,'salt':0.051},
-			'mine':{'stone':0.95,'copper ore':0.09,'tin ore':0.07,'iron ore':0.046,'gold ore':0.0035,'coal':0.16,'salt':0.1,'gems':0.005,'Various stones':0.05},
+			'mine':{'stone':0.95,'copper ore':0.09,'tin ore':0.07,'iron ore':0.046,'gold ore':0.0035,'coal':0.16,'salt':0.1,'gems':0.005,'Various stones':0.05,'pyrite':0.02/*osmium 0.041*/},
 			'quarry':{'cut stone':0.85,'limestone':0.62,'marble':0.01,'Various cut stones':0.15},
+			'deep mine':{'pyrite':0.02,'zinc ore':0.03,'dinium ore':0.06,'gems':0.003},
+			'deep quarry':{'lead ore':0.04,'mythril ore':0.015,'blackium ore':0.025,'unknownium ore':0.02,'salt':0.001},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -17993,8 +18847,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'stone':0.2,'clay':0.002,'limestone':0.0035},
 			'dig':{'clay':0.2,'stone':0.6,'copper ore':0.001,'tin ore':0.001,'limestone':0.105},
-			'mine':{'stone':0.944,'copper ore':0.09,'tin ore':0.07,'iron ore':0.06,'gold ore':0.0035,'coal':0.21,'gems':0.0052,'Various stones':0.006},
+			'mine':{'stone':0.944,'copper ore':0.09,'tin ore':0.07,'iron ore':0.06,'gold ore':0.0035,'coal':0.21,'gems':0.0052,'Various stones':0.006/*osmium 0.04*/},
 			'quarry':{'cut stone':0.999,'limestone':0.62,'marble':0.01,'Various cut stones':0.001},
+			'deep mine':{'zinc ore':0.07,'dinium ore':0.06,'gems':0.003},
+			'deep quarry':{'lead ore':0.08,'mythril ore':0.019,'blackium ore':0.01,'unknownium ore':0.05},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18009,6 +18865,9 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 			'dig':{'mud':4.2,'clay':0.45,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
 			'mine':{'stone':0.85,'copper ore':0.011,'tin ore':0.085,'iron ore':0.02,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.005,'Various stones':0.15},
 			'quarry':{'cut stone':0.81,'limestone':0.55,'marble':0.011,'Various cut stones':0.09},
+			'deep mine':{'pyrite':1,'zinc ore':0.04,'dinium ore':0.01,'gems':0.002},
+			'deep quarry':{'lead ore':0.045,'mythril ore':0.032,'unknownium ore':0.06},
+			
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18023,6 +18882,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 			'dig':{'mud':2,'clay':0.35,'stone':0.6,'copper ore':0.008,'tin ore':0.008,'limestone':0.14},
 			'mine':{'stone':0.8,'copper ore':0.004,'tin ore':0.014,'iron ore':0.05,'gold ore':0.004,'coal':0.09,'salt':0.11,'gems':0.004,'Various stones':0.2},
 			'quarry':{'cut stone':0.75,'limestone':0.5,'marble':0.01,'Various cut stones':0.25},
+			'deep mine':{'zinc ore':0.01,'dinium ore':0.04},
+			'deep quarry':{'lead ore':0.05,'mythril ore':0.032,'unknownium ore':0.04},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18037,6 +18898,8 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 			'dig':{'mud':2,'clay':0.13,'stone':0.6,'copper ore':0.0079,'tin ore':0.0081,'limestone':0.1,'salt':0.05},
 			'mine':{'stone':0.88,'copper ore':0.055,'tin ore':0.055,'iron ore':0.025,'gold ore':0.0038,'coal':0.078,'salt':0.1,'gems':0.005,'Various stones':0.12},
 			'quarry':{'cut stone':0.9,'limestone':0.5,'marble':0.01,'Various cut stones':0.1},
+			'deep mine':{'pyrite':0.05,'zinc ore':0.035,'dinium ore':0.045,'gems':0.001},
+			'deep quarry':{'lead ore':0.046,'mythril ore':0.024,'blackium ore':0.034,'salt':0.001,'unknownium ore':0.034},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18048,9 +18911,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		icon:[33,16,'magixmod'],
 		res:{
 			'gather':{'stone':0.25,'clay':0.004,'limestone':0.002},
-			'dig':{'mud':0.5,'clay':0.05,'stone':0.2,'copper ore':0.002,'tin ore':0.002,'limestone':0.025,'salt':0.02},
+			'dig':{'mud':0.5,'clay':0.05,'stone':0.2,'copper ore':0.002,'tin ore':0.002,'limestone':0.025,'salt':0.02/*osmium 0.001*/},
 			'mine':{'stone':0.8,'copper ore':0.03,'tin ore':0.03,'iron ore':0.01,'coal':0.04,'salt':0.1,'gems':0.001,'Various stones':0.2},
 			'quarry':{'cut stone':0.6,'limestone':0.1,'marble':0.01,'Various cut stones':0.2},
+			
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
@@ -18109,8 +18973,10 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		res:{
 			'gather':{'Various stones':0.25,'clay':0.005,'limestone':0.005},
 			'dig':{'mud':0.5,'clay':0.05,'Various stones':0.6,'copper ore':0.006,'tin ore':0.006,'limestone':0.11},
-			'mine':{'Various stones':0.97,'copper ore':0.065,'tin ore':0.06,'iron ore':0.035,'gold ore':0.008,'coal':0.03,'salt':0.16,'gems':0.009,'stone':0.03},
+			'mine':{'Various stones':0.97,'copper ore':0.065,'tin ore':0.06,'iron ore':0.035,'gold ore':0.008,'coal':0.03,'salt':0.16,'gems':0.009,'stone':0.03/*osmium 0.01*/},
 			'quarry':{'cut stone':0.05,'limestone':0.5,'marble':0.01,'Various cut stones':0.95},
+			'deep mine':{'pyrite':0.001,'zinc ore':0.05,'dinium ore':0.041},
+			'deep quarry':{'mythril ore':0.01,'blackium ore':0.032,'unknownium ore':0.02},
 		},
 		affectedBy:['mineral depletion'],
 		noAmount:true,
