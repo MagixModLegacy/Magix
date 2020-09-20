@@ -9041,7 +9041,7 @@ if (!document.getElementById(cssId))
 		icon:[3,16,'magixmod'],
 	});
 	new G.Res({name:'soldiers defeats',hidden:true});
-	G.Res({
+	new G.Res({
 		name:'various metals block',
 		desc:'A valuable, if unreliable construction material. Can be crafted by using: [mythril ore,Mythril],[dinium ore],[blackium ore] and many more.',
 		icon:[10,6,'magixmod'],
@@ -12874,7 +12874,7 @@ new G.Unit({
 			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/25,req:{'coordination':false}},
 		],
 	});
-	/*new G.Unit({
+	new G.Unit({
 		name:'block-smith workshop',
 		desc:'@forges blocks out of ingots<>The [block-smith workshop,Block-smith] forges [various metal block]s out of metals.',
 		icon:[19,30,'magixmod'],
@@ -12900,7 +12900,7 @@ new G.Unit({
 		gizmos:true,
 		req:{'smelting':true,'block-smithery':true},
 		category:'plainisleunit',
-	});*/
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
