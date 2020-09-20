@@ -12901,8 +12901,6 @@ new G.Unit({
 			{type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'forgeweaponhard'},
 			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':1},every:4,mode:'forgearmor'},
 			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'},
-			{type:'mult',value:0,req:{'block-smithery':true},mode:'gold blocks'},
-			{type:'mult',value:0,req:{'block-smithery':true},mode:'platinum block'},
 			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'},
 			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
 			{type:'mult',value:0.95,req:{'dt1':true}},
