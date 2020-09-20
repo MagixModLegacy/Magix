@@ -9011,7 +9011,7 @@ if (!document.getElementById(cssId))
 	});
   new G.Res({
 		name:'mystical metal ingot',
-		desc:'Can be used to craft [various metals block].',
+		desc:'Can be used to craft [various metal block].',
 		icon:[11,6,'magixmod'],
 		partOf:'misc materials',
 		category:'build',
@@ -9042,7 +9042,7 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({name:'soldiers defeats',hidden:true});
 	new G.Res({
-		name:'various metals block',
+		name:'various metal block',
 		desc:'A valuable, if unreliable construction material. Can be crafted by using: [mythril ore,Mythril],[dinium ore],[blackium ore] and many more.',
 		icon:[10,6,'magixmod'],
 		partOf:'precious building materials',
@@ -12883,9 +12883,9 @@ new G.Unit({
 		//TODO: EACH MODE HAS ITS OWN ICON. WILL BE ADDED NEXT PATCH
 		modes:{
 			'off':G.MODE_OFF,
-			'mythril':{name:'Forge mythril blocks',icon:[34,25,'magixmod'],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
-			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true,'block-smithery':false}},
-			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true,'block-smithery':false},use:{'worker':1,'metal tools':1,'stone tools':1}},
+			'mythril':{name:'Forge mythril blocks',icon:[34,25,'magixmod'],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1,'metal tools':1},req:{}},
+			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1,'metal tools':1},req:{'gold-working':true}},
+			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
 		},
 		effects:[
 			{type:'convert',from:{'precious metal ingot':10},into:{'gold block':1},mode:'gold blocks'},
