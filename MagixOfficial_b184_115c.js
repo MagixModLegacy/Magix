@@ -9041,6 +9041,13 @@ if (!document.getElementById(cssId))
 		icon:[3,16,'magixmod'],
 	});
 	new G.Res({name:'soldiers defeats',hidden:true});
+	 G.Res({
+		name:'various metals block',
+		desc:'A valuable, if unreliable construction material. Can be crafted by using: [mythril ore,Mythril],[dinium ore],[blakium ore] and many more.',
+		icon:[10,6,'magixmod'],
+		partOf:'precious building materials',
+		category:'build',
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -12866,6 +12873,48 @@ new G.Unit({
 			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/50,req:{'coordination':true}},
 			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03/*,'[X] [people] wounded while encountering a thief.','thief hunter was','thieve hunters were'*/),chance:1/25,req:{'coordination':false}},
 		],
+	});
+	new G.Unit({
+		name:'block-smith workshop',
+		desc:'@forges metal goods out of ingots<>The [block-smith workshop,Block-smith] forges [various metal block]s out of metals.',
+		icon:[19,30,'magixmod'],
+		cost:{'basic building materials':100},
+		use:{'Land of the Plain Island':1},
+		//TODO: EACH MODE HAS ITS OWN ICON. WILL BE ADDED NEXT PATCH
+		modes:{
+			'off':G.MODE_OFF,
+			'mythril':{name:'mythril block',icon:[2,9],desc:'Forge [metal tools] out of 2 [soft metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{}},
+			'hard metal tools':{name:'Forge tools from hard metals',icon:[2,9],desc:'Forge 3 [metal tools] out of 1 [hard metal ingot].',use:{'worker':1,'metal tools':1},req:{}},
+			'gold blocks':{name:'Forge gold blocks',icon:[14,8],desc:'Forge [gold block]s out of 10 [precious metal ingot]s each.',use:{'worker':1,'stone tools':1},req:{'gold-working':true,'block-smithery':false}},
+			'forgeweapon':{name:'Forge weapons out of soft metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 2[soft metal ingot]s each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},  
+			'forgeweaponhard':{name:'Forge weapons out of hard metals',icon:[15,11,'magixmod'],desc:'Forge [metal weapons] out of 1[hard metal ingot] each.',req:{'Weapon blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1}},
+			'forgearmor':{name:'Forge armor out of soft metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 8[soft metal ingot]s each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
+			'forgearmorhard':{name:'Forge armor out of hard metals',icon:[16,11,'magixmod'],desc:'Forge [armor set] out of 5[hard metal ingot] each.',req:{'Armor blacksmithery':true},use:{'worker':1,'metal tools':1,'stone tools':1,'Instructor':0.25}},
+			'platinum blocks':{name:'Craft platinum blocks',icon:[4,11,'magixmod'],desc:'Forge [platinum block]s out of 10[platinum ingot] each.',req:{'platinum-working':true,'block-smithery':false},use:{'worker':1,'metal tools':1,'stone tools':1}},
+			'factgear':{name:'Forge factory equipment',icon:[9,18,'magixmod'],desc:'Forge [Basic factory equipment] out of 11[hard metal ingot]s each.',req:{'Advanced casting':true},use:{'worker':3,'metal tools':3,'Instructor':1}},
+		},
+		effects:[
+			{type:'convert',from:{'soft metal ingot':2},into:{'metal tools':1},repeat:3,mode:'metal tools'},
+			{type:'convert',from:{'hard metal ingot':1},into:{'metal tools':3},repeat:3,mode:'hard metal tools'},
+			{type:'convert',from:{'precious metal ingot':10},into:{'gold block':1},mode:'gold blocks'},
+			{type:'convert',from:{'soft metal ingot':2},into:{'metal weapons':1},repeat:2,mode:'forgeweapon'},
+			{type:'convert',from:{'hard metal ingot':1},into:{'metal weapons':1},every:3,repeat:1,mode:'forgeweaponhard'},
+			{type:'convert',from:{'soft metal ingot':8},into:{'armor set':1},every:4,mode:'forgearmor'},
+			{type:'convert',from:{'hard metal ingot':5},into:{'armor set':2},every:4,mode:'forgearmorhard'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'gold blocks'},
+			{type:'mult',value:0,req:{'block-smithery':true},mode:'platinum block'},
+			{type:'convert',from:{'platinum ingot':10},into:{'platinum block':1},every:4,mode:'platinum blocks'},
+			{type:'convert',from:{'hard metal ingot':11},into:{'Basic factory equipment':1},every:4,mode:'factgear'},
+			{type:'mult',value:0.95,req:{'dt1':true}},
+			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'waste',chance:0.001/1000,req:{'construction III':false}},
+			{type:'waste',chance:0.0002/1000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.00014/1000,req:{'improved construction':true}},
+			//TODO : better metal tools, weapons etc
+		],
+		gizmos:true,
+		req:{'smelting':true,'block-smithery':false},
+		category:'plainisleunit',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
