@@ -9103,7 +9103,7 @@ if (!document.getElementById(cssId))
 				changed/=workers;
 				G.wasteUnit(me,changed);
 				
-				if (changed>0) G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
+				if (changed>0 && me.unit.name!='thief hunter' && me.unit.name!='corpse slayer') G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
 						return args.str.replaceAll('\\[people\\]',(args.n==1?args.single:args.plural)).replaceAll('\\[X\\]',B(args.n));
 					},args:{n:changed,str:message,single:single,plural:plural},icon:me.unit.icon});
 			}
