@@ -4923,9 +4923,9 @@ G.writeMSettingButton=function(obj)
 			G.lose('health'	,1+(G.year*((G.achievByName['Hunted'].won+1)/3)))
 			}
 			if(G.has('handwashC')){
-			if(me.amount<0){G.gain(me,-me.amount*0.0004,'handwashing')}else{G.gain(me,me.amount*0.0004,'handwashing')};
+				if(G.getRes('health').amount<0){G.gain(me,-me.amount*0.0004,'handwashing')}else{G.gain(me,me.amount*0.0004,'handwashing')};
 			}else if(G.has('handwashM')){
-			if(me.amount<0){G.gain(me,-me.amount*0.0001,'handwashing')}else{G.gain(me,me.amount*0.0001,'handwashing')};
+				if(G.getRes('health').amount<0){G.gain(me,-me.amount*0.0001,'handwashing')}else{G.gain(me,me.amount*0.0001,'handwashing')};
 			}
 		},
 		getDisplayAmount:function()
