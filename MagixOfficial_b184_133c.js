@@ -13119,7 +13119,7 @@ getCosts:function()
 	new G.Tech({
 		name:'tribalism',
 		desc:'@unlocks [gatherer]@provides 5 [authority]<>Taking its roots in wild animal packs, [tribalism] is the organization of individuals into simple social structures with little hierarchy.',
-		wideIcon:[0,1],
+		icon:[0,1],
 		startWith:true,
 		effects:[
 			{type:'provide res',what:{'authority':5}},
