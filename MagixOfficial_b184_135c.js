@@ -17151,7 +17151,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});	
 	new G.Tech({
 		name:'primary intuition',
-		desc:'@Unlocks [block-smith workshop]. Subtype of [blacksmith workshop] which will forge blocks out of precious resources. @Due to it original [blacksmith workshop] will no longer forge blocks. @Uses [Land of the Plain Island].<>',
+		desc:'[primary intuition] is like a key to researching. However if [population,people] will expand their intuition they should be able to think about further researching. //Having just [primary intuition] allows you to research up to [oral tradition] tech. More complicated researches like sewing, crafting can be unlocked only with "secondary" [intuition].',
 		startWith:true,
 		icon:[34,31,'magixmod'],
 	});
