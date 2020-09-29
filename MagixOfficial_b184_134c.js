@@ -17149,6 +17149,12 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		],
 		chance:3
 	});	
+	new G.Tech({
+		name:'primary intuition',
+		desc:'@Unlocks [block-smith workshop]. Subtype of [blacksmith workshop] which will forge blocks out of precious resources. @Due to it original [blacksmith workshop] will no longer forge blocks. @Uses [Land of the Plain Island].<>',
+		startWith:true,
+		icon:[34,31,'magixmod'],
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
