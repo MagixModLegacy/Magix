@@ -2624,7 +2624,7 @@ G.props['fastTicksOnResearch']=150;
 			str+='Report for last long period of time... this century :<br>';
 			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
 			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
-			str+='&bull; <b>Soldiers defeats</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			str+='&bull; <b>Soldiers defeats</b> : '+B(G.getRes('soldiers defeats').amount)+'<br>';
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.getRes('soldiers defeats').amount=0;
@@ -17154,6 +17154,15 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'[primary intuition] is like a key to researching. However if [population,people] will expand their intuition they should be able to think about further researching. //Having just [primary intuition] allows you to research up to [oral tradition] tech. More complicated researches like sewing, crafting can be unlocked only with "secondary" [intuition].',
 		startWith:true,
 		icon:[34,31,'magixmod'],
+	});
+	new G.Trait({
+		name:'intuition',
+		desc:'[intuition] opens a way to more complex researching. Researches related to crafting, building, planning etc can be "on plan" since this moment.',
+		startWith:true,
+		icon:[35,31,'magixmod'],
+		chance:2.25,
+		cost:{'culture':1,'insight':1,'influence':1},
+		req:{'oral tradition':true}
 	});
 	/*=====================================================================================
 	POLICIES
