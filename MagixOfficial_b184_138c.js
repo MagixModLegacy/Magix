@@ -13221,7 +13221,7 @@ getCosts:function()
 		desc:'@allows full ocean exploring<>',
 		icon:[28,7],
 		cost:{'insight':40},
-		req:{'canoes':true,'carpentry':true},
+		req:{'canoes':true,'carpentry':true,'intuition':true},
 		effects:[
 			{type:'allow',what:['ocean exploring']},
 		],
@@ -13232,7 +13232,7 @@ getCosts:function()
 		desc:'@unlocks [mud shelter]s and [branch shelter]s@unlocks [lodge]s<>To stay in one place when food is scarce is a bold gamble, especially to those without knowledge of agriculture.',//TODO : this should unlock a policy that lets you switch between nomadism (housing and food storage have no effect) and sedentism (gathering and hunting are much less efficient)
 		icon:[8,1],
 		cost:{'insight':20},
-		req:{'stone-knapping':true,'digging':true,'language':true},
+		req:{'stone-knapping':true,'digging':true,'language':true,'intuition':true},
 		effects:[
 		],
 		chance:3,
@@ -13242,7 +13242,7 @@ getCosts:function()
 		desc:'@unlocks [hut]s@unlocks [stockpile]s (with [stockpiling])<>The [building,Hut] is only slightly more sophisticated than simple shelters, but is more spacious and can withstand wear longer.',
 		icon:[9,1],
 		cost:{'insight':20},
-		req:{'sedentism':true,'tool-making':true},
+		req:{'sedentism':true,'tool-making':true,'intuition':true},
 		effects:[
 		],
 		chance:3,
@@ -13252,7 +13252,7 @@ getCosts:function()
 		desc:'@unlocks [hovel]s<>',
 		icon:[29,7],
 		cost:{'insight':25},
-		req:{'building':true},
+		req:{'building':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13271,7 +13271,7 @@ getCosts:function()
 		desc:'@unlocks [architect]s<>',
 		icon:[22,8],
 		cost:{'insight':25},
-		req:{'construction':true,'cities':true,'caligraphy':true,'alphabet 1/3':true},
+		req:{'construction':true,'cities':true,'caligraphy':true,'alphabet 1/3':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13280,7 +13280,7 @@ getCosts:function()
 		desc:'@unlocks [guild quarters]<>NOTE : useless for now.',
 		icon:[23,8],
 		cost:{'insight':20},
-		req:{'cities':true,'construction':true,'code of law':true},
+		req:{'cities':true,'construction':true,'code of law':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13341,7 +13341,7 @@ getCosts:function()
 		desc:'@unlocks [healer]s<>',
 		icon:[25,7],
 		cost:{'insight':10},
-		req:{'plant lore':true,'stone-knapping':true,'herbalism':true},
+		req:{'plant lore':true,'stone-knapping':true,'herbalism':true,'intuition':true},
 		effects:[
 		],
 		chance:2,
@@ -13352,7 +13352,7 @@ getCosts:function()
 		desc:'@provides 10 [spirituality]@unlocks [soothsayer]s@unlocks some ritual policies<>Simple practices, eroded and polished by time, turn into rites and traditions.',
 		icon:[12,1],
 		cost:{'culture':5},
-		req:{'oral tradition':true},
+		req:{'oral tradition':true,'intuition':true},
 		effects:[
 			{type:'provide res',what:{'spirituality':10}},
 			{type:'provide res',what:{'cultural balance':3}},
@@ -13364,7 +13364,7 @@ getCosts:function()
 		desc:'@[dreamer]s produce 40% more [insight]@[storyteller]s produce 50% more [culture]@[soothsayer]s produce 50% more [faith]<>The manifestation of one thing for the meaning of another - to make the cosmos relate to itself.',
 		icon:[13,1],
 		cost:{'culture':10,'insight':10},
-		req:{'oral tradition':true},
+		req:{'oral tradition':true,'intuition':true},
 		effects:[
 			{type:'provide res',what:{'cultural balance':3}},
 		],
@@ -13460,7 +13460,7 @@ getCosts:function()
 		desc:'@[firekeeper]s can now prepare [cured meat] and [cured seafood] with [salt], which last much longer<>Storing food with special preparations seems to ward off rot, and comes along with the advent of delicious jerky.',
 		icon:[27,7],
 		cost:{'insight':15},
-		req:{'cooking':true,'stockpiling':true},
+		req:{'cooking':true,'stockpiling':true,'intuition':true},
 	});
 	
 	new G.Tech({
@@ -13468,7 +13468,7 @@ getCosts:function()
 		desc:'@unlocks [clothier]s, who work with fabric and can sew [primitive clothes]<>',//TODO : desc
 		icon:[29,1],
 		cost:{'insight':10},
-		req:{'tool-making':true},
+		req:{'tool-making':true,'intuition':true},
 		effects:[
 		]
 	});
@@ -13477,7 +13477,7 @@ getCosts:function()
 		desc:'@[clothier]s can now sew [basic clothes]<>',
 		icon:[30,1],
 		cost:{'insight':20},
-		req:{'sewing':true},
+		req:{'sewing':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13494,7 +13494,7 @@ getCosts:function()
 		desc:'@unlocks [furnace]s, which turn ore into metal ingots@unlocks [blacksmith workshop]s, which forge metal ingots into metal goods<>',//TODO : desc
 		icon:[26,5],
 		cost:{'insight':30},
-		req:{'fire-making':true,'building':true},
+		req:{'fire-making':true,'building':true},'intuition':true,
 		effects:[
 		],
 	});
@@ -13551,7 +13551,7 @@ getCosts:function()
 		desc:'@unlocks [clan leader]s, which generate [influence]@provides 5 [authority]<>',//TODO : desc
 		icon:[23,6],
 		cost:{'insight':25},
-		req:{'chieftains':true,'code of law':true},
+		req:{'chieftains':true,'code of law':true,'intuition':true},
 		effects:[
 			{type:'provide res',what:{'authority':5}},
 		],
@@ -13582,7 +13582,7 @@ getCosts:function()
 		desc:'@[mine]s can now be set to mine for specific ores',
 		icon:[25,5],
 		cost:{'insight':35},
-		req:{'mining':true},
+		req:{'mining':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13592,7 +13592,7 @@ getCosts:function()
 		desc:'@unlocks [quarry,Quarries]<>',
 		icon:[25,6],
 		cost:{'insight':20},
-		req:{'digging':true,'building':true},
+		req:{'digging':true,'building':true,'intuition':true},
 		effects:[
 			{type:'show context',what:['quarry']}
 		],
@@ -13642,7 +13642,7 @@ getCosts:function()
 		desc:'@unlocks [carpenter workshop]s, which can process [log]s into [lumber] and produce wooden goods@unlocks [barn]s (with [stockpiling])<>',
 		icon:[30,6],
 		cost:{'insight':35},
-		req:{'building':true,'woodcutting':true},
+		req:{'building':true,'woodcutting':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13652,7 +13652,7 @@ getCosts:function()
 		desc:'@unlocks the [mausoleum], an early wonder<>',
 		icon:[24,8],
 		cost:{'insight':90,'culture':40},
-		req:{'construction':true,'burial':true,'belief in the afterlife':true},
+		req:{'construction':true,'burial':true,'belief in the afterlife':true,'intuition':true},
 		effects:[
 		],
 	});
