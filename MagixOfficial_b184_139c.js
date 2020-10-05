@@ -13199,7 +13199,7 @@ getCosts:function()
 		desc:'@unlocks [scout]s, which can discover new territory<>The [scout] is an intrepid traveler equipped to deal with the unknown.',
 		icon:[24,7],
 		cost:{'insight':10},
-		req:{'tool-making':true,'language':true},
+		req:{'tool-making':true,'language':true,'intuition':true},
 		effects:[
 		],
 		chance:2,
