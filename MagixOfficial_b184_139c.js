@@ -17159,7 +17159,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'intuition',
 		desc:'[intuition] opens a way to more complex researching. Researches related to crafting, building, planning etc can be "on plan" since this moment.',
 		icon:[35,31,'magixmod'],
-		chance:2.25,
+		chance:1.25,
 		cost:{'culture':1,'insight':1,'influence':1},
 		req:{'oral tradition':true}
 	});
