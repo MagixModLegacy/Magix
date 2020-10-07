@@ -17161,7 +17161,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		icon:[35,31,'magixmod'],
 		chance:1.25,
 		cost:{'culture':1,'insight':1,'influence':1},
-		req:{'oral tradition':true}
+		req:{'oral tradition':true},
 	});
 	/*=====================================================================================
 	POLICIES
