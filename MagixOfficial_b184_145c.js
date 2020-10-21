@@ -1225,8 +1225,16 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-
-		
+function isBetween15and31ofOctober(when) {
+   let d = new Date(when);
+   return d.getMonth() == 9 && d.getDate() >= 15 && d.getDate() <= 31;
+}
+isBetween15and31ofOctober(Date.now())
+// => true
+isBetween15and31ofOctober(Date.now()+30*24*3600*1000) // Date.now() + 30 days
+// => false
+	
+	if(isBetween15and31ofOctober==false){
 var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -1239,6 +1247,20 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+	}else{
+		var cssId = 'betaCss'; 
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenbeta.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+	}
 		G.rerollChooseBox=function(me)
 	{
 		//check if we match the costs; if yes, research or reroll
