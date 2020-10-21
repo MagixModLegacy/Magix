@@ -3323,7 +3323,7 @@ G.props['fastTicksOnResearch']=150;
 		G.gain('wisdom',1)	
 		}}//year1&2 nerf
 		if(G.year<=1){
-		G.gain('happiness',0.15)
+		G.gain('happiness',0.27)
 		}
 		
 	}
