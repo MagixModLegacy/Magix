@@ -4225,6 +4225,17 @@ G.writeMSettingButton=function(obj)
 		],
 		civ:0
 	});
+	new G.Achiev({
+		tier:3,
+		icon:[25,21,'magixmod'],
+		name:'a huge city made of the cities',
+		desc:'Manage to get 1M [population,people] in one run. //Unbelieveable...',
+		effects:[
+			{type:'addFastTicksOnStart',amount:25},
+			{type:'addFastTicksOnResearch',amount:5}
+		],
+			civ:0
+	});
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
@@ -4654,9 +4665,13 @@ G.writeMSettingButton=function(obj)
 				}
 			}
 			else if (G.T>0) {G.GameOver();}
-			if (me.amount >= 500000 && G.achievByName['Metropoly'].won == 0){ //Apprentice achievement
+			if (me.amount >= 500000 && G.achievByName['Metropoly'].won == 0){ 
 			G.achievByName['Metropoly'].won = 1
 			G.middleText('- Completed <font color="green">Metropoly</font> achievement -')
+			}
+			if (me.amount >= 1000000 && G.achievByName['a huge city made of the cities'].won == 0){ 
+			G.achievByName['a huge city made of the cities'].won = 1
+			G.middleText('- Completed <font color="olive">A huge city made of the cities</font> achievement -')
 			}
 		},
 	});
@@ -17167,7 +17182,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'manufacture units II',
 		desc:'Now more units will be merged into one. [artisan]s : craft [stone weapons],[stone tools],[bow]s , [basket]s modes will no longer be available for [artisan]/[artisan] will no longer work in this mode. ',
 		icon:[16,31,'magixmod'],
-		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false,'Manufacture units I':true},
+		req:{'<font color="maroon">Moderation</font>':false,'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true},
 		cost:{'insight II':335},
 		effects:[
 		],
@@ -17191,8 +17206,18 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	effects:[
 	],	
         req:{'oral tradition':true},
-	chance:12,
+	chance:50,
     });
+	new G.Tech({
+		name:'factories II',
+		desc:'Now more units will be merged into one. [artisan]s : craft [stone weapons],[stone tools],[bow]s , [basket]s modes will no longer be available for [artisan]/[artisan] will no longer work in this mode. Also [firekeeper] from now can only cook because this tech will unlock unit that will craft more [fire pit]s but will have way bigger upkeep. ',
+		icon:[17,31,'magixmod'],
+		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false,'Factories I':true},
+		cost:{'insight II':335},
+		effects:[
+		],
+		chance:3
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
