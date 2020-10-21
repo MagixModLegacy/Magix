@@ -4227,7 +4227,7 @@ G.writeMSettingButton=function(obj)
 	});
 	new G.Achiev({
 		tier:3,
-		icon:[25,21,'magixmod'],
+		icon:[35,27,'magixmod'],
 		name:'a huge city made of the cities',
 		desc:'Manage to get 1M [population,people] in one run. //Unbelieveable...',
 		effects:[
@@ -17214,6 +17214,16 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		icon:[17,31,'magixmod'],
 		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false,'Factories I':true},
 		cost:{'insight II':335},
+		effects:[
+		],
+		chance:3
+	});
+	new G.Tech({
+		name:'villas of victory',
+		desc:'provides 15 [culture II],5 [spirituality II] and [authority II]. //Unlocks [villa of victory]. New way to give people housing... //This unit will provide amount of housing equal to result of equation below: //<font color="aqua">(victory points+1)*5</font>',
+		icon:[0,31,'magixmod'],
+		req:{'Bigger university':true},
+		cost:{'insight II':325,'science':50,'culture II':25},
 		effects:[
 		],
 		chance:3
