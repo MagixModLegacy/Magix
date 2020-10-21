@@ -17220,13 +17220,27 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Tech({
 		name:'villas of victory',
-		desc:'provides 15 [culture II],5 [spirituality II] and [authority II]. //Unlocks [villa of victory]. New way to give people housing... //This unit will provide amount of housing equal to result of equation below: //<font color="aqua">(victory points+1)*5</font>',
+		desc:'provides 15 [inspiration II],5 [spirituality II] and [authority II]. //Unlocks [villa of victory]. New way to give people housing... //This unit will provide amount of housing equal to result of equation below: //<font color="aqua">(victory points+1)*5</font>',
 		icon:[0,31,'magixmod'],
 		req:{'Bigger university':true},
 		cost:{'insight II':325,'science':50,'culture II':25},
 		effects:[
+			{type:'provide res',what:{'inspiration II':15}},
+			{type:'provide res',what:{'spirituality II':5}},
+			{type:'provide res',what:{'authority II':5}},
 		],
 		chance:3
+	});
+	new G.Tech({
+		name:'dynamics',
+		desc:'Provides 25 [wisdom] for free. The tech that will help people get to way more complicated researches.',
+		icon:[32,31,'magixmod'],
+		req:{'Laws of physics(basic)':true,'God\'s trait #3 Science^2':true},
+		cost:{'insight':1400,'science':1},
+		effects:[
+			{type:'provide res',what:{'wisdom':25}},
+		],
+		chance:30
 	});
 	/*=====================================================================================
 	POLICIES
