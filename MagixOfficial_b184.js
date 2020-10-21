@@ -1227,6 +1227,16 @@ func:function(){
 //===========================
 
 		
+function isBetween15and31ofOctober(when) {
+   let d = new Date(when);
+   return d.getMonth() == 9 && d.getDate() >= 15 && d.getDate() <= 31;
+}
+isBetween15and31ofOctober(Date.now())
+// => true
+isBetween15and31ofOctober(Date.now()+30*24*3600*1000) // Date.now() + 30 days
+// => false
+	
+	if(isBetween15and31ofOctober==false){
 var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -1239,6 +1249,20 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
+	}else{
+		var cssId = 'betaCss'; 
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenbeta.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+	}
 		G.rerollChooseBox=function(me)
 	{
 		//check if we match the costs; if yes, research or reroll
@@ -3323,7 +3347,7 @@ G.props['fastTicksOnResearch']=150;
 		G.gain('wisdom',1)	
 		}}//year1&2 nerf
 		if(G.year<=1){
-		G.gain('happiness',0.15)
+		G.gain('happiness',0.25)
 		}
 		
 	}
