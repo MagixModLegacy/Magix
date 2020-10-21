@@ -17163,6 +17163,36 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		cost:{'culture':1,'insight':1,'influence':1},
 		req:{'oral tradition':true},
 	});
+	new G.Tech({
+		name:'manufacture units II',
+		desc:'Now more units will be merged into one. [artisan]s : craft [stone weapons],[stone tools],[bow]s , [basket]s modes will no longer be available for [artisan]/[artisan] will no longer work in this mode. ',
+		icon:[16,31,'magixmod'],
+		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false,'Manufacture units I':true},
+		cost:{'insight II':335},
+		effects:[
+		],
+		chance:3
+	});
+		new G.Tech({
+		name:'mentors of nature',
+		desc:'[druid]s now generate [health] . //Some people call\'em nature\'s descendants. Probably this is the reason.',
+		icon:[31,31,'magixmod'],
+		req:{'Wizard complex':true,'<font color="orange">Smaller but efficient</font>':true},
+		cost:{'insight':750},
+		effects:[
+		],
+		chance:3
+	});	
+		new G.Trait({
+        name:'no knapping anymore',
+        desc:'Depending on chosen path people will produce way less [knapped tools]. //For [<font color="maroon">Moderation</font>] it is 95% //For [<font color="maroon">Caretaking</font>] it is 80%',
+        icon:[27,31,'magixmod'],
+        cost:{'culture II':10},
+	effects:[
+	],	
+        req:{'oral tradition':true},
+	chance:12,
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
