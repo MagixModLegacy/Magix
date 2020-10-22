@@ -3341,7 +3341,7 @@ G.props['fastTicksOnResearch']=150;
 				}
 			}
 			
-				if (day>=290 && day<=306) Game.baseSeason='halloween';{
+				if (day>=290 && day<=306){
 			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play();}
