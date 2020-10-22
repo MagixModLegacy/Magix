@@ -3353,7 +3353,7 @@ G.props['fastTicksOnResearch']=150;
 		if(G.year<=1){
 		G.gain('happiness',0.27)
 		}
-		
+		}
 	}
 	
 	G.funcs['tracked stat str c1']=function()
