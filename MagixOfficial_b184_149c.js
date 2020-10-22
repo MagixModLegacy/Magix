@@ -2624,8 +2624,6 @@ G.props['fastTicksOnResearch']=150;
 			G.middleText('<big><font color="orange">Happy Halloween!</font></big>');
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play(); 
-else
-
 function dateCheck(from,to,check) {
 
     var fDate,lDate,cDate;
