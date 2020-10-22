@@ -1959,8 +1959,7 @@ G.props['fastTicksOnResearch']=150;
 	let st14=false
 	let st15=false
 	let displayC1=true;let displayC2=false;
-	
-	
+	let hehallo=false;
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -2616,10 +2615,7 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		if (day>=290 && day<=306){
-			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
-		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
-		audi.play();}
+		
 	}
 	G.funcs['new year']=function()
 	{
@@ -3346,6 +3342,10 @@ G.props['fastTicksOnResearch']=150;
 		G.gain('happiness',0.27)
 		}
 		}
+		if (day>=290 && day<=306 && hehallo==false){
+			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
+		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
+		audi.play();hehallo=true;}
 	}
 	
 	G.funcs['tracked stat str c1']=function()
