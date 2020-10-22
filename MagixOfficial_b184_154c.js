@@ -1225,6 +1225,10 @@ sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
+	
+	///FOR SEASONAL CONTENT
+	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
+	/////////
 function isBetween15and31ofOctober(when) {
    let d = new Date(when);
    return d.getMonth() == 9 && d.getDate() >= 15 && d.getDate() <= 31;
@@ -1965,7 +1969,7 @@ G.props['fastTicksOnResearch']=150;
 	let st14=false
 	let st15=false
 	let displayC1=true;let displayC2=false;
-	let hehallo=false;
+	
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -3337,28 +3341,10 @@ G.props['fastTicksOnResearch']=150;
 				}
 			}
 			
-			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-			
-			
-			if(dateCheck("15/10","16/10","17/10","18/10","19/10","20/10","21/10","22/10","23/10","24/10","25/10","26/10","27/10","28/10","29/10","30/10","31/10","1/11","2/11","3/11")){
-				if(hehallo==false){
+				if (day>=290 && day<=306) Game.baseSeason='halloween';{
 			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
-		audi.play(); hehallo=true;}}
-
-		}
-		function dateCheck(from,to,check) {
-
-    var fDate,lDate,cDate;
-    fDate = Date.parse(from);
-    lDate = Date.parse(to);
-    cDate = Date.parse(check);
-
-    if((cDate <= lDate && cDate >= fDate)) {
-        return true;
-    }
-    return false;
-}
+		audi.play();}
 		//0/0 insight fix
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
 			if(G.getRes('wisdom').amount<100){
