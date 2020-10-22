@@ -2330,7 +2330,11 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['game loaded']=function()
 	{
-	
+	if(isBetween15and31ofOctober==true){
+		G.middleText('<big><font color="orange">Happy Halloween!</font></big>');
+		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
+		audi.play(); 
+	}
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
