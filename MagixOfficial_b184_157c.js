@@ -1229,29 +1229,8 @@ func:function(){
 	///FOR SEASONAL CONTENT
 	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
 	/////////
-function isBetween15and31ofOctober(when) {
-   let d = new Date(when);
-   return d.getMonth() == 9 && d.getDate() >= 15 && d.getDate() <= 31;
-}
-isBetween15and31ofOctober(Date.now())
-// => true
-isBetween15and31ofOctober(Date.now()+30*24*3600*1000) // Date.now() + 30 days
-// => false
-	
-	if(isBetween15and31ofOctober==false){
-var cssId = 'betaCss'; 
-if (!document.getElementById(cssId))
-{
-    var head  = document.getElementsByTagName('head')[0];
-    var link  = document.createElement('link');
-    link.id   = cssId;
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
-    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/beta.css';
-    link.media = 'all';
-    head.appendChild(link);
-}
-	}else{
+
+	if (day>=290 && day<=306){
 		var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -1261,6 +1240,17 @@ if (!document.getElementById(cssId))
     link.rel  = 'stylesheet';
     link.type = 'text/css';
     link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenbeta.css';
+    link.media = 'all';
+    head.appendChild(link);
+}}else{var cssId = 'betaCss'; 
+ (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/beta.css';
     link.media = 'all';
     head.appendChild(link);
 }
@@ -1970,6 +1960,7 @@ G.props['fastTicksOnResearch']=150;
 	let st15=false
 	let displayC1=true;let displayC2=false;
 	
+	
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -2335,7 +2326,10 @@ G.props['fastTicksOnResearch']=150;
 	}
 	G.funcs['game loaded']=function()
 	{
-	
+	if (day>=290 && day<=306){
+			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
+		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
+		audi.play();}
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
@@ -3341,10 +3335,7 @@ G.props['fastTicksOnResearch']=150;
 				}
 			}
 			
-				if (day>=290 && day<=306){
-			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
-		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
-		audi.play();}
+				
 		//0/0 insight fix
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
 			if(G.getRes('wisdom').amount<100){
