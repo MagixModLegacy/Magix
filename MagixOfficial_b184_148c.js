@@ -2620,10 +2620,26 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		if(isBetween15and31ofOctober==true){
-		G.middleText('<big><font color="orange">Happy Halloween!</font></big>');
+		if(dateCheck("15/10","16/10","17/10","18/10","19/10","20/10","21/10","22/10","23/10","24/10","25/10","26/10","27/10","28/10","29/10","30/10","31/10","1/11","2/11","3/11"))
+			G.middleText('<big><font color="orange">Happy Halloween!</font></big>');
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play(); 
+else
+
+function dateCheck(from,to,check) {
+
+    var fDate,lDate,cDate;
+    fDate = Date.parse(from);
+    lDate = Date.parse(to);
+    cDate = Date.parse(check);
+
+    if((cDate <= lDate && cDate >= fDate)) {
+        return true;
+    }
+    return false;
+}
+		if(isBetween15and31ofOctober==true){
+		
 	}
 	}
 	G.funcs['new year']=function()
