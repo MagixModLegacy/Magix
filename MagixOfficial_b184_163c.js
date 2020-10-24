@@ -2982,8 +2982,11 @@ G.props['fastTicksOnResearch']=150;
 		if(G.on){
 		 var pumpkinroulette=Math.round(Math.random()*100)+1;
 		var ic=Math.round(Math.random()*1)+7;
+			const loottabfcase=['<b>pieces of cooked meat</b>','<b>fruits</b>','<b>pieces of cooked seafood</b>','<b>Colored clothing</b>','<b>Herbs</b>'];
+			const loottabfgain=['cooked meat','fruit','cooked seafood','Colored clothing','herb'];
+			var loot=Math.round(Math.random()*5);
 		if(pumpkinroulette>=1 && pumpkinroulette<=15){
-		G.Message({type:'tot',text:'Oh a Jackilyn\'o Pumpkin arrives there. After a strong smash your people managed to collect N food outta it. <b>Noice!</b>',icon:[ic,7,'seasonal']}); //7,8
+		G.Message({type:'tot',text:'Oh a Jackilyn\'o Pumpkin arrives there. After a strong smash your people managed to collect N <font color="pink">'+loottabfcase[loot]+'</font> outta it. <b>Noice!</b>',icon:[ic,7,'seasonal']}); //7,8
 		};
 		}
 	}
