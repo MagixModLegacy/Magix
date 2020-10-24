@@ -2979,11 +2979,13 @@ G.props['fastTicksOnResearch']=150;
 	Halloween ToT
 	=======================================================================================*/
 	G.funcs['ToT']=function(){
+		if(G.on){
 		 var pumpkinroulette=Math.round(Math.random()*100)+1;
 		var ic=Math.round(Math.random()*7)+1;
 		if(pumpkinroulette>=1 && pumpkinroulette<=15){
 		G.Message({type:'tot',text:'Found a pumpkin',icon:[ic,7,'seasonal']}); //7,8
 		};
+		}
 	}
 	///////////////////
 	G.Message=function(obj)
