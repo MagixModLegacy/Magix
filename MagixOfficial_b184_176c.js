@@ -2615,19 +2615,16 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		if(day>=290 && day<=306){
-		G.getDict('population').icon=[0,7,'seasonal'];
-		G.getDict('worker').icon=[1,7,'seasonal'];
-		G.getDict('child').icon=[2,7,'seasonal'];
-		G.getDict('adult').icon=[3,7,'seasonal'];
-		G.getDict('elder').icon=[4,7,'seasonal'];
-		};
 	}
 	G.funcs['new year']=function()
 	{
 		if (G.on)
 		{
-			if(day>=290 && day<=306)G.doFunc('ToT');
+			if(day>=290 && day<=306){G.getDict('population').icon=[0,7,'seasonal'];
+		G.getDict('worker').icon=[1,7,'seasonal'];
+		G.getDict('child').icon=[2,7,'seasonal'];
+		G.getDict('adult').icon=[3,7,'seasonal'];
+		G.getDict('elder').icon=[4,7,'seasonal'];G.doFunc('ToT');};
 		if(G.has('time measuring 1/2') && G.has('primary time measure')){
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
