@@ -2621,6 +2621,7 @@ G.props['fastTicksOnResearch']=150;
 	{
 		if (G.on)
 		{
+			if(day>=290 && day<=306)G.doFunc('ToT');
 		if(G.has('time measuring 1/2') && G.has('primary time measure')){
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
@@ -2974,6 +2975,17 @@ G.props['fastTicksOnResearch']=150;
 		'Some dangerous creature sleeps calmly.',
 		'From far a sounds of a falling tree can be heard',
 	];
+	/*=====================================================================================
+	Halloween ToT
+	=======================================================================================*/
+	G.funcs['ToT']=function(){
+		 var pumpkinroulette=Math.round(Math.random()*100)+1;
+		var ic=Math.round(Math.random()*7)+1;
+		if(pumpkinroulette>=1 && pumpkinroulette<=15){
+		G.Message({type:'tot',text:'Found a pumpkin',icon:[ic,7,'seasonal']}); //7,8
+		};
+	}
+	///////////////////
 	G.Message=function(obj)
 	{
 		//syntax :
@@ -4256,6 +4268,8 @@ G.writeMSettingButton=function(obj)
 		],
 			civ:0
 	});
+	
+	
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
