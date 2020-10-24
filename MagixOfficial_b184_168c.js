@@ -2991,7 +2991,11 @@ G.props['fastTicksOnResearch']=150;
 			if(loot==0)amount=G.getRes('cooked meat').amount*0.33;if(loot==1)amount=G.getRes('fruit').amount*0.33;if(loot==2)amount=G.getRes('cooked seafood').amount*0.33;if(loot==3)amount=G.getRes('Colored clothing').amount*0.6;if(loot==4)amount=G.getRes('herb').amount*0.33;
 		if(pumpkinroulette>=1 && pumpkinroulette<=15){
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a strong smash your people managed to collect '+B(amount)+' <font color="pink">'+loottabfcase[loot]+'</font> outta it. <b>Noice!</b>',icon:[ic,7,'seasonal']}); //7,8
-		};
+		}else if(pumpkinroulette>15 && pumpkinroulette<=32){
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a loud , strong smash you see... that inside of this pumpkin... there was... nothing... <br><b>Trick!</b>',icon:[9,7,'seasonal']});
+		}else if(pumpkinroulette>32 && pumpkinroulette<=40){
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of water(probably his tears). Without caring about it a civillian smashes it and that\'s how you gain N <b>Water</b> <br>That\'s it!',icon:[9,7,'seasonal']});
+		}
 		}
 	}
 	///////////////////
