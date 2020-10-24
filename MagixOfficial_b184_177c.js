@@ -3006,20 +3006,26 @@ G.props['fastTicksOnResearch']=150;
 			var juicetype=Math.round(Math.random()*3);
 			if(juicetype==0)G.gain('Berry juice',amount,'<font color="orange">Treat</font>');if(juicetype==1)G.gain('Watermelon juice',amount,'<font color="orange">Treat</font>');if(juicetype==2)G.gain('Fruit juice',amount,'<font color="orange">Treat</font>');
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of colorful juicy water(probably his tears). Without caring about it an elder smashes it and that\'s how you gain '+amount+' <b>liters of tasty Juices</b> <br>That\'s it!',icon:[14,7,'seasonal']});
-		}else if(pumpkinroulette>38 && pumpkinroulette<=41){
+		}else if(pumpkinroulette>38 && pumpkinroulette<=41 && G.getRes('insight').amount<=G.getRes('wisdom').amount && G.getRes('culture').amount<=G.getRes('inspiration').amount && G.getRes('faith').amount<=G.getRes('spirituality').amount && G.getRes('insight II').amount<=G.getRes('wisdom II').amount && G.getRes('culture II').amount<=G.getRes('inspiration II').amount && G.getRes('faith II').amount<=G.getRes('spirituality II').amount && G.getRes('influence').amount<=G.getRes('authority').amount && G.getRes('influence II').amount<=G.getRes('authority II').amount){ //ONCE A YEAR IT CAN OVERCAP. IT's fine :)
 			const loottabgcase=['Insight','Culture','Faith','Influence'];
 			const loottabgcase2=['Insight II','Culture II','Faith II','Influence II'];
 			var lootg=Math.round(Math.random()*4);
 			var amount;
 			if(G.hasNot('Eotm')){
-			if(lootg==0)amount=10+(G.getRes('wisdom').amount/7);if(lootg==1)amount=5+(G.getRes('inspiration').amount/7);if(lootg==2)amount=2.5+(G.getRes('spirituality').amount/7);if(lootg==3)amount=4+(G.getRes('authority').amount/7);
+				if(lootg==0)amount=10+(G.getRes('wisdom').amount/7);G.gain('insight',amount,'<font color="orange">Treat</font>');
+				if(lootg==1)amount=5+(G.getRes('inspiration').amount/7);G.gain('culture',amount,'<font color="orange">Treat</font>');
+				if(lootg==2)amount=2.5+(G.getRes('spirituality').amount/7);G.gain('faith',amount,'<font color="orange">Treat</font>');
+				if(lootg==3)amount=4+(G.getRes('authority').amount/7);G.gain('influence',amount,'<font color="orange">Treat</font>');
 			}else{
-			if(lootg==0)amount=5+(G.getRes('wisdom II').amount/7);if(lootg==1)amount=3+(G.getRes('inspiration II').amount/7);if(lootg==2)amount=2.5+(G.getRes('spirituality II').amount/7);if(lootg==3)amount=3+(G.getRes('authority II').amount/7);	
+				if(lootg==0)amount=5+(G.getRes('wisdom II').amount/7);G.gain('insight II',amount,'<font color="orange">Treat</font>');
+				if(lootg==1)amount=3+(G.getRes('inspiration II').amount/7);G.gain('culture II',amount,'<font color="orange">Treat</font>');
+				if(lootg==2)amount=2.5+(G.getRes('spirituality II').amount/7);G.gain('faith II',amount,'<font color="orange">Treat</font>');
+				if(lootg==3)amount=3+(G.getRes('authority II').amount/7);G.gain('influence II',amount,'<font color="orange">Treat</font>');
 			}
 			if(G.hasNot('Eotm')){
-		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+amount+' '+loottabgcase[lootg]+'</b>.',icon:[11,7,'seasonal']});
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+B(amount)+' '+loottabgcase[lootg]+'</b>.',icon:[11,7,'seasonal']});
 			}else{
-		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+amount+' '+loottabgcase2[lootg]+'</b>.',icon:[12,7,'seasonal']});	
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+B(amount)+' '+loottabgcase2[lootg]+'</b>.',icon:[12,7,'seasonal']});	
 			}
 		}
 		}
