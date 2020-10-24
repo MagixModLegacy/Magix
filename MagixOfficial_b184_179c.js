@@ -2626,7 +2626,7 @@ G.props['fastTicksOnResearch']=150;
 		G.getDict('adult').icon=[3,7,'seasonal'];
 		G.getDict('burial').icon=[16,7,'seasonal'];
 		G.getDict('elder').icon=[4,7,'seasonal'];G.doFunc('ToT');
-						G.getDict('"dark season"').req={'tribalism':true,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true};
+						G.getDict('"dark season"').req={'tribalism':true,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true};};
 		if(G.has('time measuring 1/2') && G.has('primary time measure')){
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
@@ -17334,7 +17334,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		cost:{'culture':25,'faith':5},
 		effects:[
 		],
-		chance:30
+		chance:3
 	});
 	/*=====================================================================================
 	POLICIES
