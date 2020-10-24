@@ -2985,6 +2985,7 @@ G.props['fastTicksOnResearch']=150;
 	=======================================================================================*/
 	G.funcs['ToT']=function(){
 		if(G.on){
+			if(G.has('pumpkins')){
 		 var pumpkinroulette=Math.round(Math.random()*100)+1;
 		var ic=Math.round(Math.random()*1)+7;
 			const loottabfcase=['<b>Pieces of cooked meat</b>','<b>Fruits</b>','<b>Pieces of cooked seafood</b>','<b>Colored clothing</b>','<b>Herbs</b>'];
@@ -3003,12 +3004,12 @@ G.props['fastTicksOnResearch']=150;
 			var amount=G.getRes('water').amount*0.4;
 			G.gain('water',amount,'<font color="orange">Treat</font>');
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of water(probably his tears). Without caring about it a civillian smashes it and that\'s how you gain '+B(amount)+' <b>Water</b> <br>That\'s it!',icon:[13,7,'seasonal']});
-		}else if(pumpkinroulette>36 && pumpkinroulette<=38 && G.has('Juicy expertise')){
+		}else if(pumpkinroulette>36 && pumpkinroulette<=38 && G.has('Juicy expertise') && G.has('pumpkins II')){
 			var amount=G.getRes('Berry juice').amount*0.3+G.getRes('Watermelon juice').amount*0.3+G.getRes('Fruit juice').amount*0.3;
 			var juicetype=Math.round(Math.random()*3);
 			if(juicetype==0)G.gain('Berry juice',amount,'<font color="orange">Treat</font>');if(juicetype==1)G.gain('Watermelon juice',amount,'<font color="orange">Treat</font>');if(juicetype==2)G.gain('Fruit juice',amount,'<font color="orange">Treat</font>');
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of colorful juicy water(probably his tears). Without caring about it an elder smashes it and that\'s how you gain '+amount+' <b>liters of tasty Juices</b> <br>That\'s it!',icon:[14,7,'seasonal']});
-		}else if(pumpkinroulette>38 && pumpkinroulette<=41 && G.getRes('insight').amount<=G.getRes('wisdom').amount && G.getRes('culture').amount<=G.getRes('inspiration').amount && G.getRes('faith').amount<=G.getRes('spirituality').amount && G.getRes('insight II').amount<=G.getRes('wisdom II').amount && G.getRes('culture II').amount<=G.getRes('inspiration II').amount && G.getRes('faith II').amount<=G.getRes('spirituality II').amount && G.getRes('influence').amount<=G.getRes('authority').amount && G.getRes('influence II').amount<=G.getRes('authority II').amount){ //ONCE A YEAR IT CAN OVERCAP. IT's fine :)
+		}else if(pumpkinroulette>38 && pumpkinroulette<=41 && G.has('pumpkins II') && G.getRes('insight').amount<=G.getRes('wisdom').amount && G.getRes('culture').amount<=G.getRes('inspiration').amount && G.getRes('faith').amount<=G.getRes('spirituality').amount && G.getRes('insight II').amount<=G.getRes('wisdom II').amount && G.getRes('culture II').amount<=G.getRes('inspiration II').amount && G.getRes('faith II').amount<=G.getRes('spirituality II').amount && G.getRes('influence').amount<=G.getRes('authority').amount && G.getRes('influence II').amount<=G.getRes('authority II').amount){ //ONCE A YEAR IT CAN OVERCAP. IT's fine :)
 			const loottabgcase=['Insight','Culture','Faith','Influence'];
 			const loottabgcase2=['Insight II','Culture II','Faith II','Influence II'];
 			var lootg=Math.round(Math.random()*4);
@@ -3029,12 +3030,12 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+B(amount)+' '+loottabgcase2[lootg]+'</b>.',icon:[12,7,'seasonal']});	
 			}
-		}else if(pumpkinroulette>41 && pumpkinroulette<=43){ 
+		}else if(pumpkinroulette>41 && pumpkinroulette<=43 && G.has('pumpkins II')){ 
 			var amount=G.getRes('fire pit').amount*0.4;
 			G.gain('fire pit',amount,'<font color="orange">Treat</font>');
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. This pumpkin is so warm. Even fire roars outta the fruit. Ignoring that someone smashes it and that\'s how you gain '+B(amount)+' <b>Fire pits</b> for your tribe. <br>Amazing!',icon:[15,7,'seasonal']});
 		}
-		}
+		}}
 	}
 	///////////////////
 	G.Message=function(obj)
@@ -17331,7 +17332,27 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		desc:'People will try make fun out of spooky things. They won\'t need help of anyone outside your tribe. Prepare for festival of fear - that\'s what one of your '+G.getName('inhab')+' said to you.',
 		icon:[5,7,'seasonal'],
 		req:{'tribalism':false,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true},//tribalism switches to true when halloween season starts
-		cost:{'culture':25,'faith':5},
+		cost:{'culture':30,'faith':5},
+		effects:[
+		],
+		chance:3
+	});
+	new G.Tech({
+		name:'pumpkins',
+		desc:'From now you can find pumpkins that will give you some treats... but some of them are just a tricks. This should help your civilization grow up. // <b>Happy halloween!</b>',
+		icon:[6,7,'seasonal'],
+		req:{'"dark season"':true},
+		cost:{'insight':100},
+		effects:[
+		],
+		chance:3
+	});
+	new G.Tech({
+		name:'pumpkins II',
+		desc:'You can find pumpkins that will give you [insight,Essentials] , [Juices] and many more.',
+		icon:[10,7,'seasonal'],
+		req:{'pumpkins':true,'Beginnings of alchemy':true},
+		cost:{'insight':1000},
 		effects:[
 		],
 		chance:3
