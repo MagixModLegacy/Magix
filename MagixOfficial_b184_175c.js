@@ -2615,7 +2615,13 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		
+		if(day>=290 && day<=306){
+		G.getDict('population').icon=[0,7,'seasonal'];
+		G.getDict('worker').icon=[1,7,'seasonal'];
+		G.getDict('child').icon=[2,7,'seasonal'];
+		G.getDict('adult').icon=[3,7,'seasonal'];
+		G.getDict('elder').icon=[4,7,'seasonal'];
+		};
 	}
 	G.funcs['new year']=function()
 	{
@@ -2983,7 +2989,6 @@ G.props['fastTicksOnResearch']=150;
 		 var pumpkinroulette=Math.round(Math.random()*100)+1;
 		var ic=Math.round(Math.random()*1)+7;
 			const loottabfcase=['<b>Pieces of cooked meat</b>','<b>Fruits</b>','<b>Pieces of cooked seafood</b>','<b>Colored clothing</b>','<b>Herbs</b>'];
-			const loottabfgain=['cooked meat','fruit','cooked seafood','Colored clothing','herb'];
 			const pumpkinnames=['Etienne','Beth','Blushy','Dasher','Chester','Billy','Jimmy','Claire','Peter','Josh','Albert'];
 			var name=Math.round(Math.random()*11); //Name of pumpkin that will be displayed in message
 			var loot=Math.round(Math.random()*5); //What you will gain
@@ -3005,7 +3010,20 @@ G.props['fastTicksOnResearch']=150;
 			if(juicetype==0)G.gain('Berry juice',amount,'<font color="orange">Treat</font>');if(juicetype==1)G.gain('Watermelon juice',amount,'<font color="orange">Treat</font>');if(juicetype==2)G.gain('Fruit juice',amount,'<font color="orange">Treat</font>');
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of colorful juicy water(probably his tears). Without caring about it an elder smashes it and that\'s how you gain '+amount+' <b>liters of tasty Juices</b> <br>That\'s it!',icon:[14,7,'seasonal']});
 		}else if(pumpkinroulette>38 && pumpkinroulette<=41){
-		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained N insight.',icon:[11,7,'seasonal']});
+			const loottabgcase=['Insight','Culture','Faith','Influence'];
+			const loottabgcase2=['Insight II','Culture II','Faith II','Influence II'];
+			var lootg=Math.round(Math.random()*4);
+			var amount;
+			if(G.hasNot('Eotm')){
+			if(lootg==0)amount=10+(G.getRes('wisdom').amount/7);if(lootg==1)amount=5+(G.getRes('inspiration').amount/7);if(lootg==2)amount=2.5+(G.getRes('spirituality').amount/7);if(lootg==3)amount=4+(G.getRes('authority').amount/7);
+			}else{
+			if(lootg==0)amount=5+(G.getRes('wisdom II').amount/7);if(lootg==1)amount=3+(G.getRes('inspiration II').amount/7);if(lootg==2)amount=2.5+(G.getRes('spirituality II').amount/7);if(lootg==3)amount=3+(G.getRes('authority II').amount/7);	
+			}
+			if(G.hasNot('Eotm')){
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+amount+' '+loottabgcase[lootg]+'</b>.',icon:[11,7,'seasonal']});
+			}else{
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+amount+' '+loottabgcase2[lootg]+'</b>.',icon:[12,7,'seasonal']});	
+			}
 		}
 		}
 	}
