@@ -2988,16 +2988,22 @@ G.props['fastTicksOnResearch']=150;
 			var name=Math.round(Math.random()*11); //Name of pumpkin that will be displayed in message
 			var loot=Math.round(Math.random()*5); //What you will gain
 			var amount;
-			if(loot==0){amount=G.getRes('cooked meat').amount*0.33;G.gain('cooked meat',amount,'<font color="orange">Treat</font>');};if(loot==1){amount=G.getRes('fruit').amount*0.33;G.gain('fruit',amount,'<font color="orange">Treat</font>');};if(loot==2){amount=G.getRes('cooked seafood').amount*0.33;G.gain('cooked seafood','<font color="orange">Treat</font>');};if(loot==3){amount=G.getRes('Colored clothing').amount*0.6;G.gain('Colored clothing',amount,'<font color="orange">Treat</font>');};if(loot==4){amount=G.getRes('herb').amount*0.33;G.gain('herb',amount,'<font color="orange">Treat</font>');};
+			
 		if(pumpkinroulette>=1 && pumpkinroulette<=15){
+			if(loot==0){amount=G.getRes('cooked meat').amount*0.33;G.gain('cooked meat',amount,'<font color="orange">Treat</font>');};if(loot==1){amount=G.getRes('fruit').amount*0.33;G.gain('fruit',amount,'<font color="orange">Treat</font>');};if(loot==2){amount=G.getRes('cooked seafood').amount*0.33;G.gain('cooked seafood','<font color="orange">Treat</font>');};if(loot==3){amount=G.getRes('Colored clothing').amount*0.6;G.gain('Colored clothing',amount,'<font color="orange">Treat</font>');};if(loot==4){amount=G.getRes('herb').amount*0.33;G.gain('herb',amount,'<font color="orange">Treat</font>');};
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a strong smash your people managed to collect '+B(amount)+' <font color="pink">'+loottabfcase[loot]+'</font> outta it. <b>Noice!</b>',icon:[ic,7,'seasonal']}); //7,8
 			
 		}else if(pumpkinroulette>15 && pumpkinroulette<=28){
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a loud , strong smash you see... that inside of this pumpkin... there was... nothing... <br><b>Trick!</b>',icon:[9,7,'seasonal']});
 		}else if(pumpkinroulette>28 && pumpkinroulette<=36){
-		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of water(probably his tears). Without caring about it a civillian smashes it and that\'s how you gain N <b>Water</b> <br>That\'s it!',icon:[13,7,'seasonal']});
-		}else if(pumpkinroulette>36 && pumpkinroulette<=38){
-		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of colorful juicy water(probably his tears). Without caring about it an elder smashes it and that\'s how you gain N <b>liters of Juices</b> <br>That\'s it!',icon:[14,7,'seasonal']});
+			var amount=G.getRes('water').amount*0.4;
+			G.gain('water',amount,'<font color="orange">Treat</font>');
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of water(probably his tears). Without caring about it a civillian smashes it and that\'s how you gain '+B(amount)+' <b>Water</b> <br>That\'s it!',icon:[13,7,'seasonal']});
+		}else if(pumpkinroulette>36 && pumpkinroulette<=38 && G.has('Juicy expertise')){
+			var amount=G.getRes('Berry juice').amount*0.3+G.getRes('Watermelon juice').amount*0.3+G.getRes('Fruit juice').amount*0.3;
+			var juicetype=Math.round(Math.random()*3);
+			if(juicetype==0)G.gain('Berry juice',amount,'<font color="orange">Treat</font>');if(juicetype==1)G.gain('Watermelon juice',amount,'<font color="orange">Treat</font>');if(juicetype==2)G.gain('Fruit juice',amount,'<font color="orange">Treat</font>');
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of colorful juicy water(probably his tears). Without caring about it an elder smashes it and that\'s how you gain '+amount+' <b>liters of tasty Juices</b> <br>That\'s it!',icon:[14,7,'seasonal']});
 		}else if(pumpkinroulette>38 && pumpkinroulette<=41){
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained N insight.',icon:[11,7,'seasonal']});
 		}
