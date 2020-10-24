@@ -1221,16 +1221,15 @@ author:'pelletsstarPL',
 desc:'Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
 manifest:'ModManifest.js',
-sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/magixmod.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
+sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4Ta.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-
-		
-///FOR SEASONAL CONTENT
+	
+	///FOR SEASONAL CONTENT
 	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
 	/////////
-	
+
 	if (day>=290 && day<=306){
 		var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
@@ -2616,12 +2615,18 @@ G.props['fastTicksOnResearch']=150;
 			b12++
 			c12++
 		}
-		
 	}
 	G.funcs['new year']=function()
 	{
 		if (G.on)
 		{
+			if(day>=290 && day<=306){G.getDict('population').icon=[0,7,'seasonal'];
+		G.getDict('worker').icon=[1,7,'seasonal'];
+		G.getDict('child').icon=[2,7,'seasonal'];
+		G.getDict('adult').icon=[3,7,'seasonal'];
+		G.getDict('burial').icon=[16,7,'seasonal'];
+		G.getDict('elder').icon=[4,7,'seasonal'];G.doFunc('ToT');
+						G.getDict('"dark season"').req={'tribalism':true,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true};};
 		if(G.has('time measuring 1/2') && G.has('primary time measure')){
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
@@ -2975,6 +2980,64 @@ G.props['fastTicksOnResearch']=150;
 		'Some dangerous creature sleeps calmly.',
 		'From far a sounds of a falling tree can be heard',
 	];
+	/*=====================================================================================
+	Halloween ToT
+	=======================================================================================*/
+	G.funcs['ToT']=function(){
+		if(G.on){
+			if(G.has('pumpkins')){
+		 var pumpkinroulette=Math.round(Math.random()*100)+1;
+		var ic=Math.round(Math.random()*1)+7;
+			const loottabfcase=['<b>Pieces of cooked meat</b>','<b>Fruits</b>','<b>Pieces of cooked seafood</b>','<b>Colored clothing</b>','<b>Herbs</b>'];
+			const pumpkinnames=['Etienne','Beth','Blushy','Dasher','Chester','Billy','Jimmy','Claire','Peter','Josh','Albert'];
+			var name=Math.round(Math.random()*11); //Name of pumpkin that will be displayed in message
+			var loot=Math.round(Math.random()*5); //What you will gain
+			var amount;
+			
+		if(pumpkinroulette>=1 && pumpkinroulette<=15){
+			if(loot==0){amount=G.getRes('cooked meat').amount*0.33;G.gain('cooked meat',amount,'<font color="orange">Treat</font>');};if(loot==1){amount=G.getRes('fruit').amount*0.33;G.gain('fruit',amount,'<font color="orange">Treat</font>');};if(loot==2){amount=G.getRes('cooked seafood').amount*0.33;G.gain('cooked seafood','<font color="orange">Treat</font>');};if(loot==3){amount=G.getRes('Colored clothing').amount*0.6;G.gain('Colored clothing',amount,'<font color="orange">Treat</font>');};if(loot==4){amount=G.getRes('herb').amount*0.33;G.gain('herb',amount,'<font color="orange">Treat</font>');};
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a strong smash your people managed to collect '+B(amount)+' <font color="pink">'+loottabfcase[loot]+'</font> outta it. <b>Noice!</b>',icon:[ic,7,'seasonal']}); //7,8
+			
+		}else if(pumpkinroulette>15 && pumpkinroulette<=28){
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a loud , strong smash you see... that inside of this pumpkin... there was... nothing... <br><b>Trick!</b>',icon:[9,7,'seasonal']});
+		}else if(pumpkinroulette>28 && pumpkinroulette<=36){
+			var amount=G.getRes('water').amount*0.4;
+			G.gain('water',amount,'<font color="orange">Treat</font>');
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of water(probably his tears). Without caring about it a civillian smashes it and that\'s how you gain '+B(amount)+' <b>Water</b> <br>That\'s it!',icon:[13,7,'seasonal']});
+		}else if(pumpkinroulette>36 && pumpkinroulette<=38 && G.has('Juicy expertise') && G.has('pumpkins II')){
+			var amount=G.getRes('Berry juice').amount*0.3+G.getRes('Watermelon juice').amount*0.3+G.getRes('Fruit juice').amount*0.3;
+			var juicetype=Math.round(Math.random()*3);
+			if(juicetype==0)G.gain('Berry juice',amount,'<font color="orange">Treat</font>');if(juicetype==1)G.gain('Watermelon juice',amount,'<font color="orange">Treat</font>');if(juicetype==2)G.gain('Fruit juice',amount,'<font color="orange">Treat</font>');
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. Before smash pumpkin unleashed from itself alot of colorful juicy water(probably his tears). Without caring about it an elder smashes it and that\'s how you gain '+amount+' <b>liters of tasty Juices</b> <br>That\'s it!',icon:[14,7,'seasonal']});
+		}else if(pumpkinroulette>38 && pumpkinroulette<=41 && G.has('pumpkins II') && G.getRes('insight').amount<=G.getRes('wisdom').amount && G.getRes('culture').amount<=G.getRes('inspiration').amount && G.getRes('faith').amount<=G.getRes('spirituality').amount && G.getRes('insight II').amount<=G.getRes('wisdom II').amount && G.getRes('culture II').amount<=G.getRes('inspiration II').amount && G.getRes('faith II').amount<=G.getRes('spirituality II').amount && G.getRes('influence').amount<=G.getRes('authority').amount && G.getRes('influence II').amount<=G.getRes('authority II').amount){ //ONCE A YEAR IT CAN OVERCAP. IT's fine :)
+			const loottabgcase=['Insight','Culture','Faith','Influence'];
+			const loottabgcase2=['Insight II','Culture II','Faith II','Influence II'];
+			var lootg=Math.round(Math.random()*4);
+			var amount;
+			if(G.hasNot('Eotm')){
+				if(lootg==0)amount=10+(G.getRes('wisdom').amount/7);G.gain('insight',amount,'<font color="orange">Treat</font>');
+				if(lootg==1)amount=5+(G.getRes('inspiration').amount/7);G.gain('culture',amount,'<font color="orange">Treat</font>');
+				if(lootg==2)amount=2.5+(G.getRes('spirituality').amount/7);G.gain('faith',amount,'<font color="orange">Treat</font>');
+				if(lootg==3)amount=4+(G.getRes('authority').amount/7);G.gain('influence',amount,'<font color="orange">Treat</font>');
+			}else{
+				if(lootg==0)amount=5+(G.getRes('wisdom II').amount/7);G.gain('insight II',amount,'<font color="orange">Treat</font>');
+				if(lootg==1)amount=3+(G.getRes('inspiration II').amount/7);G.gain('culture II',amount,'<font color="orange">Treat</font>');
+				if(lootg==2)amount=2.5+(G.getRes('spirituality II').amount/7);G.gain('faith II',amount,'<font color="orange">Treat</font>');
+				if(lootg==3)amount=3+(G.getRes('authority II').amount/7);G.gain('influence II',amount,'<font color="orange">Treat</font>');
+			}
+			if(G.hasNot('Eotm')){
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+B(amount)+' '+loottabgcase[lootg]+'</b>.',icon:[11,7,'seasonal']});
+			}else{
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+B(amount)+' '+loottabgcase2[lootg]+'</b>.',icon:[12,7,'seasonal']});	
+			}
+		}else if(pumpkinroulette>41 && pumpkinroulette<=43 && G.has('pumpkins II')){ 
+			var amount=G.getRes('fire pit').amount*0.4;
+			G.gain('fire pit',amount,'<font color="orange">Treat</font>');
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. This pumpkin is so warm. Even fire roars outta the fruit. Ignoring that someone smashes it and that\'s how you gain '+B(amount)+' <b>Fire pits</b> for your tribe. <br>Amazing!',icon:[15,7,'seasonal']});
+		}
+		}}
+	}
+	///////////////////
 	G.Message=function(obj)
 	{
 		//syntax :
@@ -3333,15 +3396,15 @@ G.props['fastTicksOnResearch']=150;
 				}
 			}
 			
-			G.trackedStat=Math.max(G.trackedStat,G.getRes('population').amount);
-		}
+				
 		//0/0 insight fix
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
 			if(G.getRes('wisdom').amount<100){
 		G.gain('wisdom',1)	
 		}}//year1&2 nerf
 		if(G.year<=1){
-		G.gain('happiness',0.25)
+		G.gain('happiness',0.27)
+		}
 		}
 		if (day>=290 && day<=306 && hehallo==false){
 			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
@@ -4246,6 +4309,19 @@ G.writeMSettingButton=function(obj)
 		],
 		civ:0
 	});
+	new G.Achiev({
+		tier:3,
+		icon:[35,27,'magixmod'],
+		name:'a huge city made of the cities',
+		desc:'Manage to get 1M [population,people] in one run. //Unbelieveable...',
+		effects:[
+			{type:'addFastTicksOnStart',amount:25},
+			{type:'addFastTicksOnResearch',amount:5}
+		],
+			civ:0
+	});
+	
+	
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
@@ -4675,9 +4751,13 @@ G.writeMSettingButton=function(obj)
 				}
 			}
 			else if (G.T>0) {G.GameOver();}
-			if (me.amount >= 500000 && G.achievByName['Metropoly'].won == 0){ //Apprentice achievement
+			if (me.amount >= 500000 && G.achievByName['Metropoly'].won == 0){ 
 			G.achievByName['Metropoly'].won = 1
 			G.middleText('- Completed <font color="green">Metropoly</font> achievement -')
+			}
+			if (me.amount >= 1000000 && G.achievByName['a huge city made of the cities'].won == 0){ 
+			G.achievByName['a huge city made of the cities'].won = 1
+			G.middleText('- Completed <font color="olive">A huge city made of the cities</font> achievement -')
 			}
 		},
 	});
@@ -12995,7 +13075,6 @@ new G.Unit({
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes3',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes4',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 ////////////////////////////////////////////
-	
 	/*=====================================================================================
 	TECHS  
 	=======================================================================================*/
@@ -13220,7 +13299,7 @@ getCosts:function()
 		desc:'@unlocks [scout]s, which can discover new territory<>The [scout] is an intrepid traveler equipped to deal with the unknown.',
 		icon:[24,7],
 		cost:{'insight':10},
-		req:{'tool-making':true,'language':true},
+		req:{'tool-making':true,'language':true,'intuition':true},
 		effects:[
 		],
 		chance:2,
@@ -13242,7 +13321,7 @@ getCosts:function()
 		desc:'@allows full ocean exploring<>',
 		icon:[28,7],
 		cost:{'insight':40},
-		req:{'canoes':true,'carpentry':true},
+		req:{'canoes':true,'carpentry':true,'intuition':true},
 		effects:[
 			{type:'allow',what:['ocean exploring']},
 		],
@@ -13253,7 +13332,7 @@ getCosts:function()
 		desc:'@unlocks [mud shelter]s and [branch shelter]s@unlocks [lodge]s<>To stay in one place when food is scarce is a bold gamble, especially to those without knowledge of agriculture.',//TODO : this should unlock a policy that lets you switch between nomadism (housing and food storage have no effect) and sedentism (gathering and hunting are much less efficient)
 		icon:[8,1],
 		cost:{'insight':20},
-		req:{'stone-knapping':true,'digging':true,'language':true},
+		req:{'stone-knapping':true,'digging':true,'language':true,'intuition':true},
 		effects:[
 		],
 		chance:3,
@@ -13263,7 +13342,7 @@ getCosts:function()
 		desc:'@unlocks [hut]s@unlocks [stockpile]s (with [stockpiling])<>The [building,Hut] is only slightly more sophisticated than simple shelters, but is more spacious and can withstand wear longer.',
 		icon:[9,1],
 		cost:{'insight':20},
-		req:{'sedentism':true,'tool-making':true},
+		req:{'sedentism':true,'tool-making':true,'intuition':true},
 		effects:[
 		],
 		chance:3,
@@ -13273,7 +13352,7 @@ getCosts:function()
 		desc:'@unlocks [hovel]s<>',
 		icon:[29,7],
 		cost:{'insight':25},
-		req:{'building':true},
+		req:{'building':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13292,7 +13371,7 @@ getCosts:function()
 		desc:'@unlocks [architect]s<>',
 		icon:[22,8],
 		cost:{'insight':25},
-		req:{'construction':true,'cities':true,'caligraphy':true,'alphabet 1/3':true},
+		req:{'construction':true,'cities':true,'caligraphy':true,'alphabet 1/3':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13301,7 +13380,7 @@ getCosts:function()
 		desc:'@unlocks [guild quarters]<>NOTE : useless for now.',
 		icon:[23,8],
 		cost:{'insight':20},
-		req:{'cities':true,'construction':true,'code of law':true},
+		req:{'cities':true,'construction':true,'code of law':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13362,7 +13441,7 @@ getCosts:function()
 		desc:'@unlocks [healer]s<>',
 		icon:[25,7],
 		cost:{'insight':10},
-		req:{'plant lore':true,'stone-knapping':true,'herbalism':true},
+		req:{'plant lore':true,'stone-knapping':true,'herbalism':true,'intuition':true},
 		effects:[
 		],
 		chance:2,
@@ -13373,7 +13452,7 @@ getCosts:function()
 		desc:'@provides 10 [spirituality]@unlocks [soothsayer]s@unlocks some ritual policies<>Simple practices, eroded and polished by time, turn into rites and traditions.',
 		icon:[12,1],
 		cost:{'culture':5},
-		req:{'oral tradition':true},
+		req:{'oral tradition':true,'intuition':true},
 		effects:[
 			{type:'provide res',what:{'spirituality':10}},
 			{type:'provide res',what:{'cultural balance':3}},
@@ -13385,7 +13464,7 @@ getCosts:function()
 		desc:'@[dreamer]s produce 40% more [insight]@[storyteller]s produce 50% more [culture]@[soothsayer]s produce 50% more [faith]<>The manifestation of one thing for the meaning of another - to make the cosmos relate to itself.',
 		icon:[13,1],
 		cost:{'culture':10,'insight':10},
-		req:{'oral tradition':true},
+		req:{'oral tradition':true,'intuition':true},
 		effects:[
 			{type:'provide res',what:{'cultural balance':3}},
 		],
@@ -13481,7 +13560,7 @@ getCosts:function()
 		desc:'@[firekeeper]s can now prepare [cured meat] and [cured seafood] with [salt], which last much longer<>Storing food with special preparations seems to ward off rot, and comes along with the advent of delicious jerky.',
 		icon:[27,7],
 		cost:{'insight':15},
-		req:{'cooking':true,'stockpiling':true},
+		req:{'cooking':true,'stockpiling':true,'intuition':true},
 	});
 	
 	new G.Tech({
@@ -13489,7 +13568,7 @@ getCosts:function()
 		desc:'@unlocks [clothier]s, who work with fabric and can sew [primitive clothes]<>',//TODO : desc
 		icon:[29,1],
 		cost:{'insight':10},
-		req:{'tool-making':true},
+		req:{'tool-making':true,'intuition':true},
 		effects:[
 		]
 	});
@@ -13498,7 +13577,7 @@ getCosts:function()
 		desc:'@[clothier]s can now sew [basic clothes]<>',
 		icon:[30,1],
 		cost:{'insight':20},
-		req:{'sewing':true},
+		req:{'sewing':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13515,7 +13594,7 @@ getCosts:function()
 		desc:'@unlocks [furnace]s, which turn ore into metal ingots@unlocks [blacksmith workshop]s, which forge metal ingots into metal goods<>',//TODO : desc
 		icon:[26,5],
 		cost:{'insight':30},
-		req:{'fire-making':true,'building':true},
+		req:{'fire-making':true,'building':true},'intuition':true,
 		effects:[
 		],
 	});
@@ -13572,7 +13651,7 @@ getCosts:function()
 		desc:'@unlocks [clan leader]s, which generate [influence]@provides 5 [authority]<>',//TODO : desc
 		icon:[23,6],
 		cost:{'insight':25},
-		req:{'chieftains':true,'code of law':true},
+		req:{'chieftains':true,'code of law':true,'intuition':true},
 		effects:[
 			{type:'provide res',what:{'authority':5}},
 		],
@@ -13603,7 +13682,7 @@ getCosts:function()
 		desc:'@[mine]s can now be set to mine for specific ores',
 		icon:[25,5],
 		cost:{'insight':35},
-		req:{'mining':true},
+		req:{'mining':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13613,7 +13692,7 @@ getCosts:function()
 		desc:'@unlocks [quarry,Quarries]<>',
 		icon:[25,6],
 		cost:{'insight':20},
-		req:{'digging':true,'building':true},
+		req:{'digging':true,'building':true,'intuition':true},
 		effects:[
 			{type:'show context',what:['quarry']}
 		],
@@ -13663,7 +13742,7 @@ getCosts:function()
 		desc:'@unlocks [carpenter workshop]s, which can process [log]s into [lumber] and produce wooden goods@unlocks [barn]s (with [stockpiling])<>',
 		icon:[30,6],
 		cost:{'insight':35},
-		req:{'building':true,'woodcutting':true},
+		req:{'building':true,'woodcutting':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -13673,7 +13752,7 @@ getCosts:function()
 		desc:'@unlocks the [mausoleum], an early wonder<>',
 		icon:[24,8],
 		cost:{'insight':90,'culture':40},
-		req:{'construction':true,'burial':true,'belief in the afterlife':true},
+		req:{'construction':true,'burial':true,'belief in the afterlife':true,'intuition':true},
 		effects:[
 		],
 	});
@@ -17170,6 +17249,114 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		],
 		chance:3
 	});	
+	new G.Tech({
+		name:'primary intuition',
+		desc:'[primary intuition] is like a key to researching. However if [population,people] will expand their intuition they should be able to think about further researching. //Having just [primary intuition] allows you to research up to [oral tradition] tech. More complicated researches like sewing, crafting can be unlocked only with "secondary" [intuition].',
+		startWith:true,
+		icon:[34,31,'magixmod'],
+	});
+	new G.Trait({
+		name:'intuition',
+		desc:'[intuition] opens a way to more complex researching. Researches related to crafting, building, planning etc can be "on plan" since this moment.',
+		icon:[35,31,'magixmod'],
+		chance:1.25,
+		cost:{'culture':1,'insight':1,'influence':1},
+		req:{'oral tradition':true},
+	});
+	new G.Tech({
+		name:'manufacture units II',
+		desc:'Now more units will be merged into one. [artisan]s : craft [stone weapons],[stone tools],[bow]s , [basket]s modes will no longer be available for [artisan]/[artisan] will no longer work in this mode. ',
+		icon:[16,31,'magixmod'],
+		req:{'<font color="maroon">Moderation</font>':false,'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true},
+		cost:{'insight II':335},
+		effects:[
+		],
+		chance:3
+	});
+		new G.Tech({
+		name:'mentors of nature',
+		desc:'[druid]s now generate [health] . //Some people call\'em nature\'s descendants. Probably this is the reason.',
+		icon:[31,31,'magixmod'],
+		req:{'Wizard complex':true,'<font color="orange">Smaller but efficient</font>':true},
+		cost:{'insight':750},
+		effects:[
+		],
+		chance:3
+	});	
+		new G.Trait({
+        name:'no knapping anymore',
+        desc:'Depending on chosen path people will produce way less [knapped tools]. //For [<font color="maroon">Moderation</font>] it is 95% //For [<font color="maroon">Caretaking</font>] it is 80%',
+        icon:[27,31,'magixmod'],
+        cost:{'culture II':10},
+	effects:[
+	],	
+        req:{'oral tradition':true},
+	chance:50,
+    });
+	new G.Tech({
+		name:'factories II',
+		desc:'Now more units will be merged into one. [artisan]s : craft [stone weapons],[stone tools],[bow]s , [basket]s modes will no longer be available for [artisan]/[artisan] will no longer work in this mode. Also [firekeeper] from now can only cook because this tech will unlock unit that will craft more [fire pit]s but will have way bigger upkeep. ',
+		icon:[17,31,'magixmod'],
+		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false,'Factories I':true},
+		cost:{'insight II':335},
+		effects:[
+		],
+		chance:3
+	});
+	new G.Tech({
+		name:'villas of victory',
+		desc:'provides 15 [inspiration II],5 [spirituality II] and [authority II]. //Unlocks villa of victory(WIP). New way to give people housing... //This unit will provide amount of housing equal to result of equation below: //<font color="aqua">(victory points+1)*5</font>',
+		icon:[0,31,'magixmod'],
+		req:{'Bigger university':true},
+		cost:{'insight II':325,'science':50,'culture II':25},
+		effects:[
+			{type:'provide res',what:{'inspiration II':15}},
+			{type:'provide res',what:{'spirituality II':5}},
+			{type:'provide res',what:{'authority II':5}},
+		],
+		chance:3
+	});
+	new G.Tech({
+		name:'dynamics',
+		desc:'Provides 25 [wisdom] for free. The tech that will help people get to way more complicated researches.',
+		icon:[32,31,'magixmod'],
+		req:{'Laws of physics(basic)':true,'God\'s trait #3 Science^2':true},
+		cost:{'insight':1400,'science':1},
+		effects:[
+			{type:'provide res',what:{'wisdom':25}},
+		],
+		chance:30
+	});
+		new G.Tech({
+		name:'"dark season"',
+		desc:'People will try make fun out of spooky things. They won\'t need help of anyone outside your tribe. Prepare for festival of fear - that\'s what one of your '+G.getName('inhab')+' said to you.',
+		icon:[5,7,'seasonal'],
+		req:{'tribalism':false,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true},//tribalism switches to true when halloween season starts
+		cost:{'culture':30,'faith':5},
+		effects:[
+		],
+		chance:3
+	});
+	new G.Tech({
+		name:'pumpkins',
+		desc:'From now you can find pumpkins that will give you some treats... but some of them are just a tricks. This should help your civilization grow up. // <b>Happy halloween!</b>',
+		icon:[6,7,'seasonal'],
+		req:{'"dark season"':true},
+		cost:{'insight':100},
+		effects:[
+		],
+		chance:3
+	});
+	new G.Tech({
+		name:'pumpkins II',
+		desc:'You can find pumpkins that will give you [insight,Essentials] , [Juices] and many more.',
+		icon:[10,7,'seasonal'],
+		req:{'pumpkins':true,'Beginnings of alchemy':true},
+		cost:{'insight':1000},
+		effects:[
+		],
+		chance:3
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
