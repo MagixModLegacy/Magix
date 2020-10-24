@@ -17305,7 +17305,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Tech({
 		name:'villas of victory',
-		desc:'provides 15 [inspiration II],5 [spirituality II] and [authority II]. //Unlocks [villa of victory]. New way to give people housing... //This unit will provide amount of housing equal to result of equation below: //<font color="aqua">(victory points+1)*5</font>',
+		desc:'provides 15 [inspiration II],5 [spirituality II] and [authority II]. //Unlocks villa of victory(WIP). New way to give people housing... //This unit will provide amount of housing equal to result of equation below: //<font color="aqua">(victory points+1)*5</font>',
 		icon:[0,31,'magixmod'],
 		req:{'Bigger university':true},
 		cost:{'insight II':325,'science':50,'culture II':25},
