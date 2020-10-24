@@ -2624,7 +2624,9 @@ G.props['fastTicksOnResearch']=150;
 		G.getDict('worker').icon=[1,7,'seasonal'];
 		G.getDict('child').icon=[2,7,'seasonal'];
 		G.getDict('adult').icon=[3,7,'seasonal'];
-		G.getDict('elder').icon=[4,7,'seasonal'];G.doFunc('ToT');};
+		G.getDict('burial').icon=[16,7,'seasonal'];
+		G.getDict('elder').icon=[4,7,'seasonal'];G.doFunc('ToT');
+						G.getDict('"dark season"').req={'tribalism':true,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true};
 		if(G.has('time measuring 1/2') && G.has('primary time measure')){
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
@@ -3027,6 +3029,10 @@ G.props['fastTicksOnResearch']=150;
 			}else{
 		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a smash the pumpkin was... not so empty. It had a essential. You gained<b> '+B(amount)+' '+loottabgcase2[lootg]+'</b>.',icon:[12,7,'seasonal']});	
 			}
+		}else if(pumpkinroulette>41 && pumpkinroulette<=43){ 
+			var amount=G.getRes('fire pit').amount*0.4;
+			G.gain('fire pit',amount,'<font color="orange">Treat</font>');
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. This pumpkin is so warm. Even fire roars outta the fruit. Ignoring that someone smashes it and that\'s how you gain '+B(amount)+' <b>Fire pits</b> for your tribe. <br>Amazing!',icon:[15,7,'seasonal']});
 		}
 		}
 	}
@@ -17317,6 +17323,16 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		cost:{'insight':1400,'science':1},
 		effects:[
 			{type:'provide res',what:{'wisdom':25}},
+		],
+		chance:30
+	});
+		new G.Tech({
+		name:'"dark season"',
+		desc:'People will try make fun out of spooky things. They won\'t need help of anyone outside your tribe. Prepare for festival of fear - that\'s what one of your '+G.getName('inhab')+' said to you.',
+		icon:[5,7,'seasonal'],
+		req:{'tribalism':false,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true},//tribalism switches to true when halloween season starts
+		cost:{'culture':25,'faith':5},
+		effects:[
 		],
 		chance:30
 	});
