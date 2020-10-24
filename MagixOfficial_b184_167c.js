@@ -2975,7 +2975,26 @@ G.props['fastTicksOnResearch']=150;
 		'Some dangerous creature sleeps calmly.',
 		'From far a sounds of a falling tree can be heard',
 	];
-	
+	/*=====================================================================================
+	Halloween ToT
+	=======================================================================================*/
+	G.funcs['ToT']=function(){
+		if(G.on){
+		 var pumpkinroulette=Math.round(Math.random()*100)+1;
+		var ic=Math.round(Math.random()*1)+7;
+			const loottabfcase=['<b>Pieces of cooked meat</b>','<b>Fruits</b>','<b>Pieces of cooked seafood</b>','<b>Colored clothing</b>','<b>Herbs</b>'];
+			const loottabfgain=['cooked meat','fruit','cooked seafood','Colored clothing','herb'];
+			const pumpkinnames=['Etienne','Beth','Blushy','Dasher','Chester','Billy','Jimmy','Claire','Peter','Josh','Albert'];
+			var name=Math.round(Math.random()*11); //Name of pumpkin that will be displayed in message
+			var loot=Math.round(Math.random()*5); //What you will gain
+			var amount;
+			if(loot==0)amount=G.getRes('cooked meat').amount*0.33;if(loot==1)amount=G.getRes('fruit').amount*0.33;if(loot==2)amount=G.getRes('cooked seafood').amount*0.33;if(loot==3)amount=G.getRes('Colored clothing').amount*0.6;if(loot==4)amount=G.getRes('herb').amount*0.33;
+		if(pumpkinroulette>=1 && pumpkinroulette<=15){
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a strong smash your people managed to collect '+B(amount)+' <font color="pink">'+loottabfcase[loot]+'</font> outta it. <b>Noice!</b>',icon:[ic,7,'seasonal']}); //7,8
+		};
+		}
+	}
+	///////////////////
 	G.Message=function(obj)
 	{
 		//syntax :
@@ -13013,28 +13032,6 @@ new G.Unit({
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes3',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 		G.getDict('artisan').effects.push({type:'mult',value:0,mode:'dyes4',req:{'Manufacture units I':true,'<font color="maroon">Caretaking</font>':true}});
 ////////////////////////////////////////////
-	/*=====================================================================================
-	Halloween ToT
-	=======================================================================================*/
-	G.funcs['ToT']=function(){
-		if(G.on){
-		 var pumpkinroulette=Math.round(Math.random()*100)+1;
-		var ic=Math.round(Math.random()*1)+7;
-			const loottabfcase=['<b>Pieces of cooked meat</b>','<b>Fruits</b>','<b>Pieces of cooked seafood</b>','<b>Colored clothing</b>','<b>Herbs</b>'];
-			const loottabfgain=['cooked meat','fruit','cooked seafood','Colored clothing','herb'];
-			const pumpkinnames=['Etienne','Beth','Blushy','Dasher','Chester','Billy','Jimmy','Claire','Peter','Josh','Albert'];
-			var name=Math.round(Math.random()*11); //Name of pumpkin that will be displayed in message
-			var loot=Math.round(Math.random()*5); //What you will gain
-			var amount=G.getRes(loottabfgain[loot]).amount*0.33;
-		if(pumpkinroulette>=1 && pumpkinroulette<=15){
-		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a strong smash your people managed to collect '+B(amount)+' <font color="pink">'+loottabfcase[loot]+'</font> outta it. <b>Noice!</b>',icon:[ic,7,'seasonal']}); //7,8
-		};
-		}
-	}
-	///////////////////
-	
-	
-	
 	/*=====================================================================================
 	TECHS  
 	=======================================================================================*/
