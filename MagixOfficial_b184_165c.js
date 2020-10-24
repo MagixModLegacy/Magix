@@ -2987,8 +2987,9 @@ G.props['fastTicksOnResearch']=150;
 			const pumpkinnames=['Etienne','Beth','Blushy','Dasher','Chester','Billy','Jimmy','Claire','Peter','Josh','Albert'];
 			var name=Math.round(Math.random()*11); //Name of pumpkin that will be displayed in message
 			var loot=Math.round(Math.random()*5); //What you will gain
+			var amount=G.getRes(loottabfgain[loot]).amount*0.33;
 		if(pumpkinroulette>=1 && pumpkinroulette<=15){
-		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a strong smash your people managed to collect N <font color="pink">'+loottabfcase[loot]+'</font> outta it. <b>Noice!</b>',icon:[ic,7,'seasonal']}); //7,8
+		G.Message({type:'tot',text:'Oh a '+pumpkinnames[name]+'\'o Pumpkin arrives there. After a strong smash your people managed to collect '+B(amount)+' <font color="pink">'+loottabfcase[loot]+'</font> outta it. <b>Noice!</b>',icon:[ic,7,'seasonal']}); //7,8
 		};
 		}
 	}
