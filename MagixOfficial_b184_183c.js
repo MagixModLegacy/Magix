@@ -8774,12 +8774,13 @@ if (!document.getElementById(cssId))
 			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==400){G.getUnitByName('scientific university').mode==4;G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];}
 			if(G.has('<span style="color: ##FF0900">Plain island building</span>')){
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
-				if(G.has('no knapping anymore')){
-				G.getDict('healer').use = {'stone tools':1,'worker':1}
-				G.getDict('woodcutter').use = {'stone tools':1,'worker':1}
-				G.getDict('digger').use = {'stone tools':1,'worker':1}
-				}
+				
 		}
+			if(G.has('no knapping anymore')){
+				G.getDict('healer').use = {'stone tools':1,'worker':1};
+				G.getDict('woodcutter').use = {'stone tools':1,'worker':1};
+				G.getDict('digger').use = {'stone tools':1,'worker':1};
+				}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
