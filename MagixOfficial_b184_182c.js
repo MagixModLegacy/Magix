@@ -2633,7 +2633,7 @@ G.props['fastTicksOnResearch']=150;
 			str+='Report for last year :<br>';
 			str+='&bull; <b>Births</b> : '+B(G.getRes('born this year').amount)+'<br>';
 			str+='&bull; <b>Deaths</b> : '+B(G.getRes('died this year').amount)+'<br>';
-			str+='&bull; <b>Soldiers defeats</b> : '+B(G.getRes('died this year').amount)+'<br>';
+			str+='&bull; <b>Soldiers defeats</b> : '+B(G.getRes('soldiers defeats').amount)+'<br>';
 			G.getRes('born this year').amount=0;
 			G.getRes('died this year').amount=0;
 			G.getRes('soldiers defeats').amount=0;
@@ -2991,7 +2991,7 @@ G.props['fastTicksOnResearch']=150;
 			const loottabfcase=['<b>Pieces of cooked meat</b>','<b>Fruits</b>','<b>Pieces of cooked seafood</b>','<b>Colored clothing</b>','<b>Herbs</b>'];
 			const pumpkinnames=['Etienne','Beth','Blushy','Dasher','Chester','Billy','Jimmy','Claire','Peter','Josh','Albert'];
 			var name=Math.round(Math.random()*11); //Name of pumpkin that will be displayed in message
-			var loot=Math.round(Math.random()*5); //What you will gain
+			var loot=Math.round(Math.random()*4); //What you will gain
 			var amount;
 			
 		if(pumpkinroulette>=1 && pumpkinroulette<=15){
@@ -8774,6 +8774,11 @@ if (!document.getElementById(cssId))
 			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==400){G.getUnitByName('scientific university').mode==4;G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];}
 			if(G.has('<span style="color: ##FF0900">Plain island building</span>')){
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
+				if(G.has('no knapping anymore')){
+				G.getDict('healer').use = {'stone tools':1,'worker':1}
+				G.getDict('woodcutter').use = {'stone tools':1,'worker':1}
+				G.getDict('digger').use = {'stone tools':1,'worker':1}
+				}
 		}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
@@ -9356,6 +9361,12 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'convert',from:{'stone':1},into:{'knapped tools':1},every:5,mode:'knap'},
 			{type:'convert',from:{'bone':1},into:{'knapped tools':1},every:5,mode:'knap bone'},
+			//NO KNAPPING ANYMORE EFFECT
+			{type:'mult',value:0.05,req:{'no knapping anymore':true,'<font color="maroon">Moderation</font>':true},mode:'knap'},
+			{type:'mult',value:0.05,req:{'no knapping anymore':true,'<font color="maroon">Moderation</font>':true},mode:'knap bone'},
+			{type:'mult',value:0.15,req:{'no knapping anymore':true,'<font color="maroon">Caretaking</font>':true},mode:'knap'},
+			{type:'mult',value:0.15,req:{'no knapping anymore':true,'<font color="maroon">Caretaking</font>':true},mode:'knap bone'},
+			//////////
 			{type:'convert',from:{'stick':1,'stone':1},into:{'stone tools':1},every:8,mode:'stone tools'},
 			{type:'convert',from:{'stick':1,'stone':1},into:{'stone weapons':1},every:8,mode:'stone weapons'},
 			{type:'convert',from:{'stick':1,'stone':1},into:{'bow':1},every:10,mode:'bows'},
@@ -9938,9 +9949,9 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'gather',what:{'faith':0.012,'happiness':0.07},chance:1/8.5},
-			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false},chance:1/6},
-			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true},chance:1/6},
+			{type:'gather',what:{'faith':0.012,'happiness':0.07},chance:1/9.25},
+			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false},chance:1/6.5},
+			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true},chance:1/6.5},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
@@ -12981,6 +12992,7 @@ new G.Unit({
 		limitPer:{'population':10},
 		effects:[
 			{type:'gather',what:{'faith':0.1,'happiness':0.2}},
+			{type:'gather',what:{'health':0.23},req:{'mentors of nature':true}},
 			{type:'gather',what:{'faith':0.018},req:{'druidsymbolism2':true}},
 			{type:'gather',what:{'happiness':0.066},req:{'druidsymbolism1':true}},
 			{type:'gather',what:{'faith':0.05},req:{'symbolism II':true}},
@@ -17285,7 +17297,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});	
 		new G.Trait({
         name:'no knapping anymore',
-        desc:'Depending on chosen path people will produce way less [knapped tools]. //For [<font color="maroon">Moderation</font>] it is 95% //For [<font color="maroon">Caretaking</font>] it is 80%',
+        desc:'Depending on chosen path people will produce way less [knapped tools]. Also [healer], [digger] and [woodcutter] will use now [stone tools] instead of [knapped tools] However it won\'t increase their efficiency. //For [<font color="maroon">Moderation</font>] it is 95% //For [<font color="maroon">Caretaking</font>] it is 80%',
         icon:[27,31,'magixmod'],
         cost:{'culture II':10},
 	effects:[
