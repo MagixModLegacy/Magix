@@ -8777,7 +8777,7 @@ if (!document.getElementById(cssId))
 				
 		}
 			if(G.has('no knapping anymore')){
-				G.getDict('healer').use={'stone tools':1,'worker':1}
+				G.getDict('healer').use==={'stone tools':1,'worker':1}
 				G.getDict('woodcutter').use = {'stone tools':1,'worker':1,'knapped tools':0}
 				G.getDict('digger').use = {'stone tools':1,'worker':1,'knapped tools':0}
 				}
