@@ -8777,9 +8777,9 @@ if (!document.getElementById(cssId))
 				
 		}
 			if(G.has('no knapping anymore')){
-				G.getDict('healer').use={'stone tools':1,'worker':1,'knapped tools':-1}
-				G.getDict('woodcutter').use = {'stone tools':1,'worker':1,'knapped tools':0}
-				G.getDict('digger').use = {'stone tools':1,'worker':1,'knapped tools':0}
+				G.getDict('healer').use={'stone tools':1,'worker':1,'knapped tools':-1} //had to addk knapped tools -1 because declaring just
+				G.getDict('woodcutter').use = {'stone tools':1,'worker':1,'knapped tools':-1}// s.t and wrkr didn't make knapped tools usage disappear
+				G.getDict('digger').use = {'stone tools':1,'worker':1,'knapped tools':-1}//at least it works as it is supposed to
 				}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
