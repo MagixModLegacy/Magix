@@ -3012,7 +3012,7 @@ G.props['fastTicksOnResearch']=150;
 		}else if(pumpkinroulette>38 && pumpkinroulette<=41 && G.has('pumpkins II') && G.getRes('insight').amount<=G.getRes('wisdom').amount && G.getRes('culture').amount<=G.getRes('inspiration').amount && G.getRes('faith').amount<=G.getRes('spirituality').amount && G.getRes('insight II').amount<=G.getRes('wisdom II').amount && G.getRes('culture II').amount<=G.getRes('inspiration II').amount && G.getRes('faith II').amount<=G.getRes('spirituality II').amount && G.getRes('influence').amount<=G.getRes('authority').amount && G.getRes('influence II').amount<=G.getRes('authority II').amount){ //ONCE A YEAR IT CAN OVERCAP. IT's fine :)
 			const loottabgcase=['Insight','Culture','Faith','Influence'];
 			const loottabgcase2=['Insight II','Culture II','Faith II','Influence II'];
-			var lootg=Math.round(Math.random()*4);
+			var lootg=Math.round(Math.random()*3);
 			var amount;
 			if(G.hasNot('Eotm')){
 				if(lootg==0)amount=10+(G.getRes('wisdom').amount/7);G.gain('insight',amount,'<font color="orange">Treat</font>');
