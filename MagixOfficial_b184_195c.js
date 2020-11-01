@@ -17352,7 +17352,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Tech({
 		name:'pumpkins',
-		desc:'From now you can find pumpkins that will give you some treats... but some of them are just a tricks. This should help your civilization grow up. // <b>Happy halloween!</b>',
+		desc:'From now you can find pumpkins that will give you some treats... but some of them are just a tricks. This should help your civilization grow up. // <b>Happy halloween!</b> <br><font color="red">Note! It won\'t make you get pumpkins pernamently. Once Haloween ends you won\'t be able to get new Pumpkins till next Haloween. You can only get them during Haloween season.</font>',
 		icon:[6,7,'seasonal'],
 		req:{'"dark season"':true},
 		cost:{'insight':100},
@@ -17370,6 +17370,130 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		],
 		chance:3
 	});
+		//New DTs and GTs
+	new G.Trait({
+        name:'dt19',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+        icon:[34,23,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	new G.Trait({
+        name:'dt20',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+        icon:[34,22,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	new G.Trait({
+        name:'dt21',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+       icon:[34,21,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	new G.Trait({
+        name:'dt22',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+       icon:[34,20,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	new G.Trait({
+        name:'dt23',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+        icon:[34,19,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	new G.Trait({
+        name:'dt24',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+       icon:[34,18,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	new G.Trait({
+        name:'gt7',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+        icon:[35,23,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	//New DTs and GTs
+	new G.Trait({
+        name:'gt8',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+        icon:[35,22,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	//New DTs and GTs
+	new G.Trait({
+        name:'gt9',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+       icon:[35,21,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	//New DTs and GTs
+	new G.Trait({
+        name:'gt10',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+        icon:[35,20,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	new G.Trait({
+        name:'gt11',
+        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+        icon:[35,19,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
+	new G.Trait({
+        name:'gt12',
+        desc:'Everything related to essence produces 12% less of essence(except [wizard complex])',
+        icon:[35,18,'magixmod'],
+        cost:{'culture II':10,'influence II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+	chance:50,
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
