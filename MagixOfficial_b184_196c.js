@@ -4320,7 +4320,16 @@ G.writeMSettingButton=function(obj)
 		],
 			civ:0
 	});
-	
+	new G.Achiev({
+		tier:4,
+		icon:[34,17,'magixmod'],
+		name:'6 aces',
+		desc:'Be lucky enough to get: @All 6 [gt7,<font color="#d4af37">God\'s traits</font>] that will boost your Essence production in the same run. @All 6 [dt19,<font color="red">Devil\'s traits</font>] that will power down your Essence production in the same run. //Note: To complete achievement you need to have only one of these two cases.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:600},
+		],
+			civ:0
+	});
 	
 	/*=====================================================================================
 	RESOURCES
@@ -8781,6 +8790,14 @@ if (!document.getElementById(cssId))
 				G.getDict('woodcutter').use = {'stone tools':1,'worker':1,'knapped tools':-1}// s.t and wrkr didn't make knapped tools usage disappear
 				G.getDict('digger').use = {'stone tools':1,'worker':1,'knapped tools':-1}//at least it works as it is supposed to
 				}
+			//6 Aces
+			if(G.has("dt19") && G.has("dt20") && G.has("dt21") && G.has("dt22") && G.has("dt23") && G.has("dt24") && G.achievByName['6 aces'].won==0){
+				G.middleText('- Completed <font color="green">6 aces</font> achievement -','slow');
+				G.achievByName['6 aces'].won=1;
+			}else if(G.has("gt7") && G.has("gt8") && G.has("gt9") && G.has("gt10") && G.has("gt11") && G.has("gt12") && G.achievByName['6 aces'].won==0){
+				 G.middleText('- Completed <font color="green">6 aces</font> achievement -','slow');
+				G.achievByName['6 aces'].won=1;
+				 }
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -17373,126 +17390,142 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		//New DTs and GTs
 	new G.Trait({
         name:'dt19',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+	displayName:'Devil\'s trait #19 Extinguishion',
+        desc:'Everything related to [Fire essence] produces 12% less of [Fire essence,The Essence].(except [Wizard Complex])',
         icon:[34,23,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'gt7':false},
 	chance:50,
+	category:'devils'
     });
 	new G.Trait({
         name:'dt20',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+	displayName:'Devil\'s trait #20 Secret thirst',
+        desc:'Everything related to [Water essence] produces 12% less of [Water essence,The Essence].(except [Wizard Complex])',
         icon:[34,22,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'gt8':false},
 	chance:50,
+	category:'devils'
     });
 	new G.Trait({
         name:'dt21',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+	displayName:'Devil\'s trait #21 Atmospheric silence',
+        desc:'Everything related to [Wind essence] produces 12% less of [Wind essence,The Essence].(except [Wizard Complex])',
        icon:[34,21,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'gt9':false},
 	chance:50,
+		category:'devils'
     });
 	new G.Trait({
         name:'dt22',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+	displayName:'Devil\'s trait #22 Drought',
+        desc:'Everything related to [Nature essence] produces 12% less of [Nature essence,The Essence].(except [Wizard Complex])',
        icon:[34,20,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'gt10':false},
 	chance:50,
+		category:'devils'
     });
 	new G.Trait({
         name:'dt23',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+	displayName:'Devil\'s trait #23 Discharge',
+        desc:'Everything related to [Lightning essence] produces 12% less of [Lightning essence,The Essence].(except [Wizard Complex])',
         icon:[34,19,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'gt11':false},
 	chance:50,
+		category:'devils'
     });
 	new G.Trait({
         name:'dt24',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+		displayName:'Devil\'s trait #24 Deterrence',
+        desc:'Everything related to [Dark essence] produces 12% less of [Dark essence,The essence].(except [Wizard Complex])',
        icon:[34,18,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'gt12':false},
 	chance:50,
+		category:'devils'
     });
 	new G.Trait({
         name:'gt7',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+		displayName:'God\'s trait #7 Triumphal flame',
+        desc:'A [Fire essence] becomes the Trend of Gods. Everything related to [Fire essence] (except [Wizard Complex]) produces 2% more of this Essence.',
         icon:[35,23,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'dt19':false},
 	chance:50,
+		category:'gods'
     });
-	//New DTs and GTs
 	new G.Trait({
         name:'gt8',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+		displayName:'God\'s trait #8 Holy rain',
+        desc:'A [Water essence] becomes the Trend of Gods. Everything related to [Water essence] (except [Wizard Complex]) produces 2% more of this Essence.',
         icon:[35,22,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
-	chance:50,
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'dt20':false},
+	chance:50,category:'gods'
     });
-	//New DTs and GTs
 	new G.Trait({
         name:'gt9',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+		displayName:'God\'s trait #9 Windy wisdom',
+        desc:'A [Wind essence] becomes the Trend of Gods. Everything related to [Wind essence] (except [Wizard Complex]) produces 2% more of this Essence.',
        icon:[35,21,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
-	chance:50,
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'dt21':false},
+	chance:50,category:'gods'
     });
-	//New DTs and GTs
 	new G.Trait({
         name:'gt10',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+		displayName:'God\'s trait #10 Natural merge',
+        desc:'A [Nature essence] becomes the Trend of Gods. Everything related to [Nature essence] (except [Wizard Complex]) produces 2% more of this Essence.',
         icon:[35,20,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
-	chance:50,
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'dt22':false},
+	chance:50,category:'gods'
     });
 	new G.Trait({
         name:'gt11',
-        desc:'Everything related to essence produces 12% less of essence.(except [wizard complex])',
+		displayName:'God\'s trait #11 Electricity',
+        desc:'A [Lightning essence] becomes the Trend of Gods. Everything related to [Lightning essence] (except [Wizard Complex]) produces 2% more of this Essence.',
         icon:[35,19,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
-	chance:50,
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'dt23':false},
+	chance:50,category:'gods'
     });
 	new G.Trait({
         name:'gt12',
-        desc:'Everything related to essence produces 12% less of essence(except [wizard complex])',
+		displayName:'God\'s trait #12 Dark bait',
+        desc:'A [Dark essence] becomes the Trend of Gods. Everything related to [Dark essence] (except [Wizard Complex]) produces 2% more of this Essence.',
         icon:[35,18,'magixmod'],
-        cost:{'culture II':10,'influence II':1},
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 4/5':true},
-	chance:50,
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'dt24':false},
+	chance:50,category:'gods'
     });
 	/*=====================================================================================
 	POLICIES
