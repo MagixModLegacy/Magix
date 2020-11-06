@@ -17527,6 +17527,16 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
         req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'dt24':false},
 	chance:50,category:'gods'
     });
+	new G.Tech({
+		name:'tool rafinery 1/2',
+		desc:'Old... not so primitive but still old and easily craftable. Is there a way to make them decay slower? Probably people will figure it out later.',
+		icon:[26,31,'magixmod'],
+		req:{''},
+		cost:{'insight':1500,'wisdom':15},
+		effects:[
+		],
+		chance:3
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
