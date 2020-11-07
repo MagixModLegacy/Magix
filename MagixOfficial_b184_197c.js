@@ -17539,7 +17539,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Trait({
         name:'deep-rooted faith',
-        desc:'Provides @50 [spirituality II] , [spirituality] @90 [inspiration II]. //',
+        desc:'Provides @50 [spirituality II] , [spirituality] @90 [inspiration II]. //Religion built for centuries yet milleniums is deep rooted meaning that almost nothing can make this religion die. ',
        icon:[34,24,'magixmod'],
         cost:{'culture II':50,'faith II':35,'insight II':350,'science':60},
 	effects:[
@@ -17548,6 +17548,38 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	chance:50,
 		category:'main'
     });
+	new G.Tech({
+		name:'dynamics II',
+		desc:'@Way more descriptions of dynamics. @Gravity description @provides 2[education] @upon obtain provides exclusively 2 [faith II] and 2 [influence II] @Thanks to more exact descriptions high-level researches may be easier.',
+		icon:[32,31,'magixmod'],
+		req:{'Laws of physics(intermediate)':true,'God\'s trait #3 Science^2':true,'Doctrine of the dark wormhole 2/5':true},
+		cost:{'insight II':200,'science':15},
+		effects:[
+			{type:'provide res',what:{'wisdom':25}},
+		],
+		chance:30
+	});
+	new G.Tech({
+		name:'tool rafinery 2/2',
+		desc:'[stone tools,Stone tools] become [stone tools,Refined tools] making them decay slower. Also [artisan] is no longer able to craft them but... obtain [factories II] or [manufacture units II] to unlock unit that will let you craft them again... Make sure it will be quick.',
+		icon:[25,31,'magixmod'],
+		req:{'Outstanding wisdom':true},
+		cost:{'insight II':150,'science':5},
+		effects:[
+		],
+		chance:3
+	});
+	new G.Tech({
+		name:'at(ct)',
+		displayName:'Automation',
+		desc:'Caretaking has one feature: people do not focus that much on industrialization or technological progress / innovations. That means some part of automation people will want to discover later but they won\'t want to make every single thing being automated.',
+		icon:[15,31,'magixmod'],
+		req:{'Paradise crafting':true,'Bigger university':true},
+		cost:{'insight':1500,'wisdom':15},
+		effects:[
+		],
+		chance:3
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
