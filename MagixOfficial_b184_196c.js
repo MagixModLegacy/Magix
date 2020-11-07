@@ -17531,12 +17531,23 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		name:'tool rafinery 1/2',
 		desc:'Old... not so primitive but still old and easily craftable. Is there a way to make them decay slower? Probably people will figure it out later.',
 		icon:[26,31,'magixmod'],
-		req:{''},
+		req:{'Paradise crafting':true},
 		cost:{'insight':1500,'wisdom':15},
 		effects:[
 		],
 		chance:3
 	});
+	new G.Trait({
+        name:'deep-rooted faith',
+        desc:'Everything related to [Dark essence] produces 12% less of [Dark essence,The essence].(except [Wizard Complex])',
+       icon:[34,18,'magixmod'],
+        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
+	effects:[
+	],	
+        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'gt12':false},
+	chance:50,
+		category:'devils'
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
