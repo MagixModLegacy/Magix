@@ -17561,7 +17561,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Tech({
 		name:'tool rafinery 2/2',
-		desc:'[stone tools,Stone tools] become [stone tools,Refined tools] making them decay slower. Also [artisan] is no longer able to craft them but... obtain [factories II] or [manufacture units II] to unlock unit that will let you craft them again... Make sure it will be quick.',
+		desc:'[stone tools,Stone tools] become [stone tools,Refined tools] making them decay slower. Also [artisan] is no longer able to craft them but... obtain [factories II] or [manufacture units II] to unlock unit that will let you craft them again... Make sure it will happen quickly.',
 		icon:[25,31,'magixmod'],
 		req:{'Outstanding wisdom':true},
 		cost:{'insight II':150,'science':5},
