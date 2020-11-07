@@ -17539,14 +17539,14 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	});
 	new G.Trait({
         name:'deep-rooted faith',
-        desc:'Everything related to [Dark essence] produces 12% less of [Dark essence,The essence].(except [Wizard Complex])',
-       icon:[34,18,'magixmod'],
-        cost:{'culture II':10,'influence II':1,'wisdom':10,'faith II':1},
+        desc:'Provides @50 [spirituality II] , [spirituality] @90 [inspiration II]. //',
+       icon:[34,24,'magixmod'],
+        cost:{'culture II':50,'faith II':35,'insight II':350,'science':60},
 	effects:[
 	],	
-        req:{'oral tradition':true,'Doctrine of the dark wormhole 5/5':true,'gt12':false},
+        req:{'villas of victory':true},
 	chance:50,
-		category:'devils'
+		category:'main'
     });
 	/*=====================================================================================
 	POLICIES
