@@ -1267,7 +1267,7 @@ if (!document.getElementById(cssId))
 			}else if(randomTxt>1 && randomTxt<=2){
 		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#ccccff">Wait patiently. There will be something to research... unless you researched everything , then yeah. There is the end.</font></small>');}
 			}else if(randomTxt>2 && randomTxt<=3){
-		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#aaffdd">The mod has over 250 available techs. If you have that much it may be the end.</font></small>');}
+		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#aaffdd">The mod has over 290 available techs. If you have that much it may be the end.</font></small>');}
 			}else if(randomTxt>3 && randomTxt<=4){
 		if (me.getCards().length==0) {success=false;G.middleText('<small><font color="#777777">More techs coming soon :)</font></small>');}
 			}
