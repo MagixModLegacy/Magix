@@ -8789,6 +8789,7 @@ if (!document.getElementById(cssId))
 				G.getDict('healer').use={'stone tools':1,'worker':1,'knapped tools':-1} //had to addk knapped tools -1 because declaring just
 				G.getDict('woodcutter').use = {'stone tools':1,'worker':1,'knapped tools':-1}// s.t and wrkr didn't make knapped tools usage disappear
 				G.getDict('digger').use = {'stone tools':1,'worker':1,'knapped tools':-1}//at least it works as it is supposed to
+				
 				}
 			//6 Aces
 			if(G.has("dt19") && G.has("dt20") && G.has("dt21") && G.has("dt22") && G.has("dt23") && G.has("dt24") && G.achievByName['6 aces'].won==0){
@@ -8798,6 +8799,16 @@ if (!document.getElementById(cssId))
 				 G.middleText('- Completed <font color="green">6 aces</font> achievement -','slow');
 				G.achievByName['6 aces'].won=1;
 				 }
+			if(G.has('tool rafinery 1/2') && G.hasNot('tool rafinery 2/2')){
+				G.getDict('stone tools').icon=[20,31,'magixmod'];
+				G.getDict('stone weapons').icon=[22,31,'magixmod'];
+				G.getDict('metal tools').icon=[21,31,'magixmod'];
+				}else if(G.has('tool rafinery 1/2') && G.has('tool rafinery 2/2')){
+					G.getDict('stone tools').icon=[23,31,'magixmod'];
+				G.getDict('stone weapons').icon=[24,31,'magixmod']; 
+					G.getDict('stone tools').displayName='Refined tools';
+				G.getDict('stone weapons').displayName='Refined weapons';
+				}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
