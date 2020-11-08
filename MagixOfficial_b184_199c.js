@@ -8800,12 +8800,13 @@ if (!document.getElementById(cssId))
 				G.achievByName['6 aces'].won=1;
 				 }
 			if(G.has('tool rafinery 1/2') && G.hasNot('tool rafinery 2/2')){
-				G.getDict('stone tools').icon=[20,31,'magixmod'];
-				G.getDict('stone weapons').icon=[22,31,'magixmod'];
-				G.getDict('metal tools').icon=[21,31,'magixmod'];
+				G.getDict('stone tools').icon=[19,31,'magixmod'];
+				G.getDict('stone weapons').icon=[21,31,'magixmod'];
+				G.getDict('metal tools').icon=[20,31,'magixmod'];
 				}else if(G.has('tool rafinery 1/2') && G.has('tool rafinery 2/2')){
-					G.getDict('stone tools').icon=[23,31,'magixmod'];
-				G.getDict('stone weapons').icon=[24,31,'magixmod']; 
+					G.getDict('stone tools').icon=[22,31,'magixmod'];
+				G.getDict('stone weapons').icon=[23,31,'magixmod']; 
+					G.getDict('metal tools').icon=[20,31,'magixmod'];
 					G.getDict('stone tools').displayName='Refined tools';
 				G.getDict('stone weapons').displayName='Refined weapons';
 				}
@@ -17551,7 +17552,7 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 	new G.Trait({
         name:'deep-rooted faith',
         desc:'Provides @50 [spirituality II] , [spirituality] @90 [inspiration II]. //Religion built for centuries yet milleniums is deep rooted meaning that almost nothing can make this religion die. ',
-       icon:[34,24,'magixmod'],
+       icon:[35,24,'magixmod'],
         cost:{'culture II':50,'faith II':35,'insight II':350,'science':60},
 	effects:[
 	],	
@@ -17590,6 +17591,13 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		effects:[
 		],
 		chance:3
+	});
+	new G.Tech({
+		name:'even bigger university',
+		desc:'@Unlocks 3rd level of [scientific university]. Requires 10 [victory point]s to level up.',
+		icon:[9,29,'magixmod'],
+		cost:{'insight II':600,'university point':300,'science':80,'culture II':115,'faith II':80},
+		req:{'wonder \'o science':true,'Wizard complex':true,'Bigger university':true,'deep-rooted faith':true,'dynamics II':true},		
 	});
 	/*=====================================================================================
 	POLICIES
