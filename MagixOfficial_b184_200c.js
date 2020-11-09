@@ -17555,6 +17555,9 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
        icon:[35,24,'magixmod'],
         cost:{'culture II':50,'faith II':35,'insight II':350,'science':60},
 	effects:[
+		{type:'provide res',what:{'spirituality II':50}},
+		{type:'provide res',what:{'spirituality':50}},
+		{type:'provide res',what:{'inspiration II':90}},
 	],	
         req:{'villas of victory':true},
 	chance:50,
@@ -17599,6 +17602,31 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
 		cost:{'insight II':600,'university point':300,'science':80,'culture II':115,'faith II':80},
 		req:{'wonder \'o science':true,'Wizard complex':true,'Bigger university':true,'deep-rooted faith':true,'dynamics II':true},		
 	});
+	new G.Trait({
+        name:'brahim the angel of authority',
+        desc:'Provides 15 [spirituality II] and 15 [authority II]',
+       icon:[35,30,'magixmod'],
+        cost:{'faith II':40,'influence II':30,'culture II':30},
+	effects:[
+		{type:'provide res',what:{'spirituality II':15}},
+		{type:'provide res',what:{'authority II':15}},
+	],	
+        req:{'villas of victory':true,'sergius the angel of belief':false},
+	chance:500,
+		category:'religion'
+    });
+	new G.Trait({
+        name:'sergius the angel of belief',
+        desc:'Provides 30 [spirituality II]',
+       icon:[35,29,'magixmod'],
+        cost:{'faith II':40,'influence II':30,'culture II':30},
+	effects:[
+		{type:'provide res',what:{'spirituality II':30}},
+	],	
+        req:{'villas of victory':true,'brahim the angel of authority':false},
+	chance:500,
+		category:'religion'
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
