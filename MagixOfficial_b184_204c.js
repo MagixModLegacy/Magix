@@ -1991,7 +1991,7 @@ G.props['fastTicksOnResearch']=150;
 		if(G.achievByName['Insight-ly'].won>=1){G.gainTech(G.techByName['<font color="aqua">Genius feeling</font>']);}
 		if(G.achievByName['"In the underworld"'].won > 0 && G.achievByName['Deadly, revenantic'].won > 0 && G.hasNot('A feeling from the Underworld')){
 		G.gainTech(G.techByName['A feeling from the Underworld']);
-		}
+		};
 		if (G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')){
 G.gainTech(G.techByName['<font color="##a8654f">The Underworld\'s Ascendant</font>']);
 }
@@ -2002,7 +2002,7 @@ G.gainTech(G.techByName['<font color="##a8654f">The Underworld\'s Ascendant</fon
       G.gainTrait(G.techByName['<font color="orange">Smaller but efficient</font>'])
     }
 		if (G.achievByName['Magical'].won > 0 && G.hasNot('Magical presence')){
-      G.gainTech('Magical presence')
+      G.gainTech(G.techByName['Magical presence']);
     }
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
