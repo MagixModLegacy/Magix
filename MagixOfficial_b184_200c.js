@@ -12925,7 +12925,7 @@ new G.Unit({
     		effects:[
 			{type:'provide',what:{'housing':8}},
 			{type:'gather',what:{'Ambrosium shard':0.04}},
-			{type:'gather',what:{'fruits':0.02},chance:1/50},
+			{type:'gather',what:{'fruit':0.02},chance:1/50},
 			{type:'gather',what:{'vegetable':0.04},chance:1/50},
 			{type:'mult',value:1.1,req:{'Fertile bushes':true}},
 			{type:'mult',value:1.1,req:{'backshift at farms':true}},
