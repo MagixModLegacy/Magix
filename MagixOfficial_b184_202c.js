@@ -1985,9 +1985,10 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
-		if(G.achievByName['mausoleum'].won>=1){
-		G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);
-		}
+		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);}
+		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['<font color="fuschia">Authority of the ancestor</font>']);}
+		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['<font color=" ##00C000">Artistic gray cells</font>']);}
+		if(G.achievByName['Insight-ly'].won>=1){G.gainTech(G.techByName['<font color="aqua">Genius feeling</font>']);}
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -15368,7 +15369,7 @@ autobuy(G.year)
 	SPECIAL ACHIEVEMENTS EFFECTS
 	===========================================================================================*/
 
-	let gif =  new G.Tech({
+	new G.Tech({
         name:'<font color=" ##00C000">Artistic gray cells</font>',
         desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration] @Also autohires for free 1 [storyteller] but this free one works at 1/2000 of normally hired [storyteller].',
         icon:[4,12,'magixmod',6,12,'magixmod'],
@@ -15379,22 +15380,7 @@ autobuy(G.year)
 		],
         req:{'tribalism':false}
     	});
-	function checkCultu() {
-  	if (G.achievByName['Sacrificed for culture'].won) {
-    	if (G.achievByName['Sacrificed for culture'].won >= 0 && G.hasNot('<font color=" ##00C000">Artistic gray cells</font>')) {
-     	 G.gainTech(gif)
-    	}
-	}
-	}
-	checkCultu()
-	const oldNewGame3 = G.NewGameConfirm.bind({})
-	G.NewGameConfirm = new Proxy(oldNewGame3, {
- 	 apply: function(target, thisArg, args) {
-   	 target(...args)
-   	 checkCultu()
- 	 }
-	})
-let gifI =  new G.Tech({
+	new G.Tech({
         name:'<font color="aqua">Genius feeling</font>',
         desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
         icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
@@ -15404,22 +15390,7 @@ let gifI =  new G.Tech({
 		],
         req:{'tribalism':false}
     });
-function checkDream() {
-  if (G.achievByName['Insight-ly'].won) {
-    if (G.achievByName['Insight-ly'].won >= 0 && G.hasNot('<font color="aqua">Genius feeling</font>')) {
-      G.gainTech(gifI)
-    }
-}
-}
-checkDream()
-const oldNewGame2 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame2, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkDream()
-  }
-})
-let gifD =  new G.Tech({
+new G.Tech({
         name:'<font color="fuschia">Authority of the ancestor</font>',
         desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
         icon:[4,12,'magixmod',6,13,'magixmod'],
@@ -15430,21 +15401,6 @@ let gifD =  new G.Tech({
 		],
         req:{'tribalism':false}
     });
-function checkDemoc() {
-  if (G.achievByName['Democration'].won) {
-    if (G.achievByName['Democration'].won >= 0 && G.hasNot('<font color="fuschia">Authority of the ancestor</font>')) {
-      G.gainTech(gifD)
-    }
-}
-}
-checkDemoc()
-const oldNewGame1 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame1, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkDemoc()
-  }
-})
 	new G.Tech({
         name:'<font color="yellow">A gift from the Mausoleum</font>',
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
