@@ -1985,6 +1985,9 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		if(G.achievByName['mausoleum'].won>=1){
+		G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);
+		}
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -15442,7 +15445,7 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
     checkDemoc()
   }
 })
-	let gift =     new G.Tech({
+	new G.Tech({
         name:'<font color="yellow">A gift from the Mausoleum</font>',
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
         icon:[4,12,'magixmod',1,14],
@@ -15452,24 +15455,6 @@ G.NewGameConfirm = new Proxy(oldNewGame1, {
 			{type:'show context',what:['flowers']},
 		],
     });
-function checkMagic() {
-  if (G.achievByName['mausoleum'].won) {
-    if (G.achievByName['mausoleum'].won >= 0 && G.hasNot('<font color="yellow">A gift from the Mausoleum</font>')) {
-      G.gainTech(gift)
-    }
-
-}
- else if(G.achievByName['mausoleum'].won < 1){
-}
-}
-checkMagic()
-const oldNewGame = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkMagic()
-  }
-})
 let gifUnde =  new G.Tech({
         name:'A feeling from the Underworld',
         desc:'You feel some warmth. It is not usual warmth. A call from Underworld. @<b>Allows you to finalize Underworld unlocking',
