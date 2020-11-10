@@ -17132,7 +17132,7 @@ new G.Tech({
 		name:'manufacture units II',
 		desc:'Now more units will be merged into one. [artisan]s : craft [stone weapons],[stone tools],[bow]s , [basket]s modes will no longer be available for [artisan]/[artisan] will no longer work in this mode. ',
 		icon:[16,31,'magixmod'],
-		req:{'<font color="maroon">Moderation</font>':false,'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true},
+		req:{'<font color="maroon">Moderation</font>':false,'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true,'Outstanding wisdom':true},
 		cost:{'insight II':335},
 		effects:[
 		],
@@ -17162,7 +17162,7 @@ new G.Tech({
 		name:'factories II',
 		desc:'Now more units will be merged into one. [artisan]s : craft [stone weapons],[stone tools],[bow]s , [basket]s modes will no longer be available for [artisan]/[artisan] will no longer work in this mode. Also [firekeeper] from now can only cook because this tech will unlock unit that will craft more [fire pit]s but will have way bigger upkeep. ',
 		icon:[17,31,'magixmod'],
-		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false,'Factories I':true},
+		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false,'Factories I':true,'Outstanding wisdom':true},
 		cost:{'insight II':335},
 		effects:[
 		],
