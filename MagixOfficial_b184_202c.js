@@ -1989,6 +1989,21 @@ G.props['fastTicksOnResearch']=150;
 		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['<font color="fuschia">Authority of the ancestor</font>']);}
 		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['<font color=" ##00C000">Artistic gray cells</font>']);}
 		if(G.achievByName['Insight-ly'].won>=1){G.gainTech(G.techByName['<font color="aqua">Genius feeling</font>']);}
+		if(G.achievByName['"In the underworld"'].won > 0 && G.achievByName['Deadly, revenantic'].won > 0 && G.hasNot('A feeling from the Underworld')){
+		G.gainTech(G.techByName['A feeling from the Underworld']);
+		}
+		if (G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')){
+G.gainTech(G.techByName['<font color="##a8654f">The Underworld\'s Ascendant</font>']);
+}
+		if (G.achievByName['Experienced'].won > 0 && G.hasNot('<font color="lime">Fruit supplies</font>')){G.gainTech(G.techByName['<font color="lime">Fruit supplies</font>']);}
+		 if (G.achievByName['Extremely smart'].won > 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('<font color="orange">Life has its theme</font>')) {
+      G.gainTech(G.techByName['<font color="orange">Life has its theme</font>']);
+    } if (G.achievByName['Smart'].won > 0 && G.hasNot('<font color="orange">Smaller but efficient</font>')){
+      G.gainTrait(G.techByName['<font color="orange">Smaller but efficient</font>'])
+    }
+		if (G.achievByName['Magical'].won > 0 && G.hasNot('Magical presence')){
+      G.gainTech('Magical presence')
+    }
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -15410,8 +15425,7 @@ new G.Tech({
 	effects:[
 			{type:'show context',what:['flowers']},
 		],
-    });
-let gifUnde =  new G.Tech({
+    });new G.Tech({
         name:'A feeling from the Underworld',
         desc:'You feel some warmth. It is not usual warmth. A call from Underworld. @<b>Allows you to finalize Underworld unlocking',
         icon:[8,12,9,5,'magixmod'],
@@ -15421,22 +15435,7 @@ let gifUnde =  new G.Tech({
 	],	
         req:{'tribalism':false}
     });
-function checkUnde() {
-  if (G.achievByName['"In the underworld"'].won) {
-    if (G.achievByName['"In the underworld"'].won >= 0 && G.achievByName['Deadly, revenantic'].won >= 0 && G.hasNot('A feeling from the Underworld')){
-      G.gainTech(gifUnde)
-    }
-}
-}
-checkUnde()
-const oldNewGame4 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame4, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkUnde()
-  }
-})
-let gifUnA =  new G.Tech({
+	new G.Tech({
         name:'<font color="##a8654f">The Underworld\'s Ascendant</font>',
         desc:'You managed to do few other feats to attract new things. And you attracted: @ +1 [adult] . This is [adult,The Underworld\'s Ascendant]',
         icon:[15,19,'magixmod'],
@@ -15446,21 +15445,6 @@ let gifUnA =  new G.Tech({
 	],
         req:{'tribalism':false}
     });
-function checkUnA() {
-  if (G.achievByName['"In the underworld"'].won) {
-    if (G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')) {
-      G.gainTech(gifUnA)
-    }
-}
-}
-checkUnA()
-const oldNewGame5 = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGame5, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkUnA()
-  }
-})
 	/*======================================
 	Another TECHZ
 	=======================================*/
@@ -15639,8 +15623,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		icon:[29,15,'magixmod'], 
 		cost:{'insight II': 10},
 		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'cozier building':true}
-	});
-	let fruitzextra =  new G.Tech({
+	});new G.Tech({
         name:'<font color="lime">Fruit supplies</font>',
         desc:'Obtaining <font color="red">Experienced</font> made you getting extra 100 [fruit]s . Wish your people having good taste :) ',
         icon:[4,12,'magixmod',28,22,'magixmod'],
@@ -15650,22 +15633,7 @@ G.NewGameConfirm = new Proxy(oldNewGame5, {
 		],
         req:{'tribalism':false}
     });
-function CheckFruitzextra() {
-  if (G.achievByName['Experienced'].won) {
-    if (G.achievByName['Experienced'].won >= 0 && G.hasNot('<font color="lime">Fruit supplies</font>')) {
-      G.gainTech(fruitzextra)
-    }
-}
-}
-CheckFruitzextra()
-const oldNewGameFruit = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameFruit, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    CheckFruitzextra()
-  }
-})
-	let themetech =  new G.Tech({
+	new G.Tech({
         name:'<font color="orange">Life has its theme</font>',
         desc:'From now you can change game theme :) ',
         icon:[4,12,'magixmod',29,23,'magixmod'],
@@ -15673,48 +15641,15 @@ G.NewGameConfirm = new Proxy(oldNewGameFruit, {
 	effects:[
 		],
         req:{'tribalism':false}
-    });
-function CheckThemetech() {
-  if (G.achievByName['Extremely smart'].won) {
-    if (G.achievByName['Extremely smart'].won >= 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('<font color="orange">Life has its theme</font>')) {
-      G.gainTech(themetech)
-    }
-}
-}
-CheckThemetech()
-const oldNewGameThemeTech = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameThemeTech, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    CheckThemetech()
-  }
-})
-	let Smartrait =  	new G.Trait({
+    });new G.Trait({
         name:'<font color="orange">Smaller but efficient</font>',
         desc:'<span style="color: #aaffff">[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .</span>',
         icon:[28,23,'magixmod'],
         cost:{},
 	effects:[
 		],
-        req:{'tribalism':false},
-	category:'knowledge',
-	chance:1,
+        req:{'tribalism':false},category:'knowledge',chance:1,
     });
-function Checksmall() {
-  if (G.achievByName['Smart'].won) {
-    if (G.achievByName['Smart'].won >= 0 && G.hasNot('<font color="orange">Smaller but efficient</font>')){
-      G.gainTrait(Smartrait)
-    }
-}
-}
-Checksmall()
-const oldNewGameSmall = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameSmall, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    Checksmall()
-  }
-})
 		new G.Tech({
 		name:'Glory',
 		desc:'@provides 7 [authority II] @Increases efficiency of [chieftain] and [clan leader] by 10% @Applies visual changes for [chieftain] and [clan leader] . @You gain yearly 2 [influence] instead of 1. @[Mediator] can gather [influence] but becomes more limited.',
@@ -15787,7 +15722,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 		cost:{'insight II':90,'culture II':15},
 		req:{'Policy revaluation':true,'Magical soil':true}
 	});
-	let MagicalAchiev =  new G.Tech({
+	new G.Tech({
         name:'Magical presence',
 	displayName:'<font color="silver">Magical presence</font>',
         desc:'You feel some weird stuff inside of your body. Sometime it is warm, sometime makes you feel weird but later you don\'t feel any weird things that this presence has made. @Increases efficiency of all [Water wizard tower,Wizard towers] by 5% without increasing [Mana] upkeep. @Unlocks you new theme (check [Theme changer]).',
@@ -15796,23 +15731,7 @@ G.NewGameConfirm = new Proxy(oldNewGameSmall, {
 	effects:[
 	],	
         req:{'tribalism':false}
-    });
-function checkMagicalAchiev() {
-  if (G.achievByName['Magical'].won) {
-    if (G.achievByName['Magical'].won >= 0 && G.hasNot('Magical presence')){
-      G.gainTech(MagicalAchiev)
-    }
-}
-}
-checkMagicalAchiev()
-const oldNewGameMagical = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameMagical, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkMagicalAchiev()
-  }
-})
-		new G.Tech({
+    });		new G.Tech({
 		name:'hunting III',
 		desc:'@[hunter]s become more coordinated. This tech decreases amount of accidents where a victim becomes [hunter] .',
 		icon:[8,22,'magixmod'],
