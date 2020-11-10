@@ -1998,12 +1998,24 @@ G.gainTech(G.techByName['<font color="##a8654f">The Underworld\'s Ascendant</fon
 		if (G.achievByName['Experienced'].won > 0 && G.hasNot('<font color="lime">Fruit supplies</font>')){G.gainTech(G.techByName['<font color="lime">Fruit supplies</font>']);}
 		 if (G.achievByName['Extremely smart'].won > 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('<font color="orange">Life has its theme</font>')) {
       G.gainTech(G.techByName['<font color="orange">Life has its theme</font>']);
-    } if (G.achievByName['Smart'].won > 0 && G.hasNot('<font color="orange">Smaller but efficient</font>')){
+    }; if (G.achievByName['Smart'].won > 0 && G.hasNot('<font color="orange">Smaller but efficient</font>')){
       G.gainTrait(G.traitByName['<font color="orange">Smaller but efficient</font>'])
-    }
+    };
 		if (G.achievByName['Magical'].won > 0 && G.hasNot('Magical presence')){
       G.gainTech(G.techByName['Magical presence']);
-    }
+    };
+	if (G.achievByName['Next to the God'].won > 0 && G.hasNot('Life in faith')){
+      G.gainTech(G.techByName['Life in faith'])
+    };
+		 if (G.achievByName['Talented?'].won > 0 && G.hasNot('<font color="orange">Smaller shacks</font>')){
+      G.gainTrait(G.traitByName['<font color="orange">Smaller shacks</font>'])
+    };
+		if (G.achievByName['Pocket'].won > 0 && G.hasNot('well stored') && G.achievByName['Pocket'].won < 2){
+      G.gainTrait(G.traitByName['well stored'])
+    };
+if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
+      G.gainTrait(G.traitByName['well stored 2'])
+    };
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -11343,7 +11355,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Fire essence':2}},
-			{type:'mult',value:1.05,req:{'Magical presence':true}}
+			{type:'mult',value:1.05,req:{'Magical presence':true}},
+			{type:'mult',value:1.02,req:{'gt7':true}},
+			{type:'mult',value:0.88,req:{'dt19':true}},
 		],
 		req:{'construction':true,'Wizard towers':true,'Wizard wisdom':true,'Well of Mana':true},
 		category:'housing',
@@ -11426,7 +11440,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Water essence':2}},
-			{type:'mult',value:1.05,req:{'Magical presence':true}}
+			{type:'mult',value:1.05,req:{'Magical presence':true}},
+			{type:'mult',value:1.02,req:{'gt8':true}},
+			{type:'mult',value:0.88,req:{'dt20':true}},
 	],
 		req:{'construction':true,'Wizard towers':true,'Wizard wisdom':true,'Well of Mana':true},
 		category:'housing',
@@ -11444,7 +11460,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Dark essence':2}},
-			{type:'mult',value:1.05,req:{'Magical presence':true}}
+			{type:'mult',value:1.05,req:{'Magical presence':true}},
+			{type:'mult',value:1.02,req:{'gt12':true}},
+			{type:'mult',value:0.88,req:{'dt24':true}},
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -11460,7 +11478,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Nature essence':2}},
-			{type:'mult',value:1.05,req:{'Magical presence':true}}
+			{type:'mult',value:1.05,req:{'Magical presence':true}},
+			{type:'mult',value:1.02,req:{'gt10':true}},
+			{type:'mult',value:0.88,req:{'dt22':true}},
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -11477,7 +11497,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Lightning essence':2}},
-			{type:'mult',value:1.05,req:{'Magical presence':true}}
+			{type:'mult',value:1.05,req:{'Magical presence':true}},
+			{type:'mult',value:1.02,req:{'gt11':true}},
+			{type:'mult',value:0.88,req:{'dt23':true}},
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -11510,7 +11532,9 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'housing':33}},
 			{type:'gather',what:{'Wind essence':2}},
-			{type:'mult',value:1.05,req:{'Magical presence':true}}
+			{type:'mult',value:1.05,req:{'Magical presence':true}},
+			{type:'mult',value:1.02,req:{'gt9':true}},
+			{type:'mult',value:0.88,req:{'dt21':true}},
 	],
 		category:'housing',
 		limitPer:{'land':2},
@@ -16191,8 +16215,7 @@ new G.Tech({
 		cost:{'faith II':8,'influence II':7,'insight II':35,'culture II':10},
 		chance:70,
 		category:'religion'
-	});
-		let GodTempleAchiev =  new G.Tech({
+	});new G.Tech({
         name:'Life in faith',
 	displayName:'<font color="gold">Life in faith</font>',
         desc:'You remember... you were staying near the Temple... the God\'s temple! This memory has unbelieveable powers: @+1[faith] @+1[spirituality] @3 new themes(check [Theme changer]).',
@@ -16204,21 +16227,6 @@ new G.Tech({
 	],	
         req:{'tribalism':false}
     });
-function checkGodTempleAchiev() {
-  if (G.achievByName['Next to the God'].won) {
-    if (G.achievByName['Next to the God'].won > 0 && G.hasNot('Life in faith')){
-      G.gainTech(GodTempleAchiev)
-    }
-}
-}
-checkGodTempleAchiev()
-const oldNewGameGodTemple = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkGodTempleAchiev()
-  }
-})
 		new G.Tech({
 		name:'Pantheon key',
 		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab. //Provides: 25 [spirituality II] and 15 [authority II].',
@@ -16447,7 +16455,7 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 			{type:'provide res',what:{'wisdom II':10}},
 		],
 	});
-	let Talentrait =  	new G.Trait({
+	new G.Trait({
         name:'<font color="orange">Smaller shacks</font>',
         desc:'<span style="color: #aaffff">All [blacksmith workshop,Crafting units] and: [well]s , [Water filter]s (Caretaking filters uses 0.1 less land and Moderation filters will use 0.2 less land), [Wheat farm]s and [crematorium]s will use 15% less land.</span>',
         icon:[32,20,'magixmod'],
@@ -16458,21 +16466,6 @@ G.NewGameConfirm = new Proxy(oldNewGameGodTemple, {
 	category:'knowledge',
 	chance:1,
     });
-function Checktalent() {
-  if (G.achievByName['Talented?'].won) {
-    if (G.achievByName['Talented?'].won >= 0 && G.hasNot('<font color="orange">Smaller shacks</font>')){
-      G.gainTrait(Talentrait)
-    }
-}
-}
-Checktalent()
-const oldNewGameTalent = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameTalent, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    Checktalent()
-  }
-})
 	new G.Tech({
 		name:'Enchanted shovels',
 		desc:'Bigger shovels make [digger]s 12.5% more efficient. <> Now their shovels are enchanted by wind so despite that they are bigger they are still light. <>Also provides 5 [wisdom II]',
@@ -16833,7 +16826,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
 		req:{'Outstanders club':true,'monument-building III':true},
 		cost:{'insight II':305,'culture II':25,'culture':65},
 	});
-	let Mamuun1st =  new G.Trait({
+	 new G.Trait({
         name:'well stored',
 	displayName:'<font color="gold">Well stored I</font>',
         desc:'<font color="#aaaaff">All storage units(except Essences storages) provide 35% more storage. Complete Pocket for 2nd time to increase this bonus from 35 to 55%. Bonus does not stack with [Spell of capacity].</font>',
@@ -16844,22 +16837,7 @@ G.NewGameConfirm = new Proxy(oldNewGameTalent, {
         req:{'tribalism':false},
 		category:'knowledge'
     });
-function checkMamuun1st() {
-  if (G.achievByName['Pocket'].won) {
-    if (G.achievByName['Pocket'].won > 0 && G.hasNot('well stored') && G.achievByName['Pocket'].won < 2){
-      G.gainTrait(Mamuun1st)
-    }
-}
-}
-checkMamuun1st()
-const oldNewGameMamuun1st = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkMamuun1st()
-  }
-})
-	let Mamuun2nd =  new G.Trait({
+	new G.Trait({
         name:'well stored 2',
 	displayName:'<font color="#d0ab34">Well stored II</font>',
         desc:'<font color="#aaaaff">All storage units(except Essences storages) provide 55% more storage. You reached maximum bonus that Mamuun can provide to you for completing Pocket. Bonus does not stack with [Spell of capacity].</font>',
@@ -16870,21 +16848,6 @@ G.NewGameConfirm = new Proxy(oldNewGameMamuun1st, {
         req:{'tribalism':false},
 		category:'knowledge',
     });
-function checkMamuun2nd() {
-  if (G.achievByName['Pocket'].won) {
-    if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
-      G.gainTrait(Mamuun2nd)
-    }
-}
-}
-checkMamuun2nd()
-const oldNewGameMamuun2nd = G.NewGameConfirm.bind({})
-G.NewGameConfirm = new Proxy(oldNewGameMamuun2nd, {
-  apply: function(target, thisArg, args) {
-    target(...args)
-    checkMamuun2nd()
-  }
-})
 	new G.Tech({
 		name:'beyond the edge II',
 		desc:'Send your people beyond the edge of the world for the second time. You will lose 40% of your current [population] , all remaining [adult]s will become [sick] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 5.5% of your total land for your people(7% in total). It may help you but there is a huger than before risk. The further you push beyond the edge the stronger scourge will fall on you and your civilization.</font>',
