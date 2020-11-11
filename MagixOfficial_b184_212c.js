@@ -14847,7 +14847,7 @@ autobuy(G.year)
 		icon:[18,1],
 		cost:{'culture':5},
 		chance:10,
-		req:{'language':true},
+		req:{'language':true,'spark\'o religion':true},
 	});
 	new G.Trait({
 		name:'belief in the afterlife',
@@ -14855,7 +14855,7 @@ autobuy(G.year)
 		icon:[21,1],
 		cost:{'culture':5,'faith':2},
 		chance:10,
-		req:{'fear of death':true,'oral tradition':true},
+		req:{'fear of death':true,'oral tradition':true,'spark\'o religion':true},
 		effects:[
 		]
 	});
