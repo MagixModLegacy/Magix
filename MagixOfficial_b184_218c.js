@@ -126,7 +126,7 @@ G.Map=function(type,w,h,seed)
 		}
 		tile=G.currentMap.tiles[tile[0]][tile[1]];
 		tile.owner=1;
-		var mark=Math.floor(Math.random());
+		var mark=Math.random();
 		var bonus=0;
 		if(mark==0){bonus=bonus-1}else{bonus=bonus+1};
 		var exp=10+bonus;
