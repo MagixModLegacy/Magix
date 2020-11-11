@@ -17,6 +17,8 @@
 	happiness nerf	
 	Some of the updates. Part 1/3
 	
+	added support for: 48x48 icons, 72x72 icons, 48x24 icons.
+	widerIcon:[a,b] for 48x24 , twoxtwoIcon:[a,b] for 48x48, threexthreeIcon:[a,b] for 72x72
 	tool rafinery
 	a lil bit easier trials: more bonuses from achievs like insight-ly or democration should now be persistable
 	mo herb at start : 250 --> 300
