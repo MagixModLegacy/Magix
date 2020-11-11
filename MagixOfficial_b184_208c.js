@@ -1255,6 +1255,52 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 	}
+	//////////////
+	//48 x 24 icons support
+	G.Unit=function(obj)
+	{
+		this.type='unit';
+		this.startWith=0;
+		this.cost={};//spent to purchase the unit
+		this.use={};//resources the unit "takes up", such as workers or land; must satisfy these to purchase; also, if the used resources become lacking, the unit will waste away
+		this.staff={};//much like "use", except the unit doesn't waste away if it lacks those (use this for workers in a building, or a worker's tools); a percent of it simply goes idle - if the requirements are met again, the unit will cease being idle
+		this.require={};//resources the unit requires to build; works like "use", except the resources aren't actually used, we just need to own the specified amounts
+		this.upkeep={};//used every tick to keep the unit working
+		this.limitPer={};//the unit can't be built more than 1 per X of those resources (ie. : "only 1 per 100 population")
+		this.effects=[];
+		this.modes=[];
+		this.category='';
+		this.icon=[0,0];
+		this.priority=0;//units with a higher priority are executed and built first
+		
+		for (var i in obj) this[i]=obj[i];
+		this.id=G.unit.length;
+		if (!this.displayName) this.displayName=cap(this.name);
+		if (this.wonder)
+		{
+			//if the unit is a wonder, .mode is now an integer representing the status of the wonder (0 : not started, 1 : started, 2 : started but paused, 3 : needs final step, 4 : complete) and .percent is now the wonder's completion step
+			//a wonder takes an initial cost, then a cost repeated a number of steps, then a final cost before it is complete
+			this.finalStepCost=this.finalStepCost||{};
+			this.finalStepUse=this.finalStepUse||{};
+			this.finalStepRequire=this.finalStepRequire||{};
+			this.steps=this.steps||0;
+			this.costPerStep=this.costPerStep||{};
+		}
+		G.unit.push(this);
+		G.unitByName[this.name]=this;
+		G.setDict(this.name,this);
+		this.mod=G.context;
+	}
+	G.getIconClasses=function(me,allowWide)
+	{
+		//returns some CSS classes
+		var str='';
+  	if (me.widerIcon && allowWide) str+=' wide2';
+		if (me.wideIcon && allowWide) str+=' wide3';
+		else str+=' wide1';
+		return str;
+	}
+	//////////////////////
 		G.rerollChooseBox=function(me)
 	{
 		//check if we match the costs; if yes, research or reroll
@@ -9312,6 +9358,7 @@ if (!document.getElementById(cssId))
 		startWith:5,
 		desc:'@forages for basic [food], [water] and [archaic building materials,Various interesting things]<>A vital part of an early tribe, [gatherer]s venture in the wilderness to gather food, wood, and other things of note.',
 		icon:[0,2],
+		widerIcon:[0,2],
 		cost:{},
 		use:{'worker':1},
 		//upkeep:{'food':0.2},
