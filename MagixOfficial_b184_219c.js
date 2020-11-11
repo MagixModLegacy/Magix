@@ -128,7 +128,7 @@ G.Map=function(type,w,h,seed)
 		tile.owner=1;
 		var mark=Math.random();
 		var bonus=0;
-		if(mark==0){bonus=bonus-1}else{bonus=bonus+1};
+		if(mark<=0.5){bonus=bonus-1}else{bonus=bonus+1};
 		var exp=10+bonus;
 		tile.explored=exp/100;//create one tile and from 9 to 11 % of it will be explored already
 		
