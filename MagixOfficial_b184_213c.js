@@ -17535,6 +17535,7 @@ new G.Tech({
 		name:'food rations',
 		desc:'Define how much [food] your people are given each day.//Bigger rations will make your people happier, while smaller ones may lead to sickness and starvation.',
 		icon:[5,12,3,6],
+		wideIcon:[0,0],
 		cost:{'influence':2},
 		startMode:'sufficient',
 		req:{'rules of food':true},
