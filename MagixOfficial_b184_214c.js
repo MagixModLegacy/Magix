@@ -17483,7 +17483,7 @@ new G.Tech({
 		{id:'population',name:'Population'},
 		{id:'faith',name:'Faith'},
 		{id:'education',name:'Education'},
-		{id:'Florists',name:'Pantheon'},//Kept the same ID to prevent errors and crashes upon a update
+		{id:'Florists',name:'<font color="#d4af37">----- P a n t h e o n -----</font>'},//Kept the same ID to prevent errors and crashes upon a update
 		{id:'education',name:'Education'},
 		{id:'prod',name:'Production'},
 		{id:'mag',name:'Magix utilities'},
@@ -17535,7 +17535,6 @@ new G.Tech({
 		name:'food rations',
 		desc:'Define how much [food] your people are given each day.//Bigger rations will make your people happier, while smaller ones may lead to sickness and starvation.',
 		icon:[5,12,3,6],
-		wideIcon:[0,0],
 		cost:{'influence':2},
 		startMode:'sufficient',
 		req:{'rules of food':true},
