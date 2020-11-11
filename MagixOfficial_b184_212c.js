@@ -13551,7 +13551,7 @@ getCosts:function()
 		desc:'@provides 10 [spirituality]@unlocks [soothsayer]s@unlocks some ritual policies<>Simple practices, eroded and polished by time, turn into rites and traditions.',
 		icon:[12,1],
 		cost:{'culture':5},
-		req:{'oral tradition':true,'intuition':true},
+		req:{'oral tradition':true,'intuition':true,'spark\'o religion':true},
 		effects:[
 			{type:'provide res',what:{'spirituality':10}},
 			{type:'provide res',what:{'cultural balance':3}},
@@ -13861,7 +13861,7 @@ getCosts:function()
 		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
 		icon:[5,3,'magixmod'],
 		cost:{'insight':75,'faith':5},
-		req:{'well-digging':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'well-digging':true,'<font color="yellow">A gift from the Mausoleum</font>':true,'spark\'o religion':true},
 	});
 //New tech to allow wizards progressing
 		new G.Tech({
@@ -17435,7 +17435,7 @@ new G.Tech({
 	new G.Tech({
 		name:'even bigger university',
 		desc:'@Unlocks 3rd level of [scientific university]. Requires 10 [victory point]s to level up.',
-		icon:[9,29,'magixmod'],
+		icon:[34,15,'magixmod'],
 		cost:{'insight II':600,'university point':300,'science':80,'culture II':115,'faith II':80},
 		req:{'wonder \'o science':true,'Wizard complex':true,'Bigger university':true,'deep-rooted faith':true,'dynamics II':true},		
 	});
@@ -17464,6 +17464,15 @@ new G.Tech({
 	chance:500,
 		category:'religion',
     });
+	new G.Trait({
+		name:'spark\'o religion',
+		desc:'[spark\'o religion] opens a way to [ritualism] and things related to <b>Religion</b> such like cults, courie, spirits. Who knows if you can even reach some sort of... [Magic essences,Magic] ?',
+		icon:[35,15,'magixmod'],
+		chance:0.8,
+		cost:{'culture':2},
+		req:{'oral tradition':true},
+		category:'religion'
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
