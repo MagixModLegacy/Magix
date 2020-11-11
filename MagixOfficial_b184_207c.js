@@ -1999,7 +1999,7 @@ G.gainTech(G.techByName['<font color="##a8654f">The Underworld\'s Ascendant</fon
 		 if (G.achievByName['Extremely smart'].won > 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('<font color="orange">Life has its theme</font>')) {
       G.gainTech(G.techByName['<font color="orange">Life has its theme</font>']);
     }; if (G.achievByName['Smart'].won > 0 && G.hasNot('<font color="orange">Smaller but efficient</font>')){
-      G.gainTrait(G.traitByName['<font color="orange">Smaller but efficient</font>'])
+      G.gainTrait(G.traitByName['<font color="orange">Smaller but efficient</font>']);
     };
 		if (G.achievByName['Magical'].won > 0 && G.hasNot('Magical presence')){
       G.gainTech(G.techByName['Magical presence']);
@@ -2008,13 +2008,13 @@ G.gainTech(G.techByName['<font color="##a8654f">The Underworld\'s Ascendant</fon
       G.gainTech(G.techByName['Life in faith'])
     };
 		 if (G.achievByName['Talented?'].won > 0 && G.hasNot('<font color="orange">Smaller shacks</font>')){
-      G.gainTrait(G.traitByName['<font color="orange">Smaller shacks</font>'])
+      G.gainTrait(G.traitByName['<font color="orange">Smaller shacks</font>']);
     };
 		if (G.achievByName['Pocket'].won > 0 && G.hasNot('well stored') && G.achievByName['Pocket'].won < 2){
-      G.gainTrait(G.traitByName['well stored'])
+      G.gainTrait(G.traitByName['well stored']);
     };
 if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
-      G.gainTrait(G.traitByName['well stored 2'])
+      G.gainTrait(G.traitByName['well stored 2']);
     };
 		G.getRes('victory point').amount=0;
 		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
@@ -17436,7 +17436,7 @@ new G.Tech({
 	],	
         req:{'villas of victory':true,'sergius the angel of belief':false},
 	chance:500,
-		category:'religion'
+		category:'religion',
     });
 	new G.Trait({
         name:'sergius the angel of belief',
@@ -17448,7 +17448,7 @@ new G.Tech({
 	],	
         req:{'villas of victory':true,'brahim the angel of authority':false},
 	chance:500,
-		category:'religion'
+		category:'religion',
     });
 	/*=====================================================================================
 	POLICIES
