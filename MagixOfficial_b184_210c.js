@@ -1256,14 +1256,16 @@ if (!document.getElementById(cssId))
 }
 	}
 	//////////////
-	//48 x 24 icons support
+	//48x24 , 48x48 , 72x72 icons support
 	G.getIconClasses=function(me,allowWide)
 	{
 		//returns some CSS classes
-		var str='';
-  	if (me.widerIcon && allowWide) str+=' wide2';
-		if (me.wideIcon && allowWide) str+=' wide3';
-		else str+=' wide1';
+		var str=''; 
+  	if (me.widerIcon && allowWide) str+=' wide2'; // 48x24
+		if (me.wideIcon && allowWide) str+=' wide3'; //default 72x24 for wonders
+		if (me.twoxtwoIcon && allowWide) str+=' widenhigh1'; //48x48
+		if (me.threexthreeIcon && allowWide) str+=' widenhigh2'; //72x72
+		else str+=' wide1'; //default 24x24 for most of things
 		return str;
 	}
 	//////////////////////
@@ -9324,7 +9326,7 @@ if (!document.getElementById(cssId))
 		startWith:5,
 		desc:'@forages for basic [food], [water] and [archaic building materials,Various interesting things]<>A vital part of an early tribe, [gatherer]s venture in the wilderness to gather food, wood, and other things of note.',
 		icon:[0,2],
-		widerIcon:[0,2],
+		twoxtwoIcon:[0,2],
 		cost:{},
 		use:{'worker':1},
 		//upkeep:{'food':0.2},
@@ -9359,6 +9361,7 @@ if (!document.getElementById(cssId))
 		name:'dreamer',
 		desc:'@generates [insight] every now and then, which you can use to research early technologies<>A [dreamer] spends their time observing, thinking, and wondering why things are the way they are.',
 		icon:[1,2],
+		widerIcon:[0,2],
 		cost:{},
 		use:{'worker':1},
 		//upkeep:{'coin':0.2},
@@ -9386,6 +9389,7 @@ if (!document.getElementById(cssId))
 		name:'storyteller',
 		desc:'@generates [culture] every now and then<>[storyteller]s gather the tribe around at nightfall to tell the tales of their ancestors.',
 		icon:[14,2],
+		threexthreeIcon:[0,2],
 		cost:{},
 		use:{'worker':1},
 		upkeep:{'coin':0.1},
