@@ -8834,7 +8834,8 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').icon=[19,29,'magixmod'];
 			G.getDict('scientific university').wideIcon=[18,29,'magixmod'];
 			G.getDict('scientific university').steps=400;
-			G.getDict('scientific university').cost={'basic building materials':2400,'precious building materials':1200,'Magic essences':3000,'Mana':40000,'science':180};
+			G.getDict('scientific university').cost={'basic building materials':2400,'precious building materials':1200,'Magic essences':90000,'Mana':40000,'science':180};
+					G.getDict('scientific university').costPerStep={'Magic essences':30000,'basic building materials':2450,'precious metal ingot':800,'insight II':600,'science':200,'gems':1500,'wisdom II':-0.5,'education':-0.3,'Mana':4e5,'university point':-1};
 			}
 			if(G.has('<span style="color: ##FF0900">Plain island building</span>')){
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
