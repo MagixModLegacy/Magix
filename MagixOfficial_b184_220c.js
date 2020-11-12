@@ -8829,7 +8829,13 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').finalStepCost={'population':3000,'insight II':425,'wisdom':350,'science':100,'wisdom II':-25,'education':-25,'university point':-100};
 			G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
 			}};
-			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==400){G.getUnitByName('scientific university').mode==4;G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];}
+			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==0 && G.has('even bigger university')){
+				G.getUnitByName('scientific university').mode==0;
+			G.getDict('scientific university').icon=[19,29,'magixmod'];
+			G.getDict('scientific university').wideIcon=[18,29,'magixmod'];
+			G.getDict('scientific university').steps=400;
+			G.getDict('scientific university').cost={'basic building materials':2400,'precious building materials':1200,'Magic essences':3000,'Mana':40000,'science':180};
+			}
 			if(G.has('<span style="color: ##FF0900">Plain island building</span>')){
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
 				
@@ -9427,7 +9433,7 @@ if (!document.getElementById(cssId))
 			'bows':{name:'Craft bows',icon:[6,9],desc:'Turn [stone]s and [stick]s into [bow]s.',req:{'bows':true},use:{'stone tools':1}},
 			'baskets':{name:'Weave baskets',icon:[14,7],desc:'Turn [stick]s into [basket]s.',req:{'basket-weaving':true},use:{'knapped tools':1}},
 			'craftwands':{name:'Craft wands',icon:[6,4,'magixmod'],desc:'Your artisan will craft tool used by wizards. It is not any junk tool.',req:{'Wizardry':true},use:{'stone tools':2}},
-			'craftink':{name:'Craft ink',icon:[18,6,'magixmod'],desc:'Your artisan will craft [Ink]. Will use water and [Black dye],[Blue dye] or [Brown dye].',req:{'Ink crafting':true}},
+			'craftink':{name:'Craft ink',icon:[18,6,'magixmod'],desc:'Your artisan will craft [Ink]. Will use water and dark dyes.',req:{'Ink crafting':true}},
 			'craftnet':{name:'Craft fishing net',icon:[13,8,'magixmod'],desc:'Your artisan will craft [Fishing net]. Needs [Instructor] because net <b> must be strong. Will use [Dried leather] to make it stronger.',req:{'Fishing II':true},use:{'stone tools':2,'Instructor':1}},
 			'craftfirstaid':{name:'Craft first aid things',icon:[16,10,'magixmod'],desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',req:{'first aid':true}, use:{'stone tools':1}},
 			'dyes1':{name:'Make dyes from flowers(Set 1)',desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']},
@@ -17420,7 +17426,7 @@ new G.Tech({
 		desc:'[stone tools,Stone tools] become [stone tools,Refined tools] making them decay slower. Also [artisan] is no longer able to craft them but... obtain [factories II] or [manufacture units II] to unlock unit that will let you craft them again... Make sure it will happen quickly.',
 		icon:[25,31,'magixmod'],
 		req:{'Outstanding wisdom':true},
-		cost:{'insight II':150,'science':5},
+		cost:{'insight II':150,'science':5,'insight':30},
 		effects:[
 		],
 		chance:3
