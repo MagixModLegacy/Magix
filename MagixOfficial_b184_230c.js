@@ -1713,9 +1713,7 @@ G.setPolicyMode=function(me,mode)
 						}
 					}
 				})+
-	}else{
-			
-	}
+	}}
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
