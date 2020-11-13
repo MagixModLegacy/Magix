@@ -1749,6 +1749,30 @@ G.setPolicyMode=function(me,mode)
 						
 					},
 				})+
+			if(G.has('Eotm')){
+			G.button({id:'addBulk',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
+					tooltip:'Multiply by 10',
+					onclick:function(){
+						var n=G.getSetting('buyAmount');
+						if (G.keys[17]) n=-n;
+						else
+						{
+							if (n==-1) n=1;
+							else if (n>-1) n=n*10;
+							else if (n<-1) n=n/10;
+						}
+						n=Math.round(n);
+						n=Math.max(Math.min(n,1e+35),-1e+35);
+						G.setSetting('buyAmount',n);
+						G.updateBuyAmount();
+						if (G.checkPolicy('Toggle SFX')=='on'){
+						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
+						audio.play(); 
+						}
+					}
+				})+
+			}+
 				'<div id="buyAmount" class="bgMid framed" style="width:128px;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">...</div>'+
 				G.button({id:'addBulk',
 					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
@@ -1772,31 +1796,7 @@ G.setPolicyMode=function(me,mode)
 						}
 					}
 				})+
-			
-			"<div class=\"flourishR\"></div><script>if(G.has('Eotm')){
-			G.button({id:'addBulk',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
-					tooltip:'Multiply by 10',
-					onclick:function(){
-						var n=G.getSetting('buyAmount');
-						if (G.keys[17]) n=-n;
-						else
-						{
-							if (n==-1) n=1;
-							else if (n>-1) n=n*10;
-							else if (n<-1) n=n/10;
-						}
-						n=Math.round(n);
-						n=Math.max(Math.min(n,1e+35),-1e+35);
-						G.setSetting('buyAmount',n);
-						G.updateBuyAmount();
-						if (G.checkPolicy('Toggle SFX')=='on'){
-						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
-						audio.play(); 
-						}
-					}
-				})+
-			}</script></div>"+
+			'<div class="flourishR"></div></div>'+
 			'<div class="fullCenteredOuter" style="padding-top:16px;"><div id="unitBox" class="thingBox fullCenteredInner"></div></div>';
 		
 		/*
