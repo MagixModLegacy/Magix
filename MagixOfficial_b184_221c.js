@@ -9271,6 +9271,20 @@ if (!document.getElementById(cssId))
 		icon:[10,7,'magixmod'],
 		category:'ore',
 	});
+	new G.Res({
+		name:'"golden insight"',
+		desc:'["golden insight"] is a essential required to researching in Faithful plane. You can obtain it from "buying". //To "buy" it click on a button that will make you able to buy this resource. But be careful... it costs [faith] and [insight]. Also it can increase its cost. //As [insight] the limit is the wisdom',
+		icon:[35,16,'magixmod'],
+		category:'main',
+		limit:'wisdom',
+		tick:function(me,tick){
+			if (G.has('Eotm')){
+			me.hidden=true
+			}
+		},
+		getDisplayAmount:researchGetDisplayAmount,
+		whenGathered:researchWhenGathered,
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
