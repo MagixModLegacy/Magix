@@ -19159,7 +19159,28 @@ new G.Tech({
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
-	
+	var mauso=function(){if(G.achievByName['mausoleum'].won>=10){
+		G.button({id:'thingyBulk',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;font-color:aqua;">Mausoleum</span>',
+					tooltip:'Open the Mausoleum catacombs. Requires 10/10 Mausoleum.',
+					onclick:function(){
+						var n=G.getSetting('buyAmount');
+						if (G.keys[17]) n=-n;
+						else
+						{
+						}
+						n=Math.round(n);
+						n=Math.max(Math.min(n,1e+35),-1e+35);
+						G.setSetting('buyAmount',n);
+						G.updateBuyAmount();
+						if (G.checkPolicy('Toggle SFX')=='on'){
+						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
+						audio.play(); 
+						}
+						
+					},
+				})+
+	}};
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
@@ -19189,26 +19210,7 @@ new G.Tech({
 						
 					},
 				})+
-			G.button({id:'thingyBulk',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;font-color:aqua;">Mausoleum</span>',
-					tooltip:'Open the Mausoleum catacombs. Requires 10/10 Mausoleum.',
-					onclick:function(){
-						var n=G.getSetting('buyAmount');
-						if (G.keys[17]) n=-n;
-						else
-						{
-						}
-						n=Math.round(n);
-						n=Math.max(Math.min(n,1e+35),-1e+35);
-						G.setSetting('buyAmount',n);
-						G.updateBuyAmount();
-						if (G.checkPolicy('Toggle SFX')=='on'){
-						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
-						audio.play(); 
-						}
-						
-					},
-				})+
+			mauso()+
 				'<div id="buyAmount" class="bgMid framed" style="width:128px;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">...</div>'+
 				G.button({id:'addBulk',
 					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
