@@ -1919,8 +1919,8 @@ G.setPolicyMode=function(me,mode)
 				} else G.cantWhenPaused();
 			};}(me);
 		}
-		}
-	}}
+		
+	}
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
