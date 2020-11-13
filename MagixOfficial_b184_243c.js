@@ -1920,7 +1920,7 @@ G.setPolicyMode=function(me,mode)
 			};}(me);
 		}
 		}
-	}
+	}}
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
