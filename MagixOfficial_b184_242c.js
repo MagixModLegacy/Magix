@@ -1690,7 +1690,237 @@ G.setPolicyMode=function(me,mode)
 			});
 		}
 	}
-	
+/////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
+		G.update['unit']=function()
+	{
+		l('unitDiv').innerHTML=
+			G.textWithTooltip('<big>?</big>','<div style="width:240px;text-align:left;"><div class="par"><li>Units are the core of your resource production and gathering.</li></div><div class="par">Units can be <b>queued</b> for purchase by clicking on them; they will then automatically be created over time until they reach the queued amount. Creating units usually takes up resources such as workers or tools; resources shown in red in the tooltip are resources you do not have enough of.<div class="bulleted">click a unit to queue 1</div><div class="bulleted">right-click or ctrl-click to remove 1</div><div class="bulleted">shift-click to queue 50</div><div class="bulleted">shift-right-click or ctrl-shift-click to remove 50</div></div><div class="par">Units usually require some resources to be present; a <b>building</b> will crumble if you do not have the land to support it, or it could go inactive if you lack the workers or tools (it will become active again once you fit the requirements). Some units may also require daily <b>upkeep</b>, such as fresh food or money, without which they will go inactive.</div><div class="par">Furthermore, workers will sometimes grow old, get sick, or die, removing a unit they\'re part of in the process.</div><div class="par">Units that die off will be automatically replaced until they match the queued amount again.</div><div class="par">Some units have different <b>modes</b> of operation, which can affect what they craft or how they act; you can use the small buttons next to such units to change those modes and do other things. One of those buttons is used to <b>split</b> the unit into another stack; each stack can have its own mode.</div></div>','infoButton')+
+			'<div style="position:absolute;z-index:100;top:0px;left:0px;right:0px;text-align:center;"><div class="flourishL"></div>'+
+				G.button({id:'removeBulk',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">-</span>',
+					tooltip:'Divide by 10',
+					onclick:function(){
+						var n=G.getSetting('buyAmount');
+						if (G.keys[17]) n=-n;
+						else
+						{
+							if (n==1) n=-1;
+							else if (n<1) n=n*10;
+							else if (n>1) n=n/10;
+						}
+						n=Math.round(n);
+						n=Math.max(Math.min(n,1e+35),-1e+35);
+						G.setSetting('buyAmount',n);
+						G.updateBuyAmount();
+						if (G.checkPolicy('Toggle SFX')=='on'){
+						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
+						audio.play(); 
+						}
+						
+					},
+				})+
+				'<div id="buyAmount" class="bgMid framed" style="width:128px;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">...</div>'+
+				G.button({id:'addBulk',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
+					tooltip:'Multiply by 10',
+					onclick:function(){
+						var n=G.getSetting('buyAmount');
+						if (G.keys[17]) n=-n;
+						else
+						{
+							if (n==-1) n=1;
+							else if (n>-1) n=n*10;
+							else if (n<-1) n=n/10;
+						}
+						n=Math.round(n);
+						n=Math.max(Math.min(n,1e+35),-1e+35);
+						G.setSetting('buyAmount',n);
+						G.updateBuyAmount();
+						if (G.checkPolicy('Toggle SFX')=='on'){
+						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
+						audio.play(); 
+						}
+					}
+				})+
+			'<div class="flourishR"></div></div>'+
+			'<div class="fullCenteredOuter" style="padding-top:16px;"><div id="unitBox" class="thingBox fullCenteredInner"></div></div>';
+		
+		/*
+			-create an empty string for every unit category
+			-go through every unit owned and add it to the string of its category
+			-display each string under category headers, then attach events
+		*/
+		var strByCat=[];
+		var len=G.unitCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			strByCat[G.unitCategories[iC].id]='';
+		}
+		var len=G.unitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var str='';
+			var me=G.unitsOwned[i];
+			str+='<div class="thingWrapper">';
+			str+='<div class="unit thing'+G.getIconClasses(me.unit,true)+'" id="unit-'+me.id+'">'+
+				G.getIconStr(me.unit,'unit-icon-'+me.id,0,true)+
+				G.getArbitrarySmallIcon([0,0],false,'unit-modeIcon-'+me.id)+
+				'<div class="overlay" id="unit-over-'+me.id+'"></div>'+
+				'<div class="amount" id="unit-amount-'+me.id+'"></div>'+
+			'</div>';
+			if (me.unit.gizmos)
+			{
+				str+='<div class="gizmos">'+
+					'<div class="gizmo gizmo1" id="unit-mode-'+me.id+'"></div>'+
+					'<div class="gizmo gizmo2'+(me.splitOf?' off':'')+'" id="unit-split-'+me.id+'"></div>'+
+					'<div class="gizmo gizmo3" id="unit-percent-'+me.id+'"><div class="percentGizmo" id="unit-percentDisplay-'+me.id+'"></div></div>'+
+				'</div>';
+			}
+			str+='</div>';
+			strByCat[me.unit.category]+=str;
+		}
+		
+		var str='';
+		var len=G.unitCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			if (strByCat[G.unitCategories[iC].id]!='')
+			{
+				if (G.unitCategories[iC].id=='wonder') str+='<br>';
+				str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="unit-catName-'+iC+'">'+G.unitCategories[iC].name+'</div>'+strByCat[G.unitCategories[iC].id]+'</div>';
+			}
+		}
+		l('unitBox').innerHTML=str;
+		
+		G.addCallbacks();
+		
+		
+		G.addTooltip(l('buyAmount'),function(){return '<div style="width:320px;"><div class="barred"><b>Buy amount</b></div><div class="par">This is how many units you\'ll queue or unqueue at once in a single click.</div><div class="par">Click the + and - buttons to increase or decrease the amount. You can ctrl-click either button to instantly make the amount negative or positive.</div><div class="par">You can also ctrl-click a unit to unqueue an amount instead of queueing it, or shift-click to queue 50 times more.</div></div>';},{offY:-8});
+		
+		G.updateBuyAmount();
+		var len=G.unitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.unitsOwned[i];
+			var div=l('unit-'+me.id);if (div) me.l=div; else me.l=0;
+			var div=l('unit-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
+			var div=l('unit-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
+			var div=l('unit-amount-'+me.id);if (div) me.lAmount=div; else me.lAmount=0;
+			var div=l('unit-modeIcon-'+me.id);if (div) me.lMode=div; else me.lMode=0;
+			if (me.lMode && me.mode.icon) {G.setIcon(me.lMode,me.mode.icon);me.lMode.style.display='block';}
+			else if (me.lMode) me.lMode.style.display='none';
+			if (me.unit.gizmos)
+			{
+				var div=l('unit-mode-'+me.id);div.onmousedown=function(unit,div){return function(){G.selectModeForUnit(unit,div);};}(me,div);
+				G.addTooltip(div,function(me,instance){return function(){return 'Click and drag to change unit mode.<br>Current mode :<div class="info"><div class="fancyText barred infoTitle">'+(instance.mode.icon?G.getSmallThing(instance.mode):'')+''+instance.mode.name+'</div>'+G.parse(instance.mode.desc)+'</div>';};}(me.unit,me),{offY:-8});
+				var div=l('unit-split-'+me.id);div.onclick=function(unit,div){return function(){if (G.speed>0) G.splitUnit(unit,div); else G.cantWhenPaused();};}(me,div);
+				G.addTooltip(div,function(me,instance){return function(){if (instance.splitOf) return 'Click to remove this stack of units.'; else return 'Click to split into another unit stack.<br>Different unit stacks can use different modes.'};}(me.unit,me),{offY:-8-16});
+				var div=l('unit-percent-'+me.id);div.onmousedown=function(unit,div){return function(){if (G.speed>0) G.selectPercentForUnit(unit,div); else G.cantWhenPaused();};}(me,div);
+				G.addTooltip(div,function(me,instance){return function(){return 'Click and drag to set unit work capacity.<br>This feature is not yet implemented... and probably won\'t be.'};}(me.unit,me),{offY:8,anchor:'bottom'});
+			}
+			G.addTooltip(me.l,function(me,instance){return function(){
+				var amount=G.getBuyAmount(instance);
+				if (me.wonder) amount=(amount>0?1:-1);
+				if (me.wonder)
+				{
+					var str='<div class="info">';
+					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
+					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
+					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
+					else
+					{
+						if (instance.mode==0) str+='<div class="fancyText barred">Unbuilt<br>Click to start construction ('+B(me.steps)+' steps)</div>';
+						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
+						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
+						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
+						else if (instance.mode==4 && me.name!=='scientific university'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
+						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
+					}
+					if (amount<0) amount=0;
+					
+					if (instance.mode!=4)
+					{
+						str+='<div class="fancyText barred">';
+							if (instance.mode==0 && amount>0)
+							{
+								if (!isEmpty(me.cost)) str+='<div>Initial cost : '+G.getCostString(me.cost,true,false,amount)+'</div>';
+								if (!isEmpty(me.use)) str+='<div>Uses : '+G.getUseString(me.use,true,false,amount)+'</div>';
+								if (!isEmpty(me.require)) str+='<div>Prerequisites : '+G.getUseString(me.require,true,false,amount)+'</div>';
+							}
+							else if ((instance.mode==1 || instance.mode==2) && !isEmpty(me.costPerStep)) str+='<div>Cost per step : '+G.getCostString(me.costPerStep,true,false,amount)+'</div>';
+							else if (instance.mode==3 && !isEmpty(me.finalStepCost)) str+='<div>Final step cost : '+G.getCostString(me.finalStepCost,true,false,amount)+'</div>';
+						str+='</div>';
+					}
+					
+					if (me.desc) str+='<div class="infoDesc">'+G.parse(me.desc)+'</div>';
+					str+='</div>';
+					str+=G.debugInfo(me);
+					return str;
+				}
+				else
+				{
+					if (amount<0) amount=Math.max(-instance.targetAmount,amount);
+					/*if (G.getSetting('buyAny'))
+					{
+						var n=0;
+						n=G.testAnyCost(me.cost);
+						if (n!=-1) amount=Math.min(n,amount);
+						n=G.testAnyUse(me.use,amount);
+						if (n!=-1) amount=Math.min(n,amount);
+						n=G.testAnyUse(me.require,amount);
+						if (n!=-1) amount=Math.min(n,amount);
+						n=G.testAnyUse(instance.mode.use,amount);
+						if (n!=-1) amount=Math.min(n,amount);
+						n=G.testAnyLimit(me.limitPer,G.getUnitAmount(me.name)+amount);
+						if (n!=-1) amount=Math.min(n,amount);
+					}*/
+					var str='<div class="info">';
+					//infoIconCompensated ?
+					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div>'+
+					'<div class="fancyText infoAmount onLeft">'+B(instance.displayedAmount)+'</div>'+
+					'<div class="fancyText infoAmount onRight" style="font-size:12px;">'+(instance.targetAmount!=instance.amount?('queued :<br>'+B(instance.targetAmount-instance.displayedAmount)):'')+(instance.amount>0?('<br>active :<br>'+B(instance.amount-instance.idle)+'/'+B(instance.amount)):'')+'</div>'+
+					'</div>';
+					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
+					str+='<div class="fancyText barred">Click to '+(amount>=0?'queue':'unqueue')+' '+B(Math.abs(amount))+'</div>';
+					if (me.modesById[0]) {str+='<div class="fancyText barred">Current mode :<br><b>'+(instance.mode.icon?G.getSmallThing(instance.mode):'')+''+instance.mode.name+'</b></div>';}
+					str+='<div class="fancyText barred">';
+						if (!isEmpty(me.cost)) str+='<div>Cost : '+G.getCostString(me.cost,true,false,amount)+'</div>';
+						if (!isEmpty(me.use) || !isEmpty(me.staff)) str+='<div>Uses : '+G.getUseString(addObjects(me.use,me.staff),true,false,amount)+'</div>';
+						if (!isEmpty(me.require)) str+='<div>Prerequisites : '+G.getUseString(me.require,true,false,amount)+'</div>';//should amount count?
+						if (!isEmpty(me.upkeep)) str+='<div>Upkeep : '+G.getCostString(me.upkeep,true,false,amount)+'</div>';
+						if (!isEmpty(me.limitPer)) str+='<div>Limit : '+G.getLimitString(me.limitPer,true,false,G.getUnitAmount(me.name)+amount)+'</div>';
+						if (isEmpty(me.cost) && isEmpty(me.use) && isEmpty(me.staff) && isEmpty(me.upkeep) && isEmpty(me.require)) str+='<div>Free</div>';
+						if (me.modesById[0] && !isEmpty(instance.mode.use)) str+='<div>Current mode uses : '+G.getUseString(instance.mode.use,true,false,amount)+'</div>';
+					str+='</div>';
+					if (me.desc) str+='<div class="infoDesc">'+G.parse(me.desc)+'</div>';
+					str+='</div>';
+					str+=G.debugInfo(me);
+					return str;
+				}
+			};}(me.unit,me),{offY:-8});
+			if (me.l) me.l.onclick=function(unit){return function(e){
+				if (G.speed>0)
+				{
+					var amount=G.getBuyAmount(unit);
+					if (unit.unit.wonder) amount=(amount>0?1:-1);
+					if (amount<0) G.taskKillUnit(unit,-amount);
+					else if (amount>0) G.taskBuyUnit(unit,amount,(G.getSetting('buyAny')));
+				} else G.cantWhenPaused();
+			};}(me);
+			if (me.l) me.l.oncontextmenu=function(unit){return function(e){
+				e.preventDefault();
+				if (G.speed>0)
+				{
+					var amount=-G.getBuyAmount(unit);
+					if (unit.unit.wonder) amount=(amount>0?1:-1);
+					if (amount<0) G.taskKillUnit(unit,-amount);
+					//else if (amount>0) G.buyUnit(unit,amount);
+				} else G.cantWhenPaused();
+			};}(me);
+		}
+		}
+	}
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
@@ -2756,260 +2986,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				}
 	}
 		if(G.has('t4'))G.lose('population',G.getRes('population').amount*0.03);
-		var mauso=function(){if(G.achievByName['mausoleum'].won>=10){
-		G.button({id:'thingyBulk',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;font-color:aqua;">Mausoleum</span>',
-					tooltip:'Open the Mausoleum catacombs. Requires 10/10 Mausoleum.',
-					onclick:function(){
-						var n=G.getSetting('buyAmount');
-						if (G.keys[17]) n=-n;
-						else
-						{
-						}
-						n=Math.round(n);
-						n=Math.max(Math.min(n,1e+35),-1e+35);
-						G.setSetting('buyAmount',n);
-						G.updateBuyAmount();
-						if (G.checkPolicy('Toggle SFX')=='on'){
-						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
-						audio.play(); 
-						}
-						
-					},
-				})
-	}else{ return '';};
-/////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
-		G.update['unit']=function()
-	{
-		l('unitDiv').innerHTML=
-			G.textWithTooltip('<big>?</big>','<div style="width:240px;text-align:left;"><div class="par"><li>Units are the core of your resource production and gathering.</li></div><div class="par">Units can be <b>queued</b> for purchase by clicking on them; they will then automatically be created over time until they reach the queued amount. Creating units usually takes up resources such as workers or tools; resources shown in red in the tooltip are resources you do not have enough of.<div class="bulleted">click a unit to queue 1</div><div class="bulleted">right-click or ctrl-click to remove 1</div><div class="bulleted">shift-click to queue 50</div><div class="bulleted">shift-right-click or ctrl-shift-click to remove 50</div></div><div class="par">Units usually require some resources to be present; a <b>building</b> will crumble if you do not have the land to support it, or it could go inactive if you lack the workers or tools (it will become active again once you fit the requirements). Some units may also require daily <b>upkeep</b>, such as fresh food or money, without which they will go inactive.</div><div class="par">Furthermore, workers will sometimes grow old, get sick, or die, removing a unit they\'re part of in the process.</div><div class="par">Units that die off will be automatically replaced until they match the queued amount again.</div><div class="par">Some units have different <b>modes</b> of operation, which can affect what they craft or how they act; you can use the small buttons next to such units to change those modes and do other things. One of those buttons is used to <b>split</b> the unit into another stack; each stack can have its own mode.</div></div>','infoButton')+
-			'<div style="position:absolute;z-index:100;top:0px;left:0px;right:0px;text-align:center;"><div class="flourishL"></div>'+
-				G.button({id:'removeBulk',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">-</span>',
-					tooltip:'Divide by 10',
-					onclick:function(){
-						var n=G.getSetting('buyAmount');
-						if (G.keys[17]) n=-n;
-						else
-						{
-							if (n==1) n=-1;
-							else if (n<1) n=n*10;
-							else if (n>1) n=n/10;
-						}
-						n=Math.round(n);
-						n=Math.max(Math.min(n,1e+35),-1e+35);
-						G.setSetting('buyAmount',n);
-						G.updateBuyAmount();
-						if (G.checkPolicy('Toggle SFX')=='on'){
-						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
-						audio.play(); 
-						}
-						
-					},
-				})+
-			mauso()+
-				'<div id="buyAmount" class="bgMid framed" style="width:128px;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">...</div>'+
-				G.button({id:'addBulk',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
-					tooltip:'Multiply by 10',
-					onclick:function(){
-						var n=G.getSetting('buyAmount');
-						if (G.keys[17]) n=-n;
-						else
-						{
-							if (n==-1) n=1;
-							else if (n>-1) n=n*10;
-							else if (n<-1) n=n/10;
-						}
-						n=Math.round(n);
-						n=Math.max(Math.min(n,1e+35),-1e+35);
-						G.setSetting('buyAmount',n);
-						G.updateBuyAmount();
-						if (G.checkPolicy('Toggle SFX')=='on'){
-						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
-						audio.play(); 
-						}
-					}
-				})+
-			'<div class="flourishR"></div></div>'+
-			'<div class="fullCenteredOuter" style="padding-top:16px;"><div id="unitBox" class="thingBox fullCenteredInner"></div></div>';
-		
-		/*
-			-create an empty string for every unit category
-			-go through every unit owned and add it to the string of its category
-			-display each string under category headers, then attach events
-		*/
-		var strByCat=[];
-		var len=G.unitCategories.length;
-		for (var iC=0;iC<len;iC++)
-		{
-			strByCat[G.unitCategories[iC].id]='';
-		}
-		var len=G.unitsOwned.length;
-		for (var i=0;i<len;i++)
-		{
-			var str='';
-			var me=G.unitsOwned[i];
-			str+='<div class="thingWrapper">';
-			str+='<div class="unit thing'+G.getIconClasses(me.unit,true)+'" id="unit-'+me.id+'">'+
-				G.getIconStr(me.unit,'unit-icon-'+me.id,0,true)+
-				G.getArbitrarySmallIcon([0,0],false,'unit-modeIcon-'+me.id)+
-				'<div class="overlay" id="unit-over-'+me.id+'"></div>'+
-				'<div class="amount" id="unit-amount-'+me.id+'"></div>'+
-			'</div>';
-			if (me.unit.gizmos)
-			{
-				str+='<div class="gizmos">'+
-					'<div class="gizmo gizmo1" id="unit-mode-'+me.id+'"></div>'+
-					'<div class="gizmo gizmo2'+(me.splitOf?' off':'')+'" id="unit-split-'+me.id+'"></div>'+
-					'<div class="gizmo gizmo3" id="unit-percent-'+me.id+'"><div class="percentGizmo" id="unit-percentDisplay-'+me.id+'"></div></div>'+
-				'</div>';
-			}
-			str+='</div>';
-			strByCat[me.unit.category]+=str;
-		}
-		
-		var str='';
-		var len=G.unitCategories.length;
-		for (var iC=0;iC<len;iC++)
-		{
-			if (strByCat[G.unitCategories[iC].id]!='')
-			{
-				if (G.unitCategories[iC].id=='wonder') str+='<br>';
-				str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="unit-catName-'+iC+'">'+G.unitCategories[iC].name+'</div>'+strByCat[G.unitCategories[iC].id]+'</div>';
-			}
-		}
-		l('unitBox').innerHTML=str;
-		
-		G.addCallbacks();
-		
-		
-		G.addTooltip(l('buyAmount'),function(){return '<div style="width:320px;"><div class="barred"><b>Buy amount</b></div><div class="par">This is how many units you\'ll queue or unqueue at once in a single click.</div><div class="par">Click the + and - buttons to increase or decrease the amount. You can ctrl-click either button to instantly make the amount negative or positive.</div><div class="par">You can also ctrl-click a unit to unqueue an amount instead of queueing it, or shift-click to queue 50 times more.</div></div>';},{offY:-8});
-		
-		G.updateBuyAmount();
-		var len=G.unitsOwned.length;
-		for (var i=0;i<len;i++)
-		{
-			var me=G.unitsOwned[i];
-			var div=l('unit-'+me.id);if (div) me.l=div; else me.l=0;
-			var div=l('unit-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
-			var div=l('unit-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
-			var div=l('unit-amount-'+me.id);if (div) me.lAmount=div; else me.lAmount=0;
-			var div=l('unit-modeIcon-'+me.id);if (div) me.lMode=div; else me.lMode=0;
-			if (me.lMode && me.mode.icon) {G.setIcon(me.lMode,me.mode.icon);me.lMode.style.display='block';}
-			else if (me.lMode) me.lMode.style.display='none';
-			if (me.unit.gizmos)
-			{
-				var div=l('unit-mode-'+me.id);div.onmousedown=function(unit,div){return function(){G.selectModeForUnit(unit,div);};}(me,div);
-				G.addTooltip(div,function(me,instance){return function(){return 'Click and drag to change unit mode.<br>Current mode :<div class="info"><div class="fancyText barred infoTitle">'+(instance.mode.icon?G.getSmallThing(instance.mode):'')+''+instance.mode.name+'</div>'+G.parse(instance.mode.desc)+'</div>';};}(me.unit,me),{offY:-8});
-				var div=l('unit-split-'+me.id);div.onclick=function(unit,div){return function(){if (G.speed>0) G.splitUnit(unit,div); else G.cantWhenPaused();};}(me,div);
-				G.addTooltip(div,function(me,instance){return function(){if (instance.splitOf) return 'Click to remove this stack of units.'; else return 'Click to split into another unit stack.<br>Different unit stacks can use different modes.'};}(me.unit,me),{offY:-8-16});
-				var div=l('unit-percent-'+me.id);div.onmousedown=function(unit,div){return function(){if (G.speed>0) G.selectPercentForUnit(unit,div); else G.cantWhenPaused();};}(me,div);
-				G.addTooltip(div,function(me,instance){return function(){return 'Click and drag to set unit work capacity.<br>This feature is not yet implemented... and probably won\'t be.'};}(me.unit,me),{offY:8,anchor:'bottom'});
-			}
-			G.addTooltip(me.l,function(me,instance){return function(){
-				var amount=G.getBuyAmount(instance);
-				if (me.wonder) amount=(amount>0?1:-1);
-				if (me.wonder)
-				{
-					var str='<div class="info">';
-					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
-					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
-					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
-					else
-					{
-						if (instance.mode==0) str+='<div class="fancyText barred">Unbuilt<br>Click to start construction ('+B(me.steps)+' steps)</div>';
-						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
-						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
-						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
-						else if (instance.mode==4 && me.name!=='scientific university'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
-						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
-					}
-					if (amount<0) amount=0;
-					
-					if (instance.mode!=4)
-					{
-						str+='<div class="fancyText barred">';
-							if (instance.mode==0 && amount>0)
-							{
-								if (!isEmpty(me.cost)) str+='<div>Initial cost : '+G.getCostString(me.cost,true,false,amount)+'</div>';
-								if (!isEmpty(me.use)) str+='<div>Uses : '+G.getUseString(me.use,true,false,amount)+'</div>';
-								if (!isEmpty(me.require)) str+='<div>Prerequisites : '+G.getUseString(me.require,true,false,amount)+'</div>';
-							}
-							else if ((instance.mode==1 || instance.mode==2) && !isEmpty(me.costPerStep)) str+='<div>Cost per step : '+G.getCostString(me.costPerStep,true,false,amount)+'</div>';
-							else if (instance.mode==3 && !isEmpty(me.finalStepCost)) str+='<div>Final step cost : '+G.getCostString(me.finalStepCost,true,false,amount)+'</div>';
-						str+='</div>';
-					}
-					
-					if (me.desc) str+='<div class="infoDesc">'+G.parse(me.desc)+'</div>';
-					str+='</div>';
-					str+=G.debugInfo(me);
-					return str;
-				}
-				else
-				{
-					if (amount<0) amount=Math.max(-instance.targetAmount,amount);
-					/*if (G.getSetting('buyAny'))
-					{
-						var n=0;
-						n=G.testAnyCost(me.cost);
-						if (n!=-1) amount=Math.min(n,amount);
-						n=G.testAnyUse(me.use,amount);
-						if (n!=-1) amount=Math.min(n,amount);
-						n=G.testAnyUse(me.require,amount);
-						if (n!=-1) amount=Math.min(n,amount);
-						n=G.testAnyUse(instance.mode.use,amount);
-						if (n!=-1) amount=Math.min(n,amount);
-						n=G.testAnyLimit(me.limitPer,G.getUnitAmount(me.name)+amount);
-						if (n!=-1) amount=Math.min(n,amount);
-					}*/
-					var str='<div class="info">';
-					//infoIconCompensated ?
-					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div>'+
-					'<div class="fancyText infoAmount onLeft">'+B(instance.displayedAmount)+'</div>'+
-					'<div class="fancyText infoAmount onRight" style="font-size:12px;">'+(instance.targetAmount!=instance.amount?('queued :<br>'+B(instance.targetAmount-instance.displayedAmount)):'')+(instance.amount>0?('<br>active :<br>'+B(instance.amount-instance.idle)+'/'+B(instance.amount)):'')+'</div>'+
-					'</div>';
-					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					str+='<div class="fancyText barred">Click to '+(amount>=0?'queue':'unqueue')+' '+B(Math.abs(amount))+'</div>';
-					if (me.modesById[0]) {str+='<div class="fancyText barred">Current mode :<br><b>'+(instance.mode.icon?G.getSmallThing(instance.mode):'')+''+instance.mode.name+'</b></div>';}
-					str+='<div class="fancyText barred">';
-						if (!isEmpty(me.cost)) str+='<div>Cost : '+G.getCostString(me.cost,true,false,amount)+'</div>';
-						if (!isEmpty(me.use) || !isEmpty(me.staff)) str+='<div>Uses : '+G.getUseString(addObjects(me.use,me.staff),true,false,amount)+'</div>';
-						if (!isEmpty(me.require)) str+='<div>Prerequisites : '+G.getUseString(me.require,true,false,amount)+'</div>';//should amount count?
-						if (!isEmpty(me.upkeep)) str+='<div>Upkeep : '+G.getCostString(me.upkeep,true,false,amount)+'</div>';
-						if (!isEmpty(me.limitPer)) str+='<div>Limit : '+G.getLimitString(me.limitPer,true,false,G.getUnitAmount(me.name)+amount)+'</div>';
-						if (isEmpty(me.cost) && isEmpty(me.use) && isEmpty(me.staff) && isEmpty(me.upkeep) && isEmpty(me.require)) str+='<div>Free</div>';
-						if (me.modesById[0] && !isEmpty(instance.mode.use)) str+='<div>Current mode uses : '+G.getUseString(instance.mode.use,true,false,amount)+'</div>';
-					str+='</div>';
-					if (me.desc) str+='<div class="infoDesc">'+G.parse(me.desc)+'</div>';
-					str+='</div>';
-					str+=G.debugInfo(me);
-					return str;
-				}
-			};}(me.unit,me),{offY:-8});
-			if (me.l) me.l.onclick=function(unit){return function(e){
-				if (G.speed>0)
-				{
-					var amount=G.getBuyAmount(unit);
-					if (unit.unit.wonder) amount=(amount>0?1:-1);
-					if (amount<0) G.taskKillUnit(unit,-amount);
-					else if (amount>0) G.taskBuyUnit(unit,amount,(G.getSetting('buyAny')));
-				} else G.cantWhenPaused();
-			};}(me);
-			if (me.l) me.l.oncontextmenu=function(unit){return function(e){
-				e.preventDefault();
-				if (G.speed>0)
-				{
-					var amount=-G.getBuyAmount(unit);
-					if (unit.unit.wonder) amount=(amount>0?1:-1);
-					if (amount<0) G.taskKillUnit(unit,-amount);
-					//else if (amount>0) G.buyUnit(unit,amount);
-				} else G.cantWhenPaused();
-			};}(me);
-		}
-		}
-	}}
+}
 	G.props['new day lines']=[
 		'Creatures are lurking.',
 		'Danger abounds.',
