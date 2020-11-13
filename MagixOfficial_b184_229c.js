@@ -1713,7 +1713,6 @@ G.setPolicyMode=function(me,mode)
 						}
 					}
 				})+
-			}+
 	}else{
 			
 	}
