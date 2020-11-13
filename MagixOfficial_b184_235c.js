@@ -19160,7 +19160,7 @@ new G.Tech({
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
 	function trial11(){if(G.getRes('wisdom II').amount>=1){
-			 G.button({id:'addBulk',
+			 G.button({id:'buyInsight',
 					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
 					tooltip:'Multiply by 10',
 					onclick:function(){
@@ -19181,7 +19181,7 @@ new G.Tech({
 						audio.play(); 
 						}
 					}
-				})
+				})+
 	}else{
 		return null;
 	}};
