@@ -1713,7 +1713,7 @@ G.setPolicyMode=function(me,mode)
 						}
 					}
 				})+
-	}}
+	}
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
