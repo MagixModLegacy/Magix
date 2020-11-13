@@ -1690,7 +1690,7 @@ G.setPolicyMode=function(me,mode)
 			});
 		}
 	}
-	function trial11(){if(G.has('Eotm')){
+	function trial11(){if(G.getRes('wisdom II').amount>=1){
 			 G.button({id:'addBulk',
 					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
 					tooltip:'Multiply by 10',
@@ -1713,6 +1713,8 @@ G.setPolicyMode=function(me,mode)
 						}
 					}
 				})
+	}else{
+		return null;
 	}};
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
