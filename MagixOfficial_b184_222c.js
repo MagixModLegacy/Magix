@@ -8829,7 +8829,7 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').finalStepCost={'population':3000,'insight II':425,'wisdom':350,'science':100,'wisdom II':-25,'education':-25,'university point':-100};
 			G.getDict('scientific university').icon=[16,29,'magixmod'];G.getDict('scientific university').wideIcon=[15,29,'magixmod'];
 			}};
-			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==0 && G.has('even bigger university')){
+			if(G.getUnitByName('scientific university').mode==4 && G.getRes('university point').amount==0 && G.has('even bigger university') && G.has('bigger university')){
 				G.getUnitByName('scientific university').mode==0;
 			G.getDict('scientific university').icon=[19,29,'magixmod'];
 			G.getDict('scientific university').wideIcon=[18,29,'magixmod'];
