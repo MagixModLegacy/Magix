@@ -1773,7 +1773,7 @@ G.setPolicyMode=function(me,mode)
 					}
 				})+
 			
-			'<div class="flourishR"></div><script>if(G.has(\'Eotm\')){
+			"<div class=\"flourishR\"></div><script>if(G.has('Eotm')){
 			G.button({id:'addBulk',
 					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
 					tooltip:'Multiply by 10',
@@ -1796,7 +1796,7 @@ G.setPolicyMode=function(me,mode)
 						}
 					}
 				})+
-			}</script></div>'+
+			}</script></div>"+
 			'<div class="fullCenteredOuter" style="padding-top:16px;"><div id="unitBox" class="thingBox fullCenteredInner"></div></div>';
 		
 		/*
