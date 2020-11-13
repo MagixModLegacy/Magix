@@ -1690,8 +1690,8 @@ G.setPolicyMode=function(me,mode)
 			});
 		}
 	}
-	var trial11=function(){if(G.has('Eotm')){
-			G.button({id:'addBulk',
+	function trial11(){if(G.has('Eotm')){
+			 G.button({id:'addBulk',
 					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
 					tooltip:'Multiply by 10',
 					onclick:function(){
@@ -1712,8 +1712,8 @@ G.setPolicyMode=function(me,mode)
 						audio.play(); 
 						}
 					}
-				})+
-	}
+				})
+	}};
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
@@ -1773,7 +1773,7 @@ G.setPolicyMode=function(me,mode)
 						
 					},
 				})+
-				trial11();
+				trial11()+
 				'<div id="buyAmount" class="bgMid framed" style="width:128px;display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">...</div>'+
 				G.button({id:'addBulk',
 					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
