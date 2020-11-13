@@ -19190,16 +19190,13 @@ new G.Tech({
 					},
 				})+
 			G.button({id:'thingyBulk',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">-</span>',
-					tooltip:'Divide by 10',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;font-color:aqua;">Mausoleum</span>',
+					tooltip:'Open the Mausoleum catacombs. Requires 10/10 Mausoleum.',
 					onclick:function(){
 						var n=G.getSetting('buyAmount');
 						if (G.keys[17]) n=-n;
 						else
 						{
-							if (n==1) n=-1;
-							else if (n<1) n=n*10;
-							else if (n>1) n=n/10;
 						}
 						n=Math.round(n);
 						n=Math.max(Math.min(n,1e+35),-1e+35);
