@@ -3009,7 +3009,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			};}(me);
 		}
 		}
-	}
+	}}
 	G.props['new day lines']=[
 		'Creatures are lurking.',
 		'Danger abounds.',
