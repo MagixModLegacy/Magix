@@ -13050,6 +13050,7 @@ new G.Unit({
     		],
     		use:{'land':1,'worker':1},
 		gizmos:true,
+		startWith:1,
     		req:{'t10':true,'trial':true},
     		category:'trial',
 	});
