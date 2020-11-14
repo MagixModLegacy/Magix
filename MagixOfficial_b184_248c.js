@@ -1742,9 +1742,10 @@ G.setPolicyMode=function(me,mode)
 						}
 					}
 				})+
+			'<div class="flourishR"></div></div>'+
 			'<br><center>'+
 			G.button({id:'mausoleum',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">+</span>',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">Buy</span>'+G.getIconUsedBy('"golden insight"')+'',
 					tooltip:'Multiply by 10',
 					onclick:function(){
 						var n=G.getSetting('buyAmount');
@@ -1763,7 +1764,6 @@ G.setPolicyMode=function(me,mode)
 					}
 				})+
 			'</center>'+
-			'<div class="flourishR"></div></div>'+
 			'<div class="fullCenteredOuter" style="padding-top:16px;"><div id="unitBox" class="thingBox fullCenteredInner"></div></div>';
 		
 		/*
