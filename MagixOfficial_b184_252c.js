@@ -1762,7 +1762,7 @@ G.setPolicyMode=function(me,mode)
 						}
 					}
 				})+
-			'</center></div></div>'+
+			'</div></center></div>'+
 			
 			'<div class="fullCenteredOuter" style="padding-top:16px;"><div id="unitBox" class="thingBox fullCenteredInner"></div></div>';
 		
