@@ -9125,7 +9125,7 @@ if (!document.getElementById(cssId))
 			}
 			if(G.has('beyond the edge II') && G.getRes('beyond').amount==6){
 			G.gain('beyond',1)
-				var toSick=G.getRes('adult',amount);
+				var toSick=G.getRes('adult').amount;
 				G.lose('adult',toSick);
 				G.gain('sick',toSick);
 				G.lose('population',G.getRes('population').amount*0.4);
