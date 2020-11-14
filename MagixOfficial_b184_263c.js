@@ -1747,15 +1747,7 @@ G.setPolicyMode=function(me,mode)
 					text:'</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/>',
 					tooltip:'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for n <b>Faith</b> and n <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
 					onclick:function(){
-						var n=G.getSetting('buyAmount');
-						if (G.keys[17]) n=-n;
-						else
-						{
-						}
-						n=Math.round(n);
-						n=Math.max(Math.min(n,1e+35),-1e+35);
-						G.setSetting('buyAmount',n);
-						G.updateBuyAmount();
+					G.gain('"golden insight"',1,'purcharse')
 						if (G.checkPolicy('Toggle SFX')=='on'){
 						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
 						audio.play(); 
