@@ -1745,7 +1745,7 @@ G.setPolicyMode=function(me,mode)
 			'<div class="flourishR"></div></div>'+
 			'<br><center>'+
 			G.button({id:'mausoleum',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">Buy</span>'+G.getIconUsedBy('"golden insight"')+'',
+					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4Ta.png" /></span>',
 					tooltip:'Multiply by 10',
 					onclick:function(){
 						var n=G.getSetting('buyAmount');
