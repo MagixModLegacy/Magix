@@ -12538,7 +12538,7 @@ if (!document.getElementById(cssId))
 			steps:35,
     		cost:{'precious building materials':3500,'insight':50,'faith':150,'Fire essence':450,'Water essence':475,'Dark essence':375,'Wind essence':2750,'Lightning essence':377,'Nature essence':10075,'precious metal ingot':1e3,'heavenlyTemplePoint':400},
     		use:{'land':10},
-			costPerStep:{'marble':700,'gem block':5,'gems':2}
+			costPerStep:{'marble':1700,'gem block':15,'gems':8},
     		req:{'Second portal to new world':true,'Belief in portals':true},
 			finalStepCost:{'population':1000,'Magic essences':100000,'beyond':-1/*debug resource*/,'faith':175},
     		category:'dimensions',
