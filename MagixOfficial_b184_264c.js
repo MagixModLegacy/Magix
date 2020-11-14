@@ -1746,8 +1746,9 @@ G.setPolicyMode=function(me,mode)
 			G.button({id:'mausoleum',//<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">
 					text:'</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/>',
 					tooltip:'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for n <b>Faith</b> and n <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
-					onclick:function(){
-					G.gain('"golden insight"',1,'purcharse')
+					onclick:function(me){
+					G.gain('"golden insight"',1,'purcharse');
+						if(G.has('Eotm'))me.text='No!';
 						if (G.checkPolicy('Toggle SFX')=='on'){
 						var audio = new Audio('http://orteil.dashnet.org/cookieclicker/snd/press.mp3');
 						audio.play(); 
