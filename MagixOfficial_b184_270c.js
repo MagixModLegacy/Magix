@@ -1743,7 +1743,7 @@ G.setPolicyMode=function(me,mode)
 					}
 				})+
 			'<div class="flourishR"></div><br><center>'+
-			G.button({id:'mausolem',//<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">
+			G.button({id:'t11',//<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">
 					text:'</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/>',
 					tooltip:'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for n <b>Faith</b> and n <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
 					onclick:function(me){
@@ -9080,7 +9080,7 @@ if (!document.getElementById(cssId))
 			if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode==4 && me.amount<2){
 				G.gain('beyond',1);
 				G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'insight':250};
+				//G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'insight':250};
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').steps=75;
@@ -9088,14 +9088,32 @@ if (!document.getElementById(cssId))
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').costPerStep={'Mana':4000,'Dark essence':200,'Fire essence':250,'Nature essence':300,'Wind essence':150,'Water essence':500,'Lightning essence':225};
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepDesc='Perform a final step to activate this portal';
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000};
-			}else if(me.amount>=3){
+				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000,'beyond':-1};
+			}else if(me.amount>=2 && G.has('<span style="color: ##FF0900">Plain island building</span>')){
 					G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=4;
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
-					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal.';
+					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Completed';
 			}
-			if(G.has('beyond the edge') && G.getRes('beyond').amount==3){
+			//PARADISE PORTAL REWORK
+			if(me.amount>=3 && G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode==4 && me.amount<4){
+				G.gain('beyond',1);
+				G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=0;
+				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').wideIcon=[7,4,'magixmod'];
+				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').icon=[8,4,'magixmod'];
+				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').steps=75;
+				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').desc='@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules. Stage 2 of 2',
+				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
+				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').costPerStep={'Mana':4000,'Dark essence':200,'Fire essence':250,'Nature essence':300,'Wind essence':150,'Water essence':500,'Lightning essence':225};
+				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepDesc='Perform a final step to activate this portal';
+				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000};
+			}else if(me.amount>=5){
+					G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=4;
+					G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').wideIcon=[7,4,'magixmod'];
+					G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').icon=[8,4,'magixmod'];
+					G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').desc='@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules. Completed';
+			}
+			if(G.has('beyond the edge') && G.getRes('beyond').amount==5){
 			G.gain('beyond',1)
 				G.lose('population',G.getRes('population').amount*0.3);
 				G.getRes('happiness').amount=0;G.getRes('health').amount=0;
@@ -9105,7 +9123,7 @@ if (!document.getElementById(cssId))
 				G.getRes('influence').amount=0;G.getRes('influence II').amount=0;
 				G.getRes('science').amount=0;
 			}
-			if(G.has('beyond the edge II') && G.getRes('beyond').amount==4){
+			if(G.has('beyond the edge II') && G.getRes('beyond').amount==6){
 			G.gain('beyond',1)
 				var toSick=G.getRes('adult',amount);
 				G.lose('adult',toSick);
@@ -12516,14 +12534,12 @@ if (!document.getElementById(cssId))
     		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
     		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules.',
     		wideIcon:[7,4,'magixmod'],
-    		cost:{'precious building materials':35000,'insight':1500,'faith':250,'Fire essence':45000,'Water essence':47500,'Dark essence':37500,'Wind essence':27500,'Lightning essence':37750,'Nature essence':100750,'precious metal ingot':1e4,'heavenlyTemplePoint':400},
-    		effects:[
-    			{type:'provide',what:{'Land of the Paradise':26500}},
-			{type:'provide',what:{'Paradise emblem':1}},
-    		],
+		wonder:'.',
+			steps:35,
+    		cost:{'precious building materials':3500,'insight':50,'faith':150,'Fire essence':450,'Water essence':475,'Dark essence':375,'Wind essence':2750,'Lightning essence':377,'Nature essence':10075,'precious metal ingot':1e3,'heavenlyTemplePoint':400},
     		use:{'land':10},
     		req:{'Second portal to new world':true,'Belief in portals':true},
-    		limitPer:{'land':100000000000000},//It is something like max 1
+			finalStepCost:{'population':1000,'Magic essences':100000,'beyond':-1/*debug resource*/,'faith':175},
     		category:'dimensions',
 	});
 		new G.Unit({
