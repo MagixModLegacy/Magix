@@ -9096,7 +9096,7 @@ if (!document.getElementById(cssId))
 					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Completed';
 			}
 			//PARADISE PORTAL REWORK
-			if(me.amount>=3 && G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode==4 && me.amount<4){
+			if(me.amount>=3 && G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode==4 && me.amount<5){
 				G.gain('beyond',1);
 				G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=0;
 				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').wideIcon=[7,4,'magixmod'];
@@ -9107,7 +9107,7 @@ if (!document.getElementById(cssId))
 				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').costPerStep={'Mana':4000,'Dark essence':200,'Fire essence':250,'Nature essence':300,'Wind essence':150,'Water essence':500,'Lightning essence':225};
 				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepDesc='Perform a final step to activate this portal';
 				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000};
-			}else if(me.amount>=5){
+			}else if(me.amount>=4){
 					G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=4;
 					G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').wideIcon=[7,4,'magixmod'];
 					G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').icon=[8,4,'magixmod'];
@@ -12538,6 +12538,7 @@ if (!document.getElementById(cssId))
 			steps:35,
     		cost:{'precious building materials':3500,'insight':50,'faith':150,'Fire essence':450,'Water essence':475,'Dark essence':375,'Wind essence':2750,'Lightning essence':377,'Nature essence':10075,'precious metal ingot':1e3,'heavenlyTemplePoint':400},
     		use:{'land':10},
+			costPerStep:{'marble':700,'gem block':5,'gems':2}
     		req:{'Second portal to new world':true,'Belief in portals':true},
 			finalStepCost:{'population':1000,'Magic essences':100000,'beyond':-1/*debug resource*/,'faith':175},
     		category:'dimensions',
