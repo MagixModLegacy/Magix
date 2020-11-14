@@ -1743,8 +1743,8 @@ G.setPolicyMode=function(me,mode)
 					}
 				})+
 			'<div class="flourishR"></div><br><center>'+
-			G.button({id:'mausoleum',
-					text:'<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;"/></span>',
+			G.button({id:'mausoleum',//<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">
+					text:'</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;"/>',
 					tooltip:'Buy ["golden insight","Golden insight"] for n [faith] , n [insight] .',
 					onclick:function(){
 						var n=G.getSetting('buyAmount');
