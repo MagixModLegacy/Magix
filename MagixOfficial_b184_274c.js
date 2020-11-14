@@ -12521,6 +12521,7 @@ if (!document.getElementById(cssId))
     		name:'<span style="color: #E0CE00">Plain island portal</span>',
     		desc:'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 1 of 2',
     		wideIcon:[28,29,'magixmod'],
+			icon:[29,29,'magixmod'],
 		wonder:'.',
 		cost:{'marble':100,'gems':10},
 		costPerStep:{'marble':250,'basic building materials':50,'Mana':3500},
@@ -12533,7 +12534,8 @@ if (!document.getElementById(cssId))
 		new G.Unit({
     		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
     		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules.',
-    		wideIcon:[7,4,'magixmod'],
+    		wideIcon:[31,29,'magixmod'],
+			icon:[32,29,'magixmod'],
 		wonder:'.',
 			steps:35,
     		cost:{'precious building materials':3500,'insight':50,'faith':150,'Fire essence':450,'Water essence':475,'Dark essence':375,'Wind essence':2750,'Lightning essence':377,'Nature essence':10075,'precious metal ingot':1e3,'heavenlyTemplePoint':400},
