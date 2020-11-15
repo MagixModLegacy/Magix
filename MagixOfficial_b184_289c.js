@@ -2711,7 +2711,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.Message({type:'important',text:str,icon:[0,3]});
 		}else if(G.has('primary time measure') && G.hasNot('time measuring 1/2')){
 			
-  var res = txt.endsWith("00")
+  var res = txt.endsWith("00");
 			if(res==true){
 			var str='';
 			str+='It is now the century <b>'+Math.floor(((G.year/100)+1))+'</b>.<br>';
@@ -17567,7 +17567,7 @@ new G.Tech({
 		name:'t11',
 		displayName:'Enlightened\' Trial',
 		desc:'You are during Faithful trial',
-		icon:[7,27,'magixmod'],
+		icon:[19,25,'magixmod',1,22,'magixmod'],
 		req:{'tribalism':false},
 		cost:{},
 			effects:[
