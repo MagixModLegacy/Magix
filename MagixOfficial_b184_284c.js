@@ -1691,6 +1691,7 @@ G.setPolicyMode=function(me,mode)
 		}
 	}
 	G.funcs['unit tab update']=function(){
+		if(G.on){
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
@@ -1940,7 +1941,7 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 	}
-}
+}}
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
