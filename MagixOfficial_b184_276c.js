@@ -1690,6 +1690,7 @@ G.setPolicyMode=function(me,mode)
 			});
 		}
 	}
+	let trialfaith=false
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
@@ -1743,7 +1744,7 @@ G.setPolicyMode=function(me,mode)
 					}
 				})+
 			'<div class="flourishR"></div><br><center>'+
-(G.has('Eotm') ? G.button({
+(trialfaith=true ? G.button({
       id: "t11", //<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">
       text:
         '</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/>',
@@ -17543,6 +17544,17 @@ new G.Tech({
 		cost:{'culture':2},
 		req:{'oral tradition':true},
 		category:'religion'
+	});
+	new G.Trait({
+		name:'t11',
+		displayName:'Enlightened\' Trial',
+		desc:'You are during Faithful trial',
+		icon:[7,27,'magixmod'],
+		req:{'tribalism':false},
+		cost:{},
+			effects:[
+			{type:'function',func:function(){trialfaith=true}},
+		],
 	});
 	/*=====================================================================================
 	POLICIES
