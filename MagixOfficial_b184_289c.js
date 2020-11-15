@@ -2690,6 +2690,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		if (G.on)
 		{
+			var txt = ''+G.year+'';
 			if(day>=290 && day<=306){G.getDict('population').icon=[0,7,'seasonal'];
 		G.getDict('worker').icon=[1,7,'seasonal'];
 		G.getDict('child').icon=[2,7,'seasonal'];
@@ -2709,7 +2710,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getRes('soldiers defeats').amount=0;
 			G.Message({type:'important',text:str,icon:[0,3]});
 		}else if(G.has('primary time measure') && G.hasNot('time measuring 1/2')){
-			var txt = ''+G.year+'';
+			
   var res = txt.endsWith("00")
 			if(res==true){
 			var str='';
@@ -2724,11 +2725,19 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.Message({type:'important',text:str,icon:[0,3]});
 			}
 		}
+			var rese = txt.endsWith("5")
 			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
 			if(t1start==true)
 			{
+				
+				if(G.has('time measuring 1/2')){
 				var insight=Math.floor(Math.random() * (33/(G.achievByName['Patience'].won+1)));
 				G.Message({type:'important',text:'During this year Chra\'nos has brought down to you:<br><b><font color="#aaffff">'+B(insight)+' Insight</font></b><br>The hidden weakness in this plane affects you stronger and stronger each year. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
+				if (G.getRes('insight').amount < G.getRes('wisdom').amount*1.6){
+				G.gain('insight',insight);
+				}else if(rese==true){
+				var insight=Math.floor(Math.random() * (33/(G.achievByName['Patience'].won+1)));
+				G.Message({type:'important',text:'Recently Chra\'nos has brought down to you:<br><b><font color="#aaffff">'+B(insight)+' Insight</font></b><br>The hidden weakness in this plane affects you stronger and stronger. Think about finishing the trial as soon as possible.',icon:[10,11,'magixmod']});
 				if (G.getRes('insight').amount < G.getRes('wisdom').amount*1.6){
 				G.gain('insight',insight);
 				}
@@ -2878,7 +2887,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				//Murdered by Madness
 				//G.getRes('population')/150+(G.year+G.achievByName['Unhappy'].won*4/5)
 				/////////////////////
+				if(G.has('time measuring 1/2')){
 			   G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br>Here comes cruel year report: <li>People murdered: '+Math.round((G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})
+				}else if(rese==true){
+			G.Message({type:'bad',text:'Madness everywhere... people rob, kill. That\'s how Madness looks like. <br> <li>People that got murdered last time: '+Math.round((G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5)))+'</li> <br>Population above <font color="orange">'+popinfo+'</font> presents cruel behaviours.'})	
+				}
 				G.lose('adult',Math.round((G.getRes('population').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))),'The Madness')
 				G.gain('corpse',Math.round((G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))),'The Madness')
 				G.gain('blood',Math.round((G.getRes('corpse').amount/80+((G.year/5)+G.achievByName['Unhappy'].won*4/5))),'The Madness')
@@ -2984,7 +2997,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 })
 			}
 				var culture=Math.floor(Math.random()*12);
+			if(G.has('time measuring 2/2')){
 				G.Message({type:'important',text:'During this year Tu-ria has brought down to you:<br><b><font color="#aaffcc">'+B(culture)+' Culture</font></b> and <b><font color="#ffbbbb">'+(culture/2)+' Influence</font></b>',icon:[10,11,'magixmod']});
+			}else if(rese==true){
+				G.Message({type:'important',text:'Recently Tu-ria has brought down to you:<br><b><font color="#aaffcc">'+B(culture)+' Culture</font></b> and <b><font color="#ffbbbb">'+(culture/2)+' Influence</font></b>',icon:[10,11,'magixmod']});
+			}
 				if (G.getRes('culture').amount < G.getRes('inspiration').amount-culture){
 				G.gain('culture',culture);
 				}
