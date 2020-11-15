@@ -18171,7 +18171,7 @@ new G.Tech({
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
-},'noclose')}}
+})}}
 			],
 	});
 	new G.Policy({
@@ -18198,7 +18198,7 @@ new G.Tech({
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
-},'noclose')}}
+})}}
 				],
 	});
 	new G.Policy({
@@ -18225,7 +18225,7 @@ new G.Tech({
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
-},'noclose')}}
+})}}
 				],
 	});
 	new G.Policy({
@@ -18252,7 +18252,7 @@ new G.Tech({
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
-},'noclose')}}
+})}}
 				],
 	});
 	new G.Policy({
@@ -18297,7 +18297,7 @@ new G.Tech({
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
-},'noclose')}}
+})}}
 				],
 	});
 		new G.Policy({
@@ -18332,13 +18332,13 @@ new G.Tech({
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'Be faithful. Only faith will lead you to victory. In this plane you start with 100 <font color="aqua">spirituality</font> and 100 <font color="aqua">Faith</font>. Each year you lose around 15 Faith points. Be careful! If your [faith] will go negative the trial will be failed and you will come back to the mortal world. The more you research, the more Faith you will lose. In addition Soothsayer works at 10% of its normal efficiency. Build up a replacement of Mausoleum... the Faithoselum and ascend by it. Completing a challenge will make your [soothsayer] gain faith 8% more often, druids have 0.5% chance to generate some extra faith  and <font color="pink">Evolution of the minds</font> weakens <font color="aqua">Soothsayer\'s</font> power by 88% and druids by 84% instead of 90%.<br><Br><BR>'+
+                'Be faithful. Only faith will lead you to victory. In this plane you start with 100 <font color="aqua">spirituality</font> and 100 <font color="aqua">Faith</font>. Each year you lose around 15 Faith points. Be careful! If your Faith will go negative/reach zero the trial will be failed and you will come back to the mortal world. The more you research, the more Faith you will lose. In addition Soothsayer works at 10% of its normal efficiency. Build up a replacement of Mausoleum... the Faithoselum and ascend by it. Completing a challenge will make your [soothsayer] gain faith 8% more often, druids have 0.5% chance to generate some extra faith  and <font color="pink">Evolution of the minds</font> weakens <font color="aqua">Soothsayer\'s</font> power by 88% and druids by 84% instead of 90%.<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Pocket\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
-},'noclose')}}
+})}}
 				],
 	});
 	/*=====================================================================================
