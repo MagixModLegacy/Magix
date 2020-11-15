@@ -2725,7 +2725,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.Message({type:'important',text:str,icon:[0,3]});
 			}
 		}
-			var rese = txt.endsWith("5")
+			var rese = txt.endsWith("5");
 			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
 			if(t1start==true)
 			{
@@ -2743,7 +2743,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				}
 				var weakness=Math.floor(Math.random() * 4)
 							G.gain('Berry seeds',weakness);
-				
+				}}
 			}
 			//influence trickle
 			if(G.has('Glory')){
