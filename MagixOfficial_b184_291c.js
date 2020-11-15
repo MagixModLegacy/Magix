@@ -17228,7 +17228,7 @@ new G.Tech({
 		name:'intuition',
 		desc:'[intuition] opens a way to more complex researching. Researches related to crafting, building, planning etc can be "on plan" since this moment.',
 		icon:[35,31,'magixmod'],
-		chance:1.25,
+		chance:1.75,
 		cost:{'culture':1,'insight':1,'influence':1},
 		req:{'oral tradition':true},
 	});
@@ -17558,7 +17558,7 @@ new G.Tech({
 		name:'spark\'o religion',
 		desc:'[spark\'o religion] opens a way to [ritualism] and things related to <b>Religion</b> such like cults, courie, spirits. Who knows if you can even reach some sort of... [Magic essences,Magic] ?',
 		icon:[35,15,'magixmod'],
-		chance:0.8,
+		chance:1.3,
 		cost:{'culture':2},
 		req:{'oral tradition':true},
 		category:'religion'
