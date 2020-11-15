@@ -1690,7 +1690,7 @@ G.setPolicyMode=function(me,mode)
 			});
 		}
 	}
-	var trialfaith=false;
+	G.funcs['unit tab update']=function(){
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
@@ -1744,7 +1744,7 @@ G.setPolicyMode=function(me,mode)
 					}
 				})+
 			'<div class="flourishR"></div><br><center>'+
-(trialfaith=true ? G.button({
+(G.has('Eotm') ? G.button({
       id: "t11", //<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">
       text:
         '</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/>',
@@ -1940,6 +1940,7 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 	}
+}
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
@@ -3480,7 +3481,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play();hehallo=true;}
-		if(G.has('t11')){trialfaith=true}else{trialfaith=false};
+		G.doFunc('unit tab update');
 	}
 	
 	G.funcs['tracked stat str c1']=function()
