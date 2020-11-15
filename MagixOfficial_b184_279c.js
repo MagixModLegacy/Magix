@@ -1744,7 +1744,7 @@ G.setPolicyMode=function(me,mode)
 					}
 				})+
 			'<div class="flourishR"></div><br><center>'+
-(trialfaith=true ? G.button({
+(G.has('Eotm') ? G.button({
       id: "t11", //<span style="position:relative;width:9px;margin-left:-4px;margin-right:-4px;z-index:10;font-weight:bold;">
       text:
         '</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/>',
