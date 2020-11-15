@@ -1690,7 +1690,7 @@ G.setPolicyMode=function(me,mode)
 			});
 		}
 	}
-	let trialfaith=false
+	var trialfaith=false;
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
