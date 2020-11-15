@@ -3480,6 +3480,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play();hehallo=true;}
+		if(G.has('t11'))trialfaith=true;
 	}
 	
 	G.funcs['tracked stat str c1']=function()
@@ -17553,7 +17554,7 @@ new G.Tech({
 		req:{'tribalism':false},
 		cost:{},
 			effects:[
-			{type:'function',func:function(){trialfaith=true}},
+			{type:'function',func:function(){}},
 		],
 	});
 	/*=====================================================================================
