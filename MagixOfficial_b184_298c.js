@@ -1999,6 +1999,7 @@ G.props['fastTicksOnResearch']=150;
 	let st15=false
 	let displayC1=true;let displayC2=false;
 	let hehallo=false;
+	let dem=false
 		G.funcs['new game blurb']=function()
 	{   
 		var str=
@@ -2008,7 +2009,7 @@ G.props['fastTicksOnResearch']=150;
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x300</div>','300 Herbs')+
-		 (G.achievByName['Democration'].won==1 ? G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x300</div>','300 Herbs'):"")+
+		 (dem==true ? G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('influence'))+'"></div><div class="freelabel">x300</div>','300 Herbs'):"")+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
 		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
 		'<script type="text/javascript">'+
@@ -3496,6 +3497,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play();hehallo=true;}
 		if(G.has('t11')){ca=2 ; cb=1;};
+		if(G.achievByName['Democration'].won==1){dem==true};
 	}
 	
 	G.funcs['tracked stat str c1']=function()
