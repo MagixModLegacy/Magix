@@ -3496,7 +3496,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play();hehallo=true;}
 		if(G.has('t11')){ca=2 ; cb=1;};
-		if(G.achievByName['Democration'].won==1){dem==true};
 	}
 	
 	G.funcs['tracked stat str c1']=function()
