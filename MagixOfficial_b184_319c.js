@@ -17586,7 +17586,7 @@ new G.Tech({
 	new G.Tech({
 		name:'even bigger university',
 		desc:'@Unlocks 3rd level of [scientific university]. Requires 10 [victory point]s to level up.',
-		icon:[34,15,'magixmod'],
+		icon:[20,30,'magixmod'],
 		cost:{'insight II':600,'university point':300,'science':80,'culture II':115,'faith II':80},
 		req:{'wonder \'o science':true,'Wizard complex':true,'Bigger university':true,'deep-rooted faith':true,'dynamics II':true},		
 	});
