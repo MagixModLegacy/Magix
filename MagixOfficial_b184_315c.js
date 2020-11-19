@@ -1405,7 +1405,11 @@ if (!document.getElementById(cssId))
 			//display list of total gatherable resources per context
 			var I=0;
 			var cI=0;
+			if(G.has('tile inspection II')){
 			str+='<div style="padding:16px;text-align:left;" class="thingBox"><div class="bitBiggerText fancyText">Total natural resources in your territory :</div>';
+			}else{
+				str+='<div style="padding:16px;text-align:left;" class="thingBox"><div class="bitBiggerText fancyText">Natural resources in your territory :</div>';
+			}
 			for (var i in G.contextNames)
 			{
 				var context=i;
@@ -17630,10 +17634,18 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'tile inspection',
-		desc:'@From now you can inspect discovered tiles in <b>Territory</b> tab just by clicking on them. //@You can see goods and their density on the tile. @Also you can inspect newly discovered tiles and get full info about its goods.',
+		desc:'@From now you can inspect discovered tiles in <b>Territory</b> tab just by clicking on them. //@You can see goods and their density on the tile. @Also you can inspect newly discovered tiles and get full info about its goods. @<font color="red">However you still can\'t see more exactly how many of the resource do you have in the territory.',
 		icon:[34,14,'magixmod'],
 		cost:{'insight':10,'culture':15},
 		req:{'intuition':true,'scouting':true,'plant lore':true,'hunting':true},		
+	});
+	new G.Know({
+		name:'tile inspection II',
+		desc:'@Now you can see how many of resources you have totally in your territory',
+		icon:[35,14,'magixmod'],
+		cost:{'insight':50},
+		req:{'Basic maths':true,'tile inspection':true,'writing':true,'alphabet 1/3':true},	
+		chance:30,
 	});
 	/*=====================================================================================
 	POLICIES
