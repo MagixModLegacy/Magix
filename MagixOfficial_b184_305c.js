@@ -4417,7 +4417,7 @@ G.writeMSettingButton=function(obj)
 		],
 			civ:0
 	});
-	const atest=G.achievByName['Democration'].won;
+	let atest=G.achievByName['Democration'].won;
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
