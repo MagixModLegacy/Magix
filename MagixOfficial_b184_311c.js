@@ -1317,6 +1317,7 @@ if (!document.getElementById(cssId))
 	}
 	G.inspectTile=function(tile)
 	{
+		if(G.year>=10){
 		//display the tile's details in the land section
 		//note : this used to display every territory owned until i realized 3 frames per second doesn't make for a very compelling user experience
 		var str='';
@@ -1390,7 +1391,7 @@ if (!document.getElementById(cssId))
 			};}(goods,tile.goods[ii]),{offY:-8});
 			I++;
 		}
-		//Math.seedrandom();
+		}//if bracket //Math.seedrandom();
 	}
 G.setPolicyMode=function(me,mode)
 	{
