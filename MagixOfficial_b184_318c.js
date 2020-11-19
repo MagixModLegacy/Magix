@@ -1439,7 +1439,7 @@ if (!document.getElementById(cssId))
 						if(G.has('tile inspection II')){
 						str+=G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(me)+'"></div><div id="naturalResAmount-'+cI+'-'+me.id+'" class="freelabel">x'+B(amount,floats)+'</div>',G.getResTooltip(me,'<span style="font-size:12px;">'+B(amount,floats)+' available every day<br>by '+contextName+'.</span>'));
 						}else{
-						str+=G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(me)+'"></div><div id="naturalResAmount-'+cI+'-'+me.id+'" class="freelabel">x'+B(amount,floats)+'</div>',G.getResTooltip(me,'<span style="font-size:12px;"></span>'));	
+						str+=G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(me)+'"></div><div id="naturalResAmount-'+cI+'-'+me.id+'" class="freelabel"></div>',G.getResTooltip(me,'<span style="font-size:12px;"></span>'));	
 						}
 						I++;
 					}
