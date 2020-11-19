@@ -17632,7 +17632,7 @@ new G.Tech({
 		name:'tile inspection',
 		desc:'@From now you can inspect discovered tiles in <b>Territory</b> tab just by clicking on them. //@You can see goods and their density on the tile. @Also you can inspect newly discovered tiles and get full info about its goods.',
 		icon:[34,14,'magixmod'],
-		cost:{'insight':10},
+		cost:{'insight':10,'culture':15},
 		req:{'intuition':true,'scouting':true,'plant lore':true,'hunting':true},		
 	});
 	/*=====================================================================================
