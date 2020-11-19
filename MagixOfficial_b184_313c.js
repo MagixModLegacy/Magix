@@ -17632,8 +17632,8 @@ new G.Tech({
 		name:'tile inspection',
 		desc:'@From now you can inspect discovered tiles in <b>Territory</b> tab just by clicking on them. //@You can see goods and their density on the tile. @Also you can inspect newly discovered tiles and get full info about its goods.',
 		icon:[34,14,'magixmod'],
-		cost:{'insight II':600,'university point':300,'science':80,'culture II':115,'faith II':80},
-		req:{'wonder \'o science':true,'Wizard complex':true,'Bigger university':true,'deep-rooted faith':true,'dynamics II':true},		
+		cost:{'insight':10},
+		req:{'intuition':true,'scouting':true,'plant lore':true,'hunting':true},		
 	});
 	/*=====================================================================================
 	POLICIES
