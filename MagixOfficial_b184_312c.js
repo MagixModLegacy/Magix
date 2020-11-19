@@ -1317,7 +1317,7 @@ if (!document.getElementById(cssId))
 	}
 	G.inspectTile=function(tile)
 	{
-		if(G.year>=10){
+		if(G.has('tile inspection')){
 		//display the tile's details in the land section
 		//note : this used to display every territory owned until i realized 3 frames per second doesn't make for a very compelling user experience
 		var str='';
@@ -1392,6 +1392,64 @@ if (!document.getElementById(cssId))
 			I++;
 		}
 		}//if bracket //Math.seedrandom();
+	}
+	//only pasted to update a tooltip due to tile exploring tech
+	G.update['land']=function()
+	{
+		var str='';
+		str+=G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">This is your territory. While you only start with a small tile of land, there is a whole map for you to explore if you have units with that ability.</div><div class="par">Each tile you control adds to the natural resources available for your units to gather. You get more resources from fully-explored tiles than from tiles you\'ve just encountered.</div><div class="par">If you unlocked <b>Tile inspection</b> you can by clicking on an explored tile on the map to the right to see what goods can be found in it, and how those goods contribute to your natural resources.</div></div>','infoButton');
+		str+='<div id="landBox">';
+		str+='<div id="landList"></div>';
+		if (G.currentMap.computedPlayerRes)
+		{
+			//display list of total gatherable resources per context
+			var I=0;
+			var cI=0;
+			str+='<div style="padding:16px;text-align:left;" class="thingBox"><div class="bitBiggerText fancyText">Total natural resources in your territory :</div>';
+			for (var i in G.contextNames)
+			{
+				var context=i;
+				if (G.contextVisibility[i] || G.getSetting('debug'))
+				{
+					var contextName=G.contextNames[i];
+					var res=G.currentMap.computedPlayerRes[i]||[];
+					str+='<div class="categoryName fancyText barred">'+contextName+'</div>';
+					str+='<div>';
+					var sortedRes=[];
+					for (var ii in res)
+					{
+						var me=G.getRes(ii);
+						sortedRes.push({res:me,amount:res[ii],id:me.id});
+					}
+					sortedRes.sort(function(a,b){return b.amount-a.amount});
+					
+					for (var ii in sortedRes)
+					{
+						var me=sortedRes[ii].res;
+						var amount=Math.ceil(sortedRes[ii].amount*1000)/1000;
+						
+						var floats=0;
+						if (amount<10) floats++;
+						if (amount<1) floats++;
+						if (amount<0.1) floats++;
+						
+						str+=G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(me)+'"></div><div id="naturalResAmount-'+cI+'-'+me.id+'" class="freelabel">x'+B(amount,floats)+'</div>',G.getResTooltip(me,'<span style="font-size:12px;">'+B(amount,floats)+' available every day<br>by '+contextName+'.</span>'));
+						I++;
+					}
+					str+='</div>';
+				}
+				cI++;
+			}
+			str+='</div>';
+		}
+		str+='</div>';
+		l('landDiv').innerHTML=str;
+		
+		G.addCallbacks();
+		
+		if (G.inspectingTile) G.inspectTile(G.inspectingTile);
+		
+		G.draw['land']();
 	}
 G.setPolicyMode=function(me,mode)
 	{
@@ -17569,6 +17627,13 @@ new G.Tech({
 			effects:[
 			{type:'function',func:function(){}},
 		],
+	});
+	new G.Tech({
+		name:'tile inspection',
+		desc:'@From now you can inspect discovered tiles in <b>Territory</b> tab just by clicking on them. //@You can see goods and their density on the tile. @Also you can inspect newly discovered tiles and get full info about its goods.',
+		icon:[34,14,'magixmod'],
+		cost:{'insight II':600,'university point':300,'science':80,'culture II':115,'faith II':80},
+		req:{'wonder \'o science':true,'Wizard complex':true,'Bigger university':true,'deep-rooted faith':true,'dynamics II':true},		
 	});
 	/*=====================================================================================
 	POLICIES
