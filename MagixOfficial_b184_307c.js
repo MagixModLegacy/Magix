@@ -2009,11 +2009,8 @@ G.props['fastTicksOnResearch']=150;
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('elder'))+'"></div><div class="freelabel">x1</div>','1 Elder')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('child'))+'"></div><div class="freelabel">x2</div>','2 Children')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('herb'))+'"></div><div class="freelabel">x300</div>','300 Herbs')+
-		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('beyond'))+'"></div><div class="freelabel"></div>','<b>Complete achievements to<br> unlock more starting<br> bonuses</b>')+
 		G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('water'))+'"></div><div class="freelabel">x250</div>','250 Water')+
-		//G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('insight'))+'"></div><div class="freelabel">x6</div>','6 Insight')+
-		'<script type="text/javascript">'+
-                '</script>'+
+		(G.resets>=1 ? G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(G.getRes('beyond'))+'"></div><div class="freelabel"></div>','<b>Complete achievements to<br> unlock more starting<br> bonuses</b>') : ""))+
 		'</div>'+
 		'<div class="par fancyText bitBiggerText">Your tribe finds a place to settle in the wilderness.<br>Resources are scarce, and everyone starts foraging.</div>'+
 		'<div class="par fancyText bitBiggerText">You emerge as the tribe\'s leader. <br>These people... They call you :</div>';
