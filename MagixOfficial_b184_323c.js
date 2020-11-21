@@ -3506,6 +3506,29 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		G.T++;
 	}
 	shuffle(G.props['new day lines']);
+	G.gainTrait=function(me)
+	{
+		G.traitsOwned.unshift({trait:me,id:G.traitN});
+		G.traitsOwnedNames.unshift(me.name);
+		var age=0;
+		var newTraitsOwned=[];
+		var len=G.traitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var add=true;
+			var trait=G.traitsOwned[i].trait;
+			//TODO : re-add this for categories
+			if (trait.shortTerm && age>=G.shortMemory) add=false;
+			if (trait.longTerm && age>=G.longMemory) add=false;
+			if (add) newTraitsOwned.push({trait:trait,id:i});
+			age++;
+		}
+		G.traitsOwned=newTraitsOwned;
+		G.applyKnowEffects(me,false,true);
+		G.traitN++;
+		G.shouldRunReqs=true;
+		G.update['trait']();
+	}
 	G.funcs['new day']=function()
 	{
 		
@@ -3538,6 +3561,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 								case "knowledge":G.Message({type:'important tall',text:'Your people have adopted the knowledge: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "devils":G.Message({type:'bad tall',text:'Devils brought to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "gods":G.Message({type:'good tall',text:'Kind God brought down to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
+								case "religion":G.Message({type:'story2 tall',text:'Beliefs and hopes of your people have brought a religious trait: <b>'+me.displayName+'</b>.',icon:me.icon});break;
+								case "short":G.Message({type:'important tall',text:'Your people have adopted the <u>short-term</u> trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
+								case "long":G.Message({type:'important tall',text:'Your people have adopted the <u>long-term</u> trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
 								default:G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
 							}
 							if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
