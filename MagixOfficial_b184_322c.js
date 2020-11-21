@@ -5124,7 +5124,7 @@ G.writeMSettingButton=function(obj)
 			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
 			if(G.has('t4')){
 				if(amount>=98){
-					G.lose(me,G.getRes('happiness').amount*0.8)
+					G.lose(me,G.getRes(me).amount*0.8)
 			}
 			}
 		},
