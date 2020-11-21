@@ -3508,8 +3508,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	shuffle(G.props['new day lines']);
 	G.removeTrait=function(me)
 	{
-		G.traitsOwned.splice({trait:me,id:G.traitN});
-		G.traitsOwnedNames.unshift(me.name);
+		G.traitsOwned.unshift({trait:me,id:G.traitN});
+		G.traitsOwnedNames.splice(me.name);
 		var age=0;
 		var newTraitsOwned=[];
 		var len=G.traitsOwned.length;
