@@ -3532,9 +3532,14 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					{
 						if (G.checkReq(me.req) && G.testCost(me.cost,1))
 						{
-							G.doCost(me.cost,1);https://avatars0.githubusercontent.com/u/54317957?s=60&v=4
+							G.doCost(me.cost,1);
 							G.gainTrait(me);
-							G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon});
+							switch(me.category){
+								case "":G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
+								case "knowledge":G.Message({type:'important tall',text:'Your people have adopted the knowledge: <b>'+me.displayName+'</b>.',icon:me.icon});break;
+								case "devils":G.Message({type:'bad tall',text:'Devils brought to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
+								case "gods":G.Message({type:'good tall',text:'Kind God brought down to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
+							}
 							if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 							{
 								var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTrait.mp3');
