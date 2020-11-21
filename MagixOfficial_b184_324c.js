@@ -17682,6 +17682,24 @@ new G.Tech({
 		chance:30,
 		category:'knowledge'
 	});
+	new G.Trait({
+		name:'test',
+		desc:'@Now you can see how many of resources you have totally in your territory',
+		icon:[35,14,'magixmod'],
+		cost:{'insight':50},
+		req:{'Basic maths':true,'tile inspection':true,'writing':true,'alphabet 1/3':true},	
+		chance:30,
+		category:'long'
+	});
+	new G.Trait({
+		name:'test2',
+		desc:'@Now you can see how many of resources you have totally in your territory',
+		icon:[35,14,'magixmod'],
+		cost:{'insight':50},
+		req:{'Basic maths':true,'tile inspection':true,'writing':true,'alphabet 1/3':true},	
+		chance:30,
+		category:'long'
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
