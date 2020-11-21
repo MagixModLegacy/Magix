@@ -3509,7 +3509,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	G.removeTrait=function(me)
 	{
 		G.traitsOwned.splice({trait:me,id:G.traitN});
-		G.traitsOwnedNames.splice(me.name);
+		G.traitsOwnedNames.unshift(me.name);
 		var age=0;
 		var newTraitsOwned=[];
 		var len=G.traitsOwned.length;
