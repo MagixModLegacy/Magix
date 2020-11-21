@@ -3506,52 +3506,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		G.T++;
 	}
 	shuffle(G.props['new day lines']);
-	G.removeTrait=function(me)
-	{
-		G.traitsOwned.unshift({trait:me,id:G.traitN});
-		G.traitsOwnedNames.splice(me.name);
-		var age=0;
-		var newTraitsOwned=[];
-		var len=G.traitsOwned.length;
-		for (var i=0;i<len;i++)
-		{
-			var add=true;
-			var trait=G.traitsOwned[i].trait;
-			//TODO : re-add this for categories
-			if (trait.shortTerm && age>=G.shortMemory) add=false;
-			if (trait.longTerm && age>=G.longMemory) add=false;
-			if (add) newTraitsOwned.push({trait:trait,id:i});
-			age++;
-		}
-		G.traitsOwned=newTraitsOwned;
-		G.applyKnowEffects(me,false,true);
-		G.traitN--;
-		G.shouldRunReqs=true;
-		G.update['trait']();
-	}
-	G.gainTrait=function(me)
-	{
-		G.traitsOwned.unshift({trait:me,id:G.traitN});
-		G.traitsOwnedNames.unshift(me.name);
-		var age=0;
-		var newTraitsOwned=[];
-		var len=G.traitsOwned.length;
-		for (var i=0;i<len;i++)
-		{
-			var add=true;
-			var trait=G.traitsOwned[i].trait;
-			//TODO : re-add this for categories
-			if (trait.shortTerm && age>=G.shortMemory) add=false;
-			if (trait.longTerm && age>=G.longMemory) add=false;
-			if (add) newTraitsOwned.push({trait:trait,id:i});
-			age++;
-		}
-		G.traitsOwned=newTraitsOwned;
-		G.applyKnowEffects(me,false,true);
-		G.traitN++;
-		G.shouldRunReqs=true;
-		G.update['trait']();
-	}
 	G.funcs['new day']=function()
 	{
 		
