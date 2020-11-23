@@ -9374,7 +9374,7 @@ if (!document.getElementById(cssId))
 		name:'plain portal point',
 		tick:function(me,tick){
 	if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode==4 && me.amount<2 && G.hasNot('<span style="color: ##FF0900">Plain island building</span>')){
-				G.gain(me,1);
+				G.gain('plain portal point',1);
 				G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
 				//G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'insight':250};
 				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
@@ -9398,7 +9398,7 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick){
 	//PARADISE PORTAL REWORK
 			if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode==4 && G.hasNot('<span style="color: ##FF0900">Paradise building</span>')){
-				G.gain(me,1);
+				G.gain(paradise portal point,1);
 				G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=0;
 				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').wideIcon=[7,4,'magixmod'];
 				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').icon=[8,4,'magixmod'];
