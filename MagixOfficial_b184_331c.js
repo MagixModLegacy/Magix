@@ -12622,7 +12622,7 @@ if (!document.getElementById(cssId))
 		wonder:'.',
 		cost:{'marble':100,'gems':10},
 		costPerStep:{'marble':250,'basic building materials':50,'Mana':3500},
-		finalStepCost:{'population':100,'Magic essences':1000,'plain island point':-1/*debug resource*/},
+		finalStepCost:{'population':100,'Magic essences':1000,'plain portal point':-1/*debug resource*/},
     		use:{'land':10},
 		steps:25,
     		req:{'First portal to new world':true,'Belief in portals':true},
@@ -15128,7 +15128,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'The God\'s call',
-		desc:'<b>The god... he called your people... to his world... full of hopes... full of new adventures... to... his... Paradise...',
+		desc:'<b>The god... he called your people... to his world... full of hopes... full of new adventures... to... his... Paradise...</b>',
 		icon:[20,2,'magixmod'],
 		cost:{'insight':650,'culture':200,'inspiration':20,'authority':20,'spirituality':30,'faith':40},
 		chance:175,
