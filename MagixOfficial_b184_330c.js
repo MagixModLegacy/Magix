@@ -9370,7 +9370,7 @@ if (!document.getElementById(cssId))
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
 	});
-	new G.res({
+	new G.Res({
 		name:'plain portal point',
 		tick:function(me,tick){
 	if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode==4 && me.amount<2 && G.hasNot('<span style="color: ##FF0900">Plain island building</span>')){
@@ -9393,7 +9393,7 @@ if (!document.getElementById(cssId))
 			}
 		},
 	  });
-	new G.res({
+	new G.Res({
 		name:'paradise portal point',
 		tick:function(me,tick){
 	//PARADISE PORTAL REWORK
