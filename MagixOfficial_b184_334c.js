@@ -1817,7 +1817,7 @@ G.setPolicyMode=function(me,mode)
       tooltip:
         'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for n <b>Faith</b> and n <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
       onclick: function (me) {
-	      if(G.getRes('"golden insight"').amount<=G.getRes('wisdom').amount){
+	      if(G.getRes('"golden insight"').amount<G.getRes('wisdom').amount){
         G.gain('"golden insight"', 1, "purcharse");
 	      };
         if (G.checkPolicy("Toggle SFX") == "on") {
