@@ -3546,7 +3546,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 								case "knowledge":G.Message({type:'important tall',text:'Your people have adopted the knowledge: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "devils":G.Message({type:'bad tall',text:'Devils brought to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "gods":G.Message({type:'good tall',text:'Kind God brought down to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
-								case "religion":G.Message({type:'story2 tall',text:'Beliefs and hopes of your people have brought a religious trait: <b>'+me.displayName+'</b>.',icon:me.icon});break;
+								case "religion":G.Message({type:'story2 tall',text:'Believements and hopes of your people have brought a religious trait: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "short":G.Message({type:'important tall',text:'Your people have adopted the <u>short-term</u> trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
 								case "long":G.Message({type:'important tall',text:'Your people have adopted the <u>long-term</u> trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
 								default:G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
@@ -17650,10 +17650,10 @@ new G.Tech({
 		displayName:'Enlightened\' Trial',
 		desc:'You are during Faithful trial',
 		icon:[19,25,'magixmod',1,22,'magixmod'],
-		req:{'tribalism':false},
+		req:{'tribalism':false,'trial':true},
 		cost:{},
 			effects:[
-			{type:'function',func:function(){}},
+			{type:'provide res',what:{'spirituality':100,'faith':100}},
 		],
 	});
 	new G.Tech({
