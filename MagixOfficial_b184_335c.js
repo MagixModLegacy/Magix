@@ -2749,6 +2749,12 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			b12++
 			c12++
 		}
+		if(G.hasNot('<span style="color: ##FF0900">Plain island building</span>') && G.getRes('Plain island emblem').amount==0){
+		G.getRes('plain portal point').amount=1;	
+		}
+		if(G.hasNot('<span style="color: ##FF0900">Paradise building</span>') && G.getRes('Paradise emblem').amount==0){
+		G.getRes('paradise portal point').amount=1;	
+		}
 	}
 	G.funcs['new year']=function()
 	{
