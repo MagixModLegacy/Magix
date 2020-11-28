@@ -2751,12 +2751,12 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		}
 		if(G.hasNot('<span style="color: ##FF0900">Plain island building</span>') && G.getRes('Plain Island emblem').amount==0){
 			
-			G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=1;
+			G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
 			G.getRes('plain portal point').amount=1;
 		}
 		if(G.hasNot('<span style="color: ##FF0900">Paradise building</span>') && G.getRes('Paradise emblem').amount==0){
 		
-			G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=1;
+			G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=0;
 			G.getRes('paradise portal point').amount=1;
 		}
 	}
