@@ -9,51 +9,6 @@ G.LoadResources=function()
 			'img/iconSheet.png?v=1'
 		];
 	}
-G.Map=function(type,w,h,seed)
-	{
-	
-		//create a new unpopulated map with specified type, width and height, with an optional seed
-		this.type=type;
-		this.w=w;
-		this.h=h;
-		this.computedPlayerRes=[];
-		this.tilesByOwner=[];//lists of tiles indexed by civs owning them ([0]=unexplored)
-		this.territoryByOwner=[];//total amount of explored owned tile percents across all tiles owned by a given civ
-		this.seed=seed||makeSeed(5);
-		
-		var time=Date.now();
-		
-		if (!G.land[0]) throw 'Whoah there! You can\'t generate a map if you don\'t even have one terrain type to default to!';
-		
-		Math.seedrandom(this.seed);
-		this.tiles=[];
-		for (var x=0;x<w;x++)
-		{
-			this.tiles[x]=[];
-			for (var y=0;y<h;y++)
-			{
-				var land=G.land[0];
-				var tile={owner:0,land:land,goods:[],explored:0,effects:[],x:x,y:y,map:this};
-				this.tiles[x][y]=tile;
-			}
-		}
-		
-		var lvl=G.doFuncWithArgs('create map',[w,h]);
-		
-		for (var x=0;x<w;x++)
-		{
-			for (var y=0;y<h;y++)
-			{
-				this.tiles[x][y].land=G.getLand(lvl[x][y]);
-				this.tiles[x][y].goods=G.getRandomLandGoods(this.tiles[x][y].land);
-			}
-		}
-		
-		//console.log('generating map took '+(Date.now()-time)+'ms');
-		
-		G.maps.push(this);
-		Math.seedrandom();
-	}
 	
 	G.computeTilesByOwner=function(map,owner)
 	{
