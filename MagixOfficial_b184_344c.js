@@ -7824,15 +7824,15 @@ if (!document.getElementById(cssId))
 				if (G.year>=29)//Gear decaying at year 30 and later
 				{
 				var toSpoil=(G.getRes('metal tools').amount*0.0001);G.lose(('metal tools'),randomFloor(toSpoil),'decay');
-				if(G.hasNot('tool refinery 2/2'){var toSpoil=(G.getRes('stone tools').amount*0.0004);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
+				if(G.hasNot('tool refinery 2/2')){var toSpoil=(G.getRes('stone tools').amount*0.0004);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
 				}else{
 					var toSpoil=(G.getRes('stone tools').amount*0.0002);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
-				}
+				};
 				var toSpoil=(G.getRes('knapped tools').amount*0.00055);G.lose(('knapped tools'),randomFloor(toSpoil),'decay');
-								if(G.hasNot('tool refinery 2/2'){var toSpoil=(G.getRes('stone weapons').amount*0.0004);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
+								if(G.hasNot('tool refinery 2/2')){var toSpoil=(G.getRes('stone weapons').amount*0.0004);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
 				}else{
 					var toSpoil=(G.getRes('stone weapons').amount*0.0002);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
-				}
+				};
 				var toSpoil=(G.getRes('bow').amount*0.00025);G.lose(('bow'),randomFloor(toSpoil),'decay');
 				var toSpoil=(G.getRes('Wand').amount*0.0003);G.lose(('Wand'),randomFloor(toSpoil),'decay');
 				var toSpoil=(G.getRes('Crossbow').amount*0.0003);G.lose(('Crossbow'),randomFloor(toSpoil),'decay');
