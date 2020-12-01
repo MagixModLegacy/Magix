@@ -1,6 +1,3 @@
-//SORRY GUYS!!!
-//TO MAKE WORLD MAP SUPPORT BIOMES ADDED BY MAGIX I HAD TO PASTE THESE OVER 1K LINES OF CODE. IF THERE WILL BE "SHORTER" WAY TO FIX IT I WILL IMPLEMENT IT!
-//THE PROBLEM WAS THAT WORLD MAP OF COURSE WAS GENERATING BIOMES LIKE LAVENDER FIELDS, DEAD FOREST, SWAMPLANDS, BADLANDS BUT THEIR DISPLAY WAS LIKE: BLACK TILE
 G.LoadResources=function()
 	{
 		var resources=[
@@ -8,50 +5,6 @@ G.LoadResources=function()
 			'img/blot.png',
 			'img/iconSheet.png?v=1'
 		];
-	}
-	
-	G.computeTilesByOwner=function(map,owner)
-	{
-		//stores a list of tiles owned by the specified owner into map.tilesByOwner[owner]
-		var tiles=[];
-		var tilePercents=0;
-		for (var x=0;x<map.w;x++)
-		{
-			for (var y=0;y<map.h;y++)
-			{
-				if (map.tiles[x][y].owner==owner)
-				{
-					tiles.push(map.tiles[x][y]);
-					if (!map.tiles[x][y].land.ocean) tilePercents+=map.tiles[x][y].explored;//TODO : generalize this
-				}
-			}
-		}
-		map.tilesByOwner[owner]=tiles;
-		map.territoryByOwner[owner]=tilePercents;
-	}
-	G.updateMapForOwners=function(map)
-	{
-		//cache owned tiles and resources for every civ on the map
-		for (var i=0;i<2;i++)
-		{
-			G.computeTilesByOwner(map,i);
-			G.computeOwnedRes(map,i);
-		}
-	}
-	
-	G.revealMap=function(map)
-	{
-		//mark all tiles as explored
-		for (var x=0;x<map.w;x++)
-		{
-			for (var y=0;y<map.h;y++)
-			{
-				map.tiles[x][y].owner=1;
-				map.tiles[x][y].explored=1;
-			}
-		}
-		G.updateMapForOwners(map);
-		G.updateMapDisplay();
 	}
 	
 	G.createMaps=function()//when creating a new game
@@ -92,86 +45,6 @@ G.LoadResources=function()
 		G.updateMapDisplay();
 		G.centerMap(G.currentMap);
 	}
-	G.centerMap=function(map)
-	{
-		//center the map on the average of explored tiles
-		var ts=16;
-		var x1=0,y1=0,x2=map.w,y2=map.h;
-		for (var x=0;x<map.w;x++)
-		{
-			for (var y=0;y<map.h;y++)
-			{
-				if (map.tiles[x][y].explored>0) {x1=Math.max(x,x1);y1=Math.max(y,y1);x2=Math.min(x,x2);y2=Math.min(y,y2);}
-			}
-		}
-		var px=Math.floor((x2+x1)/2)+0.5;
-		var py=Math.floor((y2+y1)/2)+0.5;
-		G.mapOffXT=-(px*G.mapZoomT)*ts;
-		G.mapOffYT=-(py*G.mapZoomT)*ts;
-	}
-	G.mapToRedraw=false;
-	G.redrawMap=function(map)
-	{
-		G.mapToRedraw=false;
-		var ts=16;
-		var c=G.renderMap(map);
-		var ctx=l('mapCanvas').getContext('2d');
-		ctx.clearRect(0,0,map.w*ts,map.h*ts);
-		ctx.drawImage(c,0,0);
-	}
-	G.mapToRefresh=false;
-	G.refreshMap=function(map)
-	{
-		G.mapToRefresh=false;
-		G.computeOwnedRes(map,1);
-	}
-	
-	G.getRandomTile=function(map)
-	{
-		return map.tiles[Math.floor(Math.random()*map.w)][Math.floor(Math.random()*map.h)];
-	}
-	
-	G.getRandomLandGoods=function(land)
-	{
-		var goods=[];
-		for (var i in land.goods)
-		{
-			var me=land.goods[i];
-			var chance=1;if (typeof me.chance!=='undefined') chance=me.chance;
-			var min=1;var max=1;
-			if (typeof me.amount!=='undefined') min=me.amount;max=min;
-			if (typeof me.min!=='undefined') min=me.min;
-			if (typeof me.max!=='undefined') max=me.max;
-			if (Math.random()<chance)
-			{
-				var type='';if (Array.isArray(me.type)) type=choose(me.type); else type=me.type;
-				if (!goods[type]) goods[type]=0;
-				goods[type]+=Math.random()*(max-min)+min;
-			}
-		}
-		return goods;
-	}
-	
-	G.getResFromGoods=function(goods)//turn a list of goods into their associated resources
-	{
-		var res=[];
-		for (var i in goods)
-		{
-			var me=G.getGoods(i);
-			var mult=goods[i]*(me.mult||1);
-			for (var ii in me.res)
-			{
-				for (var iii in me.res[ii])
-				{
-					if (!res[ii]) res[ii]=[];
-					if (!res[ii][iii]) res[ii][iii]=0;
-					res[ii][iii]+=me.res[ii][iii]*mult;
-				}
-			}
-		}
-		return res;
-	}
-	
 	G.getLandIconBG=function(land)
 	{
 		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
@@ -179,45 +52,6 @@ G.LoadResources=function()
 	G.getLandIconBGpos=function(land)
 	{
 		return (-32*land.image-2)+'px '+(-2*32-2)+'px,'+(-32*land.image-2)+'px '+(-0*32-2)+'px';
-	}
-	G.initMap=function()
-	{
-		G.mapVisible=0;
-		G.mapW=16;
-		G.mapH=16;
-		G.mapOffX=0;
-		G.mapOffY=0;
-		G.mapOffXT=0;
-		G.mapOffYT=0;
-		G.mapZoom=0.01;
-		G.mapZoomT=2;
-		G.mouseDragFromX=0;
-		G.mouseDragFromY=0;
-		G.mouseDragFrom=0;
-		G.mapIsDisplayingTooltip=false;
-		G.mapSelectingTileX=-1;
-		G.mapSelectingTileY=-1;
-		G.mapEditWithLand=0;
-		G.editMode=0;
-		G.inspectingTile=0;
-		G.tilesToRender=[];
-		
-		var div=l('tileEditButton');
-		if (div && G.land[G.mapEditWithLand])
-		{
-			div.style.background=G.getLandIconBG(G.land[G.mapEditWithLand]);
-			div.style.backgroundPosition=G.getLandIconBGpos(G.land[G.mapEditWithLand]);
-		}
-	}
-	G.showMap=function()
-	{
-		G.mapVisible=true;
-		l('mapSection').style.display='block';
-	}
-	G.hideMap=function()
-	{
-		G.mapVisible=false;
-		l('mapSection').style.display='none';
 	}
 	G.buildMapDisplay=function()
 	{
