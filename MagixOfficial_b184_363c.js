@@ -3061,6 +3061,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play();hehallo=true;}
 		if(G.has('t11')){ca=2 ; cb=1;};
+		faicost=1*(G.getRes("New world point").amount/6)*((G.achievByName['Faithful'].won/2)+1);
+		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
 	}
 	
 	G.funcs['tracked stat str c1']=function()
