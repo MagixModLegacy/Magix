@@ -17163,6 +17163,14 @@ new G.Tech({
 		chance:30,
 		category:'knowledge'
 	});
+	new G.Trait({
+		name:'enlightement',
+		desc:'[soothsayer]s and [druid]s from now are more efficient. //@[soothsayer] has more chance to succed [faith] production. [Church] generates 2% more [faith]. Also every 5 [Church,Churches] you will gain 1 [spirituality].',
+		icon:[35,28,'magixmod'],
+		req:{'tribalism':false},	
+		chance:30,
+		category:'religion'
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
