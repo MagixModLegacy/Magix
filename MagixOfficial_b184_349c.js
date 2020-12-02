@@ -9682,6 +9682,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.012,'happiness':0.07},chance:1/9.25},
 			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false},chance:1/6.5},
 			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true},chance:1/6.5},
+			{type:'mult',value:0.1,req:{'Eotm':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
@@ -12746,6 +12747,7 @@ new G.Unit({
 			{type:'gather',what:{'faith':0.018},req:{'druidsymbolism2':true}},
 			{type:'gather',what:{'happiness':0.066},req:{'druidsymbolism1':true}},
 			{type:'gather',what:{'faith':0.05},req:{'symbolism II':true}},
+			{type:'mult',value:0.1,req:{'Eotm':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
@@ -15041,7 +15043,7 @@ autobuy(G.year)
 		new G.Trait({
 		name:'Eotm',
 		displayName:'Evolution of the minds',
-		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. @[sleepy insight] now gives [insight II] instead of [insight]. Same chances.',
+		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain], [soothsayer],[druid] and [clan leader] work 90% less efficient. becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. @[sleepy insight] now gives [insight II] instead of [insight]. Same chances. @However [faith] units penalty can change by completing Faithful. Currently:'+(G.achievByName['Faithful'].won>=1 ? ' <b>70%</b>' : ' <b>90%</b>')+'',
 		icon:[25,19,'magixmod'],
 		cost:{'culture':1000,'insight':1000,'influence':300,'faith':300},
 		chance:190,
@@ -17938,7 +17940,7 @@ new G.Tech({
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'Be faithful. Only faith will lead you to victory. In this plane you start with 100 <font color="aqua">spirituality</font> and 100 <font color="aqua">Faith</font>. Each year you lose around 15 Faith points. Be careful! If your Faith will go negative/reach zero the trial will be failed and you will come back to the mortal world. The more you research, the more Faith you will lose. In addition Soothsayer works at 10% of its normal efficiency. Build up a replacement of Mausoleum... the Faithoselum and ascend by it. Completing a challenge will make your [soothsayer] gain faith 8% more often, druids have 0.5% chance to generate some extra faith  and <font color="pink">Evolution of the minds</font> weakens <font color="aqua">Soothsayer\'s</font> power by 88% and druids by 84% instead of 90%.<br><Br><BR>'+
+                'Be faithful. Only faith will lead you to victory. In this plane you start with 100 <font color="aqua">spirituality</font> and 100 <font color="aqua">Faith</font>. Each year you lose around 15 Faith points. Be careful! If your Faith will go negative/reach zero the trial will be failed and you will come back to the mortal world. The more you research, the more Faith you will lose. In addition Soothsayer works at 10% of its normal efficiency. Build up a replacement of Mausoleum... the Faithoselum and ascend by it. Completing a challenge will make your [soothsayer] gain faith 8% more often, druids have 0.5% chance to generate some extra faith  and <font color="pink">Evolution of the minds</font> weakens <font color="aqua">Soothsayer\'s</font> and <font color="aqua">Druids</font> efficiency by 70% instead of 90%.<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.gainTrait(G.traitByName['t11']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Faithful trial has been started. You are in Enlightened\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
                 '</div>'+
