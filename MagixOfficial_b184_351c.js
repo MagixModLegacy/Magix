@@ -17933,7 +17933,7 @@ new G.Tech({
             return '<div style="width:580px;min-height:550px;height:75%;">'+
                 '<div class="fancyText title"><font color="#d4af37" size="5">- - Faithful - -</font></div>'+
 				'<div class="fancyText">The Enlightened\'s trial</font></div><br>'+
-				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/10.png" width="72" height="72"/>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/11.png" width="72" height="72"/>'+
                 '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
