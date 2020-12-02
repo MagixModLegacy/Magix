@@ -676,18 +676,6 @@ G.LoadResources=function()
 		if (verbose) console.log('Rendering map took '+(Date.now()-time)+'ms.');
 		return c;
 	}
-	
-	G.renderTile=function(map,tileX,tileY)
-	{
-		//re-render a specific tile (invokes G.renderMap with constrained bounds)
-		//to speed things up, we're only re-rendering a 5x5 block of tiles centered around the specified tile and copying the central 3x3 block back to the canvas
-		var ts=16;
-		var c=G.renderMap(map,{x1:tileX-3,y1:tileY-3,x2:tileX+5,y2:tileY+5});
-		var ctx=l('mapCanvas').getContext('2d');
-		ctx.clearRect((tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts));
-		ctx.drawImage(c,(tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts),(tileX-2)*ts,(tileY-2)*ts,(5*ts),(5*ts));
-	}
-
 //////////////////////////////////////////////////////////////
 ////////ACTUAL CONTENT
 G.AddData({
