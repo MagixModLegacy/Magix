@@ -1275,7 +1275,7 @@ G.setPolicyMode=function(me,mode)
       text:
         '</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/>',
       tooltip:
-        'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for '+parse.float(faicost).toFixed(2)+' <b>Faith</b> and '+parse.float(inscost).toFixed(2)+' <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
+        'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for '+faicost.toFixed(2)+' <b>Faith</b> and '+inscost.toFixed(2)+' <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
       onclick: function (me) {
 	      if(G.getRes('"golden insight"').amount<G.getRes('wisdom').amount && G.getRes('faith').amount>=faicost && G.getRes('insight').amount>=inscost){
         G.gain('"golden insight"', 1, "purcharse");
