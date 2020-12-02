@@ -8378,7 +8378,7 @@ if (!document.getElementById(cssId))
 					G.getDict('thot').icon=[0,0,'thotSheet']
 				}
 				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
-				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. @[sleepy insight] now gives [insight II] instead of [insight]. Same chances. //[thot] limit per is increased and becomes 75% less efficient'
+				G.getDict('Eotm').desc='Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain] and [clan leader] work 90% less efficient becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. @[sleepy insight] now gives [insight II] instead of [insight]. Same chances.'
 				G.getDict('philosophy II').desc='[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
 			}
 			if(G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.achievByName['Extremely smart'].won >= 1 && G.achievByName['Man of essences'].won >= 1 && G.achievByName['Magical'].won >= 1 && G.achievByName['Next to the God'].won >= 1 && G.achievByName['The first choice'].won >= 1 && G.achievByName['Trait-or'].won >= 1 && G.achievByName['Not so pious people'].won >= 1 && G.achievByName['Talented?'].won == 0){ //Experienced
@@ -15041,7 +15041,7 @@ autobuy(G.year)
 		new G.Trait({
 		name:'Eotm',
 		displayName:'Evolution of the minds',
-		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain], and [clan leader] work 90% less efficient. becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. @[sleepy insight] now gives [insight II] instead of [insight]. Same chances.',
+		desc:'Replaces [insight], [culture], [faith] and [influence] with: [insight II],[culture II], [faith II] and [influence II] . @To obtain them you will unlock special unit that will convert each for instance 500 [insight] into 1 [insight II] point. In addition [storyteller] , [dreamer] , [chieftain], and [clan leader] work 90% less efficient. becuase this evolution is like disaster for them all. @Since now choose box in <b>Research tab</b> will require [insight II] & [science] instead of [insight] .@So you will still need [Wizard]s and units you used to gather lower essentials. @Lower essentials has been hidden but remember... don\'t get rid of wizards. @[flower rituals] and [wisdom rituals] will no longer occur until [ritualism II] is obtained. @[sleepy insight] now gives [insight II] instead of [insight]. Same chances./'+(G.modsByName["Thot mod"] ? "[thot] limit per is increased and becomes 75% less efficient" : "")+'',
 		icon:[25,19,'magixmod'],
 		cost:{'culture':1000,'insight':1000,'influence':300,'faith':300},
 		chance:190,
@@ -17164,8 +17164,8 @@ new G.Tech({
 		category:'knowledge'
 	});
 	new G.Trait({
-		name:'enlightement',
-		desc:'[soothsayer]s and [druid]s from now are more efficient. //@[soothsayer] has more chance to succed [faith] production. [Church] generates 2% more [faith]. Also every 5 [Church,Churches] you will gain 1 [spirituality].',
+		name:'enlightenment',
+		desc:'[soothsayer]s and [druid]s from now are more efficient. //@[soothsayer] has more chance to succed [faith] production. [Church] generates 2% more [faith]. Also every 5 [Church,Churches] you will gain 1 [spirituality]. //<font color="red">Note:[enlightenment] is fragile and can no longer work once any evolution will occur.</font>',
 		icon:[35,28,'magixmod'],
 		req:{'tribalism':false},	
 		chance:30,
