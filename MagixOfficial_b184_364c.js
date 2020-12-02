@@ -1275,9 +1275,9 @@ G.setPolicyMode=function(me,mode)
       text:
         '</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/>',
       tooltip:
-        'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for '+faicost+' <b>Faith</b> and '+inscost+' <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
+        'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for '+Math.round(faicost)+' <b>Faith</b> and '+Math.round(inscost)+' <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
       onclick: function (me) {
-	      if(G.getRes('"golden insight"').amount<G.getRes('wisdom').amount){
+	      if(G.getRes('"golden insight"').amount<G.getRes('wisdom').amount && G.getRes('faith').amount>=faicost && G.getRes('insight').amount>=inscost){
         G.gain('"golden insight"', 1, "purcharse");
 		  G.gain('New world point', 1, "purcharse");
 	      };
@@ -12854,6 +12854,8 @@ getCosts:function()
               return { 'insight' : calcCost('wisdom') , 'blood': calcCost('wisdom', 0.03)}
             }else if (G.has('t3')){
               return { 'insight' : calcCost('wisdom') , 'culture': calcCost('inspiration', 0.1), 'influence': calcCost('authority', 0.1)}
+            }else if (G.has('t11')){
+              return { 'insight' : calcCost('wisdom') , '"golden insight"': calcCost(1*((G.achievByName['Faithful'].won*2)+1))}
             }
             else if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
