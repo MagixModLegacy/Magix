@@ -8377,8 +8377,7 @@ if (!document.getElementById(cssId))
 					G.getDict('thot').effects.push({type:'mult',value:1});
 					G.getDict('thot').icon=[0,0,'thotSheet']
 				}
-				G.getDict('philosophy').desc='Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.<>Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus.'
-				G.getDict('philosophy II').desc='[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science].'
+				
 			}
 			if(G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.achievByName['Extremely smart'].won >= 1 && G.achievByName['Man of essences'].won >= 1 && G.achievByName['Magical'].won >= 1 && G.achievByName['Next to the God'].won >= 1 && G.achievByName['The first choice'].won >= 1 && G.achievByName['Trait-or'].won >= 1 && G.achievByName['Not so pious people'].won >= 1 && G.achievByName['Talented?'].won == 0){ //Experienced
 			G.achievByName['Talented?'].won = 1
@@ -15985,9 +15984,10 @@ new G.Tech({
 		effects:[	
 		]
 	});
+				
 	new G.Tech({
 		name:'philosophy',//Unlocks thot if Thot Mod installed :)
-		desc:'Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.',
+		desc:'Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.'+(G.modsByName['Thot Mod'] ? "Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus." : "")+'',
 		icon:[23,27,'magixmod'],
 		req:{'alphabet 2/3':true},
 		cost:{'insight':400},
@@ -16020,12 +16020,14 @@ new G.Tech({
 	}
 		new G.Tech({
 		name:'philosophy II',
-		desc:'[dreamer] is 75% more efficient, and [Thoughts sharer] is 5% more efficient(additive).@provides 1-time bonus: +6 [science] ',
+		desc:''+(G.modsByName['Thot mod'] ? "[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science]." : "[dreamer] is 75% more efficient, and [Thoughts sharer] is 5% more efficient(additive).@provides 1-time bonus: +6 [science]")+'',
 		icon:[19,27,'magixmod'],
 		req:{'alphabet 3/3':true,'symbolism III':true},
 		cost:{'insight II':150,'culture II':30},
 		effects:[
 			{type:'provide res',what:{'science':6}},
+			
+			{type:'function',func:function(){if(G.modsByName['Thot Mod']){G.getDict('thot').effects.push({type:'mult',value:1.5})}}},
 		],
 		chance:100
 	});
