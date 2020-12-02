@@ -16020,7 +16020,7 @@ new G.Tech({
 	}
 		new G.Tech({
 		name:'philosophy II',
-		desc:''+(G.modsByName['Thot mod'] ? "[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science]." : "[dreamer] is 75% more efficient, and [Thoughts sharer] is 5% more efficient(additive).@provides 1-time bonus: +6 [science]")+'',
+		desc:''+(G.modsByName['Thot mod']!=undefined ? "[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science]." : "[dreamer] is 75% more efficient, and [Thoughts sharer] is 5% more efficient(additive).@provides 1-time bonus: +6 [science]")+'',
 		icon:[19,27,'magixmod'],
 		req:{'alphabet 3/3':true,'symbolism III':true},
 		cost:{'insight II':150,'culture II':30},
