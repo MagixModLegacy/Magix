@@ -12855,7 +12855,7 @@ getCosts:function()
             }else if (G.has('t3')){
               return { 'insight' : calcCost('wisdom') , 'culture': calcCost('inspiration', 0.1), 'influence': calcCost('authority', 0.1)}
             }else if (G.has('t11')){
-              return { 'insight' : calcCost('wisdom') , '"golden insight"': calcCost(1*((G.achievByName['Faithful'].won*2)+1))}
+              return { 'insight' : calcCost('wisdom') , '"golden insight"':1*((G.achievByName['Faithful'].won/2)+1)}
             }
             else if (G.hasNot('Eotm')){
               return { 'insight' : calcCost('wisdom') }
