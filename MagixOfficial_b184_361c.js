@@ -1274,7 +1274,7 @@ G.setPolicyMode=function(me,mode)
       text:
         '</span>Buy<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/>',
       tooltip:
-        'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for '+(G.year>1 ? 1*G.getRes("New world point").amount*((G.achievByName['Faithful'].won/2)+1) : "")+' <b>Faith</b> and '+2*G.getRes("New world point").amount+' <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
+        'Buy <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> for '+(G.year>1 ? 1*(G.getRes("New world point").amount/4)+((G.achievByName['Faithful'].won/2)+1) : "")+' <b>Faith</b> and '+(G.year>1 ? 1*(G.getRes("New world point").amount/2)+((G.achievByName['Faithful'].won/2)+1) : "")+' <b>Insight</b> .<br>Cost of next <b>Golden insight</b><img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/ico1.png" style="vertical-align:top;" width="16" height="16"/> will increase. Be careful.',
       onclick: function (me) {
 	      if(G.getRes('"golden insight"').amount<G.getRes('wisdom').amount){
         G.gain('"golden insight"', 1, "purcharse");
