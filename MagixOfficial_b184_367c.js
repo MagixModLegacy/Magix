@@ -2578,6 +2578,19 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	}
 		if(G.has('t4'))G.lose('population',G.getRes('population').amount*0.03);
 		if(G.has('t11'))G.lose('faith',1+G.achievByName['Faithful'].won);
+		if(G.has('t11') && G.getRes('faith').amount==0){
+			G.lose('population',G.getRes('population').amount);	
+			G.dialogue.popup(function(div){
+            return '<div style="width:320x;min-height:200px;height:75%;">'+
+                '<div class="fancyText title"><font color="red">Trial failed</font></div>'+
+                '<tt><div class="fancyText">You failed Faithful trial because you lost all Faith</tt>'+
+        '<br>You have been kicked out of this plane.<br>'+
+                '<br><br>'+
+                'But you can try again, by reaching Pantheon again and choose Tu-ria</div><br>'+
+                'Technical note: Start a new game , you know how.'+
+            '</div></div>'
+})
+		}
 }
 	G.props['new day lines']=[
 		'Creatures are lurking.',
