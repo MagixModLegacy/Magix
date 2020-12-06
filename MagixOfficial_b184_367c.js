@@ -2577,6 +2577,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				}
 	}
 		if(G.has('t4'))G.lose('population',G.getRes('population').amount*0.03);
+		if(G.has('t11'))G.lose('faith',1+G.achievByName['Faithful'].won);
 }
 	G.props['new day lines']=[
 		'Creatures are lurking.',
