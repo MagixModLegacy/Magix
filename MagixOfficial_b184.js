@@ -13001,7 +13001,7 @@ new G.Unit({
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
 		],
-		req:{'ritualism':true},
+		req:{'ritualism':true,'druidism':true},
 		category:'spiritual',
 	});
 	new G.Unit({
