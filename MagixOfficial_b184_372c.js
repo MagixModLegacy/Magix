@@ -12825,7 +12825,7 @@ new G.Unit({
 		cost:{'basic building materials':775,'Basic factory equipment':400},
 		upkeep:{'coal':3,'fire pit':0.15},
 		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
-		req:{'<font color="maroon">Moderation</font>':true,'Factories II':true,'tool rafinery 2/2':true},
+		req:{'<font color="maroon">Moderation</font>':true,'factories II':true,'tool rafinery 2/2':true},
 		category:'crafting',
 		effects:[
 			{type:'convert',from:{'stone':600,'stick':500,'fire pit':4.2,'coal':85},into:{'stone tools':80},every:5},
@@ -12838,13 +12838,13 @@ new G.Unit({
 		],
 	});
 	new G.Unit({
-		name:'Factory of tools',
+		name:'Toolhut',
 		desc:'Does same thing as [potter] was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
 		icon:[18,31,'magixmod'],
 		cost:{'basic building materials':775,'Basic factory equipment':400},
 		upkeep:{'coal':3,'fire pit':0.15},
 		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
-		req:{'<font color="maroon">Moderation</font>':true,'Factories II':true,'tool rafinery 2/2':true},
+		req:{'<font color="maroon">Caretaking</font>':true,'manufacture units II':true,'tool rafinery 2/2':true},
 		category:'crafting',
 		effects:[
 			{type:'convert',from:{'stone':600,'stick':500,'fire pit':4.2,'coal':85},into:{'stone tools':80},every:5},
