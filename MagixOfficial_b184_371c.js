@@ -2577,7 +2577,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				}
 	}
 		if(G.has('t4'))G.lose('population',G.getRes('population').amount*0.03);
-		if(G.has('t11'))G.lose('faith',1+G.achievByName['Faithful'].won);
+		if(G.has('t11'))G.lose('faith',5+G.achievByName['Faithful'].won);
 		if(G.has('t11') && G.getRes('faith').amount==0){
 			G.lose('population',G.getRes('population').amount);	
 			G.dialogue.popup(function(div){
@@ -9699,6 +9699,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false},chance:1/6.5},
 			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true},chance:1/6.5},
 			{type:'mult',value:2/3,req:{'dt16':true}},
+			{type:'mult',value:0.1,req:{'se03':'on'}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
 		],
@@ -12816,6 +12817,44 @@ new G.Unit({
 		gizmos:true,
 		req:{'smelting':true,'block-smithery':true},
 		category:'plainisleunit',
+	});
+	new G.Unit({
+		name:'Factory of tools',
+		desc:'Does same thing as [potter] was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[24,31,'magixmod'],
+		cost:{'basic building materials':775,'Basic factory equipment':400},
+		upkeep:{'coal':3,'fire pit':0.15},
+		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
+		req:{'<font color="maroon">Moderation</font>':true,'Factories II':true,'tool rafinery 2/2':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'stone':600,'stick':500,'fire pit':4.2,'coal':85},into:{'stone tools':80},every:5},
+			{type:'convert',from:{'stone':650,'stick':520,'fire pit':4.2,'coal':85},into:{'stone weapons':80},every:5},
+			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
+			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
+			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
+			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
+			//{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
+		],
+	});
+	new G.Unit({
+		name:'Factory of tools',
+		desc:'Does same thing as [potter] was. All 4 modes he had are active all the time in this unit. <> You can control production expenditure of this unit in Policies tab (if [Production rates influence] obtained)',
+		icon:[18,31,'magixmod'],
+		cost:{'basic building materials':775,'Basic factory equipment':400},
+		upkeep:{'coal':3,'fire pit':0.15},
+		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
+		req:{'<font color="maroon">Moderation</font>':true,'Factories II':true,'tool rafinery 2/2':true},
+		category:'crafting',
+		effects:[
+			{type:'convert',from:{'stone':600,'stick':500,'fire pit':4.2,'coal':85},into:{'stone tools':80},every:5},
+			{type:'convert',from:{'stone':650,'stick':520,'fire pit':4.2,'coal':85},into:{'stone weapons':80},every:5},
+			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
+			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
+			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
+			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
+			//{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
+		],
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -17967,7 +18006,7 @@ new G.Tech({
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'Be faithful. Only faith will lead you to victory. In this plane you start with 100 <font color="aqua">spirituality</font> and 100 <font color="aqua">Faith</font>. Each year you lose around 15 Faith points. Be careful! If your Faith will go negative/reach zero the trial will be failed and you will come back to the mortal world. The more you research, the more Faith you will lose. In addition Soothsayer works at 10% of its normal efficiency. Build up a replacement of Mausoleum... the Faithoselum and ascend by it. Completing trial causes Soothsayers generate faith more succesfully so early-game faith gathering will be easier because of Enlightened\'s patron.'+
+                'Be faithful. Only faith will lead you to victory. In this plane you start with 100 <font color="aqua">spirituality</font> and 100 <font color="aqua">Faith</font>. Each year you lose around '+(5+G.achievByName['Faithful'].won)+' Faith. Be careful! If your Faith will go negative/reach zero the trial will be failed and you will come back to the mortal world. The more you research, the more Faith you will lose. In addition Soothsayer works at 10% of its normal efficiency. Build up a replacement of Mausoleum... the Faithoselum and ascend by it. Completing trial causes Soothsayers generate faith more succesfully so early-game faith gathering will be easier because of Enlightened\'s patron.'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.gainTrait(G.traitByName['t11']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Faithful trial has been started. You are in Enlightened\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
                 '</div>'+
