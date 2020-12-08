@@ -12549,10 +12549,10 @@ new G.Unit({
 		costPerStep:{'basic building materials':400,'precious metal ingot':5,'gems':2,'precious building materials':150,'faith':5},
 		steps:50,
 		messageOnStart:'Your people have started building the <b>Faithsoleum</b>. People rather build this wonder in bigger steps getting inspired by Gods. You say: <b>Worship leads to victory!<br>Religion is a key.</b>',
-		finalStepCost:{'population':250,'spirituality':25,'faith':25},
+		finalStepCost:{'population':250,'spirituality':35,'faith':35},
 		finalStepDesc:'To perform the final step 250 [population,people] and both 25 [faith] & [spirituality] must be sacrificed to escape this pious plane and award <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'language':true,'tribalism':false},
+		req:{'monument-building':true,'t11':true,'trial':true,'language':true,'Wizard towers':true},
 		category:'wonder',
 	});
 	new G.Unit({
