@@ -9695,7 +9695,9 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'coin':0.2},
 		effects:[
-			{type:'gather',what:{'faith':0.012,'happiness':0.07},chance:1/9.25},
+			{type:'gather',what:{'faith':0.012,'happiness':0.07},chance:1/9.25,req:{'enlightenment':false,'Eotm':false}},
+			{type:'gather',what:{'faith':0.012,'happiness':0.07},chance:1/7.25,req:{'enlightenment':true,'Eotm':false}},
+			{type:'gather',what:{'faith':0.012,'happiness':0.07},chance:1/9.25,req:{'enlightenment':true,'Eotm':true}},
 			{type:'gather',what:{'faith':0.01},req:{'symbolism':true,'symbolism II':false},chance:1/6.5},
 			{type:'gather',what:{'faith':0.014},req:{'symbolism II':true},chance:1/6.5},
 			{type:'mult',value:2/3,req:{'dt16':true}},
@@ -12765,6 +12767,7 @@ new G.Unit({
 			{type:'gather',what:{'faith':0.05},req:{'symbolism II':true}},
 			{type:'mult',value:2/3,req:{'dt16':true}},
 			{type:'mult',value:1.25,req:{'se11':'on'}},
+			{type:'mult',value:1.01,req:{'enlightenment':true}},
 			{type:'mult',value:0.95,req:{'se03':'on'}},
 		],
 		req:{'ritualism':true,'druidism':true},
@@ -12845,7 +12848,7 @@ new G.Unit({
 		icon:[18,31,'magixmod'],
 		cost:{'basic building materials':775,'Basic factory equipment':400},
 		upkeep:{'coal':3,'fire pit':0.15,'food':65,'water':85},
-		use:{'worker':115,'land':1,'Instructor':3,'stone tools':96},
+		use:{'worker':115,'land':1,'Instructor':15,'stone tools':96},
 		req:{'<font color="maroon">Caretaking</font>':true,'manufacture units II':true,'tool rafinery 2/2':true},
 		category:'crafting',
 		effects:[
