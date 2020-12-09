@@ -12820,7 +12820,7 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'Factory of tools',
-		desc:'This factory can craft for you: @[basket]s @[stone tools] @[stone weapons] @[bow]s @[Crossbow]s @[Crossbow belt]s. Produces smaller packets of these items but faster',
+		desc:'This factory can craft for you: @[basket]s @[stone tools] @[stone weapons] @[bow]s @[Crossbow]s @[Crossbow belt]s. //Produces smaller packets of these items but faster',
 		icon:[24,31,'magixmod'],
 		cost:{'basic building materials':775,'Basic factory equipment':400},
 		upkeep:{'coal':3,'fire pit':0.15,'food':25,'water':35},
@@ -12830,7 +12830,9 @@ new G.Unit({
 		effects:[
 			{type:'convert',from:{'stone':600,'stick':500,'fire pit':4.2,'coal':85},into:{'stone tools':80},every:5},
 			{type:'convert',from:{'stone':650,'stick':520,'fire pit':4.2,'coal':85},into:{'stone weapons':80},every:5},
-			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
+			{type:'convert',from:{'stick':1500},into:{'basket':150},every:10},
+			{type:'convert',from:{'lumber':30,'stone':300},into:{'Crossbow belt':500},every:13,chance:4/5},
+			{type:'convert',from:{'stick':300,'stone':200},into:{'Crossbow':55},every:11},
 			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
 			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
 			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
@@ -12839,7 +12841,7 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'Toolhut',
-		desc:'This factory can craft for you: @[basket]s @[stone tools] @[stone weapons] @[bow]s @[Crossbow]s @[Crossbow belt]s. Produces bigger packets of these items but slower',
+		desc:'This factory can craft for you: @[basket]s @[stone tools] @[stone weapons] @[bow]s @[Crossbow]s @[Crossbow belt]s. //Produces bigger packets of these items but slower',
 		icon:[18,31,'magixmod'],
 		cost:{'basic building materials':775,'Basic factory equipment':400},
 		upkeep:{'coal':3,'fire pit':0.15,'food':65,'water':85},
@@ -12849,7 +12851,9 @@ new G.Unit({
 		effects:[
 			{type:'convert',from:{'stone':1800,'stick':1500,'fire pit':12.2,'coal':175},into:{'stone tools':255},every:15},
 			{type:'convert',from:{'stone':1950,'stick':1560,'fire pit':12.2,'coal':175},into:{'stone weapons':255},every:15},
-			{type:'convert',from:{'clay':250,'mud':475},into:{'Potion pot':255},every:5},
+			{type:'convert',from:{'stick':4750},into:{'basket':500},every:30},
+			{type:'convert',from:{'lumber':90,'stone':880},into:{'Crossbow belt':700},every:30},
+			{type:'convert',from:{'stick':1100,'stone':690},into:{'Crossbow':155},every:11},
 			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
 			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
 			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
