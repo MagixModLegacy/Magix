@@ -1921,7 +1921,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	G.funcs['game loaded']=function()
 	{
 		for(var schnee=0;schnee<50;schnee++){
-		document.body.insertAdjacentHTML('<div class="snow"></div>');
+		document.body.insertAdjacentHTML(schnee,'<div class="snow"></div>');
 		};
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
