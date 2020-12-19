@@ -705,7 +705,21 @@ if (!document.getElementById(cssId))
     link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenbeta.css';
     link.media = 'all';
     head.appendChild(link);
-}}else{var cssId = 'betaCss'; 
+}
+	}else if(day>=350 && day<=363){var cssId = 'betaCss'; 
+ (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/beta.css';
+   link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/snow.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+	}else{var cssId = 'betaCss'; 
  (!document.getElementById(cssId))
 {
     var head  = document.getElementsByTagName('head')[0];
