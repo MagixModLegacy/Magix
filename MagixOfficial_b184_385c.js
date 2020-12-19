@@ -691,6 +691,7 @@ func:function(){
 	
 	///FOR SEASONAL CONTENT
 	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
+	var timeOffline=Math.max(0,(Date.now()-G.lastDate)/1000);
 	/////////
 
 	if (day>=290 && day<=306){
@@ -1546,7 +1547,6 @@ G.props['fastTicksOnResearch']=150;
 	let st14=false
 	let st15=false
 	let displayC1=true;let displayC2=false;
-	let hehallo=false
 	
 		G.funcs['new game blurb']=function()
 	{   
@@ -2258,6 +2258,14 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepCost={'Land of the Paradise':-26500,'Paradise emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':95000,'Fire essence':95500,'Nature essence':96000,'Wind essence':104500,'Water essence':88000,'Lightning essence':75250,'insight':1000};
 			G.getRes('paradise portal point').amount=1;
 		}
+		if (day>=290 && day<=306){
+			G.middleText('<big><font color="orange">Happy Halloween!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
+		audi.play()};
+		if (day>=350 && day<=363){
+			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
+		audi.play()};
 	}
 	G.funcs['new year']=function()
 	{
@@ -3088,10 +3096,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		G.gain('happiness',0.27)
 		}
 		}
-		if (day>=290 && day<=306 && hehallo==false){
-			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
-		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
-		audi.play();hehallo=true;}
+		
 		if(G.has('t11')){ca=2 ; cb=1;};
 		faicost=1*(G.getRes("New world point").amount/6)*((G.achievByName['Faithful'].won/2)+1);
 		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
