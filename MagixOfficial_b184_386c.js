@@ -2264,8 +2264,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		audi.play()};
 		if (day>=350 && day<=363){
 			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
-		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
-		audi.play()};
+	}if ((day>=365 && day<=366) || (day>=0 && day<=2)){
+		var yer=new Date();
+		var truY=yer.getFullYear();
+			if (day>=365 && day<=366)G.middleText('<big><font color="pink">Happy '+(truY+1)+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+			if (day>=0 && day<=2)G.middleText('<big><font color="pink">Happy '+truY+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 	}
 	G.funcs['new year']=function()
 	{
