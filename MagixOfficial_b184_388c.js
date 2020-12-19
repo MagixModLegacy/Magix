@@ -691,7 +691,7 @@ func:function(){
 	
 	///FOR SEASONAL CONTENT
 	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
-	var timeOffline=Math.max(0,(Date.now()-G.lastDate)/1000);
+//	var timeOffline=Math.max(0,(Date.now()-G.lastDate)/1000);
 	/////////
 
 	if (day>=290 && day<=306){
