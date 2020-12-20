@@ -3519,8 +3519,7 @@ G.writeMSettingButton=function(obj)
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
-					'</div>'; : ""
-					);
+					'</div>' : "");
 				}
 				
 				
