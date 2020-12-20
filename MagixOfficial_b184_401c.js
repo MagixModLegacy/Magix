@@ -3513,12 +3513,12 @@ G.writeMSettingButton=function(obj)
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
-					str+='<div class="thingWrapper">'+
+					(me.visible==true ? str+='<div class="thingWrapper">'+
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
-					'</div>' 
+					'</div>' : "");
 				}
 				
 				
