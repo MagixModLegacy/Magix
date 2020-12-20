@@ -1935,6 +1935,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('mirror world 2/2').icon=[27,2,'magixmod',19,11,'seasonal'];
 			G.getDict('focused scouting').icon=[17,10,'seasonal'];
 			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
+			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
+			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 				}; //some winterish replacements
 }
 	G.funcs['game over']=function()
@@ -2283,6 +2285,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('mirror world 2/2').icon=[27,2,'magixmod',19,11,'seasonal'];
 			G.getDict('focused scouting').icon=[17,10,'seasonal'];
 			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
+			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
+			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
 		var yer=new Date();
@@ -17292,6 +17296,23 @@ new G.Tech({
 		req:{'tribalism':false},	
 		chance:30,
 		category:'religion'
+	});
+	
+	//* * * * * CHRISTMAS TECHS/TRAITS * * * * *
+	new G.Tech({
+		name:'winter holidays',
+		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is.',
+		icon:[1,10,'seasonal'],
+		cost:{'insight':200,'culture':45,'faith':5},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
+	});
+	new G.Tech({
+		name:'the christmas',
+		displayName:'<font color="cyan">The Christmas</font>',
+		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
+		icon:[2,10,'seasonal'],
+		cost:{'insight':400},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
 	});
 	/*=====================================================================================
 	POLICIES
