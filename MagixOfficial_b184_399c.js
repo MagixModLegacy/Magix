@@ -3423,7 +3423,7 @@ G.writeMSettingButton=function(obj)
 		this.won=0;//how many times we've achieved this achievement (may also be used to track other info about the achievement)
 		this.visible=true;
 		this.icon=[0,0];
-		this.civ=0 //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah . 0 stands for people... 1 for ... ???
+		this.civ=0; //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah . 0 stands for people... 1 for ... ???
 		
 		for (var i in obj) this[i]=obj[i];
 		this.id=G.achiev.length;
@@ -3513,13 +3513,12 @@ G.writeMSettingButton=function(obj)
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
-					(me.civ==0 && displayC1==true ?
 					str+='<div class="thingWrapper">'+
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
-					'</div>' : "");
+					'</div>' 
 				}
 				
 				
@@ -4051,7 +4050,7 @@ G.writeMSettingButton=function(obj)
 		tier:0,
 		icon:[1,0,'magixmod'],
 		name:'xmas buff',
-		civ:-1 //debug
+		visible:false; //debug
 	});
 	/*=====================================================================================
 	RESOURCES
