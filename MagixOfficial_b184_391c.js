@@ -3488,17 +3488,32 @@ G.writeMSettingButton=function(obj)
 			for (var i in G.achievByTier)
 			{
 				str+='<div class="tier thingBox">';
+				if(me.civ==0 && displayC1==true){
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
-					if(me.civ==1 && displayC1==true){
+					
 					str+='<div class="thingWrapper">'+
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
 					'</div>';
-					}
+					
+				}
+				}else if(me.civ==1 && displayC1==false){
+					for (var ii in G.achievByTier[i])
+				{
+					var me=G.achievByTier[i][ii];
+					
+					str+='<div class="thingWrapper">'+
+						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
+						G.getIconStr(me,'achiev-icon-'+me.id)+
+						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
+						'</div>'+
+					'</div>';
+					
+				}
 				}
 				str+='<div class="divider"></div>';
 				str+='</div>';
