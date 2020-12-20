@@ -3487,8 +3487,9 @@ G.writeMSettingButton=function(obj)
 			str+='<center>'+G.button({text:'<',tooltip:'View the C1 achievements',onclick:function(){displayC1=true;displayC2=false;}})+''+G.button({text:'>',tooltip:'View the C2 achievements',onclick:function(){displayC1=false;displayC2=true;}})+'</center><div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
 			for (var i in G.achievByTier)
 			{
+			
 				str+='<div class="tier thingBox">';
-				if(me.civ==0 && displayC1==true){
+				if(G.achievByName[me].civ==0 && displayC1==true){
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
@@ -3501,8 +3502,8 @@ G.writeMSettingButton=function(obj)
 					'</div>';
 					
 				}
-				}else if(me.civ==1 && displayC1==false){
-					for (var ii in G.achievByTier[i])
+				}else if(G.achievByName[me].civ==1 && displayC1==false){
+				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
 					
