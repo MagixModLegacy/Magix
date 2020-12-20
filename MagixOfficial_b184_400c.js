@@ -4050,7 +4050,7 @@ G.writeMSettingButton=function(obj)
 		tier:0,
 		icon:[1,0,'magixmod'],
 		name:'xmas buff',
-		visible:false; //debug
+		visible:false //debug
 	});
 	/*=====================================================================================
 	RESOURCES
