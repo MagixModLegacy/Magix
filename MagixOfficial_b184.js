@@ -690,7 +690,7 @@ func:function(){
 //===========================
 	
 	///FOR SEASONAL CONTENT
-	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
+	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));	
 	/////////
 
 	if (day>=290 && day<=306){
@@ -705,7 +705,26 @@ if (!document.getElementById(cssId))
     link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenbeta.css';
     link.media = 'all';
     head.appendChild(link);
-}}else{var cssId = 'betaCss'; 
+}
+	}else if(day>=350 && day<=363){var cssId = 'betaCss'; 
+ (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/beta.css';
+    head.appendChild(link);
+	head  = document.getElementsByTagName('head')[0];
+   link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/snow.css';
+    head.appendChild(link);
+}
+	}else{var cssId = 'betaCss'; 
  (!document.getElementById(cssId))
 {
     var head  = document.getElementsByTagName('head')[0];
@@ -1527,7 +1546,6 @@ G.props['fastTicksOnResearch']=150;
 	let st14=false
 	let st15=false
 	let displayC1=true;let displayC2=false;
-	let hehallo=false
 	
 		G.funcs['new game blurb']=function()
 	{   
@@ -1905,8 +1923,22 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.modsByName['Extra ores(for data.js)']){
 			G.middleText('Sorry',sloweerer)
 				 console.log('I am sorry but Extra Ores is a mod dedicated to data.js not Magix.');
-				console.log('But content from this mod will be available there. Just wait patiently.');
+				console.log('But content from this mod you tried to install is available there. Just unlock it sometime.');
 		}
+				if (day>=350 && day<=363){
+			G.getDict('scouting').icon=[8,10,'seasonal'];
+			G.getDict('cities').icon=[16,10,'seasonal'];
+			G.getDict('sedentism').icon=[18,10,'seasonal'];
+			G.getDict('valid portal frame').icon=[19,10,'seasonal'];
+			G.getDict('sedentism').icon=[18,10,'seasonal'];
+			G.getDict('mirror world 1/2').icon=[27,3,'magixmod',19,11,'seasonal'];
+			G.getDict('mirror world 2/2').icon=[27,2,'magixmod',19,11,'seasonal'];
+			G.getDict('focused scouting').icon=[17,10,'seasonal'];
+			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
+			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
+			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
+			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
+				}; //some winterish replacements
 }
 	G.funcs['game over']=function()
 	{
@@ -1920,7 +1952,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	}
 	G.funcs['game loaded']=function()
 	{
-	
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
@@ -2240,6 +2271,30 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepCost={'Land of the Paradise':-26500,'Paradise emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':95000,'Fire essence':95500,'Nature essence':96000,'Wind essence':104500,'Water essence':88000,'Lightning essence':75250,'insight':1000};
 			G.getRes('paradise portal point').amount=1;
 		}
+		var timeOffline=Math.max(0,(Date.now()-G.lastDate)/1000);
+		if (day>=290 && day<=306){
+			G.middleText('<big><font color="orange">Happy Halloween!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
+		audi.play()};
+		if (day>=350 && day<=363){
+			G.getDict('scouting').icon=[8,10,'seasonal'];
+			G.getDict('cities').icon=[16,10,'seasonal'];
+			G.getDict('sedentism').icon=[18,10,'seasonal'];
+			G.getDict('valid portal frame').icon=[19,10,'seasonal'];
+			G.getDict('sedentism').icon=[18,10,'seasonal'];
+			G.getDict('mirror world 1/2').icon=[27,3,'magixmod',19,11,'seasonal'];
+			G.getDict('mirror world 2/2').icon=[27,2,'magixmod',19,11,'seasonal'];
+			G.getDict('focused scouting').icon=[17,10,'seasonal'];
+			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
+			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
+			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
+			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
+		var yer=new Date();
+		var truY=yer.getFullYear();
+			if (day>=365 && day<=366)G.middleText('<big><font color="pink">Happy '+(truY+1)+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+			if (day>=0 && day<=2)G.middleText('<big><font color="pink">Happy '+truY+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+	};
 	}
 	G.funcs['new year']=function()
 	{
@@ -3070,10 +3125,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		G.gain('happiness',0.27)
 		}
 		}
-		if (day>=290 && day<=306 && hehallo==false){
-			G.middleText('<big><font color="orange">Happy Halloween!</font></big>','slow');
-		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
-		audi.play();hehallo=true;}
+		
 		if(G.has('t11')){ca=2 ; cb=1;};
 		faicost=1*(G.getRes("New world point").amount/6)*((G.achievByName['Faithful'].won/2)+1);
 		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
@@ -3376,7 +3428,7 @@ G.writeMSettingButton=function(obj)
 		this.won=0;//how many times we've achieved this achievement (may also be used to track other info about the achievement)
 		this.visible=true;
 		this.icon=[0,0];
-		this.civ=0 //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah . 0 stands for people... 1 for ... ???
+		this.civ=0; //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah . 0 stands for people... 1 for ... ???
 		
 		for (var i in obj) this[i]=obj[i];
 		this.id=G.achiev.length;
@@ -3460,19 +3512,21 @@ G.writeMSettingButton=function(obj)
 			str+='<center>'+G.button({text:'<',tooltip:'View the C1 achievements',onclick:function(){displayC1=true;displayC2=false;}})+''+G.button({text:'>',tooltip:'View the C2 achievements',onclick:function(){displayC1=false;displayC2=true;}})+'</center><div class="fancyText barred bitBiggerText" style="text-align:center;"><font size="3" style="letter-spacing: 2px;">Achievements</font></div>';
 			for (var i in G.achievByTier)
 			{
+			
 				str+='<div class="tier thingBox">';
+				
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
-					if(me.civ==0 && displayC1==true){
-					str+='<div class="thingWrapper">'+
+					/*(G.achievByTier[i][ii].visible==true ? */str+='<div class="thingWrapper">'+
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
-					'</div>';
-					}
+					'</div>'/* : ".")*/;
 				}
+				
+				
 				str+='<div class="divider"></div>';
 				str+='</div>';
 			}
@@ -3483,8 +3537,10 @@ G.writeMSettingButton=function(obj)
 				{
 					for (var ii in G.achievByTier[i])
 					{
+						
 						var me=G.achievByTier[i][ii];
 						var div=l('achiev-'+me.id);
+						/*me.visible==true ? */
 						div.onclick=function(me,div){return function(){
 							if (G.getSetting('debug'))
 							{
@@ -3492,7 +3548,7 @@ G.writeMSettingButton=function(obj)
 								if (me.won) div.classList.remove('off');
 								else div.classList.add('off');
 							}
-						}}(me,div);
+						}}(me,div)/* :"")*/;
 						G.addTooltip(div,function(me){return function(){
 							return '<div class="info">'+
 							'<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>'+
@@ -3582,7 +3638,6 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
-		visible:false,
 			civ:0
 	});
 		new G.Achiev({
@@ -3996,6 +4051,11 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:600},
 		],
 			civ:0
+	});
+	new G.Achiev({
+		icon:[1,0,'magixmod'],
+		name:'xmas buff',
+		visible:false //debug
 	});
 	/*=====================================================================================
 	RESOURCES
@@ -17237,6 +17297,30 @@ new G.Tech({
 		req:{'tribalism':false},	
 		chance:30,
 		category:'religion'
+	});
+	
+	//* * * * * CHRISTMAS TECHS/TRAITS * * * * *
+	new G.Tech({
+		name:'winter holidays',
+		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is.',
+		icon:[1,10,'seasonal'],
+		cost:{'insight':210,'culture':45,'faith':5},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
+	});
+	new G.Tech({
+		name:'the christmas',
+		displayName:'<font color="cyan">The Christmas</font>',
+		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one',
+		icon:[2,10,'seasonal'],
+		cost:{'insight':400,'culture':100,'faith':32},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
+	});
+	new G.Tech({
+		name:'carols',
+		desc:'Christmas is a special time. Now people will sing/play not only normal songs but also they are no afraid to sing/play carols. //[musician] now crafts Christmas Essence',
+		icon:[9,10,'seasonal'],
+		cost:{'insight II':20,'culture II':30},
+		req:{'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':false},
 	});
 	/*=====================================================================================
 	POLICIES
