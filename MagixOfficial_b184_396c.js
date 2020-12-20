@@ -4032,7 +4032,7 @@ G.writeMSettingButton=function(obj)
 		tier:0,
 		icon:[1,0,'magixmod'],
 		name:'xmas buff',
-		civ:-1; //debug
+		civ:-1 //debug
 	});
 	/*=====================================================================================
 	RESOURCES
