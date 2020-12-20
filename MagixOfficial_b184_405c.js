@@ -3513,12 +3513,12 @@ G.writeMSettingButton=function(obj)
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
-					(G.achievByTier[i][ii].visible==true ? str+='<div class="thingWrapper">'+
+					/*(G.achievByTier[i][ii].visible==true ? */str+='<div class="thingWrapper">'+
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
-					'</div>' : ".");
+					'</div>'/* : ".")*/;
 				}
 				
 				
@@ -3535,7 +3535,7 @@ G.writeMSettingButton=function(obj)
 						
 						var me=G.achievByTier[i][ii];
 						var div=l('achiev-'+me.id);
-						(me.visible==true ? 
+						/*me.visible==true ? */
 						div.onclick=function(me,div){return function(){
 							if (G.getSetting('debug'))
 							{
@@ -3543,7 +3543,7 @@ G.writeMSettingButton=function(obj)
 								if (me.won) div.classList.remove('off');
 								else div.classList.add('off');
 							}
-						}}(me,div) :"");
+						}}(me,div)/* :"")*/;
 						G.addTooltip(div,function(me){return function(){
 							return '<div class="info">'+
 							'<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>'+
