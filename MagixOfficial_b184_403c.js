@@ -3541,7 +3541,7 @@ G.writeMSettingButton=function(obj)
 								if (me.won) div.classList.remove('off');
 								else div.classList.add('off');
 							}
-						}}(me,div);
+						}}(me.visible==true ? (me,div) :"");
 						G.addTooltip(div,function(me){return function(){
 							return '<div class="info">'+
 							'<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>'+
@@ -3631,7 +3631,6 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:75},
 		],
-		visible:false,
 			civ:0
 	});
 		new G.Achiev({
