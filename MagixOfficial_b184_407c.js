@@ -1936,7 +1936,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('focused scouting').icon=[17,10,'seasonal'];
 			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
 			var top=document.getElementById("skinRock");
-					top.style.background="url(img/darkEdgeBorders.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/bgDownRockXMAS_layer.png),url(img/bgUpRock.jpg);");
+					top.style.background="url(img/darkEdgeBorders.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/bgDownRockXMAS_layer.png),url(img/bgUpRock.jpg);";
 				}; //some winterish replacements
 }
 	G.funcs['game over']=function()
@@ -2286,7 +2286,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('focused scouting').icon=[17,10,'seasonal'];
 			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
 			var uprock=document.getElementById("skinRock");
-			uprock.style.background="url(img/darkEdgeBorders.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/bgDownRockXMAS_layer.png),url(img/bgUpRock.jpg);");
+			uprock.style.background="url(img/darkEdgeBorders.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/bgDownRockXMAS_layer.png),url(img/bgUpRock.jpg);";
 			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
 		var yer=new Date();
