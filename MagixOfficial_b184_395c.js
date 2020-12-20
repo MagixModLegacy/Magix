@@ -3489,33 +3489,21 @@ G.writeMSettingButton=function(obj)
 			{
 			
 				str+='<div class="tier thingBox">';
-				if(this.civ==0 && displayC1==true){
+				
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
-					
+					if(me.civ==0 && displayC1==true){
 					str+='<div class="thingWrapper">'+
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
 					'</div>';
-					
+					}
 				}
-				}else if(this.civ==1 && displayC1==false){
-				for (var ii in G.achievByTier[i])
-				{
-					var me=G.achievByTier[i][ii];
-					
-					str+='<div class="thingWrapper">'+
-						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
-						G.getIconStr(me,'achiev-icon-'+me.id)+
-						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
-						'</div>'+
-					'</div>';
-					
-				}
-				}
+				
+				
 				str+='<div class="divider"></div>';
 				str+='</div>';
 			}
@@ -4039,6 +4027,12 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:600},
 		],
 			civ:0
+	});
+	new G.Achiev({
+		tier:0,
+		icon:[1,0,'magixmod'],
+		name:'xmas buff',
+		civ:-1; //debug
 	});
 	/*=====================================================================================
 	RESOURCES
