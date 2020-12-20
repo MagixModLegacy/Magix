@@ -17303,7 +17303,7 @@ new G.Tech({
 		name:'winter holidays',
 		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is.',
 		icon:[1,10,'seasonal'],
-		cost:{'insight':200,'culture':45,'faith':5},
+		cost:{'insight':210,'culture':45,'faith':5},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
 	});
 	new G.Tech({
@@ -17311,8 +17311,8 @@ new G.Tech({
 		displayName:'<font color="cyan">The Christmas</font>',
 		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
 		icon:[2,10,'seasonal'],
-		cost:{'insight':400},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
+		cost:{'insight':400,'culture':100},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
 	});
 	/*=====================================================================================
 	POLICIES
