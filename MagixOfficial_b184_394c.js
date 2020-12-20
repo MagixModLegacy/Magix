@@ -3489,7 +3489,7 @@ G.writeMSettingButton=function(obj)
 			{
 			
 				str+='<div class="tier thingBox">';
-				if(G.achievByName[].civ==0 && displayC1==true){
+				if(this.civ==0 && displayC1==true){
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
@@ -3502,7 +3502,7 @@ G.writeMSettingButton=function(obj)
 					'</div>';
 					
 				}
-				}else if(G.achievByName[].civ==1 && displayC1==false){
+				}else if(this.civ==1 && displayC1==false){
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
