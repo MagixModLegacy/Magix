@@ -1937,6 +1937,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
 			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
+			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
 				}; //some winterish replacements
 }
 	G.funcs['game over']=function()
@@ -17309,10 +17310,17 @@ new G.Tech({
 	new G.Tech({
 		name:'the christmas',
 		displayName:'<font color="cyan">The Christmas</font>',
-		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
+		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one',
 		icon:[2,10,'seasonal'],
-		cost:{'insight':400,'culture':100},
+		cost:{'insight':400,'culture':100,'faith':32},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
+	});
+	new G.Tech({
+		name:'carols',
+		desc:'Christmas is a special time. Now people will sing/play not only normal songs but also they are no afraid to sing/play carols. //[musician] now crafts Christmas Essence',
+		icon:[9,10,'seasonal'],
+		cost:{'insight II':20,'culture II':30},
+		req:{'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':false},
 	});
 	/*=====================================================================================
 	POLICIES
