@@ -1923,8 +1923,19 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.modsByName['Extra ores(for data.js)']){
 			G.middleText('Sorry',sloweerer)
 				 console.log('I am sorry but Extra Ores is a mod dedicated to data.js not Magix.');
-				console.log('But content from this mod will be available there. Just wait patiently.');
+				console.log('But content from this mod you tried to install is available there. Just unlock it sometime.');
 		}
+				if (day>=350 && day<=363){
+			G.getDict('scouting').icon=[8,10,'seasonal'];
+			G.getDict('cities').icon=[16,10,'seasonal'];
+			G.getDict('sedentism').icon=[18,10,'seasonal'];
+			G.getDict('valid portal frame').icon=[19,10,'seasonal'];
+			G.getDict('sedentism').icon=[18,10,'seasonal'];
+			G.getDict('mirror world 1/2').icon=[27,3,'magixmod',19,11,'seasonal'];
+			G.getDict('mirror world 2/2').icon=[27,2,'magixmod',19,11,'seasonal'];
+			G.getDict('focused scouting').icon=[17,10,'seasonal'];
+			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
+				}; //some winterish replacements
 }
 	G.funcs['game over']=function()
 	{
@@ -2263,6 +2274,15 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play()};
 		if (day>=350 && day<=363){
+			G.getDict('scouting').icon=[8,10,'seasonal'];
+			G.getDict('cities').icon=[16,10,'seasonal'];
+			G.getDict('sedentism').icon=[18,10,'seasonal'];
+			G.getDict('valid portal frame').icon=[19,10,'seasonal'];
+			G.getDict('sedentism').icon=[18,10,'seasonal'];
+			G.getDict('mirror world 1/2').icon=[27,3,'magixmod',19,11,'seasonal'];
+			G.getDict('mirror world 2/2').icon=[27,2,'magixmod',19,11,'seasonal'];
+			G.getDict('focused scouting').icon=[17,10,'seasonal'];
+			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
 			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
 		var yer=new Date();
@@ -3493,14 +3513,14 @@ G.writeMSettingButton=function(obj)
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
-					if(me.civ==0 && displayC1==true){
+					(me.civ==0 && displayC1==true ?
 					str+='<div class="thingWrapper">'+
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
-					'</div>';
-					}
+					'</div>'; : ""
+					);
 				}
 				
 				
