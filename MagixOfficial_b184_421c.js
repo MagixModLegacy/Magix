@@ -1938,10 +1938,10 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
-					G.achievByName['xmas buff'].won=3;
+					G.getAchiev('xmas buff').won=3;
 				} //some winterish replacements=
 		else{
-			G.achievByName['xmas buff'].won--;
+			G.getAchiev('xmas buff').won--;
 		}
 }
 	G.funcs['game over']=function()
@@ -17341,7 +17341,7 @@ new G.Tech({
 	new G.Trait({
         name:'xmas1',
 		displayName:'Christmas climate: Clothiers',
-        desc:'The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.',
+        desc:'The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.',
         icon:[11,11,'seasonal'],
 	effects:[
 	],	
