@@ -2648,7 +2648,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
                 '<tt><div class="fancyText">You failed Faithful trial because you lost all Faith</tt>'+
         '<br>You have been kicked out of this plane.<br>'+
                 '<br><br>'+
-                'But you can try again, by reaching Pantheon again and choose Tu-ria</div><br>'+
+                'But you can try again, by reaching Pantheon again and choose Enlightened</div><br>'+
                 'Technical note: Start a new game , you know how.'+
             '</div></div>'
 })
@@ -17344,13 +17344,43 @@ new G.Tech({
 
 	new G.Trait({
         name:'xmas1',
+		displayName:'Artisans climate: Artisans',
+        desc:'The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.</font>',
+        icon:[10,11,'seasonal'],
+	effects:[
+	],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'xmas2',
 		displayName:'Christmas climate: Clothiers',
-        desc:'The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.</font>',
+        desc:'The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.</font>',
         icon:[11,11,'seasonal'],
 	effects:[
 	],	
         req:{'tribalism':false},
-	chance:50,category:'seasonal'
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'xmas3',
+		displayName:'Christmas climate: Potters',
+        desc:'The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.</font>',
+        icon:[12,11,'seasonal'],
+	effects:[
+	],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'xmas4',
+		displayName:'Christmas climate: Carving',
+        desc:'The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.</font>',
+        icon:[12,11,'seasonal'],
+	effects:[
+	],	
+        req:{'tribalism':false},
+	category:'seasonal'
     });
 	/*=====================================================================================
 	POLICIES
