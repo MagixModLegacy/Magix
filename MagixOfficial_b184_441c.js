@@ -13014,6 +13014,17 @@ new G.Unit({
 			//{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
 		],
 	});
+	new G.Unit({
+		name:'wonderful fortress of christmas',
+		desc:'Hunts for [wild corpse]s and does a takedown on\'em. Has a chance to become wounded while encounter. //Once slain [wild corpse] cannot revive again.',
+		icon:[1,11,'seasonal'],
+		widenhigh2Icon:[0,11,'seasonal'],
+		cost:{},
+		use:{'worker':1,'metal weapons':1,'armor set':1},
+		req:{'Battling thieves':true,'coordination':true,'<span style="color: red">Revenants</span>':true},
+		category:'wonder',
+		priority:5,
+	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
