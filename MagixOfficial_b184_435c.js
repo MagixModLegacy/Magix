@@ -1943,6 +1943,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
         				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
 
 					
@@ -2308,6 +2309,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
         				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
 		var yer=new Date();
 		var truY=yer.getFullYear();
@@ -12953,6 +12955,27 @@ new G.Unit({
 		use:{'worker':115,'land':1,'Instructor':15,'stone tools':96},
 		req:{'<font color="maroon">Caretaking</font>':true,'manufacture units II':true,'tool rafinery 2/2':true},
 		category:'crafting',
+		effects:[
+			{type:'convert',from:{'stone':1800,'stick':1500,'fire pit':12.2,'coal':175},into:{'stone tools':255},every:15},
+			{type:'convert',from:{'stone':1950,'stick':1560,'fire pit':12.2,'coal':175},into:{'stone weapons':255},every:15},
+			{type:'convert',from:{'stick':4750},into:{'basket':500},every:30},
+			{type:'convert',from:{'lumber':90,'stone':880},into:{'Crossbow belt':700},every:30},
+			{type:'convert',from:{'stick':1100,'stone':690},into:{'Crossbow':155},every:11},
+			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
+			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
+			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
+			//{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
+		],
+	});
+		new G.Unit({
+		name:'f.r.o.s.t.y',
+		desc:'@From snowmen created by children extracts Christmas essence. However there is a chance that the extraction will destroy the snowman. The faster [f.r.o.s.t.y] becomes the bigger chance for that is.//Powered by strange energies ,[snow] and by [Lightning essence].',
+		icon:[15,11,'seasonal'],
+		cost:{'strong metal ingot':100,'hard metal ingot':15,'precious metal ingot':2,'basic building materials':10,'Magic essences':5000},
+		upkeep:{'snow':8,'Magic essences':15,'Lightning essence':5},
+		req:{'festive robot print':true,'tribalism':false},
+		limitPer:{'land':200000},//MAX 1
+		category:'seasonal',
 		effects:[
 			{type:'convert',from:{'stone':1800,'stick':1500,'fire pit':12.2,'coal':175},into:{'stone tools':255},every:15},
 			{type:'convert',from:{'stone':1950,'stick':1560,'fire pit':12.2,'coal':175},into:{'stone weapons':255},every:15},
