@@ -17368,7 +17368,7 @@ new G.Tech({
 	//* * * * * CHRISTMAS TECHS/TRAITS * * * * *
 	new G.Tech({
 		name:'winter holidays',
-		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is. //Diggers will start digging for [snow] if available.',
+		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is. //[digger]s will start digging for [snow] if available.',
 		icon:[1,10,'seasonal'],
 		cost:{'insight':210,'culture':45,'faith':5},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
@@ -17427,7 +17427,7 @@ new G.Tech({
     });
 	new G.Tech({
 		name:'snowmen',
-		desc:'Since [digger] can dig for snow and you can describe and be understood you can explain what is and how does snowman look like. //Gain [the chtistmas] so you will unlock Lodge of Christmas. @Unlocks a snowmen creator.',
+		desc:'Since [digger] can dig for snow and you can describe and be understood you can explain what is and how does snowman look like. //Gain [the christmas] so you will unlock Lodge of Christmas. @Unlocks a snowmen creator.',
 		icon:[10,10,'seasonal'],
 		cost:{'insight':100,'culture':50},
 		req:{'winter holidays':true},
