@@ -8465,7 +8465,8 @@ if (!document.getElementById(cssId))
 			G.getDict('jungle fruits').res['gather']['herb']=1;
 			}
 			if(G.has('winter holidays')){
-			G.getDict('snowy cover').res['dig']['snow']=1;
+			G.getDict('snow cover').res['dig']['snow']=1;
+			}
 			if(G.has('t10')){
 			G.getDict('grass').res['gather']['wooden coin']=0.2;
 			G.getDict('succulents').res['gather']['wooden coin']=0.1;
