@@ -17338,10 +17338,11 @@ new G.Tech({
 		cost:{'insight II':20,'culture II':30},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':false},
 	});
+	function xmaswon(){return G.achievByName['xmas buff'].won};
 	new G.Trait({
         name:'xmas1',
 		displayName:'Christmas climate: Clothiers',
-        desc:'The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.',
+        desc:'The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+xmaswon()+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.',
         icon:[11,11,'seasonal'],
 	effects:[
 	],	
