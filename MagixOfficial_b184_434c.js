@@ -1943,6 +1943,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
         				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					G.getDict('snow').hidden=false;
 
 					
 				} //some winterish replacements=
@@ -9021,7 +9022,12 @@ if (!document.getElementById(cssId))
 		desc:'Cold snow can be used to craft Snowmen, fun, snowball fights. The thing that children like mostly. Hire a [digger] to gather it.',
 		icon:[9,11,'seasonal'],
 		category:'seasonal',
+		hidden:true,
 		turnToByContext:{'Snow':{'health':-0.0005,'happiness':0.001}},
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.01;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
 	});
 	/*=====================================================================================
 	UNITS
@@ -9254,6 +9260,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.08,req:{'Motivation for artisans':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.04,req:{'Motivation for artisans':true,'<font color="maroon">Caretaking</font>':true}},
 			{type:'mult',value:1.03,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'mult',value:1.03,req:{'xmas01':true}},
 			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
 		req:{'stone-knapping':true,'t10':false},
@@ -9289,6 +9296,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'ground stone tools':true}},
 			{type:'mult',value:0.95,req:{'dt3':true}},
 			{type:'mult',value:1.03,req:{'Inspirated carvers':true,'<font color="maroon">Moderation</font>':true}},
+			{type:'mult',value:1.03,req:{'xmas04':true}},
 			{type:'mult',value:1.06,req:{'Inspirated carvers':true,'<font color="maroon">Caretaking</font>':true}},
 			////////////////////
 			//MOAI BOOSTS
@@ -9339,6 +9347,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
 			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
 			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'},
+			{type:'mult',value:1.03,req:{'xmas02':true}},
 			],
 		req:{'sewing':true,'t10':false},
 		category:'crafting',
@@ -9464,7 +9473,8 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'clay':3,'fire pit':0.01},into:{'pot':1},every:3,repeat:2,mode:'clay pots'},
 			{type:'convert',from:{'mud':10,'fire pit':0.01},into:{'pot':1},every:6,mode:'mud pots'},
 			{type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'craft precious pots'},
-			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'}
+			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'},
+			{type:'mult',value:1.03,req:{'xmas03':true}},
 		],
 		req:{'pottery':true,'t10':false},
 		category:'crafting',
@@ -17343,7 +17353,7 @@ new G.Tech({
 	new G.Tech({
 		name:'the christmas',
 		displayName:'<font color="cyan">The Christmas</font>',
-		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one',
+		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one. Unlocks Lodge of Christmas.',
 		icon:[2,10,'seasonal'],
 		cost:{'insight':400,'culture':100,'faith':32},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
@@ -17358,7 +17368,7 @@ new G.Tech({
 
 	new G.Trait({
         name:'xmas1',
-		displayName:'Artisans climate: Artisans',
+		displayName:'Christmas climate: Artisans',
         icon:[10,11,'seasonal'],
 	effects:[
 	],	
@@ -17392,6 +17402,20 @@ new G.Tech({
         req:{'tribalism':false},
 	category:'seasonal'
     });
+	new G.Tech({
+		name:'snowmen',
+		desc:'Since [digger] can dig for snow and you can describe and be understood you can explain what is and how does snowman look like. //Gain [the chtistmas] so you will unlock Lodge of Christmas. @Unlocks a snowmen creator.',
+		icon:[10,10,'seasonal'],
+		cost:{'insight':100,'culture':50},
+		req:{'winter holidays':true},
+	});
+	new G.Tech({
+		name:'festive robot print',
+		desc:'A [festive robot print] may help you to gather Christmas essence outta snowmen kids constructed. Works slowly and only one can be placed but later you will unlock magical overclocks. @However with each overclock a chance to lose a snowman upon Essence feed increase by the same amount that its speed increases.',
+		icon:[14,11,'seasonal'],
+		cost:{'insight':1000,'wisdom':100},
+		req:{'the christmas':true,'snowmen':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
