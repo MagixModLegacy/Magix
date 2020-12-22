@@ -17455,7 +17455,7 @@ new G.Tech({
 		name:'snowmen',
 		desc:'Since [digger] can dig for snow and you can describe and be understood you can explain what is and how does snowman look like. //Gain [the christmas] so you will unlock Lodge of Christmas. @Unlocks a snowmen creator.',
 		icon:[10,10,'seasonal'],
-		cost:{'insight':100,'culture':50},
+		cost:{'insight':95,'culture':50},
 		req:{'winter holidays':true},
 	});
 	new G.Tech({
