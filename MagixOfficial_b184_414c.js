@@ -1938,7 +1938,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
-				}; //some winterish replacements
+					G.achievByName['xmas buff'].won=3;
+				} //some winterish replacements=
+		else{
+			G.achievByName['xmas buff'].won--;
+		}
 }
 	G.funcs['game over']=function()
 	{
@@ -8995,6 +8999,16 @@ if (!document.getElementById(cssId))
 			}
 		},
 		});
+	new G.Res({
+		name:'snow',
+		desc:'Cold snow can be used to craft Snowmen, fun, snowball fights. The thing that children like mostly. Hire a [digger] to gather it.',
+		icon:[9,11,'seasonal'],
+		category:'seasonal',
+		limit:'wisdom',
+		turnToByContext:{'Snow':{'health':-0.0005,'happiness':0.001}},
+		getDisplayAmount:researchGetDisplayAmount,
+		whenGathered:researchWhenGathered,
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -17306,10 +17320,13 @@ new G.Tech({
 	//* * * * * CHRISTMAS TECHS/TRAITS * * * * *
 	new G.Tech({
 		name:'winter holidays',
-		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is.',
+		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is. //Diggers will start digging for [snow] if available.',
 		icon:[1,10,'seasonal'],
 		cost:{'insight':210,'culture':45,'faith':5},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
+		effects:[
+			{type:'function',func:function(){G.getDict('snow').turnToByContext['fun']['happiness']=0.001;['health']=0.0003;}},
+		],
 	});
 	new G.Tech({
 		name:'the christmas',
