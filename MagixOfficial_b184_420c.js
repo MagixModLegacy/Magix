@@ -17322,9 +17322,6 @@ new G.Tech({
 		icon:[1,10,'seasonal'],
 		cost:{'insight':210,'culture':45,'faith':5},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
-		effects:[
-			{type:'function',func:function(){G.getDict('snow').turnToByContext[null]['happiness']=0.001;}},
-		],
 	});
 	new G.Tech({
 		name:'the christmas',
@@ -17344,8 +17341,8 @@ new G.Tech({
 	new G.Trait({
         name:'xmas1',
 		displayName:'Christmas climate: Clothiers',
-        desc:'The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next '+G.achievByName['xmas buff'].won+' runs/legacies, your [clothiers] are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.',
-        icon:[10,11,'seasonal'],
+        desc:'The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.',
+        icon:[11,11,'seasonal'],
 	effects:[
 	],	
         req:{'tribalism':false},
