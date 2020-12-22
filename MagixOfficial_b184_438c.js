@@ -1945,6 +1945,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
+					G.getDict('child of Christmas').hidden=false;
 					G.getDict('christmas essence').hidden=false;
 
 					
@@ -2311,7 +2312,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
         				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
-			G.getDict('snow').hidden=false;
+					G.getDict('child of Christmas').hidden=false;
+					G.getDict('snow').hidden=false;
 					G.getDict('christmas essence').hidden=false;
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
 		var yer=new Date();
@@ -9044,6 +9046,15 @@ if (!document.getElementById(cssId))
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
+	});
+	new G.Res({
+		name:'child of Christmas',
+		desc:'[child of Christmas,Children of Christmas] leave after many meetings from Lodge of Christmas. Some of them say they are elves, Claus\'s helpers and many more.//After a while, they will grow up into [adult,Adults].//Children drink and eat half as much as adults.//These children can work as [artisan of christmas] , can be hired to take care about [christmas essence storage], can craft gifts for people bringing [happiness]. @They are happy despite assigning them to work as long as their work is related to christmas.',
+		partOf:'population',
+		icon:[13,10,'seasonal'],
+		hidden:true,
+		displayUsed:true,
+		category:'demog'
 	});
 	/*=====================================================================================
 	UNITS
