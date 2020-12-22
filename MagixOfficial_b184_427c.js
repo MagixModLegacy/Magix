@@ -1939,7 +1939,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
 					G.getAchiev('xmas buff').won=3;
-					G.getDict('xmas1').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.</font>',
+					G.getDict('xmas1').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.</font>';
 					
 				} //some winterish replacements=
 		else{
@@ -2295,7 +2295,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
-			G.getDict('xmas1').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.</font>',
+			G.getDict('xmas1').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.</font>';
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
 		var yer=new Date();
 		var truY=yer.getFullYear();
