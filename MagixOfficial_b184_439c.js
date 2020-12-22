@@ -4278,7 +4278,7 @@ G.writeMSettingButton=function(obj)
 				{
 					//drink water
 					var toConsume=0;
-					var weights={'baby':0.1,'child':0.3,'adult':0.5,'elder':0.5,'sick':0.4,'wounded':0.4,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
+					var weights={'baby':0.1,'child of Christmas':0.3,'child':0.3,'adult':0.5,'elder':0.5,'sick':0.4,'wounded':0.4,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
 					for (var i in weights)
 					{toConsume+=G.getRes(i).amount*weights[i];}
 					var rations=G.checkPolicy('water rations');
@@ -4300,7 +4300,7 @@ G.writeMSettingButton=function(obj)
 							var toDie=(lacking/5)*0.05;
 							if (G.year<1) toDie/=5;//less deaths in the first year
 							var died=0;
-							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
+							var weights={'baby':0.1,'child of Christmas':0.2,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
 							var sum=0;for (var i in weights){sum+=weights[i];}for (var i in weights){weights[i]/=sum;}//normalize
 							for (var i in weights){var ratio=(G.getRes(i).amount/me.amount);weights[i]=ratio+(1-ratio)*weights[i];}
 							for (var i in weights)
@@ -4318,7 +4318,7 @@ G.writeMSettingButton=function(obj)
 					var happinessAdd=0;
 					if (G.has('culture of moderation')) {consumeMult*=0.85;happinessAdd-=0.1;}
 					else if (G.has('joy of eating')) {consumeMult*=1.15;happinessAdd+=0.1;}
-					var weights={'baby':0.2,'child':0.5,'adult':1,'elder':1,'sick':0.75,'wounded':0.75,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
+					var weights={'baby':0.2,'child of Christmas':0.5,'child':0.5,'adult':1,'elder':1,'sick':0.75,'wounded':0.75,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
 					for (var i in weights)
 					{toConsume+=G.getRes(i).amount*weights[i];}
 					var rations=G.checkPolicy('food rations');
@@ -4344,7 +4344,7 @@ G.writeMSettingButton=function(obj)
 							var toDie=(lacking/5)*0.05;
 							if (G.year<1) toDie/=5;//less deaths in the first year
 							var died=0;
-							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
+							var weights={'baby':0.1,'child of Christmas':0.2,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
 							var sum=0;for (var i in weights){sum+=weights[i];}for (var i in weights){weights[i]/=sum;}//normalize
 							for (var i in weights){var ratio=(G.getRes(i).amount/me.amount);weights[i]=ratio+(1-ratio)*weights[i];}
 							for (var i in weights)
@@ -4460,7 +4460,7 @@ G.writeMSettingButton=function(obj)
 						if (me.amount<=15) toChange*=0.5;
 						if (G.checkPolicy('flower rituals')=='on') toChange*=0.8;
 						var changed=0;
-						var weights={'baby':2,'child':1.5,'adult':1,'elder':2};
+						var weights={'baby':2,'child of Christmas':1.5,'child':1.5,'adult':1,'elder':2};
 						if (G.checkPolicy('child workforce')=='on') weights['child']*=2;
 						if (G.checkPolicy('elder workforce')=='on') weights['elder']*=2;
 						if (G.year<5) weights['adult']=0;//adults don't fall sick the first 5 years
@@ -4491,7 +4491,7 @@ G.writeMSettingButton=function(obj)
 						if (G.year<5) toChange*=0.5;//less wounds the first 5 years
 						if (me.amount<=15) toChange*=0.5;
 						var changed=0;
-						var weights={'baby':2,'child':1.5,'adult':1,'elder':2,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5};
+						var weights={'baby':2,'child of Christmas':1.5,'child':1.5,'adult':1,'elder':2,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5};
 						if (G.checkPolicy('child workforce')=='on') weights['child']*=3;
 						if (G.checkPolicy('elder workforce')=='on') weights['elder']*=3;
 						if (G.year<5) weights['adult']=0;//adults don't get wounded the first 5 years
@@ -17460,10 +17460,31 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'festive robot print',
-		desc:'A [festive robot print] may help you to gather [christmas essence] outta snowmen kids constructed. Works slowly and only one can be placed but later you will unlock magical overclocks. @However with each overclock a chance to lose a snowman upon [christmas essence,Essence] feed increase by the same amount that its speed increases.',
+		desc:'A [festive robot print] may help you to gather [christmas essence] outta snowmen kids constructed. Works slowly and only one can be placed but later you will unlock magical overclocks. @However with each overclock a chance to lose a snowman upon [christmas essence,Essence] feed increase by some amount that its speed increases.',
 		icon:[14,11,'seasonal'],
 		cost:{'insight':1000,'wisdom':100},
 		req:{'the christmas':true,'snowmen':true},
+	});
+		new G.Tech({
+		name:'f.r.o.s.t.y overclock I',
+		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 25% faster</font> @<font color="red">[f.r.o.s.t.y] has 5% more chance to destroy a snowman</font>',
+		icon:[5,11,'seasonal'],
+		cost:{'insight':600,'culture':100,'influence':50},
+		req:{'festive robot print':true,'Land acknowledge':true,'tribalism':false},
+	});
+	new G.Tech({
+		name:'f.r.o.s.t.y overclock II',
+		desc:'Wizards figured out how to overclock [f.r.o.s.t.y] even more than before. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. Also they know from previous experiences that the faster he is the bigger "snowman destruction" it causes... <br>but this overclock increases the chance for that at least as for now it is possible. @<font color="green">[f.r.o.s.t.y] is 25% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 7% more chance to destroy a snowman</font>',
+		icon:[4,11,'seasonal'],
+		cost:{'insight II':110,'culture II':20,'influence II':5,'science':5},
+		req:{'festive robot print':true,'Policy revaluation':true,'f.r.o.s.t.y overclock I':true},
+	});
+	new G.Tech({
+		name:'f.r.o.s.t.y overclock III',
+		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 25% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 10% more chance to destroy a snowman</font>',
+		icon:[3,11,'seasonal'],
+		cost:{'insight II':400,'science':45},
+		req:{'festive robot print':true,'bigger university':true,'f.r.o.s.t.y overclock II':true,'dynamics II':true},
 	});
 	/*=====================================================================================
 	POLICIES
