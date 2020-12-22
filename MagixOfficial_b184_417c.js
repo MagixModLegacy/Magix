@@ -9004,10 +9004,7 @@ if (!document.getElementById(cssId))
 		desc:'Cold snow can be used to craft Snowmen, fun, snowball fights. The thing that children like mostly. Hire a [digger] to gather it.',
 		icon:[9,11,'seasonal'],
 		category:'seasonal',
-		limit:'wisdom',
 		turnToByContext:{'Snow':{'health':-0.0005,'happiness':0.001}},
-		getDisplayAmount:researchGetDisplayAmount,
-		whenGathered:researchWhenGathered,
 	});
 	/*=====================================================================================
 	UNITS
@@ -17325,7 +17322,7 @@ new G.Tech({
 		cost:{'insight':210,'culture':45,'faith':5},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
 		effects:[
-			{type:'function',func:function(){G.getDict('snow').turnToByContext={'fun':{'health':-0.0003,'happiness':0.001}}}},
+			{type:'function',func:function(){G.getDict('snow').turnToByContext['fun']['happiness']=0.001;}},
 		],
 	});
 	new G.Tech({
