@@ -12945,6 +12945,7 @@ new G.Unit({
 		{id:'main',name:'General'},
 		{id:'misc',name:'Miscellaneous'},
 		{id:'knowledge',name:'Knowledge'},
+		{id:'seasonal',name:'<font color="fuschia">S e a s o n a l</font>'},
 		{id:'culture',name:'Cultural'},
 		{id:'religion',name:'Religious'},
 		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
@@ -17340,6 +17341,16 @@ new G.Tech({
 		cost:{'insight II':20,'culture II':30},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':false},
 	});
+	new G.Trait({
+        name:'xmas1',
+		displayName:'Christmas climate: Clothiers',
+        desc:'The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing. For now and for next '+G.achievByName['xmas buff'].won+' runs/legacies, your [clothiers] are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff again until next Christmas and for 3 runs after that.',
+        icon:[10,11,'seasonal'],
+	effects:[
+	],	
+        req:{'tribalism':false},
+	chance:50,category:'seasonal'
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
