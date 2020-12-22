@@ -17338,7 +17338,7 @@ new G.Tech({
 		cost:{'insight II':20,'culture II':30},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':false},
 	});
-	function xmaswon(){return G.achievByName['xmas buff'].won};
+	function xmaswon(){return G.getAchiev('xmas buff').won};
 	new G.Trait({
         name:'xmas1',
 		displayName:'Christmas climate: Clothiers',
