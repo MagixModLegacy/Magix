@@ -1945,6 +1945,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
+					G.getDict('christmas essence').hidden=false;
 
 					
 				} //some winterish replacements=
@@ -2310,6 +2311,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
         				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
+			G.getDict('snow').hidden=false;
+					G.getDict('christmas essence').hidden=false;
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
 		var yer=new Date();
 		var truY=yer.getFullYear();
@@ -9031,6 +9034,17 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 	});
+		new G.Res({
+		name:'christmas essence',
+		desc:'Main of Christmas. Can be gathered from ways related to that festive. Has usages. Does not belong to [Magic essences] officialy until you\'ll unlock [sleep speech] and [villas of victory].',
+		icon:[3,10,'seasonal'],
+		category:'seasonal',
+		hidden:true,
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.01;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -12969,9 +12983,10 @@ new G.Unit({
 	});
 		new G.Unit({
 		name:'f.r.o.s.t.y',
-		desc:'@From snowmen created by children extracts Christmas essence. However there is a chance that the extraction will destroy the snowman. The faster [f.r.o.s.t.y] becomes the bigger chance for that is.//Powered by strange energies ,[snow] and by [Lightning essence].',
+			displayName:'F.R.O.S.T.Y',
+		desc:'@From snowmen created by children extracts [christmas essence]. However there is a chance that the extraction will destroy the snowman. The faster [f.r.o.s.t.y] becomes the bigger chance for that is.//Powered by strange energies ,[snow] and by [Lightning essence].',
 		icon:[15,11,'seasonal'],
-		cost:{'strong metal ingot':100,'hard metal ingot':15,'precious metal ingot':2,'basic building materials':10,'Magic essences':5000},
+		cost:{'strong metal ingot':100,'hard metal ingot':15,'precious metal ingot':2,'basic building materials':10,'Magic essences':5000,'platinum ore':10},
 		upkeep:{'snow':8,'Magic essences':15,'Lightning essence':5},
 		req:{'festive robot print':true,'tribalism':false},
 		limitPer:{'land':200000},//MAX 1
@@ -14859,7 +14874,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'<span style="color: yellow">Culture of celebration</span>',
-		desc:'Unlocks seasonal content. <b><span style="color: aqua">Seasonal content is a content available for some time like Christmas content. Currently added events: Xmas, New year eve, halloween, Valentine day.</span></b>',
+		desc:'Unlocks seasonal content. <b><span style="color: aqua">Seasonal content is a content available for some time like Christmas content.</span></b>',
 		icon:[18,15,'magixmod'],
 		cost:{'insight':10,'culture':40},
 		chance:100,
@@ -17383,7 +17398,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'carols',
-		desc:'Christmas is a special time. Now people will sing/play not only normal songs but also they are no afraid to sing/play carols. //[musician] now crafts Christmas Essence',
+		desc:'Christmas is a special time. Now people will sing/play not only normal songs but also they are no afraid to sing/play carols. //[musician] now crafts [christmas essence]',
 		icon:[9,10,'seasonal'],
 		cost:{'insight II':20,'culture II':30},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':false},
@@ -17434,7 +17449,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'festive robot print',
-		desc:'A [festive robot print] may help you to gather Christmas essence outta snowmen kids constructed. Works slowly and only one can be placed but later you will unlock magical overclocks. @However with each overclock a chance to lose a snowman upon Essence feed increase by the same amount that its speed increases.',
+		desc:'A [festive robot print] may help you to gather [christmas essence] outta snowmen kids constructed. Works slowly and only one can be placed but later you will unlock magical overclocks. @However with each overclock a chance to lose a snowman upon [christmas essence,Essence] feed increase by the same amount that its speed increases.',
 		icon:[14,11,'seasonal'],
 		cost:{'insight':1000,'wisdom':100},
 		req:{'the christmas':true,'snowmen':true},
