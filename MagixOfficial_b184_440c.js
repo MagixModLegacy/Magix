@@ -17411,7 +17411,7 @@ new G.Tech({
 		name:'carols',
 		desc:'Christmas is a special time. Now people will sing/play not only normal songs but also they are no afraid to sing/play carols. //[musician] now crafts [christmas essence]',
 		icon:[9,10,'seasonal'],
-		cost:{'insight II':20,'culture II':30},
+		cost:{'insight II':20,'culture II':30,'christmas essence':1020},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':false},
 	});
 
@@ -17469,19 +17469,19 @@ new G.Tech({
 		name:'f.r.o.s.t.y overclock I',
 		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 25% faster</font> @<font color="red">[f.r.o.s.t.y] has 5% more chance to destroy a snowman</font>',
 		icon:[5,11,'seasonal'],
-		cost:{'insight':600,'culture':100,'influence':50},
+		cost:{'insight':600,'culture':100,'influence':50,'christmas essence':114},
 		req:{'festive robot print':true,'Land acknowledge':true,'tribalism':false},
 	});
 	new G.Tech({
 		name:'f.r.o.s.t.y overclock II',
 		desc:'Wizards figured out how to overclock [f.r.o.s.t.y] even more than before. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. Also they know from previous experiences that the faster he is the bigger "snowman destruction" it causes... <br>but this overclock increases the chance for that at least as for now it is possible. @<font color="green">[f.r.o.s.t.y] is 25% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 7% more chance to destroy a snowman</font>',
 		icon:[4,11,'seasonal'],
-		cost:{'insight II':110,'culture II':20,'influence II':5,'science':5},
+		cost:{'insight II':110,'culture II':20,'influence II':5,'science':5,'christmas essence':546},
 		req:{'festive robot print':true,'Policy revaluation':true,'f.r.o.s.t.y overclock I':true},
 	});
 	new G.Tech({
 		name:'f.r.o.s.t.y overclock III',
-		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 25% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 10% more chance to destroy a snowman</font>',
+		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 45% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 10% more chance to destroy a snowman</font>',
 		icon:[3,11,'seasonal'],
 		cost:{'insight II':400,'science':45},
 		req:{'festive robot print':true,'bigger university':true,'f.r.o.s.t.y overclock II':true,'dynamics II':true},
