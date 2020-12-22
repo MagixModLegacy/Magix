@@ -17325,7 +17325,7 @@ new G.Tech({
 		cost:{'insight':210,'culture':45,'faith':5},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
 		effects:[
-			{type:'function',func:function(){G.getDict('snow').turnToByContext['fun']['happiness']=0.001;['health']=0.0003;}},
+			{type:'function',func:function(){G.getDict('snow').turnToByContext['fun']['happiness']=0.001,['health']=0.0003;}},
 		],
 	});
 	new G.Tech({
