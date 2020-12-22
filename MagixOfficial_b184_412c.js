@@ -3539,6 +3539,7 @@ G.writeMSettingButton=function(obj)
 					{
 						
 						var me=G.achievByTier[i][ii];
+						if(me.visible==true){
 						var div=l('achiev-'+me.id);
 						/*me.visible==true ? */
 						div.onclick=function(me,div){return function(){
@@ -3559,6 +3560,7 @@ G.writeMSettingButton=function(obj)
 							'</div>'+
 							G.debugInfo(me)
 						};}(me),{offY:8});
+						}
 					}
 				}
 			});
