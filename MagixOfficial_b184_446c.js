@@ -13034,7 +13034,7 @@ new G.Unit({
 		wonder:';',
 		steps:1200,
 		cost:{'basic building materials':3000,'christmas essence':10000},
-		costPerStep:{'christmas essence':4200,'Dyes':1500,'Mana':1400,'basic building materials':650,'precious building materials':150,'concrete':25,'gems':10},
+		costPerStep:{'christmas essence':4200,'Dyes':1500,'Mana':1400,'basic building materials':650,'precious building materials':150,'concrete':25,'gems':10,'christmas ornament':150},
 		finalStepCost:{'christmas essence':40000,'Mana':1e5,'ice':7.5e4},
 		threexthreeIcon:[0,11,'seasonal'],
 		cost:{},
@@ -17513,7 +17513,7 @@ new G.Tech({
 		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 45% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 10% more chance to destroy a snowman</font>',
 		icon:[3,11,'seasonal'],
 		cost:{'insight II':400,'science':45},
-		req:{'festive robot print':true,'bigger university':true,'f.r.o.s.t.y overclock II':true,'dynamics II':true},
+		req:{'festive robot print':true,'Bigger university':true,'f.r.o.s.t.y overclock II':true,'dynamics II':true},
 	});
 	/*=====================================================================================
 	POLICIES
