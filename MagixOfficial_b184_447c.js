@@ -13037,9 +13037,8 @@ new G.Unit({
 		costPerStep:{'christmas essence':4200,'Dyes':1500,'Mana':1400,'basic building materials':650,'precious building materials':150,'concrete':25,'gems':10,'christmas ornament':150},
 		finalStepCost:{'christmas essence':40000,'Mana':1e5,'ice':7.5e4},
 		threexthreeIcon:[0,11,'seasonal'],
-		cost:{},
 		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
-		req:{'Battling thieves':true,'coordination':true,'<span style="color: red">Revenants</span>':true},
+		req:{'monument-building II':true,'f.r.o.s.t.y overclock II':true},
 		category:'seasonal',
 		priority:5,
 	});
