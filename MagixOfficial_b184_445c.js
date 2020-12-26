@@ -1945,6 +1945,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
+					G.getDict('christmas ornament').hidden=false;
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('christmas essence').hidden=false;
 
@@ -2314,6 +2315,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('snow').hidden=false;
+					G.getDict('christmas ornament').hidden=false;
 					G.getDict('christmas essence').hidden=false;
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
 		var yer=new Date();
@@ -9056,6 +9058,17 @@ if (!document.getElementById(cssId))
 		displayUsed:true,
 		category:'demog'
 	});
+	new G.Res({
+		name:'christmas ornament',
+		desc:'Artisan of christmas can craft it. Used to decorate christmas trees, lamps and many more. On decay may provide some [christmas essence].',
+		icon:[choose([6,7]),10,'seasonal'],
+		category:'seasonal',
+		hidden:true,
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.01;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -13016,16 +13029,16 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'wonderful fortress of christmas',
-		desc:'',
+		desc:'Constucted in cold climates collosal, giant [wonderful fortress of christmas,Wonderful fortress of Christmas]. Taller and bigger than anything else giving its shadow of the festive to villages and cities all around. //Full of lights and ornaments so its mightiness is also the art of beauty. //This giant takes a lot of steps to be built and does not belong to cheapest wonders. //Merry Christmas!',
 		icon:[0,11,'seasonal'],
 		wonder:';',
 		steps:1200,
-		cost:{'lumber':400},
-		costPerStep:{'lumber':400},
-		finalStepCost:{'lumber':400},
+		cost:{'basic building materials':3000,'christmas essence':10000},
+		costPerStep:{'christmas essence':4200,'Dyes':1500,'Mana':1400,'basic building materials':650,'precious building materials':150,'concrete':25,'gems':10},
+		finalStepCost:{'christmas essence':40000,'Mana':1e5,'ice':7.5e4},
 		threexthreeIcon:[0,11,'seasonal'],
 		cost:{},
-		use:{'worker':1,'metal weapons':1,'armor set':1},
+		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
 		req:{'Battling thieves':true,'coordination':true,'<span style="color: red">Revenants</span>':true},
 		category:'seasonal',
 		priority:5,
