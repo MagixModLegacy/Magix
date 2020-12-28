@@ -17525,7 +17525,7 @@ new G.Tech({
 		name:'festive lights II',
 		desc:'Lights bring more happiness. Are used even more.',
 		icon:[16,11,'seasonal'],
-		cost:{'insight II':200},
+		cost:{'insight II':200,'insight':100,'science':5},
 		req:{'Outstanding wisdom':true,'the christmas':true,'festive lights':true},
 	});
 	/*=====================================================================================
