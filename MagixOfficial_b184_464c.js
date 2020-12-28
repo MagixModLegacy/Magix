@@ -1476,7 +1476,7 @@ G.setPolicyMode=function(me,mode)
 					var amount=G.getBuyAmount(unit);
 					if (unit.unit.wonder) amount=(amount>0?1:-1);
 					if (amount<0) G.taskKillUnit(unit,-amount);
-					if(unit.name.endsWith('ce storage'))amount=1; //You can hire only one essence storage at the time
+				//	if(unit.name.endsWith('ce storage'))amount=1; //You can hire only one essence storage at the time
 					else if (amount>0) G.taskBuyUnit(unit,amount,(G.getSetting('buyAny')));
 				} else G.cantWhenPaused();
 			};}(me);
