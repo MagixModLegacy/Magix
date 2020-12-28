@@ -17514,6 +17514,20 @@ new G.Tech({
 		cost:{'insight II':400,'science':45},
 		req:{'festive robot print':true,'Bigger university':true,'f.r.o.s.t.y overclock II':true,'dynamics II':true},
 	});
+	new G.Tech({
+		name:'festive lights',
+		desc:'Artisan of christmas can now craft festive lights. Let the streets be even nicer. Obtaining [Mo\' beauty] doubles happiness income from lights but also they are used 50% more.',
+		icon:[18,11,'seasonal'],
+		cost:{'insight':800},
+		req:{'festive robot print':true,'Laws of physics(basic)':true,'dynamics':true},
+	});
+	new G.Tech({
+		name:'festive lights II',
+		desc:'Artisan of christmas can now craft festive lights. Let the streets be even nicer. Obtaining [Mo\' beauty] doubles happiness income from lights but also they are used 50% more.',
+		icon:[16,11,'seasonal'],
+		cost:{'insight II':200},
+		req:{'Outstanding wisdom':true,'the christmas':true,'festive lights':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
