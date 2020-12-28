@@ -1946,6 +1946,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
+					G.getDict('festive light').hidden=false;
+					G.getDict('snowman').hidden=false;
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('christmas essence').hidden=false;
 
@@ -2315,6 +2317,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('snow').hidden=false;
+					G.getDict('festive light').hidden=false;
+					G.getDict('snowman').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('christmas essence').hidden=false;
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
@@ -9049,7 +9053,6 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		limit:'christmas essence limit',
-		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
 	});
 	new G.Res({
@@ -9088,6 +9091,17 @@ if (!document.getElementById(cssId))
 			var toSpoil=me.amount*0.007;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 			G.gain('christmas essence',randomFloor(toSpoil)/4,'festive light decor decay');
+		},
+	});
+		new G.Res({
+		name:'snowman',
+		desc:'Used to decor streets, houses, hovels and other buildings. Brings festivity to your civilization. On decay may provide some [christmas essence].',
+		icon:[12,10,'seasonal'],
+		category:'seasonal',
+		hidden:true,
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.011;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 	});
 	/*=====================================================================================
