@@ -9048,6 +9048,14 @@ if (!document.getElementById(cssId))
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
+		limit:'christmas essence limit',
+		getDisplayAmount:researchGetDisplayAmount,
+		whenGathered:researchWhenGathered,
+	});
+	new G.Res({
+		name:'christmas essence limit',
+		icon:[8,12,3,10,'seasonal'],
+		hidden:true,
 	});
 	new G.Res({
 		name:'child of Christmas',
@@ -9067,6 +9075,19 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick){
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			G.gain('christmas essence',randomFloor(toSpoil)/6,'festive ornament decay');
+		},
+	});
+		new G.Res({
+		name:'festive light',
+		desc:'Used to decor streets, houses, hovels and other buildings. Brings festivity to your civilization. On decay may provide some [christmas essence].',
+		icon:[choose([6,7]),11,'seasonal'],
+		category:'seasonal',
+		hidden:true,
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.007;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			G.gain('christmas essence',randomFloor(toSpoil)/4,'festive light decor decay');
 		},
 	});
 	/*=====================================================================================
