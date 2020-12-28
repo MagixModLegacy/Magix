@@ -13018,10 +13018,6 @@ new G.Unit({
 			{type:'convert',from:{'stick':1500},into:{'basket':150},every:10},
 			{type:'convert',from:{'lumber':30,'stone':300},into:{'Crossbow belt':500},every:13,chance:4/5},
 			{type:'convert',from:{'stick':300,'stone':200},into:{'Crossbow':55},every:11},
-			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
-			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
-			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
-			//{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
 		],
 	});
 	new G.Unit({
@@ -13039,10 +13035,6 @@ new G.Unit({
 			{type:'convert',from:{'stick':4750},into:{'basket':500},every:30},
 			{type:'convert',from:{'lumber':90,'stone':880},into:{'Crossbow belt':700},every:30},
 			{type:'convert',from:{'stick':1100,'stone':690},into:{'Crossbow':155},every:11},
-			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
-			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
-			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
-			//{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
 		],
 	});
 		new G.Unit({
@@ -13056,15 +13048,15 @@ new G.Unit({
 		limitPer:{'land':200000},//MAX 1
 		category:'seasonal',
 		effects:[
-			{type:'convert',from:{'stone':1800,'stick':1500,'fire pit':12.2,'coal':175},into:{'stone tools':255},every:15},
-			{type:'convert',from:{'stone':1950,'stick':1560,'fire pit':12.2,'coal':175},into:{'stone weapons':255},every:15},
-			{type:'convert',from:{'stick':4750},into:{'basket':500},every:30},
-			{type:'convert',from:{'lumber':90,'stone':880},into:{'Crossbow belt':700},every:30},
-			{type:'convert',from:{'stick':1100,'stone':690},into:{'Crossbow':155},every:11},
-			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
-			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
-			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
-			//{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
+			{type:'function',func:function(me){
+				if(day>=350 && day<=363){
+					if(G.getRes('snowman').amount>me.amount){
+						var chance=Math.random();
+						var bonus=0;
+						
+					}
+					   }
+			},every:7},
 		],
 	});
 	new G.Unit({
@@ -13074,7 +13066,7 @@ new G.Unit({
 		wonder:';',
 		steps:1200,
 		cost:{'basic building materials':3000,'christmas essence':10000},
-		costPerStep:{'christmas essence':4200,'Dyes':1500,'Mana':1400,'basic building materials':650,'precious building materials':150,'concrete':25,'gems':10,'christmas ornament':150},
+		costPerStep:{'christmas essence':4200,'Dyes':1500,'Mana':1400,'basic building materials':650,'precious building materials':150,'concrete':25,'gems':10,'christmas ornament':150,'festive light':80},
 		finalStepCost:{'christmas essence':40000,'Mana':1e5,'ice':7.5e4},
 		threexthreeIcon:[0,11,'seasonal'],
 		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
