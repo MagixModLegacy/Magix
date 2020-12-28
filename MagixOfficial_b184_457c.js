@@ -13040,7 +13040,7 @@ new G.Unit({
 		new G.Unit({
 		name:'f.r.o.s.t.y',
 			displayName:'F.R.O.S.T.Y',
-		desc:'@From snowmen created by children extracts [christmas essence]. However there is a chance that the extraction will destroy the snowman. The faster [f.r.o.s.t.y] becomes the bigger chance for that is.//Powered by strange energies ,[snow] and by [Lightning essence].',
+		desc:'@From snowmen created by children extracts [christmas essence]. However there is a chance that the extraction will destroy the snowman. The faster [f.r.o.s.t.y] becomes the bigger chance for that is.//Powered by strange energies ,[snow] and by [Lightning essence]. //[f.r.o.s.t.y] is active only during christmas',
 		icon:[15,11,'seasonal'],
 		cost:{'strong metal ingot':100,'hard metal ingot':15,'precious metal ingot':2,'basic building materials':10,'Magic essences':5000,'platinum ore':10},
 		upkeep:{'snow':8,'Magic essences':15,'Lightning essence':5},
@@ -13053,7 +13053,12 @@ new G.Unit({
 					if(G.getRes('snowman').amount>me.amount){
 						var chance=Math.random();
 						var bonus=0;
-						
+						G.gain('christmas essence',1*(bonus+1),'F.R.O.S.T.Y');
+						if(chance<=0.05+bonus){
+							G.lose('snowman',1*((bonus*1.1)+1),'failed essence extraction');	
+						}
+					}else{
+						G.getDict(me).upkeep={};
 					}
 					   }
 			},every:7},
