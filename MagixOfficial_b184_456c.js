@@ -9044,7 +9044,7 @@ if (!document.getElementById(cssId))
 	});
 		new G.Res({
 		name:'christmas essence',
-		desc:'Main of Christmas. Can be gathered from ways related to that festive. Has usages. Does not belong to [Magic essences] officialy until you\'ll unlock [sleep speech] and [villas of victory].',
+		desc:'Main of Christmas. Can be gathered from ways related to that festive. Has usages. Does not belong to [Magic essences] officialy until you\'ll unlock [sleep-speech] and [villas of victory].',
 		icon:[3,10,'seasonal'],
 		category:'seasonal',
 		hidden:true,
@@ -9078,7 +9078,10 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick){
 			var toSpoil=me.amount*0.01;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			if(G.getRes('christmas essence').amount < (G.getRes('christmas essence limit').amount-spent)){
+				
 			G.gain('christmas essence',randomFloor(toSpoil)/6,'festive ornament decay');
+			};
 		},
 	});
 		new G.Res({
@@ -9090,7 +9093,9 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick){
 			var toSpoil=me.amount*0.007;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			if(G.getRes('christmas essence').amount < (G.getRes('christmas essence limit').amount-spent)){
 			G.gain('christmas essence',randomFloor(toSpoil)/4,'festive light decor decay');
+			};
 		},
 	});
 		new G.Res({
