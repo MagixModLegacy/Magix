@@ -1470,6 +1470,7 @@ G.setPolicyMode=function(me,mode)
 				if (G.speed>0)
 				{
 					var amount=G.getBuyAmount(unit);
+					if(unit.name.endsWith('ce storage'))amount=1; //You can hire only one essence storage at the time
 					if (unit.unit.wonder) amount=(amount>0?1:-1);
 					if (amount<0) G.taskKillUnit(unit,-amount);
 					else if (amount>0) G.taskBuyUnit(unit,amount,(G.getSetting('buyAny')));
