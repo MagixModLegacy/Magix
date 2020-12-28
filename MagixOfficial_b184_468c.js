@@ -1458,7 +1458,7 @@ G.setPolicyMode=function(me,mode)
 					'</div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
 					if(me.name.endsWith('ce storage')){
-						str+='<div class="fancyText barred">You can only queue one storage at the time.</div>';
+						str+='<div class="fancyText barred">Click to '+(amount>=0?'queue':'unqueue')+' '+B(Math.abs(amount))+'<br>Your people can build only one storage of this type at the time </div>';
 					}else{//You can hire only one essence storage at the time
 					str+='<div class="fancyText barred">Click to '+(amount>=0?'queue':'unqueue')+' '+B(Math.abs(amount))+'</div>';
 					}
