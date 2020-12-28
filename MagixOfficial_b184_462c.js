@@ -1449,7 +1449,11 @@ G.setPolicyMode=function(me,mode)
 					'<div class="fancyText infoAmount onRight" style="font-size:12px;">'+(instance.targetAmount!=instance.amount?('queued :<br>'+B(instance.targetAmount-instance.displayedAmount)):'')+(instance.amount>0?('<br>active :<br>'+B(instance.amount-instance.idle)+'/'+B(instance.amount)):'')+'</div>'+
 					'</div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
+					if(unit.name.endsWith('ce storage')){
+						str+='<div class="fancyText barred">You can only queue one storage at the time.</div>';
+					}else{//You can hire only one essence storage at the time
 					str+='<div class="fancyText barred">Click to '+(amount>=0?'queue':'unqueue')+' '+B(Math.abs(amount))+'</div>';
+					}
 					if (me.modesById[0]) {str+='<div class="fancyText barred">Current mode :<br><b>'+(instance.mode.icon?G.getSmallThing(instance.mode):'')+''+instance.mode.name+'</b></div>';}
 					str+='<div class="fancyText barred">';
 						if (!isEmpty(me.cost)) str+='<div>Cost : '+G.getCostString(me.cost,true,false,amount)+'</div>';
@@ -1472,6 +1476,7 @@ G.setPolicyMode=function(me,mode)
 					var amount=G.getBuyAmount(unit);
 					if (unit.unit.wonder) amount=(amount>0?1:-1);
 					if (amount<0) G.taskKillUnit(unit,-amount);
+					if(unit.name.endsWith('ce storage'))amount=1; //You can hire only one essence storage at the time
 					else if (amount>0) G.taskBuyUnit(unit,amount,(G.getSetting('buyAny')));
 				} else G.cantWhenPaused();
 			};}(me);
@@ -1481,9 +1486,10 @@ G.setPolicyMode=function(me,mode)
 				{
 					
 					var amount=-G.getBuyAmount(unit);
-					if(unit.name.endsWith('ce storage'))amount=1; //You can hire only one essence storage at the time
 					if (unit.unit.wonder) amount=(amount>0?1:-1);
+					if(unit.name.endsWith('ce storage'))amount=1; //You can hire only one essence storage at the time
 					if (amount<0) G.taskKillUnit(unit,-amount);
+					
 					//else if (amount>0) G.buyUnit(unit,amount);
 				} else G.cantWhenPaused();
 			};}(me);
