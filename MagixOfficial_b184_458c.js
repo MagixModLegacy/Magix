@@ -8531,6 +8531,7 @@ if (!document.getElementById(cssId))
 			G.getDict('Dark essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Dark essence storage')+3/15)),'glass':(30*(G.getUnitAmount('Dark essence storage')+1.15/15))};
 			G.getDict('Lightning essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Lightning essence storage')+3/15)),'glass':(30*(G.getUnitAmount('Lightning essence storage')+1.15/15))};
 			G.getDict('Holy essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Holy essence storage')+3/15)),'glass':(30*(G.getUnitAmount('Holy essence storage')+1.15/15))};
+			G.getDict('christmas essence storage').cost={'basic building materials':(15*(G.getUnitAmount('christmas essence storage')+3/15)),'glass':(30*(G.getUnitAmount('christmas essence storage')+1.15/15))};
 			if(G.hasNot('t10')){G.getDict('precious metal ingot').partOf='misc materials'}//this resource will not decay during Pocket but normally without active trial will
 				if(G.checkPolicy('reset health level')=='activate'){  //hunted special policy
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
@@ -13040,7 +13041,7 @@ new G.Unit({
 		new G.Unit({
 		name:'f.r.o.s.t.y',
 			displayName:'F.R.O.S.T.Y',
-		desc:'@From snowmen created by children extracts [christmas essence]. However there is a chance that the extraction will destroy the snowman. The faster [f.r.o.s.t.y] becomes the bigger chance for that is.//Powered by strange energies ,[snow] and by [Lightning essence]. //[f.r.o.s.t.y] is active only during christmas',
+		desc:'@From snowmen created by children extracts [christmas essence]. However there is a chance that the extraction will destroy the snowman. The faster [f.r.o.s.t.y] becomes the bigger chance for that is.//Powered by strange energies ,[snow] and by [Lightning essence]. //[f.r.o.s.t.y]\'s upkeep is only active during [the christmas]',
 		icon:[15,11,'seasonal'],
 		cost:{'strong metal ingot':100,'hard metal ingot':15,'precious metal ingot':2,'basic building materials':10,'Magic essences':5000,'platinum ore':10},
 		upkeep:{'snow':8,'Magic essences':15,'Lightning essence':5},
@@ -13053,6 +13054,9 @@ new G.Unit({
 					if(G.getRes('snowman').amount>me.amount){
 						var chance=Math.random();
 						var bonus=0;
+						if(G.has('f.r.o.s.t.y overclock I') && bonus<0.05)bonus+=0.05;
+						if(G.has('f.r.o.s.t.y overclock II') && bonus<0.12)bonus+=0.07;
+						if(G.has('f.r.o.s.t.y overclock III') && bonus<0.22)bonus+=0.1;
 						G.gain('christmas essence',1*(bonus+1),'F.R.O.S.T.Y');
 						if(chance<=0.05+bonus){
 							G.lose('snowman',1*((bonus*1.1)+1),'failed essence extraction');	
@@ -13078,6 +13082,21 @@ new G.Unit({
 		req:{'monument-building II':true,'f.r.o.s.t.y overclock II':true},
 		category:'seasonal',
 		priority:5,
+	});
+		new G.Unit({
+		name:'christmas essence storage',
+		desc:'@One storage allows you to store 11500 [christmas essence] more<>A simple glass shielded storage with essence faucet. It is more tall than wide so that is why it consumes only 0.8 [land].',
+		icon:[4,10,'seasonal'],
+		cost:{'basic building materials':(100*((G.getUnitAmount('christmas essence storage')+1)/10)),'glass':(200*((G.getUnitAmount('christmas essence storage')+1)/8))},
+		use:{'land':0.8},
+		effects:[
+			{type:'provide',what:{'christmas essence limit':11500}},
+			{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
+		],
+		req:{'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true},
+		category:'seasonal',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
