@@ -17523,9 +17523,9 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'festive lights II',
-		desc:'Artisan of christmas can now craft festive lights. Let the streets be even nicer. Obtaining [Mo\' beauty] doubles happiness income from lights but also they are used 50% more.',
+		desc:'Lights bring more happiness. Are used even more.',
 		icon:[16,11,'seasonal'],
-		cost:{'insight II':200},
+		cost:{'insight II':200,'insight':188},
 		req:{'Outstanding wisdom':true,'the christmas':true,'festive lights':true},
 	});
 	/*=====================================================================================
