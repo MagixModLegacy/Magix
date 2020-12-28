@@ -1146,7 +1146,7 @@ G.setPolicyMode=function(me,mode)
 				G.doUse(me.unit.use,amount);
 				//G.doUse(me.mode.use,amount);
 				G.applyUnitBuyEffects(me,amount);
-				if(me.name.endsWith('ce storage')){
+				if(me.unit.name.endsWith('ce storage')){
 					me.amount+=1;
 				}else{
 				me.amount+=amount;
