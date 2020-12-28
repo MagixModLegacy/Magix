@@ -1146,8 +1146,16 @@ G.setPolicyMode=function(me,mode)
 				G.doUse(me.unit.use,amount);
 				//G.doUse(me.mode.use,amount);
 				G.applyUnitBuyEffects(me,amount);
+				if(me.name.endsWith('ce storage')){
+					me.amount+=1;
+				}else{
 				me.amount+=amount;
+				};
+				if(me.name.endsWith('ce storage')){
+					me.idle+=1;
+				}else{
 				me.idle+=amount;
+				};
 				if (G.tooltip.parent!=me.l && G.getSetting('animations')) triggerAnim(me.l,'plop');
 				
 				var bounds=me.l.getBoundingClientRect();
@@ -1393,7 +1401,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='wonderful fortress of christmas' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -1401,7 +1409,7 @@ G.setPolicyMode=function(me,mode)
 						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
 						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
 						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
-						else if (instance.mode==4 && me.name!=='scientific university'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
+						else if (instance.mode==4 && me.name!=='scientific university' && me.name!=='wonderful fortress of christmas'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
 						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
 					}
 					if (amount<0) amount=0;
@@ -1476,7 +1484,6 @@ G.setPolicyMode=function(me,mode)
 					var amount=G.getBuyAmount(unit);
 					if (unit.unit.wonder) amount=(amount>0?1:-1);
 					if (amount<0) G.taskKillUnit(unit,-amount);
-				//	if(unit.name.endsWith('ce storage'))amount=1; //You can hire only one essence storage at the time
 					else if (amount>0) G.taskBuyUnit(unit,amount,(G.getSetting('buyAny')));
 				} else G.cantWhenPaused();
 			};}(me);
@@ -1487,7 +1494,7 @@ G.setPolicyMode=function(me,mode)
 					
 					var amount=-G.getBuyAmount(unit);
 					if (unit.unit.wonder) amount=(amount>0?1:-1);
-					if(unit.name.endsWith('ce storage'))amount=1; //You can hire only one essence storage at the time
+					
 					if (amount<0) G.taskKillUnit(unit,-amount);
 					
 					//else if (amount>0) G.buyUnit(unit,amount);
