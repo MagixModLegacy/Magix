@@ -17528,6 +17528,25 @@ new G.Tech({
 		cost:{'insight II':200,'insight':100,'science':5},
 		req:{'Outstanding wisdom':true,'the christmas':true,'festive lights':true},
 	});
+	new G.Trait({
+		name:'punish the grinch!',
+		desc:'If available, [population,people] use [stone,rocks] covered with [snow] to punish bad guys who try to destroy christmas such like rude [thief,Thieves], brutal [wild corpse]s. Works only during christmas',
+		icon:[17,11,'seasonal'],
+		cost:{'culture':300,'influence':50,'faith':25,'insight':100},
+		req:{'Battling thieves':true,'the christmas':true},
+		effects:[
+			 {type:'function',func:function(){
+				if(day>=350 && day<=363){
+			 		if(G.getRes('snow').amount>=12 && G.getRes('stone').amount>=4){
+						G.lose('snow',12,'winter punishment');G.lose('stone',4,'winter punishment');G.lose('thief',1,'winter punishment');
+						G.gain('wounded',1,'thief punished');G.lose('wild corpse',1,'winter punishment');G.gain('slain corpse',1);
+					}
+				}
+			 }}
+			],
+		chance:60,
+		category:'seasonal'
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
