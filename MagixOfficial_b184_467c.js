@@ -1151,7 +1151,7 @@ G.setPolicyMode=function(me,mode)
 				}else{
 				me.amount+=amount;
 				};
-				if(me.name.endsWith('ce storage')){
+				if(me.unit.name.endsWith('ce storage')){
 					me.idle+=1;
 				}else{
 				me.idle+=amount;
