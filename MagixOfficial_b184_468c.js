@@ -8682,7 +8682,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		new G.Res({
 		name:'Orange firework',
@@ -8694,7 +8694,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		
 		new G.Res({
@@ -8706,7 +8706,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		new G.Res({
 		name:'Dark Orange Firework',
@@ -8718,7 +8718,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		new G.Res({
 		name:'Firecracker',
@@ -8730,7 +8730,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		new G.Res({
 		name:'corpsedecaypoint',
@@ -12504,7 +12504,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'Orange firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true/*,'<span style="color: yellow">Culture of celebration</span>':false*/},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -12520,7 +12520,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'Dark Orange Firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true/*,'<span style="color: yellow">Culture of celebration</span>':false*/},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -12536,7 +12536,7 @@ new G.Unit({
 			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
 			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true/*,'<span style="color: yellow">Culture of celebration</span>':false*/},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -15379,7 +15379,7 @@ autobuy(G.year)
 		desc:'@unlocks [Artisan of new year].',
 		icon:[0,0,'seasonal'],
 		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true},//switch to false after new year
 	});
 		new G.Tech({
 		name:'Firework launching',
