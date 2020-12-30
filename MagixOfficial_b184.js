@@ -1146,8 +1146,16 @@ G.setPolicyMode=function(me,mode)
 				G.doUse(me.unit.use,amount);
 				//G.doUse(me.mode.use,amount);
 				G.applyUnitBuyEffects(me,amount);
+				if(me.unit.name.endsWith('ce storage')){
+					me.amount+=1;
+				}else{
 				me.amount+=amount;
+				};
+				if(me.unit.name.endsWith('ce storage')){
+					me.idle+=1;
+				}else{
 				me.idle+=amount;
+				};
 				if (G.tooltip.parent!=me.l && G.getSetting('animations')) triggerAnim(me.l,'plop');
 				
 				var bounds=me.l.getBoundingClientRect();
@@ -1393,7 +1401,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='wonderful fortress of christmas' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -1401,7 +1409,7 @@ G.setPolicyMode=function(me,mode)
 						else if (instance.mode==1) str+='<div class="fancyText barred">Being constructed - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to pause construction</div>';
 						else if (instance.mode==2) str+='<div class="fancyText barred">'+(instance.percent==0?('Construction paused<br>Click to begin construction'):('Construction paused - Step : '+B(instance.percent)+'/'+B(me.steps)+'<br>Click to resume'))+'</div>';
 						else if (instance.mode==3) str+='<div class="fancyText barred">Requires final step<br>Click to perform</div>';
-						else if (instance.mode==4 && me.name!=='scientific university'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
+						else if (instance.mode==4 && me.name!=='scientific university' && me.name!=='wonderful fortress of christmas'){ str+='<div class="fancyText barred">Completed<br>Click to ascend</div>'}else{str+='<div class="fancyText barred">Completed</div>'};
 						//else if (amount<=0) str+='<div class="fancyText barred">Click to destroy</div>';
 					}
 					if (amount<0) amount=0;
@@ -1449,7 +1457,11 @@ G.setPolicyMode=function(me,mode)
 					'<div class="fancyText infoAmount onRight" style="font-size:12px;">'+(instance.targetAmount!=instance.amount?('queued :<br>'+B(instance.targetAmount-instance.displayedAmount)):'')+(instance.amount>0?('<br>active :<br>'+B(instance.amount-instance.idle)+'/'+B(instance.amount)):'')+'</div>'+
 					'</div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
+					if(me.name.endsWith('ce storage')){
+						str+='<div class="fancyText barred">Click to '+(amount>=0?'queue':'unqueue')+' '+B(Math.abs(amount))+'<br>Your people can build only one storage of this type at the time </div>';
+					}else{//You can hire only one essence storage at the time
 					str+='<div class="fancyText barred">Click to '+(amount>=0?'queue':'unqueue')+' '+B(Math.abs(amount))+'</div>';
+					}
 					if (me.modesById[0]) {str+='<div class="fancyText barred">Current mode :<br><b>'+(instance.mode.icon?G.getSmallThing(instance.mode):'')+''+instance.mode.name+'</b></div>';}
 					str+='<div class="fancyText barred">';
 						if (!isEmpty(me.cost)) str+='<div>Cost : '+G.getCostString(me.cost,true,false,amount)+'</div>';
@@ -1479,9 +1491,12 @@ G.setPolicyMode=function(me,mode)
 				e.preventDefault();
 				if (G.speed>0)
 				{
+					
 					var amount=-G.getBuyAmount(unit);
 					if (unit.unit.wonder) amount=(amount>0?1:-1);
+					
 					if (amount<0) G.taskKillUnit(unit,-amount);
+					
 					//else if (amount>0) G.buyUnit(unit,amount);
 				} else G.cantWhenPaused();
 			};}(me);
@@ -1938,7 +1953,28 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
-				}; //some winterish replacements
+					G.getAchiev('xmas buff').won=3;
+					G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
+					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+        				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
+					G.getDict('snow').hidden=false;
+					G.getDict('christmas ornament').hidden=false;
+					G.getDict('festive light').hidden=false;
+					G.getDict('snowman').hidden=false;
+					G.getDict('child of Christmas').hidden=false;
+					G.getDict('christmas essence').hidden=false;
+
+					
+				} //some winterish replacements=
+		else{
+			G.getAchiev('xmas buff').won--;
+		}
+		if(G.getAchiev('xmas buff').won>0){
+			var buff=Math.round(Math.random()*3)+1;
+			G.gainTrait(G.traitByName['xmas'+buff+'']);
+		}
 }
 	G.funcs['game over']=function()
 	{
@@ -2289,6 +2325,17 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+					G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
+					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+        				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
+					G.getDict('child of Christmas').hidden=false;
+					G.getDict('snow').hidden=false;
+					G.getDict('festive light').hidden=false;
+					G.getDict('snowman').hidden=false;
+					G.getDict('christmas ornament').hidden=false;
+					G.getDict('christmas essence').hidden=false;
 	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
 		var yer=new Date();
 		var truY=yer.getFullYear();
@@ -2641,7 +2688,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
                 '<tt><div class="fancyText">You failed Faithful trial because you lost all Faith</tt>'+
         '<br>You have been kicked out of this plane.<br>'+
                 '<br><br>'+
-                'But you can try again, by reaching Pantheon again and choose Tu-ria</div><br>'+
+                'But you can try again, by reaching Pantheon again and choose Enlightened</div><br>'+
                 'Technical note: Start a new game , you know how.'+
             '</div></div>'
 })
@@ -3518,12 +3565,14 @@ G.writeMSettingButton=function(obj)
 				for (var ii in G.achievByTier[i])
 				{
 					var me=G.achievByTier[i][ii];
+					if(me.visible==true){
 					/*(G.achievByTier[i][ii].visible==true ? */str+='<div class="thingWrapper">'+
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
 					'</div>'/* : ".")*/;
+					}
 				}
 				
 				
@@ -3539,6 +3588,7 @@ G.writeMSettingButton=function(obj)
 					{
 						
 						var me=G.achievByTier[i][ii];
+						if(me.visible==true){
 						var div=l('achiev-'+me.id);
 						/*me.visible==true ? */
 						div.onclick=function(me,div){return function(){
@@ -3559,6 +3609,7 @@ G.writeMSettingButton=function(obj)
 							'</div>'+
 							G.debugInfo(me)
 						};}(me),{offY:8});
+						}
 					}
 				}
 			});
@@ -4052,6 +4103,11 @@ G.writeMSettingButton=function(obj)
 		],
 			civ:0
 	});
+	new G.Achiev({
+		icon:[1,0,'magixmod'],
+		name:'xmas buff',
+		visible:false //debug
+	});
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
@@ -4243,7 +4299,7 @@ G.writeMSettingButton=function(obj)
 				{
 					//drink water
 					var toConsume=0;
-					var weights={'baby':0.1,'child':0.3,'adult':0.5,'elder':0.5,'sick':0.4,'wounded':0.4,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
+					var weights={'baby':0.1,'child of Christmas':0.3,'child':0.3,'adult':0.5,'elder':0.5,'sick':0.4,'wounded':0.4,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
 					for (var i in weights)
 					{toConsume+=G.getRes(i).amount*weights[i];}
 					var rations=G.checkPolicy('water rations');
@@ -4265,7 +4321,7 @@ G.writeMSettingButton=function(obj)
 							var toDie=(lacking/5)*0.05;
 							if (G.year<1) toDie/=5;//less deaths in the first year
 							var died=0;
-							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
+							var weights={'baby':0.1,'child of Christmas':0.2,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
 							var sum=0;for (var i in weights){sum+=weights[i];}for (var i in weights){weights[i]/=sum;}//normalize
 							for (var i in weights){var ratio=(G.getRes(i).amount/me.amount);weights[i]=ratio+(1-ratio)*weights[i];}
 							for (var i in weights)
@@ -4283,7 +4339,7 @@ G.writeMSettingButton=function(obj)
 					var happinessAdd=0;
 					if (G.has('culture of moderation')) {consumeMult*=0.85;happinessAdd-=0.1;}
 					else if (G.has('joy of eating')) {consumeMult*=1.15;happinessAdd+=0.1;}
-					var weights={'baby':0.2,'child':0.5,'adult':1,'elder':1,'sick':0.75,'wounded':0.75,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
+					var weights={'baby':0.2,'child of Christmas':0.5,'child':0.5,'adult':1,'elder':1,'sick':0.75,'wounded':0.75,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};
 					for (var i in weights)
 					{toConsume+=G.getRes(i).amount*weights[i];}
 					var rations=G.checkPolicy('food rations');
@@ -4309,7 +4365,7 @@ G.writeMSettingButton=function(obj)
 							var toDie=(lacking/5)*0.05;
 							if (G.year<1) toDie/=5;//less deaths in the first year
 							var died=0;
-							var weights={'baby':0.1,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
+							var weights={'baby':0.1,'child of Christmas':0.2,'child':0.2,'adult':0.5,'elder':1,'sick':0.3,'wounded':0.3,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5,'drunk':0.4};//the elderly are the first to starve off
 							var sum=0;for (var i in weights){sum+=weights[i];}for (var i in weights){weights[i]/=sum;}//normalize
 							for (var i in weights){var ratio=(G.getRes(i).amount/me.amount);weights[i]=ratio+(1-ratio)*weights[i];}
 							for (var i in weights)
@@ -4425,7 +4481,7 @@ G.writeMSettingButton=function(obj)
 						if (me.amount<=15) toChange*=0.5;
 						if (G.checkPolicy('flower rituals')=='on') toChange*=0.8;
 						var changed=0;
-						var weights={'baby':2,'child':1.5,'adult':1,'elder':2};
+						var weights={'baby':2,'child of Christmas':1.5,'child':1.5,'adult':1,'elder':2};
 						if (G.checkPolicy('child workforce')=='on') weights['child']*=2;
 						if (G.checkPolicy('elder workforce')=='on') weights['elder']*=2;
 						if (G.year<5) weights['adult']=0;//adults don't fall sick the first 5 years
@@ -4456,7 +4512,7 @@ G.writeMSettingButton=function(obj)
 						if (G.year<5) toChange*=0.5;//less wounds the first 5 years
 						if (me.amount<=15) toChange*=0.5;
 						var changed=0;
-						var weights={'baby':2,'child':1.5,'adult':1,'elder':2,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5};
+						var weights={'baby':2,'child of Christmas':1.5,'child':1.5,'adult':1,'elder':2,'Child alchemist':0.3,'Alchemist':0.5,'Instructor':0.5};
 						if (G.checkPolicy('child workforce')=='on') weights['child']*=3;
 						if (G.checkPolicy('elder workforce')=='on') weights['elder']*=3;
 						if (G.year<5) weights['adult']=0;//adults don't get wounded the first 5 years
@@ -8437,6 +8493,9 @@ if (!document.getElementById(cssId))
 			G.getDict('succulents').res['gather']['herb']=3;
 			G.getDict('jungle fruits').res['gather']['herb']=1;
 			}
+			if(G.has('winter holidays')){
+			G.getDict('snow cover').res['dig']['snow']=1;
+			}
 			if(G.has('t10')){
 			G.getDict('grass').res['gather']['wooden coin']=0.2;
 			G.getDict('succulents').res['gather']['wooden coin']=0.1;
@@ -8487,6 +8546,7 @@ if (!document.getElementById(cssId))
 			G.getDict('Dark essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Dark essence storage')+3/15)),'glass':(30*(G.getUnitAmount('Dark essence storage')+1.15/15))};
 			G.getDict('Lightning essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Lightning essence storage')+3/15)),'glass':(30*(G.getUnitAmount('Lightning essence storage')+1.15/15))};
 			G.getDict('Holy essence storage').cost={'basic building materials':(15*(G.getUnitAmount('Holy essence storage')+3/15)),'glass':(30*(G.getUnitAmount('Holy essence storage')+1.15/15))};
+			G.getDict('christmas essence storage').cost={'basic building materials':(15*(G.getUnitAmount('christmas essence storage')+3/15)),'glass':(30*(G.getUnitAmount('christmas essence storage')+1.15/15))};
 			if(G.hasNot('t10')){G.getDict('precious metal ingot').partOf='misc materials'}//this resource will not decay during Pocket but normally without active trial will
 				if(G.checkPolicy('reset health level')=='activate'){  //hunted special policy
 				G.getDict('reset health level').cost={'land':1e5};G.getRes('health').amount=0; G.setPolicyModeByName('reset health level','alreadyused');
@@ -8622,7 +8682,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		new G.Res({
 		name:'Orange firework',
@@ -8634,7 +8694,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		
 		new G.Res({
@@ -8646,7 +8706,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		new G.Res({
 		name:'Dark Orange Firework',
@@ -8658,7 +8718,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		new G.Res({
 		name:'Firecracker',
@@ -8670,7 +8730,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		hidden:true,
+		//hidden:true,
 	});
 		new G.Res({
 		name:'corpsedecaypoint',
@@ -8986,6 +9046,85 @@ if (!document.getElementById(cssId))
 			}
 		},
 		});
+	new G.Res({
+		name:'snow',
+		desc:'Cold snow can be used to craft Snowmen, fun, snowball fights. The thing that children like mostly. Hire a [digger] to gather it.',
+		icon:[9,11,'seasonal'],
+		category:'seasonal',
+		hidden:true,
+		turnToByContext:{'Snow':{'health':-0.0005,'happiness':0.001}},
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.01;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
+		new G.Res({
+		name:'christmas essence',
+		desc:'Main of Christmas. Can be gathered from ways related to that festive. Has usages. Does not belong to [Magic essences] officialy until you\'ll unlock [sleep-speech] and [villas of victory].',
+		icon:[3,10,'seasonal'],
+		category:'seasonal',
+		hidden:true,
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.01;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+		limit:'christmas essence limit',
+		whenGathered:researchWhenGathered,
+	});
+	new G.Res({
+		name:'christmas essence limit',
+		icon:[8,12,3,10,'seasonal'],
+		hidden:true,
+	});
+	new G.Res({
+		name:'child of Christmas',
+		desc:'[child of Christmas,Children of Christmas] leave after many meetings from Lodge of Christmas. Some of them say they are elves, Claus\'s helpers and many more.//After a while, they will grow up into [adult,Adults].//Children drink and eat half as much as adults.//These children can work as [artisan of christmas] , can be hired to take care about [christmas essence storage], can craft gifts for people bringing [happiness]. @They are happy despite assigning them to work as long as their work is related to christmas.',
+		partOf:'population',
+		icon:[13,10,'seasonal'],
+		hidden:true,
+		displayUsed:true,
+		category:'demog'
+	});
+	new G.Res({
+		name:'christmas ornament',
+		desc:'Artisan of christmas can craft it. Used to decorate christmas trees, lamps and many more. On decay may provide some [christmas essence].',
+		icon:[choose([6,7]),10,'seasonal'],
+		category:'seasonal',
+		hidden:true,
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.01;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			if(G.getRes('christmas essence').amount < (G.getRes('christmas essence limit').amount-spent)){
+				
+			G.gain('christmas essence',randomFloor(toSpoil)/6,'festive ornament decay');
+			};
+		},
+	});
+		new G.Res({
+		name:'festive light',
+		desc:'Used to decor streets, houses, hovels and other buildings. Brings festivity to your civilization. On decay may provide some [christmas essence].',
+		icon:[choose([6,7]),11,'seasonal'],
+		category:'seasonal',
+		hidden:true,
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.007;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+			if(G.getRes('christmas essence').amount < (G.getRes('christmas essence limit').amount-spent)){
+			G.gain('christmas essence',randomFloor(toSpoil)/4,'festive light decor decay');
+			};
+		},
+	});
+		new G.Res({
+		name:'snowman',
+		desc:'Used to decor streets, houses, hovels and other buildings. Brings festivity to your civilization. On decay may provide some [christmas essence].',
+		icon:[12,10,'seasonal'],
+		category:'seasonal',
+		hidden:true,
+		tick:function(me,tick){
+			var toSpoil=me.amount*0.011;
+			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
@@ -9217,6 +9356,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.08,req:{'Motivation for artisans':true,'<font color="maroon">Moderation</font>':true}},
 			{type:'mult',value:1.04,req:{'Motivation for artisans':true,'<font color="maroon">Caretaking</font>':true}},
 			{type:'mult',value:1.03,req:{'Crafting & farm rituals':'on','power of the faith':true}},
+			{type:'mult',value:1.03,req:{'xmas1':true}},
 			{type:'mult',value:0.915,req:{'se09':'on'}},
 		],
 		req:{'stone-knapping':true,'t10':false},
@@ -9252,6 +9392,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.2,req:{'ground stone tools':true}},
 			{type:'mult',value:0.95,req:{'dt3':true}},
 			{type:'mult',value:1.03,req:{'Inspirated carvers':true,'<font color="maroon">Moderation</font>':true}},
+			{type:'mult',value:1.03,req:{'xmas4':true}},
 			{type:'mult',value:1.06,req:{'Inspirated carvers':true,'<font color="maroon">Caretaking</font>':true}},
 			////////////////////
 			//MOAI BOOSTS
@@ -9302,6 +9443,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'basic clothes':1,'Dyes':4},into:{'Colored clothing':1},every:6,mode:'dye already made clothing'},
 			{type:'convert',from:{'herb':18},into:{'Thread':3},every:6,mode:'Craft thread'},
 			{type:'convert',from:{'Dried leather':4,'Thread':7},into:{'hardened clothes':1},every:5,mode:'weave hardened clothes'},
+			{type:'mult',value:1.03,req:{'xmas2':true}},
 			],
 		req:{'sewing':true,'t10':false},
 		category:'crafting',
@@ -9427,7 +9569,8 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'clay':3,'fire pit':0.01},into:{'pot':1},every:3,repeat:2,mode:'clay pots'},
 			{type:'convert',from:{'mud':10,'fire pit':0.01},into:{'pot':1},every:6,mode:'mud pots'},
 			{type:'convert',from:{'clay':5,'mud':12,'fire pit':0.03},into:{'Precious pot':1},every:3,repeat:2,mode:'craft precious pots'},
-			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'}
+			{type:'convert',from:{'clay':4,'mud':11,'fire pit':0.025},into:{'Potion pot':1},every:3,repeat:1,mode:'craft potion pots'},
+			{type:'mult',value:1.03,req:{'xmas3':true}},
 		],
 		req:{'pottery':true,'t10':false},
 		category:'crafting',
@@ -12361,7 +12504,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'Orange firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true/*,'<span style="color: yellow">Culture of celebration</span>':false*/},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -12377,7 +12520,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'Dark Orange Firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true/*,'<span style="color: yellow">Culture of celebration</span>':false*/},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -12393,7 +12536,7 @@ new G.Unit({
 			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
 			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true,'<span style="color: yellow">Culture of celebration</span>':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true/*,'<span style="color: yellow">Culture of celebration</span>':false*/},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -12891,10 +13034,6 @@ new G.Unit({
 			{type:'convert',from:{'stick':1500},into:{'basket':150},every:10},
 			{type:'convert',from:{'lumber':30,'stone':300},into:{'Crossbow belt':500},every:13,chance:4/5},
 			{type:'convert',from:{'stick':300,'stone':200},into:{'Crossbow':55},every:11},
-			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
-			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
-			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
-			//{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
 		],
 	});
 	new G.Unit({
@@ -12912,11 +13051,67 @@ new G.Unit({
 			{type:'convert',from:{'stick':4750},into:{'basket':500},every:30},
 			{type:'convert',from:{'lumber':90,'stone':880},into:{'Crossbow belt':700},every:30},
 			{type:'convert',from:{'stick':1100,'stone':690},into:{'Crossbow':155},every:11},
-			//{type:'mult',value:0.5,req:{'Factory of pots production rates':0.5}},
-			//{type:'mult',value:1.5,req:{'Factory of pots production rates':1.5}},
-			//{type:'mult',value:2,req:{'Factory of pots production rates':2}},
-			//{type:'mult',value:1.25,req:{'God\'s trait #4 Potter\'s frenzy':true}},
 		],
+	});
+		new G.Unit({
+		name:'f.r.o.s.t.y',
+			displayName:'F.R.O.S.T.Y',
+		desc:'@From snowmen created by children extracts [christmas essence]. However there is a chance that the extraction will destroy the snowman. The faster [f.r.o.s.t.y] becomes the bigger chance for that is.//Powered by strange energies ,[snow] and by [Lightning essence]. //[f.r.o.s.t.y]\'s upkeep is only active during [the christmas]',
+		icon:[15,11,'seasonal'],
+		cost:{'strong metal ingot':100,'hard metal ingot':15,'precious metal ingot':2,'basic building materials':10,'Magic essences':5000,'platinum ore':10},
+		upkeep:{'snow':8,'Magic essences':15,'Lightning essence':5},
+		req:{'festive robot print':true,'tribalism':false},
+		limitPer:{'land':200000},//MAX 1
+		category:'seasonal',
+		effects:[
+			{type:'function',func:function(me){
+				if(day>=350 && day<=363){
+					if(G.getRes('snowman').amount>me.amount){
+						var chance=Math.random();
+						var bonus=0;
+						if(G.has('f.r.o.s.t.y overclock I') && bonus<0.05)bonus+=0.05;
+						if(G.has('f.r.o.s.t.y overclock II') && bonus<0.12)bonus+=0.07;
+						if(G.has('f.r.o.s.t.y overclock III') && bonus<0.22)bonus+=0.1;
+						G.gain('christmas essence',1*(bonus+1),'F.R.O.S.T.Y');
+						if(chance<=0.05+bonus){
+							G.lose('snowman',1*((bonus*1.1)+1),'failed essence extraction');	
+						}
+					}else{
+						G.getDict(me).upkeep={};
+					}
+					   }
+			},every:7},
+		],
+	});
+	new G.Unit({
+		name:'wonderful fortress of christmas',
+		desc:'Constucted in cold climates collosal, giant [wonderful fortress of christmas,Wonderful fortress of Christmas]. Taller and bigger than anything else giving its shadow of the festive to villages and cities all around. //Full of lights and ornaments so its mightiness is also the art of beauty. //This giant takes a lot of steps to be built and does not belong to cheapest wonders. //Merry Christmas!',
+		icon:[0,11,'seasonal'],
+		wonder:';',
+		steps:1200,
+		cost:{'basic building materials':3000,'christmas essence':10000},
+		costPerStep:{'christmas essence':4200,'Dyes':1500,'Mana':1400,'basic building materials':650,'precious building materials':150,'concrete':25,'gems':10,'christmas ornament':150,'festive light':80},
+		finalStepCost:{'christmas essence':40000,'Mana':1e5,'ice':7.5e4},
+		threexthreeIcon:[0,11,'seasonal'],
+		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
+		req:{'monument-building II':true,'f.r.o.s.t.y overclock II':true},
+		category:'seasonal',
+		priority:5,
+	});
+		new G.Unit({
+		name:'christmas essence storage',
+		desc:'@One storage allows you to store 11500 [christmas essence] more<>A simple glass shielded storage with essence faucet. It is more tall than wide so that is why it consumes only 0.8 [land].',
+		icon:[4,10,'seasonal'],
+		cost:{'basic building materials':(100*((G.getUnitAmount('christmas essence storage')+1)/10)),'glass':(200*((G.getUnitAmount('christmas essence storage')+1)/8))},
+		use:{'land':0.8},
+		effects:[
+			{type:'provide',what:{'christmas essence limit':11500}},
+			{type:'waste',chance:1/10000,req:{'construction III':false}},
+			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
+			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
+		],
+		req:{'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true},
+		category:'seasonal',
 	});
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -12925,6 +13120,7 @@ new G.Unit({
 		{id:'main',name:'General'},
 		{id:'misc',name:'Miscellaneous'},
 		{id:'knowledge',name:'Knowledge'},
+		{id:'seasonal',name:'<font color="fuschia">S e a s o n a l</font>'},
 		{id:'culture',name:'Cultural'},
 		{id:'religion',name:'Religious'},
 		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
@@ -14788,7 +14984,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'<span style="color: yellow">Culture of celebration</span>',
-		desc:'Unlocks seasonal content. <b><span style="color: aqua">Seasonal content is a content available for some time like Christmas content. Currently added events: Xmas, New year eve, halloween, Valentine day.</span></b>',
+		desc:'Unlocks seasonal content. <b><span style="color: aqua">Seasonal content is a content available for some time like Christmas content.</span></b>',
 		icon:[18,15,'magixmod'],
 		cost:{'insight':10,'culture':40},
 		chance:100,
@@ -15183,7 +15379,7 @@ autobuy(G.year)
 		desc:'@unlocks [Artisan of new year].',
 		icon:[0,0,'seasonal'],
 		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true},//switch to false after new year
 	});
 		new G.Tech({
 		name:'Firework launching',
@@ -17297,7 +17493,7 @@ new G.Tech({
 	//* * * * * CHRISTMAS TECHS/TRAITS * * * * *
 	new G.Tech({
 		name:'winter holidays',
-		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is.',
+		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is. //[digger]s will start digging for [snow] if available.',
 		icon:[1,10,'seasonal'],
 		cost:{'insight':210,'culture':45,'faith':5},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
@@ -17305,17 +17501,122 @@ new G.Tech({
 	new G.Tech({
 		name:'the christmas',
 		displayName:'<font color="cyan">The Christmas</font>',
-		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one',
+		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one. Unlocks Lodge of Christmas.',
 		icon:[2,10,'seasonal'],
 		cost:{'insight':400,'culture':100,'faith':32},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
 	});
 	new G.Tech({
 		name:'carols',
-		desc:'Christmas is a special time. Now people will sing/play not only normal songs but also they are no afraid to sing/play carols. //[musician] now crafts Christmas Essence',
+		desc:'Christmas is a special time. Now people will sing/play not only normal songs but also they are no afraid to sing/play carols. //[musician] now crafts [christmas essence]',
 		icon:[9,10,'seasonal'],
-		cost:{'insight II':20,'culture II':30},
+		cost:{'insight II':20,'culture II':30,'christmas essence':1020},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':false},
+	});
+
+	new G.Trait({
+        name:'xmas1',
+		displayName:'Christmas climate: Artisans',
+        icon:[10,11,'seasonal'],
+	effects:[
+	],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'xmas2',
+		displayName:'Christmas climate: Clothiers',
+        icon:[11,11,'seasonal'],
+	effects:[
+	],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'xmas3',
+		displayName:'Christmas climate: Potters',
+        icon:[12,11,'seasonal'],
+	effects:[
+	],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'xmas4',
+		displayName:'Christmas climate: Carving',
+        icon:[13,11,'seasonal'],
+	effects:[
+	],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Tech({
+		name:'snowmen',
+		desc:'Since [digger] can dig for snow and you can describe and be understood you can explain what is and how does snowman look like. //Gain [the christmas] so you will unlock Lodge of Christmas. @Unlocks a snowmen creator.',
+		icon:[10,10,'seasonal'],
+		cost:{'insight':95,'culture':50},
+		req:{'winter holidays':true},
+	});
+	new G.Tech({
+		name:'festive robot print',
+		desc:'A [festive robot print] may help you to gather [christmas essence] outta snowmen kids constructed. Works slowly and only one can be placed but later you will unlock magical overclocks. @However with each overclock a chance to lose a snowman upon [christmas essence,Essence] feed increase by some amount that its speed increases.',
+		icon:[14,11,'seasonal'],
+		cost:{'insight':1000,'wisdom':100},
+		req:{'the christmas':true,'snowmen':true},
+	});
+		new G.Tech({
+		name:'f.r.o.s.t.y overclock I',
+		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 25% faster</font> @<font color="red">[f.r.o.s.t.y] has 5% more chance to destroy a snowman</font>',
+		icon:[5,11,'seasonal'],
+		cost:{'insight':600,'culture':100,'influence':50,'christmas essence':114},
+		req:{'festive robot print':true,'Land acknowledge':true,'tribalism':false},
+	});
+	new G.Tech({
+		name:'f.r.o.s.t.y overclock II',
+		desc:'Wizards figured out how to overclock [f.r.o.s.t.y] even more than before. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. Also they know from previous experiences that the faster he is the bigger "snowman destruction" it causes... <br>but this overclock increases the chance for that at least as for now it is possible. @<font color="green">[f.r.o.s.t.y] is 25% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 7% more chance to destroy a snowman</font>',
+		icon:[4,11,'seasonal'],
+		cost:{'insight II':110,'culture II':20,'influence II':5,'science':5,'christmas essence':546},
+		req:{'festive robot print':true,'Policy revaluation':true,'f.r.o.s.t.y overclock I':true},
+	});
+	new G.Tech({
+		name:'f.r.o.s.t.y overclock III',
+		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 45% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 10% more chance to destroy a snowman</font>',
+		icon:[3,11,'seasonal'],
+		cost:{'insight II':400,'science':45},
+		req:{'festive robot print':true,'Bigger university':true,'f.r.o.s.t.y overclock II':true,'dynamics II':true},
+	});
+	new G.Tech({
+		name:'festive lights',
+		desc:'Artisan of christmas can now craft festive lights. Let the streets be even nicer. Obtaining [Mo\' beauty] doubles happiness income from lights but also they are used 50% more.',
+		icon:[18,11,'seasonal'],
+		cost:{'insight':800,'christmas essence':593},
+		req:{'festive robot print':true,'Laws of physics(basic)':true,'dynamics':true},
+	});
+	new G.Tech({
+		name:'festive lights II',
+		desc:'Lights bring more happiness. Are used even more.',
+		icon:[16,11,'seasonal'],
+		cost:{'insight II':200,'insight':100,'science':5},
+		req:{'Outstanding wisdom':true,'the christmas':true,'festive lights':true},
+	});
+	new G.Trait({
+		name:'punish the grinch!',
+		desc:'If available, [population,people] use [stone,rocks] covered with [snow] to punish bad guys who try to destroy christmas such like rude [thief,Thieves], brutal [wild corpse]s. Works only during christmas',
+		icon:[17,11,'seasonal'],
+		cost:{'culture':300,'influence':50,'faith':25,'insight':100},
+		req:{'Battling thieves':true,'the christmas':true},
+		effects:[
+			 {type:'function',func:function(){
+				if(day>=350 && day<=363){
+			 		if(G.getRes('snow').amount>=12 && G.getRes('stone').amount>=4){
+						G.lose('snow',12,'winter punishment');G.lose('stone',4,'winter punishment');G.lose('thief',1,'winter punishment');
+						G.gain('wounded',1,'thief punished');G.lose('wild corpse',1,'winter punishment');G.gain('slain corpse',1);
+					}
+				}
+			 }}
+			],
+		chance:60,
+		category:'seasonal'
 	});
 	/*=====================================================================================
 	POLICIES
