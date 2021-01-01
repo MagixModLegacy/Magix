@@ -697,7 +697,7 @@ func:function(){
 	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
 	/////////
 
-	if (day>=290 && day<=306){
+	if (day+leap>=289 && day+leap<=305){
 		var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -710,7 +710,7 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
-	}else if(day>=350 && day<=363){var cssId = 'betaCss'; 
+	}else if(day+leap>=349 && day+leap<=362){var cssId = 'betaCss'; 
  (!document.getElementById(cssId))
 {
     var head  = document.getElementsByTagName('head')[0];
@@ -1944,7 +1944,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				 console.log('I am sorry but Extra Ores is a mod dedicated to data.js not Magix.');
 				console.log('But content from this mod you tried to install is available there. Just unlock it sometime.');
 		}
-				if (day>=350 && day<=363){
+				if (day+leap>=349 && day+leap<=362){
 			G.getDict('scouting').icon=[8,10,'seasonal'];
 			G.getDict('cities').icon=[16,10,'seasonal'];
 			G.getDict('sedentism').icon=[18,10,'seasonal'];
@@ -2313,11 +2313,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getRes('paradise portal point').amount=1;
 		}
 		var timeOffline=Math.max(0,(Date.now()-G.lastDate)/1000);
-		if (day>=290 && day<=306){
+		if (day+leap>=289 && day+leap<=305){
 			G.middleText('<big><font color="orange">Happy Halloween!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play()};
-		if (day>=350 && day<=363){
+		if (day+leap>=349 && day+leap<=362){
 			G.getDict('scouting').icon=[8,10,'seasonal'];
 			G.getDict('cities').icon=[16,10,'seasonal'];
 			G.getDict('sedentism').icon=[18,10,'seasonal'];
@@ -2338,12 +2338,35 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('snowman').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('christmas essence').hidden=false;
-	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
-		var yer=new Date();
+	};var yer=new Date();
+		//SEASONAL GREETINGS. Depends on day of the year.
+		if ((day>=365 && day<=366) || (day>0 && day<=2)){
+		
 		var truY=yer.getFullYear();
 			if (day>=365 && day<=366)G.middleText('<big><font color="pink">Happy '+(truY+1)+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
-			if (day>=0 && day<=2)G.middleText('<big><font color="pink">Happy '+truY+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+			if (day>0 && day<=2)G.middleText('<big><font color="pink">Happy '+truY+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 	};
+		if (yer.getMonth()==6 && yer.getDate()>=14 && yer.getDate()<=20){ //Magix anniversary week
+		G.middleText('<big><font color="olive">Magix turns '+(yer.getFullYear()-2019)+'</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br> Thanks for playing this neat mod ~ pelletsstarPL. <font color="aqua">It really motivates for further updates. Keep playing.</font></small></font>','slow');
+	};
+		if (day>=easterDay-7 && day<=easterDay){ //EASTER
+			G.middleText('<big><font color="green">Happy Easter!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away. Easter bunny does a sniff,sniff</small></font>','slow');
+		};
+		if (yer.getMonth()==9 && yer.getDate()==9){ //MOD CREATOR's birthday
+		G.middleText('<big>Today Magix creator has its birthday.</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
+	};
+		if (yer.getMonth()==2 && yer.getDate()==8){ //Females/Ladies day greeting
+		G.middleText('<big>Today is Female\'s day.</big><br><small>Make sure you will greet some lady nicely today and not only today :)<br>- Welcome back -<br>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
+	};
+		if (yer.getMonth()==2 && yer.getDate()==8){ //Males/Gentlemen day greeting
+		G.middleText('<big>Today is Male\'s day.</big><br><small>Yeah boiii<br>- Welcome back -<br>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
+	};
+		if(yer.getMonth()==3 && yer.getDate()==1){ //fools, maybe, maybe not, rather not
+		G.middleText('-kcab emoclew,dooG -<br><small>Yo accmlatd '+B(timeOffline)+' fast ticks whil yo wr away.<br><font color="lime">My two kys on my kyboard got brokn, so that is th ffct.</font></small>','slow');	
+		};
+		if (day>=41 && day<=46){  //valentines
+		G.middleText('<font color="pink">-Love is in the air -<br>-Welcome back- <br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');		
+		};
 		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
 					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
         				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
@@ -2354,7 +2377,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if (G.on)
 		{
 			var txt = ''+G.year+'';
-			if(day>=290 && day<=306){G.getDict('population').icon=[0,7,'seasonal'];
+			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
 		G.getDict('worker').icon=[1,7,'seasonal'];
 		G.getDict('child').icon=[2,7,'seasonal'];
 		G.getDict('adult').icon=[3,7,'seasonal'];
