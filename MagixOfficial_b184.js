@@ -689,11 +689,15 @@ func:function(){
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 	
-	///FOR SEASONAL CONTENT
-	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));	
+	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
+	var year=new Date().getFullYear();
+	var leap=(((year%4==0)&&(year%100!=0))||(year%400==0))?1:0;
+	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
+	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(year);
+	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
 	/////////
 
-	if (day>=290 && day<=306){
+	if (day+leap>=289 && day+leap<=305){
 		var cssId = 'betaCss'; 
 if (!document.getElementById(cssId))
 {
@@ -706,7 +710,7 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
-	}else if(day>=350 && day<=363){var cssId = 'betaCss'; 
+	}else if(day+leap>=349 && day+leap<=362){var cssId = 'betaCss'; 
  (!document.getElementById(cssId))
 {
     var head  = document.getElementsByTagName('head')[0];
@@ -1940,7 +1944,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				 console.log('I am sorry but Extra Ores is a mod dedicated to data.js not Magix.');
 				console.log('But content from this mod you tried to install is available there. Just unlock it sometime.');
 		}
-				if (day>=350 && day<=363){
+				if (day+leap>=349 && day+leap<=362){
 			G.getDict('scouting').icon=[8,10,'seasonal'];
 			G.getDict('cities').icon=[16,10,'seasonal'];
 			G.getDict('sedentism').icon=[18,10,'seasonal'];
@@ -1954,10 +1958,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
 					G.getAchiev('xmas buff').won=3;
-					G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
-					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
-        				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
-					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
@@ -1971,10 +1972,21 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		else{
 			G.getAchiev('xmas buff').won--;
 		}
-		if(G.getAchiev('xmas buff').won>0){
+		if(G.getAchiev('xmas buff').won>=0){
 			var buff=Math.round(Math.random()*3)+1;
 			G.gainTrait(G.traitByName['xmas'+buff+'']);
 		}
+		if ((day>=365 && day<=366) || (day>0 && day<=2)){
+			//also not only greetings but also some content unlocks
+			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
+			G.getDict('Firework crafting').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true};
+			G.getDict('Firework launching').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':true};
+			G.getDict('Dark essence fireworks').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
+	};
+		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
+					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+        				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 }
 	G.funcs['game over']=function()
 	{
@@ -2308,11 +2320,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getRes('paradise portal point').amount=1;
 		}
 		var timeOffline=Math.max(0,(Date.now()-G.lastDate)/1000);
-		if (day>=290 && day<=306){
+		if (day+leap>=289 && day+leap<=305){
 			G.middleText('<big><font color="orange">Happy Halloween!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 		var audi = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/halloweenGreeting.mp3');
 		audi.play()};
-		if (day>=350 && day<=363){
+		if (day+leap>=349 && day+leap<=362){
 			G.getDict('scouting').icon=[8,10,'seasonal'];
 			G.getDict('cities').icon=[16,10,'seasonal'];
 			G.getDict('sedentism').icon=[18,10,'seasonal'];
@@ -2325,10 +2337,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
-					G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
-					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
-        				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
-					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> runs/legacies, your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('snow').hidden=false;
@@ -2336,19 +2345,50 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('snowman').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('christmas essence').hidden=false;
-	};if ((day>=365 && day<=366) || (day>=0 && day<=2)){
-		var yer=new Date();
+	};var yer=new Date();
+		//SEASONALs
+		if ((day>=365 && day<=366) || (day>0 && day<=2)){
+			//also not only greetings but also some content unlocks
+			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
+			G.getDict('Firework crafting').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true};
+			G.getDict('Firework launching').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':true};
+			G.getDict('Dark essence fireworks').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 		var truY=yer.getFullYear();
 			if (day>=365 && day<=366)G.middleText('<big><font color="pink">Happy '+(truY+1)+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
-			if (day>=0 && day<=2)G.middleText('<big><font color="pink">Happy '+truY+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
+			if (day>0 && day<=2)G.middleText('<big><font color="pink">Happy '+truY+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 	};
+		if (yer.getMonth()==6 && yer.getDate()>=14 && yer.getDate()<=20){ //Magix anniversary week
+		G.middleText('<big><font color="olive">Magix turns '+(yer.getFullYear()-2019)+'</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br> Thanks for playing this neat mod ~ pelletsstarPL. <font color="aqua">It really motivates for further updates. Keep playing.</font></small></font>','slow');
+	};
+		if (day>=easterDay-7 && day<=easterDay){ //EASTER
+			G.middleText('<big><font color="green">Happy Easter!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away. Easter bunny does a sniff,sniff</small></font>','slow');
+		};
+		if (yer.getMonth()==9 && yer.getDate()==9){ //MOD CREATOR's birthday
+		G.middleText('<big>Today Magix creator has its birthday.</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
+	};
+		if (yer.getMonth()==2 && yer.getDate()==8){ //Females/Ladies day greeting
+		G.middleText('<big>Today is Female\'s day.</big><br><small>Make sure you will greet some lady nicely today and not only today :)<br>- Welcome back -<br>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
+	};
+		if (yer.getMonth()==2 && yer.getDate()==8){ //Males/Gentlemen day greeting
+		G.middleText('<big>Today is Male\'s day.</big><br><small>Yeah boiii<br>- Welcome back -<br>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
+	};
+		if(yer.getMonth()==3 && yer.getDate()==1){ //fools, maybe, maybe not, rather not
+		G.middleText('-kcab emoclew,dooG -<br><small>Yo accmlatd '+B(timeOffline)+' fast ticks whil yo wr away.<br><font color="lime">My two kys on my kyboard got brokn, so that is th ffct.</font></small>','slow');	
+		};
+		if (day>=41 && day<=46){  //valentines
+		G.middleText('<font color="pink">-Love is in the air -<br>-Welcome back- <br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');		
+		};
+		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
+					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+        				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 	}
 	G.funcs['new year']=function()
 	{
 		if (G.on)
 		{
 			var txt = ''+G.year+'';
-			if(day>=290 && day<=306){G.getDict('population').icon=[0,7,'seasonal'];
+			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
 		G.getDict('worker').icon=[1,7,'seasonal'];
 		G.getDict('child').icon=[2,7,'seasonal'];
 		G.getDict('adult').icon=[3,7,'seasonal'];
@@ -15379,21 +15419,21 @@ autobuy(G.year)
 		desc:'@unlocks [Artisan of new year].',
 		icon:[0,0,'seasonal'],
 		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true},//switch to false after new year
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},//switch to false after new year
 	});
 		new G.Tech({
 		name:'Firework launching',
 		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
 		icon:[17,0,'seasonal'],
 		cost:{'insight':70},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':false},
 	});
 		new G.Tech({
 		name:'Dark essenced fireworks',
 		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
 		icon:[16,0,'seasonal'],
 		cost:{'insight':400},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':false},
 	});
 	//Special techs from achievements and their functions
 	/*============================================================================================
