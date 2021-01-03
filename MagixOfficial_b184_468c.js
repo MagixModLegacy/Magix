@@ -1976,6 +1976,13 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var buff=Math.round(Math.random()*3)+1;
 			G.gainTrait(G.traitByName['xmas'+buff+'']);
 		}
+		if ((day>=365 && day<=366) || (day>0 && day<=2)){
+			//also not only greetings but also some content unlocks
+			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
+			G.getDict('Firework crafting').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true};
+			G.getDict('Firework launching').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':true};
+			G.getDict('Dark essence fireworks').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
+	};
 		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
 					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
         				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
@@ -2339,9 +2346,13 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('christmas essence').hidden=false;
 	};var yer=new Date();
-		//SEASONAL GREETINGS. Depends on day of the year.
+		//SEASONALs
 		if ((day>=365 && day<=366) || (day>0 && day<=2)){
-		
+			//also not only greetings but also some content unlocks
+			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
+			G.getDict('Firework crafting').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true};
+			G.getDict('Firework launching').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':true};
+			G.getDict('Dark essence fireworks').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 		var truY=yer.getFullYear();
 			if (day>=365 && day<=366)G.middleText('<big><font color="pink">Happy '+(truY+1)+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 			if (day>0 && day<=2)G.middleText('<big><font color="pink">Happy '+truY+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
@@ -15408,21 +15419,21 @@ autobuy(G.year)
 		desc:'@unlocks [Artisan of new year].',
 		icon:[0,0,'seasonal'],
 		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true},//switch to false after new year
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},//switch to false after new year
 	});
 		new G.Tech({
 		name:'Firework launching',
 		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
 		icon:[17,0,'seasonal'],
 		cost:{'insight':70},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':false},
 	});
 		new G.Tech({
 		name:'Dark essenced fireworks',
 		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
 		icon:[16,0,'seasonal'],
 		cost:{'insight':400},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true},
+		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':false},
 	});
 	//Special techs from achievements and their functions
 	/*============================================================================================
