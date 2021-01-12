@@ -1247,7 +1247,72 @@ G.setPolicyMode=function(me,mode)
 		}
 	}
 	var ca=1;var cb=2;
+	var pa=1;var pb=2; //policies unlockable. without this trait you can;t see policies
 	var faicost; var inscost;
+	/////////////MODYFYING POLCIIES TAB
+	G.update['policy']=function()
+	{
+	if(pb>pa){
+		var str='';
+		str+=
+			'<div class="regularWrapper">'+
+			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Policies help you regulate various aspects of the life of your citizens.</div><div class="par">Some policies provide multiple modes of operation while others are simple on/off switches.</div><div class="par">Changing policies usually costs influence points and, depending on how drastic or generous the change is, may have an impact on your people\'s morale.</div></div>','infoButton')+
+			'<div class="fullCenteredOuter"><div id="policyBox" class="thingBox fullCenteredInner"></div></div></div>';
+		l('policyDiv').innerHTML=str;
+		
+		var strByCat=[];
+		var len=G.policyCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			strByCat[G.policyCategories[iC].id]='';
+		}
+		var len=G.policy.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.policy[i];
+			if (me.visible && (me.category!='debug' || G.getSetting('debug')))
+			{
+				var str='';
+				var disabled='';
+				if (me.binary && me.mode.id=='off') disabled=' off';
+				str+='<div class="policy thing'+(me.binary?'':' expands')+' wide1'+disabled+'" id="policy-'+me.id+'">'+
+					G.getIconStr(me,'policy-icon-'+me.id)+
+					'<div class="overlay" id="policy-over-'+me.id+'"></div>'+
+				'</div>';
+				strByCat[me.category]+=str;
+			}
+		}
+		
+		var str='';
+		var len=G.policyCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			if (strByCat[G.policyCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="policy-catName-'+iC+'">'+G.policyCategories[iC].name+'</div>'+strByCat[G.policyCategories[iC].id]+'</div>';
+		}
+		l('policyBox').innerHTML=str;
+		
+		G.addCallbacks();
+		
+		var len=G.policy.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.policy[i];
+			if (me.visible)
+			{
+				var div=l('policy-'+me.id);if (div) me.l=div; else me.l=0;
+				var div=l('policy-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
+				var div=l('policy-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
+				G.addTooltip(me.l,function(what){return function(){return G.getPolicyTooltip(what)};}(me),{offY:-8});
+				if (me.l) {me.l.onclick=function(what){return function(){G.clickPolicy(what);};}(me);}
+				if (me.l && !me.binary) {var div=me.l;div.onmousedown=function(policy,div){return function(){G.selectModeForPolicy(policy,div);};}(me,div);}
+			}
+		}
+	}else{
+		var str='';
+		str+='<div class="fancyText bitBiggerText">Your civilization does not have any traits yet.<br>It may develop some over time.</div>';
+	}
+		G.draw['policy']();
+	}
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
@@ -17658,6 +17723,18 @@ new G.Tech({
 			],
 		chance:60,
 		category:'seasonal'
+	});
+	
+	new G.Trait({
+		name:'policies',
+		displayName:'<font color="fuschia">policies</font>',
+		desc:'@Now you can spend your [influence] in <b>Policies</b> tab. @Unlocks policies, one of main part of your civilization. @Learn more about Policies in its own tab.',
+		icon:[34,13,'magixmod'],
+		chance:0.23,//quick unlock
+		effects:[
+		 {type:'function',func:function(){pb=2;pa=1}},
+		],
+		req:{'tribalism':true},
 	});
 	/*=====================================================================================
 	POLICIES
