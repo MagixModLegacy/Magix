@@ -1252,7 +1252,7 @@ G.setPolicyMode=function(me,mode)
 	/////////////MODYFYING POLCIIES TAB
 	G.update['policy']=function()
 	{
-	if(pb>pa){
+	if(pa>pb){
 		var str='';
 		str+=
 			'<div class="regularWrapper">'+
@@ -17727,10 +17727,10 @@ new G.Tech({
 	
 	new G.Trait({
 		name:'policies',
-		displayName:'<font color="fuschia">policies</font>',
+		displayName:'<font color="fuschia">Policies</font>',
 		desc:'@Now you can spend your [influence] in <b>Policies</b> tab. @Unlocks policies, one of main part of your civilization. @Learn more about Policies in its own tab.',
 		icon:[34,13,'magixmod'],
-		chance:0.23,//quick unlock
+		chance:1.2,
 		effects:[
 		 {type:'function',func:function(){pb=2;pa=1}},
 		],
