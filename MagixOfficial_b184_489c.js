@@ -1249,7 +1249,7 @@ G.setPolicyMode=function(me,mode)
 	}
 	var ca=1;var cb=2;
 	var pa=1;var pb=2; //policies unlockable. without this trait you can;t see policies
-	var unlockFast=0;
+	
 	var faicost; var inscost;
 	/////////////MODYFYING POLCIIES TAB
 	G.update['policy']=function()
@@ -1316,49 +1316,7 @@ G.setPolicyMode=function(me,mode)
 	}
 		G.draw['policy']();
 	}
-	////Unlock fast forward after first 5 mins of the run(equal time to 1 year)
-	G.createTopInterface=function()
-	{
-		var str=''+
-		'<div class="flourishL"></div><div class="framed fancyText bgMid" style="display:inline-block;padding:8px 12px;font-weight:bold;font-size:18px;font-variant:small-caps;" id="date">;-;</div><div class="flourishR"></div><br>'+
-		'<div class="flourish2L"></div>'+
-		'<div id="fastTicks" class="framed" style="display:inline-block;padding-left:8px;padding-right:8px;font-weight:bold;">0</div>'+
-		G.button({id:'pauseButton',
-			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) 0px 0px;"></div>',
-			tooltip:'Time will be stopped.<br>Generates fast ticks.',
-			onclick:function(){G.setSetting('paused',1);}
-		})+
-		G.button({id:'playButton',
-			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -11px 0px;"></div>',
-			tooltip:'Time will pass by normally - 1 day every second.',
-			onclick:function(){G.setSetting('paused',0);G.setSetting('fast',0);}
-		})+
-		(unlockFast>0 ? G.button({id:'fastButton',
-			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
-			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active. <br>Unlocked after first few whiles since run started.',
-			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
-		}) : '.' )+
-		    
-		'<div class="flourish2R"></div>';
-		
-		l('topInterface').innerHTML=str;
-		
-		G.addTooltip(l('date'),function(){return '<div class="barred">Date</div><div class="par">This is the current date in your civilization.<br>One day elapses every second, and 300 days make up a year.</div>';},{offY:-8});
-		G.addTooltip(l('fastTicks'),function(){return '<div class="barred">Fast ticks</div><div class="par">This is how many ingame days you can run at fast speed.</div><div class="par">You gain a fast tick for every second you\'re paused or offline.</div><div class="par">You also gain fast ticks everytime you research a technology.</div><div class="divider"></div><div class="par">You currently have <b>'+BT(G.fastTicks)+'</b> of game time saved up,<br>which will execute in <b>'+BT(G.fastTicks/30)+'</b> at fast speed,<br>advancing your civilization by <b>'+G.BT(G.fastTicks)+'</b>.</div>';},{offY:-8});
-		
-		l('fastTicks').onclick=function(e)
-		{
-			if (G.getSetting('debug'))
-			{
-				//debug : gain fast ticks
-				G.fastTicks+=10*G.getBuyAmount();
-				G.fastTicks=Math.max(0,G.fastTicks);
-			}
-		};
-		
-		G.addCallbacks();
-		G.updateSpeedButtons();
-	}
+	
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
@@ -2112,7 +2070,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	}
 	G.funcs['game loaded']=function()
 	{
-		unlockFast=G.year;
+		
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
@@ -2500,7 +2458,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		if (G.on)
 		{
-			unlockFast=G.year;
+			
 			var txt = ''+G.year+'';
 			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
 		G.getDict('worker').icon=[1,7,'seasonal'];
