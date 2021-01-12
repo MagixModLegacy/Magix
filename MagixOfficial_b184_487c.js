@@ -1249,6 +1249,7 @@ G.setPolicyMode=function(me,mode)
 	}
 	var ca=1;var cb=2;
 	var pa=1;var pb=2; //policies unlockable. without this trait you can;t see policies
+	var unlockFast=0;
 	var faicost; var inscost;
 	/////////////MODYFYING POLCIIES TAB
 	G.update['policy']=function()
@@ -1332,11 +1333,11 @@ G.setPolicyMode=function(me,mode)
 			tooltip:'Time will pass by normally - 1 day every second.',
 			onclick:function(){G.setSetting('paused',0);G.setSetting('fast',0);}
 		})+
-		setTimeout(function(){G.button({id:'fastButton',
+		(unlockFast>0 ? G.button({id:'fastButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
 			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active. <br>Unlocked after first few whiles since run started.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
-		})},300000)+
+		}) : '' )+
 		    
 		'<div class="flourish2R"></div>';
 		
@@ -2111,6 +2112,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	}
 	G.funcs['game loaded']=function()
 	{
+		unlockFast=G.year;
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
@@ -2498,6 +2500,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		if (G.on)
 		{
+			unlockFast=G.year;
 			var txt = ''+G.year+'';
 			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
 		G.getDict('worker').icon=[1,7,'seasonal'];
