@@ -17732,7 +17732,7 @@ new G.Tech({
 		icon:[34,13,'magixmod'],
 		chance:1.2,
 		effects:[
-		 {type:'function',func:function(){pb=2;pa=1}},
+		 {type:'function',func:function(){pb=1;pa=2}},
 		],
 		req:{'tribalism':true},
 	});
