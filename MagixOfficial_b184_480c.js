@@ -1309,7 +1309,7 @@ G.setPolicyMode=function(me,mode)
 		}
 	}else{
 		var str='';
-		str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:200px;"><div class="barred fancyText">Known technologies :</div></div><div id="techBox" class="thingBox"></div></div></div></div>';
+		str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:200px;"><div class="barred fancyText"><big>Get <font color="fuschia">Policies</font> trait to unlock content of this tab<br><li>Policies are one of main aspects of ruling the tribe</li><br>So... get this trait to learn even more about them :)</big></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
 		l('policyDiv').innerHTML=str;
 	}
 		G.draw['policy']();
