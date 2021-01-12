@@ -1309,7 +1309,7 @@ G.setPolicyMode=function(me,mode)
 		}
 	}else{
 		var str='';
-		'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:200px;"><div class="barred fancyText">Known technologies :</div></div><div id="techBox" class="thingBox"></div></div></div></div>'+
+		str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:200px;"><div class="barred fancyText">Known technologies :</div></div><div id="techBox" class="thingBox"></div></div></div></div>'+
 		l('policyDiv').innerHTML=str;
 	}
 		G.draw['policy']();
