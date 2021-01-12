@@ -2473,11 +2473,13 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			tooltip:'Time will pass by normally - 1 day every second.',
 			onclick:function(){G.setSetting('paused',0);G.setSetting('fast',0);}
 		})+
-		(G.year>=1 ? G.button({id:'fastButton',
+		    if(G.year>=1){
+		G.button({id:'fastButton',
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
 			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active. <br>Unlocked after first few whiles since run started.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
-		}) : '')+
+		})+
+		    };
 		'<div class="flourish2R"></div>';
 		
 		l('topInterface').innerHTML=str;
