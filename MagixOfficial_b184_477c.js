@@ -1309,10 +1309,7 @@ G.setPolicyMode=function(me,mode)
 		}
 	}else{
 		var str='';
-		str+='<div class="fancyText bitBiggerText">Your civilization does not have any traits yet.<br>It may develop some over time.</div>';
-		'<div class="regularWrapper">'+
-			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Policies help you regulate various aspects of the life of your citizens.</div><div class="par">Some policies provide multiple modes of operation while others are simple on/off switches.</div><div class="par">Changing policies usually costs influence points and, depending on how drastic or generous the change is, may have an impact on your people\'s morale.</div></div>','infoButton')+
-			'<div class="fullCenteredOuter"><div id="policyBox" class="thingBox fullCenteredInner"></div></div></div>';
+		'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:200px;"><div class="barred fancyText">Known technologies :</div></div><div id="techBox" class="thingBox"></div></div></div></div>'+
 		l('policyDiv').innerHTML=str;
 	}
 		G.draw['policy']();
