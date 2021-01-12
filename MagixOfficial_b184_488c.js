@@ -1337,7 +1337,7 @@ G.setPolicyMode=function(me,mode)
 			text:'<div class="image" style="width:9px;background:url(img/playButtons.png) -21px 0px;"></div>',
 			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active. <br>Unlocked after first few whiles since run started.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}}
-		}) : '' )+
+		}) : '.' )+
 		    
 		'<div class="flourish2R"></div>';
 		
