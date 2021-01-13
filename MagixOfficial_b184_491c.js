@@ -880,6 +880,7 @@ if (!document.getElementById(cssId))
 	//only pasted to update a tooltip due to tile exploring tech
 	G.update['land']=function()
 	{
+		if(la>lb){
 		var str='';
 		str+=G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">This is your territory. While you only start with a small tile of land, there is a whole map for you to explore if you have units with that ability.</div><div class="par">Each tile you control adds to the natural resources available for your units to gather. You get more resources from fully-explored tiles than from tiles you\'ve just encountered.</div><div class="par">If you unlocked <b>Tile inspection</b> you can by clicking on an explored tile on the map to the right to see what goods can be found in it, and how those goods contribute to your natural resources.</div></div>','infoButton');
 		str+='<div id="landBox">';
@@ -939,7 +940,11 @@ if (!document.getElementById(cssId))
 		G.addCallbacks();
 		
 		if (G.inspectingTile) G.inspectTile(G.inspectingTile);
-		
+		}else{
+			var str='';
+			str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><div class="barred fancyText"><font size="4">Get <font color="#7f7fff">Where am I?</font> trait to unlock content of this tab<br><li>There you\'ll see informations about land your tribe settled</li><li>Not only that. You\'ll also see which goods you can find at these lands</li><br><br><u>"The world is a book and those who don\'t travel read only one page"</u> ~ Saint Augustine</font></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
+			l('landDiv').innerHTML=str;
+		}
 		G.draw['land']();
 	}
 G.setPolicyMode=function(me,mode)
