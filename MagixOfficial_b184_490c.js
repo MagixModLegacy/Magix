@@ -876,6 +876,7 @@ if (!document.getElementById(cssId))
 		}
 		}//if bracket //Math.seedrandom();
 	}
+	var la=1;var lb=2; //land unlockable. without this trait you can;t see policies
 	//only pasted to update a tooltip due to tile exploring tech
 	G.update['land']=function()
 	{
@@ -1249,7 +1250,7 @@ G.setPolicyMode=function(me,mode)
 	}
 	var ca=1;var cb=2;
 	var pa=1;var pb=2; //policies unlockable. without this trait you can;t see policies
-	
+		
 	var faicost; var inscost;
 	/////////////MODYFYING POLCIIES TAB
 	G.update['policy']=function()
@@ -17736,11 +17737,22 @@ new G.Tech({
 		displayName:'<font color="fuschia">Policies</font>',
 		desc:'@Now you can spend your [influence] in <b>Policies</b> tab. @Unlocks policies, one of main part of your civilization. @Learn more about Policies in its own tab.',
 		icon:[34,13,'magixmod'],
-		chance:1.2,
+		chance:1.1,
 		effects:[
 		 {type:'function',func:function(){pb=1;pa=2}},
 		],
 		req:{'tribalism':true},
+	});
+	new G.Trait({
+		name:'where am i?',
+		displayName:'<font color="#7f7fff">Where am I?</font>',
+		desc:'@Unlocks primary informations about your small but still world, one of main part of your civilization. @Click <b>Territory</b> tab to see what goods you can gain from the territory and where your tribe has settled.',
+		icon:[choose([34,35]),choose([11,12]),'magixmod'],
+		chance:1.11,
+		effects:[
+		 {type:'function',func:function(){lb=1;la=2}},
+		],
+		req:{'tribalism':true,'policies':true},
 	});
 	/*=====================================================================================
 	POLICIES
