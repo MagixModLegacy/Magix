@@ -959,7 +959,10 @@ if (!document.getElementById(cssId))
 				});
 			}
 		};}(div);
-	};
+	}else{
+		var str='.';
+		l('mapSection').innerHTML=str;
+	}
 	}
 	G.update['land']=function()
 	{
