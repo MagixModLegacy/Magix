@@ -3321,8 +3321,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.has('t11')){ca=2 ; cb=1;};
 		faicost=1*(G.getRes("New world point").amount/6)*((G.achievByName['Faithful'].won/2)+1);
 		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
-		if(G.has('where am i?')){G.showMap();}else{G.hideMap();};
-		
 	}
 	
 	G.funcs['tracked stat str c1']=function()
