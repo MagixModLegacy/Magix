@@ -966,7 +966,7 @@ if (!document.getElementById(cssId))
 		}else{
 			
 			var str='';
-			str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><div class="barred fancyText"><font size="4">Get <font color="#7f7fff">Where am I?</font> trait to unlock content of this tab<br><li>There you\'ll see informations about land your tribe settled</li><li>Not only that. You\'ll also see which goods you can find at these lands</li><br><br><u>"The world is a book and those who don\'t travel read only one page"</u> ~ Saint Augustine</font></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
+			str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><font size="4">Get <font color="#7f7fff">Where am I?</font> trait to unlock content of this tab<br><li>There you\'ll see informations about land your tribe settled</li><br><li>Not only that. You\'ll also see which goods you can find at these lands</li><br><br><u>"The world is a book and those who don\'t travel read only one page"</u> ~ Saint Augustine</font></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
 			l('landDiv').innerHTML=str;
 			
 		
@@ -1344,7 +1344,7 @@ G.setPolicyMode=function(me,mode)
 		}
 	}else{
 		var str='';
-		str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><div class="barred fancyText"><font size="4">Get <font color="fuschia">Policies</font> trait to unlock content of this tab<br><li>Policies are one of main aspects of ruling the tribe</li><br>So... get this trait to learn even more about them :)</font></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
+		str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><font size="4">Get <font color="fuschia">Policies</font> trait to unlock content of this tab<br><li>Policies are one of main aspects of ruling the tribe</li><br>So... get this trait to learn even more about them :)</font></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
 		l('policyDiv').innerHTML=str;
 	}
 		G.draw['policy']();
