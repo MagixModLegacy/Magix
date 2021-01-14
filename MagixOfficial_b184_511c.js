@@ -1,9 +1,9 @@
 var la=1;var lb=2; //land id tab unlockable. without this trait you can;t see policies
 var map=function Showmap(x,y){
 	if(x>y){
-		return true
+		return 0
 	}else{
-		return false	
+		return 1
 	}
 };
 G.tabs=
