@@ -880,6 +880,7 @@ if (!document.getElementById(cssId))
 	//only pasted to update a tooltip due to tile exploring tech
 		G.buildMapDisplay=function()
 	{
+			if(la>lb){
 		var str='';
 		str+='<div id="mapHeader" class="fancyText framed bgLight">World Map'+
 		'<div class="ifDebug">'+
@@ -958,6 +959,7 @@ if (!document.getElementById(cssId))
 				});
 			}
 		};}(div);
+			};
 	}
 	G.update['land']=function()
 	{
