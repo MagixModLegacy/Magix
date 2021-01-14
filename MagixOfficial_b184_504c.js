@@ -3,14 +3,17 @@ G.tabs=
 		//div : which div to empty+hide or display when tab is toggled
 		//update : which system's update to call when toggling on
 		{name:'Production',id:'unit',update:'unit',desc:'Recruit units and create buildings.'},
-		{name:'Territory',id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
-		{name:'Diplomacy',id:'diplo',showMap:true,desc:'View and interact with other civilizations; conduct trade and send armies.'},//later? No orteil... now
-		{name:'Policies',id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
-		{name:'Traits',id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
-		{name:'Research',id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
-		{name:'Settings',id:'settings',popup:true,addClass:'right',desc:'Change the game\'s settings.'},
-		{name:'Update log',id:'updates',popup:true,addClass:'right',desc:'View the game\'s version history and other information.'},
-		{name:'Legacy',id:'legacy',popup:true,addClass:'right',desc:'View your legacy stats and achievements.'}
+		{name:'<font color="#7f7fff">Territory</font>',id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
+		{name:'<font color="fuschia">Policies</font>',id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
+		{name:'<font color="pink">Traits</font>',id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
+		{name:'<font color="#bbbbff">Research</font>',id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
+		{name:'<font color="yellow">Settings</font>',id:'settings',popup:true,addClass:'right',desc:'Change the game\'s settings.'},
+		{name:'<font color="yellow">Update log</font>',id:'updates',popup:true,addClass:'right',desc:'View the game\'s version history and other information. Note: This tab does not contain Magix update logs.'},
+		{name:'<font color="yellow">Legacy</font>',id:'legacy',popup:true,addClass:'right',desc:'View your legacy stats and achievements.'},
+		{name:'<font color="yellow">Magix</font>',id:'Magix',popup:true,addClass:'right',desc:'Options and infos about the Magix mod.'},
+			
+		});	
+	
 	];
 G.LoadResources=function()
 	{
@@ -3545,18 +3548,13 @@ G.writeMSettingButton=function(obj)
 
 	if (!G.mSettingsLoaded)
 	{
-		G.tabs.push({
-			name:'Magix:About',
-			id:'Magix',
-			popup:true,
-			addClass:'right',
-			desc:'Options and information about the Magix mod.'
-		});	
+		//G.tabs.push({
+			
 		// Don't make assumptions about the existing tabs
 		// (or another mod that does the same thing)
 		// make sure everything is numbered and built properly
-		for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
-		G.buildTabs();
+		//for (var i=0;i<G.tabs.length;i++){G.tabs[i].I=i;}
+		//G.buildTabs();
 	}
 	
 	G.tabPopup['Magix']=function()
