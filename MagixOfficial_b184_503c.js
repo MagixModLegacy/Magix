@@ -4,7 +4,7 @@ G.tabs=
 		//update : which system's update to call when toggling on
 		{name:'Production',id:'unit',update:'unit',desc:'Recruit units and create buildings.'},
 		{name:'Territory',id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
-		//{name:'Diplomacy',id:'diplo',showMap:true,desc:'View and interact with other civilizations; conduct trade and send armies.'},//later
+		{name:'Diplomacy',id:'diplo',showMap:true,desc:'View and interact with other civilizations; conduct trade and send armies.'},//later? No orteil... now
 		{name:'Policies',id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
 		{name:'Traits',id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
 		{name:'Research',id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
