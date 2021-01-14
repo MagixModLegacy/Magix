@@ -1,9 +1,17 @@
+var la=1;var lb=2; //land id tab unlockable. without this trait you can;t see policies
+var map=function Showmap(x,y){
+	if(x>y){
+		return true
+	}else{
+		return false	
+	}
+};
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
 		//update : which system's update to call when toggling on
 		{name:'Production',id:'unit',update:'unit',showMap:false,desc:'Recruit units and create buildings.'},
-		{name:'<font color="#7f7fff">Territory</font>',id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
+		{name:'<font color="#7f7fff">Territory</font>',showMap:map,id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
 		{name:'<font color="fuschia">Policies</font>',showMap:false,id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
 		{name:'<font color="pink">Traits</font>',showMap:false,id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
 		{name:'<font color="#bbbbff">Research</font>',showMap:false,id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
@@ -889,7 +897,7 @@ if (!document.getElementById(cssId))
 		}
 		}//if bracket //Math.seedrandom();
 	}
-	var la=1;var lb=2; //land unlockable. without this trait you can;t see policies
+	
 	//only pasted to update a tooltip due to tile exploring tech
 
 	G.update['land']=function()
