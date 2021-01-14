@@ -2,15 +2,15 @@ G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
 		//update : which system's update to call when toggling on
-		{name:'Production',id:'unit',update:'unit',desc:'Recruit units and create buildings.'},
+		{name:'Production',id:'unit',update:'unit',showMap:false,desc:'Recruit units and create buildings.'},
 		{name:'<font color="#7f7fff">Territory</font>',id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
-		{name:'<font color="fuschia">Policies</font>',id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
-		{name:'<font color="pink">Traits</font>',id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
-		{name:'<font color="#bbbbff">Research</font>',id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
-		{name:'<font color="yellow">Settings</font>',id:'settings',popup:true,addClass:'right',desc:'Change the game\'s settings.'},
-		{name:'<font color="yellow">Update log</font>',id:'updates',popup:true,addClass:'right',desc:'View the game\'s version history and other information. Note: This tab does not contain Magix update logs.'},
-		{name:'<font color="yellow">Legacy</font>',id:'legacy',popup:true,addClass:'right',desc:'View your legacy stats and achievements.'},
-		{name:'<font color="yellow">Magix</font>',id:'Magix',popup:true,addClass:'right',desc:'Options and infos about the Magix mod.'}
+		{name:'<font color="fuschia">Policies</font>',showMap:false,id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
+		{name:'<font color="pink">Traits</font>',showMap:false,id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
+		{name:'<font color="#bbbbff">Research</font>',showMap:false,id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
+		{name:'<font color="yellow">Settings</font>',showMap:false,id:'settings',popup:true,addClass:'right',desc:'Change the game\'s settings.'},
+		{name:'<font color="yellow">Update log</font>',showMap:false,id:'updates',popup:true,addClass:'right',desc:'View the game\'s version history and other information. Note: This tab does not contain Magix update logs.'},
+		{name:'<font color="yellow">Legacy</font>',showMap:false,id:'legacy',popup:true,addClass:'right',desc:'View your legacy stats and achievements.'},
+		{name:'<font color="yellow">Magix</font>',showMap:false,id:'Magix',popup:true,addClass:'right',desc:'Options and infos about the Magix mod.'}
 	];
 G.LoadResources=function()
 	{
@@ -3313,7 +3313,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.has('t11')){ca=2 ; cb=1;};
 		faicost=1*(G.getRes("New world point").amount/6)*((G.achievByName['Faithful'].won/2)+1);
 		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
-		if(G.hasNot('where am i?')){G.hideMap();}else{G.showMap();};
+		if(G.has('where am i?')){G.showMap();}else{G.hideMap();};
 		
 	}
 	
