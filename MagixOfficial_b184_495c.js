@@ -878,9 +878,8 @@ if (!document.getElementById(cssId))
 	}
 	var la=1;var lb=2; //land unlockable. without this trait you can;t see policies
 	//only pasted to update a tooltip due to tile exploring tech
-	G.buildMapDisplay=function()
+		G.buildMapDisplay=function()
 	{
-		if(la>lb){
 		var str='';
 		str+='<div id="mapHeader" class="fancyText framed bgLight">World Map'+
 		'<div class="ifDebug">'+
@@ -959,10 +958,6 @@ if (!document.getElementById(cssId))
 				});
 			}
 		};}(div);
-	}else{
-		var str='.';
-		l('mapSection').innerHTML=str;
-	}
 	}
 	G.update['land']=function()
 	{
