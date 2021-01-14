@@ -10,10 +10,7 @@ G.tabs=
 		{name:'<font color="yellow">Settings</font>',id:'settings',popup:true,addClass:'right',desc:'Change the game\'s settings.'},
 		{name:'<font color="yellow">Update log</font>',id:'updates',popup:true,addClass:'right',desc:'View the game\'s version history and other information. Note: This tab does not contain Magix update logs.'},
 		{name:'<font color="yellow">Legacy</font>',id:'legacy',popup:true,addClass:'right',desc:'View your legacy stats and achievements.'},
-		{name:'<font color="yellow">Magix</font>',id:'Magix',popup:true,addClass:'right',desc:'Options and infos about the Magix mod.'},
-			
-		});	
-	
+		{name:'<font color="yellow">Magix</font>',id:'Magix',popup:true,addClass:'right',desc:'Options and infos about the Magix mod.'}
 	];
 G.LoadResources=function()
 	{
