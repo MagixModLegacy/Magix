@@ -1,17 +1,10 @@
 var la=1;var lb=2; //land id tab unlockable. without this trait you can;t see policies
-var map=function(){
-	if(G.has('where am i?')){
-		G.showMap();
-	}else{
-		G.hideMap();
-	}
-};
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
 		//update : which system's update to call when toggling on
 		{name:'Production',id:'unit',update:'unit',showMap:false,desc:'Recruit units and create buildings.'},
-		{name:'<font color="#7f7fff">Territory</font>',showMap:map(),id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
+		{name:'<font color="#7f7fff">Territory</font>',showMap:function(){if(G.has('where am i?')){return true}else{return false}},id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
 		{name:'<font color="fuschia">Policies</font>',showMap:false,id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
 		{name:'<font color="pink">Traits</font>',showMap:false,id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
 		{name:'<font color="#bbbbff">Research</font>',showMap:false,id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
@@ -903,7 +896,6 @@ if (!document.getElementById(cssId))
 	G.update['land']=function()
 	{
 		if(la>lb){
-			map();
 		var str='';
 		str+=G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">This is your territory. While you only start with a small tile of land, there is a whole map for you to explore if you have units with that ability.</div><div class="par">Each tile you control adds to the natural resources available for your units to gather. You get more resources from fully-explored tiles than from tiles you\'ve just encountered.</div><div class="par">If you unlocked <b>Tile inspection</b> you can by clicking on an explored tile on the map to the right to see what goods can be found in it, and how those goods contribute to your natural resources.</div></div>','infoButton');
 		str+='<div id="landBox">';
