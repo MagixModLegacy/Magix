@@ -1,5 +1,5 @@
 var la=1;var lb=2; //land id tab unlockable. without this trait you can;t see policies
-function map(){if(G.has('where am i?')){G.showMap();}else{G.hideMap();}};
+function map(){if(G.has('where am i?')){l('mapSection').style.display='block';}else{l('mapSection').style.display='none';}};
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
