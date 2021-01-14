@@ -17770,6 +17770,7 @@ new G.Tech({
 		desc:'@Unlocks primary informations about your small but still world, one of main part of your civilization. @Click <b>Territory</b> tab to see what goods you can gain from the territory and where your tribe has settled.',
 		icon:[choose([34,35]),choose([11,12]),'magixmod'],
 		chance:1.11,
+		cost:{'insight':1},
 		effects:[
 		 {type:'function',func:function(){lb=1;la=2}},
 		],
