@@ -1,4 +1,17 @@
-
+G.tabs=
+	[
+		//div : which div to empty+hide or display when tab is toggled
+		//update : which system's update to call when toggling on
+		{name:'Production',id:'unit',update:'unit',desc:'Recruit units and create buildings.'},
+		{name:'Territory',id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
+		//{name:'Diplomacy',id:'diplo',showMap:true,desc:'View and interact with other civilizations; conduct trade and send armies.'},//later
+		{name:'Policies',id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
+		{name:'Traits',id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
+		{name:'Research',id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
+		{name:'Settings',id:'settings',popup:true,addClass:'right',desc:'Change the game\'s settings.'},
+		{name:'Update log',id:'updates',popup:true,addClass:'right',desc:'View the game\'s version history and other information.'},
+		{name:'Legacy',id:'legacy',popup:true,addClass:'right',desc:'View your legacy stats and achievements.'}
+	];
 G.LoadResources=function()
 	{
 		var resources=[
@@ -3300,7 +3313,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.has('t11')){ca=2 ; cb=1;};
 		faicost=1*(G.getRes("New world point").amount/6)*((G.achievByName['Faithful'].won/2)+1);
 		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
-		if(G.hasNot('where am i?'))G.hideMap();
+		if(G.hasNot('where am i?')){G.hideMap();}else{G.showMap(););
 		
 	}
 	
