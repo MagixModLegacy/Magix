@@ -3316,7 +3316,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
 		
 	};
-	setInterval(function(){if(la>lb){if(G.tab.id=='land'){l('mapSection').style.display='block';};}else if(G.tab.id!='land'){l('mapSection').style.display='none';}},200);
+	
 	G.funcs['tracked stat str c1']=function()
 	{
 		return 'Most population ruled';
@@ -17776,6 +17776,10 @@ new G.Tech({
 		],
 		req:{'tribalism':true,'policies':true},
 	});
+	setInterval(function(){if(G.has('where am i?')){
+				  if(G.tab.id=='land'){
+				l('mapSection').style.display='block';};
+			      }else if(G.tab.id!='land'){l('mapSection').style.display='none';}},200);
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
