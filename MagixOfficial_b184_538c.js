@@ -17778,8 +17778,9 @@ new G.Tech({
 	});
 	setInterval(function(){if(G.has('where am i?')){
 				  if(G.tab.id=='land'){
-				l('mapSection').style.display='block';};
-			      }else if(G.tab.id!='land'){l('mapSection').style.display='none';}},200);
+				G.showMap();
+			      }else if(G.tab.id!='land' || G.hasNot('where am i?')){G.hideMap();}
+	},200);
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
