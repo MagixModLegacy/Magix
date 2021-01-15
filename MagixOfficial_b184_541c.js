@@ -4,7 +4,7 @@ G.tabs=
 		//div : which div to empty+hide or display when tab is toggled
 		//update : which system's update to call when toggling on
 		{name:'<font color="lime">Production</font>',id:'unit',update:'unit',showMap:false,desc:'Recruit units and create buildings.'},
-		{name:'<font color="#7f7fff">Territory</font>',showMap:true,id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
+		{name:'<font color="#7f7fff">Territory</font>',id:'land',update:'land',desc:'View the world map, inspect explored territory and see your natural resources.'},
 		{name:'<font color="fuschia">Policies</font>',showMap:false,id:'policy',update:'policy',desc:'Use your influence to enact policies that change the way your civilization functions.'},
 		{name:'<font color="pink">Traits</font>',showMap:false,id:'trait',update:'trait',desc:'View traits and edit your civilization\'s properties.'},
 		{name:'<font color="#bbbbff">Research</font>',showMap:false,id:'tech',update:'tech',desc:'Purchase new technologies that improve your civilization and unlock new units.'},
