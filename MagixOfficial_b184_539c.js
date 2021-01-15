@@ -17776,7 +17776,7 @@ new G.Tech({
 		],
 		req:{'tribalism':true,'policies':true},
 	});
-	setInterval(function(){if(G.has('where am i?')){
+	setInterval(function(){if(G.has(la>lb)){
 				  if(G.tab.id=='land'){
 				G.showMap();
 			      }else if(G.tab.id!='land' || G.hasNot('where am i?')){G.hideMap();}
