@@ -1714,7 +1714,12 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
       G.gainTrait(G.traitByName['well stored 2']);
     };
 		G.getRes('victory point').amount=0;
-		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
+		///new game mesg
+		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
+		if(G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti'){if(G.achievByName['god complex'].won==0;){G.achievByName['god complex'].won=1;G.middleText('- Completed <font color="#bbffbb">God complex</font> shadow achievement - <br><hr><small>Congrats</small>','slow')};
+		G.getDict('research box').choicesN-=1;G.lose('adult',1);
+		};
+		/////////////////
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
 		if(G.achievByName['Talented?'].won==0){
 			G.getDict('research box').choicesN=4
@@ -2098,6 +2103,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		
 		G.Message({type:'important tall',text:'Welcome back, '+G.getName('ruler')+', ruler of '+G.getName('civ')+'.',icon:[0,3]});
+		if(G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti'){if(G.achievByName['god complex'].won==0;){G.achievByName['god complex'].won=1;G.middleText('- Completed <font color="#bbffbb">God complex</font> shadow achievement - <br><hr><small>Congrats</small>','slow')};
+		G.getDict('research box').choicesN-=1;G.lose('adult',1);
+		};
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
 			G.getDict('research box').choicesN=4
@@ -3298,7 +3306,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.has('t11')){ca=2 ; cb=1;};
 		faicost=1*(G.getRes("New world point").amount/6)*((G.achievByName['Faithful'].won/2)+1);
 		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
-		
+		if(G.achievByName['god complex'].won>=1)G.achievByName['god complex'].visible=true;
 	};
 	
 	G.funcs['tracked stat str c1']=function()
@@ -4229,12 +4237,13 @@ G.writeMSettingButton=function(obj)
 	});
 			new G.Achiev({
 		tier:0,
-		name:'testificateshadow',
-		icon:[1,0,'magixmod'],
-		desc:'Get: @2 traits that will lower your [faith] income @Choose Seraphin that decreases [faith] income as well. To make this achievement possible [dt13] is not required.',
+		name:'god complex',
+		icon:[35,5,'magixmod'],
+		desc:'Declare yourself as once of the gods... and get punished for that. @<font color="red">Note: usurpers get punished unless they will change their name</font>',
 		effects:[
-			{type:'addFastTicksOnStart',amount:90},
+			{type:'addFastTicksOnStart',amount:30},
 		],
+		visible:false,
 		civ:0,
 		special:'shadow'
 	});
