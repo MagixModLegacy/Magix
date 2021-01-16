@@ -3755,9 +3755,9 @@ G.writeMSettingButton=function(obj)
 	);
 	
 	//do NOT remove or reorder achievements or saves WILL get corrupted
-	
+	//Tier 0 is for shadow achievements/seasonal achievements (they will dislay to player upon completion)
 	new G.Achiev({
-		tier:0,
+		tier:1,
 		name:'mausoleum',
 		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
 		fromUnit:'mausoleum',
@@ -3769,7 +3769,7 @@ G.writeMSettingButton=function(obj)
 	});
 //Temple achiev
 		new G.Achiev({
-		tier:1,
+		tier:2,
 		name:'Heavenly',
 		wideIcon:[0,11,'magixmod'],
 		icon:[1,11,'magixmod'],
@@ -3783,7 +3783,7 @@ G.writeMSettingButton=function(obj)
 	});
 //skull achiev
 		new G.Achiev({
-		tier:1,
+		tier:2,
 		name:'Deadly, revenantic',
 		wideIcon:[0,16,'magixmod'],
 		icon:[1,16,'magixmod'],
@@ -3797,7 +3797,7 @@ G.writeMSettingButton=function(obj)
 	});
 
 		new G.Achiev({
-		tier:0,
+		tier:1,
 		name:'Sacrificed for culture',
 		wideIcon:[choose([9,12,15]),17,'magixmod',5,12,'magixmod'],
 		icon:[6,12,'magixmod'],
@@ -3810,7 +3810,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:0,
+		tier:1,
 		name:'Democration',
 		wideIcon:[5,13,'magixmod'],
 		icon:[6,13,'magixmod'],
@@ -3823,7 +3823,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:0,
+		tier:1,
 		name:'Insight-ly',
 		wideIcon:[choose([0,3,6]),17,'magixmod'],
 		icon:[choose([1,4,7]),17,'magixmod'],
@@ -3836,7 +3836,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:1,
+		tier:2,
 		name:'"In the underworld"',
 		wideIcon:[7,5,'magixmod'],
 		icon:[9,5,'magixmod'],
@@ -3849,7 +3849,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:2,
+		tier:3,
 		wideIcon:[27,20,'magixmod'],
 		icon:[28,20,'magixmod'],
 		name:'<font color="DA4f37">Mausoleum eternal</font>',
@@ -3862,14 +3862,14 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:1,
+		tier:2,
 		icon:[25,19,'magixmod'],
 		name:'Level up',
 		desc:'Obtain [Eotm] trait during the run. This trait unlocks second tier of [insight] , [culture] , [faith] and [influence] which are required for further researches.',
 			civ:0
 	});
 		new G.Achiev({
-		tier:0,
+		tier:1,
 		icon:[25,21,'magixmod'],
 		name:'Metropoly',
 		desc:'Manage to get 500k [population,people] in one run.',
@@ -3880,14 +3880,14 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:0,
+		tier:1,
 		icon:[23,21,'magixmod'],
 		name:'Apprentice',
 		desc:'Get 100 or more technologies in a single run.',
 			civ:0
 	});
 		new G.Achiev({
-		tier:1,
+		tier:2,
 		icon:[26,9,'magixmod'],
 		name:'Lucky 9',
 		desc:'Obtain the [dt9] .',
@@ -3898,7 +3898,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:1,
+		tier:2,
 		icon:[26,21,'magixmod'],
 		name:'Traitsman',
 		desc:'Make your tribe attract 30 traits.',
@@ -3908,7 +3908,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:2,
+		tier:3,
 		icon:[27,21,'magixmod'],
 		name:'Extremely smart',
 		desc:'Get [insight II] amount equal to [wisdom II] amount. It is not easy as you think it is. @In addition completing <font color="DA4f37">Mausoleum eternal</font> unlocks you [Theme changer] .',
@@ -3919,7 +3919,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:0,
+		tier:1,
 		icon:[29,21,'magixmod'],
 		name:'Experienced',
 		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: +100 [fruit]s at start of each next game</b>',
@@ -3930,7 +3930,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:1,
+		tier:2,
 		icon:[29,22,'magixmod'],
 		name:'Smart',
 		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus: [Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] & [mud shelter] will use less [land] at each next run.</b>',
@@ -3941,7 +3941,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:2,
+		tier:3,
 		icon:[12,22,'magixmod'],
 		name:'Man of essences',
 		desc:'Obtain [Magic adept] trait. Manage to get 2.1M [Magic essences]. //Obtaining it may unlock a new wonder.',
@@ -3951,7 +3951,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:2,
+		tier:3,
 		name:'Magical',
 		wideIcon:[9,22,'magixmod'],
 		icon:[10,22,'magixmod'],
@@ -3965,20 +3965,20 @@ G.writeMSettingButton=function(obj)
 	});
 			new G.Achiev({
 		icon:[16,24,'magixmod'],
-		tier:1,
+		tier:2,
 		name:'Familiar',
 		desc:'Get 200 or more technologies in a single run.',
 				civ:0
 	});
 				new G.Achiev({
 		icon:[23,24,'magixmod'],
-		tier:0,
+		tier:1,
 		name:'3rd party',
 		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
 				civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Patience',
 		wideIcon:[3,26,'magixmod'],
 		icon:[4,26,'magixmod'],
@@ -3991,7 +3991,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Unhappy',
 		wideIcon:[6,26,'magixmod'],
 		icon:[7,26,'magixmod'],
@@ -4004,7 +4004,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Cultural',
 		wideIcon:[18,26,'magixmod'],
 		icon:[19,26,'magixmod'],
@@ -4017,7 +4017,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Hunted',
 		wideIcon:[24,26,'magixmod'],
 		icon:[25,26,'magixmod'],
@@ -4030,7 +4030,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Unfishy',
 		wideIcon:[21,26,'magixmod'],
 		icon:[22,26,'magixmod'],
@@ -4043,7 +4043,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Ocean',
 		wideIcon:[1,25,'magixmod'],
 		icon:[2,25,'magixmod'],
@@ -4056,7 +4056,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Herbalism',
 		wideIcon:[12,26,'magixmod'],
 		icon:[13,26,'magixmod'],
@@ -4069,7 +4069,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Buried',
 		wideIcon:[0,26,'magixmod'],
 		icon:[1,26,'magixmod'],
@@ -4082,7 +4082,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Underground',
 		wideIcon:[15,26,'magixmod'],
 		icon:[16,26,'magixmod'],
@@ -4095,7 +4095,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Pocket',
 		wideIcon:[9,26,'magixmod'],
 		icon:[10,26,'magixmod'],
@@ -4108,7 +4108,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Faithful',
 		wideIcon:[0,27,'magixmod'],
 		icon:[1,27,'magixmod'],
@@ -4121,7 +4121,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 		new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'Dreamy',
 		wideIcon:[27,26,'magixmod'],
 		icon:[28,26,'magixmod'],
@@ -4134,7 +4134,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 	new G.Achiev({
-		tier:2,
+		tier:3,
 		name:'Next to the God',
 		displayName:'<font color="yellow">Next to the God</font>',
 		wideIcon:[8,25,'magixmod'],
@@ -4148,7 +4148,7 @@ G.writeMSettingButton=function(obj)
 		civ:0
 	});
 	new G.Achiev({
-		tier:2,
+		tier:3,
 		name:'The first choice',
 		icon:[11,25,'magixmod'],
 		desc:'Spend your all [Worship point]s for the first time to pick Seraphins that your people will worship.',
@@ -4158,7 +4158,7 @@ G.writeMSettingButton=function(obj)
 		civ:0
 	});
 		new G.Achiev({
-		tier:2,
+		tier:3,
 		name:'Trait-or',
 		icon:[12,25,'magixmod'],
 		desc:'Manage your wonderful tribe to adopt 50 traits.',
@@ -4168,7 +4168,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 	new G.Achiev({
-		tier:2,
+		tier:3,
 		name:'Not so pious people',
 		icon:[32,26,'magixmod'],
 		desc:'Get: @2 traits that will lower your [faith] income @Choose Seraphin that decreases [faith] income as well. To make this achievement possible [dt13] is not required.',
@@ -4178,7 +4178,7 @@ G.writeMSettingButton=function(obj)
 		civ:0
 	});
 	new G.Achiev({
-		tier:2,
+		tier:3,
 		name:'Talented?',
 		icon:[32,25,'magixmod'],
 		desc:'To get this achievement you need to complete rest achievements in this tier. @<b>Achievement bonus:All crafting units that use land of primary world will use 0.15 less land per 1 piece so if unit uses 3 land it will use 2.55 upon obtain. In addition this bonus applies to [well]s, [Wheat farm]s , [Water filter]s (0.1 less for Caretaking filter and 0.2 less for Moderation one) and [crematorium]s.<>Note: Bonus does not apply to paper crafting shacks</b> @In addition completing full row will now make you be able to pick <b>1 of 5</b> techs in research box instead of <b>1 of 4</b>. And... it unlocks new theme!',
@@ -4189,7 +4189,7 @@ G.writeMSettingButton=function(obj)
 		civ:0
 	});
 	new G.Achiev({
-		tier:3,
+		tier:4,
 		name:'lands of despair',
 		wideIcon:[0,29,'magixmod'],
 		icon:[1,29,'magixmod'],
@@ -4201,7 +4201,7 @@ G.writeMSettingButton=function(obj)
 		civ:0
 	});
 	new G.Achiev({
-		tier:3,
+		tier:4,
 		icon:[35,27,'magixmod'],
 		name:'a huge city made of the cities',
 		desc:'Manage to get 1M [population,people] in one run. //Unbelieveable...',
@@ -4212,7 +4212,7 @@ G.writeMSettingButton=function(obj)
 			civ:0
 	});
 	new G.Achiev({
-		tier:4,
+		tier:5,
 		icon:[34,17,'magixmod'],
 		name:'6 aces',
 		desc:'Be lucky enough to get: @All 6 [gt7,<font color="#d4af37">God\'s traits</font>] that will boost your Essence production in the same run. @All 6 [dt19,<font color="red">Devil\'s traits</font>] that will power down your Essence production in the same run. //Note: To complete achievement you need to have only one of these two cases.',
