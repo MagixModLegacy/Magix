@@ -4245,7 +4245,7 @@ G.writeMSettingButton=function(obj)
 		tier:0,
 		name:'god complex',
 		icon:[35,5,'magixmod'],
-		desc:'Declare yourself as once of the gods... and get punished for that. @<font color="red">Note: usurpers get punished unless they will change their name</font>',
+		desc:'Declare yourself as one of the Gods... and get punished for that. @<font color="red">Note: usurpers get punished unless they will change their name</font>',
 		effects:[
 			{type:'addFastTicksOnStart',amount:30},
 		],
