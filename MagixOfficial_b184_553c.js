@@ -1720,7 +1720,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.achievByName['god complex'].won==0){
 				G.achievByName['god complex'].won=1;G.middleText('- Completed <font color="#bbffbb">God complex</font> shadow achievement - <br><hr><small>Congrats</small>','slow')
 			};
-		G.getDict('research box').choicesN--;G.lose('adult',1);
+		G.getDict('research box').choicesN-=1;G.lose('adult',1);
 		};
 		/////////////////
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
