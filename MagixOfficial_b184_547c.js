@@ -3686,11 +3686,7 @@ G.writeMSettingButton=function(obj)
 					var me=G.achievByTier[i][ii];
 					if(me.visible==true){
 					/*(G.achievByTier[i][ii].visible==true ? */str+='<div class="thingWrapper">'+
-						if(me.special=='shadow'){
-						'<div class="shadowachiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
-						}else{
-						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
-						}
+						(me.special=='shadow' ? '<div class="shadowachiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">' : '<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">')+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
