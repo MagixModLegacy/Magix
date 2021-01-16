@@ -1720,7 +1720,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.achievByName['god complex'].won==0){
 				G.achievByName['god complex'].won=1;G.middleText('- Completed <font color="#bbffbb">God complex</font> shadow achievement - <br><hr><small>Congrats</small>','slow')
 			};
-		G.getDict('research box').choicesN-=1;G.lose('adult',1);
+		G.getDict('research box').choicesN=3;G.lose('adult',1); //punishment
 		};
 		/////////////////
 		G.Message({type:'important tall',text:str,icon:[0,3]});	
@@ -2110,7 +2110,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.achievByName['god complex'].won==0){
 				G.achievByName['god complex'].won=1;G.middleText('- Completed <font color="#bbffbb">God complex</font> shadow achievement - <br><hr><small>Congrats</small>','slow')
 			};
-		G.getDict('research box').choicesN--;G.lose('adult',1);
+		G.getDict('research box').choicesN=3;G.lose('adult',1); //no matter what. That's punishment element
 		};
 		//Had to paste it there because if you obtain and you will unlock 5th choice after page refresh you can still pick 1 of 4 instead of 1 of 5
 		if(G.achievByName['Talented?'].won==0){
