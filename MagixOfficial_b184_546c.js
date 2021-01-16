@@ -3594,6 +3594,7 @@ G.writeMSettingButton=function(obj)
 		this.visible=true;
 		this.icon=[0,0];
 		this.civ=0; //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah . 0 stands for people... 1 for ... ???
+		this.special='none'; //parameters: 'none','seasonal','shadow'
 		
 		for (var i in obj) this[i]=obj[i];
 		this.id=G.achiev.length;
@@ -3685,7 +3686,11 @@ G.writeMSettingButton=function(obj)
 					var me=G.achievByTier[i][ii];
 					if(me.visible==true){
 					/*(G.achievByTier[i][ii].visible==true ? */str+='<div class="thingWrapper">'+
+						if(me.special=='shadow'){
+						'<div class="shadowachiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
+						}else{
 						'<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">'+
+						}
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
@@ -4225,6 +4230,17 @@ G.writeMSettingButton=function(obj)
 		icon:[1,0,'magixmod'],
 		name:'xmas buff',
 		visible:false //debug
+	});
+			new G.Achiev({
+		tier:0,
+		name:'testificateshadow',
+		icon:[1,0,'magixmod'],
+		desc:'Get: @2 traits that will lower your [faith] income @Choose Seraphin that decreases [faith] income as well. To make this achievement possible [dt13] is not required.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:90},
+		],
+		civ:0,
+		special:'shadow'
 	});
 	/*=====================================================================================
 	RESOURCES
