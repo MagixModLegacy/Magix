@@ -4294,8 +4294,43 @@ G.writeMSettingButton=function(obj)
 		tier:0,
 		name:'that was so brutal',
 		icon:[35,8,'magixmod'],
-		desc:'Oh my god! Murdering the root full of hope for future AGAIN? And more cruelty than before?! // Sacrifice all of your people to one of following wonders: @[pagoda of passing time] @[Pagoda of culture] @[Hartar\'s statue] @[Pagoda of Democracy] @[Fortress of cultural legacy] @[Complex of Dreamers] @[Fortress of magicians] @[Platinum fish statue] @[Tomb of oceans] @[The Herboleum] @[Temple of the Stone] @[Mausoleum of the Dreamer]',
+		desc:'Oh my god! Murdering the root full of hope for future AGAIN? And more cruelty than before?! // Sacrifice all of your people to one of following wonders: @[pagoda of passing time] @[Pagoda of culture] @[Hartar\'s statue] @[Pagoda of Democracy] @[Fortress of cultural legacy] @[Complex of Dreamers] @[Fortress of magicians] @[Platinum fish statue] @[Tomb of oceans] @[The Herboleum] @[Temple of the Stone] @[Mausoleum of the Dreamer] //Must obtain <b>Cruel goal</b> shadow achievement before that.',
 		effects:[
+		],
+		//visible:false,
+		civ:0,
+		special:'shadow'
+	});
+	new G.Achiev({
+		tier:0,
+		name:'speedresearcher',
+		icon:[35,7,'magixmod'],
+		desc:'Get at least 65 techs within first 10 minutes of the current run.',
+		effects:[
+		],
+		//visible:false,
+		civ:0,
+		special:'shadow'
+	});
+	new G.Achiev({
+		tier:0,
+		name:'speedresearcher II',
+		icon:[35,6,'magixmod'],
+		desc:'Get at least 105 techs within first 10 minutes of the current run.',
+		effects:[
+		],
+		//visible:false,
+		civ:0,
+		special:'shadow'
+	});
+	new G.Achiev({
+		tier:0,
+		name:'i do not want to take things easy',
+		icon:[35,5,'magixmod'],
+		desc:'Get [Magical soil] with these rules: //<font color="red">Without following:</font>@[symbolism II]@[Water filtering,Upgrades that boosts any water filters] @[Improved furnace construction,Upgrades that boost unit depending on which path people have chosen] @[Deeper wells],[focused scouting],[guilds unite] @[Berry masterry] @[Mo\' floorz,Blockhouse boosters] @[Stronger faith,Stronger faith and better infl & auth] @[insect-eating] @[Essential conversion tank overclock I,Conversion tank o-clocks] @[bigger kilns] @[Glory,Glory & Spiritual piety] @[Better papercrafting recipe] //Any others are allowed. If one of restricted will be obtained you\'ll need to go all over again.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:225},
+			{type:'addFastTicksOnResearch',amount:30},
 		],
 		//visible:false,
 		civ:0,
