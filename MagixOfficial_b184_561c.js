@@ -4327,7 +4327,7 @@ G.writeMSettingButton=function(obj)
 		tier:0,
 		name:'i do not want to take things easy',
 		icon:[35,4,'magixmod'],
-		desc:'Get [Magical soil] with these rules: //<font color="red">Without following researches:</font>@[symbolism II]@[Water filtering,Upgrades that boosts any water filters] @[Improved furnace construction,Upgrades that boost unit depending on which path people have chosen] @[Deeper wells],[focused scouting],[guilds unite] @[Berry masterry] @[Mo\' floorz,Blockhouse boosters] @[Stronger faith,Stronger faith and better infl & auth] @[insect-eating] @[Essential conversion tank overclock I,Conversion tank o-clocks] @[bigger kilns] @[Glory,Glory & Spiritual piety] @[Better papercrafting recipe] //Any others are allowed. If one of restricted will be obtained you\'ll need to go all over again.',
+		desc:'Get [Magical soil] with these rules: //<font color="red">Without following researches:</font>@[symbolism II]@[Water filtering,Upgrades that boosts any water filters] @[Improved furnace construction,Upgrades that boost unit depending on which path people have chosen] @[Deeper wells],[focused scouting],[guilds unite] @[Berry masterry] @[Mo\' floorz,Blockhouse boosters] @[Stronger faith,Stronger faith and better infl & auth] @[insect-eating] @[Essential conversion tank overclock I,Conversion tank o-clocks] @[bigger kilns] @[Glory,Glory & Spiritual piety] @[Better papercrafting recipe] //Any others are allowed. If one of restricted will be obtained you\'ll need to go all over again. //So you looked into mod\'s code huh?',
 		effects:[
 			{type:'addFastTicksOnStart',amount:225},
 			{type:'addFastTicksOnResearch',amount:30},
