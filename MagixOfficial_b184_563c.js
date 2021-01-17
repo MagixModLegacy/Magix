@@ -2626,9 +2626,10 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				}
 			if (G.year>=8999 && G.year<=9001) 
 			{
+				if(G.year==9000)
 				if(G.achievByName['it\'s over 9000'].won<1)G.middleText('- Completed <font color="chocolate">It\'s over 9000</font> shadow achievement - <hr width="300"><br><small>Wow , it is insane. No way that can be right</small>','slow');
 				G.achievByName['it\'s over 9000'].won++;
-				
+				}
 					var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/EasterEgg.mp3');
 					audio.play(); 
 			}
