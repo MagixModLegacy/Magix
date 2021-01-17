@@ -4271,7 +4271,7 @@ G.writeMSettingButton=function(obj)
 		tier:0,
 		name:'just plain lucky',
 		icon:[34,10,'magixmod'],
-		desc:'Every ingame day have <b>1</b> of <b>777 777</b> chance to get this achievement.',
+		desc:'Every ingame day you have <b>1</b> of <b>777 777</b> chance to get this achievement.',
 		effects:[
 			{type:'addFastTicksOnStart',amount:150},
 		],
