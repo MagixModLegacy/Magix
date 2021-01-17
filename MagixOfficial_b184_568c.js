@@ -3771,7 +3771,7 @@ G.writeMSettingButton=function(obj)
 							'<div class="fancyText barred infoTitle">'+me.displayName+'</div>'+
 							(me.plural==true ? 
 							 '<div class="fancyText barred">'+(me.won>0?('Achieved :<font color="yellow"> '+me.won+'</font> '+(me.won==1?'time':'times')):'Locked <font color="#aaffff">:(</font>')+'</div>' : 
-							 '<div class="fancyText barred">'+(me.won>0?('Completed<font color="yellow">'):'Locked <font color="#aaffff">:(</font>')+'</div>')+
+							 '<div class="fancyText barred">'+(me.won>0?('Completed<font color="yellow"> :> </font>'):'Locked <font color="#aaffff">:(</font>')+'</div>')+
 							//'<div class="fancyText barred">'+(me.won>0?('<font color="yellow">Completed</font>':'Locked <font color="#aaffff">:(</font></div>')+
 							'<div class="fancyText barred">Effects :'+G.getAchievEffectsString(me.effects)+'</div>'+
 							(me.desc?('<div class="infoDesc">'+G.parse(me.desc)+'</div>'):'')+
