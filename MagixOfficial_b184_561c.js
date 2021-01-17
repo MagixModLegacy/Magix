@@ -4305,7 +4305,7 @@ G.writeMSettingButton=function(obj)
 		tier:0,
 		name:'speedresearcher',
 		icon:[35,7,'magixmod'],
-		desc:'Get at least 65 techs within first 10 minutes of the current run.',
+		desc:'Get at least 60 techs within first 10 minutes of the current run. //Refreshing page makes your chance lost, so you\'ll need to set a new game',
 		effects:[
 		],
 		//visible:false,
@@ -4316,7 +4316,7 @@ G.writeMSettingButton=function(obj)
 		tier:0,
 		name:'speedresearcher II',
 		icon:[35,6,'magixmod'],
-		desc:'Get at least 105 techs within first 10 minutes of the current run.',
+		desc:'Get at least 100 techs within first 10 minutes of the current run. //Refreshing page makes your chance lost, so you\'ll need to set a new game',
 		effects:[
 		],
 		//visible:false,
