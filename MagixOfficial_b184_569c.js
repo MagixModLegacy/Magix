@@ -3330,10 +3330,17 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		
 		if(G.has('t11')){ca=2 ; cb=1;};
 		faicost=1*(G.getRes("New world point").amount/6)*((G.achievByName['Faithful'].won/2)+1);
-		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
+		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1); //below: display shadows once completed
 		if(G.achievByName['god complex'].won>=1){G.achievByName['god complex'].visible=true}else{G.achievByName['god complex'].visible=false};
 		if(G.achievByName['it\'s over 9000'].won>=1){G.achievByName['it\'s over 9000'].visible=true}else{G.achievByName['it\'s over 9000'].visible=false};
 		if(G.achievByName['just plain lucky'].won>=1){G.achievByName['just plain lucky'].visible=true}else{G.achievByName['just plain lucky'].visible=false};
+		if(G.achievByName['speedresearcher'].won>=1){G.achievByName['speedresearcher'].visible=true}else{G.achievByName['speedresearcher'].visible=false};
+		if(G.achievByName['speedresearcher II'].won>=1){G.achievByName['speedresearcher II'].visible=true}else{G.achievByName['speedresearcher II'].visible=false};
+		if(G.achievByName['speedresearcher II'].won>=1){G.achievByName['speedresearcher II'].visible=true}else{G.achievByName['speedresearcher II'].visible=false};
+		if(G.achievByName['cruel goal'].won>=1){G.achievByName['cruel goal'].visible=true}else{G.achievByName['cruel goal'].visible=false};
+		if(G.achievByName['that was so brutal'].won>=1){G.achievByName['that was so brutal'].visible=true}else{G.achievByName['that was so brutal'].visible=false};
+		if(G.achievByName['i do not want to take things easily'].won>=1){G.achievByName['i do not want to take things easily'].visible=true}else{G.achievByName['i do not want to take things easily'].visible=false};
+		
 		//JUST PLAIN LUCKY
 		var luckynumber=Math.round(Math.floor()*777777)+1;
 		if(luckynumber==777770){
@@ -4381,7 +4388,7 @@ G.writeMSettingButton=function(obj)
 	});
 	new G.Achiev({
 		tier:0,
-		name:'i do not want to take things easy',
+		name:'i do not want to take things easily',
 		icon:[35,4,'magixmod'],
 		desc:'Get [Magical soil] with these rules: //<font color="red">Without following researches:</font>@[symbolism II]@[Water filtering,Upgrades that boosts any water filters] @[Improved furnace construction,Upgrades that boost unit depending on which path people have chosen] @[Deeper wells],[focused scouting],[guilds unite] @[Berry masterry] @[Mo\' floorz,Blockhouse boosters] @[Stronger faith,Stronger faith and better infl & auth] @[insect-eating] @[Essential conversion tank overclock I,Conversion tank o-clocks] @[bigger kilns] @[Glory,Glory & Spiritual piety] @[Better papercrafting recipe] //Any others are allowed. If one of restricted will be obtained you\'ll need to go all over again. //So you looked into mod\'s code huh?',
 		effects:[
