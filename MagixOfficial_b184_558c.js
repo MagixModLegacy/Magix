@@ -4282,7 +4282,7 @@ G.writeMSettingButton=function(obj)
 	new G.Achiev({
 		tier:0,
 		name:'cruel goal',
-		icon:[34,10,'magixmod'],
+		icon:[34,8,'magixmod'],
 		desc:'Don\'t ya think that was very, very cruel. Murdering the root full of hope for future? @Get your [mausoleum] to at least level 4/10 and sacrifice fully your civilization just to finish the final step. ',
 		effects:[
 		],
@@ -4293,7 +4293,7 @@ G.writeMSettingButton=function(obj)
 	new G.Achiev({
 		tier:0,
 		name:'that was so brutal',
-		icon:[35,10,'magixmod'],
+		icon:[35,8,'magixmod'],
 		desc:'Oh my god! Murdering the root full of hope for future AGAIN? And more cruelty than before?! // Sacrifice all of your people to one of following wonders: @[pagoda of passing time] @[Pagoda of culture] @[Hartar\'s statue] @[Pagoda of Democracy] @[Fortress of cultural legacy] @[Complex of Dreamers] @[Fortress of magicians] @[Platinum fish statue] @[Tomb of oceans] @[The Herboleum] @[Temple of the Stone] @[Mausoleum of the Dreamer]',
 		effects:[
 		],
