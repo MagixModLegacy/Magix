@@ -3325,6 +3325,18 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
 		if(G.achievByName['god complex'].won>=1){G.achievByName['god complex'].visible=true}else{G.achievByName['god complex'].visible=false};
 		if(G.achievByName['it\'s over 9000'].won>=1){G.achievByName['it\'s over 9000'].visible=true}else{G.achievByName['it\'s over 9000'].visible=false};
+		if(G.achievByName['just plain lucky'].won>=1){G.achievByName['just plain lucky'].visible=true}else{G.achievByName['just plain lucky'].visible=false};
+		//JUST PLAIN LUCKY
+		var luckynumber=Math.round(Math.floor()*777777)+1;
+		if(luckynumber==777770){
+			G.achievByName['just plain lucky'].won++;
+			if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
+							{
+								var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/JustPlainLucky.mp3');
+								audio.play(); 
+							}
+			G.middleText('<font color="#d4af37">- Congratulations: you striked lucky number. -<br><small>Completed "Just plain lucky" shadow achievement -<hr width="300">You striked the lucky number -'+G.achievByName['just plain lucky'].won+' '+(G.achievByName['just plain lucky'].won==1 ? 'time' : 'times')+'<br>Impressive.<br> DM me on discord to hear a word from me ~ pelletsstarPL</small>','slow');
+		}
 	};
 	
 	G.funcs['tracked stat str c1']=function()
@@ -18226,7 +18238,7 @@ new G.Tech({
 	});
 		new G.Policy({
 		name:'Toggle SFX',
-		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li><li>Ascending by wonder</li><li>Switching between tabs</li>',
+		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li><li>Ascending by wonder</li><li>Switching between tabs</li><li>Special events</li>',
 		icon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
