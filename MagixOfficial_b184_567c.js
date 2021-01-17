@@ -3897,7 +3897,8 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:15},
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:3,
@@ -3917,7 +3918,8 @@ G.writeMSettingButton=function(obj)
 		icon:[25,19,'magixmod'],
 		name:'Level up',
 		desc:'Obtain [Eotm] trait during the run. This trait unlocks second tier of [insight] , [culture] , [faith] and [influence] which are required for further researches.',
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:1,
@@ -3928,14 +3930,16 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:25},
 			{type:'addFastTicksOnResearch',amount:5}
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:1,
 		icon:[23,21,'magixmod'],
 		name:'Apprentice',
 		desc:'Get 100 or more technologies in a single run.',
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:2,
@@ -3946,7 +3950,8 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5}
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:2,
@@ -3956,7 +3961,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:3,
@@ -3967,7 +3973,8 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:100},
 			{type:'addFastTicksOnResearch',amount:10}
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:1,
@@ -3978,7 +3985,8 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:100},
 			{type:'addFastTicksOnResearch',amount:10}
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:2,
@@ -3989,7 +3997,8 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:150},
 			{type:'addFastTicksOnResearch',amount:10}
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:3,
@@ -3999,7 +4008,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'addFastTicksOnStart',amount:40},
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:3,
@@ -4019,14 +4029,16 @@ G.writeMSettingButton=function(obj)
 		tier:2,
 		name:'Familiar',
 		desc:'Get 200 or more technologies in a single run.',
-				civ:0
+				civ:0,
+			plural:false
 	});
 				new G.Achiev({
 		icon:[23,24,'magixmod'],
 		tier:1,
 		name:'3rd party',
 		desc:'Play magix and some other mod. //<b>Note: You will gain this achievement only if you use one of the NEL mods found/available on the Dashnet Discord server!</b> //If you want achievement to be obtainable with your mod too join the discord server and DM me. <i>mod author</i> //<font color="fuschia">This achievement will not be required while you will try to gain bonus from completing this achievement row</font>',
-				civ:0
+				civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:4,
@@ -4196,7 +4208,8 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:250},
 			{type:'addFastTicksOnResearch',amount:25},
 		],
-		civ:0
+		civ:0,
+			plural:false
 	});
 	new G.Achiev({
 		tier:3,
@@ -4206,7 +4219,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'addFastTicksOnStart',amount:100},
 		],
-		civ:0
+		civ:0,
+			plural:false
 	});
 		new G.Achiev({
 		tier:3,
@@ -4216,7 +4230,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 	new G.Achiev({
 		tier:3,
@@ -4226,7 +4241,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'addFastTicksOnStart',amount:90},
 		],
-		civ:0
+		civ:0,
+			plural:false
 	});
 	new G.Achiev({
 		tier:3,
@@ -4237,7 +4253,8 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
 		],
-		civ:0
+		civ:0,
+			plural:false
 	});
 	new G.Achiev({
 		tier:4,
@@ -4260,7 +4277,8 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:25},
 			{type:'addFastTicksOnResearch',amount:5}
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 	new G.Achiev({
 		tier:5,
@@ -4270,7 +4288,8 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'addFastTicksOnStart',amount:600},
 		],
-			civ:0
+			civ:0,
+			plural:false
 	});
 	new G.Achiev({
 		icon:[1,0,'magixmod'],
@@ -4287,7 +4306,8 @@ G.writeMSettingButton=function(obj)
 		],
 		visible:false,
 		civ:0,
-		special:'shadow'
+		special:'shadow',
+			plural:false
 	});
 	new G.Achiev({
 		tier:0,
@@ -4322,7 +4342,8 @@ G.writeMSettingButton=function(obj)
 		],
 		visible:false,
 		civ:0,
-		special:'shadow'
+		special:'shadow',
+			plural:false
 	});
 	new G.Achiev({
 		tier:0,
@@ -4333,7 +4354,8 @@ G.writeMSettingButton=function(obj)
 		],
 		visible:false,
 		civ:0,
-		special:'shadow'
+		special:'shadow',
+			plural:false
 	});
 	new G.Achiev({
 		tier:0,
@@ -4368,7 +4390,8 @@ G.writeMSettingButton=function(obj)
 		],
 		visible:false,
 		civ:0,
-		special:'shadow'
+		special:'shadow',
+			plural:false
 	});
 	/*=====================================================================================
 	RESOURCES
