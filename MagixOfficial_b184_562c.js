@@ -1726,7 +1726,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			}
 		if(G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti'){
 			if(G.achievByName['god complex'].won==0){
-				G.achievByName['god complex'].won=1;G.middleText('- Completed <font color="#bbffbb">God complex</font> shadow achievement - <br><hr><small>Congrats</small>','slow')
+				G.achievByName['god complex'].won=1;G.middleText('- Completed <font color="#bbffbb">God complex</font> shadow achievement - <br><hr width="300"><small>Congrats</small>','slow')
 			};
 		G.getDict('research box').choicesN=3;G.lose('adult',1); //punishment
 		};
@@ -2038,7 +2038,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 
   G.Message({
     type: 'bad',
-    text: 'Building the Mausoleum in the past grants access to magic in the future.',
+    text: 'Building the Mausoleum grants access to magic in the future.',
     icon: [3, 12, 6, 1, 'magixmod']
   });
 
@@ -2116,7 +2116,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			}
 		if(G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti'){
 			if(G.achievByName['god complex'].won==0){
-				G.achievByName['god complex'].won=1;G.middleText('- Completed <font color="#bbffbb">God complex</font> shadow achievement - <br><hr><small>Congrats</small>','slow')
+				G.achievByName['god complex'].won=1;G.middleText('- Completed <font color="#bbffbb">God complex</font> shadow achievement - <br><hr width="300"><small>Congrats</small>','slow')
 			};
 		G.getDict('research box').choicesN=3;G.lose('adult',1); //no matter what. That's punishment element
 		};
@@ -2624,6 +2624,14 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
        				 G.Message({type:'good',text:'OMG! It\'s been <b>2 thousand</b> years since your tribe started their wonderful existence. Also I am sure that your adventure with Magix is not over yet. Your playing supports mod author and motivates for further updates. <br><b>Thank you ;)</b> <br><font color="lime"><tt>Continue enjoying Magix expansion.</tt></font>',icon:[32,30,'magixmod']});
 				Secondmilleniummesg = true
 				}
+			if (G.year>=8999 && G.year<=9001) 
+			{
+				if(G.achievByName['it\'s over 9000'].won<1)G.middleText('- Completed <font color="chocolate">It\'s over 9000</font> shadow achievement - <hr width="300"><br><small>Wow , it is insane. No way that can be right</small>','slow');
+				G.achievByName['it\'s over 9000'].won++;
+				
+					var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/EasterEgg.mp3');
+					audio.play(); 
+			}
 			////STORYLINE////
 			if(G.techN >= 25 && G.techN <=34 && !st1){
 				G.Message({type:'story1',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
@@ -3315,6 +3323,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		faicost=1*(G.getRes("New world point").amount/6)*((G.achievByName['Faithful'].won/2)+1);
 		inscost=1*(G.getRes("New world point").amount/3)*((G.achievByName['Faithful'].won/2)+1);
 		if(G.achievByName['god complex'].won>=1){G.achievByName['god complex'].visible=true}else{G.achievByName['god complex'].visible=false};
+		if(G.achievByName['it\'s over 9000'].won>=1){G.achievByName['it\'s over 9000'].visible=true}else{G.achievByName['it\'s over 9000'].visible=false};
 	};
 	
 	G.funcs['tracked stat str c1']=function()
@@ -4263,7 +4272,7 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'addFastTicksOnStart',amount:150},
 		],
-		//visible:false,
+		visible:false,
 		civ:0,
 		special:'shadow'
 	});
@@ -4275,7 +4284,7 @@ G.writeMSettingButton=function(obj)
 		effects:[
 			{type:'addFastTicksOnStart',amount:150},
 		],
-		//visible:false,
+		visible:false,
 		civ:0,
 		special:'shadow'
 	});
@@ -4286,7 +4295,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Don\'t ya think that was very, very cruel. Murdering the root full of hope for future? @Get your [mausoleum] to at least level 4/10 and sacrifice fully your civilization just to finish the final step. ',
 		effects:[
 		],
-		//visible:false,
+		visible:false,
 		civ:0,
 		special:'shadow'
 	});
@@ -4297,7 +4306,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Oh my god! Murdering the root full of hope for future AGAIN? And more cruelty than before?! // Sacrifice all of your people to one of following wonders: @[pagoda of passing time] @[Pagoda of culture] @[Hartar\'s statue] @[Pagoda of Democracy] @[Fortress of cultural legacy] @[Complex of Dreamers] @[Fortress of magicians] @[Platinum fish statue] @[Tomb of oceans] @[The Herboleum] @[Temple of the Stone] @[Mausoleum of the Dreamer] //Must obtain <b>Cruel goal</b> shadow achievement before that.',
 		effects:[
 		],
-		//visible:false,
+		visible:false,
 		civ:0,
 		special:'shadow'
 	});
@@ -4308,7 +4317,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Get at least 60 techs within first 10 minutes of the current run. //Refreshing page makes your chance lost, so you\'ll need to set a new game',
 		effects:[
 		],
-		//visible:false,
+		visible:false,
 		civ:0,
 		special:'shadow'
 	});
@@ -4319,7 +4328,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Get at least 100 techs within first 10 minutes of the current run. //Refreshing page makes your chance lost, so you\'ll need to set a new game',
 		effects:[
 		],
-		//visible:false,
+		visible:false,
 		civ:0,
 		special:'shadow'
 	});
@@ -4332,7 +4341,7 @@ G.writeMSettingButton=function(obj)
 			{type:'addFastTicksOnStart',amount:225},
 			{type:'addFastTicksOnResearch',amount:30},
 		],
-		//visible:false,
+		visible:false,
 		civ:0,
 		special:'shadow'
 	});
@@ -5755,11 +5764,7 @@ G.writeMSettingButton=function(obj)
 		{
 			var toSpoil=me.amount*0.005;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-			if (G.year>=8999 && G.year<=9001 && G.day==10) 
-			{
-					var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/EasterEgg.mp3');
-					audio.play(); 
-			}
+			
 		},
 	});
 	new G.Res({
