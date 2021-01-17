@@ -4255,6 +4255,52 @@ G.writeMSettingButton=function(obj)
 		civ:0,
 		special:'shadow'
 	});
+	new G.Achiev({
+		tier:0,
+		name:'it\'s over 9000',
+		icon:[35,10,'magixmod'],
+		desc:'What?! 9000?! There is no way that can be right.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+		],
+		//visible:false,
+		civ:0,
+		special:'shadow'
+	});
+	new G.Achiev({
+		tier:0,
+		name:'just plain lucky',
+		icon:[34,10,'magixmod'],
+		desc:'Every ingame day have <b>1</b> of <b>777 777</b> chance to get this achievement.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+		],
+		//visible:false,
+		civ:0,
+		special:'shadow'
+	});
+	new G.Achiev({
+		tier:0,
+		name:'cruel goal',
+		icon:[34,10,'magixmod'],
+		desc:'Don\'t ya think that was very, very cruel. Murdering the root full of hope for future? @Get your [mausoleum] to at least level 4/10 and sacrifice fully your civilization just to finish the final step. ',
+		effects:[
+		],
+		//visible:false,
+		civ:0,
+		special:'shadow'
+	});
+	new G.Achiev({
+		tier:0,
+		name:'that was so brutal',
+		icon:[35,10,'magixmod'],
+		desc:'Oh my god! Murdering the root full of hope for future AGAIN? And more cruelty than before?! // Sacrifice all of your people to one of following wonders: @[pagoda of passing time] @[Pagoda of culture] @[Hartar\'s statue] @[Pagoda of Democracy] @[Fortress of cultural legacy] @[Complex of Dreamers] @[Fortress of magicians] @[Platinum fish statue] @[Tomb of oceans] @[The Herboleum] @[Temple of the Stone] @[Mausoleum of the Dreamer]',
+		effects:[
+		],
+		//visible:false,
+		civ:0,
+		special:'shadow'
+	});
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
@@ -12566,7 +12612,7 @@ if (!document.getElementById(cssId))
 		costPerStep:{'basic building materials':2500,'precious building materials':500,'culture':450,'inspiration':1,'glass':1,'Fortress construction point':-1},
 		steps:200,
 		messageOnStart:'You began the construction of <b>Fortress of cultural legacy</b>. Made at not flat grounds will make people come inside to watch the arts of the centuries. <b>Unleash the unbreakable cultural roots!</b>',
-		finalStepCost:{'inspiration':125,'population':250,'precious building materials':4500,'gem block':50,'culture':650},
+		finalStepCost:{'inspiration':125,'population':2000,'precious building materials':4500,'gem block':50,'culture':650},
 		finalStepDesc:'To complete the wonder and prevent culture and traditions from being perditioned... you need to perform that final step.',
 		use:{'land':10},
 		req:{'monument-building':true,'Cultural roots':true},
@@ -12582,7 +12628,7 @@ if (!document.getElementById(cssId))
 		costPerStep:{'basic building materials':2500,'precious building materials':500,'insight':450,'wisdom':1,'Complex construction point':-1},
 		steps:200,
 		messageOnStart:'You began the construction of Complex of Dreamers. The complex looks like not from this world when night visits the world.',
-		finalStepCost:{'wisdom':125,'population':250,'precious building materials':4500,'gem block':50,'insight':1000},
+		finalStepCost:{'wisdom':125,'population':2500,'precious building materials':4500,'gem block':50,'insight':1000},
 		finalStepDesc:'To complete the wonder and make your whole civilization much smarter you will need to perform a final step.',
 		use:{'land':25},
 		upkeep:{'Mana':15},
@@ -12599,7 +12645,7 @@ if (!document.getElementById(cssId))
 		costPerStep:{'basic building materials':2500,'precious building materials':500,'influence':45,'authority':0.25,'Pagoda construction point':-1},
 		steps:200,
 		messageOnStart:'You began the construction of Pagoda of Democracy. Over the blossoms it looks like the most beautiful place you have ever seen. Some people say that Pagoda is taller than Mausoleum.',
-		finalStepCost:{'authority':25,'population':250,'precious building materials':4500,'gem block':50},
+		finalStepCost:{'authority':25,'population':2000,'precious building materials':4500,'gem block':50},
 		finalStepDesc:'To complete the wonder and make justice and democration last even longer you need to do the final step.',
 		use:{'land':10},
 		req:{'monument-building':true,'Political roots':true},
@@ -12615,7 +12661,7 @@ if (!document.getElementById(cssId))
 		costPerStep:{'Dark essence':150,'basic building materials':150,'gem block':1,'population':3,'Mana':3000,'New world point':-1},
 		steps:1111,
 		messageOnStart:'Your people started digging down right into core of the mortal world. The deeper they mine the warmer it is there. What can be inside the new world?',
-		finalStepCost:{'population':2500,'gem block':500,'gold block':50,'New world point':-389},
+		finalStepCost:{'population':2000,'gem block':500,'gold block':50,'New world point':-389},
 		finalStepDesc:'<font color="fuschia">To complete this step of activating passage to the Underworld you need to ascend.</font>',
 		use:{'land':1,'worker':35,'metal tools':35,'armor set':35},
 		category:'dimensions',
@@ -12632,7 +12678,7 @@ if (!document.getElementById(cssId))
 		costPerStep:{'Mana':25000,'Magic essences':500,'precious building materials':100,'basic building materials':1000,'concrete':5,'strong metal ingot':75},
 		steps:200,
 		messageOnStart:'Your people who worships magic , wizardry and believe in power of the essences started building a wonder that will be related to the believements. <br>Will magic award your and your people\'s hard work?',
-		finalStepCost:{'population':500,'Fire essence':5e4,'Lightning essence':5e4,'Dark essence':5e4,'Wind essence':5e4,'Nature essence':5e4,'Water essence':5e4,'Essence of the Holiness':5e4},
+		finalStepCost:{'population':5000,'Fire essence':5e4,'Lightning essence':5e4,'Dark essence':5e4,'Wind essence':5e4,'Nature essence':5e4,'Water essence':5e4,'Essence of the Holiness':5e4},
 		finalStepDesc:'To complete this step a 50k [Fire essence,F.e.] , [Dark essence,D.e.] , [Nature essence,N.e] , [Lightning essence,L.e.] and other [Magic essences,Essences] must be sacrificed and many other resources in order to make magic being cultivated for long time.',
 		use:{'land':15},
 		category:'wonder',
@@ -12833,7 +12879,7 @@ new G.Unit({
 		costPerStep:{'platinum block':1,'gems':2,'cut stone':3,'water':4500},
 		steps:175,
 		messageOnStart:'You started to build statue for <b>Fishyar</b>. <br>This statue will have precious fish at the top. Feel thirsty for seafood and stare with hopeful smile that you will finish this trial by that.',
-		finalStepCost:{'population':100,'gem block':5,'water':10000,'platinum ore':25},
+		finalStepCost:{'population':400,'gem block':5,'water':10000,'platinum ore':25},
 		finalStepDesc:'To perform the final step bunch of [water] , 100 [population,people] and many more must be sacrificed in order to leave the plane of seafood fanatics and award you with <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
 		req:{'language':true,'tribalism':false},
