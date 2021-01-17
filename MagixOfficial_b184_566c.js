@@ -1682,6 +1682,14 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		setTimeout(function(){
+			if(G.techN>=60 && G.techN<=99){
+				G.achievByName['speedresearcher'].won++;
+				if(G.achievByName['speedresearcher'].won==0)G.middleText('- Completed <font color="#ffbbbb">Speedresearcher</font> shadow achievement - <br><hr width="300"><small>Wow! Can you do more?</small>','slow');
+			}else if(G.techN>=100){
+				G.achievByName['speedresearcher II'].won++;
+			}if(G.achievByName['speedresearcher II'].won==0)G.middleText('- Completed <font color="#bbbbff">Speedresearcher II</font> shadow achievement - <br><hr width="300"><small>Incredible</small>','slow');
+		},600000);
 		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);}
 		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['<font color="fuschia">Authority of the ancestor</font>']);}
 		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['<font color=" ##00C000">Artistic gray cells</font>']);}
@@ -3093,7 +3101,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				}
 				else if (G.speed==2)
 				{
-					G.middleText('- Speed x30 -');
+					G.middleText('- Speed x30 - <br><small>That is very fast :)</small>');
 				}
 			}
 			
@@ -3633,6 +3641,7 @@ G.writeMSettingButton=function(obj)
 		this.icon=[0,0];
 		this.civ=0; //Achievements will be different for C2 and C1 but still C2 can boost C1 and vice versa ... yeah . 0 stands for people... 1 for ... ???
 		this.special='none'; //parameters: 'none','seasonal','shadow'
+		this.plural=true; //display: Achieved n times if true, just completed if false
 		
 		for (var i in obj) this[i]=obj[i];
 		this.id=G.achiev.length;
@@ -3760,7 +3769,10 @@ G.writeMSettingButton=function(obj)
 							return '<div class="info">'+
 							'<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>'+
 							'<div class="fancyText barred infoTitle">'+me.displayName+'</div>'+
-							'<div class="fancyText barred">'+(me.won>0?('Achieved :<font color="yellow"> '+me.won+'</font> '+(me.won==1?'time':'times')):'Locked <font color="#aaffff">:(</font>')+'</div>'+
+							(me.plural==true ? 
+							 '<div class="fancyText barred">'+(me.won>0?('Achieved :<font color="yellow"> '+me.won+'</font> '+(me.won==1?'time':'times')):'Locked <font color="#aaffff">:(</font>')+'</div>' : 
+							 '<div class="fancyText barred">'+(me.won>0?('Completed<font color="yellow">'):'Locked <font color="#aaffff">:(</font>')+'</div>')+
+							//'<div class="fancyText barred">'+(me.won>0?('<font color="yellow">Completed</font>':'Locked <font color="#aaffff">:(</font></div>')+
 							'<div class="fancyText barred">Effects :'+G.getAchievEffectsString(me.effects)+'</div>'+
 							(me.desc?('<div class="infoDesc">'+G.parse(me.desc)+'</div>'):'')+
 							'</div>'+
