@@ -3338,10 +3338,10 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.achievByName['just plain lucky'].won>=1){G.achievByName['just plain lucky'].visible=true}else{G.achievByName['just plain lucky'].visible=false};
 		if(G.achievByName['speedresearcher'].won>=1){G.achievByName['speedresearcher'].visible=true}else{G.achievByName['speedresearcher'].visible=false};
 		if(G.achievByName['speedresearcher II'].won>=1){G.achievByName['speedresearcher II'].visible=true}else{G.achievByName['speedresearcher II'].visible=false};
-		if(G.achievByName['speedresearcher II'].won>=1){G.achievByName['speedresearcher II'].visible=true}else{G.achievByName['speedresearcher II'].visible=false};
 		if(G.achievByName['cruel goal'].won>=1){G.achievByName['cruel goal'].visible=true}else{G.achievByName['cruel goal'].visible=false};
 		if(G.achievByName['that was so brutal'].won>=1){G.achievByName['that was so brutal'].visible=true}else{G.achievByName['that was so brutal'].visible=false};
 		if(G.achievByName['i do not want to take things easily'].won>=1){G.achievByName['i do not want to take things easily'].visible=true}else{G.achievByName['i do not want to take things easily'].visible=false};
+		if(G.achievByName['god complex'].won>=1 || G.achievByName['it\'s over 9000'].won>=1 || G.achievByName['just plain lucky'].won>=1 || G.achievByName['speedresearcher'].won>=1 || G.achievByName['speedresearcher II'].won>=1 || G.achievByName['cruel goal'].won>=1 || G.achievByName['that was so brutal'].won>=1 || G.achievByName['i do not want to take things easily'].won>=1)G.achievByName['in the shadows'].won=1;
 		
 		//JUST PLAIN LUCKY
 		var luckynumber=Math.round(Math.floor()*777777)+1;
