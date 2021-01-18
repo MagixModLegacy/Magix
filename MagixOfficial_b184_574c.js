@@ -4422,7 +4422,7 @@ G.writeMSettingButton=function(obj)
 	new G.Achiev({
 		tier:2,
 		name:'in the shadows',
-		icon:[35,9,'magixmod'],
+		icon:[34,9,'magixmod'],
 		desc:'Complete 1 shadow achievement.',
 		effects:[
 			{type:'addFastTicksOnStart',amount:70},
