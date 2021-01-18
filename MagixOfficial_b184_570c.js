@@ -959,7 +959,7 @@ if (!document.getElementById(cssId))
 		}else{
 			var texts= ['All you know for now is that you exist at lands where scarce<br> not really occurs','All you know for now is that you exist in harsh, dry, <br>where food and water are scarce','You don\'t know where you are... You feel some warmth/cool , dryness/wettiness... Where?!'];
 			var str='';
-			str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><center><font size="4">Get <font color="#7f7fff">Where am I?</font> trait to unlock content of this tab<br><li>There you\'ll see informations about land your tribe settled</li><br><li>Not only that. You\'ll also see which goods you can find at these lands</li><br><li>'+texts[G.startingType]+'</li><br><u>"The world is a book and those who don\'t travel read only one page"</u> ~ Saint Augustine</font></center></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
+			str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><center><font size="4">Get <font color="#7f7fff">Where am I?</font> trait to unlock content of this tab<br><li>There you\'ll see informations about land your tribe settled</li><br><li>Not only that. You\'ll also see which goods you can find at these lands</li><br><li>'+texts[G.achievByName['starting type'].won]+'</li><br><u>"The world is a book and those who don\'t travel read only one page"</u> ~ Saint Augustine</font></center></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
 			l('landDiv').innerHTML=str;
 			
 		
@@ -1682,6 +1682,7 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		G.achievByName['starting type'].won=G.startingType;
 		setTimeout(function(){
 			if(G.techN>=60 && G.techN<=99){
 				G.achievByName['speedresearcher'].won++;
@@ -4399,6 +4400,11 @@ G.writeMSettingButton=function(obj)
 		civ:0,
 		special:'shadow',
 			plural:false
+	});
+	new G.Achiev({
+		icon:[1,0,'magixmod'],
+		name:'start type',
+		visible:false //debug
 	});
 	/*=====================================================================================
 	RESOURCES
