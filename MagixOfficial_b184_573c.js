@@ -4405,7 +4405,31 @@ G.writeMSettingButton=function(obj)
 	new G.Achiev({
 		icon:[1,0,'magixmod'],
 		name:'start type',
-		visible:false //debug
+		visible:false //debug achiev
+	});
+	new G.Achiev({
+		tier:5,
+		name:'man o\' trait',
+		icon:[35,9,'magixmod'],
+		desc:'Manage your fantastic tribe to adopt 70 traits.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:70},
+			{type:'addFastTicksOnResearch',amount:1},
+		],
+			civ:0,
+			plural:false
+	});
+	new G.Achiev({
+		tier:2,
+		name:'in the shadows',
+		icon:[35,9,'magixmod'],
+		desc:'Complete 1 shadow achievement.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:70},
+			{type:'addFastTicksOnResearch',amount:1},
+		],
+			civ:0,
+			plural:false
 	});
 	/*=====================================================================================
 	RESOURCES
@@ -8546,7 +8570,7 @@ if (!document.getElementById(cssId))
 			G.achievByName['Experienced'].won = 1
 			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>','slow')
 			}
-			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0 && G.achievByName['Familiar'].won == 1){ //Experienced
+			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0 && G.achievByName['Familiar'].won == 1 && G.achievByName['in the shadows'].won == 1){ //Smart
 			G.achievByName['Smart'].won = 1
 			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>','slow')
 			}
