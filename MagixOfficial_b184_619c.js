@@ -1626,10 +1626,6 @@ G.update.tech = () => {
  });
  // If no research was made
  let techBoxContent = l('techBox').innerHTML;
- if (techBoxContent === '') {
-  techBoxContent =
-   '<div class="fancyText bitBiggerText">Your civilization does not have any researches yet.<br>These may be obtained over time.</div>';
- }
 
  // Populate research
  G.techsOwned.forEach(techResearched => {
