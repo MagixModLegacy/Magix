@@ -959,7 +959,7 @@ if (!document.getElementById(cssId))
 		}else{
 			var texts= ['All you know for now is that you exist at lands where scarce<br> not really occurs','All you know for now is that you exist in harsh, dry, <br>where food and water are scarce','You don\'t know where you are... You feel some warmth/cool , dryness/wettiness... Where?!'];
 			var str='';
-			str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><center><font size="4">Get <font color="#7f7fff">Where am I?</font> trait to unlock content of this tab<br><li>There you\'ll see informations about land your tribe settled</li><br><li>Not only that. You\'ll also see which goods you can find at these lands</li><br><li>'+texts[lc]+'</li><br><u>"The world is a book and those who don\'t travel read only one page"</u> ~ Saint Augustine</font></center></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
+			str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><center><font size="4">Get <font color="#7f7fff">Where am I?</font> trait to unlock content of this tab<br><li>There you\'ll see informations about land your tribe settled</li><br><li>Not only that. You\'ll also see which goods you can find at these lands</li><br><li>'+texts[lc]+'</li><br><u>"The world is a book and those who don\'t travel read only one page"</u> ~ Saint Augustine</font></center></div></div></div></div></div>';
 			l('landDiv').innerHTML=str;
 			
 		
@@ -1337,7 +1337,7 @@ G.setPolicyMode=function(me,mode)
 		}
 	}else{
 		var str='';
-		str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><center><font size="4">Get <font color="fuschia">Policies</font> trait to unlock content of this tab<br><li>Policies are one of main aspects of ruling the tribe</li><br>So... get this trait to learn even more about them :)</font></center></div></div><div id="techBox" class="thingBox"></div></div></div></div>';
+		str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><center><font size="4">Get <font color="fuschia">Policies</font> trait to unlock content of this tab<br><li>Policies are one of main aspects of ruling the tribe</li><br>So... get this trait to learn even more about them :)</font></center></div></div></div></div></div>';
 		l('policyDiv').innerHTML=str;
 	}
 		G.draw['policy']();
