@@ -1775,7 +1775,7 @@ G.props['fastTicksOnResearch']=150;
 				'<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:16px;">'+
 				'<div style="float:right;margin:8px;width:121px;text-align:center;line-height:80%;"><img style="box-shadow:2px 2px 2px 1px #000;" src="img/helpLocation.jpg"/><br><small>Mouse over these buttons for more explanations!</small></div>'+
 				'<div class="bulleted">early on, focus most of your workers on <u>food gathering</u></div>'+
-				'<div class="bulleted">assign a few spare workers as <u>dreamers</u>, in order to get some <font color="#ddddff">Insight</font>which you can use to research technologies</div>'+
+				'<div class="bulleted">assign a few spare workers as <u>dreamers</u>, in order to get some <font color="#ddddff">Insight</font> which you can use to research technologies</div>'+
 				'<div class="bulleted">Soon you\'ll unlock more and more informations and details about your terrain. Just go through progress to gain more informations about world around you.</div>'+
 				'<div class="bulleted">For early game think about hiring a <u>Wanderer</u></div>'+
 				'<div class="bulleted">don\'t bother researching fishing or hunting if none of your tiles have animals or fish!</div>'+
@@ -1787,7 +1787,8 @@ G.props['fastTicksOnResearch']=150;
 				'<div class="bulleted">The game diffictulty is higher than one from original game but in exchange game is more interesting</div>'+
 				'<div class="bulleted">Do achievements so you can unlock extra starting bonuses.</div>'+
 				'<div class="bulleted">While researching keep an eye on messages tab. There you may occasionaly find some tips upon researching.</div>'+
-				'<div class="bulleted"><font color="yellow">And most important: enjoy :)</font></div>'+
+				'<div class="bulleted"><font color="lime">Top 2 of most important tips, place 2:<br><center>Read the tooltips that resources,units,policies,traits etc. have.</font></div>'+
+				'<div class="bulleted"><font color="yellow">And most important: enjoy :)</font></centeR></div>'+
 				'</div>'+
 			'</div><div class="buttonBox">'+
 				G.dialogue.getCloseButton('I\'ve got it!')+
