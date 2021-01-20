@@ -1728,10 +1728,11 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 		var str='';
-		var len=G.techCategories.length;
+		var strByCat=[];
+		var len=G.knowCategories.length;
 		for (var iC=0;iC<len;iC++)
 		{
-			if (strByCat[G.techCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-'+iC+'">'+G.knowCategories[iC].name+'</div>'+strByCat[G.knowCategories[iC].id]+'</div>';
+			if (strByCat[G.knowCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-'+iC+'">'+G.knowCategories[iC].name+'</div>'+strByCat[G.knowCategories[iC].id]+'</div>';
 		}
 		if (str=='') str+='<div class="fancyText bitBiggerText">Your civilization does not have any researches yet.<br>These may be obtained over time.</div>';
 		l('techBox').innerHTML=str;
@@ -1745,7 +1746,7 @@ G.setPolicyMode=function(me,mode)
 			var div=l('tech-'+me.id);if (div) me.l=div; else me.l=0;
 			var div=l('tech-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
 			var div=l('tech-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
-			G.addTooltip(me.l,function(what){return function(){return G.getKnowTooltip(what)};}(me.tech),{offY:-8});
+			G.addTooltip(me.l,function(what){return function(){return G.getTechTooltip(what)};}(me.tech),{offY:-8});
 			if (me.l) me.l.onclick=function(what){return function(){G.clickTech(what);};}(me);
 		}
 		
