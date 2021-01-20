@@ -1794,7 +1794,22 @@ G.props['fastTicksOnResearch']=150;
 				G.dialogue.getCloseButton('I\'ve got it!')+
 			'</div></div>';
 		});}})+' <-----</b></center>',icon:[7,30,'magixmod']});
-	
+		if (G.achievByName['mausoleum'].won > 0) {
+      G.Message({
+        type: 'good',
+        text: 'Building the Mausoleum in the past has granted you access to magic! :)',
+        icon: [4, 12, 6, 1, 'magixmod']
+      });
+    }
+ else if(G.achievByName['mausoleum'].won < 1){
+
+  G.Message({
+    type: 'bad',
+    text: 'Building the Mausoleum grants access to magic in the future.',
+    icon: [3, 12, 6, 1, 'magixmod']
+  });
+
+}
 		/////////////////
 		G.achievByName['starting type'].won=G.startingType;
 		lc=G.achievByName['starting type'].won;
@@ -2148,22 +2163,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		
 		
 	
-	if (G.achievByName['mausoleum'].won > 0) {
-      G.Message({
-        type: 'good',
-        text: 'Building the Mausoleum in the past has granted you access to magic! :)',
-        icon: [4, 12, 6, 1, 'magixmod']
-      });
-    }
- else if(G.achievByName['mausoleum'].won < 1){
-
-  G.Message({
-    type: 'bad',
-    text: 'Building the Mausoleum grants access to magic in the future.',
-    icon: [3, 12, 6, 1, 'magixmod']
-  });
-
-}
+	
 		//NO EXTRA ORES WITH MAGIX
 		if(G.modsByName['Extra ores(for data.js)']){
 			G.middleText('Sorry',sloweerer)
