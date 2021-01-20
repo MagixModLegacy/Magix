@@ -13750,7 +13750,7 @@ getCosts:function()
 			
 		],
 		chance:3,
-		category:'tier1',
+		
 	});
 	
 	new G.Tech({
