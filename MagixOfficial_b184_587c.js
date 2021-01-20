@@ -1766,6 +1766,9 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		///new game mesg
+		G.Message({type:'important tall',text:'Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?'(but that\'s not you, is it?)':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.',icon:[0,3]});
+		/////////////////
 		G.achievByName['starting type'].won=G.startingType;
 		lc=G.achievByName['starting type'].won;
 		setTimeout(function(){
@@ -1808,9 +1811,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
       G.gainTrait(G.traitByName['well stored 2']);
     };
 		G.getRes('victory point').amount=0;
-		///new game mesg
-		G.Message({type:'important tall',text:'Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti'?'(but that\'s not you, is it?)':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.',icon:[0,3]});
-		/////////////////
+		
 		if(G.achievByName['Talented?'].won==0){
 			G.getDict('research box').choicesN=4
 			}else if(G.achievByName['Talented?'].won>=1){
