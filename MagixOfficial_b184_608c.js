@@ -1743,9 +1743,9 @@ G.setPolicyMode=function(me,mode)
 		for (var i=0;i<len;i++)
 		{
 			var me=G.techsOwned[i];
-			var div=l('tech-'+me.id);if (div) me.l=div; else me.l=0;
-			var div=l('tech-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
-			var div=l('tech-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
+			var div=l('know-'+me.id);if (div) me.l=div; else me.l=0;
+			var div=l('know-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
+			var div=l('know-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
 			G.addTooltip(me.l,function(what){return function(){return G.getTechTooltip(what)};}(me.tech),{offY:-8});
 			if (me.l) me.l.onclick=function(what){return function(){G.clickTech(what);};}(me);
 		}
