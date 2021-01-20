@@ -1724,7 +1724,7 @@ G.setPolicyMode=function(me,mode)
 				'<div class="overlay" id="tech-over-'+me.id+'"></div>'+
 			'</div>';
 			str+='</div>';
-			strByCat[me.tech.category]+=str;
+			//strByCat[me.tech.category]+=str;
 		}
 		
 		var str='';
