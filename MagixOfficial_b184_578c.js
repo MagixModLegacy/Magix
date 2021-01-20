@@ -2072,7 +2072,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
-					G.getAchiev('xmas buff').won=3;
+					G.getAchiev('xmas buff').won=7;
 					
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
@@ -3742,7 +3742,7 @@ G.writeMSettingButton=function(obj)
 					var me=G.achievByTier[i][ii];
 					if(me.visible==true){
 					/*(G.achievByTier[i][ii].visible==true ? */str+='<div class="thingWrapper">'+
-						(me.special=='shadow' ? '<div class="shadowachiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">' : '<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">')+
+						(me.special!='' ? '<div class="'+me.special+'chiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">' : '<div class="achiev thing'+G.getIconClasses(me)+''+(me.won?'':' off')+'" id="achiev-'+me.id+'">')+
 						G.getIconStr(me,'achiev-icon-'+me.id)+
 						'<div class="overlay" id="achiev-over-'+me.id+'"></div>'+
 						'</div>'+
@@ -4430,6 +4430,19 @@ G.writeMSettingButton=function(obj)
 		],
 			civ:0,
 			plural:false
+	});
+	new G.Achiev({
+		tier:2,
+		name:'capital of christmas',
+		icon:[1,10,'seasonal'],
+		desc:'Finish [wonderful fortress of christmas]. //You\'ll unlock special buff that last only during christmas and 7 next runs after [the christmas,<font color="Aqua">Christmas</font>] ends. Merry Christmas!',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25},
+		],
+			civ:0,
+			plural:false,
+			special:'seasonal';
 	});
 	/*=====================================================================================
 	RESOURCES
@@ -13413,7 +13426,7 @@ new G.Unit({
 		wonder:';',
 		steps:1200,
 		cost:{'basic building materials':3000,'christmas essence':10000},
-		costPerStep:{'christmas essence':4200,'Dyes':1500,'Mana':1400,'basic building materials':650,'precious building materials':150,'concrete':25,'gems':10,'christmas ornament':150,'festive light':80},
+		costPerStep:{'christmas essence':4200,'Dyes':1500,'Mana':1400,'basic building materials':850,'precious building materials':150,'concrete':25,'gems':10,'christmas ornament':150,'festive light':80,'snow':100},
 		finalStepCost:{'christmas essence':40000,'Mana':1e5,'ice':7.5e4},
 		threexthreeIcon:[0,11,'seasonal'],
 		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
