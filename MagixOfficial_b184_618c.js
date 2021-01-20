@@ -1603,7 +1603,7 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 	}
-	/* eslint-disable no-param-reassign */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-undef */
 G.update.tech = () => {
  const researchUI = `<div class="behindBottomUI">${G.textWithTooltip(
@@ -13777,7 +13777,7 @@ getCosts:function()
 	
 	
 	new G.Tech({
-		name:'tribalism',
+		name:'tribalism',category:'tier1',
 		desc:'@unlocks [gatherer]@provides 5 [authority]<>Taking its roots in wild animal packs, [tribalism] is the organization of individuals into simple social structures with little hierarchy.',
 		icon:[0,1],
 		startWith:true,
@@ -13787,9 +13787,10 @@ getCosts:function()
 			{type:'show context',what:['gather']},
 			
 		],
+	
 	});
 	new G.Tech({
-		name:'speech',
+		name:'speech',category:'tier1',
 		desc:'@unlocks [dreamer]@unlocks [wanderer]@provides 50 [wisdom]<>[speech], in its most primitive form, is a series of groans and grunts that makes it possible to communicate things, events, and concepts.',
 		icon:[1,1],
 		startWith:true,
@@ -13799,7 +13800,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'language',
+		name:'language',category:'tier1',
 		desc:'@provides 30 [inspiration]@provides 30 [wisdom]<>[language] improves on [speech] by combining complex grammar with a rich vocabulary, allowing for better communication and the first signs of culture.',
 		icon:[2,1],
 		cost:{'insight':10},
@@ -13813,7 +13814,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'oral tradition',
+		name:'oral tradition',category:'tier1',
 		desc:'@unlocks [storyteller]@provides 20 [inspiration]@provides 20 [wisdom]<>[oral tradition] emerges when the members of a tribe gather at night to talk about their day. Stories, ideas, and myths are all shared and passed on from generation to generation.',
 		icon:[5,1],
 		cost:{'insight':10},
@@ -13824,7 +13825,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'stone-knapping',
+		name:'stone-knapping',category:'tier1',
 		desc:'@unlocks [artisan]s, which can create [knapped tools]<>[stone-knapping] allows you to make your very first tools - simple rocks that have been smashed against each other to fashion rather crude cleavers, choppers, and hand axes.//Tools have little use by themselves, but may be used in many other industries.',
 		icon:[3,1],
 		cost:{'insight':5},
@@ -13835,7 +13836,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'tool-making',
+		name:'tool-making',category:'tier1',
 		desc:'@[artisan]s can now create [stone tools]<>With proper [tool-making], new procedures arise to craft a multitude of specialized tools out of cheap materials - such as hammers, knives, and axes.',
 		icon:[4,1],
 		cost:{'insight':10},
@@ -13846,7 +13847,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'basket-weaving',
+		name:'basket-weaving',category:'tier1',
 		desc:'@[artisan]s can now craft [basket]s<>Baskets are a cheap, if flimsy means of storing food.',
 		icon:[7,1],
 		cost:{'insight':10},
@@ -13856,7 +13857,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'scouting',
+		name:'scouting',category:'tier1',
 		desc:'@unlocks [scout]s, which can discover new territory<>The [scout] is an intrepid traveler equipped to deal with the unknown.',
 		icon:[24,7],
 		cost:{'insight':10},
@@ -13866,7 +13867,7 @@ getCosts:function()
 		chance:2,
 	});
 	new G.Tech({
-		name:'canoes',
+		name:'canoes',category:'tier1',
 		//TODO : fishing boats
 		desc:'@allows exploring through ocean shores<>',
 		icon:[26,7],
@@ -13877,7 +13878,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'boat building',
+		name:'boat building',category:'tier1',
 		//TODO : in the future, boats will be units or resources
 		desc:'@allows full ocean exploring<>',
 		icon:[28,7],
@@ -13889,7 +13890,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'sedentism',
+		name:'sedentism',category:'tier1',
 		desc:'@unlocks [mud shelter]s and [branch shelter]s@unlocks [lodge]s<>To stay in one place when food is scarce is a bold gamble, especially to those without knowledge of agriculture.',//TODO : this should unlock a policy that lets you switch between nomadism (housing and food storage have no effect) and sedentism (gathering and hunting are much less efficient)
 		icon:[8,1],
 		cost:{'insight':20},
@@ -13899,7 +13900,7 @@ getCosts:function()
 		chance:3,
 	});
 	new G.Tech({
-		name:'building',
+		name:'building',category:'tier1',
 		desc:'@unlocks [hut]s@unlocks [stockpile]s (with [stockpiling])<>The [building,Hut] is only slightly more sophisticated than simple shelters, but is more spacious and can withstand wear longer.',
 		icon:[9,1],
 		cost:{'insight':20},
@@ -13909,7 +13910,7 @@ getCosts:function()
 		chance:3,
 	});
 	new G.Tech({
-		name:'cities',
+		name:'cities',category:'tier1',
 		desc:'@unlocks [hovel]s<>',
 		icon:[29,7],
 		cost:{'insight':25},
@@ -13918,7 +13919,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'construction',
+		name:'construction',category:'tier1',
 		desc:'@unlocks [house]s@unlocks [warehouse]s (with [stockpiling])<>',
 		icon:[30,7],
 		cost:{'insight':30},
@@ -13928,7 +13929,7 @@ getCosts:function()
 		chance:3,
 	});
 	new G.Tech({
-		name:'city planning',
+		name:'city planning',category:'tier1',
 		desc:'@unlocks [architect]s<>',
 		icon:[22,8],
 		cost:{'insight':25},
@@ -13937,7 +13938,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'guilds',
+		name:'guilds',category:'tier1',
 		desc:'@unlocks [guild quarters]<>NOTE : useless for now.',
 		icon:[23,8],
 		cost:{'insight':20},
@@ -13946,7 +13947,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'stockpiling',
+		name:'stockpiling',category:'tier1',
 		desc:'@unlocks [storage pit]s<>The foresight to store sustenance and materials ahead of time can make or break a budding civilization.',
 		icon:[10,1],
 		cost:{'insight':10},
@@ -13959,7 +13960,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'digging',
+		name:'digging',category:'tier1',
 		desc:'@unlocks [digger]s@paves the way for simple buildings<>The earth is full of riches - to those who can find them.',
 		icon:[11,1],
 		cost:{'insight':10},
@@ -13969,7 +13970,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'well-digging',
+		name:'well-digging',category:'tier1',
 		desc:'@unlocks [well]s<>It takes some thinking to figure out that water can be found if you dig deep enough.//It takes a lot of bravery, however, to find out if it is safe to drink.',
 		icon:[22,7],
 		cost:{'insight':10},
@@ -13978,7 +13979,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'woodcutting',
+		name:'woodcutting',category:'tier1',
 		desc:'@unlocks [woodcutter]s<>',//TODO : desc
 		icon:[23,5],
 		cost:{'insight':10},
@@ -13989,7 +13990,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'plant lore',
+		name:'plant lore',category:'upgrade',
 		desc:'@[gatherer]s find more [herb]s and [fruit]s<>The knowledge of which plants are good to eat and which mean certain death is a slow and perilous one to learn.',
 		icon:[23,7],
 		cost:{'insight':5},
@@ -13998,7 +13999,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'healing',
+		name:'healing',category:'tier1',
 		desc:'@unlocks [healer]s<>',
 		icon:[25,7],
 		cost:{'insight':10},
@@ -14009,7 +14010,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'ritualism',
+		name:'ritualism',category:'religion',
 		desc:'@provides 10 [spirituality]@unlocks [soothsayer]s@unlocks some ritual policies<>Simple practices, eroded and polished by time, turn into rites and traditions.',
 		icon:[12,1],
 		cost:{'culture':5},
@@ -14021,7 +14022,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'symbolism',
+		name:'symbolism',category:'upgrade',
 		desc:'@[dreamer]s produce 40% more [insight]@[storyteller]s produce 50% more [culture]@[soothsayer]s produce 50% more [faith]<>The manifestation of one thing for the meaning of another - to make the cosmos relate to itself.',
 		icon:[13,1],
 		cost:{'culture':10,'insight':10},
@@ -14032,7 +14033,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'burial',
+		name:'burial',category:'tier1',
 		desc:'@unlocks [grave]s@exposed [corpse]s make people even more unhappy<>It is the belief that there might be more to death than is first apparent that drives us to bury our deceased.',
 		icon:[14,1],
 		cost:{'insight':5},
@@ -14043,7 +14044,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'hunting',
+		name:'hunting',category:'tier1',
 		desc:'@unlocks [hunter]s<>It is a common tragedy that a creature should die so that another may survive.//[hunter] can gather [hide] if [skinning] is unlocked.',
 		icon:[15,1],
 		cost:{'insight':5},
@@ -14054,7 +14055,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'fishing',
+		name:'fishing',category:'tier1',
 		desc:'@unlocks [fisher]s<>Fishing is more than simply catching fish; it involves knowing where the fish like to gather and which ones are good to eat.//It would be wise to check whether any of your territory contains fish before investing in this technology.',
 		icon:[25,1],
 		cost:{'insight':5},
@@ -14065,7 +14066,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'bone-working',
+		name:'bone-working',category:'tier1',
 		desc:'@[artisan]s can now make [knapped tools] out of [bone]@[bone]s can now be used as [archaic building materials]<>',
 		icon:[22,5],
 		cost:{'insight':5},
@@ -14076,7 +14077,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'spears',
+		name:'spears',category:'tier1',
 		displayName:'Spears and maces',
 		desc:'@[artisan]s can now craft [stone weapons]@unlocks new modes for [hunter]s and [fisher]s<>Using tools as weapons opens a world of possibilities, from hunting to warfare. <b>Spear hunting/fishing</b> modes has only 80% of its normal efficiency. To remove that penalty obtain [aiming] research.',
 		icon:[26,1],
@@ -14084,14 +14085,14 @@ getCosts:function()
 		req:{'tool-making':true},
 	});
 	new G.Tech({
-		name:'bows',
+		name:'bows',category:'tier1',
 		desc:'@[artisan]s can now craft [bow]s@unlocks new modes for [hunter]s<> <b>Bow hunting</b> mode has only 40% of its normal efficiency. To remove that penalty obtain [aiming] research.',//TODO : desc
 		icon:[27,1],
 		cost:{'insight':20},
 		req:{'spears':true},
 	});
 	new G.Tech({
-		name:'fishing hooks',
+		name:'fishing hooks',category:'tier1',
 		desc:'@unlocks new modes for [fisher]s<>',//TODO : desc
 		icon:[28,1],
 		cost:{'insight':15},
@@ -14099,7 +14100,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'fire-making',
+		name:'fire-making',category:'tier1',
 		desc:'@unlocks [firekeeper]s<>Fire keeps you warm and makes animal attacks much less frequent.',
 		icon:[16,1],
 		cost:{'insight':15},
@@ -14110,14 +14111,14 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'cooking',
+		name:'cooking',category:'tier1',
 		desc:'@[firekeeper]s can now cook [cooked meat] and [cooked seafood]<>Tossing fish and meat over a sizzling fire without reducing them to a heap of ash takes a bit of practice.',
 		icon:[17,1],
 		cost:{'insight':10},
 		req:{'fire-making':true},
 	});
 	new G.Tech({
-		name:'curing',
+		name:'curing',category:'tier1',
 		desc:'@[firekeeper]s can now prepare [cured meat] and [cured seafood] with [salt], which last much longer<>Storing food with special preparations seems to ward off rot, and comes along with the advent of delicious jerky.',
 		icon:[27,7],
 		cost:{'insight':15},
@@ -14125,7 +14126,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'sewing',
+		name:'sewing',category:'tier1',
 		desc:'@unlocks [clothier]s, who work with fabric and can sew [primitive clothes]<>',//TODO : desc
 		icon:[29,1],
 		cost:{'insight':10},
@@ -14134,7 +14135,7 @@ getCosts:function()
 		]
 	});
 	new G.Tech({
-		name:'weaving',
+		name:'weaving',category:'tier1',
 		desc:'@[clothier]s can now sew [basic clothes]<>',
 		icon:[30,1],
 		cost:{'insight':20},
@@ -14143,14 +14144,14 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'leather-working',
+		name:'leather-working',category:'tier1',
 		desc:'@[clothier]s can now cure [hide]s into [leather] and use leather in cloth-making (with [weaving])<>',
 		icon:[31,1],
 		cost:{'insight':20},
 		req:{'sewing':true},
 	});
 	
-	new G.Tech({
+	new G.Tech({category:'tier1',
 		name:'smelting',
 		desc:'@unlocks [furnace]s, which turn ore into metal ingots@unlocks [blacksmith workshop]s, which forge metal ingots into metal goods<>',//TODO : desc
 		icon:[26,5],
@@ -14161,7 +14162,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'bronze-working',
+		name:'bronze-working',category:'tier1',
 		desc:'@[furnace]s can now make [hard metal ingot]s from [copper ore] and [tin ore]<>',//TODO : desc
 		icon:[28,5],
 		cost:{'insight':30},
@@ -14170,7 +14171,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'iron-working',
+		name:'iron-working',category:'tier1',
 		desc:'@[furnace]s can now make [hard metal ingot]s from [iron ore]<>',//TODO : desc
 		icon:[27,5],
 		cost:{'insight':30},
@@ -14179,7 +14180,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'gold-working',
+		name:'gold-working',category:'tier1',
 		desc:'@[furnace]s can now make [precious metal ingot]s from [gold ore]@[blacksmith workshop]s can now forge [gold block]s out of [precious metal ingot]s<>',//TODO : desc
 		icon:[29,5],
 		cost:{'insight':40},
@@ -14188,7 +14189,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'steel-making',
+		name:'steel-making',category:'tier1',
 		desc:'@[furnace]s can now make [strong metal ingot]s from [iron ore] and [coal]<>',//TODO : desc
 		icon:[30,5],
 		cost:{'insight':40},
@@ -14198,7 +14199,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'chieftains',
+		name:'chieftains',category:'tier1',
 		desc:'@unlocks [chieftain]s, which generate [influence]@provides 5 [authority]<>',//TODO : desc
 		icon:[22,6],
 		cost:{'insight':10},
@@ -14208,7 +14209,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'clans',
+		name:'clans',category:'tier1',
 		desc:'@unlocks [clan leader]s, which generate [influence]@provides 5 [authority]<>',//TODO : desc
 		icon:[23,6],
 		cost:{'insight':25},
@@ -14218,7 +14219,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'code of law',
+		name:'code of law',category:'tier1',
 		desc:'@provides 15 [authority]@political units generate more [influence]<>',//TODO : desc
 		icon:[24,6],
 		cost:{'insight':20},
@@ -14229,7 +14230,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'mining',
+		name:'mining',category:'tier1',
 		desc:'@unlocks [mine]s<>Strike the earth!',
 		icon:[24,5],
 		cost:{'insight':20},
@@ -14239,7 +14240,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'prospecting',
+		name:'prospecting',category:'tier1',
 		desc:'@[mine]s can now be set to mine for specific ores',
 		icon:[25,5],
 		cost:{'insight':35},
@@ -14249,7 +14250,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'quarrying',
+		name:'quarrying',category:'tier1',
 		desc:'@unlocks [quarry,Quarries]<>',
 		icon:[25,6],
 		cost:{'insight':20},
@@ -14260,7 +14261,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'carving',
+		name:'carving',category:'tier1',
 		desc:'@unlocks [carver]s, which can produce a variety of goods out of stone, wood and bone@may lead to the knowledge of better tools<>',
 		icon:[26,6],
 		cost:{'insight':5},
@@ -14271,7 +14272,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'gem-cutting',
+		name:'gem-cutting',category:'upgrade',
 		desc:'@[carver]s can now make [gem block]s out of [gems]<>',//TODO : desc
 		icon:[27,6],
 		cost:{'insight':20},
@@ -14281,7 +14282,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'pottery',
+		name:'pottery',category:'tier1',
 		desc:'@unlocks [potter]s, which produce goods such as [pot]s out of [clay] and [mud]@unlocks [granary,Granaries] (with [stockpiling])@[digger]s find more [clay]<>',
 		icon:[28,6],
 		cost:{'insight':20},
@@ -14290,7 +14291,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'masonry',
+		name:'masonry',category:'tier1',
 		desc:'@unlocks [kiln]s, which produce a variety of goods such as [brick]s@[carver]s can now turn [stone]s into [cut stone] slowly<>',
 		icon:[29,6],
 		cost:{'insight':35},
@@ -14299,7 +14300,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'carpentry',
+		name:'carpentry',category:'tier1',
 		desc:'@unlocks [carpenter workshop]s, which can process [log]s into [lumber] and produce wooden goods@unlocks [barn]s (with [stockpiling])<>',
 		icon:[30,6],
 		cost:{'insight':35},
@@ -14309,7 +14310,7 @@ getCosts:function()
 	});
 	
 	new G.Tech({
-		name:'monument-building',
+		name:'monument-building',category:'tier1',
 		desc:'@unlocks the [mausoleum], an early wonder<>',
 		icon:[24,8],
 		cost:{'insight':90,'culture':40},
@@ -14319,7 +14320,7 @@ getCosts:function()
 	});
 	//MAGIX
 	new G.Tech({
-		name:'Wizardry',
+		name:'Wizardry',category:'tier1',
 		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
 		icon:[5,3,'magixmod'],
 		cost:{'insight':75,'faith':5},
@@ -14327,28 +14328,28 @@ getCosts:function()
 	});
 //New tech to allow wizards progressing
 		new G.Tech({
-		name:'Mana brewery',
+		name:'Mana brewery',category:'tier1',
 		desc:'You can find a specimen who will convert water into mana.',
 		icon:[3,2,'magixmod'],
 		cost:{'insight':50},
 		req:{'Wizardry':true},
 	});
 		new G.Tech({
-		name:'More useful housing',
+		name:'More useful housing',category:'tier1',
 		desc:'Can store food. Building made out of hard bricks. And in addition it will give a housing to your population',
 		icon:[5,2,'magixmod'],
 		cost:{'insight':45},
 		req:{'city planning':true,'cities':true,'construction':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 	});
 		new G.Tech({
-		name:'Well of Mana',
+		name:'Well of Mana',category:'tier1',
 		desc:'Now you may get a well which contains mana instead of water. ',
 		icon:[4,3,'magixmod'], //WIP
 		cost:{'insight':46,'faith':4,'Mana':20},
 		req:{'Mana brewery':true,'More useful housing':true},
 	});
 		new G.Tech({
-		name:'Wizard towers',
+		name:'Wizard towers',category:'tier1',
 		desc:'Now you can build wizard towers which can produce specified essences. Essences made depends on what type of tower you build. Provides additional housing. Making essences consumes mana. @unlocks [Fire wizard tower],[Water wizard tower],[Nature wizard tower],[Dark wizard tower],[Lightning wizard tower],[Wind wizard tower].',
 		icon:[6,0,'magixmod'], //WIP
 		cost:{'insight':125,'culture': 30,'Mana':40,'influence':10},
@@ -14357,7 +14358,7 @@ getCosts:function()
 		]
 	});
 		new G.Tech({
-		name:'Wizard wisdom',
+		name:'Wizard wisdom',category:'tier1',
 		desc:'Evolves up [Archaic wizard] into [Wizard] . New one may gain wisdom.',
 		icon:[3,0,'magixmod'], //WIP
 		cost:{'insight':85,'culture': 30,'Mana':40,'influence':10},
@@ -14366,35 +14367,35 @@ getCosts:function()
 	]
 			});
 		new G.Tech({
-		name:'Wizard complex',
+		name:'Wizard complex',category:'tier1',
 		desc:'Complex of wizard towers. Expensive but The Complex produces all types of Essences three times better than usual towers. Each complex increases additionaly max [faith],[culture] & [influence]. Boosts max mana too.',
 		icon:[2,2,'magixmod'], 
 		cost:{'insight':480,'culture':30,'Mana':100,'influence':20},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard towers':true},
 	});
 		new G.Tech({
-		name:'First portal to new world',
+		name:'First portal to new world',category:'tier1',
 		desc:'<span style="color: #00A012">Your wizards discovered way to make a portal and now they plan to open a new dimension. What would it mean? It means, more place to build, more housing, more everything!</span>',
 		icon:[2,1,'magixmod'], 
 		cost:{'insight':1400,'culture':30,'Mana':2500,'influence':70},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true,'valid portal frame':true},
 	});
 		new G.Tech({
-		name:'Crafting a glass',
+		name:'Crafting a glass',category:'tier1',
 		desc:'Since now your kilns will be able to craft glass out of sand.',
 		icon:[7,1,'magixmod'], 
 		cost:{'insight':45},
 		req:{'masonry':true,'smelting':true},
 	});
 		new G.Tech({
-		name:'churches',
+		name:'churches',category:'tier1',
 		desc:'Unlocks [Church]. Another source of [faith]. ',
 		icon:[7,2,'magixmod'], 
 		cost:{'insight':135},
 		req:{'Wizardry':true,'Wizard wisdom':true},
 	});
 		new G.Tech({
-		name:'Essence storages',
+		name:'Essence storages',category:'tier1',
 		desc:'<span style="color: #FF00FF">Essence has to be stored somewhere. So do not wait and build!</span>',
 		icon:[5,0,'magixmod'], 
 		cost:{'insight':100,'Mana':317,'faith':8,'Wand':200},
@@ -14409,28 +14410,28 @@ getCosts:function()
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true},
 	});
 		new G.Tech({
-		name:'Concrete making',
+		name:'Concrete making',category:'tier1',
 		desc:'Use limestone and water to craft a concrete, an [advanced building materials,Advanced building material].',
 		icon:[8,0,'magixmod'], //WIP
 		cost:{'insight':70},
 		req:{'masonry':true,'smelting':true,'Crafting a glass':true},
 	});
 		new G.Tech({
-		name:'<span style="color: ##FF0900">Plain island building</span>',
+		name:'<span style="color: ##FF0900">Plain island building</span>',category:'tier1',
 		desc:'<span style="color: ##FF0900">Unlocks sheet of buildings which can be only built in new dimension.</span>',
 		icon:[9,0,'magixmod'], 
 		cost:{'insight':4,'Plain Island emblem':1},
 		req:{'<span style="color: #E0CE00">Plain island portal</span>':true},
 	});
 		new G.Tech({
-		name:'construction II',
+		name:'construction II',category:'tier1',
 		desc:'Allows your people to build [Blockhouse] out of [advanced building materials]. Provides much more housing but it is limited to prevent global warmings etc.',
 		icon:[8,1,'magixmod'], 
 		cost:{'insight':65},
 		req:{'<span style="color: #E0CE00">Plain island portal</span>':true,'<span style="color: ##FF0900">Plain island building</span>':true},
 	});
 		new G.Tech({
-		name:'Burial in new world',
+		name:'Burial in new world',category:'tier1',
 		desc:'Provides even better use of the Plain Island. You may build now few cemetries which consume much more [Land of the Plain Island], but they can store more corpses.',
 		icon:[1,6,'magixmod'], 
 		cost:{'insight':65},
@@ -14440,7 +14441,7 @@ getCosts:function()
 		req:{'<span style="color: #E0CE00">Plain island portal</span>':true,'<span style="color: ##FF0900">Plain island building</span>':true},
 	});
 		new G.Tech({
-		name:'Sewing II',
+		name:'Sewing II',category:'upgrade',
 		displayName:'Weaving II', //Correct
 		desc:'Upgrades sewing skills of your civilization. @Unlocks <b>Drying racks<b> to make [Dried leather] used to craft better quality clothing. @Now artisans can sew [Fishing net] @Clothier can craft [Thread] that is required to craft a [Fishing net].',
 		icon:[13,5,'magixmod'], 
@@ -14448,70 +14449,70 @@ getCosts:function()
 		req:{'Wizardry':true,'sewing':true,},
 	});
 		new G.Tech({
-		name:'Hunting II',
+		name:'Hunting II',category:'upgrade',
 		desc:'Upgrades hunting skills of your civilization. @Unlocks way to craft [Crossbow] - new weapon. Artisans can now craft [bow] & [Crossbow] and [Crossbow belt] in <b>Craft bows<b> mode.',
 		icon:[15,0,'magixmod'], 
 		cost:{'insight':385,'wisdom':10},
 		req:{'Wizardry':true,'hunting':true,},
 	});
 		new G.Tech({
-		name:'Fishing II',
+		name:'Fishing II',category:'upgrade',
 		desc:'Upgrades fishing skills of your civilization. @Makes [Fishing net] introduced into common use.',
 		icon:[8,12,25,1], 
 		cost:{'insight':385,'wisdom':10},
 		req:{'Wizardry':true,'fishing':true,},
 	});
 		new G.Tech({
-		name:'Cobalt-working',
+		name:'Cobalt-working',category:'tier1',
 		desc:'@[furnace]s can now make [Cobalt ingot]s from [Cobalt ore]<>',
 		icon:[16,0,'magixmod'],
 		cost:{'insight':145},
 		req:{'smelting':true,'construction II':true},
 	});
 		new G.Tech({
-		name:'Farms in the new land',
+		name:'Farms in the new land',category:'tier1',
 		desc:'@Now at the Lands of Plain island you may start opening farms to let your people make more [Berries] & [Watermelon]. You are doing it here because you may have trouble to find free land in your mortal world.<>',
 		icon:[16,2,'magixmod'],
 		cost:{'insight':575},
 		req:{'construction II':true,'gardening':true},
 	});
 		new G.Tech({
-		name:'Crafting a juice',
+		name:'Crafting a juice',category:'tier1',
 		desc:'@Makes juices possible to be crafted. Any [fruit] + [sugar] + [water] = [Juices]. Be careful. Juices may spoil same like normal water. Spoiled juice grants even more <b>unhappiness and unhealth<b> than normal muddy water.<>',
 		icon:[16,4,'magixmod'],
 		cost:{'insight':495,'wisdom':50},
 		req:{'Farms in the new land':true,'gardening':true},
 	});
 		new G.Tech({
-		name:'Farm of the Sugar cane',
+		name:'Farm of the Sugar cane',category:'tier1',
 		desc:'@Makes [Sugar cane] farm possible to be built. This farm will have increased upkeep cost and will need more people to run.<>',
 		icon:[15,7,'magixmod'],
 		cost:{'insight':495,'wisdom':50},
 		req:{'Farms in the new land':true,'gardening':true},
 	});
 		new G.Tech({
-		name:'Precious pottery',
+		name:'Precious pottery',category:'tier1',
 		desc:'@Improves pottery in your civilization. Now [pot] can become harder and more beautiful. Can make pots specialized for potions.<>',
 		icon:[16,8,'magixmod'],
 		cost:{'insight':650,'wisdom':60},
 		req:{'construction II':true},
 	});
 		new G.Tech({
-		name:'Beginnings of alchemy',
+		name:'Beginnings of alchemy',category:'tier1',
 		desc:'@Now you may start new adventure with... potions... You need to be expert at juices before you start alchemy.<>',
 		icon:[16,9,'magixmod'],
 		cost:{'insight':650,'wisdom':60},
 		req:{'Juicy expertise':true,'Intermediate maths':true,'Proportion':true},
 	});
 		new G.Tech({
-		name:'Terrain conservacy',
+		name:'Terrain conservacy',category:'tier1',
 		desc:'@Unlocks subclass of [architect] which instead of setting up new houses etc. will set up some part of ground due to requirements of job group, for example [Alchemists]. Their stands and their "toys" will use [Alchemy zone] instead of [land]  <>',
 		icon:[17,5,'magixmod',24,1],
 		cost:{'insight':940,'wisdom':60},
 		req:{'Beginnings of alchemy':true,'Intermediate maths':true,'Proportion':true},
 	});
 		new G.Tech({
-		name:'first aid',
+		name:'first aid',category:'tier1',
 		desc:'@[sick],[wounded] will have bigger chance to get recovered. Obtaining this research will unlock better healers for you. <b>This research generates [health] by [healer] at low rate but it does.<>',
 		icon:[15,9,'magixmod'],
 		cost:{'insight':680,'wisdom':60},
@@ -14521,7 +14522,7 @@ getCosts:function()
 		req:{'More healing ways':true},
 	});
 		new G.Tech({
-		name:'Basic maths',
+		name:'Basic maths',category:'tier1',
 		desc:'@people will know basic math making them more intelligent and have chance to be good at more advanced technologies.<>',
 		icon:[17,1,'magixmod'],
 		cost:{'insight':20},
@@ -14532,7 +14533,7 @@ getCosts:function()
 		req:{'oral tradition':true,'writing':true},
 	});
 		new G.Tech({
-		name:'Intermediate maths',
+		name:'Intermediate maths',category:'tier1',
 		desc:'@people will know more harder and advanced math making them even more intelligent and smart. @Your people have bigger chances to understand more advanced things.<>',
 		icon:[17,2,'magixmod'],
 		cost:{'insight':80},
@@ -14543,7 +14544,7 @@ getCosts:function()
 		req:{'oral tradition':true,'Basic maths':true,'city planning':true},
 	});
 		new G.Tech({
-		name:'Proportion',
+		name:'Proportion',category:'tier1',
 		desc:'@Without it you won\'t be able to start alchemy/chemistry. Without it people will use too much or less ingredient with bad consequences of it. I would research it now.',
 		icon:[18,4,'magixmod'],
 		cost:{'insight':360,'wisdom':10},
@@ -14554,63 +14555,63 @@ getCosts:function()
 		req:{'oral tradition':true,'Intermediate maths':true,'<span style="color: ##FF0900">Plain island building</span>':true},
 	});
 		new G.Tech({
-		name:'Ink crafting',
+		name:'Ink crafting',category:'tier1',
 		desc:'Now [artisan] will be able to craft [Ink]. Ink will be used by [Poet] later. You can craft ink choosing new working mode for [artisan].',
 		icon:[18,7,'magixmod'],
 		cost:{'insight':335},
 		req:{'<span style="color: ##FF0900">Plain island building</span>':true},
 	});
 		new G.Tech({
-		name:'Poetry',
+		name:'Poetry',category:'tier1',
 		desc:'Beautiful art of culture. Poems, stories, essays, novels and many more.',
 		icon:[18,8,'magixmod'],
 		cost:{'insight':650,'culture':300,'inspiration':25},
 		req:{'<span style="color: ##FF0900">Plain island building</span>':true,'Ink crafting':true},
 	});
 		new G.Tech({
-		name:'Moar juices',
+		name:'Moar juices',category:'tier1',
 		desc:'Allows you to craft juice out of [fruit]s.',
 		icon:[17,4,'magixmod'],
 		cost:{'insight':805},
 		req:{'<span style="color: ##FF0900">Plain island building</span>':true,'Crafting a juice':true},
 	});
 		new G.Tech({
-		name:'Medicaments brewing',
+		name:'Medicaments brewing',category:'tier1',
 		desc:'[Alchemists] will now be able to craft at their stands medicaments out of [Flowers,various flowers] and a [herb,herbs].',
 		icon:[18,2,'magixmod'],
 		cost:{'insight':750},
 		req:{'Beginnings of alchemy':true},
 	});
 		new G.Tech({
-		name:'Alcohol brewing',
+		name:'Alcohol brewing',category:'tier1',
 		desc:'[Alchemists] will now be able to craft at their stands alcohol by created by them own recipe. Alcohol can be used to craft trunks.',
 		icon:[18,3,'magixmod'],
 		cost:{'insight':750},
 		req:{'Beginnings of alchemy':true},
 	});
 		new G.Tech({
-		name:'Mana brewery II',
+		name:'Mana brewery II',category:'tier1',
 		desc:'[Alchemists] will now be able to craft at their stands [Mana]. To do it they will use same recipe as the [Mana maker]. Will gain same amounts like he.',
 		icon:[19,2,'magixmod'],
 		cost:{'insight':1000},
 		req:{'Beginnings of alchemy':true},
 	});
 		new G.Tech({
-		name:'Stronger faith',
+		name:'Stronger faith',category:'upgrade',
 		desc:'Unlocks cathedrals. Soothsayer will gain less [faith] but [Church] will gain more than [soothsayer] since now.',
 		icon:[19,3,'magixmod'],
 		cost:{'insight':1000},
 		req:{'Wizard complex':true,'ritualism':true},
 	});
 		new G.Tech({
-		name:'Healing with brews',
+		name:'Healing with brews',category:'tier1',
 		desc:'@[sick],[drunk] will have bigger chance to get recovered. Obtaining this research will unlock new type of [healer] who heals [sick] and [drunk] using medical brews.',
 		icon:[19,6,'magixmod'],
 		cost:{'insight':650,'wisdom':60},
 		req:{'More healing ways':true,'Medicaments brewing':true},
 	});
 		new G.Tech({
-		name:'Laws of physics(basic)',
+		name:'Laws of physics(basic)',category:'tier1',
 		desc:'People acknowledged with physics will understand why towers are falling, why thrown up apple will fall down, why water pushes up light objects while heavy objects sink in it.',
 		icon:[13,10,'magixmod'],
 		cost:{'insight':1000,'science':1},
@@ -14620,7 +14621,7 @@ getCosts:function()
 		req:{'Intermediate maths':true,'Will to know more':true},
 	});
 		new G.Tech({
-		name:'monument-building II',
+		name:'monument-building II',category:'upgrade',
 		desc:'@unlocks the [temple of heaven,Temple of Heaven], an mid-legacy wonder. Much bigger than [mausoleum], may lead to victory<>',
 		icon:[14,10,'magixmod'],
 		cost:{'insight':1400,'culture':300,'spirituality':15,'faith':125},
@@ -14629,7 +14630,7 @@ getCosts:function()
 		],
 	});
 		new G.Tech({
-		name:'Weapon blacksmithery',
+		name:'Weapon blacksmithery',category:'tier1',
 		desc:'[blacksmith workshop,Blacksmiths] can now craft [metal weapons] at the same rules as the [metal tools] were.<>',
 		icon:[13,11,'magixmod'],
 		cost:{'insight':50},
@@ -14638,7 +14639,7 @@ getCosts:function()
 		],
 	});
 		new G.Tech({
-		name:'Armor blacksmithery',
+		name:'Armor blacksmithery',category:'tier1',
 		desc:'[blacksmith workshop,Blacksmiths] can now craft [armor set] at the same rules as the [metal tools] were.<>',
 		icon:[12,11,'magixmod'],
 		cost:{'insight':50},
@@ -14647,7 +14648,7 @@ getCosts:function()
 		],
 	});
 		new G.Tech({
-		name:'Mo\' floorz',
+		name:'Mo\' floorz',category:'upgrade',
 		desc:'Now each [Blockhouse] will have 6th floor allowing them to fit 10 more [population,People] per [Blockhouse].<>',
 		icon:[14,11,'magixmod'],
 		cost:{'insight':750,'wisdom':15},
@@ -14656,42 +14657,42 @@ getCosts:function()
 		],
 	});
 		new G.Tech({
-		name:'Spell of capacity',
+		name:'Spell of capacity',category:'upgrade',
 		desc:'Smart wizards figured out a spell which will increase maximum food/material storage of [warehouse] , [barn] , [granary] , [storage pit], [stockpile] by 20%.<>',
 		icon:[4,1,'magixmod',23,1],
 		cost:{'insight':750,'wisdom':15,'Mana':1e5,'Wind essence':3000},
 		req:{'Laws of physics(basic)':true},
 	});
 		new G.Tech({
-		name:'Better house construction',
+		name:'Better house construction',category:'upgrade',
 		desc:'At the same land of usage [house] and [Brick house with a silo] will grant bonuses: @ +1 [housing] from [house] every 8 [house]s , @ +1 [housing] from [Brick house with a silo] every 5 [Brick house with a silo,Brick houses].<>',
 		icon:[8,11,'magixmod'],
 		cost:{'insight':750,'wisdom':15},
 		req:{'Laws of physics(basic)':true},
 	});
 		new G.Tech({
-		name:'Deeper wells',
+		name:'Deeper wells',category:'upgrade',
 		desc:'@[well]s provide 5% more water. Boosts only [well] and [well of the Plain Island].',
 		icon:[31,15,'magixmod'],
 		cost:{'insight':490,'wisdom':30},
 		req:{'Farms in the new land':true},
 	});
 		new G.Tech({
-		name:'prospecting II',
+		name:'prospecting II',category:'upgrade',
 		desc:'@[mine]s can now dig in search of [nickel ore,Nickel] or focus to mine [Various stones] with 3x efficiency instead of any prospected mineral.',
 		icon:[11,12,'magixmod'],
 		cost:{'insight':270},
 		req:{'prospecting':true,'mining':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
 	});
 		new G.Tech({
-		name:'quarrying II',
+		name:'quarrying II',category:'upgrade',
 		desc:'@[quarry] can now dig for [Various cut stones] by new special mode. @<b>"Advanced quarry stone" mode and "Quarry other stones mode(non advanced)" are now able to gather [platinum ore,Platinum].',
 		icon:[10,12,'magixmod'],
 		cost:{'insight':355},
 		req:{'prospecting II':true,'quarrying':true},
 	});
 		new G.Tech({
-		name:'platinum-working',
+		name:'platinum-working',category:'upgrade',
 		desc:'@[furnace]s can now make [platinum ingot]s from [platinum ore]@[blacksmith workshop]s can now forge [platinum block]s out of [platinum ingot]s<>',
 		icon:[5,11,'magixmod'],
 		cost:{'insight':100},
@@ -14700,7 +14701,7 @@ getCosts:function()
 		],
 	});
 		new G.Tech({
-		name:'nickel-working',
+		name:'nickel-working',category:'tier1',
 		desc:'@[furnace]s can now make [hard metal ingot]s from [nickel ore].<>',
 		icon:[1,12,'magixmod'],
 		cost:{'insight':100},
@@ -14709,7 +14710,7 @@ getCosts:function()
 		],
 	});
 		new G.Tech({
-		name:'papercrafting',
+		name:'papercrafting',category:'tier1',
 		desc:'@unlocks [Paper-crafting shack]. There you can craft: <font color="red">papyrus</font> out of [Sugar cane], @<font color="red">pergamin</font> out of [hide] , [leather] , and <font color="red">common paper</font> out of [Bamboo] with help of secret non-magic recipe.<>',
 		icon:[18,12,'magixmod'],
 		cost:{'insight':480,'wisdom':5},
@@ -14718,7 +14719,7 @@ getCosts:function()
 		],
 	});
 		new G.Tech({
-		name:'ingredient crafting',
+		name:'ingredient crafting',category:'tier1',
 		desc:'Alchemists can now craft a special ingredients for more advanced potions. They will use up [Basic brews] and [misc materials].',
 		icon:[17,9,'magixmod'],
 		cost:{'insight':500,'wisdom':5},
@@ -14727,14 +14728,14 @@ getCosts:function()
 		],
 	});
 		new G.Tech({
-		name:'Second portal to new world',
+		name:'Second portal to new world',category:'tier1',
 		desc:'After your people heard [The God\'s call] your wizards with help of full of faith people figured out a way to acrivate portal to the Paradise at the top of their latest wonder.',
 		icon:[20,3,'magixmod'], //WIP
 		cost:{'insight':1595,'culture':300,'Mana':2500,'influence':70,'spirituality':50,'population':1000},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true,'First portal to new world':true,'The God\'s call':true,'monument-building II':true},
 	});
 		new G.Tech({
-		name:'<span style="color: ##FF0900">Paradise building</span>',
+		name:'<span style="color: ##FF0900">Paradise building</span>',category:'tier1',
 		desc:'<span style="color: ##FF0900">Unlocks sheet of buildings which can be only built in newly opened <b>Paradise</b>.</span>',
 		icon:[19,13,'magixmod'], 
 		cost:{'insight':4,'Paradise emblem':1},
@@ -14744,28 +14745,28 @@ getCosts:function()
 		req:{'Second portal to new world':true},
 	});
 		new G.Tech({
-		name:'Dark-essenced ingredients',
+		name:'Dark-essenced ingredients',category:'tier1',
 		desc:'Unlocks sheet of ingredients made with [Dark essence] as a part of recipe.',
 		icon:[20,5,'magixmod'], 
 		cost:{'insight':450,'Dark essence':4e3,'wisdom':10},
 		req:{'ingredient crafting':true},
 	});
 		new G.Tech({
-		name:'Wind-essenced ingredients',
+		name:'Wind-essenced ingredients',category:'tier1',
 		desc:'Unlocks sheet of ingredients made with [Wind essence] as a part of recipe.',
 		icon:[15,13,'magixmod'], 
 		cost:{'insight':450,'Wind essence':4e3,'wisdom':10},
 		req:{'ingredient crafting':true},
 	});
 		new G.Tech({
-		name:'Nature-essenced ingredients',
+		name:'Nature-essenced ingredients',category:'tier1',
 		desc:'Unlocks sheet of ingredients made with [Nature essence] as a part of recipe.',
 		icon:[18,13,'magixmod'], 
 		cost:{'insight':450,'Nature essence':4e3,'wisdom':10},
 		req:{'ingredient crafting':true},
 	});
 		new G.Tech({
-		name:'7th essence',
+		name:'7th essence',category:'tier1',
 		desc:'Discovers another essence which can be feeled in Paradise\'s air. Needs some things to be gathered.@unlocks [Holy wizard tower]',
 		icon:[20,6,'magixmod',8,12,23,1], 
 		cost:{'insight':1300},
@@ -14775,7 +14776,7 @@ getCosts:function()
 		req:{'Second portal to new world':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Tech({
-		name:'7th complex tower',
+		name:'7th complex tower',category:'tier1',
 		desc:'Due to 7th essence discovered [Wizard Complex] has a need to build up new tower specially for new essence.@More housing and since now [Wizard Complex] will use more [Mana] just to craft new essence too.',
 		icon:[20,8,'magixmod'], 
 		cost:{'insight':695},
@@ -14785,140 +14786,140 @@ getCosts:function()
 		req:{'7th essence':true,'Wizard complex':true},
 	});
 		new G.Tech({
-		name:'Architects knowledge',
+		name:'Architects knowledge',category:'upgrade',
 		desc:'[architect,Architects] can now plan for you: [Brick house with a silo] & [Blockhouse] .',
 		icon:[21,7,'magixmod'], 
 		cost:{'insight':668,'wisdom':2},
 		req:{'construction II':true},
 	});
 		new G.Tech({
-		name:'Bookcrafting',
+		name:'Bookcrafting',category:'tier1',
 		desc:'[artisan] can craft books.',
 		icon:[12,12,'magixmod'], 
 		cost:{'insight':325},
 		req:{'papercrafting':true},
 	});
 		new G.Tech({
-		name:'Notewriting',
+		name:'Notewriting',category:'tier1',
 		desc:'[Florist], [Wizard] , [Poet] , (lawyer) will write their notes. Notes can be used to write specified books which may summon some <b>Knowledge</b> traits and turn into [insight].',
 		icon:[21,6,'magixmod'], 
 		cost:{'insight':300},
 		req:{'Bookcrafting':true,'Ink crafting':true},
 	});
 		new G.Tech({
-		name:'Bookwriting',
+		name:'Bookwriting',category:'tier1',
 		desc:'[Florist\'s notes],[Poet\'s notes],[Wizard\'s notes] may now be written into some book.  @unlocks [Lodge of writers] who will convert their notes into books.',
 		icon:[12,13,'magixmod'], 
 		cost:{'insight':300},
 		req:{'Bookcrafting':true,'Ink crafting':true},
 	});
 		new G.Tech({
-		name:'Better influence & authority',
+		name:'Better influence & authority',category:'upgrade',
 		desc:'Unlocks [Lawyer] and [Mediator]. Mediator will solve conflicts and gain [happiness] from solving them , while [Lawyer] will copy and share code of law.',
 		icon:[21,0,'magixmod'], 
 		cost:{'insight':1015},
 		req:{'Wizard complex':true},
 	});
 		new G.Tech({
-		name:'Ambrosium treeplanting',
+		name:'Ambrosium treeplanting',category:'tier1',
 		desc:'@Unlocks [Holy orchard] from which you can get [Ambrosium leaf,Ambrosium leaves] .',
 		icon:[21,11,'magixmod'], 
 		cost:{'insight':1015},
 		req:{'<span style="color: ##FF0900">Paradise building</span>':true,'Land acknowledge':true,'Treeplanting':true},
 	});
 		new G.Tech({
-		name:'Ambrosium crafting',
+		name:'Ambrosium crafting',category:'tier1',
 		desc:'@Unlocks [Ambrosium shard shack] which can craft [Ambrosium shard]s with use of [Mana] , [Cloudy water] & [Ambrosium leaf,Ambrosium leaves] of course.',
 		icon:[13,14,'magixmod'], 
 		cost:{'insight':980},
 		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Tech({
-		name:'Paradise crafting',
+		name:'Paradise crafting',category:'tier1',
 		desc:'@Some buildings / crafting shacks from mortal world can be built in Paradise as a separated unit.',
 		icon:[0,14,'magixmod',21,15,'magixmod'], 
 		cost:{'insight':650},
 		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Tech({
-		name:'Explosive crafting & mining',
+		name:'Explosive crafting & mining',category:'tier1',
 		desc:'Unlocks [explosive mine] <b>( not at all, needs [Intelligent blasting] )</b> . You think it is joke but you will quickly get into big mistake. @Unlocks [Pyro-Artisan] (artisan for explosives, which requires mostly [Sulfur] for explosion power). Mines will start gathering some [Sulfur] at <b>any</> of modes chosen. Both [mine] and [Mine of the plain island] can gather it.',
 		icon:[20,15,'magixmod'], 
 		cost:{'insight':850,'wisdom':10},
 		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Tech({
-		name:'Intelligent blasting',
+		name:'Intelligent blasting',category:'tier1',
 		desc:'Unlocks [explosive mine] . WIth explosives supplies now miners will be able to... Blast underground. However these mines cannot be [prospecting,prospected] but they still may be turned on/off . These mines have bigger rate of accidents than other ones which do not use explosives to mine undeground.',
 		icon:[14,15,'magixmod'], 
 		cost:{'insight':850,'science':1,'wisdom':9},
 		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Tech({
-		name:'Bigger potion types pallet',
+		name:'Bigger potion types pallet',category:'tier1',
 		desc:'<font color: #93db70">Unlocks more potion types. These are [combat potions] which has a needle and grip so they are throwable and may be use in defense battle, unlocks a [Jar for concoctions,concoctions] used to craft other potions. <b>Unlocks stand which allows to craft pots for these types of potion out of [Potion pot] .</b></font>',
 		icon:[21,16,'magixmod'], 
 		cost:{'insight':850,'science':1,'wisdom':9},
 		req:{'Alcohol brewing':true,'Medicaments brewing':true,'Beginnings of alchemy':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Tech({
-		name:'Combat potion & concoction brewing',
+		name:'Combat potion & concoction brewing',category:'tier1',
 		desc:'<font color: #93db70">Allows to craft basic 4 combat potions and 2 concoctions. Uses crafted by [ingredient crafting stand] workers ingredients. <b>Unlocks stands which may brew these potions but there is chance that accident will occur during work.</b></font>',
 		icon:[20,16,'magixmod'], 
 		cost:{'insight':850,'science':1,'wisdom':9},
 		req:{'Alcohol brewing':true,'Medicaments brewing':true,'Beginnings of alchemy':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Tech({
-		name:'Dark wonder',
+		name:'Dark wonder',category:'tier1',
 		desc:'<font color:#000000>Unlocks dark wonder...</font>',
 		icon:[22,3,'magixmod'], 
 		cost:{'insight':770,'science':1,'wisdom':9},
 		req:{'<span style="color: red">Revenants</span>':true},
 	});
 		new G.Tech({
-		name:'Hope of revenant abandoning',
+		name:'Hope of revenant abandoning',category:'upgrade',
 		desc:'<font color:#000000>Happiness harm from [wild corpse] and corpses is HALVED.</font>',
 		icon:[22,5,'magixmod'], 
 		cost:{'insight':955,'science':1,'wisdom':9,'Dark skull construction point':250},
 		req:{'<span style="color: red">Revenants</span>':true,'Dark wonder':true},
 	});
 		new G.Tech({
-		name:'Better papercrafting recipe',
+		name:'Better papercrafting recipe',category:'upgrade',
 		desc:'Multiplies amount of [Paper] crafted in shacks by 40%. If you go into moderating culture you obtain additional 8%, while in caretaking path just 4%.',
 		icon:[8,12,14,12,'magixmod',21,15,'magixmod'], 
 		cost:{'insight':846,'wisdom':9},
 		req:{'papercrafting':true,'Poetry':true},
 	});
 		new G.Tech({
-		name:'Art of cooking',
+		name:'Art of cooking',category:'tier1',
 		desc:'<font color="fuschia">Unlocks [Chef] . Talented with art of cooking worker may make tasty and very decent food [Meals] . A [Meals,Meal] makes people even happier</font>',
 		icon:[23,13,'magixmod'], 
 		cost:{'insight':535,'wisdom':30,'culture':400,'inspiration':200},
 		req:{'Cooking':true},
 	});
 		new G.Tech({
-		name:'Farm of wheat',
+		name:'Farm of wheat',category:'tier1',
 		desc:'Unlocks [Wheat farm] . Then it may be converted into [flour] .',
 		icon:[23,12,'magixmod'], 
 		cost:{'insight':420},
 		req:{'Cooking':true},
 	});
 		new G.Tech({
-		name:'Flour-crafting',
+		name:'Flour-crafting',category:'tier1',
 		desc:'<li>Unlocks [Windmill].</li>',
 		icon:[22,11,'magixmod'], 
 		cost:{'insight':685},
 		req:{'Farm of wheat':true},
 	});
 		new G.Tech({
-		name:'Baking',
+		name:'Baking',category:'tier1',
 		desc:'<li>Unlocks [Bakery].</li>',
 		icon:[22,12,'magixmod'], 
 		cost:{'insight':890},
 		req:{'Flour-crafting':true},
 	});
 		let battlingThieves = new G.Tech({
-           name:'Battling thieves',
+           name:'Battling thieves',category:'tier1',
            desc:'Bad news... committed a crime... It is time to fight against [thief,thieves] . @Allows you to hire a [Thief hunter] .',
            icon:[22, 16, "magixmod"],
            cost:{'insight':90},
@@ -14937,21 +14938,21 @@ G = new Proxy(G, {
 })
 autobuy(G.year)
 		new G.Tech({
-		name:'Cultural forces arise',
+		name:'Cultural forces arise',category:'misc',
 		desc:'Makes [Fortress of cultural legacy] increase power of [culture,cultural units] per tick.',
 		icon:[22,17,'magixmod'], 
 		cost:{'insight':70,'Fortress construction point':200},
 		req:{'Cultural roots':true},
 	});
 		new G.Tech({
-		name:'Politic power rising up',
+		name:'Politic power rising up',category:'misc',
 		desc:'Makes [Pagoda of Democracy] increase power of [influence,influence gathering units] per tick. Increases gaining of [influence,political] units by 5% for the rest of current run.',
 		icon:[21,17,'magixmod'], 
 		cost:{'insight':25,'Pagoda construction point':200},
 		req:{'Political roots':true},
 	});
 		new G.Tech({
-		name:'Knowledgeable',
+		name:'Knowledgeable',category:'misc',
 		desc:'Makes [Complex of Dreamers] increase power of [insight,insight gatherers(dreamers)] per tick. In addition adds 7500 [housing] . Let it have something from the [Wizard Complex]',
 		icon:[23,17,'magixmod'], 
 		cost:{'Complex construction point':200},
@@ -14961,70 +14962,70 @@ autobuy(G.year)
 		req:{'Roots of insight':true},
 	});
 		new G.Tech({
-		name:'Water filtering',
+		name:'Water filtering',category:'tier1',
 		desc:'Obtaining this tech will make you fulfill one of two requirements to start cleaning [muddy water] and making [water] from it. <>Another one is obtaining [<font color="maroon">Caretaking</font>] or [<font color="maroon">Moderation</font>] .',
 		icon:[25,16,'magixmod'], 
 		cost:{'insight':30},
 		req:{'bows':true,'<font color="yellow">A gift from the Mausoleum</font>':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
 	});
 		new G.Tech({
-		name:'Filtering with better quality',
+		name:'Filtering with better quality',category:'upgrade',
 		desc:'Water filtrating units that can convert [muddy water] into the [water] ([Water filter] and [;Water filter,its moderated version]) work at the 175% of their normal efficiency.',
 		icon:[25,15,'magixmod'], 
 		cost:{'insight':520,'wisdom':15},
 		req:{'Water filtering':true,'Burial in new world':true},
 	});
 		new G.Tech({
-		name:'Non-magical filters improvement',
+		name:'Non-magical filters improvement',category:'upgrade',
 		desc:'Water filtrating units that can convert [muddy water] into the [water] ([Water filter] and [;Water filter,its moderated version]) work at the 175% of their current efficiency. <><i>But it still spoils</i>',
 		icon:[25,14,'magixmod'], 
 		cost:{'insight':405,'wisdom':15},
 		req:{'Filtering with better quality':true,'Mo\' floorz':true},
 	});
 		new G.Tech({
-		name:'Cloudy water filtering',
+		name:'Cloudy water filtering',category:'upgrade',
 		desc:'Obtaining this tech will open a way for you to make [Cloudy water] become a [water] .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] .',
 		icon:[25,13,'magixmod'], 
 		cost:{'insight':120,'wisdom':30,'water':-210},
 		req:{'Water filtering':true,'Paradise crafting':true}
 	});
 		new G.Tech({
-		name:'Faithful cloudy water filtering',
+		name:'Faithful cloudy water filtering',category:'upgrade',
 		desc:'Obtaining this tech will make filters that work on [Cloudy water] 175% more efficient .<>While converting [Cloudy water] into [water] you may obtain small pieces of [cloud] . This upgrade will increase rate of it.',
 		icon:[25,10,'magixmod'], 
 		cost:{'insight':710,'wisdom':50,'faith':180,'cloud':550},
 		req:{'God\'s trait #1 Housing':true}
 	});
 		new G.Tech({
-		name:'Magical filtering way',
+		name:'Magical filtering way',category:'upgrade',
 		desc:'Obtaining this tech will make filters that convert [Cloudy water] or [muddy water] work 175% more efficient .<>Upkeep cost won\'t grow up so do not worry. These are all upgrades you can currently obtain for filtering.',
 		icon:[25,8,'magixmod'], 
 		cost:{'insight':1295,'wisdom':25,'Wind essence':775,'cloud':1990},
 		req:{'God\'s trait #1 Housing':true,'God\'s trait #2 Berry rush':true,'Faithful cloudy water filtering':true}
 	});
 		new G.Tech({
-		name:'Improved furnace construction',
+		name:'Improved furnace construction',category:'upgrade',
 		desc:'People figured a way to make a [furnace] produce more at the same costs of run and upkeep. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [furnace]s will work 20% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [furnace]s will work 10% more efficient.',
 		icon:[1,18,'magixmod'], 
 		cost:{'insight':1000},
 		req:{'culture of the afterlife':true}
 	});
 		new G.Tech({
-		name:'Focused gathering',
+		name:'Focused gathering',category:'upgrade',
 		desc:'[gatherer]s were always thinking that they can gather more. This tech is another chance for them. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [gatherer]s will gather 7.5% more. <>If they have chosen [<font color="maroon">Caretaking</font>] then [gatherer]s will work 12.5% more.',
 		icon:[2,18,'magixmod'], 
 		cost:{'insight':1000},
 		req:{'culture of the afterlife':true}
 	});
 		new G.Tech({
-		name:'Bigger fires',
+		name:'Bigger fires',category:'upgrade',
 		desc:'[firekeeper]s figured out how to make bigger fires. They will need to use more [stick]s but most important thing is that there will be profit <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [firekeeper]s will work 5% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [firekeeper]s will work 8% more efficient.',
 		icon:[3,18,'magixmod'], 
 		cost:{'insight':1000},
 		req:{'culture of the afterlife':true}
 	});
 		new G.Tech({
-		name:'Motivation for artisans',
+		name:'Motivation for artisans',category:'upgrade',
 		desc:'[artisan]\'s succesful work made him work harder and motivated. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [artisan]s will work 8% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [artisan]s will work 4% more efficient. <>Doesn\'t include [artisan of juice] and [Pyro-Artisan] !',
 		icon:[4,18,'magixmod'], 
 		cost:{'insight':1000},
@@ -15032,84 +15033,84 @@ autobuy(G.year)
 	});
 	//Back to normal :)
 		new G.Tech({
-		name:'Advanced casting',
+		name:'Advanced casting',category:'tier1',
 		desc:'[blacksmith workshop,Blacksmiths] will get taught to be more exact and better due to changing times. Now they may craft basic industry gear and other things which they wouldn\'t craft without this knowledge.',
 		icon:[5,18,'magixmod'], 
 		cost:{'insight':830},
 		req:{'smelting':true,'masonry':true,'monument-building II':true},
 	});
 		new G.Tech({
-		name:'Automation',
+		name:'Automation',category:'tier1',
 		desc:'Moderation is a path where people are going for automation to produce more and do less. So people are figuring out the ways to automate production. This tech will be a light for moderated people.',
 		icon:[6,18,'magixmod'], 
 		cost:{'insight':1000,'wisdom':15,'inspiration':5,'culture':80,'influence':205},
 		req:{'Second portal to new world':true,'<font color="maroon">Moderation</font>':true}
 	});
 		new G.Tech({
-		name:'Manufacturing',
+		name:'Manufacturing',category:'tier1',
 		desc:'Caretaking is a path where people are going for live long and they do not care about production and automation. They rather manual working at all. This tech is a beginning of manufacture.',
 		icon:[7,18,'magixmod'], 
 		cost:{'insight':1000,'wisdom':15,'inspiration':10,'culture':75,'influence':205},
 		req:{'Second portal to new world':true,'<font color="maroon">Caretaking</font>':true}
 	});
 		new G.Tech({
-		name:'Moderated workstation planning',
+		name:'Moderated workstation planning',category:'tier1',
 		desc:'People lead by [<font color="maroon">Moderation</font>] want exact plans of building. It leads to construct more advanced constructions that can work better than single [potter] for instance.',
 		icon:[11,18,'magixmod'], 
 		cost:{'insight':995,'wisdom':5},
 		req:{'Paradise crafting':true,'<font color="maroon">Moderation</font>':true,'Measuring system':true}
 	});
 		new G.Tech({
-		name:'workstation planning',
+		name:'workstation planning',category:'tier1',
 		desc:'People lead by [<font color="maroon">Caretaking</font>] do not need exact plans of building. They are interested in how many people it needs and where components will be arranged without super exact descriptions.',
 		icon:[12,18,'magixmod'], 
 		cost:{'insight':995,'wisdom':5},
 		req:{'Paradise crafting':true,'<font color="maroon">Caretaking</font>':true,'Measuring system':true}
 	});
 		new G.Tech({
-		name:'Manufacture units I',
+		name:'Manufacture units I',category:'tier1',
 		desc:'Unlocks [Hut of potters] and [Hovel of colours]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [artisan]s on <b>Craft dyes set (1,2,3,4)</b> mode will become USELESS! They won\'t produce.</font> ',
 		icon:[17,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5,'stone':1365},//Stones are there to make tech at same level as Factories I
 		req:{'workstation planning':true,'Manufacturing':true}
 	});
 		new G.Tech({
-		name:'Factories I',
+		name:'Factories I',category:'tier1',
 		desc:'Unlocks [Factory of pots] and [Leather factory]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [clothier]s on <b>Craft leather</b> and <b>Craft leather (cheap)</b> mode and [Drying rack]s will become USELESS! They won\'t produce.</font> ',
 		icon:[18,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5},
 		req:{'Moderated workstation planning':true,'<font color="maroon">Moderation</font>':true}
 	});
 		new G.Tech({
-		name:'Production rates influence',
+		name:'Production rates influence',category:'misc',
 		desc:'Allows to control production expenditures for [Manufacture units I,Manufacture units] (if unlocked) or [Factories I,Factories] (if unlocked)',
 		icon:[16,18,'magixmod'], 
 		cost:{'insight':795,'wisdom':5,'influence':175,'authority':10},
 		req:{'Second portal to new world':true,'Better influence & authority':true}
 	});
 		new G.Tech({
-		name:'Third passage to new world',
+		name:'Third passage to new world',category:'tier1',
 		desc:'May unlocking mysterious [New world] begin',
 		icon:[12,19,'magixmod'], 
 		cost:{'insight':785,'wisdom':5,'influence':175,'authority':10,'spirituality':25},
 		req:{'An opposite side of belief':true}
 	});
 		new G.Tech({
-		name:'Underworld building 1/2',
+		name:'Underworld building 1/2',category:'tier1',
 		desc:'Allows to build some stuff in Underworld. Starts attracting 6 random <font color="red"><b>Devil\'s traits</b></font>',
 		icon:[27,3,'magixmod',14,19,'magixmod'], 
 		cost:{'insight':90,'New world point':400},
 		req:{'Third passage to new world':true,'A feeling from the Underworld':true}
 	});
 		new G.Tech({
-		name:'Underworld building 2/2',
+		name:'Underworld building 2/2',category:'tier1',
 		desc:'Allows to build some stuff in Underworld.',
 		icon:[27,2,'magixmod',14,19,'magixmod'], 
 		cost:{'insight':100,'New world point':6,'Underworld emblem':1},
 		req:{'Third passage to new world':true,'A feeling from the Underworld':true,'Underworld building 1/2':true}
 	});
 		new G.Tech({
-		name:'Laws of physics(intermediate)',
+		name:'Laws of physics(intermediate)',category:'tier1',
 		desc:'Provides 5 [education] @People\'s understanding of physics and anomalies in reality increases. Advances the [Laws of physics(basic),laws of physics] research.',
 		icon:[21,19,'magixmod'],
 		cost:{'insight':1009,'science':4,'culture':100},
@@ -15119,7 +15120,7 @@ autobuy(G.year)
 		req:{'Laws of physics(basic)':true,'Will to know more':true,'Underworld building 2/2':true},
 	});
 		new G.Tech({
-		name:'Even mo\' floorz',
+		name:'Even mo\' floorz',category:'upgrade',
 		desc:'[Blockhouse]s will have a 7th and <b>8th</b> floor which will allow 20 more people per blockhouse, increasing it\'s total capacity to 80.',
 		icon:[16,19,'magixmod'],
 		cost:{'insight II':30,'science':5,'culture II':5},
@@ -15128,7 +15129,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Berry masterry',
+		name:'Berry masterry',category:'tier2',
 		desc:'Doubles efficiency of [Berry farm] . Compounds with previous multipliers.',
 		icon:[27,19,'magixmod'],
 		cost:{'insight II':24,'faith II':1},
@@ -15137,14 +15138,14 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Moderated carpentry',
+		name:'Moderated carpentry',category:'tier2',
 		desc:'[carpenter workshop] is more expensive but its production is multiplied by 2.25 . <>Applies visual changes to Paradise and normal [carpenter workshop]s <>Boosts both types. ',
 		icon:[29,16,'magixmod'], 
 		cost:{'insight II': 10},
 		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true,'Oil-digging':true}
 	});
 		new G.Tech({
-		name:'Richer language',
+		name:'Richer language',category:'tier2',
 		desc:'Language they use for everyday life will become even more richer. Synonyms for basic words, neologisms and many more. This is some sign of wisdom isn\'t it? @provides 10 [wisdom II]',
 		icon:[27,7,'magixmod'],
 		cost:{'insight II':15},
@@ -15154,7 +15155,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Improved rhetoric',
+		name:'Improved rhetoric',category:'tier2',
 		desc:'People will use more words while talking. They will do their best to make the language and vocabulary survive through next generations. @Provides 10 [wisdom II] @Provides 5 [inspiration II]',
 		icon:[27,8,'magixmod'],
 		cost:{'insight II':15},
@@ -15165,7 +15166,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'code of law II',
+		name:'code of law II',category:'tier2',
 		desc:'The [code of law] will get more exact and more liberal. People will be full of hope if for example some burglar will rob them... this new [code of law] gives a hope that the burglar will be punished. @provides 3 [authority II]',
 		icon:[27,6,'magixmod'],
 		cost:{'insight II':10,'influence II':4,'culture II':6},
@@ -15175,7 +15176,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'weaving II',
+		name:'weaving II',category:'upgrade',
 		displayName:'Sewing II', //Correct
 		desc:'@[clothier]s, can sew [hardened clothes] (with [Sewing III] ) Requirements for this clothing type are: pieces of [Dried leather] and bunch of [Thread]<>',
 		icon:[27,9,'magixmod'],
@@ -15185,7 +15186,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Sewing III',
+		name:'Sewing III',category:'upgrade',
 		displayName:'Weaving III', //Correct
 		desc:'Upgrades sewing skills of your civilization. @[clothier]s can craft [hardened clothes] while they learned how to weave better, longer-durable clothing.',
 		icon:[27,12,'magixmod'], 
@@ -15193,21 +15194,21 @@ autobuy(G.year)
 		req:{'Wizardry':true,'Sewing II':true,'weaving II':true,'Eotm':true},
 	});
 		new G.Tech({
-		name:'Magical soil',
+		name:'Magical soil',category:'tier2',
 		desc:'People can craft a new type of soil using the one from Plain Island. On this new soil people will be able to plant a  magic plants that can gather [Magic essences] for you . Uses same amount of [Land of the Plain Island,land] as other farms that were in Plain Island but this one except [water] upkeep has [Mana] and [Magic essences,essence that you are going to farm] .',
 		icon:[27,18,'magixmod'], 
 		cost:{'insight II':14,'science':1},
 		req:{'Wizardry':true,'Eotm':true},
 	});
 		new G.Tech({
-		name:'Seed-enchanting',
+		name:'Seed-enchanting',category:'tier2',
 		desc:'@unlocks new mode for [artisan] that allows him to enchant [Beet seeds,seeds] making them become [Essenced seeds,essenced] . Planting and taking care about them can make you plant magic plants that will help you gathering essences.',
 		icon:[27,17,'magixmod'], 
 		cost:{'insight II':14,'science':1},
 		req:{'Eotm':true,'Magical soil':true},
 	});
 		new G.Tech({
-		name:'ritualism II',
+		name:'ritualism II',category:'religion',
 		desc:'@provides 3 [spirituality II] @[wisdom rituals] and [flower rituals] can be activated again but these rituals will require [faith II] as upkeep and cost instead of [faith] <>Simple practices, eroded and polished by long time, turn into rites and traditions. Straight from the heart to the gods.',
 		icon:[27,5,'magixmod'],
 		cost:{'culture II':5,'faith II':2,'insight II':10,'influence II':2,'faith':6},
@@ -15217,7 +15218,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Fertlizer for grain',
+		name:'Fertlizer for grain',category:'upgrade',
 		desc:'Multiplies efficiency of all [wheat,wheat-based] units like [Bakery] , [Wheat farm] and [Windmill] by 1.5 .',
 		icon:[27,4,'magixmod'],
 		cost:{'insight II':30},
@@ -15226,7 +15227,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Smokers & Windferns',
+		name:'Smokers & Windferns',category:'tier2',
 		desc:'Unlocks new farms for Plain Island. At these farms you can farm [Fire essence] and [Wind essence] out of plants that needs\'em . People gain their seeds, petals and then disenchant it gaining desired essence.',
 		icon:[27,16,'magixmod'],
 		cost:{'insight II':12,'faith II':1,'culture II':2},
@@ -15235,7 +15236,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Withering tulips & Watorchids',
+		name:'Withering tulips & Watorchids',category:'tier2',
 		desc:'Unlocks new farms for Plain Island. At these farms you can farm [Dark essence] and [Water essence] out of plants that needs\'em . People gain their seeds, petals and then disenchant it gaining desired essence.',
 		icon:[27,15,'magixmod'],
 		cost:{'insight II':8,'faith II':1,'culture II':1},
@@ -15244,7 +15245,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Lightlily & Naturdaisy',
+		name:'Lightlily & Naturdaisy',category:'tier2',
 		desc:'Unlocks new farms for Plain Island. On them you can farm [Lightning essence] and [Nature essence] out of plants that needs\'em . People gain their seeds, petals and then disenchant it gaining desired essence.',
 		icon:[27,14,'magixmod'],
 		cost:{'insight II':12,'faith II':1,'culture II':2},
@@ -15253,7 +15254,7 @@ autobuy(G.year)
 		],
 	});
 		new G.Tech({
-		name:'Holy roses farm',
+		name:'Holy roses farm',category:'tier2',
 		desc:'Unlocks [Essence of the Holiness] farm for Plain Island. There people plant a seeds of the <b>Holy rose</b> that grows and emitates some light (like a firefly). People gain their seeds, petals and then disenchant it gaining desired essence.',
 		icon:[27,13,'magixmod'],
 		cost:{'insight II':8,'faith II':1,'culture II':1},
@@ -15859,21 +15860,21 @@ autobuy(G.year)
 	});
 	//Seasonal New year
 		new G.Tech({
-		name:'Firework crafting',
+		name:'Firework crafting',category:'seasonal',
 		desc:'@unlocks [Artisan of new year].',
 		icon:[0,0,'seasonal'],
 		cost:{'insight':30},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},//switch to false after new year
 	});
 		new G.Tech({
-		name:'Firework launching',
+		name:'Firework launching',category:'seasonal',
 		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
 		icon:[17,0,'seasonal'],
 		cost:{'insight':70},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':false},
 	});
 		new G.Tech({
-		name:'Dark essenced fireworks',
+		name:'Dark essenced fireworks',category:'seasonal',
 		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
 		icon:[16,0,'seasonal'],
 		cost:{'insight':400},
@@ -15885,7 +15886,7 @@ autobuy(G.year)
 	===========================================================================================*/
 
 	new G.Tech({
-        name:'<font color=" ##00C000">Artistic gray cells</font>',
+        name:'<font color=" ##00C000">Artistic gray cells</font>',category:'misc',
         desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration] @Also autohires for free 1 [storyteller] but this free one works at 1/2000 of normally hired [storyteller].',
         icon:[4,12,'magixmod',6,12,'magixmod'],
         cost:{},
@@ -15896,7 +15897,7 @@ autobuy(G.year)
         req:{'tribalism':false}
     	});
 	new G.Tech({
-        name:'<font color="aqua">Genius feeling</font>',
+        name:'<font color="aqua">Genius feeling</font>',category:'misc',
         desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
         icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
         cost:{},
@@ -15906,7 +15907,7 @@ autobuy(G.year)
         req:{'tribalism':false}
     });
 new G.Tech({
-        name:'<font color="fuschia">Authority of the ancestor</font>',
+        name:'<font color="fuschia">Authority of the ancestor</font>',category:'misc',
         desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
         icon:[4,12,'magixmod',6,13,'magixmod'],
         cost:{},
@@ -15917,7 +15918,7 @@ new G.Tech({
         req:{'tribalism':false}
     });
 	new G.Tech({
-        name:'<font color="yellow">A gift from the Mausoleum</font>',
+        name:'<font color="yellow">A gift from the Mausoleum</font>',category:'misc',
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
         icon:[4,12,'magixmod',1,14],
         cost:{},
@@ -15926,7 +15927,7 @@ new G.Tech({
 			{type:'show context',what:['flowers']},
 		],
     });new G.Tech({
-        name:'A feeling from the Underworld',
+        name:'A feeling from the Underworld',category:'misc',
         desc:'You feel some warmth. It is not usual warmth. A call from Underworld. @<b>Allows you to finalize Underworld unlocking',
         icon:[8,12,9,5,'magixmod'],
         cost:{},
@@ -15936,7 +15937,7 @@ new G.Tech({
         req:{'tribalism':false}
     });
 	new G.Tech({
-        name:'<font color="##a8654f">The Underworld\'s Ascendant</font>',
+        name:'<font color="##a8654f">The Underworld\'s Ascendant</font>',category:'misc',
         desc:'You managed to do few other feats to attract new things. And you attracted: @ +1 [adult] . This is [adult,The Underworld\'s Ascendant]',
         icon:[15,19,'magixmod'],
         cost:{},
@@ -15949,7 +15950,7 @@ new G.Tech({
 	Another TECHZ
 	=======================================*/
 		new G.Tech({
-		name:'guilds unite',
+		name:'guilds unite',category:'tier2',
 		desc:'@moderns up existing modes of [lodge] & [guild quarters] and unlocks one new for [guild quarters] . Increases rate of hiring units per one [lodge] from 6 to 100. <>NOTE: Useless for now but applies new icons to [lodge] , [guild quarters]',
 		icon:[29,8,'magixmod'],
 		cost:{'insight II':20,'culture II':10,'influence II':5,'insight':45},
@@ -15958,7 +15959,7 @@ new G.Tech({
 		],
 	});
 		new G.Tech({
-		name:'focused scouting',
+		name:'focused scouting',category:'upgrade',
 		desc:'@[scout] and [wanderer] are smarter by discovering new techniques of exploring. May make exploring safer<>This tech will allow to explore further worlds with same units. At the moment useless because there is no 2nd map but applies new icons for both [scout] and [wanderer] .',
 		icon:[10,21,'magixmod'],
 		cost:{'insight II':15,'insight':35},
@@ -15968,7 +15969,7 @@ new G.Tech({
 		chance:2,
 	});
 		new G.Tech({
-		name:'bigger kilns',
+		name:'bigger kilns',category:'upgrade',
 		desc:'@People can build bigger [kiln]s that are more efficient. <>Increases efficiency of all [Kiln] types by additive 150% but doubles upkeep of this unit. <>In additions this tech changes their visual look.',
 		icon:[21,21,'magixmod'],
 		cost:{'insight II':15,'insight':15},
@@ -15978,7 +15979,7 @@ new G.Tech({
 		chance:4,
 	});
 		new G.Tech({
-		name:'symbolism II',
+		name:'symbolism II',category:'upgrade',
 		desc:'@increases [symbolism] bonus from 50 to 70%. Still boost has the same targets as it had before and [druid]s in extra.',
 		icon:[29,6,'magixmod'],
 		cost:{'culture II':15,'insight II':10},
@@ -15987,7 +15988,7 @@ new G.Tech({
 		],
 	});
 		new G.Tech({
-		name:'cozy building',
+		name:'cozy building',category:'misc',
 		desc:'@people now want to be warm using fire. Always some solution for cold nights if people living inside have no clothing. People adds chimneys to their huts, hovels, and houses. Some archaic shelters got a improvement. <>This tech just changes icons of basic housing. But it can do more than just housing providing sometime.',
 		icon:[29,3,'magixmod'],
 		cost:{'insight II':20},
@@ -15997,7 +15998,7 @@ new G.Tech({
 		chance:3,
 	});
 		new G.Tech({
-		name:'cozier building',
+		name:'cozier building',category:'misc',
 		desc:'@people except setting up a chimney started thinking about having some decor near their houses. <>Makes buildings look even more nice. Better icons for basic housing.',
 		icon:[29,4,'magixmod'],
 		cost:{'insight II':25,'culture II':5,'insight':10},
@@ -16007,7 +16008,7 @@ new G.Tech({
 		chance:3,
 	});
 		new G.Tech({
-		name:'Maths(upper-intermediate)',
+		name:'Maths(upper-intermediate)',category:'tier2',
 		desc:'Provides 5 [education] and 30 [wisdom II] @Expands maths knowledge of scholars by: integrals (basic) , calculus (basic) , strongs and polynomials.',
 		icon:[8,21,'magixmod'],
 		cost:{'insight II':50,'science':8,'culture II':12,'insight':255},
@@ -16018,28 +16019,28 @@ new G.Tech({
 		req:{'Laws of physics(intermediate)':true,'Will to know more':true,'symbolism II':true,'Intermediate maths':true,'Proportion':true},
 	});
 		new G.Tech({
-		name:'Fires from logs',
+		name:'Fires from logs',category:'tier2',
 		desc:'[firekeeper] can start fires out of [log]s. <>',
 		icon:[9,21,'magixmod',23,1],
 		cost:{'insight II':10},
 		req:{'Eotm':true},
 	});
 		new G.Tech({
-		name:'Paradise housing conceptions',
+		name:'Paradise housing conceptions',category:'tier1',
 		desc:'This technology doesn\'t unlock new housing for Paradise yet. But in the future you will obtain similar technology that finally will unlock for you new neat housing. <>Paradise housing is limited like: 1 Paradise hovel per 100 of something. God doesn\'t want his homeland to be filled with houses and look like it does at your mortal world.',
 		icon:[0,21,'magixmod'],
 		cost:{'insight':1000,'culture':390,'inspiration':16,'faith':259},
 		req:{'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Tech({
-		name:'Paradise housing',
+		name:'Paradise housing',category:'tier2',
 		desc:'Unlocks housing which is unique for the Paradise. Each of the types is limited at some way. Paradise is not like Plain Island a spot where you can build as much housing as you wish because Paradise isn\'t and never will be totally yours. <>Unlocks: [Treehouse] , [Cozy lodge] , [hardened house] , [Cozy paradise hut] . Paradise is lush world so your people do not need to construct chimneys for their houses at all.',
 		icon:[1,21,'magixmod'],
 		cost:{'insight II':70,'insight':55},
 		req:{'<span style="color: ##FF0900">Paradise building</span>':true,'Paradise housing conceptions':true,'cozy building':true},
 	});
 		new G.Tech({
-		name:'Science blessing',
+		name:'Science blessing',category:'tier2',
 		desc:'[Guru] generates 50% more [science] & [insight].',
 		icon:[29,5,'magixmod'],
 		cost:{'insight II':15,'science':5,'Mana':435},
@@ -16055,76 +16056,76 @@ new G.Tech({
 		category:'gods'
 	});
 		new G.Tech({
-		name:'Music',
+		name:'Music',category:'culture',
 		desc:'People now can use music as one of cultural heritage pillars. May make musicians appear into your people\'s reality.',
 		icon:[29,17,'magixmod'],
 		cost:{'insight II':15,'culture II':25},
 		req:{'symbolism II':true,'ritualism II':true},
 	});
 		new G.Tech({
-		name:'Music instruments',
+		name:'Music instruments',category:'tier2',
 		desc:'Artisans craft for [musician] instruments at order. <>Note: It doesn\'t add new mode. In fact it just unlocks [musician]',
 		icon:[29,18,'magixmod'],
 		cost:{'insight II':10,'culture II':25},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true},
 	});
 		new G.Tech({
-		name:'More experienced healers',
+		name:'More experienced healers',category:'upgrade',
 		desc:'All [healer]s are more efficient. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [healer]s will work 3% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [healer]s will work 9% more efficient.',
 		icon:[14,21,'magixmod'], 
 		cost:{'insight II':50,'science':5},
 		req:{'bigger kilns':true}
 	});
 		new G.Tech({
-		name:'Better kiln construction',
+		name:'Better kiln construction',category:'upgrade',
 		desc:'All [kiln]s are more efficient. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [kiln]s will work 10% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [kiln]s will work 5% more efficient.',
 		icon:[15,21,'magixmod'], 
 		cost:{'insight II':50,'science':5},
 		req:{'bigger kilns':true}
 	});
 		new G.Tech({
-		name:'Inspirated carvers',
+		name:'Inspirated carvers',category:'upgrade',
 		desc:'[carver]s are more efficient. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [carver]s will work 3% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [carver]s will work 6% more efficient.',
 		icon:[16,21,'magixmod'], 
 		cost:{'insight II':50,'science':5},
 		req:{'bigger kilns':true}
 	});
 		new G.Tech({
-		name:'Mo\' concrete',
+		name:'Mo\' concrete',category:'upgrade',
 		desc:'[Concrete making shack]s are more efficient. <>This technology will give you bonus depending on path your people have chosen. <>If they have chosen [<font color="maroon">Moderation</font>] then [Concrete making shack]s will work 20% more efficient. <>If they have chosen [<font color="maroon">Caretaking</font>] then [Concrete making shack]s will work 5% more efficient.',
 		icon:[17,21,'magixmod'], 
 		cost:{'insight II':50,'science':5},
 		req:{'bigger kilns':true}
 	});
 		new G.Tech({
-		name:'More capacious racks',
+		name:'More capacious racks',category:'upgrade',
 		desc:'[Drying rack] is thrice as efficient.',
 		icon:[18,21,'magixmod'], 
 		cost:{'insight II': 25,'insight':5},
 		req:{'<font color="maroon">Caretaking</font>':true,'Magical soil':true}
 	});
 		new G.Tech({
-		name:'Oil-digging',
+		name:'Oil-digging',category:'tier2',
 		desc:'[quarry,Quarries] can dig for [oil] that can be used in the future as fuel.',
 		icon:[29,2,'magixmod'], 
 		cost:{'insight II': 25,'insight':30},
 		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true}
 	});
 		new G.Tech({
-		name:'Bigger factory racks',
+		name:'Bigger factory racks',category:'upgrade',
 		desc:'[Leather factory,Leather factories] dry twice as much [leather] without [happiness] harm.',
 		icon:[29,19,'magixmod'], 
 		cost:{'insight II': 25,'insight':30},
 		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true}
 	});
 		new G.Tech({
-		name:'Next-to house berrybushes',
+		name:'Next-to house berrybushes',category:'tier2',
 		desc:'People who live in [house]s can now gather [Berries] from bushes that they plant next to their houses.',
 		icon:[29,15,'magixmod'], 
 		cost:{'insight II': 10},
 		req:{'<font color="maroon">Caretaking</font>':true,'Eotm':true,'cozier building':true}
 	});new G.Tech({
-        name:'<font color="lime">Fruit supplies</font>',
+        name:'<font color="lime">Fruit supplies</font>',category:'misc',
         desc:'Obtaining <font color="red">Experienced</font> made you getting extra 100 [fruit]s . Wish your people having good taste :) ',
         icon:[4,12,'magixmod',28,22,'magixmod'],
         cost:{},
@@ -16134,7 +16135,7 @@ new G.Tech({
         req:{'tribalism':false}
     });
 	new G.Tech({
-        name:'<font color="orange">Life has its theme</font>',
+        name:'<font color="orange">Life has its theme</font>',category:'misc',
         desc:'From now you can change game theme :) ',
         icon:[4,12,'magixmod',29,23,'magixmod'],
         cost:{},
@@ -16151,7 +16152,7 @@ new G.Tech({
         req:{'tribalism':false},category:'knowledge',chance:1,
     });
 		new G.Tech({
-		name:'Glory',
+		name:'Glory',category:'upgrade',
 		desc:'@provides 7 [authority II] @Increases efficiency of [chieftain] and [clan leader] by 10% @Applies visual changes for [chieftain] and [clan leader] . @You gain yearly 2 [influence] instead of 1. @[Mediator] can gather [influence] but becomes more limited.',
 		icon:[23,23,'magixmod'], 
 		cost:{'influence II': 5,'insight II':50,'culture II':20,'influence':160},
@@ -16161,7 +16162,7 @@ new G.Tech({
 		req:{'code of law II':true}
 	});
 		new G.Tech({
-		name:'Spiritual piety',
+		name:'Spiritual piety',category:'religion',
 		desc:'@provides 7 [spirituality II] @Increases [faith] gains of [Church] by 30% @Applies visual changes for [grave] and [Church] . @One [grave] provides 3 [burial spot]s and uses 0.7 instead of 1 [land] .',
 		icon:[26,23,'magixmod'], 
 		cost:{'faith II': 5,'insight II':50,'culture II':20},
@@ -16171,7 +16172,7 @@ new G.Tech({
 		req:{'ritualism II':true,'ritualism':true,'God\'s trait #6 Fertile essences farms':true}
 	});
 		new G.Tech({
-		name:'Essential conversion tank overclock I',
+		name:'Essential conversion tank overclock I',category:'upgrade',
 		desc:'@[Essential conversion tank] can convert essentials 10% more often. People overclock these tanks to cause conversion occur even more often.',
 		icon:[6,22,'magixmod'], 
 		cost:{'insight II':80,'insight':344},
@@ -16186,21 +16187,21 @@ new G.Tech({
 		req:{'code of law II':true,'ritualism II':true,'symbolism II':true,'Glory':true},
 	});
 		new G.Tech({
-		name:'Mining strategy',
+		name:'Mining strategy',category:'tier2',
 		desc:'Decreases accident rate at [mine] . @Increases efficiency of [mine] by 5%. @Applies visual change to [mine] icon.',
 		icon:[17,23,'magixmod'], 
 		cost:{'insight II':50,'science':2,'insight':204},
 		req:{'Policy revaluation':true,'<font color="maroon">Moderation</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Caretaking</font>':false,'Improved furnace construction':true,'symbolism':true}
 	});
 		new G.Tech({
-		name:'Safer explosive usage',
+		name:'Safer explosive usage',category:'tier2',
 		desc:'Decreases accident rate at [explosive mine] by 3%. @Increases efficiency of [explosive mine] by 5%. @Applies visual change to [explosive mine] icon.',
 		icon:[19,23,'magixmod'], 
 		cost:{'insight II':50,'science':2,'insight':204},
 		req:{'Policy revaluation':true,'<font color="maroon">Caretaking</font>':true,'mining':true,'quarrying':true,'<font color="maroon">Moderation</font>':false,'Improved furnace construction':true,'symbolism':true}
 	});
 		new G.Tech({
-		name:'Nutritious magical soil',
+		name:'Nutritious magical soil',category:'upgrade',
 		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] .',
 		icon:[21,23,'magixmod'], 
 		cost:{'insight II':45,'culture II':15,'faith II':3,'influence II':2,'Mana':1365,'science':2},
@@ -16216,14 +16217,14 @@ new G.Tech({
 		category:'main'
 	});
 		new G.Tech({
-		name:'Master mana-making',
+		name:'Master mana-making',category:'upgrade',
 		desc:'[Mana maker] works 4x as efficient due to new technologies of crafting mana the smart people created for them. @Applies visual change to [Mana maker] .',
 		icon:[3,24,'magixmod'], 
 		cost:{'insight II':90,'culture II':15},
 		req:{'Policy revaluation':true,'Magical soil':true}
 	});
 	new G.Tech({
-        name:'Magical presence',
+        name:'Magical presence',category:'misc',
 	displayName:'<font color="silver">Magical presence</font>',
         desc:'You feel some weird stuff inside of your body. Sometime it is warm, sometime makes you feel weird but later you don\'t feel any weird things that this presence has made. @Increases efficiency of all [Water wizard tower,Wizard towers] by 5% without increasing [Mana] upkeep. @Unlocks you new theme (check [Theme changer]).',
         icon:[4,12,'magixmod',2,24,'magixmod'],
@@ -16232,21 +16233,21 @@ new G.Tech({
 	],	
         req:{'tribalism':false}
     });		new G.Tech({
-		name:'hunting III',
+		name:'hunting III',category:'upgrade',
 		desc:'@[hunter]s become more coordinated. This tech decreases amount of accidents where a victim becomes [hunter] .',
 		icon:[8,22,'magixmod'],
 		cost:{'insight II':65,'science':2,'influence II':3,'insight':25},
 		req:{'Policy revaluation':true,'Magical presence':true,'Fishing II':true},
 	});
 		new G.Tech({
-		name:'fishing III',
+		name:'fishing III',category:'upgrade',
 		desc:'This tech may unlock something that truly will make [fisher] become better.',
 		icon:[7,22,'magixmod'],
 		cost:{'insight II':65,'science':3,'culture II':2,'insight':15},
 		req:{'Policy revaluation':true,'Magical presence':true,'hunting III':true},
 	});
 		new G.Tech({
-		name:'Hunter\'s coordination',
+		name:'Hunter\'s coordination',category:'tier2',
 		desc:'@Decreases value of [hunter]s accidents even more. Requires small amount of food as an upkeep. @Increases [wisdom II] by 10.',
 		icon:[6,23,'magixmod'],
 		cost:{'insight II':80,'science':5},
@@ -16256,21 +16257,21 @@ new G.Tech({
 			]
 	});
 		new G.Tech({
-		name:'An armor for Hunter',
+		name:'An armor for Hunter',category:'tier2',
 		desc:'@Let the [hunter] have an armor!. //In fact this tech just leads to more advanced improvements for [hunter] .',
 		icon:[14,24,'magixmod'],
 		cost:{'insight II':80,'science':5},
 		req:{'hunting III':true},
 	});
 		new G.Tech({
-		name:'Fisher\'s smartness',
+		name:'Fisher\'s smartness',category:'tier2',
 		desc:'[fisher]s is twice as efficient but as an upkeep he requires some food. //Fisher knows how to lure different types of fishes.',
 		icon:[0,23,'magixmod'],
 		cost:{'insight II':45,'science':5},
 		req:{'fishing III':true},
 	});
 			new G.Tech({
-		name:'Hunters & fishers unification',
+		name:'Hunters & fishers unification',category:'tier2',
 		desc:'Merges [fisher] and [hunter] into one unit. //[hunter]s accident rate is decreased even more but hired [hunter]s require an [armor set] . //<font color="fuschia">Note: Obtaining this tech will merge powers of [hunter] and [fisher] into one unit. Merged units become useless (they icon gets slashed) and will gather no longer. Only new unit caused by merging will do that what they were doing before. New unit becomes much more expensive and limited but it is much more efficient.</font>',
 		icon:[2,23,'magixmod'],
 		cost:{'insight II':55,'science':5,'insight':95},
@@ -16278,7 +16279,7 @@ new G.Tech({
 		chance:15
 	});
 		new G.Trait({
-		name:'Camp-cooking',
+		name:'Camp-cooking',category:'tier2',
 		desc:'<span style="color: #aaffff">Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able to cook some [cooked meat,meat] for you.</span>',
 		icon:[15,24,'magixmod'],
 		cost:{'insight II':100},
@@ -16287,49 +16288,49 @@ new G.Tech({
 		category:'knowledge'
 	});
 			new G.Tech({
-		name:'Fertile bushes',
+		name:'Fertile bushes',category:'upgrade',
 		desc:'[house,Next-to house berrybushes] are 20% more fertile. In fact they gather 20% more [Berries] . Yummy :) Also [hovel with garden] gains 10% more.',
 		icon:[1,24,'magixmod'],
 		cost:{'insight II':100,'culture II':20,'insight':50},
 		req:{'Hunters & fishers unification':true,'Next-to house berrybushes':true},
 	});
 		new G.Tech({
-		name:'Supreme fast filtering',
+		name:'Supreme fast filtering',category:'upgrade',
 		desc:'[Water filter]s perform conversion twice as often doubling efficiency.',
 		icon:[5,24,'magixmod'],
 		cost:{'insight II':60},
 		req:{'Hunters & fishers unification':true},
 	});
 		new G.Tech({
-		name:'Supreme cloudy fast filtering',
+		name:'Supreme cloudy fast filtering',category:'upgrade',
 		desc:'[Cloudy water filter]s perform conversion twice as often doubling efficiency.',
 		icon:[6,24,'magixmod'],
 		cost:{'insight II':80},
 		req:{'Hunters & fishers unification':true,'Supreme fast filtering':true},
 	});
 		new G.Tech({
-		name:'Improved alchemy techniques',
+		name:'Improved alchemy techniques',category:'upgrade',
 		desc:'[Basic brewing stand] becomes thrice as efficient.',
 		icon:[16,23,'magixmod'],
 		cost:{'insight II':65,'science':7,'culture II':23},
 		req:{'Camp-cooking':true},
 	});
 		new G.Tech({
-		name:'Mo \'wine',
+		name:'Mo \'wine',category:'upgrade',
 		desc:'[Alcohol brewing stand] and [Alcohol drinks brewing stand] become thrice as efficient.',
 		icon:[15,23,'magixmod'],
 		cost:{'insight II':80,'science':5},
 		req:{'Improved alchemy techniques':true},
 	});
 		new G.Tech({
-		name:'Burial wormhole 1/2',
+		name:'Burial wormhole 1/2',category:'tier2',
 		desc:'People start thinking about using magic especially [Dark essence,dark one] to get rid of corpses without harming reputation. //One of them said that if we have at least 2 portals why won\'t we make some smaller worlds just for burying these [corpse]s ?',
 		icon:[27,3,'magixmod',22,22,'magixmod'],
 		cost:{'insight II':100,'science':6,'faith II':4,'influence II':5},
 		req:{'Magical presence':true,'Mo \'wine':true},
 	});
 		new G.Tech({
-		name:'Doctrine of the dark wormhole 1/5',
+		name:'Doctrine of the dark wormhole 1/5',category:'tier2',
 		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about conception of making a small plane where the [corpse]s will lie in the way that will allow to fit over millions of [corpse]s. //Your [Wizard]s seem really impressed reading and forwarding the doctrine.',
 		icon:[21,22,'magixmod',16,22,'magixmod'],
 		cost:{'insight II':100,'science':6,'faith II':4,'influence II':5,'culture II':10},
@@ -16353,7 +16354,7 @@ new G.Tech({
 		chance:40
 	});
 			new G.Tech({
-		name:'Doctrine of the dark wormhole 3/5',
+		name:'Doctrine of the dark wormhole 3/5',category:'tier2',
 		desc:'Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is filled with informations about stability of things like that. Wormholes, portals must be stable. If anybody would enter unstable world nobody knows what would happen to him. //Your [Wizard]s feel goosebumps.',
 		icon:[19,22,'magixmod',15,22,'magixmod'],
 		cost:{'insight II':105,'science':7,'faith II':4,'influence II':5,'culture II':10,'wisdom':50,'insight':44},
@@ -16364,7 +16365,7 @@ new G.Tech({
 			]
 	});
 		new G.Trait({
-		name:'Doctrine of the dark wormhole 4/5',
+		name:'Doctrine of the dark wormhole 4/5',category:'tier2',
 		desc:'<span style="color: #aaffff">Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine describes ways of keeping the wormhole active. It is important thing too because if it will run out of power a tons of corpses will explode out of wormhole and people will be really, really mad. //Your [Wizard]s know exactly how big problem will occur if wormhole will run out of power.</span> ',
 		icon:[18,22,'magixmod',15,22,'magixmod'],
 		cost:{'insight II':130,'science':7,'faith II':4,'influence II':5,'culture II':27},
@@ -16377,7 +16378,7 @@ new G.Tech({
 		chance:60
 	});
 		new G.Tech({
-		name:'Doctrine of the dark wormhole 5/5',
+		name:'Doctrine of the dark wormhole 5/5',category:'tier2',
 		desc:'Provides 7 [inspiration II] . //This part of doctrine is about miscellanneous related to the wormhole. //Your [Wizard]s feel secure. They may start thinking about running first dark wormhole.',
 		icon:[17,22,'magixmod',14,22,'magixmod'],
 		cost:{'insight II':140,'science':7,'faith II':3,'influence II':5,'culture II':30,'wisdom':50,'insight':310},
@@ -16387,7 +16388,7 @@ new G.Tech({
 			]
 	});
 		new G.Tech({
-		name:'Burial wormhole 2/2',
+		name:'Burial wormhole 2/2',category:'tier2',
 		desc:'Unlocks [Dark wormhole] . Massive burial spot bonus but requires upkeep(in [Mana] and [Dark essence]). Dark powers like death and fear. Corpses look scary and spooky. It keeps wormhole stable. ',
 		icon:[27,2,'magixmod',22,22,'magixmod'],
 		cost:{'insight II':140,'science':10,'culture II':40,'insight':95},
@@ -16404,7 +16405,7 @@ new G.Tech({
 		chance:90
 	});
 		new G.Tech({
-		name:'Liberating darkness',
+		name:'Liberating darkness',category:'tier2',
 		desc:'[The Skull of Wild Death] now can generate [Dark essence] for you... <br>but...<br> more [wild corpse]s will appear',//2 do wild corpses!!!
 		icon:[8,24,'magixmod'],
 		cost:{'insight II':140,'science':5,'faith II':5,'Mana':511},
@@ -16421,7 +16422,7 @@ new G.Tech({
 		chance:200
 	});
 		new G.Tech({
-		name:'Conveyor conception',
+		name:'Conveyor conception',category:'tier2',
 		desc:'People lead by [Automation] think about automating movement of produced things so they wouldn\'t have to move it by using their hands and they would focus more on work increasing efficiency of their [Factories I,Factories].',
 		icon:[0,24,'magixmod'],
 		cost:{'insight II':135},
@@ -16432,7 +16433,7 @@ new G.Tech({
 	});
 		if(G.modsByName['Market mod']){
 		new G.Tech({
-		name:'Essence trading',
+		name:'Essence trading',category:'tier2',
 		desc:'Now [market_sell] may trade with [Magic essences].',
 		icon:[22,24,'magixmod'],
 		cost:{'insight II':8,'faith II':1,'culture II':1},
@@ -16441,7 +16442,7 @@ new G.Tech({
 		],
 	});
 		new G.Tech({
-		name:'Backshift',
+		name:'Backshift',category:'tier1',
 		desc:'[bazaar_buy,Bazaars] and [market_buy,Markets] work 50% more efficient but requires another [worker] .',
 		icon:[30,22,'magixmod'],
 		cost:{'insight':997,'culture':264},
@@ -16451,7 +16452,7 @@ new G.Tech({
 		]
 	});
 		new G.Tech({
-		name:'Expanded essence trading catalog',
+		name:'Expanded essence trading catalog',category:'tier2',
 		desc:'Unlocks a policy that will turn you on the prospected essence trading. Now [market_sell,Markets] trades [Magic essences] with bulks of 150 instead of 100.',
 		icon:[30,21,'magixmod'],
 		cost:{'insight II':95,'culture II':3,'science':1,'faith II':1},
@@ -16460,7 +16461,7 @@ new G.Tech({
 		],
 	});
 		new G.Tech({
-		name:'Mo\' tradez',
+		name:'Mo\' tradez',category:'upgrade',
 		desc:'Policies such like [extended basic catalog] or [extended food catalog] now have more options. //Also unlocks [art trader] who can sell [Painting]s for [market_coin].',
 		icon:[30,20,'magixmod'],
 		cost:{'insight':1490},
@@ -16471,7 +16472,7 @@ new G.Tech({
 	});
 	}
 			new G.Tech({
-		name:'Mo\' beauty',
+		name:'Mo\' beauty',category:'misc',
 		desc:'Applies visual changes to some units. //Default units gets "decorated" let\'s say in short.',
 		icon:[30,11,'magixmod'],
 		cost:{'insight II':5},
@@ -16481,7 +16482,7 @@ new G.Tech({
 			]
 	});
 				new G.Tech({
-		name:'symbolism III',
+		name:'symbolism III',category:'upgrade',
 		desc:'Third level of [symbolism] doesn\'t increase the bonus but since now the bonus will apply to more units([Guru] gathers 25% more [science], [musician] , [Thoughts sharer] , [Lawyer] ,[Mediator]. [Cathedral] gets 100% bonus instead of 70%([symbolism II] bonus). //In addition provides: @10[wisdom II],[inspiration II] @3[education] @5[authority II],[spirituality II].',
 		icon:[30,14,'magixmod'],
 		cost:{'insight II':145,'culture II':35,'influence II':5,'faith II':5,'science':10,'insight':16},
@@ -16495,7 +16496,7 @@ new G.Tech({
 			]
 	});
 				new G.Tech({
-		name:'wizard\'s grain fertlizer',
+		name:'wizard\'s grain fertlizer',category:'upgrade',
 		desc:'Fertlizer that makes [Wheat farm]s produce 75% more [wheat] (compounding). Made by group of wizards who love eating bread on breakfast and they do not imagine a life without a piece of bread.',
 		icon:[30,17,'magixmod'],
 		cost:{'insight II':100,'Mana':500,'culture II':33,'faith II':2,'insight':35},
@@ -16504,7 +16505,7 @@ new G.Tech({
 			]
 	});
 			new G.Tech({
-		name:'Plain island mining strategy',
+		name:'Plain island mining strategy',category:'tier2',
 		desc:'Decreases accident rate at [Mine of the plain island] . @Increases efficiency of [Mine of the plain island] by 5%. @Applies visual change to [Mine of the plain island]\'s icon.',
 		icon:[31,7,'magixmod'], 
 		cost:{'insight II':50,'science':2,'insight':139},
@@ -16519,7 +16520,7 @@ new G.Tech({
 		chance:35
 	});
 		new G.Tech({
-		name:'power of the faith',
+		name:'power of the faith',category:'religion',
 		desc:'Now [Crafting & farm rituals] bonus applies to: @[blacksmith workshop](mortal and paradise version) @[carpenter workshop](mortal and paradise version)@[Holy orchard]@[artisan](types: juice, pyro and normal. Bonus for juice and pyro: 25% while for normal it is 3%)//All of these bonuses are only active when the ritual active is. These bonuses won\'t increase amount of [faith II] required to keep the ritual active. @provides 5 [spirituality II]',
 		icon:[24,24,'magixmod'],
 		cost:{'culture II':25,'insight II':135,'science':5,'faith':26},
@@ -16530,7 +16531,7 @@ new G.Tech({
 			]
 	});
 		new G.Tech({
-		name:'improved windmill motors',
+		name:'improved windmill motors',category:'upgrade',
 		desc:'[Windmill] can craft 35% more [flour].',
 		icon:[31,13,'magixmod'],
 		cost:{'insight II':165,'science':5,'culture II':21},
@@ -16538,7 +16539,7 @@ new G.Tech({
 		chance:2,
 	});
 		new G.Tech({
-		name:'backshift at farms',
+		name:'backshift at farms',category:'upgrade',
 		desc:'[Sugar cane farm] and [Berry farm] produce 2.5x more and [Wheat farm] gets twice as efficient. //Now these farms require 50% more [worker]s due to way people increase income of the farms. //Requires [<font color="maroon">Moderation</font>] to unlock this tech. Also [hovel with garden] gains 10% more.',
 		icon:[31,14,'magixmod'],
 		cost:{'insight II':180,'science':5,'influence II':10,'culture II':5,'insight':293},
@@ -16557,7 +16558,7 @@ new G.Tech({
 			]
 	});
 		new G.Tech({
-		name:'embalmment',
+		name:'embalmment',category:'tier2',
 		desc:'Smart people said how to make a substance that will slow down decay of corpses and discourage people from performing [ritual necrophagy,necrophagy] on them. They think about crafting something that is called [Urn] and there they would "store" [corpse]s.',
 		icon:[31,20,'magixmod'],
 		cost:{'insight II':110,'science':5,'influence II':10,'culture II':5},
@@ -16565,7 +16566,7 @@ new G.Tech({
 		chance:5,
 	});
 		new G.Tech({
-		name:'cremation',
+		name:'cremation',category:'tier2',
 		desc:'Unlocks [crematorium]. Burns embalmed [corpse]s then all dust from [corpse] they put into the [Urn].//You\'ll unlock better way of burying people. 1 [burial spot] can store 4 [Urn]s.',
 		icon:[30,16,'magixmod'],
 		cost:{'insight II':155,'science':10,'influence II':10,'culture II':35},
@@ -16573,7 +16574,7 @@ new G.Tech({
 		chance:5,
 	});
 		new G.Tech({
-		name:'dark urn decay',
+		name:'dark urn decay',category:'tier2',
 		desc:'[Corpse decay] now affects [Urn]s as well.',
 		icon:[30,15,'magixmod'],
 		cost:{'faith II':15,'insight II':135,'Essenced seeds':300,'insight':315},
@@ -16581,56 +16582,56 @@ new G.Tech({
 		chance:5,
 	});
 		new G.Tech({
-		name:'Juicy nutritious magical soil',
+		name:'Juicy nutritious magical soil',category:'upgrade',
 		desc:'Increases efficiency of [Farm of withering tulips,Essence farms] by 10%. @This 10% bonus compounds with bonus from [God\'s trait #6 Fertile essences farms] and previous soil upgrades.',
 		icon:[31,11,'magixmod'], 
 		cost:{'insight II':190,'culture II':20,'Juices':1050,'culture':188},
 		req:{'Policy revaluation':true,'Nutritious magical soil':true,'Magical presence':true}
 	});
 			new G.Tech({
-		name:'Paper mastery',
+		name:'Paper mastery',category:'upgrade',
 		desc:'[Paper-crafting shack]s are thrice as efficient.',
 		icon:[31,9,'magixmod'],
 		cost:{'insight II':125,'science':7,'influence II':3},
 		req:{'Camp-cooking':true},
 	});
 			new G.Tech({
-		name:'Even mo\' paper',
+		name:'Even mo\' paper',category:'upgrade',
 		desc:'[Paper-crafting shack]s produces 25% more [Paper] .//To get this bonus you need to obtain [<font color="maroon">Moderation</font>] or [<font color="maroon">Caretaking</font>]. It does not matter which path your people will choose.',
 		icon:[31,12,'magixmod'],
 		cost:{'insight II':135,'science':7,'influence II':6,'culture II':30,'faith II':2,'insight':90},
 		req:{'Paper mastery':true},
 	});
 		new G.Tech({
-		name:'More humid water',
+		name:'More humid water',category:'upgrade',
 		desc:'[Sugar cane farm] produces 250% more [Sugar cane]',
 		icon:[31,23,'magixmod'],
 		cost:{'insight':590},
 		req:{'Moar juices':true},
 	});
 		new G.Tech({
-		name:'Soil for moisture-loving plants',
+		name:'Soil for moisture-loving plants',category:'upgrade',
 		desc:'[Sugar cane farm] produces 300% more [Sugar cane]. //Compounds with [More humid water] bonus',
 		icon:[31,24,'magixmod'],
 		cost:{'insight':1350,'culture':300},
 		req:{'Ambrosium treeplanting':true},
 	});
 		new G.Tech({
-		name:'Empowered canes',
+		name:'Empowered canes',category:'upgrade',
 		desc:'[Sugar cane farm] produces 400% more [Sugar cane]. //Compounds with previous bonuses. //Makes planted [Sugar cane] live longer and able to grow even taller than normal.',
 		icon:[31,25,'magixmod'],
 		cost:{'insight II':50,'culture II':15},
 		req:{'Eotm':true},
 	});
 		new G.Tech({
-		name:'Essenced soil for moisture-loving plants',
+		name:'Essenced soil for moisture-loving plants',category:'upgrade',
 		desc:'[Sugar cane farm] produces 400% more [Sugar cane]. //Compounds with previous bonuses.',
 		icon:[30,25,'magixmod'],
 		cost:{'insight II':90,'culture II':20,'influence II':3,'science':2,'insight':33},
 		req:{'Nutritious magical soil':true},
 	});
 			new G.Tech({
-		name:'Storage at the bottom of the world',
+		name:'Storage at the bottom of the world',category:'tier2',
 		desc:'Unlocks [heavy warehouse]. Built in Underworld and covered with heavy metal.',
 		icon:[30,13,'magixmod'],
 		cost:{'insight II':185,'culture II':15,'influence II':1,'science':4},
@@ -16646,7 +16647,7 @@ new G.Tech({
 		category:'religion'
 	});
 		new G.Tech({
-		name:'monument-building III',
+		name:'monument-building III',category:'upgrade',
 		desc:'People now can use almost every resource while constructing mystical, beautiful wonders.',
 		icon:[0,25,'magixmod'],
 		req:{'gods and idols':true},
@@ -16692,7 +16693,7 @@ new G.Tech({
 		chance:70,
 		category:'religion'
 	});new G.Tech({
-        name:'Life in faith',
+        name:'Life in faith',category:'religion',
 	displayName:'<font color="gold">Life in faith</font>',
         desc:'You remember... you were staying near the Temple... the God\'s temple! This memory has unbelieveable powers: @+1[faith] @+1[spirituality] @3 new themes(check [Theme changer]).',
         icon:[4,12,'magixmod',9,25,'magixmod'],
@@ -16704,7 +16705,7 @@ new G.Tech({
         req:{'tribalism':false}
     });
 		new G.Tech({
-		name:'Pantheon key',
+		name:'Pantheon key',category:'religion',
 		desc:'Unlocks Pantheon. In pantheon you will meet 12 seraphins. Each one offers to you some boost but each boost has its backfire. <font color="red">Choose the seraphins wisely!</font> //You will get 4 [Worship point]s that can be spent to choose up to 4 seraphins. Rejecting already chosen one will not make spent [Worship point] come back to you so really be careful and think twice or even thrice before you perform a choice! //You will unlock a new tab. From this new tab you may start a trial. To learn more about trials just check the new tab. //Provides: 25 [spirituality II] and 15 [authority II].',
 		icon:[4,25,'magixmod'],
 		req:{'Life in faith':true,'monument-building III':true},
@@ -16716,7 +16717,7 @@ new G.Tech({
 		]
 	});
   	new G.Tech({
-		name:'skinning',
+		name:'skinning',category:'tier1',
 		desc:'[hunter]s can gather [hide] out of killed animals.',
 		icon:[31,26,'magixmod'],
 		req:{'hunting':true,'sewing':true},
@@ -16725,14 +16726,14 @@ new G.Tech({
 			]
 	});
 	new G.Tech({
-		name:'herbalism',
+		name:'herbalism',category:'tier1',
 		desc:'[gatherer] can now gather [herb] amount depending on biome.//Previously they were missing most of herbs because they were thinking that is just a simple grass.',
 		icon:[31,27,'magixmod'],
 		req:{'language':true},
 		cost:{'insight':10},
 	});
 	new G.Tech({
-		name:'instruction',
+		name:'instruction',category:'tier1',
 		desc:'Unlocks [Thoughts sharer]. //The [Thoughts sharer] spends his life figuring out a way to guide others. People which hear their thoughts will become [Instructor]s at some time.',
 		icon:[30,27,'magixmod'],
 		req:{'language':true,'<font color="yellow">A gift from the Mausoleum</font>':true,'alphabet 1/3':true},
@@ -16741,7 +16742,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'writing',
+		name:'writing',category:'tier1',
 		desc:'People can write at least. Because they do not have any paper yet they write on stones, logs etc. Required to unlock further researches.',
 		icon:[16,27,'magixmod'],
 		req:{'language':true},
@@ -16750,7 +16751,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'caligraphy',
+		name:'caligraphy',category:'tier1',
 		desc:'Your people can write but their characters are hard to be read. This technology will be a pass for things like [city planning].',
 		icon:[17,27,'magixmod'],
 		req:{'writing':true},
@@ -16759,7 +16760,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'alphabet 1/3',
+		name:'alphabet 1/3',category:'tier1',
 		desc:'Make people set up their own alphabet. It is another step to be closer to more advanced researches, technologies',
 		icon:[28,27,'magixmod',29,27,'magixmod'],
 		req:{'caligraphy':true},
@@ -16768,7 +16769,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'alphabet 2/3',
+		name:'alphabet 2/3',category:'tier1',
 		desc:'Expands up set of characters in people\'s alphabet. //May lead to make native languages exist',
 		icon:[27,27,'magixmod',24,27,'magixmod'],
 		req:{'alphabet 1/3':true,'Wizardry':true},
@@ -16777,7 +16778,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'alphabet 3/3',
+		name:'alphabet 3/3',category:'tier1',
 		desc:'Slightly expands amount of characters in people\'s language',
 		icon:[26,27,'magixmod',25,27,'magixmod'],
 		req:{'alphabet 2/3':true,'artistic thinking':true,'Beginnings of alchemy':true},
@@ -16787,7 +16788,7 @@ new G.Tech({
 	});
 				
 	new G.Tech({
-		name:'philosophy',//Unlocks thot if Thot Mod installed :)
+		name:'philosophy',category:'tier1',//Unlocks thot if Thot Mod installed :)
 		desc:'Provides 25 [wisdom] for free. //Also increases [symbolism] bonus for [dreamer]s from 40 to 50%. //Some people start wondering why things aren\'t different than they are.'+(G.modsByName['Thot Mod'] ? "Also unlocks [thot] and applies [symbolism] bonus for him equal to new [dreamer] bonus." : "")+'',
 		icon:[23,27,'magixmod'],
 		req:{'alphabet 2/3':true},
@@ -16809,7 +16810,7 @@ new G.Tech({
 		chance:100
 	});
 		new G.Tech({
-		name:'natural philosophy II',
+		name:'natural philosophy II',category:'upgrade',
 		desc:'[dreamer] is 10% more efficient. [thot] becomes 10% more efficient(additive with [natural philosophy,Natural philosophy I]) Also [Thoughts sharer] becomes 5% more efficient(additive).',
 		icon:[20,27,'magixmod'],
 		req:{'alphabet 3/3':true,'symbolism III':true},
@@ -16820,7 +16821,7 @@ new G.Tech({
 	});
 	}
 		new G.Tech({
-		name:'philosophy II',
+		name:'philosophy II',category:'upgrade',
 		desc:''+(G.modsByName['Thot Mod']!=undefined ? "[thot] is 50% more efficient(compounding). Also [Thoughts sharer] becomes 5% more efficient(additive). Provides 1-time bonus: +6 [science]." : "[dreamer] is 75% more efficient, and [Thoughts sharer] is 5% more efficient(additive).@provides 1-time bonus: +6 [science]")+'',
 		icon:[19,27,'magixmod'],
 		req:{'alphabet 3/3':true,'symbolism III':true},
@@ -16834,7 +16835,7 @@ new G.Tech({
 	});
 	
 		new G.Trait({
-		name:'mastered caligraphy',
+		name:'mastered caligraphy',category:'tier2',
 		desc:'<font color="#aaffff">Most of people in your population can write and their writings are preety easy to read. Amount of almost unreadeable writings is slightly decreased. <br>Provides 5[education].</font>',
 		icon:[15,27,'magixmod'],
 		req:{'Eotm':true},
@@ -16846,7 +16847,7 @@ new G.Tech({
 			chance:250
 	});
 		new G.Tech({
-		name:'Life-guiding',
+		name:'Life-guiding',category:'tier1',
 		desc:'People wonder about their lives. Provides 50 [inspiration] for free. //Conclusions and guides related to life also spread making others being less insecure and help finding answers to questions like: What to do? What to choose? How should I live?',
 		icon:[18,27,'magixmod'],
 		req:{'philosophy':true,'<span style="color: ##FF0900">Paradise building</span>':true,'God\'s trait #3 Science^2':true},
@@ -16856,7 +16857,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'Paradise shelters',
+		name:'Paradise shelters',category:'tier2',
 		desc:'Unlocks [paradise shelter]. Made out of stones with good construction can fit 4 people. Of course as the other Paradise housing is limited. <br>In addition adds +1 [housing] every 4 [paradise shelter]s.',
 		icon:[14,27,'magixmod'],
 		req:{'Paradise housing':true,'A leaf of wisdom':true},
@@ -16865,7 +16866,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'do we need that much science?',
+		name:'do we need that much science?',category:'tier2',
 		desc:'Halves amount of required [science] to roll/reroll new tech choices.',
 		icon:[9,27,'magixmod'],
 		req:{'A leaf of wisdom':true,'power of the faith':true},
@@ -16895,7 +16896,7 @@ new G.Tech({
 		],
 	});
 		new G.Tech({
-		name:'construction III',
+		name:'construction III',category:'tier2',
 		desc:'All buildings that can waste wastes 5x slower. It won\'t increase building costs. @Provides 15 [wisdom II] .',
 		icon:[12,27,'magixmod'],
 		req:{'A leaf of wisdom':true,'Paradise shelters':true,'do we need that much science?':true},
@@ -16905,7 +16906,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'improved construction',
+		name:'improved construction',category:'upgrade',
 		desc:'All buildings that can waste wastes additive 2x slower so (7 in total). It won\'t increase building costs. @Provides 15 [wisdom II] .',
 		icon:[11,27,'magixmod'],
 		req:{'construction III':true,'<font color="maroon">Moderation</font>':true},
@@ -16915,7 +16916,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'mo\' shelterz',
+		name:'mo\' shelterz',category:'upgrade',
 		desc:'Decreases the [land] limit per for [paradise shelter]s by 4 points. It means more shelters. <>More shelters = more housing = more people @Provides 15 [wisdom II] .',
 		icon:[10,27,'magixmod'],
 		req:{'Paradise shelters':true,'<font color="maroon">Caretaking</font>':true},
@@ -16925,7 +16926,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'Outstanding wisdom',
+		name:'Outstanding wisdom',category:'tier2',
 		desc:'Make the Wisdom tree have even more leaves. Unlocks [The Outstander] who will provide more [wisdom II] and [education]. Provides 10 extra [wisdom II] upon tech obtain.',
 		icon:[11,28,'magixmod'],
 		req:{'A leaf of wisdom':true},
@@ -16946,7 +16947,7 @@ new G.Tech({
 	chance:1,
     });
 	new G.Tech({
-		name:'Enchanted shovels',
+		name:'Enchanted shovels',category:'upgrade',
 		desc:'Bigger shovels make [digger]s 12.5% more efficient. <> Now their shovels are enchanted by wind so despite that they are bigger they are still light. <>Also provides 5 [wisdom II]',
 		icon:[15,28,'magixmod'],
 		req:{'A leaf of wisdom':true},
@@ -16957,7 +16958,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'gt1',
-		displayName:'Gatherer\'s trend:Sugar cane',
+		displayName:'Gatherer\'s trend:Sugar cane',category:'upgrade',
 		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [Sugar cane] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[17,28,'magixmod'],
 		req:{'Deeper wells':true,'gt2':false},
@@ -16967,7 +16968,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'gt2',
-		displayName:'Gatherer\'s trend:Fruits',
+		displayName:'Gatherer\'s trend:Fruits',category:'upgrade',
 		desc:'You can pick one of two trends for the [gatherer]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [gatherer] gather a little more [fruit]s for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[18,28,'magixmod'],
 		req:{'Deeper wells':true,'gt1':false},
@@ -16977,7 +16978,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'dit1',
-		displayName:'Digger\'s trend:Clay',
+		displayName:'Digger\'s trend:Clay',category:'upgrade',
 		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] dig a little more [clay] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[19,28,'magixmod'],
 		req:{'More humid water':true,'dit2':false},
@@ -16987,7 +16988,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'dit2',
-		displayName:'Digger\'s trend:Mud',
+		displayName:'Digger\'s trend:Mud',category:'upgrade',
 		desc:'You can pick one of two trends for the [digger]. This trend has an upgrade that you will unlock in later game stage.<>This trend will make [digger] dig a little more [mud] for you.<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[20,28,'magixmod'],
 		req:{'More humid water':true,'dit1':false},
@@ -16997,7 +16998,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'mt1',
-		displayName:'Mining trend:Coal',
+		displayName:'Mining trend:Coal',category:'upgrade',
 		desc:'You can pick one of two trends for the [mine]s.<>This trend will make [mine]\'s [coal] mode more efficient(it will mine bigger amounts of specific resource).<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[32,21,'magixmod'],
 		req:{'Outstanding wisdom':true,'mt2':false},
@@ -17007,7 +17008,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'mt2',
-		displayName:'Mining trend:Salt',
+		displayName:'Mining trend:Salt',category:'upgrade',
 		desc:'You can pick one of two trends for the [mine]s.<>This trend will make [mine]\'s [salt] mode more efficient(it will mine bigger amounts of specific resource).<>It doesn\'t prevent you from gaining another trend for this unit which will be random trait and doesn\'t decrease income of other resources.',
 		icon:[32,22,'magixmod'],
 		req:{'Outstanding wisdom':true,'mt1':false},
@@ -17018,7 +17019,7 @@ new G.Tech({
 	//Gatherer and Digger trend improvements
 		new G.Tech({
 		name:'gt1u2',
-		displayName:'Sugar cane trend II',
+		displayName:'Sugar cane trend II',category:'upgrade',
 		desc:'[Sugar cane] trend makes [gatherer]s gather more [Sugar cane] for you.',
 		icon:[21,28,'magixmod'],
 		req:{'gt1':true,'Policy revaluation':true},
@@ -17028,7 +17029,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'gt2u2',
-		displayName:'Fruit trend II',
+		displayName:'Fruit trend II',category:'upgrade',
 		desc:'[fruit] trend makes [gatherer]s gather more [fruit]s for you.',
 		icon:[22,28,'magixmod'],
 		req:{'gt2':true,'Policy revaluation':true},
@@ -17038,7 +17039,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'dit1u2',
-		displayName:'Clay trend II',
+		displayName:'Clay trend II',category:'upgrade',
 		desc:'[clay] trend makes [digger]s dig more [clay] for you.',
 		icon:[23,28,'magixmod'],
 		req:{'dit1':true,'Policy revaluation':true},
@@ -17048,7 +17049,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'dit2u2',
-		displayName:'Mud trend II',
+		displayName:'Mud trend II',category:'upgrade',
 		desc:'[mud] trend makes [digger]s gather more [mud] for you.',
 		icon:[24,28,'magixmod'],
 		req:{'dit2':true,'Policy revaluation':true},
@@ -17154,7 +17155,7 @@ new G.Tech({
 		category:'main'
 	});
 	new G.Tech({
-		name:'Outstanders club',
+		name:'Outstanders club',category:'upgrade',
 		desc:'Decreases [population] limit per one [The Outstander] from 38k to 26.5k. Provides extra 5 [wisdom II]',
 		icon:[14,28,'magixmod'],
 		req:{'Outstanding wisdom':true},
@@ -17164,7 +17165,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'Unbelieva-canes',
+		name:'Unbelieva-canes',category:'upgrade',
 		desc:'[Sugar cane farm] is 225% more efficient(compounds).<>The number of this source of sugar in one farm is unbelieveable. :O @Provides extra 10 [wisdom II] ',
 		icon:[13,28,'magixmod'],
 		req:{'Outstanding wisdom':true},
@@ -17174,7 +17175,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'Ink-fishing',
+		name:'Ink-fishing',category:'tier2',
 		desc:'Now fishing context contains [Ink]. <>Fishers from camp now are able to gather [Ink] out of some squids.',
 		icon:[32,19,'magixmod'],
 		req:{'Outstanding wisdom':true,'Hunters & fishers unification':true},
@@ -17213,7 +17214,7 @@ new G.Tech({
 		cost:{},
 	});
 	new G.Tech({
-		name:'aiming',
+		name:'aiming',category:'tier1',
 		desc:'Teach your [hunter]s and [fisher]s how to be more accurate. The problem was hunters were shooting arrows from bows without any preparation just on "try your luck". Same with spear throwing.<>Improved accuarcy will increase chances for successful hunting meaning that <b>Bow hunting</b> & <b>Spear hunting/fishing</b> are no longer penaltized.',
 		icon:[33,28,'magixmod'],
 		req:{'spears':true,'bows':true,'building':true},
@@ -17256,21 +17257,21 @@ new G.Tech({
 		],
 	});
 		new G.Tech({
-		name:'beyond the edge',
+		name:'beyond the edge',category:'tier1', //despite of costs it doesn\'t do much
 		desc:'Send your people beyond the edge of the world for the first time. You will lose 30% of your current [population] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 1.5% of your total land for your people. It may help you but there is a huge risk.</font>',
 		req:{'Policy revaluation':true,'focused scouting':true},
 		cost:{'insight II':45,'influence':255},
 		icon:[33,26,'magixmod']
 	});
 		new G.Tech({
-		name:'sleep-speech',
+		name:'sleep-speech',category:'tier1',
 		desc:'@Unlocks special ability related to dreaming potential. <b>Sleepy insight</b>.. @Sleepy insight can be controlled by policy that will decide about: chance for bonus and power of it.<>Sleepy insight: a chance to obtain some [insight] at start of the new year.(amount and chance can be controlled by [sleepy insight] policy)',
 		req:{'ritualism':true,'<font color="aqua">Genius feeling</font>':true},
 		cost:{'insight':17,'influence':3},
 		icon:[33,25,'magixmod']
 	});
 		new G.Tech({
-		name:'coordination',
+		name:'coordination',category:'tier1',
 		desc:'[Thief hunter] has better coordination so he has twice as bigger chance to succesfully win <b>guard vs thief</b> confrontation. Also it may lead to unlock more types of guard.',
 		icon:[33,27,'magixmod'],
 		req:{'Battling thieves':true},
@@ -17292,14 +17293,14 @@ new G.Tech({
 		
 	});
 	new G.Tech({
-		name:'valid portal frame',
+		name:'valid portal frame',category:'tier1',
 		desc:'Before wizards will be able to open a gate to new world they must know some rules. Without valid frame portal will not open or worse , it may explode.',
 		icon:[10,29,'magixmod'],
 		req:{'Wizard complex':true,'Belief in portals':true},
 		cost:{'insight':1015},
 	});
 	new G.Tech({
-		name:'wonder \'o science',
+		name:'wonder \'o science',category:'tier2',
 		desc:'Unlocks [scientific university]. [scientific university] is a wonder that can be upgraded. To unlock further tiers you need to complete Trials at higher levels meaning higher difficulty. University by itself can provide way more [education] and [wisdom II]. Also it may lead to some new discoveries.',
 		icon:[11,29,'magixmod'],
 		req:{'Outstanders club':true,'monument-building III':true},
@@ -17328,7 +17329,7 @@ new G.Tech({
 		category:'knowledge',
     });
 	new G.Tech({
-		name:'beyond the edge II',
+		name:'beyond the edge II',category:'tier2',
 		desc:'Send your people beyond the edge of the world for the second time. You will lose 40% of your current [population] , all remaining [adult]s will become [sick] and all [insight,Essentials] amounts will go 0 even if for this tech some of them are not required(it does not involve [Industry point]s or [Worship point]s) Also it will reset [happiness] and [health] to its primary state.<hr><font color="red">Note: It does not expand the map and it does not add any new goods. You will have extra 5.5% of your total land for your people(7% in total). It may help you but there is a huger than before risk. The further you push beyond the edge the stronger scourge will fall on you and your civilization.</font>',
 		req:{'beyond the edge':true,'wonder \'o science':true},
 		cost:{'insight II':345,'science':26,'culture II':24},
@@ -17339,7 +17340,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'mirrors',
+		name:'mirrors',category:'tier1',
 		desc:'People now know how mirror works and even how to make mirror effect.',
 		req:{'Burial in new world':true},
 		cost:{'insight':615},
@@ -17350,7 +17351,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'parallel theory 1/3',
+		name:'parallel theory 1/3',category:'tier1',
 		desc:'What if you can make mirror work like portal? //This part of theory is about whole concept.',
 		req:{'Laws of physics(intermediate)':true,'mirrors':true},
 		cost:{'insight':1600},
@@ -17359,7 +17360,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'parallel theory 2/3',
+		name:'parallel theory 2/3',category:'tier2',
 		desc:'What if you can make mirror work like portal? //This part of theory is about portal and stability.',
 		req:{'Laws of physics(intermediate)':true,'parallel theory 1/3':true,'symbolism III':true},
 		cost:{'insight II':150},
@@ -17368,7 +17369,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'parallel theory 3/3',
+		name:'parallel theory 3/3',category:'tier2',
 		desc:'What if you can make mirror work like portal? //This part is related to misc things about mirror world concept.',
 		req:{'parallel theory 2/3':true,'wonder \'o science':true},
 		cost:{'insight II':400,'science':60,'culture II':30,'faith II':30,'influence II':25},
@@ -17377,7 +17378,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'mirror world 1/2',
+		name:'mirror world 1/2',category:'tier2',
 		desc:'Unlocks a [grand mirror] which will double your [land] amount. It compounds with bonuses from: [beyond the edge] and [beyond the edge II]. Costs , display depends on chosen by your people path. In fact it is a passage to exact copy of world you met before your civilization have set their first shelter/dwelling. Make sure you fullfill upkeep of that because if you do not then [grand mirror] will disable and you will lose your land.',
 		req:{'parallel theory 3/3':true,'wonder \'o science':true,'Bigger university':true},
 		cost:{'insight II':400,'science':62,'culture II':38},
@@ -17386,7 +17387,7 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'mirror world 2/2',
+		name:'mirror world 2/2',category:'tier2',
 		desc:'From that point amount of main [land] is doubled. Enjoy... It is seriously time to stop. <b><br>The more worlds you open the more unstable world will become...</b>',
 		req:{'mirror world 1/2':true},
 		cost:{'insight II':420,'science':62,'culture II':38,'faith II':30,'emblem \'o mirror':1},
@@ -17395,14 +17396,14 @@ new G.Tech({
 		]
 	});
 	new G.Tech({
-		name:'Bigger university',
+		name:'Bigger university',category:'tier2',
 		desc:'@Unlocks 2nd level of [scientific university]. Requires 4 [victory point]s to level up. Unlocks [grand mirror].',
 		icon:[9,29,'magixmod'],
 		cost:{'insight II':426,'university point':300,'science':50},
 		req:{'wonder \'o science':true,'Wizard complex':true},
 	});
 	new G.Tech({
-		name:'druidism',
+		name:'druidism',category:'tier1',
 		desc:'@unlocks [druid] @Gathers more [faith] and [happiness] than [soothsayer] but is limited.',
 		icon:[25,30,'magixmod'],
 		cost:{'insight':35,'faith':5,'culture':25,'influence':10},
@@ -17442,7 +17443,7 @@ new G.Tech({
 		category:'knowledge'
     });
 	  new G.Tech({
-		name:'deep mining & quarrying',
+		name:'deep mining & quarrying',category:'tier2',
 		desc:'@Unlocks two new territory contexts: Deep mining and Deep quarrying',
 		icon:[10,1,'magixmod'],
 		cost:{'insight II':125,'influence II':10,'science':5},
@@ -17454,7 +17455,7 @@ new G.Tech({
     ]
 	});
 	new G.Tech({
-		name:'mining II',
+		name:'mining II',category:'upgrade',
 		desc:'Strike the earth... even stronger! For new minerals, new mystical wonders. @[mine]s can mine even deeper. To unlock prospecting for them get [prospecting III] research.',
 		icon:[12,1,'magixmod'],
 		cost:{'insight II':190,'science':12,'culture II':8},
@@ -17463,7 +17464,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'quarrying III',
+		name:'quarrying III',category:'upgrade',
 		desc:'Quarries can reach even deeper discovering new resources. However some minerals can be only gathered via quarrying. @If [prospecting III] obtained it will unlock new mode that will mainly focus on gathering these minerals.',
 		icon:[12,0,'magixmod'],
 		cost:{'insight II':170,'science':12,'faith II':4,'culture II':2,'influence II':2},
@@ -17472,7 +17473,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'prospecting III',
+		name:'prospecting III',category:'upgrade',
 		desc:'[prospecting] improvements: @[mine]s - Minerals from context <b>Deep mining</b> (adds also Any mode but this one will only mine via context Deep mining) @[quarry,Quarries] - New mode that will gather 3x more minerals that can be only obtained by quarrying but 6x less of resources other than minerals.',
 		icon:[11,1,'magixmod'],
 		cost:{'insight II':200,'science':15,'influence II':5},
@@ -17481,7 +17482,7 @@ new G.Tech({
 		],
 	});
 		new G.Tech({
-		name:'furnace modernization',
+		name:'furnace modernization',category:'upgrade',
 		desc:'<b>Furnace</b> becomes <B>Blackium furnace</b>. Requires 3x as more upkeep but: can smelt plenty of new ores and is 2% more efficient regardless of path chosen by your people.',
 		icon:[8,12,11,0,'magixmod',0,18,'magixmod'],
 		cost:{'insight II':235,'science':15},
@@ -17490,7 +17491,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-        name:'time measuring 1/2',
+        name:'time measuring 1/2',category:'tier1',
         desc:'People know how to measure time. Now you\'ll be able to see which year is currently. //To expand it and see days obtain 2nd part of this research.',
         icon:[27,3,'magixmod',34,30,'magixmod'],
         cost:{'insight':50},
@@ -17511,28 +17512,28 @@ new G.Tech({
 		category:'knowledge'
     });
 	new G.Tech({
-		name:'osmium-working',
+		name:'osmium-working',category:'tier2',
 		desc:'@[furnace]s can now make [soft metal ingot]s from [osmium ore]<>',
 		icon:[16,30,'magixmod'],
 		cost:{'insight II':183,'science':2},
 		req:{'mining II':true,'furnace modernization':true},
 	});
 	new G.Tech({
-		name:'lead-working',
+		name:'lead-working',category:'tier2',
 		desc:'@[furnace]s can now make [hard metal ingot]s from [lead ore]<>',
 		icon:[13,30,'magixmod'],
 		cost:{'insight II':183,'science':2},
 		req:{'mining II':true,'furnace modernization':true},
 	});
   new G.Tech({
-		name:'mythril-working',
+		name:'mythril-working',category:'tier2',
 		desc:'@[furnace]s can now make [precious metal ingot]s from [mythril ore]@[blacksmith workshop] can now forge [mythril block] out of [mystical metal ingot]s.<>',
 		icon:[14,30,'magixmod'],
 		cost:{'insight II':200,'science':5},
 		req:{'mining II':true,'furnace modernization':true},
 	});
   new G.Tech({
-		name:'zinc-working',
+		name:'zinc-working',category:'tier2',
 		desc:'@[furnace]s can now make [hard metal ingot]s from [zinc ore]<>',
 		icon:[15,30,'magixmod'],
 		cost:{'insight II':183,'science':2},
@@ -17540,14 +17541,14 @@ new G.Tech({
 	});
 
  new G.Tech({
-		name:'blackium-working',
+		name:'blackium-working',category:'tier2',
 		desc:'@[furnace]s can now make [mystical metal ingot]s from [blackium ore]<>',
 		icon:[17,30,'magixmod'],
 		cost:{'insight II':180},
 		req:{'mining II':true,'furnace modernization':true},
 	});
 	new G.Tech({
-		name:'dinium & unknownium working',
+		name:'dinium & unknownium working',category:'tier2',
 		desc:'@[furnace]s can now make [mystical metal ingot]s from [dinium ore] and [unknownium ore]. However there is 50% chance that it will succed.<>',
 		icon:[18,30,'magixmod'],
 		cost:{'insight II':300,'science':30},
@@ -17565,7 +17566,7 @@ new G.Tech({
 		category:'knowledge'
     });
 	new G.Tech({
-		name:'block-smithery',
+		name:'block-smithery',category:'tier2',
 		desc:'@Unlocks [block-smith workshop]. Subtype of [blacksmith workshop] which will forge blocks out of precious resources. @Due to it original [blacksmith workshop] will no longer forge blocks. @Uses [Land of the Plain Island].<>',
 		icon:[20,30,'magixmod'],
 		cost:{'insight II':340,'science':40},
@@ -17573,7 +17574,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'handwashC',
-		displayName:'Handwashing',
+		displayName:'Handwashing',category:'tier1',
 		desc:'People will now wash their hands. However they do not know how to make a soap. At least water can clean hands. Raises up a little bit [health] level.',
 		icon:[8,18,'magixmod'],
 		req:{'<font color="maroon">Caretaking</font>':true,'<font color="maroon">Moderation</font>':false},
@@ -17584,7 +17585,7 @@ new G.Tech({
 	});	
 	new G.Tech({
 		name:'handwashM',
-		displayName:'Handwashing',
+		displayName:'Handwashing',category:'tier1',
 		desc:'People will now wash their hands. However they do not know how to make a soap also focused on technological progress more than on their health they\'ll forget to do it sometime.. At least water can clean hands. Raises up a little bit [health] level.',
 		icon:[34,24,'magixmod'],
 		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false},
@@ -17594,7 +17595,7 @@ new G.Tech({
 		chance:3
 	});	
 	new G.Tech({
-		name:'primary intuition',
+		name:'primary intuition',category:'tier1',
 		desc:'[primary intuition] is like a key to researching. However if [population,people] will expand their intuition they should be able to think about further researching. //Having just [primary intuition] allows you to research up to [oral tradition] tech. More complicated researches like sewing, crafting can be unlocked only with "secondary" [intuition].',
 		startWith:true,
 		icon:[34,31,'magixmod'],
@@ -17608,7 +17609,7 @@ new G.Tech({
 		req:{'oral tradition':true},
 	});
 	new G.Tech({
-		name:'manufacture units II',
+		name:'manufacture units II',category:'tier2',
 		desc:'Now more units will be merged into one. [artisan]s : craft [stone weapons],[stone tools],[bow]s , [basket]s modes will no longer be available for [artisan]/[artisan] will no longer work in this mode. ',
 		icon:[16,31,'magixmod'],
 		req:{'<font color="maroon">Moderation</font>':false,'<font color="maroon">Caretaking</font>':true,'Manufacture units I':true,'Outstanding wisdom':true,'wonder \'o science':true},
@@ -17618,7 +17619,7 @@ new G.Tech({
 		chance:3
 	});
 		new G.Tech({
-		name:'mentors of nature',
+		name:'mentors of nature',category:'tier1',
 		desc:'[druid]s now generate [health] . //Some people call\'em nature\'s descendants. Probably this is the reason.',
 		icon:[31,31,'magixmod'],
 		req:{'Wizard complex':true,'<font color="orange">Smaller but efficient</font>':true},
@@ -17638,7 +17639,7 @@ new G.Tech({
 	chance:50,
     });
 	new G.Tech({
-		name:'factories II',
+		name:'factories II',category:'tier2',
 		desc:'Now more units will be merged into one. [artisan]s : craft [stone weapons],[stone tools],[bow]s , [basket]s modes will no longer be available for [artisan]/[artisan] will no longer work in this mode. Also [firekeeper] from now can only cook because this tech will unlock unit that will craft more [fire pit]s but will have way bigger upkeep. ',
 		icon:[17,31,'magixmod'],
 		req:{'<font color="maroon">Moderation</font>':true,'<font color="maroon">Caretaking</font>':false,'Factories I':true,'Outstanding wisdom':true,'wonder \'o science':true},
@@ -17648,7 +17649,7 @@ new G.Tech({
 		chance:3
 	});
 	new G.Tech({
-		name:'villas of victory',
+		name:'villas of victory',category:'tier2',
 		desc:'provides 15 [inspiration II],5 [spirituality II] and [authority II]. //Unlocks villa of victory(WIP). New way to give people housing... //This unit will provide amount of housing equal to result of equation below: //<font color="aqua">(victory points+1)*5</font>',
 		icon:[0,31,'magixmod'],
 		req:{'Bigger university':true},
@@ -17661,7 +17662,7 @@ new G.Tech({
 		chance:3
 	});
 	new G.Tech({
-		name:'dynamics',
+		name:'dynamics',category:'tier1',
 		desc:'Provides 25 [wisdom] for free. The tech that will help people get to way more complicated researches.',
 		icon:[32,31,'magixmod'],
 		req:{'Laws of physics(basic)':true,'God\'s trait #3 Science^2':true},
@@ -17672,7 +17673,7 @@ new G.Tech({
 		chance:30
 	});
 		new G.Tech({
-		name:'"dark season"',
+		name:'"dark season"',category:'seasonal',
 		desc:'People will try make fun out of spooky things. They won\'t need help of anyone outside your tribe. Prepare for festival of fear - that\'s what one of your '+G.getName('inhab')+' said to you.',
 		icon:[5,7,'seasonal'],
 		req:{'tribalism':false,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true},//tribalism switches to true when halloween season starts
@@ -17682,7 +17683,7 @@ new G.Tech({
 		chance:3
 	});
 	new G.Tech({
-		name:'pumpkins',
+		name:'pumpkins',category:'seasonal',
 		desc:'From now you can find pumpkins that will give you some treats... but some of them are just a tricks. This should help your civilization grow up. // <b>Happy halloween!</b> <br><font color="red">Note! It won\'t make you get pumpkins pernamently. Once Haloween ends you won\'t be able to get new Pumpkins till next Haloween. You can only get them during Haloween season.</font>',
 		icon:[6,7,'seasonal'],
 		req:{'"dark season"':true},
@@ -17692,7 +17693,7 @@ new G.Tech({
 		chance:3
 	});
 	new G.Tech({
-		name:'pumpkins II',
+		name:'pumpkins II',category:'seasonal',
 		desc:'You can find pumpkins that will give you [insight,Essentials] , [Juices] and many more.',
 		icon:[10,7,'seasonal'],
 		req:{'pumpkins':true,'Beginnings of alchemy':true},
@@ -17842,7 +17843,7 @@ new G.Tech({
 	chance:50,category:'gods'
     });
 	new G.Tech({
-		name:'tool rafinery 1/2',
+		name:'tool rafinery 1/2',category:'tier1',
 		desc:'Old... not so primitive but still old and easily craftable. Is there a way to make them decay slower? Probably people will figure it out later.',
 		icon:[26,31,'magixmod'],
 		req:{'Paradise crafting':true},
@@ -17866,7 +17867,7 @@ new G.Tech({
 		category:'main'
     });
 	new G.Tech({
-		name:'dynamics II',
+		name:'dynamics II',category:'tier2',
 		desc:'@Way more descriptions of dynamics. @Gravity description @provides 2[education] @upon obtain provides exclusively 2 [faith II] and 2 [influence II] @Thanks to more exact descriptions high-level researches may be easier.',
 		icon:[32,31,'magixmod'],
 		req:{'Laws of physics(intermediate)':true,'God\'s trait #3 Science^2':true,'Doctrine of the dark wormhole 2/5':true},
@@ -17877,7 +17878,7 @@ new G.Tech({
 		chance:30
 	});
 	new G.Tech({
-		name:'tool rafinery 2/2',
+		name:'tool rafinery 2/2',category:'tier2',
 		desc:'[stone tools,Stone tools] become [stone tools,Refined tools] making them decay slower. Also [artisan] is no longer able to craft them but... obtain [factories II] or [manufacture units II] to unlock unit that will let you craft them again if you do not have it yet.',
 		icon:[25,31,'magixmod'],
 		req:{'Outstanding wisdom':true,'wonder \'o science':true},
@@ -17888,7 +17889,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'at(ct)',
-		displayName:'Automation',
+		displayName:'Automation',category:'tier1',
 		desc:'Caretaking has one feature: people do not focus that much on industrialization or technological progress / innovations. That means some part of automation people will want to discover later but they won\'t want to make every single thing being automated.',
 		icon:[15,31,'magixmod'],
 		req:{'Paradise crafting':true,'Bigger university':true},
@@ -17898,7 +17899,7 @@ new G.Tech({
 		chance:3
 	});
 	new G.Tech({
-		name:'even bigger university',
+		name:'even bigger university',category:'upgrade',
 		desc:'@Unlocks 3rd level of [scientific university]. Requires 10 [victory point]s to level up.',
 		icon:[21,30,'magixmod'],
 		cost:{'insight II':600,'university point':300,'science':80,'culture II':115,'faith II':80},
@@ -17950,7 +17951,7 @@ new G.Tech({
 		],
 	});
 	new G.Tech({
-		name:'tile inspection',
+		name:'tile inspection',category:'tier1',
 		desc:'@From now you can inspect discovered tiles in <b>Territory</b> tab just by clicking on them. //@You can see goods and their density on the tile. @Also you can inspect newly discovered tiles and get full info about its goods. @<font color="red">However you still can\'t see more exactly how many of the resource do you have in the territory.</font>',
 		icon:[34,14,'magixmod'],
 		cost:{'insight':10,'culture':15},
@@ -17976,14 +17977,14 @@ new G.Tech({
 	
 	//* * * * * CHRISTMAS TECHS/TRAITS * * * * *
 	new G.Tech({
-		name:'winter holidays',
+		name:'winter holidays',category:'seasonal',
 		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is. //[digger]s will start digging for [snow] if available.',
 		icon:[1,10,'seasonal'],
 		cost:{'insight':210,'culture':45,'faith':5},
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
 	});
 	new G.Tech({
-		name:'the christmas',
+		name:'the christmas',category:'seasonal',
 		displayName:'<font color="cyan">The Christmas</font>',
 		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one. Unlocks Lodge of Christmas.',
 		icon:[2,10,'seasonal'],
@@ -17991,7 +17992,7 @@ new G.Tech({
 		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
 	});
 	new G.Tech({
-		name:'carols',
+		name:'carols',category:'seasonal',
 		desc:'Christmas is a special time. Now people will sing/play not only normal songs but also they are no afraid to sing/play carols. //[musician] now crafts [christmas essence]',
 		icon:[9,10,'seasonal'],
 		cost:{'insight II':20,'culture II':30,'christmas essence':1020},
@@ -18035,49 +18036,49 @@ new G.Tech({
 	category:'seasonal'
     });
 	new G.Tech({
-		name:'snowmen',
+		name:'snowmen',category:'seasonal',
 		desc:'Since [digger] can dig for snow and you can describe and be understood you can explain what is and how does snowman look like. //Gain [the christmas] so you will unlock Lodge of Christmas. @Unlocks a snowmen creator.',
 		icon:[10,10,'seasonal'],
 		cost:{'insight':95,'culture':50},
 		req:{'winter holidays':true},
 	});
 	new G.Tech({
-		name:'festive robot print',
+		name:'festive robot print',category:'seasonal',
 		desc:'A [festive robot print] may help you to gather [christmas essence] outta snowmen kids constructed. Works slowly and only one can be placed but later you will unlock magical overclocks. @However with each overclock a chance to lose a snowman upon [christmas essence,Essence] feed increase by some amount that its speed increases.',
 		icon:[14,11,'seasonal'],
 		cost:{'insight':1000,'wisdom':100},
 		req:{'the christmas':true,'snowmen':true},
 	});
 		new G.Tech({
-		name:'f.r.o.s.t.y overclock I',
+		name:'f.r.o.s.t.y overclock I',category:'seasonal',
 		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 25% faster</font> @<font color="red">[f.r.o.s.t.y] has 5% more chance to destroy a snowman</font>',
 		icon:[5,11,'seasonal'],
 		cost:{'insight':600,'culture':100,'influence':50,'christmas essence':114},
 		req:{'festive robot print':true,'Land acknowledge':true,'tribalism':false},
 	});
 	new G.Tech({
-		name:'f.r.o.s.t.y overclock II',
+		name:'f.r.o.s.t.y overclock II',category:'seasonal',
 		desc:'Wizards figured out how to overclock [f.r.o.s.t.y] even more than before. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. Also they know from previous experiences that the faster he is the bigger "snowman destruction" it causes... <br>but this overclock increases the chance for that at least as for now it is possible. @<font color="green">[f.r.o.s.t.y] is 25% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 7% more chance to destroy a snowman</font>',
 		icon:[4,11,'seasonal'],
 		cost:{'insight II':110,'culture II':20,'influence II':5,'science':5,'christmas essence':546},
 		req:{'festive robot print':true,'Policy revaluation':true,'f.r.o.s.t.y overclock I':true},
 	});
 	new G.Tech({
-		name:'f.r.o.s.t.y overclock III',
+		name:'f.r.o.s.t.y overclock III',category:'seasonal',
 		desc:'Wizards figured out how to overclock [f.r.o.s.t.y]. They know how to do it and also they know that there is no way to remove probability of snowman being destroyed by extraction. @<font color="green">[f.r.o.s.t.y] is 45% faster (compounding)</font> @<font color="red">[f.r.o.s.t.y] has 10% more chance to destroy a snowman</font>',
 		icon:[3,11,'seasonal'],
 		cost:{'insight II':400,'science':45},
 		req:{'festive robot print':true,'Bigger university':true,'f.r.o.s.t.y overclock II':true,'dynamics II':true},
 	});
 	new G.Tech({
-		name:'festive lights',
+		name:'festive lights',category:'seasonal',
 		desc:'Artisan of christmas can now craft festive lights. Let the streets be even nicer. Obtaining [Mo\' beauty] doubles happiness income from lights but also they are used 50% more.',
 		icon:[18,11,'seasonal'],
 		cost:{'insight':800,'christmas essence':593},
 		req:{'festive robot print':true,'Laws of physics(basic)':true,'dynamics':true},
 	});
 	new G.Tech({
-		name:'festive lights II',
+		name:'festive lights II',category:'seasonal',
 		desc:'Lights bring more happiness. Are used even more.',
 		icon:[16,11,'seasonal'],
 		cost:{'insight II':200,'insight':100,'science':5},
