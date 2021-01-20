@@ -1625,7 +1625,7 @@ G.setPolicyMode=function(me,mode)
 			var me=G.techsOwned[i];
 			var str='';
 			str+='<div class="thingWrapper">';
-			str+='<div class="tech thing'+G.getIconClasses(me.tech)+'" id="tech-'+me.id+'">'+
+			str+='<div class="know thing'+G.getIconClasses(me.tech)+'" id="tech-'+me.id+'">'+
 				G.getIconStr(me.tech,'tech-icon-'+me.id)+
 				'<div class="overlay" id="tech-over-'+me.id+'"></div>'+
 			'</div>';
