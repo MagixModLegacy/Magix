@@ -1603,100 +1603,6 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 	}
-	/*G.update['tech']=function()
-	{
-		var str='';
-		str+=
-			'<div class="behindBottomUI">'+
-			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization\'s long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>','infoButton')+
-			//'<div class="fullCenteredOuter"><div id="techBox" class="thingBox fullCenteredInner"></div></div></div>'+
-			'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><div class="barred fancyText" height="85px"><font size="6">Known technologies :</font></div></div><div id="techBox" class="thingBox"></div></div></div></div>'+
-			'<div id="techUI" class="bottomUI bgPanelUp">';
-		
-		str+=G.writeChooseBoxes('tech');
-		
-		str+='</div>';
-		l('techDiv').innerHTML=str;
-		
-		G.addCallbacks();
-		
-		var str='';
-		if (G.getSetting('tieredDisplay'))
-		{
-			//tiered display
-			for (var i in G.techByTier)
-			{
-				str+='<div><div style="width:32px;height:52px;display:inline-block;"><div class="fullCenteredOuter"><div class="fullCenteredInner fancyText bitBiggerText">'+i+'</div></div></div>';
-				for (var ii in G.techByTier[i])
-				{
-					var me=G.techByTier[i][ii];
-					str+='<div class="tech thing'+G.getIconClasses(me)+''+(G.has(me.name)?'':' off')+'" id="tech-'+me.id+'">'+
-						G.getIconStr(me,'tech-icon-'+me.id)+
-						'<div class="overlay" id="tech-over-'+me.id+'"></div>'+
-					'</div>';
-				}
-				str+='</div>';
-			}
-			l('techBox').innerHTML=str;
-			var str='';
-		
-			for (var i in G.techByTier)
-			{
-				for (var ii in G.techByTier[i])
-				{
-					var me=G.techByTier[i][ii];
-					var div=l('tech-'+me.id);if (div) me.l=div; else me.l=0;
-					var div=l('tech-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
-					var div=l('tech-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
-					G.addTooltip(me.l,function(what){return function(){return G.getKnowTooltip(what)};}(me),{offY:-8});
-					if (me.l) me.l.onclick=function(what){return function(){
-						//G.clickTech(what);
-						for (var i in G.tech)
-						{
-							//highlight ancestors and descendants of the tech
-							if (what.ancestors.includes(G.tech[i])) l('tech-'+G.tech[i].id).classList.add('highlit');
-							else l('tech-'+G.tech[i].id).classList.remove('highlit');
-							if (G.tech[i].ancestors.includes(what) && G.tech[i]!=what) l('tech-'+G.tech[i].id).classList.add('highlitAlt');
-							else l('tech-'+G.tech[i].id).classList.remove('highlitAlt');
-							G.tooltip.close();
-						}
-					};}(me);
-				}
-			}
-		}
-		var len=G.knowCategories.length;
-		for (var iC=0;iC<len;iC++)
-		{
-			if (strByCat[G.knowCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-'+iC+'">'+G.knowCategories[iC].name+'</div>'+strByCat[G.knowCategories[iC].id]+'</div>';
-		}
-		if (str=='') str+='<div class="fancyText bitBiggerText">Your civilization does not have any technologies yet.<br>You may research them.</div>';
-		l('techBox').innerHTML=str;
-		else
-		{
-			
-			var len=G.techsOwned.length;
-			for (var i=0;i<len;i++)
-			{
-				var me=G.techsOwned[i];
-				str+='<div class="tech thing'+G.getIconClasses(me.tech)+'" id="tech-'+me.id+'">'+
-					G.getIconStr(me.tech,'tech-icon-'+me.id)+
-					'<div class="overlay" id="tech-over-'+me.id+'"></div>'+
-				'</div>';
-			}
-			l('techBox').innerHTML=str;
-			var len=G.techsOwned.length;
-			for (var i=0;i<len;i++)
-			{
-				var me=G.techsOwned[i];
-				var div=l('tech-'+me.id);if (div) me.l=div; else me.l=0;
-				var div=l('tech-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
-				var div=l('tech-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
-				G.addTooltip(me.l,function(what){return function(){return G.getKnowTooltip(what)};}(me.tech),{offY:-8});
-				if (me.l) me.l.onclick=function(what){return function(){G.clickTech(what);};}(me);
-			}
-		}
-		G.draw['tech']();
-	}*/
 		G.update['tech']=function()
 	{
 		var str='';
@@ -1704,7 +1610,7 @@ G.setPolicyMode=function(me,mode)
 			'<div class="behindBottomUI">'+
 			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization\'s long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>','infoButton')+
 			//'<div class="fullCenteredOuter"><div id="techBox" class="thingBox fullCenteredInner"></div></div></div>'+
-			'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><div class="barred fancyText" height="85px"><font size="6">Known technologies :</font></div></div><div id="techBox" class="thingBox"></div></div></div></div>'+
+			'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><div class="barred fancyText" height="85px"><font size="6">Known technologies :<br></font></div></div><div id="techBox" class="thingBox"></div></div></div></div>'+
 			'<div id="techUI" class="bottomUI bgPanelUp">';
 		
 		str+=G.writeChooseBoxes('tech');
