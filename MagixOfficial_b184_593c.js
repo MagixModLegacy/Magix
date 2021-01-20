@@ -1784,10 +1784,13 @@ G.props['fastTicksOnResearch']=150;
 				'<div class="bulleted">to unlocks some game mechanics you may need traits. Traits have a chance every day randomly to occur.</div>'+
 				'<div class="bulleted">this is Magix\'s late beta and more things are inbound (excluding other tribes for now)</div>'+
 				'<div class="bulleted">sometimes things just go wrong; don\'t lose hope, you can always start over!</div>'+
-				'<div class="bulleted"><font color="yellow">And most important: enjoy :)</div>'+
+				'<div class="bulleted">The game diffictulty is higher than one from original game but in exchange game is more interesting</div>'+
+				'<div class="bulleted">Do achievements so you can unlock extra starting bonuses.</div>'+
+				'<div class="bulleted">While researching keep an eye on messages tab. There you may occasionaly find some tips upon researching.</div>'+
+				'<div class="bulleted"><font color="yellow">And most important: enjoy :)</font></div>'+
 				'</div>'+
 			'</div><div class="buttonBox">'+
-				G.dialogue.getCloseButton('Got it!')+
+				G.dialogue.getCloseButton('I\'ve got it!')+
 			'</div></div>';
 		});}})+' <-----</b></center>'});
 	
