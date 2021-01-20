@@ -1769,7 +1769,7 @@ G.props['fastTicksOnResearch']=150;
 		///new game mesg
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});
-		G.Message({type:'important',text:'If this is your first time playing, you may want to consult some quick tips.<br><center><b>-----> '+G.button({text:'Getting started',tooltip:'Read a few tips on how to make it past the stone age.',onclick:function(){G.dialogue.popup(function(div){
+		G.Message({type:'tutorial',text:'If this is your first time playing, you may want to consult some quick tips.<br><center><b>-----> '+G.button({text:'Getting started',tooltip:'Read a few tips on how to make it past the stone age.',onclick:function(){G.dialogue.popup(function(div){
 			return '<div style="width:480px;min-height:320px;height:75%;">'+
 				'<div class="fancyText title">A few tips on how to not die horribly and sadly :</div>'+
 				'<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:16px;">'+
@@ -1786,7 +1786,7 @@ G.props['fastTicksOnResearch']=150;
 			'</div><div class="buttonBox">'+
 				G.dialogue.getCloseButton('Got it!')+
 			'</div></div>';
-		});}})+' <-----</b></center>'});
+		});}})+' <-----</b></center>'}});
 	}
 		/////////////////
 		G.achievByName['starting type'].won=G.startingType;
