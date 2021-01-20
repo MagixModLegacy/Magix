@@ -13643,18 +13643,7 @@ new G.Unit({
 		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'},
 		{id:'devils',name:'<span style="color: #FF0000">Devil\'s traits</span>'}
 	)
-	G.techCategories.push(
-		{id:'main',name:'General'},
-		{id:'misc',name:'Miscellaneous'},
-		{id:'knowledge',name:'Knowledge'},
-		{id:'seasonal',name:'<font color="fuschia">S e a s o n a l</font>'},
-		{id:'culture',name:'Cultural'},
-		{id:'religion',name:'Religious'},
-		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
-		{id:'long',name:'Long-term'},//you can only have so many traits with this category; if the player gains a new "long" trait, the oldest "long" trait is removed
-		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'},
-		{id:'devils',name:'<span style="color: #FF0000">Devil\'s traits</span>'}
-	)
+	
 	
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
