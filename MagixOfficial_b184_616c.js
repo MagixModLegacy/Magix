@@ -1603,7 +1603,7 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 	}
-	G.update.tech = () => {
+	G.update['tech']=function(){
  let str123 = '';
 
  str123 = `<div class="behindBottomUI">${
@@ -1668,7 +1668,7 @@ G.setPolicyMode=function(me,mode)
   }
  });
 
- G.draw.tech();
+ G.draw['tech'];
 };
 		/*G.update['tech']=function()
 	{
