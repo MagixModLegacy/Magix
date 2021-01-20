@@ -1603,72 +1603,61 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 	}
-	G.update['tech']=function(){
- let str123 = '';
-
- str123 = `<div class="behindBottomUI">${
-  G.textWithTooltip(
-   '?',
-   '<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization\'s long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>',
-   'infoButton',
-  )
-  // <div class="fullCenteredOuter"><div id="techBox" class="thingBox fullCenteredInner"></div></div></div>
- }<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><div class="barred fancyText" height="85px"><font size="6">Known technologies :</font></div></div><div id="techBox" class="thingBox"></div></div></div></div><div id="techUI" class="bottomUI bgPanelUp">${G.writeChooseBoxes(
+	/* eslint-disable no-param-reassign */
+/* eslint-disable no-undef */
+G.update.tech = () => {
+ const researchUI = `<div class="behindBottomUI">${G.textWithTooltip(
+  '?',
+  `<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization's long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>`,
+  'infoButton',
+ )}<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><div class="barred fancyText" height="85px"><font size="6">Known technologies :</font></div></div><div id="techBox" class="thingBox"></div></div></div></div><div id="techUI" class="bottomUI bgPanelUp">${G.writeChooseBoxes(
   'tech',
  )}</div>`;
- l('techDiv').innerHTML = str123;
+ l('techDiv').innerHTML = researchUI;
  G.addCallbacks();
 
- // Part that matters
- let techs = '';
- G.techsOwned.forEach(techResearched => {
-  techs += `<div class="thingWrapper"><div class="tech thing${G.getIconClasses(techResearched.tech)}" id="tech-${
-   techResearched.id
-  }">${G.getIconStr(techResearched.tech, `tech-icon-${techResearched.id}`)}<div class="overlay" id="tech-over-${
-   techResearched.id
-  }"></div></div></div>`;
-  // strByCat[techResearched.tech.category]+=str123;});
- });
+ // Populate categories
+ G.knowCategories.forEach(category => {
+  const categoryDiv = `<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-${category.name.toLowerCase()}">${
+   category.name
+  }</div></div>`;
 
- const strByCat = [];
- G.knowCategories.forEach((category, index) => {
-  if (strByCat[G.knowCategories[index].id] !== '') {
-   str123 += `<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-${index}">${G.knowCategories[index].name}</div>${techs}</div>`;
-  }
+  l('techBox').innerHTML += categoryDiv;
  });
- if (str123 === '') {
-  str123 +=
+ // If no research was made
+ let techBoxContent = l('techBox').innerHTML;
+ if (techBoxContent === '') {
+  techBoxContent =
    '<div class="fancyText bitBiggerText">Your civilization does not have any researches yet.<br>These may be obtained over time.</div>';
  }
- l('techBox').innerHTML = str123;
- G.addCallbacks();
- // Part that matters
 
+ // Populate research
  G.techsOwned.forEach(techResearched => {
-  let div;
+  const category = l(`know-catName-${techResearched.tech.category}`);
+  category.insertAdjacentHTML(
+   'afterend',
+   `<div class="thingWrapper"><div class="tech thing${G.getIconClasses(techResearched.tech)}" id="tech-${
+    techResearched.id
+   }">${G.getIconStr(techResearched.tech, `tech-icon-${techResearched.id}`)}<div class="overlay" id="tech-over-${
+    techResearched.id
+   }"></div></div></div>`,
+  );
 
+  let div;
   div = l(`tech-${techResearched.id}`);
   div ? (techResearched.l = div) : (techResearched.l = 0);
-
   div = l(`tech-icon-${techResearched.id}`);
   div ? (techResearched.lIcon = div) : (techResearched.lIcon = 0);
-
   div = l(`tech-over-${techResearched.id}`);
   div ? (techResearched.lOver = div) : (techResearched.lOver = 0);
-
-  G.addTooltip(
-   techResearched.l,
-   () => {
-    return G.getTech(techResearched.tech);
-   },
-   { offY: -8 },
-  );
+  G.addTooltip(techResearched.l, () => G.getKnowTooltip(techResearched.tech), { offY: -8 });
   if (techResearched.l) {
    techResearched.l.onclick = G.clickTech(techResearched);
   }
  });
 
- G.draw['tech'];
+ G.addCallbacks();
+ G.draw.tech();
 };
 		/*G.update['tech']=function()
 	{
