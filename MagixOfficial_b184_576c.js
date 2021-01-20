@@ -8765,8 +8765,8 @@ if (!document.getElementById(cssId))
 			G.achievByName['Trait-or'].won = 1
 			G.middleText('- Completed <font color="pink">Trait-or</font> achievement -','slow')
 			}
-			if(G.traitN >= 70 && G.achievByName['man\'o trait'].won == 0){ //Traitsman achievement
-			G.achievByName['man\'o trait'].won = 1
+			if(G.traitN >= 70 && G.achievByName['man o\' trait'].won == 0){ //Traitsman achievement
+			G.achievByName['man o\' trait'].won = 1
 			G.middleText('- Completed <font color="pink">Man\'o trait</font> achievement -','slow')
 			}
 			if((G.getRes('Worship point').amount) == 0 && G.achievByName['The first choice'].won == 0 && G.has('Pantheon key')){;
