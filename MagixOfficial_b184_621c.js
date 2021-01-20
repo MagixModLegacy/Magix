@@ -1665,7 +1665,7 @@ G.update.tech = () => {
   if (techResearched.l) {
    techResearched.l.onclick = G.clickTech(techResearched);
   }
- });
+}});
 
  G.addCallbacks();
  G.draw.tech();
