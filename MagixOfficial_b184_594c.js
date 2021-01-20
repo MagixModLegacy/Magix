@@ -1792,7 +1792,7 @@ G.props['fastTicksOnResearch']=150;
 			'</div><div class="buttonBox">'+
 				G.dialogue.getCloseButton('I\'ve got it!')+
 			'</div></div>';
-		});}})+' <-----</b></center>'});
+		});}})+' <-----</b></center>',icon:[7,30,'magixmod']});
 	
 		/////////////////
 		G.achievByName['starting type'].won=G.startingType;
