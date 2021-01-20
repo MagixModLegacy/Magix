@@ -701,6 +701,110 @@ engineVersion:1,
 manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4Ta.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
+	/*=====================================================================================
+	TECH & TRAIT CATEGORIES
+	=======================================================================================*/
+	G.knowCategories.push(
+		{id:'main',name:'General'},
+		{id:'misc',name:'Miscellaneous'},
+		{id:'knowledge',name:'Knowledge'},
+		{id:'seasonal',name:'<font color="fuschia">S e a s o n a l</font>'},
+		{id:'culture',name:'Cultural'},
+		{id:'religion',name:'Religious'},
+		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
+		{id:'long',name:'Long-term'},//you can only have so many traits with this category; if the player gains a new "long" trait, the oldest "long" trait is removed
+		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'},
+		{id:'devils',name:'<span style="color: #FF0000">Devil\'s traits</span>'},
+		
+		///TECH
+		{id:'tier1',name:'Tier 1 technologies'},
+		{id:'tier2',name:'Tier 2 technologies'},
+		{id:'upgrade',name:'Upgrades'},
+	);
+	G.unitCategories.push(
+		{id:'debug',name:'<font color="#1f4f22">Debug</font>'},
+		{id:'housing',name:'Housing'},
+		{id:'civil',name:'Civil'},
+		{id:'crafting',name:'Crafting'},
+		{id:'production',name:'Gathering'},
+		{id:'political',name:'Political'},
+		{id:'discovery',name:'Discovery'},
+		{id:'cultural',name:'Cultural'},
+		{id:'spiritual',name:'Spiritual'},
+		{id:'exploration',name:'Exploration'},
+		{id:'storage',name:'Storage'},
+		{id:'wonder',name:'<font color="#ab20a2">Wonders</font>'},
+		{id:'dimensions',name:'Portals'},
+		{id:'seasonal',name:'<span style="color:#7fffd4">Seasonal</span>'},
+		{id:'plainisleunit',name:'Plain Island'},
+		{id:'paradiseunit',name:'Paradise'},
+		{id:'alchemy',name:'Alchemy'},
+		{id:'trial',name:'Trial'},
+		{id:'underworld',name:'Underworld'},
+		{id:'guard',name:'<span style="color:#ff66cc">Army & Guards</span>'},
+	);
+	G.resCategories={
+			'main':{
+				name:'<font color="#E66900">Essentials</font>',
+				base:[],
+				side:['population','worker','happiness','health','victory point'],
+		},
+			'terr':{
+				name:'Territory',
+				base:['land'],
+				side:['tl'],
+		},
+			'demog':{
+				name:'<font color="#0DA42B">Demographics</font>',
+				base:['baby','child','adult','elder','worker','sick','wounded'],
+				side:['population','housing','corpse','burial spot','Alchemists'],
+		},
+			'food':{
+				name:'<font color="#0080FF">Food & Water</font>',
+				base:[],
+				side:['food','spoiled food','water','muddy water','food storage','Juices','Spoiled juices'],
+		},
+			'build':{
+				name:'<font color="#FFCCCC">Crafting & Construction</font>',
+				base:[],
+				side:['archaic building materials','basic building materials','advanced building materials','precious building materials','material storage'],
+		},
+			'ore':{
+				name:'<font color="#1111F0">Ores</font>',
+				base:[],
+				side:[],
+		},
+			'gear':{
+				name:'<font color="#ddffdd">Gear</font>',
+				base:[],
+				side:[],
+		},
+			'misc':{
+				name:'<font color="#ffdddd">Miscellaneous</font>',
+				base:[],
+				side:['Paper','Magic essences','book storage'],
+		},
+			'flowersanddyes':{
+				name:'<font color="#ddddff">Flowers & Dyes</font>',
+				base:[],
+				side:['Flowers','Dyes'],
+		},
+			'alchemypotions':{
+				name:'<font color="#B266ff">Alchemy - Potions</font>', 
+				base:[],
+				side:['Basic brews','Alcohol brews','Medicament brews','combat potions'],
+		},
+			'alchemyingredients':{
+				name:'<font color="#B266ff">Alchemy - Ingredients</font>', 
+				base:[],
+				side:[],
+		},
+			'seasonal':{
+				name:'Seasonal', 
+				base:[],
+				side:[],
+		},
+	};
 //READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 	
@@ -4528,68 +4632,7 @@ G.writeMSettingButton=function(obj)
 	/*=====================================================================================
 	RESOURCES
 	=======================================================================================*/
-	G.resCategories={
-			'main':{
-				name:'<font color="#E66900">Essentials</font>',
-				base:[],
-				side:['population','worker','happiness','health','victory point'],
-		},
-			'terr':{
-				name:'Territory',
-				base:['land'],
-				side:['tl'],
-		},
-			'demog':{
-				name:'<font color="#0DA42B">Demographics</font>',
-				base:['baby','child','adult','elder','worker','sick','wounded'],
-				side:['population','housing','corpse','burial spot','Alchemists'],
-		},
-			'food':{
-				name:'<font color="#0080FF">Food & Water</font>',
-				base:[],
-				side:['food','spoiled food','water','muddy water','food storage','Juices','Spoiled juices'],
-		},
-			'build':{
-				name:'<font color="#FFCCCC">Crafting & Construction</font>',
-				base:[],
-				side:['archaic building materials','basic building materials','advanced building materials','precious building materials','material storage'],
-		},
-			'ore':{
-				name:'<font color="#1111F0">Ores</font>',
-				base:[],
-				side:[],
-		},
-			'gear':{
-				name:'<font color="#ddffdd">Gear</font>',
-				base:[],
-				side:[],
-		},
-			'misc':{
-				name:'<font color="#ffdddd">Miscellaneous</font>',
-				base:[],
-				side:['Paper','Magic essences','book storage'],
-		},
-			'flowersanddyes':{
-				name:'<font color="#ddddff">Flowers & Dyes</font>',
-				base:[],
-				side:['Flowers','Dyes'],
-		},
-			'alchemypotions':{
-				name:'<font color="#B266ff">Alchemy - Potions</font>', 
-				base:[],
-				side:['Basic brews','Alcohol brews','Medicament brews','combat potions'],
-		},
-			'alchemyingredients':{
-				name:'<font color="#B266ff">Alchemy - Ingredients</font>', 
-				base:[],
-				side:[],
-		},
-			'seasonal':{
-				name:'Seasonal', 
-				base:[],
-				side:[],
-		},
-	};
+	
 	
 	new G.Res({name:'died this year',hidden:true});
 	new G.Res({name:'born this year',hidden:true});
@@ -9545,28 +9588,7 @@ if (!document.getElementById(cssId))
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
-	G.unitCategories.push(
-		{id:'debug',name:'<font color="#1f4f22">Debug</font>'},
-		{id:'housing',name:'Housing'},
-		{id:'civil',name:'Civil'},
-		{id:'crafting',name:'Crafting'},
-		{id:'production',name:'Gathering'},
-		{id:'political',name:'Political'},
-		{id:'discovery',name:'Discovery'},
-		{id:'cultural',name:'Cultural'},
-		{id:'spiritual',name:'Spiritual'},
-		{id:'exploration',name:'Exploration'},
-		{id:'storage',name:'Storage'},
-		{id:'wonder',name:'<font color="#ab20a2">Wonders</font>'},
-		{id:'dimensions',name:'Portals'},
-		{id:'seasonal',name:'<span style="color:#7fffd4">Seasonal</span>'},
-		{id:'plainisleunit',name:'Plain Island'},
-		{id:'paradiseunit',name:'Paradise'},
-		{id:'alchemy',name:'Alchemy'},
-		{id:'trial',name:'Trial'},
-		{id:'underworld',name:'Underworld'},
-		{id:'guard',name:'<span style="color:#ff66cc">Army & Guards</span>'},
-	);
+	
 	
 	G.MODE_OFF={name:'Off',desc:'The unit will not produce anything.',icon:[1,0]};
 	
@@ -13530,26 +13552,7 @@ new G.Unit({
 		req:{'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true},
 		category:'seasonal',
 	});
-	/*=====================================================================================
-	TECH & TRAIT CATEGORIES
-	=======================================================================================*/
-	G.knowCategories.push(
-		{id:'main',name:'General'},
-		{id:'misc',name:'Miscellaneous'},
-		{id:'knowledge',name:'Knowledge'},
-		{id:'seasonal',name:'<font color="fuschia">S e a s o n a l</font>'},
-		{id:'culture',name:'Cultural'},
-		{id:'religion',name:'Religious'},
-		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
-		{id:'long',name:'Long-term'},//you can only have so many traits with this category; if the player gains a new "long" trait, the oldest "long" trait is removed
-		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'},
-		{id:'devils',name:'<span style="color: #FF0000">Devil\'s traits</span>'},
-		
-		///TECH
-		{id:'tier1',name:'Tier 1 technologies'},
-		{id:'tier2',name:'Tier 2 technologies'},
-		{id:'upgrade',name:'Upgrades'},
-	)
+	
 	
 	
 	/*=====================================================================================
