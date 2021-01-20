@@ -1786,8 +1786,8 @@ G.props['fastTicksOnResearch']=150;
 			'</div><div class="buttonBox">'+
 				G.dialogue.getCloseButton('Got it!')+
 			'</div></div>';
-		});}})+' <-----</b></center>'}});
-	}
+		});}})+' <-----</b></center>'});
+	
 		/////////////////
 		G.achievByName['starting type'].won=G.startingType;
 		lc=G.achievByName['starting type'].won;
