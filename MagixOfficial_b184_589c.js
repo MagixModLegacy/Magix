@@ -1769,6 +1769,25 @@ G.props['fastTicksOnResearch']=150;
 		///new game mesg
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});
+		G.Message({type:'important',text:'If this is your first time playing, you may want to consult some quick tips.<br><center><b>-----> '+G.button({text:'Getting started',tooltip:'Read a few tips on how to make it past the stone age.',onclick:function(){G.dialogue.popup(function(div){
+			return '<div style="width:480px;min-height:320px;height:75%;">'+
+				'<div class="fancyText title">A few tips on how to not die horribly and sadly :</div>'+
+				'<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:16px;">'+
+				'<div style="float:right;margin:8px;width:121px;text-align:center;line-height:80%;"><img style="box-shadow:2px 2px 2px 1px #000;" src="img/helpLocation.jpg"/><br><small>Mouse over these buttons for more explanations!</small></div>'+
+				'<div class="bulleted">early on, focus most of your workers on food gathering</div>'+
+				'<div class="bulleted">assign a few spare workers as dreamers, in order to get some Insight which you can use to research technologies</div>'+
+				'<div class="bulleted">check the territory tab and click your starting location; if you\'ve got very few sources of food or water, you might want to restart the game</div>'+
+				'<div class="bulleted">don\'t bother researching fishing or hunting if none of your tiles have animals or fish!</div>'+
+				'<div class="bulleted">enabling elder/child work policies can be useful if you need extra workers, but may prove detrimental to your people\'s health</div>'+
+				'<div class="bulleted">if things get too hectic, you can pause the game and take your time</div>'+
+				'<div class="bulleted">this is an early alpha, so you don\'t have to worry about meeting other civilizations just yet</div>'+
+				'<div class="bulleted">sometimes things just go wrong; don\'t lose hope, you can always start over!</div>'+
+				'</div>'+
+			'</div><div class="buttonBox">'+
+				G.dialogue.getCloseButton('Got it!')+
+			'</div></div>';
+		});}})+' <-----</b></center>'});
+	}
 		/////////////////
 		G.achievByName['starting type'].won=G.startingType;
 		lc=G.achievByName['starting type'].won;
