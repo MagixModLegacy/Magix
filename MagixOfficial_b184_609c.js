@@ -13641,7 +13641,12 @@ new G.Unit({
 		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
 		{id:'long',name:'Long-term'},//you can only have so many traits with this category; if the player gains a new "long" trait, the oldest "long" trait is removed
 		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'},
-		{id:'devils',name:'<span style="color: #FF0000">Devil\'s traits</span>'}
+		{id:'devils',name:'<span style="color: #FF0000">Devil\'s traits</span>'},
+		
+		///TECH
+		{id:'tier1',name:'Tier 1 technologies'},
+		{id:'tier2',name:'Tier 2 technologies'},
+		{id:'upgrade',name:'Upgrades'},
 	)
 	
 	
