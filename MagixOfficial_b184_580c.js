@@ -4444,7 +4444,7 @@ G.writeMSettingButton=function(obj)
 		],
 			civ:0,
 			plural:false,
-			special:'seasonal';
+			special:'seasonal',
 	});
 	/*=====================================================================================
 	RESOURCES
