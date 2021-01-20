@@ -1767,7 +1767,8 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['new game']=function()
 	{
 		///new game mesg
-		G.Message({type:'important tall',text:'Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?'(but that\'s not you, is it?)':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.',icon:[0,3]});
+		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
+		G.Message({type:'important tall',text:str,icon:[0,3]});
 		/////////////////
 		G.achievByName['starting type'].won=G.startingType;
 		lc=G.achievByName['starting type'].won;
