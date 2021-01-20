@@ -1809,10 +1809,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
     };
 		G.getRes('victory point').amount=0;
 		///new game mesg
-		var str='Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti'?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
-		
+		G.Message({type:'important tall',text:'Your name is '+G.getName('ruler')+''+(G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti'?'(but that\'s not you, is it?)':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.',icon:[0,3]});
 		/////////////////
-		G.Message({type:'important tall',text:str,icon:[0,3]});	
 		if(G.achievByName['Talented?'].won==0){
 			G.getDict('research box').choicesN=4
 			}else if(G.achievByName['Talented?'].won>=1){
