@@ -1638,6 +1638,14 @@ G.setPolicyMode=function(me,mode)
 				str+='</div>';
 			}
 			l('techBox').innerHTML=str;
+			var str='';
+		var len=G.knowCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			if (strByCat[G.knowCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-'+iC+'">'+G.knowCategories[iC].name+'</div>'+strByCat[G.knowCategories[iC].id]+'</div>';
+		}
+		if (str=='') str+='<div class="fancyText bitBiggerText">Your civilization does not have any technologies yet.<br>You may research them.</div>';
+		l('techBox').innerHTML=str;
 			for (var i in G.techByTier)
 			{
 				for (var ii in G.techByTier[i])
