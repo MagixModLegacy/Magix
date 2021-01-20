@@ -1649,9 +1649,9 @@ G.setPolicyMode=function(me,mode)
 		for (var i=0;i<len;i++)
 		{
 			var me=G.techsOwned[i];
-			var div=l('know-'+me.id);if (div) me.l=div; else me.l=0;
-			var div=l('know-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
-			var div=l('know-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
+			var div=l('tech-'+me.id);if (div) me.l=div; else me.l=0;
+			var div=l('tech-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
+			var div=l('tech-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
 			G.addTooltip(me.l,function(what){return function(){return G.getTechTooltip(what)};}(me.tech),{offY:-8});
 			if (me.l) me.l.onclick=function(what){return function(){G.clickTech(what);};}(me);
 		}
@@ -13720,7 +13720,7 @@ getCosts:function()
 	});
 	
 	
-	new G.Know({
+	new G.Tech({
 		name:'tribalism',
 		desc:'@unlocks [gatherer]@provides 5 [authority]<>Taking its roots in wild animal packs, [tribalism] is the organization of individuals into simple social structures with little hierarchy.',
 		icon:[0,1],
@@ -13732,7 +13732,7 @@ getCosts:function()
 			
 		],
 	});
-	new G.Know({
+	new G.Tech({
 		name:'speech',
 		desc:'@unlocks [dreamer]@unlocks [wanderer]@provides 50 [wisdom]<>[speech], in its most primitive form, is a series of groans and grunts that makes it possible to communicate things, events, and concepts.',
 		icon:[1,1],
@@ -13742,7 +13742,7 @@ getCosts:function()
 			{type:'show res',what:['insight']},
 		],
 	});
-	new G.Know({
+	new G.Tech({
 		name:'language',
 		desc:'@provides 30 [inspiration]@provides 30 [wisdom]<>[language] improves on [speech] by combining complex grammar with a rich vocabulary, allowing for better communication and the first signs of culture.',
 		icon:[2,1],
