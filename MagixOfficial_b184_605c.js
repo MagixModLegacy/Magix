@@ -1728,10 +1728,10 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 		var str='';
-		var len=G.knowCategories.length;
+		var len=G.techCategories.length;
 		for (var iC=0;iC<len;iC++)
 		{
-			if (strByCat[G.knowCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-'+iC+'">'+G.knowCategories[iC].name+'</div>'+strByCat[G.knowCategories[iC].id]+'</div>';
+			if (strByCat[G.techCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-'+iC+'">'+G.knowCategories[iC].name+'</div>'+strByCat[G.knowCategories[iC].id]+'</div>';
 		}
 		if (str=='') str+='<div class="fancyText bitBiggerText">Your civilization does not have any researches yet.<br>These may be obtained over time.</div>';
 		l('techBox').innerHTML=str;
@@ -13631,6 +13631,18 @@ new G.Unit({
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
 	G.knowCategories.push(
+		{id:'main',name:'General'},
+		{id:'misc',name:'Miscellaneous'},
+		{id:'knowledge',name:'Knowledge'},
+		{id:'seasonal',name:'<font color="fuschia">S e a s o n a l</font>'},
+		{id:'culture',name:'Cultural'},
+		{id:'religion',name:'Religious'},
+		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
+		{id:'long',name:'Long-term'},//you can only have so many traits with this category; if the player gains a new "long" trait, the oldest "long" trait is removed
+		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'},
+		{id:'devils',name:'<span style="color: #FF0000">Devil\'s traits</span>'}
+	)
+	G.techCategories.push(
 		{id:'main',name:'General'},
 		{id:'misc',name:'Miscellaneous'},
 		{id:'knowledge',name:'Knowledge'},
