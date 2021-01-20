@@ -1654,22 +1654,6 @@ G.update.tech = () => {
  G.addCallbacks();
  G.draw.tech();
 };
-  let div;
-  div = l(`tech-${techResearched.id}`);
-  div ? (techResearched.l = div) : (techResearched.l = 0);
-  div = l(`tech-icon-${techResearched.id}`);
-  div ? (techResearched.lIcon = div) : (techResearched.lIcon = 0);
-  div = l(`tech-over-${techResearched.id}`);
-  div ? (techResearched.lOver = div) : (techResearched.lOver = 0);
-  G.addTooltip(techResearched.l, () => G.getKnowTooltip(techResearched.tech), { offY: -8 });
-  if (techResearched.l) {
-   techResearched.l.onclick = G.clickTech(techResearched);
-  }
-}});
-
- G.addCallbacks();
- G.draw.tech();
-};
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
