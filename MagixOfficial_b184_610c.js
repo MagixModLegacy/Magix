@@ -13814,7 +13814,7 @@ getCosts:function()
 	});
 	
 	
-	new G.Tech({
+	new G.Know({
 		name:'tribalism',
 		desc:'@unlocks [gatherer]@provides 5 [authority]<>Taking its roots in wild animal packs, [tribalism] is the organization of individuals into simple social structures with little hierarchy.',
 		icon:[0,1],
@@ -13826,7 +13826,7 @@ getCosts:function()
 			
 		],
 	});
-	new G.Tech({
+	new G.Know({
 		name:'speech',
 		desc:'@unlocks [dreamer]@unlocks [wanderer]@provides 50 [wisdom]<>[speech], in its most primitive form, is a series of groans and grunts that makes it possible to communicate things, events, and concepts.',
 		icon:[1,1],
@@ -13836,7 +13836,7 @@ getCosts:function()
 			{type:'show res',what:['insight']},
 		],
 	});
-	new G.Tech({
+	new G.Know({
 		name:'language',
 		desc:'@provides 30 [inspiration]@provides 30 [wisdom]<>[language] improves on [speech] by combining complex grammar with a rich vocabulary, allowing for better communication and the first signs of culture.',
 		icon:[2,1],
@@ -13847,6 +13847,7 @@ getCosts:function()
 			
 		],
 		chance:3,
+		category:'tier1',
 	});
 	
 	new G.Tech({
