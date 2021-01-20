@@ -1603,7 +1603,7 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 	}
-	G.update['tech']=function()
+	/*G.update['tech']=function()
 	{
 		var str='';
 		str+=
@@ -1695,6 +1695,60 @@ G.setPolicyMode=function(me,mode)
 				if (me.l) me.l.onclick=function(what){return function(){G.clickTech(what);};}(me);
 			}
 		}
+		G.draw['tech']();
+	}*/
+		G.update['tech']=function()
+	{
+		var str='';
+		str+=
+			'<div class="behindBottomUI">'+
+			G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization\'s long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>','infoButton')+
+			//'<div class="fullCenteredOuter"><div id="techBox" class="thingBox fullCenteredInner"></div></div></div>'+
+			'<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><div class="barred fancyText" height="85px"><font size="6">Known technologies :</font></div></div><div id="techBox" class="thingBox"></div></div></div></div>'+
+			'<div id="techUI" class="bottomUI bgPanelUp">';
+		
+		str+=G.writeChooseBoxes('tech');
+		
+		str+='</div>';
+		l('techDiv').innerHTML=str;
+		
+		G.addCallbacks();
+		var len=G.techsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.techsOwned[i];
+			var str='';
+			str+='<div class="thingWrapper">';
+			str+='<div class="tech thing'+G.getIconClasses(me.tech)+'" id="tech-'+me.id+'">'+
+				G.getIconStr(me.tech,'tech-icon-'+me.id)+
+				'<div class="overlay" id="tech-over-'+me.id+'"></div>'+
+			'</div>';
+			str+='</div>';
+			strByCat[me.tech.category]+=str;
+		}
+		
+		var str='';
+		var len=G.knowCategories.length;
+		for (var iC=0;iC<len;iC++)
+		{
+			if (strByCat[G.knowCategories[iC].id]!='') str+='<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-'+iC+'">'+G.knowCategories[iC].name+'</div>'+strByCat[G.knowCategories[iC].id]+'</div>';
+		}
+		if (str=='') str+='<div class="fancyText bitBiggerText">Your civilization does not have any researches yet.<br>These may be obtained over time.</div>';
+		l('techBox').innerHTML=str;
+		
+		G.addCallbacks();
+		
+		var len=G.techsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.techsOwned[i];
+			var div=l('tech-'+me.id);if (div) me.l=div; else me.l=0;
+			var div=l('tech-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
+			var div=l('tech-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
+			G.addTooltip(me.l,function(what){return function(){return G.getKnowTooltip(what)};}(me.tech),{offY:-8});
+			if (me.l) me.l.onclick=function(what){return function(){G.clickTech(what);};}(me);
+		}
+		
 		G.draw['tech']();
 	}
 	///////////MORE QUOTES!
