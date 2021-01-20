@@ -1732,7 +1732,9 @@ G.update.tech = () => {
  let techBoxContent = l('techBox').innerHTML;
  // Populate research
  G.techsOwned.forEach(techResearched => {
+	 console.log(techResearched.tech.category);
   const category = l(`know-catName-${techResearched.tech.category}`);
+console.log(techResearched.tech.category);
   category.insertAdjacentHTML(
    'afterend',
    `<div class="thingWrapper"><div class="tech thing${G.getIconClasses(techResearched.tech)}" id="tech-${
