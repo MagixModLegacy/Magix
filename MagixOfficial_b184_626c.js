@@ -1722,7 +1722,7 @@ G.update.tech = () => {
 
  // Populate categories
  G.knowCategories.forEach(category => {
-  const categoryDiv = `<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-${category.name.toLowerCase()}">${
+  const categoryDiv = `<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-${category.id}">${
    category.name
   }</div></div>`;
 
