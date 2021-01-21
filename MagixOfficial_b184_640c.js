@@ -15977,7 +15977,7 @@ new G.Tech({
 		category:'gods'
 	});
 		new G.Tech({
-		name:'Music',category:'culture',
+		name:'Music',category:'tier2',
 		desc:'People now can use music as one of cultural heritage pillars. May make musicians appear into your people\'s reality.',
 		icon:[29,17,'magixmod'],
 		cost:{'insight II':15,'culture II':25},
