@@ -2661,31 +2661,6 @@ G.props['fastTicksOnResearch']=150;
 		///new game mesg
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});
-		G.Message({type:'tutorial',text:'If this is your first time playing, you may want to consult some quick tips.<br><center><b>-----> '+G.button({text:'Getting started',tooltip:'Read a few tips on how to make it past the stone age.',onclick:function(){G.dialogue.popup(function(div){
-			return '<div style="width:520px;min-height:640px;height:75%;">'+
-				'<div class="fancyText title">A few tips on how to not die horribly and sadly :</div>'+
-				'<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:16px;">'+
-				'<div style="float:right;margin:8px;width:121px;text-align:center;line-height:80%;"><img style="box-shadow:2px 2px 2px 1px #000;" src="img/helpLocation.jpg"/><br><small>Mouse over these buttons for more explanations!</small></div>'+
-				'<div class="bulleted">early on, focus most of your workers on <u>food gathering</u></div>'+
-				'<div class="bulleted">assign a few spare workers as <u>dreamers</u>, in order to get some <font color="#ddddff">Insight</font> which you can use to research technologies</div>'+
-				'<div class="bulleted">Soon you\'ll unlock more and more informations and details about your terrain. Just go through progress to gain more informations about world around you.</div>'+
-				'<div class="bulleted">For early game think about hiring a <u>Wanderer</u></div>'+
-				'<div class="bulleted">don\'t bother researching fishing or hunting if none of your tiles have animals or fish!</div>'+
-				'<div class="bulleted">enabling elder/child work policies can be useful if you need extra workers, but may prove detrimental to your people\'s health</div>'+
-				'<div class="bulleted">if things get too hectic, you can pause the game and take your time</div>'+
-				'<div class="bulleted">to unlocks some game mechanics you may need traits. Traits have a chance every day randomly to occur.</div>'+
-				'<div class="bulleted">this is Magix\'s late beta and more things are inbound (excluding other tribes for now)</div>'+
-				'<div class="bulleted">sometimes things just go wrong; don\'t lose hope, you can always start over!</div>'+
-				'<div class="bulleted">The game diffictulty is higher than one from original game but in exchange game is more interesting</div>'+
-				'<div class="bulleted">Do achievements so you can unlock extra starting bonuses.</div>'+
-				'<div class="bulleted">While researching keep an eye on messages tab. There you may occasionaly find some tips upon researching.</div>'+
-				'<div class="bulleted"><font color="lime">Top 2 of most important tips, place 2:<br><center>Read the tooltips that resources,units,policies,traits etc. have.</font></div>'+
-				'<div class="bulleted"><font color="yellow">And most important: enjoy :)</font></centeR></div>'+
-				'</div>'+
-			'</div><div class="buttonBox">'+
-				G.dialogue.getCloseButton('I\'ve got it!')+
-			'</div></div>';
-		});}})+' <-----</b></center>',icon:[7,30,'magixmod']});
 		if (G.achievByName['mausoleum'].won > 0) {
       G.Message({
         type: 'good',
