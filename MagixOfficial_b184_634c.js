@@ -2711,7 +2711,8 @@ G.props['fastTicksOnResearch']=150;
 				if(G.achievByName['speedresearcher'].won==0)G.middleText('- Completed <font color="#ffbbbb">Speedresearcher</font> shadow achievement - <br><hr width="300"><small>Wow! Can you do more?</small>','slow');
 			}else if(G.techN>=100){
 				G.achievByName['speedresearcher II'].won++;G.achievByName['speedresearcher'].won++;
-			}if(G.achievByName['speedresearcher II'].won==0)G.middleText('- Completed <font color="#bbbbff">Speedresearcher II</font> shadow achievement - <br><hr width="300"><small>Incredible</small>','slow');
+				if(G.achievByName['speedresearcher II'].won==0)G.middleText('- Completed <font color="#bbbbff">Speedresearcher II</font> shadow achievement - <br><hr width="300"><small>Incredible</small>. Also you gain one more <font color="#ffbbbb">Speedresearcher I</font> victory.','slow');
+			}
 		},600000);
 		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);}
 		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['<font color="fuschia">Authority of the ancestor</font>']);}
