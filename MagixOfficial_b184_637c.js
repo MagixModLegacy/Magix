@@ -1079,7 +1079,7 @@ func:function(){
 		name:'"In the underworld"',
 		wideIcon:[7,5,'magixmod'],
 		icon:[9,5,'magixmod'],
-		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
+		desc:'You sent your soul to the Underworld, leaving your body that started to decay after it. But... <br /><li>If you will obtain <font color="green">Sacrificed for culture</font>, <font color="aqua">Insight-ly</font> and <font color="fuschia">Democration</font> you will start each next game with [adult,The Underworld\'s Ascendant] . <li>To open the Underworld you will need to obtain <b>Deadly, revenantic</b> in addition.',
 		fromWonder:'"In the underworld"',
 		effects:[
 			{type:'addFastTicksOnStart',amount:50},
@@ -1742,7 +1742,7 @@ if (!document.getElementById(cssId))
 		var str='';
 		//Math.seedrandom(tile.map.seed+'-name-'+tile.x+'/'+tile.y);
 		var name=tile.land.displayName;//choose(tile.land.names);
-		str+='<div class="block framed bgMid fadeIn" id="land-0"><div class="fancyText framed bgMid blockLabel" style="float:right;">'+name+'</div><div class="fancyText segmentHeader">< - - Goods - - ><br><br><br></div><div class="thingBox" style="padding:0px;text-align:left;">';
+		str+='<div class="block framed bgMid fadeIn" id="land-0"><div class="fancyText framed bgMid blockLabel" style="float:right;">'+name+'</div><div class="fancyText segmentHeader">< - - Goods - - ><br /><br /><br /></div><div class="thingBox" style="padding:0px;text-align:left;">';
 		var I=0;
 		for (var ii in tile.goods)
 		{
@@ -1859,7 +1859,7 @@ if (!document.getElementById(cssId))
 						if (amount<1) floats++;
 						if (amount<0.1) floats++;
 						if(G.has('tile inspection II')){
-						str+=G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(me)+'"></div><div id="naturalResAmount-'+cI+'-'+me.id+'" class="freelabel">x'+B(amount,floats)+'</div>',G.getResTooltip(me,'<span style="font-size:12px;">'+B(amount,floats)+' available every day<br>by '+contextName+'.</span>'));
+						str+=G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(me)+'"></div><div id="naturalResAmount-'+cI+'-'+me.id+'" class="freelabel">x'+B(amount,floats)+'</div>',G.getResTooltip(me,'<span style="font-size:12px;">'+B(amount,floats)+' available every day<br/>by '+contextName+'.</span>'));
 						}else{
 						str+=G.textWithTooltip('<div class="icon freestanding" style="'+G.getIconUsedBy(me)+'"></div><div id="naturalResAmount-'+cI+'-'+me.id+'" class="freelabel"></div>',G.getResTooltip(me,'<span style="font-size:12px;"></span>'));	
 						}
@@ -1879,9 +1879,9 @@ if (!document.getElementById(cssId))
 		if (G.inspectingTile) G.inspectTile(G.inspectingTile);
 			G.draw['land']();
 		}else{
-			var texts= ['All you know for now is that you exist at lands where scarce<br> not really occurs','All you know for now is that you exist in harsh, dry, <br>where food and water are scarce','You don\'t know where you are... You feel some warmth/cool , dryness/wettiness... Where?!'];
+			var texts= ['All you know for now is that you exist at lands where scarce<br/> not really occurs','All you know for now is that you exist in harsh, dry, <br />where food and water are scarce','You don\'t know where you are... You feel some warmth/cool , dryness/wettiness... Where?!'];
 			var str='';
-			str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><center><font size="4">Get <font color="#7f7fff">Where am I?</font> trait to unlock content of this tab<br><li>There you\'ll see informations about land your tribe settled</li><br><li>Not only that. You\'ll also see which goods you can find at these lands</li><br><li>'+texts[lc]+'</li><br><u>"The world is a book and those who don\'t travel read only one page"</u> ~ Saint Augustine</font></center></div></div></div></div></div>';
+			str+='<div class="fullCenteredOuter"><div class="fullCenteredInner"><div class="barred fancyText"><center><font size="4">Get <font color="#7f7fff">Where am I?</font> trait to unlock content of this tab<br /><li>There you\'ll see informations about land your tribe settled</li><br /><li>Not only that. You\'ll also see which goods you can find at these lands</li><br /><li>'+texts[lc]+'</li><br /><u>"The world is a book and those who don\'t travel read only one page"</u> ~ Saint Augustine</font></center></div></div></div></div></div>';
 			l('landDiv').innerHTML=str;
 			
 		
@@ -2532,7 +2532,7 @@ G.update.tech = () => {
   '?',
   `<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization's long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>`,
   'infoButton',
- )},'~ thanks to Hyouretsu for helping me coding this tab :)',
+ )},'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ thanks to Hyouretsu for helping me coding this tab :)',
 '<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;width:600px;"><font size="6"><div class="barred fancyText">Known technologies :</font></div></div><div id="techBox" class="thingBox"></div></div></div></div><div id="techUI" class="bottomUI bgPanelUp">${G.writeChooseBoxes(
   'tech',
  )}</div>`;
