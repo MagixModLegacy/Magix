@@ -2574,6 +2574,40 @@ G.update.tech = () => {
   G.draw.tech();
  });
 };
+	G.createDebugMenu=function()
+	{
+		var str=''+
+		'<div style="float:left;"><center>'+
+		G.button({text:'New game',tooltip:'Instantly start a new game.',onclick:function(){G.T=0;G.NewGameWithSameMods();}})+
+		G.button({text:'Load',tooltip:'Reload the save.',onclick:function(){G.T=0;G.Load();}})+
+		G.button({text:'Clear',tooltip:'Wipe save data.',onclick:function(){G.Clear();}})+
+		'<br>'+
+		G.button({text:'ALMIGHTY',tooltip:'Unlock every tech, trait and policy.',onclick:function(){
+			for (var i in G.tech)
+			{
+				if (!G.techsOwnedNames.includes(G.tech[i].name)) G.gainTech(G.tech[i]);
+			}
+			for (var i in G.trait)
+			{
+				if (!G.traitsOwnedNames.includes(G.trait[i].name)) G.gainTrait(G.trait[i]);
+			}
+			for (var i in G.policy)
+			{
+				G.gainPolicy(G.policy[i]);
+			}
+			G.shouldRunReqs=true;
+			G.middleText('- You are almighty! -<br /><small> - You are the god! - </small>');
+		}})+
+		G.writeSettingButton({id:'showAllRes',name:'showAllRes',text:'Show resources',tooltip:'Toggle whether all resources should be visible.'})+
+		//G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'Show tiers',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
+		'<br/>'+
+		G.button({text:'Reveal map',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
+		G.textWithTooltip('?','<div style="width:240px;text-align:left;">This is the debug menu. Please debug responsibly.<br>Further debug abilities while this mode is active :<div class="bulleted">click resources to add/remove some (keyboard shortcuts work the same way they do for purchasing units)</div><div class="bulleted">ctrl-click a trait or policy to remove it (may have strange, buggy effects)</div><div class="bulleted">click the Fast ticks display to get more fast ticks<br>(if add is equal 1 it will add 10, if add 10 then 100 and so on)</div><div class="bulleted">always see tech costs and requirements</div><div class="bulleted">gain access to debug robot units <br /> <b>BEEP BOOP BEEP</b></div><div class="bulleted">edit the map</div></div>','infoButton')+
+		'</center></div>';
+		l('debug').innerHTML=str;
+		
+		G.addCallbacks();
+	}
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
