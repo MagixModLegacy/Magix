@@ -13590,7 +13590,7 @@ new G.Unit({
 		effects:[
 			{type:'explore',explored:0.06,unexplored:0.0065},
 			{type:'mult',value:2.5,req:{'t10':true}},
-			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','globetrotter got lost','globetrotter got lost'),chance:1/250}
+			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','globetrotter got lost','globetrotters got lost'),chance:1/250}
 		],
 		req:{'globetrottering':true},
 		category:'exploration',
