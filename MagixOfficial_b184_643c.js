@@ -2570,6 +2570,7 @@ G.update.tech = () => {
   // Add tooltip manually
   G.addTooltip(techResearched.l, () => G.getKnowTooltip(techResearched.tech), { offY: -8 });
 	G.techsOwned.forEach()
+	 G.addCallbacks()
   l('techDiv').innerHTML = researchUI;
   G.draw.tech();
  });
