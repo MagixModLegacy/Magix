@@ -2531,7 +2531,7 @@ G.update.tech = () => {
   '?',
   `<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization's long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>`,
   'infoButton',
- )}<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;"><font size="6"><div="fancyBarredText">Known technologies :</font></div></div><!--<div id="techBox" class="thingBox">--></div></div></div></div><div id="techUI" class="bottomUI bgPanelUp">${G.writeChooseBoxes(
+ )}<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;"><font size="6"><div="fancyBarredText">Known technologies :</font></div></div><div id="techBox" class="thingBox"></div></div></div></div><div id="techUI" class="bottomUI bgPanelUp">${G.writeChooseBoxes(
   'tech',
  )}</div>`;
  l('techDiv').innerHTML = researchUI;
@@ -13577,7 +13577,23 @@ new G.Unit({
 		req:{'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true},
 		category:'seasonal',
 	});
-	
+	new G.Unit({
+		name:'globetrotter',
+		desc:'@[globetrotter] is able to discover new tiles and explore already discovered (note that [globetrotter] is gonna do it slower than actual [scout])@can explore occupied tiles but does it slower than actual [wanderer]@may sometimes get lost<>[globetrotter]s explore the world in search of new territories and deepen knowledge about territories already known.',
+		icon:[35,2,'magixmod'],
+		cost:{'food':100},
+		use:{'worker':1},
+		limitPer:{'research':4},
+		staff:{'stone tools':1},
+		upkeep:{'food':0.4},
+		effects:[
+			{type:'explore',explored:0.06,unexplored:0.0065},
+			{type:'mult',value:2.5,req:{'t10':true}},
+			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','globetrotter got lost','globetrotter got lost'),chance:1/250}
+		],
+		req:{'globetrottering':true},
+		category:'exploration',
+	});
 	
 	
 	/*=====================================================================================
@@ -18104,8 +18120,8 @@ new G.Tech({
 		name:'globetrottering',category:'tier1',
 		desc:'@Unlocks [globetrotter]. // [globetrotter] not only wants to explore and discover new landscapes , terrains but also wants to deepen his knowledge a little about lands he just saw.',
 		icon:[35,1,'magixmod'],
-		cost:{'insight':30},
-		req:{'Outstanding wisdom':true,'the christmas':true,'festive lights':true},
+		cost:{'insight':30,'culture':10},
+		req:{'scouting':true,'building':true},
 	});
 	/*=====================================================================================
 	POLICIES
