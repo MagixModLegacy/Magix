@@ -2569,8 +2569,8 @@ G.update.tech = () => {
   techResearched.lOver = l(`tech-over-${techResearched.id}`);
   // Add tooltip manually
   G.addTooltip(techResearched.l, () => G.getKnowTooltip(techResearched.tech), { offY: -8 });
-	G.techsOwned.forEach()
-	 G.addCallbacks()
+	G.techsOwned.forEach();
+	 G.addCallbacks();
   l('techDiv').innerHTML = researchUI;
   G.draw.tech();
  });
