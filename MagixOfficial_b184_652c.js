@@ -9041,6 +9041,9 @@ if (!document.getElementById(cssId))
 					G.getDict('stone tools').displayName='Refined tools';
 				G.getDict('stone weapons').displayName='Refined weapons';
 				}
+			if(G.has('scouting')){
+				G.getDict('wanderer').limitPer={'research':3};
+			}
 		},
 		getDisplayAmount:researchGetDisplayAmount,
 		whenGathered:researchWhenGathered,
@@ -9562,6 +9565,14 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick){
 			var toSpoil=me.amount*0.011;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+		},
+	});
+	new G.Res({
+		name:'research',
+		displayName:'Researches',
+		icon:[35,3,'magixmod'],
+		tick:function(me,tick){
+			me.amount=G.techN;
 		},
 	});
 	/*=====================================================================================
@@ -10751,6 +10762,7 @@ if (!document.getElementById(cssId))
 		icon:[2,2],
 		cost:{'food':20},
 		use:{'worker':1},
+		limitPer:{'research':2},
 		effects:[
 			{type:'explore',explored:0.1,unexplored:0},
 			{type:'mult',value:2.5,req:{'t10':true}},
@@ -10765,6 +10777,7 @@ if (!document.getElementById(cssId))
 		icon:[24,3],
 		cost:{'food':100},
 		use:{'worker':1},
+		limitPer:{'research':6},
 		staff:{'stone tools':1},
 		effects:[
 			{type:'explore',explored:0,unexplored:0.01},
