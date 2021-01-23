@@ -2598,13 +2598,12 @@ G.update.tech = () => {
 			}
 			G.shouldRunReqs=true;
 			if (G.checkPolicy('Toggle SFX')=='on'){
-				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOff.wav');
+				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/spiritReject.wav');
 				audio.play(); 
 				}
-			G.middleText('- You are almighty! -<br /><small> - You are the god! - </small>','slow');
+			G.middleText('<font color="#d4af37">- You are almighty! -<br /><small> - You are the god! - </small></font>','slow');
 		}})+
 		G.writeSettingButton({id:'showAllRes',name:'showAllRes',text:'Show resources',tooltip:'Toggle whether all resources should be visible.'})+
-		    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Debug tab.'+
 		//G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'Show tiers',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
 		G.button({text:'Reveal map',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
