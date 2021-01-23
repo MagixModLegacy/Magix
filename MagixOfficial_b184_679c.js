@@ -2732,14 +2732,14 @@ G.props['fastTicksOnResearch']=150;
 		if(G.achievByName['"In the underworld"'].won > 0 && G.achievByName['Deadly, revenantic'].won > 0 && G.hasNot('A feeling from the Underworld')){
 		G.gainTech(G.techByName['A feeling from the Underworld']);
 		};
-		if (G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.hasNot('<font color="##a8654f">The Underworld\'s Ascendant</font>')){
-G.gainTech(G.techByName['<font color="##a8654f">The Underworld\'s Ascendant</font>']);
+		if (G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.hasNot('underworld\'s ascendant')){
+G.gainTech(G.techByName['underworld\'s ascendant']);
 };
 		if (G.achievByName['Experienced'].won > 0 && G.hasNot('<font color="lime">Fruit supplies</font>')){G.gainTech(G.techByName['<font color="lime">Fruit supplies</font>']);}
 		 if (G.achievByName['Extremely smart'].won > 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('life has its theme')) {
       G.gainTech(G.techByName['life has its theme']);
-    }; if (G.achievByName['Smart'].won > 0 && G.hasNot('<font color="orange">Smaller but efficient</font>')){
-      G.gainTrait(G.traitByName['<font color="orange">Smaller but efficient</font>']);
+    }; if (G.achievByName['Smart'].won > 0 && G.hasNot('smaller but efficient')){
+      G.gainTrait(G.traitByName['smaller but efficient']);
     };
 		if (G.achievByName['Magical'].won > 0 && G.hasNot('Magical presence')){
       G.gainTech(G.techByName['Magical presence']);
@@ -2747,8 +2747,8 @@ G.gainTech(G.techByName['<font color="##a8654f">The Underworld\'s Ascendant</fon
 	if (G.achievByName['Next to the God'].won > 0 && G.hasNot('Life in faith')){
       G.gainTech(G.techByName['Life in faith'])
     };
-		 if (G.achievByName['Talented?'].won > 0 && G.hasNot('<font color="orange">Smaller shacks</font>')){
-      G.gainTrait(G.traitByName['<font color="orange">Smaller shacks</font>']);
+		 if (G.achievByName['Talented?'].won > 0 && G.hasNot('smaller shacks')){
+      G.gainTrait(G.traitByName['smaller shacks']);
     };
 		if (G.achievByName['Pocket'].won > 0 && G.hasNot('well stored') && G.achievByName['Pocket'].won < 2){
       G.gainTrait(G.traitByName['well stored']);
@@ -8733,7 +8733,7 @@ if (!document.getElementById(cssId))
 			G.achievByName['Extremely smart'].won = 1
 			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -','slow')
 			}
-			if(G.has('<font color="orange">Smaller but efficient</font>')){
+			if(G.has('smaller but efficient')){
 			G.getDict('hut').use = {'land':0.9}
 			G.getDict('hovel').use = {'land':0.9}
 			G.getDict('house').use = {'land':0.9}
@@ -9017,7 +9017,7 @@ if (!document.getElementById(cssId))
 			if(G.has('Outstanders club')){
 			G.getDict('The Outstander').limitPer = {'population':26500}
 			}
-				if(G.has('<font color="orange">Smaller shacks</font>')){
+				if(G.has('smaller shacks')){
 			G.getDict('blacksmith workshop').use = {'land':0.85}
 			G.getDict('furnace').use = {'land':0.85}
 			G.getDict('kiln').use = {'land':0.85}
@@ -9034,7 +9034,7 @@ if (!document.getElementById(cssId))
 			G.getDict('well').use = {'land':0.85}
 			G.getDict('crematorium').use = {'land':0.85,'Instructor':1,'worker':3}	
 			}
-			if(G.has('<font color="orange">Smaller shacks</font>') && G.has('backshift at farms')){
+			if(G.has('smaller shacks') && G.has('backshift at farms')){
 				G.getDict('Wheat farm').use={'worker':12,'land':13.75}
 			}
 			//STORAGE NERFS
@@ -15950,7 +15950,7 @@ new G.Tech({
         req:{'tribalism':false}
     });
 	new G.Tech({
-        name:'<font color="##a8654f">The Underworld\'s Ascendant</font>',category:'misc',
+        name:'underworld\'s ascendant',displayName:'<font color="#a8654f">The Underworld\'s Ascendant</font>',category:'misc',
         desc:'You managed to do few other feats to attract new things. And you attracted: @ +1 [adult] . This is [adult,The Underworld\'s Ascendant]',
         icon:[15,19,'magixmod'],
         cost:{},
@@ -16156,7 +16156,7 @@ new G.Tech({
 		],
         req:{'tribalism':false}
     });new G.Trait({
-        name:'<font color="orange">Smaller but efficient</font>',
+        name:'smaller but efficient',displayName:'<font color="orange">Smaller but efficient</font>',
         desc:'<font color="#aaffff">[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .</font>',
         icon:[28,23,'magixmod'],
         cost:{},
@@ -16949,7 +16949,7 @@ new G.Tech({
 		],
 	});
 	new G.Trait({
-        name:'<font color="orange">Smaller shacks</font>',
+        name:'smaller shacks',displayName:'<font color="orange">Smaller shacks</font>',
         desc:'<font color="#aaffff">All [blacksmith workshop,Crafting units] and: [well]s , [Water filter]s (Caretaking filters uses 0.1 less land and Moderation filters will use 0.2 less land), [Wheat farm]s and [crematorium]s will use 15% less land.</font>',
         icon:[32,20,'magixmod'],
         cost:{},
@@ -17279,7 +17279,7 @@ new G.Tech({
 		new G.Tech({
 		name:'sleep-speech',category:'tier1',
 		desc:'@Unlocks special ability related to dreaming potential. <b>Sleepy insight</b>.. @Sleepy insight can be controlled by policy that will decide about: chance for bonus and power of it.<>Sleepy insight: a chance to obtain some [insight] at start of the new year.(amount and chance can be controlled by [sleepy insight] policy)',
-		req:{'ritualism':true,'<font color="aqua">Genius feeling</font>':true},
+		req:{'ritualism':true,'genius feeling':true},
 		cost:{'insight':17,'influence':3},
 		icon:[33,25,'magixmod']
 	});
@@ -17635,7 +17635,7 @@ new G.Tech({
 		name:'mentors of nature',category:'tier1',
 		desc:'[druid]s now generate [health] . //Some people call\'em nature\'s descendants. Probably this is the reason.',
 		icon:[31,31,'magixmod'],
-		req:{'Wizard complex':true,'<font color="orange">Smaller but efficient</font>':true},
+		req:{'Wizard complex':true,'smaller but efficient':true},
 		cost:{'insight':750},
 		effects:[
 		],
@@ -18521,8 +18521,8 @@ new G.Tech({
 			'bronze':{name:'Bronze',desc:'Switches to bronze theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'silver':{name:'Silver',desc:'Switches to silver theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
 			'golden':{name:'Golden',desc:'Switches to golden theme. Reward for <b>Next to the God</b> achievement.',req:{'Life in faith':true}},
-			'black':{name:'Black',desc:'Switches to black theme. Reward for <b>Talented?</b> achievement.',req:{'<font color="orange">Smaller shacks</font>':true}},
-			'wooden':{name:'Wooden',desc:'Switches to wooden theme. Reward for completing Buried trial for the first... and the last time.',req:{'<font color="orange">Smaller shacks</font>':true}},
+			'black':{name:'Black',desc:'Switches to black theme. Reward for <b>Talented?</b> achievement.',req:{'smaller shacks':true}},
+			'wooden':{name:'Wooden',desc:'Switches to wooden theme. Reward for completing Buried trial for the first... and the last time.',req:{'smaller shacks':true}},
 		},
 		category:'mag',
 	});
