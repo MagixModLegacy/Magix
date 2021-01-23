@@ -2026,7 +2026,7 @@ G.setPolicyMode=function(me,mode)
 						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascension and here is example of that.</div>';
 						'</div>';
 					}
-					else if(me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='plain island portal' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror' && me.name!=='mausoleum')
+					else if(me.name=='paradise portal' || me.name=='plain island portal' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror' && me.name!=='mausoleum')
 					{
 						str+='<div class="fancyText par">Portal activated</div>';
 						str+='<div class="fancyText par">Now you can unlock new things, discover and most important settle more people.</div>';
@@ -2423,7 +2423,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='wonderful fortress of christmas' && me.name!=='plainisland portal' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='plain island portal' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='scientific university' && me.name!=='paradise portal' && me.name!=='wonderful fortress of christmas' && me.name!=='plainisland portal' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='plain island portal' ||  me.name=='portal to the paradise' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -3428,7 +3428,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			b12++
 			c12++
 		}
-		if(G.hasNot('<span style="color: ##FF0900">Plain island building</span>') && G.getRes('Plain Island emblem').amount==0 && G.getRes('plain portal point').amount>=2){
+		if(G.hasNot('plain island building') && G.getRes('Plain Island emblem').amount==0 && G.getRes('plain portal point').amount>=2){
 			
 			G.getUnitByName('plain island portal').mode=0;
 			G.getRes('plain portal point').amount=1;	G.getUnitByName('plain island portal').mode=0;
@@ -3444,17 +3444,17 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		}
 		if(G.hasNot('<span style="color: ##FF0900">Paradise building</span>') && G.getRes('Paradise emblem').amount==0  && G.getRes('paradise portal point').amount>=2){
 		
-			G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=0;
-			G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=0;
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').wideIcon=[7,4,'magixmod'];
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').icon=[8,4,'magixmod'];
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').steps=75;
-			G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').use={'land':-10};
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').desc='@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules. Stage 2 of 2 //Note: Portals work a lil bit differently: refreshing page during this stage will bring completion level back to 0%',
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').costPerStep={'Mana':184000,'Dark essence':18200,'Fire essence':18250,'Nature essence':18300,'Wind essence':18150,'Water essence':18500,'Lightning essence':18225};
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepDesc='Perform a final step to activate this portal';
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepCost={'Land of the Paradise':-26500,'Paradise emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':95000,'Fire essence':95500,'Nature essence':96000,'Wind essence':104500,'Water essence':88000,'Lightning essence':75250,'insight':1000};
+			G.getUnitByName('paradise portal').mode=0;
+			G.getUnitByName('paradise portal').mode=0;
+				G.getDict('paradise portal').wideIcon=[7,4,'magixmod'];
+				G.getDict('paradise portal').icon=[8,4,'magixmod'];
+				G.getDict('paradise portal').steps=75;
+			G.getDict('paradise portal').use={'land':-10};
+				G.getDict('paradise portal').desc='@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules. Stage 2 of 2 //Note: Portals work a lil bit differently: refreshing page during this stage will bring completion level back to 0%',
+				G.getDict('paradise portal').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
+				G.getDict('paradise portal').costPerStep={'Mana':184000,'Dark essence':18200,'Fire essence':18250,'Nature essence':18300,'Wind essence':18150,'Water essence':18500,'Lightning essence':18225};
+				G.getDict('paradise portal').finalStepDesc='Perform a final step to activate this portal';
+				G.getDict('paradise portal').finalStepCost={'Land of the Paradise':-26500,'Paradise emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':95000,'Fire essence':95500,'Nature essence':96000,'Wind essence':104500,'Water essence':88000,'Lightning essence':75250,'insight':1000};
 			G.getRes('paradise portal point').amount=1;
 		}
 		var timeOffline=Math.max(0,(Date.now()-G.lastDate)/1000);
@@ -6635,7 +6635,7 @@ G.writeMSettingButton=function(obj)
 			audioPlEmblem.play();
 			}
             }
-			if (G.has('<span style="color: ##FF0900">Plain island building</span>')){
+			if (G.has('plain island building')){
 			me.hidden=true
 			}
         },
@@ -9050,7 +9050,7 @@ if (!document.getElementById(cssId))
 			G.getDict('scientific university').cost={'basic building materials':2400,'precious building materials':1200,'Magic essences':90000,'Mana':40000,'science':180};
 					G.getDict('scientific university').costPerStep={'Magic essences':30000,'basic building materials':2450,'precious metal ingot':800,'insight II':600,'science':200,'gems':1500,'wisdom II':-0.5,'education':-0.3,'Mana':4e5,'university point':-1};
 			}
-			if(G.has('<span style="color: ##FF0900">Plain island building</span>')){
+			if(G.has('plain island building')){
 					G.getDict('plain island portal').wideIcon=[7,3,'magixmod'];
 				
 		}
@@ -9481,7 +9481,7 @@ if (!document.getElementById(cssId))
 	new G.Res({
 		name:'plain portal point',
 		tick:function(me,tick){
-	if(me.amount>=1 && G.getUnitByName('plain island portal').mode==4 && me.amount<2 && G.hasNot('<span style="color: ##FF0900">Plain island building</span>')){
+	if(me.amount>=1 && G.getUnitByName('plain island portal').mode==4 && me.amount<2 && G.hasNot('plain island building')){
 				G.gain('plain portal point',1);
 				G.getUnitByName('plain island portal').mode=0;
 				G.getDict('plain island portal').wideIcon=[7,3,'magixmod'];
@@ -9493,7 +9493,7 @@ if (!document.getElementById(cssId))
 				G.getDict('plain island portal').costPerStep={'Mana':14000,'Dark essence':5200,'Fire essence':5250,'Nature essence':5300,'Wind essence':5150,'Water essence':5500,'Lightning essence':5225};
 				G.getDict('plain island portal').finalStepDesc='Perform a final step to activate this portal';
 				G.getDict('plain island portal').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000,'plain portal point':-1};
-			}else if(me.amount>=2 && G.has('<span style="color: ##FF0900">Plain island building</span>')){
+			}else if(me.amount>=2 && G.has('plain island building')){
 					G.getUnitByName('plain island portal').mode=4;
 					G.getDict('plain island portal').wideIcon=[7,3,'magixmod'];
 					G.getDict('plain island portal').icon=[8,3,'magixmod'];
@@ -9505,23 +9505,23 @@ if (!document.getElementById(cssId))
 		name:'paradise portal point',
 		tick:function(me,tick){
 	//PARADISE PORTAL REWORK
-			if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode==4 && G.hasNot('<span style="color: ##FF0900">Paradise building</span>')){
+			if(me.amount>=1 && G.getUnitByName('paradise portal').mode==4 && G.hasNot('<span style="color: ##FF0900">Paradise building</span>')){
 				G.gain('paradise portal point',1);
-				G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=0;
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').wideIcon=[7,4,'magixmod'];
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').icon=[8,4,'magixmod'];
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').steps=75;
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').use={'land':-10};
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').desc='@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules. Stage 2 of 2 //Note: Portals work a lil bit differently: refreshing page during this stage will bring completion level back to 0%',
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').costPerStep={'Mana':184000,'Dark essence':18200,'Fire essence':18250,'Nature essence':18300,'Wind essence':18150,'Water essence':18500,'Lightning essence':18225};
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepDesc='Perform a final step to activate this portal';
-				G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').finalStepCost={'Land of the Paradise':-26500,'Paradise emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':95000,'Fire essence':95500,'Nature essence':96000,'Wind essence':104500,'Water essence':88000,'Lightning essence':75250,'insight':1000};
+				G.getUnitByName('paradise portal').mode=0;
+				G.getDict('paradise portal').wideIcon=[7,4,'magixmod'];
+				G.getDict('paradise portal').icon=[8,4,'magixmod'];
+				G.getDict('paradise portal').steps=75;
+				G.getDict('paradise portal').use={'land':-10};
+				G.getDict('paradise portal').desc='@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules. Stage 2 of 2 //Note: Portals work a lil bit differently: refreshing page during this stage will bring completion level back to 0%',
+				G.getDict('paradise portal').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
+				G.getDict('paradise portal').costPerStep={'Mana':184000,'Dark essence':18200,'Fire essence':18250,'Nature essence':18300,'Wind essence':18150,'Water essence':18500,'Lightning essence':18225};
+				G.getDict('paradise portal').finalStepDesc='Perform a final step to activate this portal';
+				G.getDict('paradise portal').finalStepCost={'Land of the Paradise':-26500,'Paradise emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':95000,'Fire essence':95500,'Nature essence':96000,'Wind essence':104500,'Water essence':88000,'Lightning essence':75250,'insight':1000};
 			}else if(me.amount>=2 && G.has('<span style="color: ##FF0900">Paradise building</span>')){
-					G.getUnitByName('<span style="color: #E0CE00">Portal to the Paradise</span>').mode=4;
-					G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').wideIcon=[7,4,'magixmod'];
-					G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').icon=[8,4,'magixmod'];
-					G.getDict('<span style="color: #E0CE00">Portal to the Paradise</span>').desc='@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules. Completed';
+					G.getUnitByName('paradise portal').mode=4;
+					G.getDict('paradise portal').wideIcon=[7,4,'magixmod'];
+					G.getDict('paradise portal').icon=[8,4,'magixmod'];
+					G.getDict('paradise portal').desc='@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules. Completed';
 			}
 		},
 		});
@@ -12056,7 +12056,7 @@ if (!document.getElementById(cssId))
 		icon:[9,2,'magixmod'],
 		cost:{'basic building materials':100},
 		use:{'Land of the Plain Island':5},
-		req:{'<span style="color: ##FF0900">Plain island building</span>':true},
+		req:{'plain island building':true},
 		gizmos:true,
 		modes:{
 			'off':G.MODE_OFF,
@@ -12099,7 +12099,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'burial spot':7500}},
 		],
-		req:{'<span style="color: ##FF0900">Plain island building</span>':true,'Burial in new world':true},
+		req:{'plain island building':true,'Burial in new world':true},
 		category:'plainisleunit',
 		limitPer:{'land':400},
 	});
@@ -12112,7 +12112,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'burial spot':100}},
 		],
-		req:{'<span style="color: ##FF0900">Plain island building</span>':true,'Burial in new world':true},
+		req:{'plain island building':true,'Burial in new world':true},
 		category:'plainisleunit',
 		limitPer:{'land':40},
 	});
@@ -12125,7 +12125,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'burial spot':1}},
 		],
-		req:{'<span style="color: ##FF0900">Plain island building</span>':true,'Burial in new world':true},
+		req:{'plain island building':true,'Burial in new world':true},
 		category:'plainisleunit',
 	});
 		new G.Unit({
@@ -12140,7 +12140,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		category:'plainisleunit',
-		req:{'well-digging':true,'First portal to new world':true,'<span style="color: ##FF0900">Plain island building</span>':true},
+		req:{'well-digging':true,'First portal to new world':true,'plain island building':true},
 		limitPer:{'Land of the Plain Island':10},
 	});
 		new G.Unit({
@@ -12813,7 +12813,7 @@ if (!document.getElementById(cssId))
     		category:'dimensions',
 	});
 		new G.Unit({
-    		name:'<span style="color: #E0CE00">Portal to the Paradise</span>',
+    		name:'paradise portal',displayName:'<font color="#E0CE00">Portal to the Paradise</font>',
     		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules.',
     		wideIcon:[31,29,'magixmod'],
 			icon:[32,29,'magixmod'],
@@ -14405,7 +14405,7 @@ getCosts:function()
 		req:{'masonry':true,'smelting':true,'Crafting a glass':true},
 	});
 		new G.Tech({
-		name:'<span style="color: ##FF0900">Plain island building</span>',category:'tier1',
+		name:'plain island building',category:'tier1',
 		desc:'<span style="color: ##FF0900">Unlocks sheet of buildings which can be only built in new dimension.</span>',
 		icon:[9,0,'magixmod'], 
 		cost:{'insight':4,'Plain Island emblem':1},
@@ -14416,7 +14416,7 @@ getCosts:function()
 		desc:'Allows your people to build [Blockhouse] out of [advanced building materials]. Provides much more housing but it is limited to prevent global warmings etc.',
 		icon:[8,1,'magixmod'], 
 		cost:{'insight':65},
-		req:{'plain island portal':true,'<span style="color: ##FF0900">Plain island building</span>':true},
+		req:{'plain island portal':true,'plain island building':true},
 	});
 		new G.Tech({
 		name:'Burial in new world',category:'tier1',
@@ -14426,7 +14426,7 @@ getCosts:function()
 		effects:[
 			{type:'hide res',what:['Plain Island emblem']},
 		],
-		req:{'plain island portal':true,'<span style="color: ##FF0900">Plain island building</span>':true},
+		req:{'plain island portal':true,'plain island building':true},
 	});
 		new G.Tech({
 		name:'Sewing II',category:'upgrade',
@@ -14434,21 +14434,21 @@ getCosts:function()
 		desc:'Upgrades sewing skills of your civilization. @Unlocks <b>Drying racks<b> to make [Dried leather] used to craft better quality clothing. @Now artisans can sew [Fishing net] @Clothier can craft [Thread] that is required to craft a [Fishing net].',
 		icon:[13,5,'magixmod'], 
 		cost:{'insight':380,'wisdom':10},
-		req:{'Wizardry':true,'sewing':true,},
+		req:{'Wizardry':true,'sewing':true},
 	});
 		new G.Tech({
 		name:'Hunting II',category:'upgrade',
 		desc:'Upgrades hunting skills of your civilization. @Unlocks way to craft [Crossbow] - new weapon. Artisans can now craft [bow] & [Crossbow] and [Crossbow belt] in <b>Craft bows<b> mode.',
 		icon:[15,0,'magixmod'], 
 		cost:{'insight':385,'wisdom':10},
-		req:{'Wizardry':true,'hunting':true,},
+		req:{'Wizardry':true,'hunting':true},
 	});
 		new G.Tech({
 		name:'Fishing II',category:'upgrade',
 		desc:'Upgrades fishing skills of your civilization. @Makes [Fishing net] introduced into common use.',
 		icon:[8,12,25,1], 
 		cost:{'insight':385,'wisdom':10},
-		req:{'Wizardry':true,'fishing':true,},
+		req:{'Wizardry':true,'fishing':true},
 	});
 		new G.Tech({
 		name:'Cobalt-working',category:'tier1',
@@ -14540,28 +14540,28 @@ getCosts:function()
 			{type:'provide res',what:{'education':0.6}},
 			{type:'provide res',what:{'science':1}},
 		],
-		req:{'oral tradition':true,'Intermediate maths':true,'<span style="color: ##FF0900">Plain island building</span>':true},
+		req:{'oral tradition':true,'Intermediate maths':true,'plain island building':true},
 	});
 		new G.Tech({
 		name:'Ink crafting',category:'tier1',
 		desc:'Now [artisan] will be able to craft [Ink]. Ink will be used by [Poet] later. You can craft ink choosing new working mode for [artisan].',
 		icon:[18,7,'magixmod'],
 		cost:{'insight':335},
-		req:{'<span style="color: ##FF0900">Plain island building</span>':true},
+		req:{'plain island building':true},
 	});
 		new G.Tech({
 		name:'Poetry',category:'tier1',
 		desc:'Beautiful art of culture. Poems, stories, essays, novels and many more.',
 		icon:[18,8,'magixmod'],
 		cost:{'insight':650,'culture':300,'inspiration':25},
-		req:{'<span style="color: ##FF0900">Plain island building</span>':true,'Ink crafting':true},
+		req:{'plain island building':true,'Ink crafting':true},
 	});
 		new G.Tech({
 		name:'Moar juices',category:'tier1',
 		desc:'Allows you to craft juice out of [fruit]s.',
 		icon:[17,4,'magixmod'],
 		cost:{'insight':805},
-		req:{'<span style="color: ##FF0900">Plain island building</span>':true,'Crafting a juice':true},
+		req:{'plain island building':true,'Crafting a juice':true},
 	});
 		new G.Tech({
 		name:'Medicaments brewing',category:'tier1',
@@ -15363,16 +15363,16 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'Will to know more',
-		desc:'<span style="color: #aaffff">@After opening a portal to Plain Island people started to become more curious. @Curiosity has gotten even stronger with this trait. </span>',
+		desc:'<font color="#aaffff">@After opening a portal to Plain Island people started to become more curious. @Curiosity has gotten even stronger with this trait. </font>',
 		icon:[8,12,8,5],
 		cost:{'culture':5,'wisdom':25},
 		chance:3,
 		category:'knowledge',
-		req:{'<span style="color: ##FF0900">Plain island building</span>':true},
+		req:{'plain island building':true},
 	});
 		new G.Trait({
 		name:'Juicy expertise',
-		desc:'<span style="color: #aaffff">After few years since you started crafting [Juices] you noticed your people make most <b>tasty juice<b> ever you drank. Since gaining this trait you\'ll get these bonuses: @Happiness caused by drinking juices boosted by 25%. @Health given by drinking juices boosted by 25%. @Due to these bonuses [Juices] will now need little bit more ingredients to craft. @[artisan of juice] has a small chance to craft 1 additional [Juices,juice]. </span>',
+		desc:'<font color="#aaffff">After few years since you started crafting [Juices] you noticed your people make most <b>tasty juice<b> ever you drank. Since gaining this trait you\'ll get these bonuses: @Happiness caused by drinking juices boosted by 25%. @Health given by drinking juices boosted by 25%. @Due to these bonuses [Juices] will now need little bit more ingredients to craft. @[artisan of juice] has a small chance to craft 1 additional [Juices,juice]. </font>',
 		icon:[16,5,'magixmod'],
 		cost:{'Juices':6.5e3,'wisdom':25,'insight':30},
 		chance:6,
@@ -15389,7 +15389,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'More healing ways',
-		desc:'<span style="color: #aaffff">Since moment you got able to hire [healer] your dreamers started thinking how to boost healing and decrease amount of failed healing attempts. @This trait unlocks you [first aid], which will be obtainable in later stage of legacy. </span>',
+		desc:'<font color="#aaffff">Since moment you got able to hire [healer] your dreamers started thinking how to boost healing and decrease amount of failed healing attempts. @This trait unlocks you [first aid], which will be obtainable in later stage of legacy. </font>',
 		icon:[8,12,3,5],
 		cost:{'insight':50},
 		chance:120,
