@@ -9616,7 +9616,7 @@ if (!document.getElementById(cssId))
 	
 	G.MODE_OFF={name:'Off',desc:'The unit will not produce anything.',icon:[1,0]};
 	
-	var unitGetsConverted=function(into,min,max,message,single,plural)
+	var unitGetsConverted=function(into,min,max,message,mesg,single,plural) //mesg can toggle message
 	{
 		//the unit is destroyed and its workers are converted into something else (such as wounded or dead)
 		//min and max define the random percent of the unit's amount that gets wounded every day
@@ -9643,7 +9643,7 @@ if (!document.getElementById(cssId))
 				changed/=workers;
 				G.wasteUnit(me,changed);
 				
-				if (changed>0 && me.unit.name!='thief hunter' && me.unit.name!='corpse slayer') G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
+				if (changed>0 && mesg==true) G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
 						return args.str.replaceAll('\\[people\\]',(args.n==1?args.single:args.plural)).replaceAll('\\[X\\]',B(args.n));
 					},args:{n:changed,str:message,single:single,plural:plural},icon:me.unit.icon});
 			}
@@ -9938,8 +9938,8 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'hunt',amount:1.8,max:2.2,mode:'crossbow hunting',req:{'aiming':false}},
 			{type:'gather',context:'hunt',amount:4.5,max:5.5,mode:'crossbow hunting',req:{'aiming':true}},
 			
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30,req:{'hunting III':false}},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/38,req:{'hunting III':true,'An armor for Hunter':true,'Hunters & fishers unification':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,true,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/30,req:{'hunting III':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.03,true,'[X] [people] wounded while hunting.','hunter was','hunters were'),chance:1/38,req:{'hunting III':true,'An armor for Hunter':true,'Hunters & fishers unification':false}},
 			{type:'mult',value:1.2,req:{'harvest rituals':'on','Hunters & fishers unification':false}},
 			{type:'mult',value:0,req:{'Hunters & fishers unification':true}},
 			//Trait trends
@@ -10134,7 +10134,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',context:'quarry',what:{'unknownium ore':10},max:30,mode:'quarrydeepores'},
 			{type:'gather',context:'quarry',what:{'salt':1},max:3,mode:'quarrydeepores',chance:1/6},
 			/////
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,true,'[X] [people].','quarry collapsed, wounding its workers','quarries collapsed, wounding their workers'),chance:1/50}
 		],
 		gizmos:true,
 		req:{'quarrying':true,'t10':false},
@@ -10194,8 +10194,8 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.25,req:{'se09':'on'},mode:'iron'},
 			{type:'mult',value:1.25,req:{'se09':'on'},mode:'gold'},
 			//////////////////////////
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Mining strategy':false}},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,true,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Mining strategy':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,true,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Mining strategy':true}},
 			//////////////////////////
 			//Trends
 			{type:'gather',context:'mine',what:{'coal':5},max:30,mode:'coal',req:{'mt1':true}},
@@ -10800,7 +10800,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'explore',explored:0.1,unexplored:0},
 			{type:'mult',value:2.5,req:{'t10':true}},
-			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','wanderer got lost','wanderers got lost'),chance:1/100}
+			{type:'function',func:unitGetsConverted({},0.01,0.05,true,'[X] [people].','wanderer got lost','wanderers got lost'),chance:1/100}
 		],
 		req:{'speech':true},
 		category:'exploration',
@@ -10816,7 +10816,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'explore',explored:0,unexplored:0.01},
 			{type:'mult',value:2.5,req:{'t10':true}},
-			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','scout got lost','scouts got lost'),chance:1/300}
+			{type:'function',func:unitGetsConverted({},0.01,0.05,true,'[X] [people].','scout got lost','scouts got lost'),chance:1/300}
 		],
 		req:{'scouting':true},
 		category:'exploration',
@@ -11069,8 +11069,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'convert',from:{'thief':1},into:{'adult':1},every:4,chance:1/4},
 			{type:'convert',from:{'thief':1},into:{'corpse':1},every:4,chance:1/48},
-			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/50,req:{'coordination':true}},
-			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/25,req:{'coordination':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,false,'','',''),chance:1/50,req:{'coordination':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,false,'','',''),chance:1/25,req:{'coordination':false}},
 		],
 	});
 		new G.Unit({
@@ -11186,14 +11186,14 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'convert',from:{'Dark concoction':1,'Combat potion pot':1,'water':0.4,'Dark essence':0.2,'Dark fire pit':0.5},into:{'Black fog':1},every:6,mode:'bf'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the alchemist','alchemy accidents occured wounding the alchemists'),chance:1/388,mode:'bf','School of Alchemy - length of education cycle':'short'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the alchemist','alchemy accidents occured wounding the alchemists'),chance:1/578,mode:'bf','School of Alchemy - length of education cycle':'medium'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the alchemist','alchemy accidents occured wounding the alchemists'),chance:1/769,mode:'bf','School of Alchemy - length of education cycle':'long'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/388,mode:'bf','School of Alchemy - length of education cycle':'short'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/578,mode:'bf','School of Alchemy - length of education cycle':'medium'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/769,mode:'bf','School of Alchemy - length of education cycle':'long'},
 			
 			{type:'convert',from:{'Combat potion pot':1,'water':1,'Wind essence':3,'Windy sugar':1},into:{'Windy spikes':1},every:6,mode:'ws'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the alchemist','alchemy accidents occured wounding the alchemists'),chance:1/300,mode:'ws','School of Alchemy - length of education cycle':'short'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the alchemist','alchemy accidents occured wounding the alchemists'),chance:1/450,mode:'ws','School of Alchemy - length of education cycle':'medium'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the alchemist','alchemy accidents occured wounding the alchemists'),chance:1/600,mode:'ws','School of Alchemy - length of education cycle':'long'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/300,mode:'ws','School of Alchemy - length of education cycle':'short'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/450,mode:'ws','School of Alchemy - length of education cycle':'medium'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/600,mode:'ws','School of Alchemy - length of education cycle':'long'},
 			
 			{type:'convert',from:{'Combat potion pot':1,'water':1,'Wind essence':1,'Essence of the Holiness':1.25},into:{'Back to grave':1},every:6,mode:'btg'},
 			{type:'convert',from:{'Herb of the undead':1,'water':1,'Dark essence':1,'Nature concoction':1},into:{'Point of venom':1},every:6,mode:'pov'},
@@ -11218,14 +11218,14 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'convert',from:{'Dark concoction':1,'Combat potion pot':1,'water':0.4,'Dark essence':0.2,'Dark fire pit':0.5},into:{'Black fog':1},every:6,mode:'bf'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the child alchemist','alchemy accidents occured wounding the child alchemists'),chance:1/348,mode:'bf','School of Alchemy - length of education cycle':'short'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the child alchemist','alchemy accidents occured wounding the child alchemists'),chance:1/519,mode:'bf','School of Alchemy - length of education cycle':'medium'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the child alchemist','alchemy accidents occured wounding the child alchemists'),chance:1/690,mode:'bf','School of Alchemy - length of education cycle':'long'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/348,mode:'bf','School of Alchemy - length of education cycle':'short'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/519,mode:'bf','School of Alchemy - length of education cycle':'medium'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/690,mode:'bf','School of Alchemy - length of education cycle':'long'},
 			
 			{type:'convert',from:{'Combat potion pot':1,'water':1,'Wind essence':3,'Windy sugar':1},into:{'Windy spikes':1},every:6,mode:'ws'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the child alchemist','alchemy accidents occured wounding the child alchemists'),chance:1/277,mode:'ws','School of Alchemy - length of education cycle':'short'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the child alchemist','alchemy accidents occured wounding the child alchemists'),chance:1/400,mode:'ws','School of Alchemy - length of education cycle':'medium'},
-			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,'[X] [people] alchemy accident occured wounding the child alchemist','alchemy accidents occured wounding the child alchemists'),chance:1/533,mode:'ws','School of Alchemy - length of education cycle':'long'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/277,mode:'ws','School of Alchemy - length of education cycle':'short'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/400,mode:'ws','School of Alchemy - length of education cycle':'medium'},
+			{type:'function',func:unitGetsConverted({'wounded alchemist':1},0.001,0.01,false,'',''),chance:1/533,mode:'ws','School of Alchemy - length of education cycle':'long'},
 			
 			{type:'convert',from:{'Combat potion pot':1,'water':1,'Wind essence':1,'Essence of the Holiness':1.25},into:{'Back to grave':1},every:8,mode:'btg'},
 			{type:'convert',from:{'Herb of the undead':1,'water':1,'Dark essence':1,'Nature concoction':1},into:{'Point of venom':1},every:8,mode:'pov'},
@@ -11261,8 +11261,8 @@ if (!document.getElementById(cssId))
 		},
 		effects:[
 			{type:'gather',context:'mine',amount:28,max:64,mode:'on'},
-			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:7/50,req:{'Safer explosive usage':false}},
-			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:6/51.5,req:{'Safer explosive usage':true}},
+			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,true,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:7/50,req:{'Safer explosive usage':false}},
+			{type:'function',func:unitGetsConverted({'wounded':2},0.001,0.01,true,'[X] [people].','mine collapsed because of underground explosives blasting, wounding its miners','mines collapsed because of underground explosives blasting, wounding their miners.'),chance:6/51.5,req:{'Safer explosive usage':true}},
 			{type:'mult',value:1.05,req:{'Safer explosive usage':true}}
 		],
 		gizmos:true,
@@ -12081,8 +12081,8 @@ if (!document.getElementById(cssId))
 			//Collapsing chance
 			{type:'mult',value:1.05,req:{'Plain island mining strategy':true}},
 			{type:'mult',value:1.25,req:{'se09':'on'}},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Plain island mining strategy':false}},
-			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Plain island mining strategy':true}}
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,true,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/50,req:{'Plain island mining strategy':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1},0.001,0.01,true,'[X] [people].','mine collapsed, wounding its miners','mines collapsed, wounding their miners'),chance:1/70,req:{'Plain island mining strategy':true}}
 		],
 		category:'plainisleunit',
 		limitPer:{'land':35},
@@ -13447,8 +13447,8 @@ new G.Unit({
 		priority:5,
 		effects:[
 			{type:'convert',from:{'wild corpse':1},into:{'slain corpse':1},every:4,chance:1/4},
-			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/50,req:{'coordination':true}},
-			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},0.001,0.03,'','',''),chance:1/25,req:{'coordination':false}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},false,0.001,0.03,'','',''),chance:1/50,req:{'coordination':true}},
+			{type:'function',func:unitGetsConverted({'wounded':1,'soldiers defeats':1},false,0.001,0.03,'','',''),chance:1/25,req:{'coordination':false}},
 		],
 	});
 	new G.Unit({
@@ -13590,7 +13590,7 @@ new G.Unit({
 		effects:[
 			{type:'explore',explored:0.06,unexplored:0.0065},
 			{type:'mult',value:2.5,req:{'t10':true}},
-			{type:'function',func:unitGetsConverted({},0.01,0.05,'[X] [people].','globetrotter got lost','globetrotters got lost'),chance:1/250}
+			{type:'function',func:unitGetsConverted({},0.01,0.05,true,'[X] [people].','globetrotter got lost','globetrotters got lost'),chance:1/250}
 		],
 		req:{'globetrottering':true},
 		category:'exploration',
