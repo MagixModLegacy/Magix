@@ -2581,7 +2581,6 @@ G.update.tech = () => {
 		'<div style="float:left;"><center>'+
 		G.button({text:'New game',tooltip:'Instantly start a new game.',onclick:function(){G.T=0;G.NewGameWithSameMods();}})+
 		G.button({text:'Load',tooltip:'Reload the save.',onclick:function(){G.T=0;G.Load();}})+
-		    '<br />'+
 		G.button({text:'Clear',tooltip:'Wipe save data.',onclick:function(){G.Clear();}})+
 		'<br />'+
 		G.button({text:'ALMIGHTY',tooltip:'Unlock every tech, trait and policy.',onclick:function(){
