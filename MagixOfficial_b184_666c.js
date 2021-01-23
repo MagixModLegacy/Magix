@@ -2578,7 +2578,7 @@ G.update.tech = () => {
 	G.createDebugMenu=function()
 	{
 		var str=''+
-		'<div style="float:left;"><center>'+
+		'<div style="float:left;background-color:green;"><center>'+
 		G.button({text:'New game',tooltip:'Instantly start a new game.',onclick:function(){G.T=0;G.NewGameWithSameMods();}})+
 		G.button({text:'Load',tooltip:'Reload the save.',onclick:function(){G.T=0;G.Load();}})+
 		G.button({text:'Clear',tooltip:'Wipe save data.',onclick:function(){G.Clear();}})+
@@ -2597,9 +2597,14 @@ G.update.tech = () => {
 				G.gainPolicy(G.policy[i]);
 			}
 			G.shouldRunReqs=true;
-			G.middleText('- You are almighty! -<br /><small> - You are the god! - </small>');
+			if (G.checkPolicy('Toggle SFX')=='on'){
+				var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/PolicySwitchOff.wav');
+				audio.play(); 
+				}
+			G.middleText('- You are almighty! -<br /><small> - You are the god! - </small>','slow');
 		}})+
 		G.writeSettingButton({id:'showAllRes',name:'showAllRes',text:'Show resources',tooltip:'Toggle whether all resources should be visible.'})+
+		    '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Debug tab.'+
 		//G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'Show tiers',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
 		G.button({text:'Reveal map',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
