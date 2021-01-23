@@ -2607,7 +2607,7 @@ G.update.tech = () => {
 		//G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'Show tiers',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
 		G.button({text:'Reveal map',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
-		    '<br /><font color="lime">Debug mode. Magix: Release 45.1 (late beta)</font>'+
+		    '<br /><font color="lime">Debug mode. Magix: Release 46 (late beta)</font>'+
 		G.textWithTooltip('?','<div style="width:240px;text-align:left;">This is the debug menu. Please debug responsibly.<br>Further debug abilities while this mode is active :<div class="bulleted">click resources to add/remove some (keyboard shortcuts work the same way they do for purchasing units)</div><div class="bulleted">ctrl-click a trait or policy to remove it (may have strange, buggy effects)</div><div class="bulleted">click the Fast ticks display to get more fast ticks<br>(if add is equal 1 it will add 10, if add 10 then 100 and so on)</div><div class="bulleted">always see tech costs and requirements</div><div class="bulleted">gain access to debug robot units <br /> <b>BEEP BOOP BEEP</b></div><div class="bulleted">edit the map</div></div>','infoButton')+
 		'</center></div>';
 		l('debug').innerHTML=str;
@@ -2726,9 +2726,9 @@ G.props['fastTicksOnResearch']=150;
 			}
 		},600000);
 		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['a gift from the mausoleum']);}
-		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['<font color="fuschia">Authority of the ancestor</font>']);}
-		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['<font color=" ##00C000">Artistic gray cells</font>']);}
-		if(G.achievByName['Insight-ly'].won>=1){G.gainTech(G.techByName['<font color="aqua">Genius feeling</font>']);}
+		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['authority of the ancestor']);G.gainTrait(G.traitByName['policies']);}
+		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['atistic gray cells']);}
+		if(G.achievByName['Insight-ly'].won>=1){G.gainTech(G.techByName['genius feeling']);}
 		if(G.achievByName['"In the underworld"'].won > 0 && G.achievByName['Deadly, revenantic'].won > 0 && G.hasNot('A feeling from the Underworld')){
 		G.gainTech(G.techByName['A feeling from the Underworld']);
 		};
@@ -9745,7 +9745,7 @@ if (!document.getElementById(cssId))
 		upkeep:{'coin':0.1},
 		effects:[
 			{type:'gather',what:{'culture':0.1}},
-			{type:'addFree',what:{'worker':0.0005},req:{'<font color=" ##00C000">Artistic gray cells</font>':true,'oral tradition':true}},
+			{type:'addFree',what:{'worker':0.0005},req:{'artistic gray cells':true,'oral tradition':true}},
 			{type:'gather',what:{'culture':0.05},req:{'symbolism':true,'symbolism II':false}},
 			{type:'gather',what:{'culture':0.07},req:{'symbolism II':true}},
 			{type:'mult',value:1.3,req:{'artistic thinking':true}},
@@ -15899,7 +15899,7 @@ autobuy(G.year)
 	===========================================================================================*/
 
 	new G.Tech({
-        name:'<font color=" ##00C000">Artistic gray cells</font>',category:'misc',
+       name:'artistic gray cells', displayName:'<font color="#00C000">Artistic gray cells</font>',category:'misc',
         desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration] @Also autohires for free 1 [storyteller] but this free one works at 1/2000 of normally hired [storyteller].',
         icon:[4,12,'magixmod',6,12,'magixmod'],
         cost:{},
@@ -15910,7 +15910,7 @@ autobuy(G.year)
         req:{'tribalism':false}
     	});
 	new G.Tech({
-        name:'<font color="aqua">Genius feeling</font>',category:'misc',
+       name:'genius feeling',displayName:'<font color="aqua">Genius feeling</font>',category:'misc',
         desc:'You feel like you are genius or semi-genius. Your people noticed it. That may help and decide for their fate. @+6 [insight]',
         icon:[4,12,'magixmod',choose([1,4,7]),17,'magixmod'],
         cost:{},
@@ -15920,7 +15920,7 @@ autobuy(G.year)
         req:{'tribalism':false}
     });
 new G.Tech({
-        name:'<font color="fuschia">Authority of the ancestor</font>',category:'misc',
+       name:'authority of the ancestor', displayName:'<font color="fuschia">Authority of the ancestor</font>',category:'misc',
         desc:'You feel like you have someone from the past inside you. You feel his authority. He\'s inside you. @+1 [influence] @+1 [authority]',
         icon:[4,12,'magixmod',6,13,'magixmod'],
         cost:{},
