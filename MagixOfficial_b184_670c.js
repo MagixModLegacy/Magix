@@ -2607,6 +2607,7 @@ G.update.tech = () => {
 		//G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'Show tiers',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
 		G.button({text:'Reveal map',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
+		    '<br /><font color="lime">Debug mode. Magix: Release 45.1</font>'+
 		G.textWithTooltip('?','<div style="width:240px;text-align:left;">This is the debug menu. Please debug responsibly.<br>Further debug abilities while this mode is active :<div class="bulleted">click resources to add/remove some (keyboard shortcuts work the same way they do for purchasing units)</div><div class="bulleted">ctrl-click a trait or policy to remove it (may have strange, buggy effects)</div><div class="bulleted">click the Fast ticks display to get more fast ticks<br>(if add is equal 1 it will add 10, if add 10 then 100 and so on)</div><div class="bulleted">always see tech costs and requirements</div><div class="bulleted">gain access to debug robot units <br /> <b>BEEP BOOP BEEP</b></div><div class="bulleted">edit the map</div></div>','infoButton')+
 		'</center></div>';
 		l('debug').innerHTML=str;
@@ -3083,8 +3084,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('mirror world 2/2').icon=[27,2,'magixmod',19,11,'seasonal'];
 			G.getDict('focused scouting').icon=[17,10,'seasonal'];
 			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
-			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
-			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
+			G.getDict('winter holidays').req={'culture of celebration':true,'tribalism':true,'philosophy':true};
+			G.getDict('the christmas').req={'culture of celebration':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
 					G.getAchiev('xmas buff').won=7;
 					
@@ -3108,9 +3109,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if ((day>=365 && day<=366) || (day>0 && day<=2)){
 			//also not only greetings but also some content unlocks
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
-			G.getDict('Firework crafting').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true};
-			G.getDict('Firework launching').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':true};
-			G.getDict('Dark essence fireworks').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
+			G.getDict('Firework crafting').req={'culture of celebration':true,'tribalism':true};
+			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
+			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 	};
 		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
 					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
@@ -3472,8 +3473,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('mirror world 2/2').icon=[27,2,'magixmod',19,11,'seasonal'];
 			G.getDict('focused scouting').icon=[17,10,'seasonal'];
 			G.getDict('An opposite side of belief').icon=[8,11,'seasonal'];
-			G.getDict('winter holidays').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'philosophy':true};
-			G.getDict('the christmas').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true,'winter holidays':true};
+			G.getDict('winter holidays').req={'culture of celebration':true,'tribalism':true,'philosophy':true};
+			G.getDict('the christmas').req={'culture of celebration':true,'tribalism':true,'winter holidays':true};
 			G.middleText('<big><font color="aqua">Merry Christmas!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 					
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
@@ -3488,9 +3489,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if ((day>=365 && day<=366) || (day>0 && day<=2)){
 			//also not only greetings but also some content unlocks
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
-			G.getDict('Firework crafting').req={'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':true};
-			G.getDict('Firework launching').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':true};
-			G.getDict('Dark essence fireworks').req={'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
+			G.getDict('Firework crafting').req={'culture of celebration':true,'tribalism':true};
+			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
+			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 		var truY=yer.getFullYear();
 			if (day>=365 && day<=366)G.middleText('<big><font color="pink">Happy '+(truY+1)+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 			if (day>0 && day<=2)G.middleText('<big><font color="pink">Happy '+truY+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
@@ -3533,7 +3534,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		G.getDict('adult').icon=[3,7,'seasonal'];
 		G.getDict('burial').icon=[16,7,'seasonal'];
 		G.getDict('elder').icon=[4,7,'seasonal'];G.doFunc('ToT');
-						G.getDict('"dark season"').req={'tribalism':true,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true};};
+						G.getDict('"dark season"').req={'tribalism':true,'culture of celebration':true,'sedentism':true,'intuition':true};};
 		if(G.has('time measuring 1/2') && G.has('primary time measure')){
 			var str='';
 			str+='It is now the year <b>'+(G.year+1)+'</b>.<br>';
@@ -12973,7 +12974,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'Orange firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true/*,'<span style="color: yellow">Culture of celebration</span>':false*/},
+		req:{'culture of celebration':true,'Firework crafting':true/*,'culture of celebration':false*/},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -12989,7 +12990,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'Dark Orange Firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Dark essenced fireworks':true/*,'<span style="color: yellow">Culture of celebration</span>':false*/},
+		req:{'culture of celebration':true,'Dark essenced fireworks':true/*,'culture of celebration':false*/},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -13005,7 +13006,7 @@ new G.Unit({
 			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
 			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
 		],
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework launching':true/*,'<span style="color: yellow">Culture of celebration</span>':false*/},
+		req:{'culture of celebration':true,'Firework launching':true/*,'culture of celebration':false*/},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -15457,7 +15458,7 @@ autobuy(G.year)
 		req:{'Second portal to new world':true,'<span style="color: ##FF0900">Paradise building</span>':true},
 	});
 		new G.Trait({
-		name:'<span style="color: yellow">Culture of celebration</span>',
+		name:'culture of celebration',displayName:'<font color="yellow">Culture of celebration</font>',
 		desc:'Unlocks seasonal content. <b><span style="color: aqua">Seasonal content is a content available for some time like Christmas content.</span></b>',
 		icon:[18,15,'magixmod'],
 		cost:{'insight':10,'culture':40},
@@ -15853,21 +15854,21 @@ autobuy(G.year)
 		desc:'@unlocks [Artisan of new year].',
 		icon:[0,0,'seasonal'],
 		cost:{'insight':30},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'tribalism':false},//switch to false after new year
+		req:{'culture of celebration':true,'tribalism':false},//switch to false after new year
 	});
 		new G.Tech({
 		name:'Firework launching',category:'seasonal',
 		desc:'@unlocks [Firework launching guy]. By the way allows [Artisan of new year] to craft [Firecracker] .',
 		icon:[17,0,'seasonal'],
 		cost:{'insight':70},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'tribalism':false},
+		req:{'culture of celebration':true,'Firework crafting':true,'tribalism':false},
 	});
 		new G.Tech({
 		name:'Dark essenced fireworks',category:'seasonal',
 		desc:'@[Artisan of new year] now can craft [Dark Orange Firework] and [Dark Blue Firework].',
 		icon:[16,0,'seasonal'],
 		cost:{'insight':400},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Firework crafting':true,'Wizard complex':true,'tribalism':false},
+		req:{'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':false},
 	});
 	//Special techs from achievements and their functions
 	/*============================================================================================
@@ -17665,7 +17666,7 @@ new G.Tech({
 		name:'"dark season"',category:'seasonal',
 		desc:'People will try make fun out of spooky things. They won\'t need help of anyone outside your tribe. Prepare for festival of fear - that\'s what one of your '+G.getName('inhab')+' said to you.',
 		icon:[5,7,'seasonal'],
-		req:{'tribalism':false,'<span style="color: yellow">Culture of celebration</span>':true,'sedentism':true,'intuition':true},//tribalism switches to true when halloween season starts
+		req:{'tribalism':false,'culture of celebration':true,'sedentism':true,'intuition':true},//tribalism switches to true when halloween season starts
 		cost:{'culture':30,'faith':5},
 		effects:[
 		],
@@ -17970,7 +17971,7 @@ new G.Tech({
 		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is. //[digger]s will start digging for [snow] if available.',
 		icon:[1,10,'seasonal'],
 		cost:{'insight':210,'culture':45,'faith':5},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'philosophy':true,'tribalism':false},
+		req:{'culture of celebration':true,'philosophy':true,'tribalism':false},
 	});
 	new G.Tech({
 		name:'the christmas',category:'seasonal',
@@ -17978,7 +17979,7 @@ new G.Tech({
 		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one. Unlocks Lodge of Christmas.',
 		icon:[2,10,'seasonal'],
 		cost:{'insight':400,'culture':100,'faith':32},
-		req:{'<span style="color: yellow">Culture of celebration</span>':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
+		req:{'culture of celebration':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
 	});
 	new G.Tech({
 		name:'carols',category:'seasonal',
