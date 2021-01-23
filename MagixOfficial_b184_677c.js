@@ -1053,7 +1053,7 @@ func:function(){
 		name:'Democration',
 		wideIcon:[5,13,'magixmod'],
 		icon:[6,13,'magixmod'],
-		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run!</b>',
+		desc:'You rested in peace inside the Pagoda of Democracy\'s tombs. Your glory rest made your previous civilization living in laws of justice forever. They will miss you. <b>But this provides... +1 [influence] & [authority] at start of each next run! Also you will get [policies] trait at each run start.</b>',
 		fromWonder:'Democration',
 		effects:[
 			{type:'addFastTicksOnStart',amount:150},
@@ -2725,7 +2725,7 @@ G.props['fastTicksOnResearch']=150;
 				if(G.achievByName['speedresearcher II'].won==0)G.middleText('- Completed <font color="#bbbbff">Speedresearcher II</font> shadow achievement - <br><hr width="300"><small>Incredible</small>. Also you gain one more <font color="#ffbbbb">Speedresearcher I</font> victory.','slow');
 			}
 		},600000);
-		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['a gift from the Mausoleum']);}
+		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['a gift from the mausoleum']);}
 		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['<font color="fuschia">Authority of the ancestor</font>']);}
 		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['<font color=" ##00C000">Artistic gray cells</font>']);}
 		if(G.achievByName['Insight-ly'].won>=1){G.gainTech(G.techByName['<font color="aqua">Genius feeling</font>']);}
@@ -15931,7 +15931,7 @@ new G.Tech({
         req:{'tribalism':false}
     });
 	new G.Tech({
-        name:'a gift from the mausoleum',displayname:'<font color="yellow">A gift from the Mausoleum</font>',category:'misc',
+        name:'a gift from the mausoleum',displayName:'<font color="yellow">A gift from the Mausoleum</font>',category:'misc',
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
         icon:[4,12,'magixmod',1,14],
         cost:{},
