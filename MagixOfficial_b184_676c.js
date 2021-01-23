@@ -715,8 +715,8 @@ func:function(){
 		{id:'religion',name:'Religious'},
 		{id:'short',name:'Short-term'},//you can only have so many traits with this category; if the player gains a new "short" trait, the oldest "short" trait is removed
 		{id:'long',name:'Long-term'},//you can only have so many traits with this category; if the player gains a new "long" trait, the oldest "long" trait is removed
-		{id:'gods',name:'<span style="color: #FFD700">God\'s traits</span>'},
-		{id:'devils',name:'<span style="color: #FF0000">Devil\'s traits</span>'},
+		{id:'gods',name:'<font color="#FFD700">God\'s traits</font>'},
+		{id:'devils',name:'<font color="red">Devil\'s traits</font>'},
 		
 		///TECH
 		{id:'tier1',name:'Tier 1 technologies'},
@@ -737,13 +737,13 @@ func:function(){
 		{id:'storage',name:'Storage'},
 		{id:'wonder',name:'<font color="#ab20a2">Wonders</font>'},
 		{id:'dimensions',name:'Portals'},
-		{id:'seasonal',name:'<span style="color:#7fffd4">Seasonal</span>'},
+		{id:'seasonal',name:'<font color="#7fffd4">Seasonal</font>'},
 		{id:'plainisleunit',name:'Plain Island'},
 		{id:'paradiseunit',name:'Paradise'},
 		{id:'alchemy',name:'Alchemy'},
 		{id:'trial',name:'Trial'},
 		{id:'underworld',name:'Underworld'},
-		{id:'guard',name:'<span style="color:#ff66cc">Army & Guards</span>'},
+		{id:'guard',name:'<font color="#ff66cc">Army & Guards</font>'},
 	);
 	G.resCategories={
 			'main':{
@@ -2736,8 +2736,8 @@ G.props['fastTicksOnResearch']=150;
 G.gainTech(G.techByName['<font color="##a8654f">The Underworld\'s Ascendant</font>']);
 };
 		if (G.achievByName['Experienced'].won > 0 && G.hasNot('<font color="lime">Fruit supplies</font>')){G.gainTech(G.techByName['<font color="lime">Fruit supplies</font>']);}
-		 if (G.achievByName['Extremely smart'].won > 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('<font color="orange">Life has its theme</font>')) {
-      G.gainTech(G.techByName['<font color="orange">Life has its theme</font>']);
+		 if (G.achievByName['Extremely smart'].won > 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('life has its theme')) {
+      G.gainTech(G.techByName['life has its theme']);
     }; if (G.achievByName['Smart'].won > 0 && G.hasNot('<font color="orange">Smaller but efficient</font>')){
       G.gainTrait(G.traitByName['<font color="orange">Smaller but efficient</font>']);
     };
@@ -3612,7 +3612,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			}
 			
 			if (G.year>=109 && G.year<=121 && !madeThievesWarn && G.hasNot('t1') && G.hasNot('t2')){
-       				 G.Message({type:'bad',text:'<b><span style="color: #FFA500">Beware of thievery!</span></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <span style "color= aqua">Happiness</span> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
+       				 G.Message({type:'bad',text:'<b><font color="#FFA500">Beware of thievery!</font></b> It will occur since now. Soon your people will start to punish them. Craft equipment for them so it will be even easier deal! Thieves are unhappy adults. They will show their unhappiness by commiting crimes. Even 200% <font color="aqua">Happiness</font> won\'t decrease their spawn rate to 0. Civilians (except kids)have a chance to die to thief or to beat him up.',icon:[23,1,'magixmod']});
 				madeThievesWarn = true
 				}else if(G.has('t1') || G.has('t2')){if(G.year>=109 && G.year<=121 && !madeThievesWarn){
        				 G.Message({type:'important',text:'You got used to Thieves and fact that they appear after year 110. But in this plane Thieves doesn\'t exist. It is good for you.',icon:[28,2,'magixmod',23,0,'magixmod']});
@@ -3633,7 +3633,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				}
 			}
 			if (G.year>=149 && G.year<=158 && !madeThanks4playmesg){
-       				 G.Message({type:'important',text:'<span style="color= aqua">Seems like you are doing preety well. It is been 150 years since you started magic adventure with Magix additions. Thank you for playing with this expansion. Your playing makes mod better and motivates for future updates. <br> <b> -> </b>Remember mod is still getting bigger and gets more content. This means someday the mod may be unavaiable to play for while. If you will lose progress due to update we are sorry. Anyway keep enjoying this adventure... <br> </span><b>Farewell</b>',icon:[24,1,'magixmod']});
+       				 G.Message({type:'important',text:'<font color="aqua">Seems like you are doing preety well. It is been 150 years since you started magic adventure with Magix additions. Thank you for playing with this expansion. Your playing makes mod better and motivates for future updates. <br> <b> -> </b>Remember mod is still getting bigger and gets more content. This means someday the mod may be unavaiable to play for while. If you will lose progress due to update we are sorry. Anyway keep enjoying this adventure... <br> </font><b>Farewell</b>',icon:[24,1,'magixmod']});
 				madeThanks4playmesg = true
 				}
 			
@@ -4633,7 +4633,7 @@ G.writeMSettingButton=function(obj)
 		'Yes i will... unless i run out of ideas so then i won\'t :D'+
 		'<div class="fancyText title">How i can ask you by question which is not in Q&A there?</div>'+
 		'Find me at <a href="https://discordapp.com/invite/cookie" target="_blank">Dashnet discord server</a><div>'+
-		'<span style "color: #FF0000"><b>IMPORTANT NOTE! I am not responsible if some crazy bugs and issues will occur in debug mode</b></span>'+
+		'<font color="#FF0000"><b>IMPORTANT NOTE! I am not responsible if some crazy bugs and issues will occur in debug mode</b></span>'+
 		'<div class="barred fancyText"><a href="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/--MAGIX--/Magix.html" target="_blank">Update log</a><div><div>'+
 		'<div class="divider"></div>'+
 		G.writeMSettingCategories()+
@@ -7679,7 +7679,7 @@ if (!document.getElementById(cssId))
 		
 		new G.Res({
 		name:'Light explosives',
-		desc:'Dangerous and useful. May be use to break wall or in mining. This second one is dangerous so be careful. Light explosives are these which has small power of explosion <b><span style="color: #e7ffff">but they are still dangerous for human.</span></b> There are some excepts.',
+		desc:'Dangerous and useful. May be use to break wall or in mining. This second one is dangerous so be careful. Light explosives are these which has small power of explosion <b>but these are still dangerous for human.</b> There are some excepts.',
 		icon:[19,15,'magixmod'],
 		tick:function(me,tick)
 		{
@@ -8654,7 +8654,7 @@ if (!document.getElementById(cssId))
 			G.getDict('druid').icon = [29,30,'magixmod']
 			G.getDict('wisdom rituals').cost = {'faith II':1},
 			G.getDict('discovery rituals').cost = {'faith II':2},
-			G.getDict('discovery rituals').desc = 'Improves <b>Exploration</b> units by: // @[wanderer]:5% @[scout]:3% @[globetrotter]:4%. <>Consumes 2 [faith II] every 20 days. Will stop if you run out.',
+			G.getDict('discovery rituals').desc = 'Improves <b>Exploration</b> units by: // @[wanderer]:5% @[scout]:3% @[globetrotter]:4%. <>Consumes 2 [faith II] every 200 days. Will stop if you run out.',
 			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod'],
 			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
 			G.getDict('flower rituals').cost = {'faith II':1},
@@ -11086,7 +11086,7 @@ if (!document.getElementById(cssId))
 	});
 		new G.Unit({
 		name:'Thief hunter',
-		desc:'Hunts for a Thieves and neutralizes them. Has a chance to become wounded while fighting a thief. //<span style "color=fuschia">Can neutralize a thief to make him fear of commiting next crime but has a small chance to make a [corpse] out of a bad guy</span>',
+		desc:'Hunts for a Thieves and neutralizes them. Has a chance to become wounded while fighting a thief. //Can neutralize a thief to make him fear of commiting next crime but has a small chance to make a [corpse] out of a bad guy',
 		icon:[4,13,'magixmod'],
 		cost:{},
 		use:{'worker':1,'metal weapons':1,'armor set':1},
@@ -11199,17 +11199,17 @@ if (!document.getElementById(cssId))
 	});
 		new G.Unit({
 		name:'Combat potions brewing stand',
-		desc:'There you can craft [combat potions] which are not so safe. Alchemists are creative people who name their creations with creative names.<span style "color:red">Warning! Some modes has a chance to accidents wounding a worker</span>',
+		desc:'There you can craft [combat potions] which are not so safe. Alchemists are creative people who name their creations with creative names.Warning! Some modes has a chance to accidents wounding a worker',
 		icon:[14,16,'magixmod'],
 		cost:{},
 		use:{'Alchemy zone':0.3},
 		upkeep:{},
 		modes:{
 			'off':G.MODE_OFF,
-			'bf':{name:'Black fog',icon:[11,16,'magixmod'],desc:'Crafts [Black fog]. <span style "color=red">Beware of accidents. Chance low, depends on policy choices.</span>',use:{'Alchemist':1,'stone tools':1}},
-			'ws':{name:'Windy spikes',icon:[9,16,'magixmod'],desc:'Crafts [Windy spikes]. <span style "color=red">Beware of accidents. Chance low, depends on policy choices.</span>',use:{'Alchemist':1,'stone tools':1}},
-			'btg':{name:'Back to grave',icon:[8,16,'magixmod'],desc:'Crafts [Back to grave]. <span style "color=green">No chance of accidents</span>',use:{'Alchemist':1,'stone tools':1}},
-			'pov':{name:'Point of venom',icon:[10,16,'magixmod'],desc:'Crafts [Point of venom]. <span style "color=green">No chance of accidents</span>',use:{'Alchemist':1,'stone tools':1}},
+			'bf':{name:'Black fog',icon:[11,16,'magixmod'],desc:'Crafts [Black fog]. <font color="red">Beware of accidents. Chance low, depends on policy choices.</font>',use:{'Alchemist':1,'stone tools':1}},
+			'ws':{name:'Windy spikes',icon:[9,16,'magixmod'],desc:'Crafts [Windy spikes]. <font color="red">Beware of accidents. Chance low, depends on policy choices.</font>',use:{'Alchemist':1,'stone tools':1}},
+			'btg':{name:'Back to grave',icon:[8,16,'magixmod'],desc:'Crafts [Back to grave]. <font color=green">No chance of accidents</font>',use:{'Alchemist':1,'stone tools':1}},
+			'pov':{name:'Point of venom',icon:[10,16,'magixmod'],desc:'Crafts [Point of venom]. <font color=green">No chance of accidents</font>',use:{'Alchemist':1,'stone tools':1}},
 		},
 		effects:[
 			{type:'convert',from:{'Dark concoction':1,'Combat potion pot':1,'water':0.4,'Dark essence':0.2,'Dark fire pit':0.5},into:{'Black fog':1},every:6,mode:'bf'},
@@ -11231,17 +11231,17 @@ if (!document.getElementById(cssId))
 	});
 		new G.Unit({
 		name:'Combat potions brewing stand (child stand)',
-		desc:'There you can craft [combat potions] which are not so safe. Alchemists are creative people who name their creations with creative names.<span style "color:red">Warning! Some modes has a chance to accidents wounding a worker. Chance is even more increased while children work</span>',
+		desc:'There you can craft [combat potions] which are not so safe. Alchemists are creative people who name their creations with creative names.<font color="red">Warning! Some modes has a chance to accidents wounding a worker. Chance is even more increased while children work</font>',
 		icon:[14,16,'magixmod'],
 		cost:{},
 		use:{'Alchemy zone':0.3},
 		upkeep:{},
 		modes:{
 			'off':G.MODE_OFF,
-			'bf':{name:'Black fog',icon:[11,16,'magixmod'],desc:'Crafts [Black fog]. <span style "color=red">Beware of accidents. Chance low, depends on policy choices.</span>',use:{'Child alchemist':1,'stone tools':1}},
-			'ws':{name:'Windy spikes',icon:[9,16,'magixmod'],desc:'Crafts [Windy spikes]. <span style "color=red">Beware of accidents. Chance low, depends on policy choices.</span>',use:{'Child alchemist':1,'stone tools':1}},
-			'btg':{name:'Back to grave',icon:[8,16,'magixmod'],desc:'Crafts [Back to grave]. <span style "color=green">No chance of accidents</span>',use:{'Child alchemist':1,'stone tools':1}},
-			'pov':{name:'Point of venom',icon:[10,16,'magixmod'],desc:'Crafts [Point of venom]. <span style "color=green">No chance of accidents</span>',use:{'Child alchemist':1,'stone tools':1}},
+			'bf':{name:'Black fog',icon:[11,16,'magixmod'],desc:'Crafts [Black fog]. <font color="red">Beware of accidents. Chance low, depends on policy choices.</font>',use:{'Child alchemist':1,'stone tools':1}},
+			'ws':{name:'Windy spikes',icon:[9,16,'magixmod'],desc:'Crafts [Windy spikes]. <font color="red">Beware of accidents. Chance low, depends on policy choices.</font>',use:{'Child alchemist':1,'stone tools':1}},
+			'btg':{name:'Back to grave',icon:[8,16,'magixmod'],desc:'Crafts [Back to grave]. <font color="green">No chance of accidents</font>',use:{'Child alchemist':1,'stone tools':1}},
+			'pov':{name:'Point of venom',icon:[10,16,'magixmod'],desc:'Crafts [Point of venom]. <font color="green">No chance of accidents</font>',use:{'Child alchemist':1,'stone tools':1}},
 		},
 		effects:[
 			{type:'convert',from:{'Dark concoction':1,'Combat potion pot':1,'water':0.4,'Dark essence':0.2,'Dark fire pit':0.5},into:{'Black fog':1},every:6,mode:'bf'},
@@ -11277,14 +11277,14 @@ if (!document.getElementById(cssId))
 	});
 	new G.Unit({
 		name:'explosive mine',
-		desc:'@extracts ores, [coal] and [stone] out of the ground using <span style="color: #FF002a"> Dynamite</span> . <span style="color: #FF002a">Has even bigger chances to collapse due to used in work material</span><br>The workers in [mine]s blasts deep into the earth to provide all kinds of minerals. @cannot be [prospecting,prospected] like normal [mine] .',
+		desc:'@extracts ores, [coal] and [stone] out of the ground using <font color="red"> Dynamite</font> . <font color="#FF002a">Has even bigger chances to collapse due to used in work material.</font><br>The workers in [mine]s blasts deep into the earth to provide all kinds of minerals. @cannot be [prospecting,prospected] like normal [mine] .',
 		icon:[16,15,'magixmod'],
 		cost:{'archaic building materials':400},
 		use:{'land':3},
 		upkeep:{'fire pit':0.1,'Light explosives':4,'Thread':8,'Sulfur':1},
 		modes:{
 			'off':G.MODE_OFF,
-			'on':{name:'Active',icon:[8,8],desc:'<span style="color: ##FFa000">Mining with explosives will be activated.</span>',use:{'worker':3,'stone tools':3}},
+			'on':{name:'Active',icon:[8,8],desc:'<font color="#FFa000">Mining with explosives will be activated.</font>',use:{'worker':3,'stone tools':3}},
 		},
 		effects:[
 			{type:'gather',context:'mine',amount:28,max:64,mode:'on'},
@@ -14388,7 +14388,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'First portal to new world',category:'tier1',
-		desc:'<span style="color: #00A012">Your wizards discovered way to make a portal and now they plan to open a new dimension. What would it mean? It means, more place to build, more housing, more everything!</span>',
+		desc:'Your wizards discovered way to make a portal and now they plan to open a new dimension. What would it mean? It means, more place to build, more housing, more everything!',
 		icon:[2,1,'magixmod'], 
 		cost:{'insight':1400,'culture':30,'Mana':2500,'influence':70},
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true,'valid portal frame':true},
@@ -14409,7 +14409,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'Essence storages',category:'tier1',
-		desc:'<span style="color: #FF00FF">Essence has to be stored somewhere. So do not wait and build!</span>',
+		desc:'Essence has to be stored somewhere. So do not wait and build! // Unlocks [Water essence storage,Essence storages].',
 		icon:[5,0,'magixmod'], 
 		cost:{'insight':100,'Mana':317,'faith':8,'Wand':200},
 		effects:[
@@ -14431,7 +14431,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'plain island building',category:'tier1',
-		desc:'<span style="color: ##FF0900">Unlocks sheet of buildings which can be only built in new dimension.</span>',
+		desc:'<font color="#FF0900">Unlocks sheet of buildings which can be only built in new dimension.</font>',
 		icon:[9,0,'magixmod'], 
 		cost:{'insight':4,'Plain Island emblem':1},
 		req:{'plain island portal':true},
@@ -15464,7 +15464,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'Treeplanting',
-		desc:'<span style="color: #aaffff">May begin the orchards existence. </span>',
+		desc:'<font color="#aaffff">May begin the orchards existence. </font>',
 		icon:[8,12,6,1],
 		cost:{'insight':250,'wisdom':15},
 		chance:100,
@@ -15473,7 +15473,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'Cooking',
-		desc:'<span style="color: #aaffff">Better food will make people even happier. Unlocks [Chef,cheves] who will do even better food out of other food ingredients. </span>',
+		desc:'<font color="#aaffff">Better food will make people even happier. Unlocks [Chef,cheves] who will do even better food out of other food ingredients. </font>',
 		icon:[8,12,22,10,'magixmod'],
 		cost:{'insight':250,'wisdom':15,'authority':50},
 		chance:300,
@@ -15482,7 +15482,7 @@ autobuy(G.year)
 	});
 		new G.Trait({
 		name:'culture of celebration',displayName:'<font color="yellow">Culture of celebration</font>',
-		desc:'Unlocks seasonal content. <b><span style="color: aqua">Seasonal content is a content available for some time like Christmas content.</span></b>',
+		desc:'Unlocks seasonal content. <b><font color="aqua">Seasonal content is a content available for some time like Christmas content.</font></b>',
 		icon:[18,15,'magixmod'],
 		cost:{'insight':10,'culture':40},
 		chance:100,
@@ -15601,7 +15601,7 @@ autobuy(G.year)
 	//Another knowledge
 		new G.Trait({
 		name:'Measuring system',
-		desc:'<span style="color: #aaffff">People noticed that they will need a measuring system to make constructing, planning easier... so they created their own system of measuring things.</span>.',
+		desc:'<font color="#aaffff">People noticed that they will need a measuring system to make constructing, planning easier... so they created their own system of measuring things.</font>.',
 		icon:[13,18,'magixmod'],
 		cost:{'wisdom':75},
 		chance:475,
@@ -16148,7 +16148,7 @@ new G.Tech({
         req:{'tribalism':false}
     });
 	new G.Tech({
-        name:'<font color="orange">Life has its theme</font>',category:'misc',
+       name:'life has its theme', displayName:'<font color="orange">Life has its theme</font>',category:'misc',
         desc:'From now you can change game theme :) ',
         icon:[4,12,'magixmod',29,23,'magixmod'],
         cost:{},
@@ -16157,7 +16157,7 @@ new G.Tech({
         req:{'tribalism':false}
     });new G.Trait({
         name:'<font color="orange">Smaller but efficient</font>',
-        desc:'<span style="color: #aaffff">[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .</span>',
+        desc:'<font color="#aaffff">[Brick house with a silo] , [house] , [hovel] , [hut] , [bamboo hut] , [branch shelter] and [mud shelter] uses 0.9 [land] instead of full 1 [land] .</font>',
         icon:[28,23,'magixmod'],
         cost:{},
 	effects:[
@@ -16293,7 +16293,7 @@ new G.Tech({
 	});
 		new G.Trait({
 		name:'Camp-cooking',category:'tier2',
-		desc:'<span style="color: #aaffff">Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able to cook some [cooked meat,meat] for you.</span>',
+		desc:'<font color="#aaffff">Increases upkeep (amount of [fire pit]s used) by 1 at [Fishers & hunters camp] but since now they will be able to cook some [cooked meat,meat] for you.</font>',
 		icon:[15,24,'magixmod'],
 		cost:{'insight II':100},
 		req:{'Hunters & fishers unification':true},
@@ -16355,7 +16355,7 @@ new G.Tech({
 	});
 		new G.Trait({
 		name:'Doctrine of the dark wormhole 2/5',
-		desc:'<span style="color: #aaffff">Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine.</span>',
+		desc:'<font color="#aaffff">Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine is about spells or rituals that will sucessfully make a wormhole working and stable. //Your [Wizard]s seem interested in making the first wormhole. But they wants finished doctrine. They don\'t want to do it by themselves so they will calmly wait for finished doctrine.</font>',
 		icon:[20,22,'magixmod',16,22,'magixmod'],
 		cost:{'insight II':105,'science':6,'faith II':4,'influence II':5,'culture II':15,'wisdom':100},
 		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 1/5':true},
@@ -16379,7 +16379,7 @@ new G.Tech({
 	});
 		new G.Trait({
 		name:'Doctrine of the dark wormhole 4/5',category:'tier2',
-		desc:'<span style="color: #aaffff">Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine describes ways of keeping the wormhole active. It is important thing too because if it will run out of power a tons of corpses will explode out of wormhole and people will be really, really mad. //Your [Wizard]s know exactly how big problem will occur if wormhole will run out of power.</span> ',
+		desc:'<font color="#aaffff">Provides: @10 [wisdom II] and 2 [inspiration II] . //This part of doctrine describes ways of keeping the wormhole active. It is important thing too because if it will run out of power a tons of corpses will explode out of wormhole and people will be really, really mad. //Your [Wizard]s know exactly how big problem will occur if wormhole will run out of power.</font> ',
 		icon:[18,22,'magixmod',15,22,'magixmod'],
 		cost:{'insight II':130,'science':7,'faith II':4,'influence II':5,'culture II':27},
 		req:{'Burial wormhole 1/2':true,'Doctrine of the dark wormhole 3/5':true},
@@ -16950,7 +16950,7 @@ new G.Tech({
 	});
 	new G.Trait({
         name:'<font color="orange">Smaller shacks</font>',
-        desc:'<span style="color: #aaffff">All [blacksmith workshop,Crafting units] and: [well]s , [Water filter]s (Caretaking filters uses 0.1 less land and Moderation filters will use 0.2 less land), [Wheat farm]s and [crematorium]s will use 15% less land.</span>',
+        desc:'<font color="#aaffff">All [blacksmith workshop,Crafting units] and: [well]s , [Water filter]s (Caretaking filters uses 0.1 less land and Moderation filters will use 0.2 less land), [Wheat farm]s and [crematorium]s will use 15% less land.</font>',
         icon:[32,20,'magixmod'],
         cost:{},
 	effects:[
@@ -18509,7 +18509,7 @@ new G.Tech({
 		desc:'Switch theme if you wish',
 		icon:[28,21,'magixmod'],
 		cost:{},
-		req:{'<font color="orange">Life has its theme</font>':true},
+		req:{'life has its theme':true},
 		modes:{
 			'default':{name:'Default',desc:'Switches theme to default',icon:[4,22,'magixmod']},
 			'green':{name:'Green',desc:'Switches to green theme.',icon:[3,22,'magixmod']},
