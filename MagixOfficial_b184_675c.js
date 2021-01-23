@@ -2725,7 +2725,7 @@ G.props['fastTicksOnResearch']=150;
 				if(G.achievByName['speedresearcher II'].won==0)G.middleText('- Completed <font color="#bbbbff">Speedresearcher II</font> shadow achievement - <br><hr width="300"><small>Incredible</small>. Also you gain one more <font color="#ffbbbb">Speedresearcher I</font> victory.','slow');
 			}
 		},600000);
-		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);}
+		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['a gift from the Mausoleum']);}
 		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['<font color="fuschia">Authority of the ancestor</font>']);}
 		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['<font color=" ##00C000">Artistic gray cells</font>']);}
 		if(G.achievByName['Insight-ly'].won>=1){G.gainTech(G.techByName['<font color="aqua">Genius feeling</font>']);}
@@ -3442,7 +3442,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				G.getDict('plain island portal').finalStepDesc='Perform a final step to activate this portal';
 				G.getDict('plain island portal').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000,'plain portal point':-1};
 		}
-		if(G.hasNot('<span style="color: ##FF0900">Paradise building</span>') && G.getRes('Paradise emblem').amount==0  && G.getRes('paradise portal point').amount>=2){
+		if(G.hasNot('paradise building') && G.getRes('Paradise emblem').amount==0  && G.getRes('paradise portal point').amount>=2){
 		
 			G.getUnitByName('paradise portal').mode=0;
 			G.getUnitByName('paradise portal').mode=0;
@@ -4724,6 +4724,26 @@ G.writeMSettingButton=function(obj)
 								}else{
 								G.lose('faith II',0.1,'rituals')
 								G.lose('influence II',0.05,'rituals')
+								}
+							}
+						}
+					}
+					var rituals=['discovery rituals'];
+					for (var i in rituals)
+					{
+						if (G.checkPolicy(rituals[i])=='on')
+						{
+							if (G.hasNot('Policy revaluation')){
+								if ((G.getRes('faith').amount<2)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith',2,'rituals')
+								}
+							}else{
+								if ((G.getRes('faith II').amount<2)){ 
+								G.setPolicyModeByName(rituals[i],'off');
+								}else{
+								G.lose('faith II',0.1,'rituals')
 								}
 							}
 						}
@@ -7125,7 +7145,7 @@ G.writeMSettingButton=function(obj)
 			audioPaEmblem.play();
 			}
 			}
-			if (G.has('<span style="color: ##FF0900">Paradise building</span>')){
+			if (G.has('paradise building')){
 			me.hidden=true
 			}
 		},	
@@ -8633,6 +8653,8 @@ if (!document.getElementById(cssId))
 			G.getDict('soothsayer').icon = [28,3,'magixmod'];
 			G.getDict('druid').icon = [29,30,'magixmod']
 			G.getDict('wisdom rituals').cost = {'faith II':1},
+			G.getDict('discovery rituals').cost = {'faith II':2},
+			G.getDict('discovery rituals').desc = 'Improves <b>Exploration</b> units by: // @[wanderer]:5% @[scout]:3% @[globetrotter]:4%. <>Consumes 2 [faith II] every 20 days. Will stop if you run out.',
 			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod'],
 			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
 			G.getDict('flower rituals').cost = {'faith II':1},
@@ -9505,7 +9527,7 @@ if (!document.getElementById(cssId))
 		name:'paradise portal point',
 		tick:function(me,tick){
 	//PARADISE PORTAL REWORK
-			if(me.amount>=1 && G.getUnitByName('paradise portal').mode==4 && G.hasNot('<span style="color: ##FF0900">Paradise building</span>')){
+			if(me.amount>=1 && G.getUnitByName('paradise portal').mode==4 && G.hasNot('paradise building')){
 				G.gain('paradise portal point',1);
 				G.getUnitByName('paradise portal').mode=0;
 				G.getDict('paradise portal').wideIcon=[7,4,'magixmod'];
@@ -9517,7 +9539,7 @@ if (!document.getElementById(cssId))
 				G.getDict('paradise portal').costPerStep={'Mana':184000,'Dark essence':18200,'Fire essence':18250,'Nature essence':18300,'Wind essence':18150,'Water essence':18500,'Lightning essence':18225};
 				G.getDict('paradise portal').finalStepDesc='Perform a final step to activate this portal';
 				G.getDict('paradise portal').finalStepCost={'Land of the Paradise':-26500,'Paradise emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':95000,'Fire essence':95500,'Nature essence':96000,'Wind essence':104500,'Water essence':88000,'Lightning essence':75250,'insight':1000};
-			}else if(me.amount>=2 && G.has('<span style="color: ##FF0900">Paradise building</span>')){
+			}else if(me.amount>=2 && G.has('paradise building')){
 					G.getUnitByName('paradise portal').mode=4;
 					G.getDict('paradise portal').wideIcon=[7,4,'magixmod'];
 					G.getDict('paradise portal').icon=[8,4,'magixmod'];
@@ -9757,10 +9779,10 @@ if (!document.getElementById(cssId))
 			'craftink':{name:'Craft ink',icon:[18,6,'magixmod'],desc:'Your artisan will craft [Ink]. Will use water and dark dyes.',req:{'Ink crafting':true}},
 			'craftnet':{name:'Craft fishing net',icon:[13,8,'magixmod'],desc:'Your artisan will craft [Fishing net]. Needs [Instructor] because net <b> must be strong. Will use [Dried leather] to make it stronger.',req:{'Fishing II':true},use:{'stone tools':2,'Instructor':1}},
 			'craftfirstaid':{name:'Craft first aid things',icon:[16,10,'magixmod'],desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',req:{'first aid':true}, use:{'stone tools':1}},
-			'dyes1':{name:'Make dyes from flowers(Set 1)',desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']},
-			'dyes2':{name:'Make dyes from flowers(Set 2)',desc:'Your artisan will convert these flowers into dyes: [Crown imperial],[Cyan rose],[Himalayan blue poopy],[Cockscomb],[Red tulip],[Green Zinnia],[cactus],[Lime rose]. @Bonus: While crafting dyes out of [cactus] you will get its spikes and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']}, 
-			'dyes3':{name:'Make dyes from flowers(Set 3)',desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail]. @Bonus: While crafting dyes out of [Sunflower] you will get its edible [Sunflower seeds] and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true},icon:[11,7,'magixmod']},
-			'dyes4':{name:'Make dyes from flowers(Set 4)',icon:[11,7,'magixmod'],desc:'Your artisan will convert these flowers into dyes: [Flax],[Blue orchid],[White tulip],[Lily of the Valley],[Gray rose],[Gray tulip],[Brown flower].',req:{'plant lore':true,'Manufacture units I':false,'<font color="yellow">A gift from the Mausoleum</font>':true}},
+			'dyes1':{name:'Make dyes from flowers(Set 1)',desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true},icon:[11,7,'magixmod']},
+			'dyes2':{name:'Make dyes from flowers(Set 2)',desc:'Your artisan will convert these flowers into dyes: [Crown imperial],[Cyan rose],[Himalayan blue poopy],[Cockscomb],[Red tulip],[Green Zinnia],[cactus],[Lime rose]. @Bonus: While crafting dyes out of [cactus] you will get its spikes and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true},icon:[11,7,'magixmod']}, 
+			'dyes3':{name:'Make dyes from flowers(Set 3)',desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail]. @Bonus: While crafting dyes out of [Sunflower] you will get its edible [Sunflower seeds] and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true},icon:[11,7,'magixmod']},
+			'dyes4':{name:'Make dyes from flowers(Set 4)',icon:[11,7,'magixmod'],desc:'Your artisan will convert these flowers into dyes: [Flax],[Blue orchid],[White tulip],[Lily of the Valley],[Gray rose],[Gray tulip],[Brown flower].',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true}},
 			'craftbook':{name:'Craft book',icon:[13,12,'magixmod'],desc:'Your artisan will craft [Empty book,books].',req:{'Bookcrafting':true},use:{'stone tools':1}},
 			'enchseeds':{name:'Enchant seeds',icon:[27,10,'magixmod'],desc:'Enchant [Beet seeds,seeds] using [Magic essences] and [Mana]. These seeds can be useful to start essence farms',req:{'Seed-enchanting':true},use:{'Wand':1}},
 		},
@@ -10803,6 +10825,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'explore',explored:0.1,unexplored:0},
 			{type:'mult',value:2.5,req:{'t10':true}},
+			{type:'mult',value:1.05,req:{'discovery rituals':'on'}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,true,'[X] [people].','wanderer got lost','wanderers got lost'),chance:1/100}
 		],
 		req:{'speech':true},
@@ -10819,6 +10842,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'explore',explored:0,unexplored:0.01},
 			{type:'mult',value:2.5,req:{'t10':true}},
+			{type:'mult',value:1.03,req:{'discovery rituals':'on'}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,true,'[X] [people].','scout got lost','scouts got lost'),chance:1/300}
 		],
 		req:{'scouting':true},
@@ -11334,7 +11358,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'Ambrosium leaf':40}},
 			{type:'mult',value:1.17,req:{'Crafting & farm rituals':'on','power of the faith':true}},
 		],
-		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Ambrosium treeplanting':true,'paradise building':true},
 		category:'paradiseunit',
 	});
 		new G.Unit({
@@ -11347,7 +11371,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'convert',from:{'Ambrosium leaf':75,'Cloudy water':5,'Essence of the Holiness':4,'Mana':8},into:{'Ambrosium shard':1},every:4},
 		],
-		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true,'Ambrosium crafting':true},
+		req:{'Ambrosium treeplanting':true,'paradise building':true,'Ambrosium crafting':true},
 		category:'paradiseunit',
 	});
 		new G.Unit({
@@ -11363,7 +11387,7 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'added material storage':6000}},
 			{type:'waste',chance:0.001/1000}
 		],
-		req:{'stockpiling':true,'construction':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'stockpiling':true,'construction':true,'paradise building':true},
 		category:'paradiseunit',
 	});
 		new G.Unit({
@@ -11402,7 +11426,7 @@ if (!document.getElementById(cssId))
 			{type:'provide',what:{'added food storage':1650,'added material storage':1650},req:{'well stored 2':true}},
 			{type:'waste',chance:0.001/1000}
 		],
-		req:{'stockpiling':true,'construction':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'stockpiling':true,'construction':true,'paradise building':true},
 		category:'paradiseunit',
 	});
 		new G.Unit({
@@ -11481,7 +11505,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:1.05,req:{'Better kiln construction':true,'<font color="maroon">Caretaking</font>':true}},
 		],
 		gizmos:true,
-		req:{'masonry':true,'<span style="color: ##FF0900">Paradise building</span>':true,'Paradise crafting':true},
+		req:{'masonry':true,'paradise building':true,'Paradise crafting':true},
 		category:'paradiseunit',
 	});
 		new G.Unit({
@@ -11602,7 +11626,7 @@ if (!document.getElementById(cssId))
 			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
-		req:{'stockpiling':true,'building':true,'Essence storages':true,'<span style="color: ##FF0900">Paradise building</span>':true,'7th essence':true},
+		req:{'stockpiling':true,'building':true,'Essence storages':true,'paradise building':true,'7th essence':true},
 		category:'storage',
 	});
 		new G.Unit({
@@ -11617,7 +11641,7 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.85,req:{'se09':'on'}},
 		],
 		category:'paradiseunit',
-		req:{'well-digging':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'well-digging':true,'paradise building':true},
 		limitPer:{'land':10},
 	});
 	
@@ -12196,7 +12220,7 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'Alchemy zone':25}},
 		],
-		req:{'Beginnings of alchemy':true,'Terrain conservacy':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Beginnings of alchemy':true,'Terrain conservacy':true,'paradise building':true},
 		category:'alchemy',
 	});
 	new G.Unit({
@@ -12391,7 +12415,7 @@ if (!document.getElementById(cssId))
 		desc:'@subclass of gatherer which instead of Food and water, will collect flowers which will have its specific use. The further you will research the more types of [Flowers] he will be able to collect.',
 		icon:[7,11,'magixmod'],
 		cost:{},
-		req:{'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'a gift from the mausoleum':true},
 		use:{'worker':1},
 		category:'production',
 		effects:[
@@ -12418,7 +12442,7 @@ if (!document.getElementById(cssId))
 			{type:'convert',from:{'insight':4,'adult':1},into:{'Instructor':1},every:375,mode:'thoughts'},
 			{type:'mult',value:1.01,req:{'se11':'on'}},
 		],
-		req:{'speech':true,'<font color="yellow">A gift from the Mausoleum</font>':true,'instruction':true},
+		req:{'speech':true,'a gift from the mausoleum':true,'instruction':true},
 		category:'discovery',
 		priority:5,
 	});
@@ -13593,6 +13617,7 @@ new G.Unit({
 		effects:[
 			{type:'explore',explored:0.06,unexplored:0.0065},
 			{type:'mult',value:2.5,req:{'t10':true}},
+			{type:'mult',value:1.04,req:{'discovery rituals':'on'}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,true,'[X] [people].','globetrotter got lost','globetrotters got lost'),chance:1/250}
 		],
 		req:{'globetrottering':true},
@@ -14312,7 +14337,7 @@ getCosts:function()
 		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
 		icon:[5,3,'magixmod'],
 		cost:{'insight':75,'faith':5},
-		req:{'well-digging':true,'<font color="yellow">A gift from the Mausoleum</font>':true,'spark\'o religion':true},
+		req:{'well-digging':true,'a gift from the mausoleum':true,'spark\'o religion':true},
 	});
 //New tech to allow wizards progressing
 		new G.Tech({
@@ -14327,7 +14352,7 @@ getCosts:function()
 		desc:'Can store food. Building made out of hard bricks. And in addition it will give a housing to your population',
 		icon:[5,2,'magixmod'],
 		cost:{'insight':45},
-		req:{'city planning':true,'cities':true,'construction':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'city planning':true,'cities':true,'construction':true,'a gift from the mausoleum':true},
 	});
 		new G.Tech({
 		name:'Well of Mana',category:'tier1',
@@ -14670,7 +14695,7 @@ getCosts:function()
 		desc:'@[mine]s can now dig in search of [nickel ore,Nickel] or focus to mine [Various stones] with 3x efficiency instead of any prospected mineral.',
 		icon:[11,12,'magixmod'],
 		cost:{'insight':270},
-		req:{'prospecting':true,'mining':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'prospecting':true,'mining':true,'a gift from the mausoleum':true},
 	});
 		new G.Tech({
 		name:'quarrying II',category:'upgrade',
@@ -14702,7 +14727,7 @@ getCosts:function()
 		desc:'@unlocks [Paper-crafting shack]. There you can craft: <font color="red">papyrus</font> out of [Sugar cane], @<font color="red">pergamin</font> out of [hide] , [leather] , and <font color="red">common paper</font> out of [Bamboo] with help of secret non-magic recipe.<>',
 		icon:[18,12,'magixmod'],
 		cost:{'insight':480,'wisdom':5},
-		req:{'city planning':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'city planning':true,'a gift from the mausoleum':true},
 		effects:[
 		],
 	});
@@ -14723,8 +14748,8 @@ getCosts:function()
 		req:{'Mana brewery':true,'More useful housing':true,'Wizardry':true,'Wizard wisdom':true,'Wizard complex':true,'Belief in portals':true,'First portal to new world':true,'The God\'s call':true,'monument-building II':true},
 	});
 		new G.Tech({
-		name:'<span style="color: ##FF0900">Paradise building</span>',category:'tier1',
-		desc:'<span style="color: ##FF0900">Unlocks sheet of buildings which can be only built in newly opened <b>Paradise</b>.</span>',
+		name:'paradise building',category:'tier1',
+		desc:'Unlocks sheet of buildings which can be only built in newly opened <b>Paradise</b>.',
 		icon:[19,13,'magixmod'], 
 		cost:{'insight':4,'Paradise emblem':1},
 		effects:[
@@ -14761,7 +14786,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'science':2}},
 		],
-		req:{'Second portal to new world':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Second portal to new world':true,'paradise building':true},
 	});
 		new G.Tech({
 		name:'7th complex tower',category:'tier1',
@@ -14813,49 +14838,49 @@ getCosts:function()
 		desc:'@Unlocks [Holy orchard] from which you can get [Ambrosium leaf,Ambrosium leaves] .',
 		icon:[21,11,'magixmod'], 
 		cost:{'insight':1015},
-		req:{'<span style="color: ##FF0900">Paradise building</span>':true,'Land acknowledge':true,'Treeplanting':true},
+		req:{'paradise building':true,'Land acknowledge':true,'Treeplanting':true},
 	});
 		new G.Tech({
 		name:'Ambrosium crafting',category:'tier1',
 		desc:'@Unlocks [Ambrosium shard shack] which can craft [Ambrosium shard]s with use of [Mana] , [Cloudy water] & [Ambrosium leaf,Ambrosium leaves] of course.',
 		icon:[13,14,'magixmod'], 
 		cost:{'insight':980},
-		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Ambrosium treeplanting':true,'paradise building':true},
 	});
 		new G.Tech({
 		name:'Paradise crafting',category:'tier1',
 		desc:'@Some buildings / crafting shacks from mortal world can be built in Paradise as a separated unit.',
 		icon:[0,14,'magixmod',21,15,'magixmod'], 
 		cost:{'insight':650},
-		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Ambrosium treeplanting':true,'paradise building':true},
 	});
 		new G.Tech({
 		name:'Explosive crafting & mining',category:'tier1',
 		desc:'Unlocks [explosive mine] <b>( not at all, needs [Intelligent blasting] )</b> . You think it is joke but you will quickly get into big mistake. @Unlocks [Pyro-Artisan] (artisan for explosives, which requires mostly [Sulfur] for explosion power). Mines will start gathering some [Sulfur] at <b>any</> of modes chosen. Both [mine] and [Mine of the plain island] can gather it.',
 		icon:[20,15,'magixmod'], 
 		cost:{'insight':850,'wisdom':10},
-		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Ambrosium treeplanting':true,'paradise building':true},
 	});
 		new G.Tech({
 		name:'Intelligent blasting',category:'tier1',
 		desc:'Unlocks [explosive mine] . WIth explosives supplies now miners will be able to... Blast underground. However these mines cannot be [prospecting,prospected] but they still may be turned on/off . These mines have bigger rate of accidents than other ones which do not use explosives to mine undeground.',
 		icon:[14,15,'magixmod'], 
 		cost:{'insight':850,'science':1,'wisdom':9},
-		req:{'Ambrosium treeplanting':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Ambrosium treeplanting':true,'paradise building':true},
 	});
 		new G.Tech({
 		name:'Bigger potion types pallet',category:'tier1',
 		desc:'<font color: #93db70">Unlocks more potion types. These are [combat potions] which has a needle and grip so they are throwable and may be use in defense battle, unlocks a [Jar for concoctions,concoctions] used to craft other potions. <b>Unlocks stand which allows to craft pots for these types of potion out of [Potion pot] .</b></font>',
 		icon:[21,16,'magixmod'], 
 		cost:{'insight':850,'science':1,'wisdom':9},
-		req:{'Alcohol brewing':true,'Medicaments brewing':true,'Beginnings of alchemy':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Alcohol brewing':true,'Medicaments brewing':true,'Beginnings of alchemy':true,'paradise building':true},
 	});
 		new G.Tech({
 		name:'Combat potion & concoction brewing',category:'tier1',
 		desc:'<font color: #93db70">Allows to craft basic 4 combat potions and 2 concoctions. Uses crafted by [ingredient crafting stand] workers ingredients. <b>Unlocks stands which may brew these potions but there is chance that accident will occur during work.</b></font>',
 		icon:[20,16,'magixmod'], 
 		cost:{'insight':850,'science':1,'wisdom':9},
-		req:{'Alcohol brewing':true,'Medicaments brewing':true,'Beginnings of alchemy':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Alcohol brewing':true,'Medicaments brewing':true,'Beginnings of alchemy':true,'paradise building':true},
 	});
 		new G.Tech({
 		name:'Dark wonder',category:'tier1',
@@ -14954,7 +14979,7 @@ autobuy(G.year)
 		desc:'Obtaining this tech will make you fulfill one of two requirements to start cleaning [muddy water] and making [water] from it. <>Another one is obtaining [<font color="maroon">Caretaking</font>] or [<font color="maroon">Moderation</font>] .',
 		icon:[25,16,'magixmod'], 
 		cost:{'insight':30},
-		req:{'bows':true,'<font color="yellow">A gift from the Mausoleum</font>':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
+		req:{'bows':true,'a gift from the mausoleum':true},//IK it seems strange but i wanted to make it equal to other tech at tech tier tree
 	});
 		new G.Tech({
 		name:'Filtering with better quality',category:'upgrade',
@@ -15444,7 +15469,7 @@ autobuy(G.year)
 		cost:{'insight':250,'wisdom':15},
 		chance:100,
 		category:'knowledge',
-		req:{'Second portal to new world':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Second portal to new world':true,'paradise building':true},
 	});
 		new G.Trait({
 		name:'Cooking',
@@ -15453,7 +15478,7 @@ autobuy(G.year)
 		cost:{'insight':250,'wisdom':15,'authority':50},
 		chance:300,
 		category:'knowledge',
-		req:{'Second portal to new world':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'Second portal to new world':true,'paradise building':true},
 	});
 		new G.Trait({
 		name:'culture of celebration',displayName:'<font color="yellow">Culture of celebration</font>',
@@ -15906,7 +15931,7 @@ new G.Tech({
         req:{'tribalism':false}
     });
 	new G.Tech({
-        name:'<font color="yellow">A gift from the Mausoleum</font>',category:'misc',
+        name:'a gift from the mausoleum',displayname:'<font color="yellow">A gift from the Mausoleum</font>',category:'misc',
         desc:'The gift is very uncommon. It may make people life inverted by 180 degrees. But it will be more interesting',
         icon:[4,12,'magixmod',1,14],
         cost:{},
@@ -16018,14 +16043,14 @@ new G.Tech({
 		desc:'This technology doesn\'t unlock new housing for Paradise yet. But in the future you will obtain similar technology that finally will unlock for you new neat housing. <>Paradise housing is limited like: 1 Paradise hovel per 100 of something. God doesn\'t want his homeland to be filled with houses and look like it does at your mortal world.',
 		icon:[0,21,'magixmod'],
 		cost:{'insight':1000,'culture':390,'inspiration':16,'faith':259},
-		req:{'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'paradise building':true},
 	});
 		new G.Tech({
 		name:'Paradise housing',category:'tier2',
 		desc:'Unlocks housing which is unique for the Paradise. Each of the types is limited at some way. Paradise is not like Plain Island a spot where you can build as much housing as you wish because Paradise isn\'t and never will be totally yours. <>Unlocks: [Treehouse] , [Cozy lodge] , [hardened house] , [Cozy paradise hut] . Paradise is lush world so your people do not need to construct chimneys for their houses at all.',
 		icon:[1,21,'magixmod'],
 		cost:{'insight II':70,'insight':55},
-		req:{'<span style="color: ##FF0900">Paradise building</span>':true,'Paradise housing conceptions':true,'cozy building':true},
+		req:{'paradise building':true,'Paradise housing conceptions':true,'cozy building':true},
 	});
 		new G.Tech({
 		name:'Science blessing',category:'tier2',
@@ -16724,7 +16749,7 @@ new G.Tech({
 		name:'instruction',category:'tier1',
 		desc:'Unlocks [Thoughts sharer]. //The [Thoughts sharer] spends his life figuring out a way to guide others. People which hear their thoughts will become [Instructor]s at some time.',
 		icon:[30,27,'magixmod'],
-		req:{'language':true,'<font color="yellow">A gift from the Mausoleum</font>':true,'alphabet 1/3':true},
+		req:{'language':true,'a gift from the mausoleum':true,'alphabet 1/3':true},
 		cost:{'insight':30},
 		effects:[	
 		]
@@ -16838,7 +16863,7 @@ new G.Tech({
 		name:'Life-guiding',category:'tier1',
 		desc:'People wonder about their lives. Provides 50 [inspiration] for free. //Conclusions and guides related to life also spread making others being less insecure and help finding answers to questions like: What to do? What to choose? How should I live?',
 		icon:[18,27,'magixmod'],
-		req:{'philosophy':true,'<span style="color: ##FF0900">Paradise building</span>':true,'God\'s trait #3 Science^2':true},
+		req:{'philosophy':true,'paradise building':true,'God\'s trait #3 Science^2':true},
 		cost:{'insight':2220,'culture':500},
 		effects:[
 			{type:'provide res',what:{'inspiration':50}},
@@ -18125,7 +18150,7 @@ new G.Tech({
 		desc:'@Unlocks [globetrotter]. // [globetrotter] not only wants to explore and discover new landscapes , terrains but also wants to deepen his knowledge a little about lands he just saw.',
 		icon:[35,1,'magixmod'],
 		cost:{'insight':30,'culture':10},
-		req:{'scouting':true,'building':true},
+		req:{'scouting':true,'building':true,'a gift from the mausoleum':true},
 	});
 	/*=====================================================================================
 	POLICIES
@@ -18380,7 +18405,7 @@ new G.Tech({
 		icon:[8,12,11,8,'magixmod'],
 		cost:{'faith':1,'influence':3},
 		startMode:'off',
-		req:{'ritualism':true,'<font color="yellow">A gift from the Mausoleum</font>':true},
+		req:{'ritualism':true,'a gift from the mausoleum':true},
 		category:'faith',
 	});
 		new G.Policy({
@@ -18449,7 +18474,7 @@ new G.Tech({
 		icon:[6,12,11,14,'magixmod'],
 		cost:{'influence':1},
 		startMode:'on',
-		req:{'rules of food':true,'<span style="color: ##FF0900">Paradise building</span>':true},
+		req:{'rules of food':true,'paradise building':true},
 		category:'food',
 	});
 		new G.Policy({ //Required to make new mausoleum system working as it is supposed to.
@@ -18791,7 +18816,7 @@ new G.Tech({
                 '<br>Trial rules<br>'+
                 'I am a personification of Inspiration. Ya met me '+G.getName('ruler')+'! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather <font color="green">culture</font> , <font color="green">influence</font> for ya. (their amounts can over cap but Tu-ria won\'t bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial <font color="green">water rations</font> cannot be set to plentiful(food one can be still be set)! In addition you will be forced to keep cultural stability. Doing anything related to researching, discovering causes stability to go low while doing cultural things will bring it up.(also few researches will increase up the stability) Don\'t get too low or too much(it will make trial attempt failed). Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. <br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('beyond').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t3']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.gainTech(G.techByName['<font color="yellow">A gift from the Mausoleum</font>']);G.techN=0;G.traitN=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Cultural','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('beyond').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t3']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.gainTech(G.techByName['a gift from the mausoleum']);G.techN=0;G.traitN=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Cultural','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -18910,6 +18935,15 @@ new G.Tech({
             '</div></div>'
 })}}
 				],
+	});
+	new G.Policy({
+		name:'discovery rituals',
+		desc:'Improves <b>Exploration</b> units by: // @[wanderer]:5% @[scout]:3% @[globetrotter]:4%. <>Consumes 2 [faith] every 20 days. Will stop if you run out.',
+		icon:[35,0,'magixmod'],
+		cost:{'faith':4},
+		startMode:'off',
+		req:{'ritualism':true,'globetrottering':true},
+		category:'faith',
 	});
 	/*=====================================================================================
 	LANDS
