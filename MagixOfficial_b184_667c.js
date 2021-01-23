@@ -2578,11 +2578,12 @@ G.update.tech = () => {
 	G.createDebugMenu=function()
 	{
 		var str=''+
-		'<div style="float:left;background-color:green;"><center>'+
+		'<div style="float:left;"><center>'+
 		G.button({text:'New game',tooltip:'Instantly start a new game.',onclick:function(){G.T=0;G.NewGameWithSameMods();}})+
 		G.button({text:'Load',tooltip:'Reload the save.',onclick:function(){G.T=0;G.Load();}})+
+		    '<br />'+
 		G.button({text:'Clear',tooltip:'Wipe save data.',onclick:function(){G.Clear();}})+
-		'<br>'+
+		'<br />'+
 		G.button({text:'ALMIGHTY',tooltip:'Unlock every tech, trait and policy.',onclick:function(){
 			for (var i in G.tech)
 			{
