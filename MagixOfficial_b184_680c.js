@@ -2569,8 +2569,8 @@ G.update.tech = () => {
   techResearched.lIcon = l(`tech-icon-${techResearched.id}`);
   techResearched.lOver = l(`tech-over-${techResearched.id}`);
   // Add tooltip manually
-  G.addTooltip(techResearched.l, () => G.getKnowTooltip(techResearched.tech), { offY: -8 });
-
+  G.addTooltip(techResearched.l, () => G.getKnowTooltip(techResearched), { offY: -8 });
+	
   G.draw.tech();
  });
 };
@@ -14526,7 +14526,7 @@ getCosts:function()
 	});
 		new G.Tech({
 		name:'first aid',category:'tier1',
-		desc:'@[sick],[wounded] will have bigger chance to get recovered. Obtaining this research will unlock better healers for you. <b>This research generates [health] by [healer] at low rate but it does.<>',
+		desc:'@[sick],[wounded] will have bigger chance to get recovered. Obtaining this research will unlock better healers for you. <b>This research generates [health] by [healer] at low rate but it does.</b><>',
 		icon:[15,9,'magixmod'],
 		cost:{'insight':680,'wisdom':60},
 		effects:[
