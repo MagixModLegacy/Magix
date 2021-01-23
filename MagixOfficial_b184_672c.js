@@ -2026,7 +2026,7 @@ G.setPolicyMode=function(me,mode)
 						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascension and here is example of that.</div>';
 						'</div>';
 					}
-					else if(me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #E0CE00">Plain island portal</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror' && me.name!=='mausoleum')
+					else if(me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='plain island portal' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror' && me.name!=='mausoleum')
 					{
 						str+='<div class="fancyText par">Portal activated</div>';
 						str+='<div class="fancyText par">Now you can unlock new things, discover and most important settle more people.</div>';
@@ -2423,7 +2423,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='wonderful fortress of christmas' && me.name!=='<span style="color: #E0CE00">Plain island portal</span>' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='<span style="color: #E0CE00">Plain island portal</span>' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='scientific university' && me.name!=='<span style="color: #E0CE00">Portal to the Paradise</span>' && me.name!=='wonderful fortress of christmas' && me.name!=='plainisland portal' && me.name!=='<span style="color: #FF0000">Underworld</span>' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='plain island portal' ||  me.name=='<span style="color: #E0CE00">Portal to the Paradise</span>' || me.name=='<span style="color: #FF0000">Underworld</span>' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -3430,18 +3430,17 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		}
 		if(G.hasNot('<span style="color: ##FF0900">Plain island building</span>') && G.getRes('Plain Island emblem').amount==0 && G.getRes('plain portal point').amount>=2){
 			
-			G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
-			G.getRes('plain portal point').amount=1;	G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
-				//G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'insight':250};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').steps=75;
-			G.getDict('<span style="color: #E0CE00">Plain island portal</span>').use={'land':-10};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 2 of 2 //Note: Portals work a lil bit differently: refreshing page during this stage will bring completion level back to 0%',
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').costPerStep={'Mana':14000,'Dark essence':5200,'Fire essence':5250,'Nature essence':5300,'Wind essence':5150,'Water essence':5500,'Lightning essence':5225};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepDesc='Perform a final step to activate this portal';
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000,'plain portal point':-1};
+			G.getUnitByName('plain island portal').mode=0;
+			G.getRes('plain portal point').amount=1;	G.getUnitByName('plain island portal').mode=0;
+				G.getDict('plain island portal').wideIcon=[7,3,'magixmod'];
+				G.getDict('plain island portal').icon=[8,3,'magixmod'];
+				G.getDict('plain island portal').steps=75;
+			G.getDict('plain island portal').use={'land':-10};
+				G.getDict('plain island portal').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 2 of 2 //Note: Portals work a lil bit differently: refreshing page during this stage will bring completion level back to 0%',
+				G.getDict('plain island portal').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
+				G.getDict('plain island portal').costPerStep={'Mana':14000,'Dark essence':5200,'Fire essence':5250,'Nature essence':5300,'Wind essence':5150,'Water essence':5500,'Lightning essence':5225};
+				G.getDict('plain island portal').finalStepDesc='Perform a final step to activate this portal';
+				G.getDict('plain island portal').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000,'plain portal point':-1};
 		}
 		if(G.hasNot('<span style="color: ##FF0900">Paradise building</span>') && G.getRes('Paradise emblem').amount==0  && G.getRes('paradise portal point').amount>=2){
 		
@@ -5131,7 +5130,7 @@ G.writeMSettingButton=function(obj)
 			if(G.has('respect for the corpse')){
 				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
-			if(G.has('<span style="color: red">Revenants</span>') && G.getRes('Dark essence').amount>1000){
+			if(G.has('revenants') && G.getRes('Dark essence').amount>1000){
 				G.lose('corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
 				G.lose('Dark essence',0.15,'revenge of corpses');
 				G.gain('wild corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
@@ -7800,12 +7799,12 @@ if (!document.getElementById(cssId))
 		let madeWarnCorpseMesg = false
 		new G.Res({
 		name:'wild corpse',//InDevelopment
-		desc:'Effect of [<span style="color: red">Revenants</span>] trait. Dangerous for common, alive people will kill them, so think about hiring soldiers. ',
+		desc:'Effect of [revenants] trait. Dangerous for common, alive people will kill them, so think about hiring soldiers. ',
 		icon:[19,11,'magixmod'],
 		tick:function(me,tick)
 		{
 			if (me.amount>=300 && !madeWarnCorpseMesg){ 
-			G.Message({type:'bad',text:'<b>Beware of Wild corpses!.</b> Since you obtained[<span style="color: red">Revenants</span>] as you noticed the Wild Corpses started to appear. They cause your [Dark essence] to leak and even worse they will kill your people. Slay them at any way you can.',icon:[24,0,'magixmod']});
+			G.Message({type:'bad',text:'<b>Beware of Wild corpses!.</b> Since you obtained <font color="Red"><b>Revenants</b></font> as you noticed the Wild Corpses started to appear. They cause your [Dark essence] to leak and even worse they will kill your people. Slay them at any way you can.',icon:[24,0,'magixmod']});
 			madeWarnCorpseMesg = true
 			}
 			const corpses = G.getDict('wild corpse')
@@ -9052,7 +9051,7 @@ if (!document.getElementById(cssId))
 					G.getDict('scientific university').costPerStep={'Magic essences':30000,'basic building materials':2450,'precious metal ingot':800,'insight II':600,'science':200,'gems':1500,'wisdom II':-0.5,'education':-0.3,'Mana':4e5,'university point':-1};
 			}
 			if(G.has('<span style="color: ##FF0900">Plain island building</span>')){
-					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
+					G.getDict('plain island portal').wideIcon=[7,3,'magixmod'];
 				
 		}
 			if(G.has('no knapping anymore')){
@@ -9482,24 +9481,23 @@ if (!document.getElementById(cssId))
 	new G.Res({
 		name:'plain portal point',
 		tick:function(me,tick){
-	if(me.amount>=1 && G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode==4 && me.amount<2 && G.hasNot('<span style="color: ##FF0900">Plain island building</span>')){
+	if(me.amount>=1 && G.getUnitByName('plain island portal').mode==4 && me.amount<2 && G.hasNot('<span style="color: ##FF0900">Plain island building</span>')){
 				G.gain('plain portal point',1);
-				G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=0;
-				//G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'insight':250};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').steps=75;
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 2 of 2 //Note: Portals work a lil bit differently: refreshing page during this stage will bring completion level back to 0%',
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').use={'land':-10};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').costPerStep={'Mana':14000,'Dark essence':5200,'Fire essence':5250,'Nature essence':5300,'Wind essence':5150,'Water essence':5500,'Lightning essence':5225};
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepDesc='Perform a final step to activate this portal';
-				G.getDict('<span style="color: #E0CE00">Plain island portal</span>').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000,'plain portal point':-1};
+				G.getUnitByName('plain island portal').mode=0;
+				G.getDict('plain island portal').wideIcon=[7,3,'magixmod'];
+				G.getDict('plain island portal').icon=[8,3,'magixmod'];
+				G.getDict('plain island portal').steps=75;
+				G.getDict('plain island portal').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 2 of 2 //Note: Portals work a lil bit differently: refreshing page during this stage will bring completion level back to 0%',
+				G.getDict('plain island portal').cost={'Mana':4000,'insight':150,'faith':50,'culture':40};
+				G.getDict('plain island portal').use={'land':-10};
+				G.getDict('plain island portal').costPerStep={'Mana':14000,'Dark essence':5200,'Fire essence':5250,'Nature essence':5300,'Wind essence':5150,'Water essence':5500,'Lightning essence':5225};
+				G.getDict('plain island portal').finalStepDesc='Perform a final step to activate this portal';
+				G.getDict('plain island portal').finalStepCost={'Land of the Plain Island':-28000,'Plain Island emblem':-1,/*Bonus provided by portal activation*/'Mana':40000,'Dark essence':5000,'Fire essence':5500,'Nature essence':6000,'Wind essence':4500,'Water essence':8000,'Lightning essence':5250,'insight':1000,'plain portal point':-1};
 			}else if(me.amount>=2 && G.has('<span style="color: ##FF0900">Plain island building</span>')){
-					G.getUnitByName('<span style="color: #E0CE00">Plain island portal</span>').mode=4;
-					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').wideIcon=[7,3,'magixmod'];
-					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').icon=[8,3,'magixmod'];
-					G.getDict('<span style="color: #E0CE00">Plain island portal</span>').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Completed';
+					G.getUnitByName('plain island portal').mode=4;
+					G.getDict('plain island portal').wideIcon=[7,3,'magixmod'];
+					G.getDict('plain island portal').icon=[8,3,'magixmod'];
+					G.getDict('plain island portal').desc='@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Completed';
 			}
 		},
 	  });
@@ -12801,7 +12799,7 @@ if (!document.getElementById(cssId))
 	);
 
 		new G.Unit({
-    		name:'<span style="color: #E0CE00">Plain island portal</span>',
+    		name:'plain island portal',displayName:'<font color="yellow">Plain island portal</font>',
     		desc:'@opens a portal to a huge <b>Plain Island</b>. A creation made of ideas of wizards and dreams of population.//A Dream comes real. You will grant +28000 [Land of the Plain Island] upon activation of portal. Stage 1 of 2',
     		wideIcon:[28,29,'magixmod'],
 			icon:[29,29,'magixmod'],
@@ -12863,7 +12861,7 @@ if (!document.getElementById(cssId))
 //Revenants trait wonder. People want to send these corpses right into its coils
 		new G.Unit({
 		name:'The Skull of Wild Death',
-		desc:'@leads to the <b>Deadly escape</b><>A big skull shaped construction with fire roaring inside dedicated to bloodthirsty [<span style="color: red">Revenants</span>] assaulting your world.//A realm around it is a burial for them. Home of [wild corpse] . There they can burn and in the terrain around buried. Per each step you will perform building it you will grant big amount of [burial spot] . <i>Let these corpses go into their rightenous home</i>',
+		desc:'@leads to the <b>Deadly escape</b><>A big skull shaped construction with fire roaring inside dedicated to bloodthirsty [revenants] assaulting your world.//A realm around it is a burial for them. Home of [wild corpse] . There they can burn and in the terrain around buried. Per each step you will perform building it you will grant big amount of [burial spot] . <i>Let these corpses go into their rightenous home</i>',
 		wonder:'Deadly, revenantic',
 		icon:[1,16,'magixmod'],
 		wideIcon:[0,16,'magixmod'],
@@ -12875,7 +12873,7 @@ if (!document.getElementById(cssId))
 		finalStepDesc:'To complete this wonder in hope of wild corpses leaving you away for some time you will need pay some tools in order',
 		use:{'land':100},
 		require:{'worker':40,'stone tools':10},
-		req:{'monument-building II':true,'<span style="color: red">Revenants</span>':true,'Dark wonder':true},
+		req:{'monument-building II':true,'revenants':true,'Dark wonder':true},
 		category:'wonder',
 	});
 //WonderFULL
@@ -13447,7 +13445,7 @@ new G.Unit({
 		icon:[24,30,'magixmod'],
 		cost:{},
 		use:{'worker':1,'metal weapons':1,'armor set':1},
-		req:{'Battling thieves':true,'coordination':true,'<span style="color: red">Revenants</span>':true},
+		req:{'Battling thieves':true,'coordination':true,'revenants':true},
 		category:'guard',
 		priority:5,
 		effects:[
@@ -14411,14 +14409,14 @@ getCosts:function()
 		desc:'<span style="color: ##FF0900">Unlocks sheet of buildings which can be only built in new dimension.</span>',
 		icon:[9,0,'magixmod'], 
 		cost:{'insight':4,'Plain Island emblem':1},
-		req:{'<span style="color: #E0CE00">Plain island portal</span>':true},
+		req:{'plain island portal':true},
 	});
 		new G.Tech({
 		name:'construction II',category:'tier1',
 		desc:'Allows your people to build [Blockhouse] out of [advanced building materials]. Provides much more housing but it is limited to prevent global warmings etc.',
 		icon:[8,1,'magixmod'], 
 		cost:{'insight':65},
-		req:{'<span style="color: #E0CE00">Plain island portal</span>':true,'<span style="color: ##FF0900">Plain island building</span>':true},
+		req:{'plain island portal':true,'<span style="color: ##FF0900">Plain island building</span>':true},
 	});
 		new G.Tech({
 		name:'Burial in new world',category:'tier1',
@@ -14428,7 +14426,7 @@ getCosts:function()
 		effects:[
 			{type:'hide res',what:['Plain Island emblem']},
 		],
-		req:{'<span style="color: #E0CE00">Plain island portal</span>':true,'<span style="color: ##FF0900">Plain island building</span>':true},
+		req:{'plain island portal':true,'<span style="color: ##FF0900">Plain island building</span>':true},
 	});
 		new G.Tech({
 		name:'Sewing II',category:'upgrade',
@@ -14864,14 +14862,14 @@ getCosts:function()
 		desc:'<font color:#000000>Unlocks dark wonder...</font>',
 		icon:[22,3,'magixmod'], 
 		cost:{'insight':770,'science':1,'wisdom':9},
-		req:{'<span style="color: red">Revenants</span>':true},
+		req:{'revenants':true},
 	});
 		new G.Tech({
 		name:'Hope of revenant abandoning',category:'upgrade',
 		desc:'<font color:#000000>Happiness harm from [wild corpse] and corpses is HALVED.</font>',
 		icon:[22,5,'magixmod'], 
 		cost:{'insight':955,'science':1,'wisdom':9,'Dark skull construction point':250},
-		req:{'<span style="color: red">Revenants</span>':true,'Dark wonder':true},
+		req:{'revenants':true,'Dark wonder':true},
 	});
 		new G.Tech({
 		name:'Better papercrafting recipe',category:'upgrade',
@@ -15399,8 +15397,8 @@ autobuy(G.year)
 		req:{'healing':true,'Will to know more':true},
 	});
 		new G.Trait({
-		name:'<span style="color: red">Revenants</span>',//InDevelopment
-		desc:'<span style="color: #E13700">The dark powers got mad that your people are using [corpse,corpses] as a toy or ritual thing. Since now some of them will come back to live but they will behave like zombie. Do not worry they won\'t replicate. You will need to defend your people against them. Each one will harm your [happiness] and kill your [population,people]. ',
+		name:'revenants',
+		desc:'The dark powers got mad that your people are using [corpse,corpses] as a toy or ritual thing. Since now some of them will come back to live but they will behave like zombie. Do not worry they won\'t replicate. You will need to defend your people against them. Each one will harm your [happiness] and kill your [population,people]. ',
 		icon:[19,0,'magixmod'],
 		cost:{'insight':50,'corpse':500},
 		chance:500,
