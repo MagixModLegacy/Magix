@@ -8645,59 +8645,17 @@ if (!document.getElementById(cssId))
 			var toSpoil=me.amount*0.0002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
-			if(G.has('Factories I')){
-					G.getDict('potter').icon = [28,2,'magixmod',20,2],
-					G.getDict('potter').gizmos = false,
-					G.getDict('potter').upkeep ={},
-					G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia">Due to obtaining [Factories I] this unit becomes useless and won\'t produce anything, anymore.</font></b>',
-					G.getDict('Drying rack').icon = [28,2,'magixmod',13,3,'magixmod'],
-					G.getDict('Drying rack').desc = '@This small rack may dry [leather] making it become [Dried leather]. [Dried leather] is used to make even harder clothing, which decays much slower. </br><b><font color="fuschia"> Due to obtaining [Factories I] this unit becomes useless and won\'t produce anything, anymore.</font></b>'
-			}
-			if(G.has('Manufacture units I')){
-			G.getDict('potter').icon = [28,2,'magixmod',20,2],
-			G.getDict('potter').gizmos = false,
-			G.getDict('potter').upkeep ={},
-			G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia"> Due to obtaining [Manufacture units I] this unit becomes useless and won\'t produce anything, anymore.</font></b>'
-			}
-			if(G.has('ritualism II')){
-			G.getDict('soothsayer').icon = [28,3,'magixmod'];
-			G.getDict('druid').icon = [29,30,'magixmod']
-			G.getDict('wisdom rituals').cost = {'faith II':1},
-			G.getDict('discovery rituals').cost = {'faith II':2},
-			G.getDict('discovery rituals').desc = 'Improves <b>Exploration</b> units by: // @[wanderer]:5% @[scout]:3% @[globetrotter]:4%. <>Consumes 2 [faith II] every 200 days. Will stop if you run out.',
-			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod'],
-			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
-			G.getDict('flower rituals').cost = {'faith II':1},
-			G.getDict('flower rituals').desc = 'People get sick slower and recover faster. Consumes 1 [faith II] every 20 days; will stop if you run out.'
-			}
 			if(G.has('Eotm') && G.hasNot('ritualism II')){
 			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod']
-			G.getDict('wisdom rituals').cost = {'land':100000}, //THE DISABLER
+			G.getDict('wisdom rituals').cost = {'land':1000000}, //THE DISABLER
 			G.getDict('wisdom rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [wisdom rituals,Wisdom ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
-			G.getDict('flower rituals').cost = {'land':100000}, //THE DISABLER
+			G.getDict('flower rituals').cost = {'land':1000000}, //THE DISABLER
 			G.getDict('flower rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [flower rituals,Flower ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>People get sick slower and recover faster. Consumes 1 [faith II] every 20 days; will stop if you run out.'
 			}
 			//While evolution occurs flower and wisdom rituals disable automatically
 			if (G.has('Eotm') && G.hasNot('ritualism II')){
 				G.setPolicyModeByName('wisdom rituals','off');
 				G.setPolicyModeByName('flower rituals','off');
-			}
-			if(G.has('guilds unite')){
-			G.getDict('lodge').icon = [29,9,'magixmod']
-			G.getDict('guild quarters').icon = [28,15,'magixmod',25,2]
-			}
-			if(G.has('focused scouting')){
-			G.getDict('wanderer').icon = [11,21,'magixmod']
-			G.getDict('scout').icon = [12,21,'magixmod']
-			}
-			if(G.has('bigger kilns')){
-			G.getDict('kiln').icon = [28,19,'magixmod']
-			G.getDict('Kiln').icon = [20,21,'magixmod']
-			G.getDict('kiln').upkeep = {'log':1}
-			G.getDict('Kiln').upkeep = {'log':1}
-			}
-			if(G.has('symbolism II')){
-			G.getDict('storyteller').icon = [29,7,'magixmod']
 			}
 			if(G.has('Music instruments')){
 			G.getDict('storyteller').limitPer = {'population':400}
@@ -8770,72 +8728,6 @@ if (!document.getElementById(cssId))
 			G.getDict('chieftain').icon = [22,23,'magixmod']
 			G.getDict('Mediator').limitPer = {'population':4000}
 			G.getDict('clan leader').icon = [25,23,'magixmod']
-			}
-			if(G.has('cozy building') && G.hasNot('cozier building')){
-			G.getDict('hut').icon = [28,12,'magixmod']
-			G.getDict('hovel').icon = [28,11,'magixmod']
-			G.getDict('mud shelter').icon = [28,13,'magixmod']
-			G.getDict('house').icon = [28,14,'magixmod']
-			}
-			if(G.has('cozier building')){
-			G.getDict('hut').icon = [29,10,'magixmod']
-			G.getDict('hovel').icon = [29,11,'magixmod']
-			G.getDict('mud shelter').icon = [29,12,'magixmod']
-			G.getDict('house').icon = [29,14,'magixmod']
-			G.getDict('branch shelter').icon = [29,13,'magixmod']
-			}
-			if(G.has('Policy revaluation')){
-				G.getDict('food rations').cost = {'influence II':3}
-				G.getDict('water rations').cost = {'influence II':3}
-				G.getDict('eat spoiled food').cost = {'influence II':2}
-				G.getDict('drink muddy water').cost = {'influence II':2}
-				G.getDict('insects as food').cost = {'influence II':2}
-				G.getDict('eat raw meat and fish').cost = {'influence II':2}
-				G.getDict('drink spoiled juice').cost = {'influence II':4}
-				G.getDict('child workforce').cost = {'influence II':3}
-				G.getDict('drink cloudy water').cost = {'influence II':3}
-				G.getDict('elder workforce').cost = {'influence II':3}
-				G.getDict('Hovel of colours production rates').cost = {'influence II':5}
-				G.getDict('Hut of potters production rates').cost = {'influence II':5}
-				G.getDict('Leather factory production rates').cost = {'influence II':5}
-				G.getDict('Factory of pots production rates').cost = {'influence II':5}
-				G.getDict('population control').cost = {'influence II':5}
-				G.getDict('fertility rituals').cost = {'faith II':1}
-				G.getDict('fertility rituals').desc = 'Improves birth rate by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
-				G.getDict('harvest rituals').cost = {'faith II':1}
-				G.getDict('harvest rituals').desc = 'Improves [gatherer], [hunter] and [fisher] efficiency by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.'
-				G.getDict('harvest rituals for flowers').cost = {'faith II':1}
-				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.'
-				G.getDict('Crafting & farm rituals').cost = {'faith II':1}
-				G.getDict('sleepy insight').cost = {'faith II':3,'insight II':3}
-				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.'
-				if(G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version']){ //Interaction with laws of food. Specially laws of food free will no longer be free after policy revaluation
-					G.getDict('eat raw meat').cost = {'influence II':2}
-					G.getDict('eat herbs').cost = {'influence II':2}
-					G.getDict('eat cooked meat').cost = {'influence II':2}
-					G.getDict('eat cured meat').cost = {'influence II':2}
-					G.getDict('eat raw seafood').cost = {'influence II':2}
-					G.getDict('eat cooked seafood').cost = {'influence II':2}
-					G.getDict('eat cured seafood').cost = {'influence II':2}
-					G.getDict('eat cooked meat and cooked seafood').cost = {'influence II':5}
-					G.getDict('eat cured meat and cured seafood').cost = {'influence II':5}
-					G.getDict('eat fruit').cost = {'influence II':2}
-					G.getDict('eat bread').cost = {'influence II':2}
-					G.getDict('eat meals').cost = {'influence II':2}
-					G.getDict('eat sunflower seeds').cost = {'influence II':2}
-					G.getDict('drink juices').cost = {'influence II':2}
-				}
-					if(G.modsByName['Market mod']){ //Interaction with Market.
-					G.getDict('extended food catalog').cost = {'influence II':5}
-					G.getDict('extended archaic catalog').cost = {'influence II':5}
-					G.getDict('extended basic catalog').cost = {'influence II':5}
-					G.getDict('extended precious catalog').cost = {'influence II':5}
-					G.getDict('extended essences catalog').cost = {'influence II':5}
-						G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-						G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-						G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-						G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
-				}
 			}
 			if(G.has('Mining strategy'))
 			{
@@ -15094,14 +14986,32 @@ autobuy(G.year)
 		desc:'Unlocks [Hut of potters] and [Hovel of colours]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [artisan]s on <b>Craft dyes set (1,2,3,4)</b> mode will become USELESS! They won\'t produce.</font> ',
 		icon:[17,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5,'stone':1365},//Stones are there to make tech at same level as Factories I
-		req:{'workstation planning':true,'Manufacturing':true}
+		req:{'workstation planning':true,'Manufacturing':true},
+			effects:[
+				{type:'function',func:function(){
+				G.getDict('potter').icon = [28,2,'magixmod',20,2];
+			G.getDict('potter').gizmos = false;
+			G.getDict('potter').upkeep ={};
+			G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia"> Due to obtaining [Manufacture units I] this unit becomes useless and won\'t produce anything, anymore.</font></b>';
+				}};
+					],
 	});
 		new G.Tech({
 		name:'Factories I',category:'tier1',
 		desc:'Unlocks [Factory of pots] and [Leather factory]. Their work can be controlled by policies if unlocked.<> <font color="#ff8080">Note: If you will obtain the tech [potter]s , [clothier]s on <b>Craft leather</b> and <b>Craft leather (cheap)</b> mode and [Drying rack]s will become USELESS! They won\'t produce.</font> ',
 		icon:[18,18,'magixmod'], 
 		cost:{'insight':750,'wisdom':5},
-		req:{'Moderated workstation planning':true,'<font color="maroon">Moderation</font>':true}
+			effects:[
+				{type:'function',func:function(){
+			G.getDict('potter').icon = [28,2,'magixmod',20,2];
+					G.getDict('potter').gizmos = false;
+					G.getDict('potter').upkeep ={};
+					G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia">Due to obtaining [Factories I] this unit becomes useless and won\'t produce anything, anymore.</font></b>';
+					G.getDict('Drying rack').icon = [28,2,'magixmod',13,3,'magixmod'];
+					G.getDict('Drying rack').desc = '@This small rack may dry [leather] making it become [Dried leather]. [Dried leather] is used to make even harder clothing, which decays much slower. </br><b><font color="fuschia"> Due to obtaining [Factories I] this unit becomes useless and won\'t produce anything, anymore.</font></b>';
+				}};
+					],
+			req:{'Moderated workstation planning':true,'<font color="maroon">Moderation</font>':true}
 	});
 		new G.Tech({
 		name:'Production rates influence',category:'misc',
@@ -15238,6 +15148,18 @@ autobuy(G.year)
 		req:{'oral tradition':true,'ritualism':true,'Eotm':true,'Improved rhetoric':true},
 		effects:[
 			{type:'provide res',what:{'spirituality II':3}},
+			{type:'function',func:function(){
+			G.getDict('soothsayer').icon = [28,3,'magixmod'];
+			G.getDict('druid').icon = [29,30,'magixmod']
+			G.getDict('wisdom rituals').cost = {'faith II':1},
+			G.getDict('discovery rituals').cost = {'faith II':2},
+			G.getDict('discovery rituals').desc = 'Improves <b>Exploration</b> units by: // @[wanderer]:5% @[scout]:3% @[globetrotter]:4%. <>Consumes 2 [faith II] every 200 days. Will stop if you run out.',
+			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod'],
+			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
+			G.getDict('flower rituals').cost = {'faith II':1},
+			G.getDict('flower rituals').desc = 'People get sick slower and recover faster. Consumes 1 [faith II] every 20 days; will stop if you run out.'
+				}};
+		
 		],
 	});
 		new G.Tech({
@@ -15980,6 +15902,7 @@ new G.Tech({
 		cost:{'insight II':20,'culture II':10,'influence II':5,'insight':45},
 		req:{'cities':true,'construction II':true,'code of law II':true},
 		effects:[
+			{type:'function',func:function(){G.getDict('lodge').icon = [29,9,'magixmod'];G.getDict('guild quarters').icon = [28,15,'magixmod',25,2]}},
 		],
 	});
 		new G.Tech({
@@ -15989,6 +15912,7 @@ new G.Tech({
 		cost:{'insight II':15,'insight':35},
 		req:{'tool-making':true,'Richer language':true,'well-digging':true},
 		effects:[
+			{type:'function',func:function(){G.getDict('wanderer').icon = [11,21,'magixmod'];G.getDict('scout').icon = [12,21,'magixmod']}},
 		],
 		chance:2,
 	});
@@ -15999,6 +15923,7 @@ new G.Tech({
 		cost:{'insight II':15,'insight':15},
 		req:{'Improved rhetoric':true,'construction II':true,'masonry':true,'weaving II':true,'prospecting II':true},
 		effects:[
+			{type:'function',func:function(){G.getDict('kiln').icon = [28,19,'magixmod'];G.getDict('Kiln').icon = [20,21,'magixmod'];G.getDict('kiln').upkeep = {'log':1};G.getDict('Kiln').upkeep = {'log':1}}},
 		],
 		chance:4,
 	});
@@ -16009,6 +15934,7 @@ new G.Tech({
 		cost:{'culture II':15,'insight II':10},
 		req:{'oral tradition':true,'ritualism II':true,'Improved rhetoric':true,'Richer language':true,'symbolism':true},
 		effects:[
+			{type:'function',func:function(){G.getDict('storyteller').icon = [29,7,'magixmod']}},
 		],
 	});
 		new G.Tech({
@@ -16018,6 +15944,9 @@ new G.Tech({
 		cost:{'insight II':20},
 		req:{'sedentism':true,'tool-making':true,'focused scouting':true},
 		effects:[
+			{type:'function',func:function(){if(G.hasNot('cozier building')){
+				G.getDict('hut').icon = [28,12,'magixmod'];G.getDict('hovel').icon = [28,11,'magixmod'];G.getDict('mud shelter').icon = [28,13,'magixmod'];G.getDict('house').icon = [28,14,'magixmod'];
+			}}},
 		],
 		chance:3,
 	});
@@ -16028,6 +15957,11 @@ new G.Tech({
 		cost:{'insight II':25,'culture II':5,'insight':10},
 		req:{'cozy building':true,'focused scouting':true,'<font color="maroon">Caretaking</font>':true},
 		effects:[
+			{type:'function',func:function(){G.getDict('hut').icon = [29,10,'magixmod'];
+			G.getDict('hovel').icon = [29,11,'magixmod'];
+			G.getDict('mud shelter').icon = [29,12,'magixmod'];
+			G.getDict('house').icon = [29,14,'magixmod'];
+			G.getDict('branch shelter').icon = [29,13,'magixmod']}},
 		],
 		chance:3,
 	});
@@ -16209,6 +16143,63 @@ new G.Tech({
 		cost:{'insight II':15,'culture II':15,'influence II':5},
 		chance:45,
 		req:{'code of law II':true,'ritualism II':true,'symbolism II':true,'Glory':true},
+				effects:[
+				{type:'function',func:function(){
+								
+				G.getDict('food rations').cost = {'influence II':3};
+				G.getDict('water rations').cost = {'influence II':3};
+				G.getDict('eat spoiled food').cost = {'influence II':2};
+				G.getDict('drink muddy water').cost = {'influence II':2};
+				G.getDict('insects as food').cost = {'influence II':2};
+				G.getDict('eat raw meat and fish').cost = {'influence II':2};
+				G.getDict('drink spoiled juice').cost = {'influence II':4};
+				G.getDict('child workforce').cost = {'influence II':3};
+				G.getDict('drink cloudy water').cost = {'influence II':3};
+				G.getDict('elder workforce').cost = {'influence II':3};
+				G.getDict('Hovel of colours production rates').cost = {'influence II':5};
+				G.getDict('Hut of potters production rates').cost = {'influence II':5};
+				G.getDict('Leather factory production rates').cost = {'influence II':5};
+				G.getDict('Factory of pots production rates').cost = {'influence II':5};
+				G.getDict('population control').cost = {'influence II':5};
+				G.getDict('fertility rituals').cost = {'faith II':1};
+				G.getDict('fertility rituals').desc = 'Improves birth rate by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.';
+				G.getDict('harvest rituals').cost = {'faith II':1};
+				G.getDict('harvest rituals').desc = 'Improves [gatherer], [hunter] and [fisher] efficiency by 20%. Consumes 1 [faith II] every 200 days; will stop if you run out.';
+				G.getDict('harvest rituals for flowers').cost = {'faith II':1};
+				G.getDict('harvest rituals for flowers').desc = 'Improves [Florist] efficiency by 45%. Consumes 1 [faith II] every 200 days and 1 [influence II] every 400 days; will stop if you run out.';
+				G.getDict('Crafting & farm rituals').cost = {'faith II':1};
+				G.getDict('sleepy insight').cost = {'faith II':3,'insight II':3};
+				G.getDict('Crafting & farm rituals').desc = 'Improves [Paper-crafting shack] , [Well of mana] and <b>Farms</b> efficiency by 17%. Consumes 1 [faith II] every 200 days & 1 [influence II] every 400 days; will stop if you run out.';
+				if(G.modsByName['Laws Of Food'] || G.modsByName['Laws Of Food Free Version']){ //Interaction with laws of food. Specially laws of food free will no longer be free after policy revaluation
+					G.getDict('eat raw meat').cost = {'influence II':2};
+					G.getDict('eat herbs').cost = {'influence II':2};
+					G.getDict('eat cooked meat').cost = {'influence II':2};
+					G.getDict('eat cured meat').cost = {'influence II':2};
+					G.getDict('eat raw seafood').cost = {'influence II':2};
+					G.getDict('eat cooked seafood').cost = {'influence II':2};
+					G.getDict('eat cured seafood').cost = {'influence II':2};
+					G.getDict('eat cooked meat and cooked seafood').cost = {'influence II':5};
+					G.getDict('eat cured meat and cured seafood').cost = {'influence II':5};
+					G.getDict('eat fruit').cost = {'influence II':2};
+					G.getDict('eat bread').cost = {'influence II':2};
+					G.getDict('eat meals').cost = {'influence II':2};
+					G.getDict('eat sunflower seeds').cost = {'influence II':2};
+					G.getDict('drink juices').cost = {'influence II':2};
+				}
+					if(G.modsByName['Market mod']){ //Interaction with Market.
+					G.getDict('extended food catalog').cost = {'influence II':5};
+					G.getDict('extended archaic catalog').cost = {'influence II':5};
+					G.getDict('extended basic catalog').cost = {'influence II':5};
+					G.getDict('extended precious catalog').cost = {'influence II':5};
+					G.getDict('extended essences catalog').cost = {'influence II':5};
+						G.getDict('bazaar_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+						G.getDict('bazaar_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+						G.getDict('market_buy').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+						G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
+				}
+			
+				}};
+								 ],
 	});
 		new G.Tech({
 		name:'Mining strategy',category:'tier2',
