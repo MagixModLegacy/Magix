@@ -995,17 +995,7 @@ func:function(){
 	
 	//do NOT remove or reorder achievements or saves WILL get corrupted
 	//Tier 0 is for shadow achievements/seasonal achievements (they will dislay to player upon completion)
-	new G.Achiev({
-		tier:1,
-		name:'mausoleum',
-		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
-		fromUnit:'mausoleum',
-		effects:[
-			{type:'addFastTicksOnStart',amount:300*3},
-			{type:'addFastTicksOnResearch',amount:150}
-		],
-		civ:0
-	});
+	
 //Temple achiev
 		new G.Achiev({
 		tier:2,
@@ -2684,6 +2674,17 @@ G.props['fastTicksOnResearch']=150;
 	
 		G.funcs['new game blurb']=function()
 	{   
+			new G.Achiev({
+		tier:1,
+		name:'mausoleum',
+		desc:'You have been laid to rest in the Mausoleum, an ancient stone monument the purpose of which takes root in archaic religious thought.',
+		fromUnit:'mausoleum',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300*3},
+			{type:'addFastTicksOnResearch',amount:150}
+		],
+		civ:0
+	});
 		var str=
 		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
 		'<b>Your tribe :</b><div class="thingBox">'+
