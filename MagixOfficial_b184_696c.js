@@ -15158,7 +15158,7 @@ autobuy(G.year)
 			G.getDict('wisdom rituals').desc = 'Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
 			G.getDict('flower rituals').cost = {'faith II':1},
 			G.getDict('flower rituals').desc = 'People get sick slower and recover faster. Consumes 1 [faith II] every 20 days; will stop if you run out.'
-				}};
+				}}
 		
 		],
 	});
@@ -15902,7 +15902,7 @@ new G.Tech({
 		cost:{'insight II':20,'culture II':10,'influence II':5,'insight':45},
 		req:{'cities':true,'construction II':true,'code of law II':true},
 		effects:[
-			{type:'function',func:function(){G.getDict('lodge').icon = [29,9,'magixmod'];G.getDict('guild quarters').icon = [28,15,'magixmod',25,2]}},
+			{type:'function',func:function(){G.getDict('lodge').icon = [29,9,'magixmod'];G.getDict('guild quarters').icon = [28,15,'magixmod',25,2]}}
 		],
 	});
 		new G.Tech({
@@ -15912,7 +15912,7 @@ new G.Tech({
 		cost:{'insight II':15,'insight':35},
 		req:{'tool-making':true,'Richer language':true,'well-digging':true},
 		effects:[
-			{type:'function',func:function(){G.getDict('wanderer').icon = [11,21,'magixmod'];G.getDict('scout').icon = [12,21,'magixmod']}},
+			{type:'function',func:function(){G.getDict('wanderer').icon = [11,21,'magixmod'];G.getDict('scout').icon = [12,21,'magixmod']}}
 		],
 		chance:2,
 	});
@@ -15923,7 +15923,7 @@ new G.Tech({
 		cost:{'insight II':15,'insight':15},
 		req:{'Improved rhetoric':true,'construction II':true,'masonry':true,'weaving II':true,'prospecting II':true},
 		effects:[
-			{type:'function',func:function(){G.getDict('kiln').icon = [28,19,'magixmod'];G.getDict('Kiln').icon = [20,21,'magixmod'];G.getDict('kiln').upkeep = {'log':1};G.getDict('Kiln').upkeep = {'log':1}}},
+			{type:'function',func:function(){G.getDict('kiln').icon = [28,19,'magixmod'];G.getDict('Kiln').icon = [20,21,'magixmod'];G.getDict('kiln').upkeep = {'log':1};G.getDict('Kiln').upkeep = {'log':1}}}
 		],
 		chance:4,
 	});
@@ -15934,7 +15934,7 @@ new G.Tech({
 		cost:{'culture II':15,'insight II':10},
 		req:{'oral tradition':true,'ritualism II':true,'Improved rhetoric':true,'Richer language':true,'symbolism':true},
 		effects:[
-			{type:'function',func:function(){G.getDict('storyteller').icon = [29,7,'magixmod']}},
+			{type:'function',func:function(){G.getDict('storyteller').icon = [29,7,'magixmod']}}
 		],
 	});
 		new G.Tech({
@@ -15946,7 +15946,7 @@ new G.Tech({
 		effects:[
 			{type:'function',func:function(){if(G.hasNot('cozier building')){
 				G.getDict('hut').icon = [28,12,'magixmod'];G.getDict('hovel').icon = [28,11,'magixmod'];G.getDict('mud shelter').icon = [28,13,'magixmod'];G.getDict('house').icon = [28,14,'magixmod'];
-			}}},
+			}}}
 		],
 		chance:3,
 	});
@@ -15961,7 +15961,7 @@ new G.Tech({
 			G.getDict('hovel').icon = [29,11,'magixmod'];
 			G.getDict('mud shelter').icon = [29,12,'magixmod'];
 			G.getDict('house').icon = [29,14,'magixmod'];
-			G.getDict('branch shelter').icon = [29,13,'magixmod']}},
+			G.getDict('branch shelter').icon = [29,13,'magixmod']}}
 		],
 		chance:3,
 	});
@@ -16198,7 +16198,7 @@ new G.Tech({
 						G.getDict('market_sell').effects.push({type:'mult',value:1.5,req:{'Backshift':true}});
 				}
 			
-				}};
+				}}
 								 ],
 	});
 		new G.Tech({
