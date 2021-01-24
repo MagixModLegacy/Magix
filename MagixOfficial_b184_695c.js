@@ -14993,7 +14993,7 @@ autobuy(G.year)
 			G.getDict('potter').gizmos = false;
 			G.getDict('potter').upkeep ={};
 			G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia"> Due to obtaining [Manufacture units I] this unit becomes useless and won\'t produce anything, anymore.</font></b>';
-				}};
+				}}
 					],
 	});
 		new G.Tech({
@@ -15009,7 +15009,7 @@ autobuy(G.year)
 					G.getDict('potter').desc = '@uses [clay] or [mud] to craft goods<>The [potter] shapes their clay with great care, for it might mean the difference between fresh water making it to their home safely - or spilling uselessly into the dirt. </br><b><font color="fuschia">Due to obtaining [Factories I] this unit becomes useless and won\'t produce anything, anymore.</font></b>';
 					G.getDict('Drying rack').icon = [28,2,'magixmod',13,3,'magixmod'];
 					G.getDict('Drying rack').desc = '@This small rack may dry [leather] making it become [Dried leather]. [Dried leather] is used to make even harder clothing, which decays much slower. </br><b><font color="fuschia"> Due to obtaining [Factories I] this unit becomes useless and won\'t produce anything, anymore.</font></b>';
-				}};
+				}}
 					],
 			req:{'Moderated workstation planning':true,'<font color="maroon">Moderation</font>':true}
 	});
