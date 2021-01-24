@@ -20033,7 +20033,7 @@ new G.Tech({
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
-	G.funcs['create map']=function(w,h)
+G.funcs['create map']=function(w,h)
 	{
 		//generate basic geography using Conway's Game of Life (rule : births from 4 to 9 neighbors, survival from 6 to 9 neighbors)
 		
@@ -20269,7 +20269,7 @@ new G.Tech({
 		}
 		return lvl;
 	}
-}
+
 	G.update.tech = () => {
  // Add background UI for Research
  const researchUI = `<p style="float:right;">Thanks to Hyoretsu for helping with coding this tab</p><div class="behindBottomUI">${G.textWithTooltip(
