@@ -8645,9 +8645,6 @@ if (!document.getElementById(cssId))
 			var toSpoil=me.amount*0.0002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
-			if(G.has('weaving II')){
-					G.getDict('clothier').icon = [27,11,'magixmod']
-			}
 			if(G.has('Factories I')){
 					G.getDict('potter').icon = [28,2,'magixmod',20,2],
 					G.getDict('potter').gizmos = false,
@@ -13811,7 +13808,6 @@ getCosts:function()
 			{type:'provide res',what:{'authority':5}},
 			{type:'show res',what:['influence']},
 			{type:'show context',what:['gather']},
-			{type:'function',func:function(){G.gain('insight',1)}},
 		],
 	
 	});
@@ -15209,6 +15205,7 @@ autobuy(G.year)
 		cost:{'insight II':10,'insight':65},
 		req:{'weaving':true,'Sewing II':true,'Eotm':true},
 		effects:[
+			{type:'function',func:function(){G.getDict('clothier').icon = [27,11,'magixmod'];}},
 		],
 	});
 		new G.Tech({
