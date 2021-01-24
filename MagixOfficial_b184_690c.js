@@ -13811,7 +13811,7 @@ getCosts:function()
 			{type:'provide res',what:{'authority':5}},
 			{type:'show res',what:['influence']},
 			{type:'show context',what:['gather']},
-			
+			{type:'function',func:function(){G.gain('insight',1)}},
 		],
 	
 	});
