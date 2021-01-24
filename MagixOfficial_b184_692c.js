@@ -15909,7 +15909,8 @@ autobuy(G.year)
 	===========================================================================================*/
 
 	new G.Tech({
-       name:'artistic gray cells', displayName:'<font color="#00C000">Artistic gray cells</font>',category:'misc',
+	category:'misc',
+       name:'artistic gray cells', displayName:'<font color="#00C000">Artistic gray cells</font>',
         desc:'You see flashes of culture... But who were these people? These flashes and hypnagogia made you inspired. Ancestors of culture gives you their power... watch over you giving to you: @+3 [culture] @+3 [inspiration] @Also autohires for free 1 [storyteller] but this free one works at 1/2000 of normally hired [storyteller].',
         icon:[4,12,'magixmod',6,12,'magixmod'],
         cost:{},
@@ -15917,7 +15918,7 @@ autobuy(G.year)
 			{type:'provide res',what:{'inspiration':3}},
 			{type:'provide res',what:{'culture':3}},
 		],
-        req:{'tribalism':false}
+        req:{'tribalism':false},
     	});
 	new G.Tech({
        name:'genius feeling',displayName:'<font color="aqua">Genius feeling</font>',category:'misc',
