@@ -2526,6 +2526,67 @@ G.setPolicyMode=function(me,mode)
 		}
 		
 	}
+	/*=============================================================
+	NEW TECH TAB
+	=============================================================*/
+	G.update.tech = () => {
+ // Add background UI for Research
+ const researchUI = `<p style="float:right;">Thanks to Hyoretsu for helping with coding this tab</p><div class="behindBottomUI">${G.textWithTooltip(
+  '?',
+  `<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization's long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>`,
+  'infoButton',
+ )}<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;"><div class="barred fancyText"><font size="6">Known technologies :</font></div></div><div id="techBox" class="thingBox"></div></div></div></div><div id="techUI" class="bottomUI bgPanelUp">${G.writeChooseBoxes(
+  'tech',
+ )}</div>`;
+ l('techDiv').innerHTML = researchUI;
+ G.addCallbacks();
+
+ const knowledgeCategories = {};
+ G.knowCategories.forEach(category => {
+  Object.assign(knowledgeCategories, { [category.id]: category.name });
+ });
+
+ G.techsOwned.forEach(techResearched => {
+  let category = l(`know-catName-${techResearched.tech.category}`);
+
+  // Create category if it doesn't yet exist
+  if (!category) {
+   const categoryName = techResearched.tech.category;
+   const categoryUI = `<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-${categoryName}">${knowledgeCategories[categoryName]}</div></div>`;
+
+   l('techBox').innerHTML += categoryUI;
+  }
+  category = l(`know-catName-${techResearched.tech.category}`);
+
+  // Populate research
+  category.insertAdjacentHTML(
+   'afterend',
+   `<div class="thingWrapper"><div class="tech thing${G.getIconClasses(techResearched.tech)}" id="tech-${
+    techResearched.id
+   }">${G.getIconStr(techResearched.tech, `tech-icon-${techResearched.id}`)}<div class="overlay" id="tech-over-${
+    techResearched.id
+   }"></div></div></div>`,
+  );
+var len=G.techsOwned.length;
+            for (var i=0;i<len;i++)
+            {
+                var me=G.techsOwned[i];
+                var div=l('tech-'+me.id);if (div) me.l=div; else me.l=0;
+                var div=l('tech-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
+                var div=l('tech-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
+                G.addTooltip(me.l,function(what){return function(){return G.getKnowTooltip(what)};}(me.tech),{offY:-8});
+                if (me.l) me.l.onclick=function(what){return function(){G.clickTech(what);};}(me);
+            }
+ /* techResearched.l = l(`tech-${techResearched.id}`);
+  techResearched.l.onclick = G.clickTech(techResearched);
+  techResearched.lIcon = l(`tech-icon-${techResearched.id}`);
+  techResearched.lOver = l(`tech-over-${techResearched.id}`);
+  // Add tooltip manually
+  G.addTooltip(techResearched.l, () => G.getKnowTooltip(techResearched), { offY: -8 });*/
+	
+  G.draw.tech();
+ });
+};
 	G.createDebugMenu=function()
 	{
 		var str=''+
@@ -19996,68 +20057,6 @@ new G.Tech({
 		noAmount:true,
 		mult:5,
 	});
-	
-	/*=============================================================
-	NEW TECH TAB
-	=============================================================*/
-	G.update.tech = () => {
- // Add background UI for Research
- const researchUI = `<p style="float:right;">Thanks to Hyoretsu for helping with coding this tab</p><div class="behindBottomUI">${G.textWithTooltip(
-  '?',
-  `<div style="width:240px;text-align:left;"><div class="par">Technologies are the cornerstone of your civilization's long-term development.</div><div class="par">Here you can invest resources to research new technologies which can unlock new units and enhance old ones.</div></div>`,
-  'infoButton',
- )}<div class="fullCenteredOuter"><div class="fullCenteredInner"><div id="extraTechStuff" style="text-align:center;margin:auto;margin-bottom:8px;"><div class="barred fancyText"><font size="6">Known technologies :</font></div></div><div id="techBox" class="thingBox"></div></div></div></div><div id="techUI" class="bottomUI bgPanelUp">${G.writeChooseBoxes(
-  'tech',
- )}</div>`;
- l('techDiv').innerHTML = researchUI;
- G.addCallbacks();
-
- const knowledgeCategories = {};
- G.knowCategories.forEach(category => {
-  Object.assign(knowledgeCategories, { [category.id]: category.name });
- });
-
- G.techsOwned.forEach(techResearched => {
-  let category = l(`know-catName-${techResearched.tech.category}`);
-
-  // Create category if it doesn't yet exist
-  if (!category) {
-   const categoryName = techResearched.tech.category;
-   const categoryUI = `<div class="category" style="display:inline-block;"><div class="categoryName barred fancyText" id="know-catName-${categoryName}">${knowledgeCategories[categoryName]}</div></div>`;
-
-   l('techBox').innerHTML += categoryUI;
-  }
-  category = l(`know-catName-${techResearched.tech.category}`);
-
-  // Populate research
-  category.insertAdjacentHTML(
-   'afterend',
-   `<div class="thingWrapper"><div class="tech thing${G.getIconClasses(techResearched.tech)}" id="tech-${
-    techResearched.id
-   }">${G.getIconStr(techResearched.tech, `tech-icon-${techResearched.id}`)}<div class="overlay" id="tech-over-${
-    techResearched.id
-   }"></div></div></div>`,
-  );
-var len=G.techsOwned.length;
-            for (var i=0;i<len;i++)
-            {
-                var me=G.techsOwned[i];
-                var div=l('tech-'+me.id);if (div) me.l=div; else me.l=0;
-                var div=l('tech-icon-'+me.id);if (div) me.lIcon=div; else me.lIcon=0;
-                var div=l('tech-over-'+me.id);if (div) me.lOver=div; else me.lOver=0;
-                G.addTooltip(me.l,function(what){return function(){return G.getKnowTooltip(what)};}(me.tech),{offY:-8});
-                if (me.l) me.l.onclick=function(what){return function(){G.clickTech(what);};}(me);
-            }
- /* techResearched.l = l(`tech-${techResearched.id}`);
-  techResearched.l.onclick = G.clickTech(techResearched);
-  techResearched.lIcon = l(`tech-icon-${techResearched.id}`);
-  techResearched.lOver = l(`tech-over-${techResearched.id}`);
-  // Add tooltip manually
-  G.addTooltip(techResearched.l, () => G.getKnowTooltip(techResearched), { offY: -8 });*/
-	
-  G.draw.tech();
- });
-};
 	/*=====================================================================================
 	TILE EFFECTS
 	=======================================================================================*/
