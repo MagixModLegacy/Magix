@@ -4347,7 +4347,57 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				}
 			}
 			
-				
+			if(G.has('Eotm') && G.hasNot('ritualism II')){
+			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod']
+			G.getDict('wisdom rituals').cost = {'land':1000000}, //THE DISABLER
+			G.getDict('wisdom rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [wisdom rituals,Wisdom ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
+			G.getDict('flower rituals').cost = {'land':1000000}, //THE DISABLER
+			G.getDict('flower rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [flower rituals,Flower ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>People get sick slower and recover faster. Consumes 1 [faith II] every 20 days; will stop if you run out.'
+			}
+			//While evolution occurs flower and wisdom rituals disable automatically
+			if (G.has('Eotm') && G.hasNot('ritualism II')){
+				G.setPolicyModeByName('wisdom rituals','off');
+				G.setPolicyModeByName('flower rituals','off');
+			}			
+			if(G.has('Eotm') && G.achievByName['Level up'].won == 0){ //Level up achievement
+			G.achievByName['Level up'].won = 1
+			G.middleText('- Completed <font color="aqua">Level up</font> achievement -','slow')
+			}
+			if(G.has('dt9') && G.achievByName['Lucky 9'].won == 0){ //Lucky 9 achievement
+			G.achievByName['Lucky 9'].won = 1
+			G.middleText('- Completed <font color="red">Lucky 9</font> achievement -','slow')
+			}
+			if(G.techN >= 100 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
+			G.achievByName['Apprentice'].won = 1
+			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -','slow')
+				if(G.techN==100 && !tech100){
+			G.Message({type:'important',text:'You managed your civilization to be smart. They thank you with kindness for ruling them. They will not even think about choosing other lord than you. Keep going this way. Discover, research and prosper ',icon:[24,18,'magixmod',8,4]})
+					tech100=true
+				}}
+			if(G.techN >= 200 && G.achievByName['Familiar'].won == 0){ //Apprentice achievement
+			G.achievByName['Familiar'].won = 1
+			G.middleText('- Completed <font color="lime">Familiar</font> achievement -','slow')
+			}
+			if(G.traitN >= 30 && G.achievByName['Traitsman'].won == 0){ //Traitsman achievement
+			G.achievByName['Traitsman'].won = 1
+			G.middleText('- Completed <font color="lime">Traitsman</font> achievement -','slow')
+			}
+			if((G.getRes('insight II').amount) == (G.getRes('wisdom II').amount) && G.achievByName['Extremely smart'].won == 0 && G.has('Eotm')){; //Extremely smart achievement
+			G.achievByName['Extremely smart'].won = 1
+			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -','slow')
+			}	
+			if(G.achievByName['mausoleum'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.achievByName['Metropoly'].won >= 1 && G.achievByName['Apprentice'].won >= 1 && G.achievByName['Experienced'].won == 0){ //Experienced
+			G.achievByName['Experienced'].won = 1
+			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>','slow')
+			}
+			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0 && G.achievByName['Familiar'].won == 1 && G.achievByName['in the shadows'].won == 1){ //Smart
+			G.achievByName['Smart'].won = 1
+			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>','slow')
+			}
+			if(G.has('dt17') && G.has('sb4') && G.checkPolicy('se03')=='on' && G.achievByName['Not so pious people'].won == 0){;
+			G.achievByName['Not so pious people'].won = 1
+			G.middleText('- Completed <font color="cyan">Not so pious people</font> achievement -','slow')
+			}
 		//0/0 insight fix
 		if(G.has('Wizard wisdom') && G.getUnitAmount('Wizard')>=1){
 			if(G.getRes('wisdom').amount<100){
@@ -8645,85 +8695,6 @@ if (!document.getElementById(cssId))
 			var toSpoil=me.amount*0.0002;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'faith sapping');
 			}
-			if(G.has('Eotm') && G.hasNot('ritualism II')){
-			G.getDict('wisdom rituals').icon=[8,12,23,19,'magixmod']
-			G.getDict('wisdom rituals').cost = {'land':1000000}, //THE DISABLER
-			G.getDict('wisdom rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [wisdom rituals,Wisdom ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>Improves [dreamer] and [storyteller] efficiency by 25%. After [Eotm] has occured this ritual will consume 1 [faith II] every 30 days; will stop if you run out.',
-			G.getDict('flower rituals').cost = {'land':1000000}, //THE DISABLER
-			G.getDict('flower rituals').desc = '<font color="fuschia">Becuase of [Eotm] the [flower rituals,Flower ritual] is disabled until you obtain [ritualism II] then you can activate it again.</font><br>People get sick slower and recover faster. Consumes 1 [faith II] every 20 days; will stop if you run out.'
-			}
-			//While evolution occurs flower and wisdom rituals disable automatically
-			if (G.has('Eotm') && G.hasNot('ritualism II')){
-				G.setPolicyModeByName('wisdom rituals','off');
-				G.setPolicyModeByName('flower rituals','off');
-			}
-			if(G.has('Music instruments')){
-			G.getDict('storyteller').limitPer = {'population':400}
-			}else if(G.checkPolicy('se03')=='on'){
-			G.getDict('storyteller').limitPer = {'population':350}
-			G.getDict('musician').limitPer = {'population':350}
-			}
-			if(G.has('Oil-digging')){
-			G.getDict('quarry').icon = [19,21,'magixmod']
-			}
-			if(G.has('Moderated carpentry')){
-			G.getDict('carpenter workshop').icon = [28,16,'magixmod',25,2]
-			G.getDict('carpenter workshop').use = {'land':1,'worker':1}
-			G.getDict('carpenter workshop').cost = {'basic building materials':100,'Basic factory equipment':3}
-			G.getDict('Carpenter workshop').icon = [28,17,'magixmod',20,14,'magixmod']
-			G.getDict('Carpenter workshop').use = {'Land of the Paradise':1,'worker':1}
-			G.getDict('Carpenter workshop').cost = {'basic building materials':150,'Basic factory equipment':3}
-			}
-			if(G.has('Eotm') && G.achievByName['Level up'].won == 0){ //Level up achievement
-			G.achievByName['Level up'].won = 1
-			G.middleText('- Completed <font color="aqua">Level up</font> achievement -','slow')
-			}
-			if(G.has('dt9') && G.achievByName['Lucky 9'].won == 0){ //Lucky 9 achievement
-			G.achievByName['Lucky 9'].won = 1
-			G.middleText('- Completed <font color="red">Lucky 9</font> achievement -','slow')
-			}
-			if(G.techN >= 100 && G.achievByName['Apprentice'].won == 0){ //Apprentice achievement
-			G.achievByName['Apprentice'].won = 1
-			G.middleText('- Completed <font color="silver">Apprentice</font> achievement -','slow')
-				if(G.techN==100 && !tech100){
-			G.Message({type:'important',text:'You managed your civilization to be smart. They thank you with kindness for ruling them. They will not even think about choosing other lord than you. Keep going this way. Discover, research and prosper ',icon:[24,18,'magixmod',8,4]})
-					tech100=true
-				}}
-			if(G.techN >= 200 && G.achievByName['Familiar'].won == 0){ //Apprentice achievement
-			G.achievByName['Familiar'].won = 1
-			G.middleText('- Completed <font color="lime">Familiar</font> achievement -','slow')
-			}
-			if(G.traitN >= 30 && G.achievByName['Traitsman'].won == 0){ //Traitsman achievement
-			G.achievByName['Traitsman'].won = 1
-			G.middleText('- Completed <font color="lime">Traitsman</font> achievement -','slow')
-			}
-			if((G.getRes('insight II').amount) == (G.getRes('wisdom II').amount) && G.achievByName['Extremely smart'].won == 0 && G.has('Eotm')){; //Extremely smart achievement
-			G.achievByName['Extremely smart'].won = 1
-			G.middleText('- Completed <font color="purple">Extremely smart</font> achievement -','slow')
-			}
-			if(G.has('smaller but efficient')){
-			G.getDict('hut').use = {'land':0.9}
-			G.getDict('hovel').use = {'land':0.9}
-			G.getDict('house').use = {'land':0.9}
-			G.getDict('mud shelter').use = {'land':0.9}
-			G.getDict('branch shelter').use = {'land':0.9}
-			G.getDict('Brick house with a silo').use = {'land':0.9}
-			G.getDict('bamboo hut').use = {'land':0.9}
-			}
-			if(G.achievByName['mausoleum'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.achievByName['Metropoly'].won >= 1 && G.achievByName['Apprentice'].won >= 1 && G.achievByName['Experienced'].won == 0){ //Experienced
-			G.achievByName['Experienced'].won = 1
-			G.middleText('- All achievements  from tier <font color="orange">1</font> completed! - </br> </hr> <small>From now you will start each run with extra 100 fruits</small>','slow')
-			}
-			if(G.achievByName['Heavenly'].won >= 1 && G.achievByName['Deadly, revenantic'].won >= 1 && G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Level up'].won >= 1 && G.achievByName['Lucky 9'].won >= 1 && G.achievByName['Traitsman'].won >= 1 && G.achievByName['Smart'].won == 0 && G.achievByName['Familiar'].won == 1 && G.achievByName['in the shadows'].won == 1){ //Smart
-			G.achievByName['Smart'].won = 1
-			G.middleText('- All achievements  from tier <font color="orange">2</font> completed! - </br> </hr> <small>From next run basic housing uses less land.</small>','slow')
-			}
-			if(G.has('Spiritual piety')){
-			G.getDict('Church').icon = [24,23,'magixmod']
-			G.getDict('grave').use = {'land':0.7}
-			G.getDict('grave').icon = [24,22,'magixmod']
-			G.getDict('grave').desc ='@provides 3 [burial spot], in which the [corpse,dead] are automatically interred one by one@graves with buried corpses decay over time, freeing up land for more graves<>A simple grave dug into the earth, where the dead may find rest.//Burying your dead helps prevent [health,disease] and makes your people slightly [happiness,happier].'
-			}
 			if(G.has('Glory')){
 			G.getDict('chieftain').icon = [22,23,'magixmod']
 			G.getDict('Mediator').limitPer = {'population':4000}
@@ -8754,10 +8725,7 @@ if (!document.getElementById(cssId))
 			{
 			G.getDict('Fishers & hunters camp').upkeep = {'food':75,'fire pit':3}
 			}
-			if(G.has('dt17') && G.has('sb4') && G.checkPolicy('se03')=='on' && G.achievByName['Not so pious people'].won == 0){;
-			G.achievByName['Not so pious people'].won = 1
-			G.middleText('- Completed <font color="cyan">Not so pious people</font> achievement -','slow')
-			}
+			
 			if(G.modsByName['Market mod']){
 				if(G.has('Backshift')){
 					G.getDict('bazaar_buy').use={'worker':2,'land':1}
@@ -15074,7 +15042,17 @@ autobuy(G.year)
 		desc:'[carpenter workshop] is more expensive but its production is multiplied by 2.25 . <>Applies visual changes to Paradise and normal [carpenter workshop]s <>Boosts both types. ',
 		icon:[29,16,'magixmod'], 
 		cost:{'insight II': 10},
-		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true,'Oil-digging':true}
+		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true,'Oil-digging':true},
+			effects:[
+			{type:'function',func:function(){
+			G.getDict('carpenter workshop').icon = [28,16,'magixmod',25,2];
+			G.getDict('carpenter workshop').use = {'land':1,'worker':1};
+			G.getDict('carpenter workshop').cost = {'basic building materials':100,'Basic factory equipment':3};
+			G.getDict('Carpenter workshop').icon = [28,17,'magixmod',20,14,'magixmod'];
+			G.getDict('Carpenter workshop').use = {'Land of the Paradise':1,'worker':1};
+			G.getDict('Carpenter workshop').cost = {'basic building materials':150,'Basic factory equipment':3};
+			}}
+			],
 	});
 		new G.Tech({
 		name:'Richer language',category:'tier2',
@@ -16026,6 +16004,9 @@ new G.Tech({
 		icon:[29,18,'magixmod'],
 		cost:{'insight II':10,'culture II':25},
 		req:{'symbolism II':true,'ritualism II':true,'Music':true},
+			effects:[
+			{type:'function',func:function(){G.getDict('storyteller').limitPer = {'population':400}}}
+		],
 	});
 		new G.Tech({
 		name:'More experienced healers',category:'upgrade',
@@ -16067,7 +16048,10 @@ new G.Tech({
 		desc:'[quarry,Quarries] can dig for [oil] that can be used in the future as fuel.',
 		icon:[29,2,'magixmod'], 
 		cost:{'insight II': 25,'insight':30},
-		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true}
+		req:{'<font color="maroon">Moderation</font>':true,'Eotm':true},
+			effects:[
+			{type:'function',func:function(){G.getDict('quarry').icon = [19,21,'magixmod']}}
+			],
 	});
 		new G.Tech({
 		name:'Bigger factory racks',category:'upgrade',
@@ -16106,6 +16090,15 @@ new G.Tech({
         icon:[28,23,'magixmod'],
         cost:{},
 	effects:[
+		{type:'function',func:function(){
+				G.getDict('hut').use = {'land':0.9};
+			G.getDict('hovel').use = {'land':0.9};
+			G.getDict('house').use = {'land':0.9};
+			G.getDict('mud shelter').use = {'land':0.9};
+			G.getDict('branch shelter').use = {'land':0.9};
+			G.getDict('Brick house with a silo').use = {'land':0.9};
+			G.getDict('bamboo hut').use = {'land':0.9};
+		}}
 		],
         req:{'tribalism':false},category:'knowledge',chance:1,
     });
@@ -16126,6 +16119,12 @@ new G.Tech({
 		cost:{'faith II': 5,'insight II':50,'culture II':20},
 		effects:[
 			{type:'provide res',what:{'spirituality II':7}},
+			{type:'function',func:function(){
+			G.getDict('Church').icon = [24,23,'magixmod'];
+			G.getDict('grave').use = {'land':0.7};
+			G.getDict('grave').icon = [24,22,'magixmod'];
+			G.getDict('grave').desc ='@provides 3 [burial spot], in which the [corpse,dead] are automatically interred one by one@graves with buried corpses decay over time, freeing up land for more graves<>A simple grave dug into the earth, where the dead may find rest.//Burying your dead helps prevent [health,disease] and makes your people slightly [happiness,happier].';
+			}}
 		],
 		req:{'ritualism II':true,'ritualism':true,'God\'s trait #6 Fertile essences farms':true}
 	});
@@ -18653,6 +18652,10 @@ new G.Tech({
 		startMode:'off',
 		req:{'Pantheon key':true},
 		category:'Florists',
+					effects:[
+						 {type:'function',func:function(){	G.getDict('storyteller').limitPer = {'population':350};
+			G.getDict('musician').limitPer = {'population':350}}}
+						],
 	});
 		new G.Policy({
 		name:'se04',
