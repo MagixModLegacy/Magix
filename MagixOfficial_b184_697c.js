@@ -14574,7 +14574,7 @@ getCosts:function()
 		req:{'prospecting II':true,'quarrying':true},
 	});
 		new G.Tech({
-		name:'platinum-working',category:'upgrade',
+		name:'platinum-working',category:'tier1',
 		desc:'@[furnace]s can now make [platinum ingot]s from [platinum ore]@[blacksmith workshop]s can now forge [platinum block]s out of [platinum ingot]s<>',
 		icon:[5,11,'magixmod'],
 		cost:{'insight':100},
