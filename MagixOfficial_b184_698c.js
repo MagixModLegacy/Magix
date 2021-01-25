@@ -2529,7 +2529,7 @@ G.setPolicyMode=function(me,mode)
 	/*=============================================================
 	NEW TECH TAB
 	=============================================================*/
-	G.update.tech = () => {
+	G.update['tech']=function(){
  // Add background UI for Research
  const researchUI = `<p style="float:right;">Thanks to Hyoretsu for helping with coding this tab</p><div class="behindBottomUI">${G.textWithTooltip(
   '?',
