@@ -9650,8 +9650,8 @@ if (!document.getElementById(cssId))
 			'craftnet':{name:'Craft fishing net',icon:[13,8,'magixmod'],desc:'Your artisan will craft [Fishing net]. Needs [Instructor] because net <b> must be strong. Will use [Dried leather] to make it stronger.',req:{'Fishing II':true},use:{'stone tools':2,'Instructor':1}},
 			'craftfirstaid':{name:'Craft first aid things',icon:[16,10,'magixmod'],desc:'Your artisan will craft equipment for [First aid healer]. He will craft: [First aid things] .',req:{'first aid':true}, use:{'stone tools':1}},
 			'dyes1':{name:'Make dyes from flowers(Set 1)',desc:'Your artisan will convert these flowers into dyes: [Lavender],[Salvia],[Bachelor\'s button],[Desert rose],[Cosmos],[Pink rose],[Pink tulip],[Coreopsis].',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true},icon:[11,7,'magixmod']},
-			'dyes2':{name:'Make dyes from flowers(Set 2)',desc:'Your artisan will convert these flowers into dyes: [Crown imperial],[Cyan rose],[Himalayan blue poopy],[Cockscomb],[Red tulip],[Green Zinnia],[cactus],[Lime rose]. @Bonus: While crafting dyes out of [cactus] you will get its spikes and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true},icon:[11,7,'magixmod']}, 
-			'dyes3':{name:'Make dyes from flowers(Set 3)',desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail]. @Bonus: While crafting dyes out of [Sunflower] you will get its edible [Sunflower seeds] and a dye as usual.',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true},icon:[11,7,'magixmod']},
+			'dyes2':{name:'Make dyes from flowers(Set 2)',desc:'Your artisan will convert these flowers into dyes: [Crown imperial],[Cyan rose],[Himalayan blue poopy],[Cockscomb],[Red tulip],[Green Zinnia],[cactus],[Lime rose].',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true},icon:[11,7,'magixmod']}, 
+			'dyes3':{name:'Make dyes from flowers(Set 3)',desc:'Your artisan will convert these flowers into dyes: [Lime tulip],[Azure bluet],[Daisy],[Sunflower],[Dandelion],[Black lily],[Black Hollyhock],[Cattail].',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true},icon:[11,7,'magixmod']},
 			'dyes4':{name:'Make dyes from flowers(Set 4)',icon:[11,7,'magixmod'],desc:'Your artisan will convert these flowers into dyes: [Flax],[Blue orchid],[White tulip],[Lily of the Valley],[Gray rose],[Gray tulip],[Brown flower].',req:{'plant lore':true,'Manufacture units I':false,'a gift from the mausoleum':true}},
 			'craftbook':{name:'Craft book',icon:[13,12,'magixmod'],desc:'Your artisan will craft [Empty book,books].',req:{'Bookcrafting':true},use:{'stone tools':1}},
 			'enchseeds':{name:'Enchant seeds',icon:[27,10,'magixmod'],desc:'Enchant [Beet seeds,seeds] using [Magic essences] and [Mana]. These seeds can be useful to start essence farms',req:{'Seed-enchanting':true},use:{'Wand':1}},
@@ -10693,7 +10693,7 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		limitPer:{'research':2},
 		effects:[
-			{type:'explore',explored:0.1,unexplored:0},
+			{type:'explore',explored:0.08,unexplored:0},
 			{type:'mult',value:2.5,req:{'t10':true}},
 			{type:'mult',value:1.05,req:{'discovery rituals':'on'}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,true,'[X] [people].','wanderer got lost','wanderers got lost'),chance:1/100}
@@ -10710,7 +10710,7 @@ if (!document.getElementById(cssId))
 		limitPer:{'research':6},
 		staff:{'stone tools':1},
 		effects:[
-			{type:'explore',explored:0,unexplored:0.01},
+			{type:'explore',explored:0,unexplored:0.008},
 			{type:'mult',value:2.5,req:{'t10':true}},
 			{type:'mult',value:1.03,req:{'discovery rituals':'on'}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,true,'[X] [people].','scout got lost','scouts got lost'),chance:1/300}
@@ -13485,7 +13485,7 @@ new G.Unit({
 		staff:{'stone tools':1},
 		upkeep:{'food':0.4},
 		effects:[
-			{type:'explore',explored:0.06,unexplored:0.0065},
+			{type:'explore',explored:0.005,unexplored:0.0055},
 			{type:'mult',value:2.5,req:{'t10':true}},
 			{type:'mult',value:1.04,req:{'discovery rituals':'on'}},
 			{type:'function',func:unitGetsConverted({},0.01,0.05,true,'[X] [people].','globetrotter got lost','globetrotters got lost'),chance:1/250}
