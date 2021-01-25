@@ -1,4 +1,4 @@
-var la=1;var lb=2;var lc=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
+var la=1;var lb=2;var lc=0;var ta=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
@@ -2529,6 +2529,7 @@ G.setPolicyMode=function(me,mode)
 	/*=============================================================
 	NEW TECH TAB
 	=============================================================*/
+	if(ta==1){
 	G.update['tech']=function(){
  // Add background UI for Research
  const researchUI = `<p style="float:right;">Thanks to Hyoretsu for helping with coding this tab</p><div class="behindBottomUI">${G.textWithTooltip(
@@ -2587,6 +2588,7 @@ var len=G.techsOwned.length;
   G.draw.tech();
  });
 };
+	}
 	G.createDebugMenu=function()
 	{
 		var str=''+
