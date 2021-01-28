@@ -35,7 +35,7 @@ G.createTopInterface=function()
 		})+
     	G.button({id:'customSpeedButton',
 			text:'<div class="image" style="width:9px;background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/playButtons.png) -31px 0px;"></div>',
-			tooltip:'You can decide at which speed game will go. Enter a number by which speed shall be multiplied. Note that it may lower browser performance while active and it will consume fast ticks.',
+			tooltip:'You can decide at which speed game will go. Enter a number by which speed shall be multiplied. <br>Note that it may lower browser performance while active and it will consume fast ticks.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',0);
       var sp=prompt("Please tell me at which speed you want to run this game. Note that it is going to work like 3x or 4x so all you need to type is just the number."));
 	var Speed=parseFloat(sp);						
