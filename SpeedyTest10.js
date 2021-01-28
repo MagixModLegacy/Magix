@@ -68,20 +68,18 @@ G.createTopInterface=function()
 		G.addCallbacks();
 		G.updateSpeedButtons();
 	}
-G.updateSpeedButtons=function()
+	G.updateSpeedButtons=function()
 	{
 			var div=l('pauseButton');
 			if (div)
 			{
-				
+				var speed=1;
 				if (G.getSetting('fast')) speed=2;
 				if (G.getSetting('paused') || G.getSetting('forcePaused')) speed=0;
-				if (speed==0) {if (G.getSetting('animations')) {triggerAnim(l('pauseButton'),'plop');} l('pauseButton').classList.add('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');l('customSpeedButton').classList.remove('on');}
-				else if (speed==1) {if (G.getSetting('animations')) {triggerAnim(l('playButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.add('on');l('fastButton').classList.remove('on');l('customSpeedButton').classList.remove('on');}
-				else if (speed==2) {if (G.getSetting('animations')) {triggerAnim(l('fastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.add('on');l('customSpeedButton').classList.remove('on');}
-				//else if (speed==3) {if (G.getSetting('animations')) {triggerAnim(l('customSpeedButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');}
+				if (speed==0) {if (G.getSetting('animations')) {triggerAnim(l('pauseButton'),'plop');} l('pauseButton').classList.add('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');}
+				else if (speed==1) {if (G.getSetting('animations')) {triggerAnim(l('playButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.add('on');l('fastButton').classList.remove('on');}
+				else if (speed==2) {if (G.getSetting('animations')) {triggerAnim(l('fastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.add('on');}
 			}
 	}
-}
 	
 });
