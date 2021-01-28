@@ -5,6 +5,7 @@ desc:'Not only pause , speed x1 , speed x30. Using a new button you can pick whi
 engineVersion:1,
 manifest:'ModManifest.js',
 func:function(){
+	var speed=1;
 G.createTopInterface=function()
 	{
 		var str=''+
@@ -36,9 +37,12 @@ G.createTopInterface=function()
 			text:'<div class="image" style="width:9px;background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/playButtons.png) -31px 0px;"></div>',
 			tooltip:'You can decide at which speed game will go. Enter a number by which speed shall be multiplied. Note that it may lower browser performance while active and it will consume fast ticks.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',0);
-      var speed=Number(prompt("Please tell me at which speed you want to run this game. Note that it is going to work like 3x or 4x so all you need to type is just the number."));
-      if(speed.isNaN()==false){
-      G.fps=30*speed;
+      var sp=prompt("Please tell me at which speed you want to run this game. Note that it is going to work like 3x or 4x so all you need to type is just the number."));
+	var Speed=parseFloat(sp);						
+      if(Speed.isNaN()==false){
+      G.fps=(30*speed);
+	      speed=3;
+	      G.middleText('- Speed x'+Speed+' -');
       }else{
       G.fps=30;
       }
@@ -64,6 +68,20 @@ G.createTopInterface=function()
 		G.addCallbacks();
 		G.updateSpeedButtons();
 	}
-
+G.updateSpeedButtons=function()
+	{
+			var div=l('pauseButton');
+			if (div)
+			{
+				
+				if (G.getSetting('fast')) speed=2;
+				if (G.getSetting('paused') || G.getSetting('forcePaused')) speed=0;
+				if (speed==0) {if (G.getSetting('animations')) {triggerAnim(l('pauseButton'),'plop');} l('pauseButton').classList.add('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');l('customSpeedButton').classList.remove('on');}
+				else if (speed==1) {if (G.getSetting('animations')) {triggerAnim(l('playButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.add('on');l('fastButton').classList.remove('on');l('customSpeedButton').classList.remove('on');}
+				else if (speed==2) {if (G.getSetting('animations')) {triggerAnim(l('fastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.add('on');l('customSpeedButton').classList.remove('on');}
+				else if (speed==3) {if (G.getSetting('animations')) {triggerAnim(l('customSpeedButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');}
+			}
+	}
 }
+	
 });
