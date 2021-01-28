@@ -4390,6 +4390,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if (G.on)
 		{
 			if(G.fps>30)G.fastTicks--;
+			G.modsByName['Default dataset'].name='Magix';
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
 			{
 				//show a random atmospheric message occasionally on new days
