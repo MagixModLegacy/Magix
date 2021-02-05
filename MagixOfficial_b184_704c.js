@@ -3208,6 +3208,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			//also not only greetings but also some content unlocks
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
 			G.getDict('Firework crafting').req={'culture of celebration':true,'tribalism':true};
+			G.getDict('Firework launching guy').req={'culture of celebration':true,'Dark launching':true,'tribalism':true};
+			G.getDict('Artisan of new year (dark)').req={'culture of celebration':true,'Dark essenced fireworks':true,'tribalism':true};
+			G.getDict('Artisan of new year').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 	};
@@ -3587,6 +3590,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			//also not only greetings but also some content unlocks
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
 			G.getDict('Firework crafting').req={'culture of celebration':true,'tribalism':true};
+			G.getDict('Firework launching guy').req={'culture of celebration':true,'Dark launching':true,'tribalism':true};
+			G.getDict('Artisan of new year (dark)').req={'culture of celebration':true,'Dark essenced fireworks':true,'tribalism':true};
+			G.getDict('Artisan of new year').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 		var truY=yer.getFullYear();
@@ -9152,7 +9158,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		
 		new G.Res({
@@ -9164,7 +9170,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		new G.Res({
 		name:'Dark Orange Firework',
@@ -9176,7 +9182,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		new G.Res({
 		name:'Firecracker',
@@ -9188,7 +9194,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		new G.Res({
 		name:'corpsedecaypoint',
@@ -12952,7 +12958,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'Orange firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'culture of celebration':true,'Firework crafting':true/*,'culture of celebration':false*/},
+		req:{'culture of celebration':true,'Firework crafting':true,'tribalism':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -12968,7 +12974,7 @@ if (!document.getElementById(cssId))
 			{type:'gather',what:{'Dark Orange Firework':1.25}},
 			{type:'gather',what:{'Firecracker':1}}
 		],
-		req:{'culture of celebration':true,'Dark essenced fireworks':true/*,'culture of celebration':false*/},
+		req:{'culture of celebration':true,'Dark essenced fireworks':true,'tribalism':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -12984,7 +12990,7 @@ new G.Unit({
 			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
 			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
 		],
-		req:{'culture of celebration':true,'Firework launching':true/*,'culture of celebration':false*/},
+		req:{'culture of celebration':true,'Firework launching':true,'tribalism':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
