@@ -2002,7 +2002,7 @@ G.setPolicyMode=function(me,mode)
 							{
 								G.dialogue.close();
 								G.doCost(me.unit.finalStepCost,amount);
-								if(me.name=='wonderful fortress of christmas'){G.achievByName['capital'].won=1;G.middleText('-  Completed <font color="#bbbbff">Citadel of christmas</font><br>seasonal achievement - <br> <hr width="300"> Ho ho ho! Merry christmas to you! From now you can unlock special Christmas bonus','slow'};
+								if(me.name=='wonderful fortress of christmas'){G.achievByName['capital'].won=1;G.middleText('-  Completed <font color="#bbbbff">Citadel of christmas</font><br>seasonal achievement - <br> <hr width="300"> Ho ho ho! Merry christmas to you! From now you can unlock special Christmas bonus','slow')};
 								if (G.checkPolicy('Toggle SFX')=='on'){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
 			audio.play(); 
