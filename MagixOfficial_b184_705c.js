@@ -2002,7 +2002,7 @@ G.setPolicyMode=function(me,mode)
 							{
 								G.dialogue.close();
 								G.doCost(me.unit.finalStepCost,amount);
-								if(me.name=='wonderful fortress of christmas'){G.achievByName['capital'].won=1;G.middleText('-  Completed <font color="#bbbbff">Citadel of christmas</font><br>seasonal achievement - <br> <hr width="300"> Ho ho ho! Merry christmas to you! From now you can unlock special Christmas bonus','slow')};
+								if(me.unit.name=='wonderful fortress of christmas'){G.achievByName['capital'].won=1;G.middleText('-  Completed <font color="#bbbbff">Citadel of christmas</font><br>seasonal achievement - <br> <hr width="300"> Ho ho ho! Merry christmas to you! From now you can unlock special Christmas bonus','slow')};
 								if (G.checkPolicy('Toggle SFX')=='on'){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
 			audio.play(); 
@@ -3186,7 +3186,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('the christmas').req={'culture of celebration':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
 					G.getAchiev('xmas buff').won=7;
-					
+					G.getDict('wonderful fortress of christmas').req={'monument-building II':true,'f.r.o.s.t.y overclock II':true,'tribalism':true};
+					G.getDict('christmas essence storage').req={'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true,'tribalism':true};
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
@@ -13548,7 +13549,7 @@ new G.Unit({
 		finalStepCost:{'christmas essence':40000,'Mana':1e5,'ice':7.5e4},
 		threexthreeIcon:[0,11,'seasonal'],
 		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
-		req:{'monument-building II':true,'f.r.o.s.t.y overclock II':true},
+		req:{'monument-building II':true,'f.r.o.s.t.y overclock II':true,'tribalism':false},
 		category:'seasonal',
 		priority:5,
 	});
@@ -13564,7 +13565,7 @@ new G.Unit({
 			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
-		req:{'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true},
+		req:{'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true,'tribalism':false},
 		category:'seasonal',
 	});
 	new G.Unit({
