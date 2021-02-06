@@ -3630,8 +3630,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		if (G.on)
 		{
-			
-			var txt = ''+G.year+'';ta=1;
+			ta=1;
+			var txt = ''+G.year+'';
 			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
 		G.getDict('worker').icon=[1,7,'seasonal'];
 		G.getDict('child').icon=[2,7,'seasonal'];
@@ -9147,7 +9147,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		new G.Res({
 		name:'Orange firework',
@@ -12955,27 +12955,14 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'Thread':0.30,'Paper':0.3},
 		effects:[
-			{type:'gather',what:{'Blue firework':1.25}},
-			{type:'gather',what:{'Orange firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
+			{type:'gather',what:{'Blue firework':0.75},every:3},
+			{type:'gather',what:{'Orange firework':0.75},every:3},
+			{type:'gather',what:{'Firecracker':1},every:3},
+			{type:'gather',what:{'Dark Blue Firework':0.5},every:6,req:{'Dark essenced fireworks':true}},
+			{type:'gather',what:{'Dark Orange Firework':0.5},every:6,req:{'Dark essenced fireworks':true}},
+			{type:'mult',value:1.1,req:{'ground stone tools':true}},
 		],
 		req:{'culture of celebration':true,'Firework crafting':true,'tribalism':false},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Unit({
-		name:'Artisan of new year (dark)',
-		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
-		icon:[19,0,'seasonal'],
-		cost:{},
-		use:{'worker':1},
-		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
-		effects:[
-			{type:'gather',what:{'Dark Blue Firework':1.25}},
-			{type:'gather',what:{'Dark Orange Firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
-		],
-		req:{'culture of celebration':true,'Dark essenced fireworks':true,'tribalism':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -13586,7 +13573,24 @@ new G.Unit({
 		req:{'globetrottering':true},
 		category:'exploration',
 	});
-	
+			new G.Unit({
+		name:'artisan of christmas',
+		desc:'@has the ability to turn [archaic building materials,Various things] into festive ornaments , lights and anything related to [the christmas]. Once they decay they turn into [christmas essence]. They can be used to build a very special wonder and bring some happiness especially lights.',
+		icon:[5,10,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		modes:{
+			'off':G.MODE_OFF,
+			'ornaments':{name:'Craft ornaments',icon:[6,10,'seasonal'],desc:'Craft 1 [christmas ornament] from [Thread]s, [Dyes] and [log]',use:{'worker':1,'stone tools':1}},
+			'lights':{name:'Craft lights',icon:[6,11,'seasonal'],desc:'Craft 1 [festive light] from [Thread]s, [tin ore] , [Dyes] and [Magic essences]',use:{'worker':1,'stone tools':1},req:{'festive lights':true}},
+		},
+		effects:[
+			{type:'convert',from:{'Thread':4,'Dyes':2,'log':0.2},into:{'christmas ornament':1},every:6,mode:'ornaments'},
+			{type:'mult',value:1.1,req:{'ground stone tools':true}},
+		],
+		req:{'the christmas':true,'tribalism':false},
+		category:'seasonal',
+	}); 
 	
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
@@ -15305,7 +15309,7 @@ autobuy(G.year)
 	});
 	new G.Trait({
 		name:'ground stone tools',
-		desc:'@[artisan]s and [carver]s craft 20% faster',
+		desc:'@[artisan]s and [carver]s craft 20% faster. //Note: it also applies to seasonal artisan for example [artisan of christmas] (with [culture of celebration] obtained]) but it is only 10% boost in their case.',
 		icon:[4,1],
 		cost:{'insight':3},
 		chance:10,
