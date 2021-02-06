@@ -13596,7 +13596,31 @@ new G.Unit({
 		req:{'festive artisanistry':true,'tribalism':false},
 		category:'seasonal',
 	}); 
-	
+	new G.Unit({
+		name:'lodge of Christmas',
+		desc:'@this lodge than turn normal [child,children] to [child of Christmas,children of Christmas].',
+		icon:[14,10,'seasonal'],
+		cost:{'archaic building materials':50,'basic building materials':30},
+		use:{'land':1,'worker':3},
+		//require:{'worker':1,'knapped tools':1},
+		//upkeep:{'coin':0.5},
+		gizmos:true,
+		modes:{
+			'off':G.MODE_OFF,
+			'gatherers':{name:'Gatherer\'s lodge',icon:[0,2],desc:'Hire [gatherer]s until there are 6 for each of this lodge.',req:{'tribalism':true}},
+			'hunters':{name:'Hunter\'s lodge',icon:[18,2],desc:'Hire [hunter]s until there are 6 for each of this lodge.',req:{'hunting':true}},
+			'fishers':{name:'Fisher\'s lodge',icon:[17,2],desc:'Hire [fisher]s until there are 6 for each of this lodge.',req:{'fishing':true}},
+			'diggers':{name:'Digger\'s lodge',icon:[7,2],desc:'Hire [digger]s until there are 6 for each of this lodge.',req:{'digging':true}},
+			'woodcutters':{name:'Woodcutter\'s lodge',icon:[8,2],desc:'Hire [woodcutter]s until there are 6 for each of this lodge.',req:{'woodcutting':true}},
+			'artisans':{name:'Artisan\'s lodge',icon:[6,2],desc:'Hire [artisan]s until there are 6 for each of this lodge.',req:{'stone-knapping':true}},
+			'florists':{name:'Florist\'s lodge',icon:[7,11,'magixmod'],desc:'Hire [Florist]s until there are 6 for each of this lodge.',req:{'plant lore':true}},
+		},
+		effects:[
+			
+		],
+		req:{'the christmas':true,'tribalism':false},
+		category:'seasonal',
+	});
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
 	=======================================================================================*/
@@ -18102,7 +18126,7 @@ new G.Tech({
 	new G.Tech({
 		name:'the christmas',category:'seasonal',
 		displayName:'<font color="cyan">The Christmas</font>',
-		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one. Unlocks Lodge of Christmas.',
+		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //Unlocks [lodge of Christmas].',
 		icon:[2,10,'seasonal'],
 		cost:{'insight':400,'culture':100,'faith':32},
 		req:{'culture of celebration':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
