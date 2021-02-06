@@ -3191,6 +3191,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('artisan of christmas').req={'festive artisanistry':true,'tribalism':true};
 					G.getDict('festive artisanistry').req={'winter holidays':true,'tribalism':true};
+					G.getDict('lodge of Christmas').req={'the christmas':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('festive light').hidden=false;
@@ -3586,6 +3587,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				G.getDict('artisan of christmas').req={'festive artisanistry':true,'tribalism':true};
 					G.getDict('festive artisanistry').req={'winter holidays':true,'tribalism':true};
 					G.getDict('festive light').hidden=false;
+				G.getDict('lodge of Christmas').req={'the christmas':true,'tribalism':true};
 					G.getDict('snowman').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('christmas essence').hidden=false;
