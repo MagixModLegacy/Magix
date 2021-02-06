@@ -3189,6 +3189,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('wonderful fortress of christmas').req={'monument-building II':true,'f.r.o.s.t.y overclock II':true,'tribalism':true};
 					G.getDict('christmas essence storage').req={'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true,'tribalism':true};
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
+					G.getDict('artisan of christmas').req={'festive artisanistry':true,'tribalism':true};
+					G.getDict('festive artisanistry').req={'winter holidays':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('festive light').hidden=false;
@@ -3581,6 +3583,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('snow').hidden=false;
+				G.getDict('artisan of christmas').req={'festive artisanistry':true,'tribalism':true};
+					G.getDict('festive artisanistry').req={'winter holidays':true,'tribalism':true};
 					G.getDict('festive light').hidden=false;
 					G.getDict('snowman').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
@@ -13582,13 +13586,14 @@ new G.Unit({
 		modes:{
 			'off':G.MODE_OFF,
 			'ornaments':{name:'Craft ornaments',icon:[6,10,'seasonal'],desc:'Craft 1 [christmas ornament] from [Thread]s, [Dyes] and [log]',use:{'worker':1,'stone tools':1}},
-			'lights':{name:'Craft lights',icon:[6,11,'seasonal'],desc:'Craft 1 [festive light] from [Thread]s, [tin ore] , [Dyes] and [Magic essences]',use:{'worker':1,'stone tools':1},req:{'festive lights':true}},
+			'lights':{name:'Craft lights',icon:[6,11,'seasonal'],desc:'Craft 1 [festive light] from [Thread]s, [tin ore] , [Dyes] , some [glass] and [Magic essences]',use:{'worker':1,'stone tools':1},req:{'festive lights':true}},
 		},
 		effects:[
 			{type:'convert',from:{'Thread':4,'Dyes':2,'log':0.2},into:{'christmas ornament':1},every:6,mode:'ornaments'},
+			{type:'convert',from:{'Thread':9,'tin ore':2,'glass':0.2,'Magic essences':3},into:{'festive light':1},every:6,mode:'lights'},
 			{type:'mult',value:1.1,req:{'ground stone tools':true}},
 		],
-		req:{'the christmas':true,'tribalism':false},
+		req:{'festive artisanistry':true,'tribalism':false},
 		category:'seasonal',
 	}); 
 	
@@ -18249,6 +18254,13 @@ new G.Tech({
 		icon:[35,1,'magixmod'],
 		cost:{'insight':30,'culture':10},
 		req:{'scouting':true,'building':true,'a gift from the mausoleum':true},
+	});
+	new G.Tech({
+		name:'festive artisanistry',category:'seasonal',
+		desc:'unlocks [artisan of christmas]',
+		icon:[15,10,'seasonal'],
+		cost:{'insight':600,'culture':100,'influence':50},
+		req:{'winter holidays':true,'tribalism':false},
 	});
 	/*=====================================================================================
 	POLICIES
