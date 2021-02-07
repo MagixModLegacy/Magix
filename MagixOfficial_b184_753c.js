@@ -2849,7 +2849,7 @@ G.gainTech(G.techByName['underworld\'s ascendant']);
 	if (G.achievByName['Next to the God'].won > 0 && G.hasNot('Life in faith')){
       G.gainTech(G.techByName['Life in faith'])
     };
-	if(G.achievByName('xmas buff').won>=0){
+	if(G.achievByName['xmas buff'].won>=0){
 		var buff=Math.round(Math.random()*3)+1;
 		G.gainTrait(G.traitByName['xmas'+buff+'']);
 	};
