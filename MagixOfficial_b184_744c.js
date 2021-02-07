@@ -3624,7 +3624,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(yer.getMonth()==3 && yer.getDate()==1){ //fools, maybe, maybe not, rather not
 		G.middleText('-kcab emoclew,dooG -<br><small>Yo accmlatd '+B(timeOffline)+' fast ticks whil yo wr away.<br><font color="lime">My two kys on my kyboard got brokn, so that is th ffct.</font></small>','slow');	
 		};
-		if (day>=41 && day<=46){  //valentines
+		if (day>=40 && day<=46){  //valentines
 		G.middleText('<font color="pink">-Love is in the air -<br>-Welcome back- <br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');		
 		};
 		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
@@ -5477,6 +5477,18 @@ G.writeMSettingButton=function(obj)
 		},
 		getIcon:function(me)
 		{
+			if(day>=40 && day<=46){
+			if (G.getRes('population').amount<=0) return [8,16,'seasonal'];
+			else
+			{
+				var amount=me.amount/G.getRes('population').amount;
+				if (amount>=100) return [7,16,'seasonal'];
+				else if (amount>=50) return [6,16,'seasonal'];
+				else if (amount>=-50) return [5,16,'seasonal'];
+				else if (amount>=-100) return [4,16,'seasonal'];
+				else return [3,16,'seasonal'];
+			}	
+			}else{
 			if (G.getRes('population').amount<=0) return [5,5];
 			else
 			{
@@ -5486,6 +5498,7 @@ G.writeMSettingButton=function(obj)
 				else if (amount>=-50) return [2,5];
 				else if (amount>=-100) return [1,5];
 				else return [0,5];
+			}
 			}
 		},
 	});
