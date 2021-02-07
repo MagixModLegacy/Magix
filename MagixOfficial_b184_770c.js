@@ -12946,27 +12946,14 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'Thread':0.30,'Paper':0.3},
 		effects:[
-			{type:'gather',what:{'Blue firework':1.25}},
-			{type:'gather',what:{'Orange firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
+			{type:'gather',what:{'Blue firework':0.75},every:3},
+			{type:'gather',what:{'Orange firework':0.75},every:3},
+			{type:'gather',what:{'Firecracker':1},every:3},
+			{type:'gather',what:{'Dark Blue Firework':0.5},every:6,req:{'Dark essenced fireworks':true}},
+			{type:'gather',what:{'Dark Orange Firework':0.5},every:6,req:{'Dark essenced fireworks':true}},
+			{type:'mult',value:1.1,req:{'ground stone tools':true}},
 		],
-		req:{'culture of celebration':true,'Firework crafting':true/*,'culture of celebration':false*/},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Unit({
-		name:'Artisan of new year (dark)',
-		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
-		icon:[19,0,'seasonal'],
-		cost:{},
-		use:{'worker':1},
-		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
-		effects:[
-			{type:'gather',what:{'Dark Blue Firework':1.25}},
-			{type:'gather',what:{'Dark Orange Firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
-		],
-		req:{'culture of celebration':true,'Dark essenced fireworks':true/*,'culture of celebration':false*/},
+		req:{'culture of celebration':true,'Firework crafting':true,'tribalism':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -13577,7 +13564,50 @@ new G.Unit({
 		req:{'globetrottering':true},
 		category:'exploration',
 	});
-	
+			new G.Unit({
+		name:'artisan of christmas',
+		desc:'@has the ability to turn [archaic building materials,Various things] into festive ornaments , lights and anything related to [the christmas]. Once they decay they turn into [christmas essence]. They can be used to build a very special wonder and bring some happiness especially lights.',
+		icon:[5,10,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		modes:{
+			'off':G.MODE_OFF,
+			'ornaments':{name:'Craft ornaments',icon:[6,10,'seasonal'],desc:'Craft 1 [christmas ornament] from [Thread]s, [Dyes] and [log]',use:{'worker':1,'stone tools':1}},
+			'lights':{name:'Craft lights',icon:[6,11,'seasonal'],desc:'Craft 1 [festive light] from [Thread]s, [tin ore] , [Dyes] , some [glass] and [Magic essences]',use:{'worker':1,'stone tools':1},req:{'festive lights':true}},
+		},
+		effects:[
+			{type:'convert',from:{'Thread':4,'Dyes':2,'log':0.2},into:{'christmas ornament':1},every:6,mode:'ornaments'},
+			{type:'convert',from:{'Thread':9,'tin ore':2,'glass':0.2,'Magic essences':3},into:{'festive light':1},every:6,mode:'lights'},
+			{type:'mult',value:1.1,req:{'ground stone tools':true}},
+		],
+		req:{'festive artisanistry':true,'tribalism':false},
+		category:'seasonal',
+	}); 
+	new G.Unit({
+		name:'lodge of Christmas',
+		desc:'@this lodge than turn normal [child,children] to [child of Christmas,children of Christmas].',
+		icon:[14,10,'seasonal'],
+		cost:{'archaic building materials':50,'basic building materials':30},
+		use:{'land':1,'worker':3},
+		//require:{'worker':1,'knapped tools':1},
+		//upkeep:{'coin':0.5},
+		gizmos:true,
+		modes:{
+			'off':G.MODE_OFF,
+			'gatherers':{name:'Gatherer\'s lodge',icon:[0,2],desc:'Hire [gatherer]s until there are 6 for each of this lodge.',req:{'tribalism':true}},
+			'hunters':{name:'Hunter\'s lodge',icon:[18,2],desc:'Hire [hunter]s until there are 6 for each of this lodge.',req:{'hunting':true}},
+			'fishers':{name:'Fisher\'s lodge',icon:[17,2],desc:'Hire [fisher]s until there are 6 for each of this lodge.',req:{'fishing':true}},
+			'diggers':{name:'Digger\'s lodge',icon:[7,2],desc:'Hire [digger]s until there are 6 for each of this lodge.',req:{'digging':true}},
+			'woodcutters':{name:'Woodcutter\'s lodge',icon:[8,2],desc:'Hire [woodcutter]s until there are 6 for each of this lodge.',req:{'woodcutting':true}},
+			'artisans':{name:'Artisan\'s lodge',icon:[6,2],desc:'Hire [artisan]s until there are 6 for each of this lodge.',req:{'stone-knapping':true}},
+			'florists':{name:'Florist\'s lodge',icon:[7,11,'magixmod'],desc:'Hire [Florist]s until there are 6 for each of this lodge.',req:{'plant lore':true}},
+		},
+		effects:[
+			
+		],
+		req:{'the christmas':true,'tribalism':false},
+		category:'seasonal',
+	});
 	
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
