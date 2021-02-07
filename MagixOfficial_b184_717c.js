@@ -9616,7 +9616,7 @@ if (!document.getElementById(cssId))
 		{
 			if (G.getRes('population').amount<=0) return '<b>-</b>';
 			var amount=G.getRes('love').amount;
-			return '<font size="1"><font color="yellow"><b> Lvl'+B(amount)+'</b></font> '+G.getRes('love xp').amount+'/'+G.getRes('love').amount*60000/(G.techN/100)+(G.trait.length*100)+'</font>';
+			return '<font size="1"><font color="yellow"><b> Lvl'+B(amount)+'</b></font> '+B(G.getRes('love xp').amount)+'/'+B(G.getRes('love').amount*60000/(G.techN/100)+(G.trait.length*100))+'</font>';
 		},
 		getIcon:function(me)
 		{
