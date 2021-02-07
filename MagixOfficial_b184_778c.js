@@ -5477,6 +5477,18 @@ G.writeMSettingButton=function(obj)
 		},
 		getIcon:function(me)
 		{
+			if(day>=40 && day<=46){
+			if (G.getRes('population').amount<=0) return [8,16,'seasonal'];
+			else
+			{
+				var amount=me.amount/G.getRes('population').amount;
+				if (amount>=100) return [7,16,'seasonal'];
+				else if (amount>=50) return [6,16,'seasonal'];
+				else if (amount>=-50) return [5,16,'seasonal'];
+				else if (amount>=-100) return [4,16,'seasonal'];
+				else return [3,16,'seasonal'];
+			}	
+			}else{
 			if (G.getRes('population').amount<=0) return [5,5];
 			else
 			{
@@ -5486,6 +5498,7 @@ G.writeMSettingButton=function(obj)
 				else if (amount>=-50) return [2,5];
 				else if (amount>=-100) return [1,5];
 				else return [0,5];
+			}
 			}
 		},
 	});
