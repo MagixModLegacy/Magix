@@ -3225,7 +3225,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 }
 	G.funcs['game over']=function()
 	{
-		var str=G.getName('civ')+' is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
+		var str='<b>'+G.getName('civ')+'</b> is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
 		G.Message({type:'bad',text:str,icon:[5,4]});
 		if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 		{
