@@ -3236,7 +3236,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var buff=Math.round(Math.random()*3)+1;
 			G.gainTrait(G.traitByName['xmas'+buff+'']);
 		}
-		if(G.achievByName('valentine buff').won>=0){
+		if(G.achievByName['valentine buff'].won>=0){
 			var buff=Math.round(Math.random()*3)+1;
 			G.gainTrait(G.traitByName['valentine'+buff+'']);
 		}	
