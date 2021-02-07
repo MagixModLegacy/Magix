@@ -3216,6 +3216,16 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if (day+leap>=40 && day+leap<=46){  //valentines
 		G.gain('love',1);
 			G.getDict('love').hidden=false;
+			G.getDict('Ambrosium treeplanting').icon=[11,15,'seasonal'];
+			G.getDict('cities').icon=[12,15,'seasonal'];
+			G.getDict('sedentism').icon=[13,15,'seasonal'];
+			G.getDict('scouting').icon=[14,15,'seasonal'];
+			G.getDict('focused scouting').icon=[15,15,'seasonal'];
+			G.getDict('well-digging').icon=[16,15,'seasonal'];
+			G.getDict('bows').icon=[17,15,'seasonal'];
+			G.getDict('spears').icon=[18,15,'seasonal'];
+			G.getDict('sewing').icon=[19,15,'seasonal'];
+			G.getDict('weaving II').icon=[9,16,'seasonal'];
 		};
 		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
 		G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
@@ -3622,7 +3632,18 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		G.middleText('-kcab emoclew,dooG -<br><small>Yo accmlatd '+B(timeOffline)+' fast ticks whil yo wr away.<br><font color="lime">My two kys on my kyboard got brokn, so that is th ffct.</font></small>','slow');	
 		};
 		if (day+leap>=40 && day+leap<=46){  //valentines
-		G.middleText('<font color="pink">-Love is in the air -<br>-Welcome back- <br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');		
+		G.middleText('<font color="pink">-Love is in the air -<br>-Welcome back- <br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
+			G.getDict('love').hidden=false;
+			G.getDict('Ambrosium treeplanting').icon=[11,15,'seasonal'];
+			G.getDict('cities').icon=[12,15,'seasonal'];
+			G.getDict('sedentism').icon=[13,15,'seasonal'];
+			G.getDict('scouting').icon=[14,15,'seasonal'];
+			G.getDict('focused scouting').icon=[15,15,'seasonal'];
+			G.getDict('well-digging').icon=[16,15,'seasonal'];
+			G.getDict('bows').icon=[17,15,'seasonal'];
+			G.getDict('spears').icon=[18,15,'seasonal'];
+			G.getDict('sewing').icon=[19,15,'seasonal'];
+			G.getDict('weaving II').icon=[9,16,'seasonal'];
 		};
 		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
 		G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
