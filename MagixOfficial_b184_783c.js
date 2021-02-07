@@ -18404,7 +18404,7 @@ new G.Tech({
 	new G.Trait({
         name:'parental love',
 	desc:'Now newborn [baby,Babies] provide some [love,Love points] for each one born. This one will lead to more [love] sources.',
-        icon:[19,17,'seasonal'],
+        icon:[19,16,'seasonal'],
 	cost:{'culture':75,'research':90},
         req:{'love grows around us':true},
 	category:'seasonal',chance:35,
