@@ -3215,7 +3215,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	};
 		if (day+leap>=40 && day+leap<=46){  //valentines
 		G.gain('love',1);
-			G.getDict('love').hidden=false;
 			G.getDict('Ambrosium treeplanting').icon=[11,15,'seasonal'];
 			G.getDict('cities').icon=[12,15,'seasonal'];
 			G.getDict('sedentism').icon=[13,15,'seasonal'];
@@ -3633,7 +3632,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		};
 		if (day+leap>=40 && day+leap<=46){  //valentines
 		G.middleText('<font color="pink">-Love is in the air -<br>-Welcome back- <br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
-			G.getDict('love').hidden=false;
 			G.getDict('Ambrosium treeplanting').icon=[11,15,'seasonal'];
 			G.getDict('cities').icon=[12,15,'seasonal'];
 			G.getDict('sedentism').icon=[13,15,'seasonal'];
@@ -17892,7 +17890,7 @@ new G.Tech({
 		desc:'People will try make fun out of spooky things. They won\'t need help of anyone outside your tribe. Prepare for festival of fear - that\'s what one of your '+G.getName('inhab')+' said to you.',
 		icon:[5,7,'seasonal'],
 		req:{'tribalism':false,'culture of celebration':true,'sedentism':true,'intuition':true},//tribalism switches to true when halloween season starts
-		cost:{'culture':30,'faith':5},
+		cost:{'culture':30,'faith':5,'research':50},
 		effects:[
 		],
 		chance:3
@@ -18195,7 +18193,7 @@ new G.Tech({
 		name:'winter holidays',category:'seasonal',
 		desc:'@You want to bring one of events/festives you know from somewhere else right to your tribe. The hint word: Winter. //It is all about snow, snowmen, etc. However no one showed even to your people how does snowman look like or what a winter ornament is. //[digger]s will start digging for [snow] if available.',
 		icon:[1,10,'seasonal'],
-		cost:{'insight':210,'culture':45,'faith':5},
+		cost:{'insight':210,'culture':45,'faith':5,'research':80},
 		req:{'culture of celebration':true,'philosophy':true,'tribalism':false},
 	});
 	new G.Tech({
@@ -18393,6 +18391,16 @@ new G.Tech({
         req:{'tribalism':false},
 	category:'seasonal'
     });
+	new G.Tech({
+		name:'love grows around us',category:'seasonal',displayName:'<font color="pink">Love grows around us</font>',
+		desc:'@One person that loves a lot other people is enough... wait '+G.getName('ruler')+' . You are ruler of the tribe and love people a lot. And they also love you. //Let\'s plant the seeds of <b>The festival of love</b> called Valentine\'s day. Will unlock you [love] - a special thing that is key of that event AND can bring you some rewards if level of [love] is decent enough.',
+		icon:[18,16,'seasonal'],
+		cost:{'insight':210,'culture':45,'faith':5,'research':80},
+		req:{'culture of celebration':true,'philosophy':true,'tribalism':false},
+		effects:[
+			 {type:'function',func:function(){if(day+leap>=40 && day+leap<=46)G.getDict('love').hidden=false;}},
+			]
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
