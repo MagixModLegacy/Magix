@@ -9620,8 +9620,8 @@ if (!document.getElementById(cssId))
 		getDisplayAmount:function(me)
 		{
 			if (G.getRes('population').amount<=0) return '<b>-</b>';
-			var amount=me.amount;
-			return '<font color="yellow"> Lvl'+B(amount)+'</font> xp/xp required';
+			var amount=G.getRes('love').amount;
+			return '<font size="2"><font color="yellow"><b> Lvl'+B(amount)+'</b></font> xp/xp required</font>';
 		},
 		getIcon:function(me)
 		{
