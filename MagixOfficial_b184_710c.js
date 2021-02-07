@@ -749,7 +749,7 @@ func:function(){
 			'main':{
 				name:'<font color="#E66900">Essentials</font>',
 				base:[],
-				side:['population','worker','happiness','health','victory point'],
+				side:['population','worker','happiness','health','victory point','love'],
 		},
 			'terr':{
 				name:'Territory',
@@ -9601,6 +9601,44 @@ if (!document.getElementById(cssId))
 		icon:[35,3,'magixmod'],
 		tick:function(me,tick){
 			me.amount=G.techN;
+		},
+	});
+	new G.Res({
+		name:'love',
+		desc:'[happiness] describes the global level of well-being of your [population].//Happy people work even harder, while unhappy people tend to slack off; at +100% happiness, most of your workers will work twice as fast, while at -100% happiness, they will work twice as slow. This goes on up to +200% and -200%.//Several things improve happiness, such as good [food,food], entertainment, or luxury items; things that bring down happiness are spoiled food, starvation, disease, death and harsh policies.//Happiness and unhappiness both tend to level off over time.',
+		startWith:1,
+		icon:[10,16,'seasonal'],
+		tick:function(me,tick)
+		{
+			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
+			if(G.has('t4')){
+				if(amount>=98){
+					G.lose(me,G.getRes(me).amount*0.8)
+			}
+			}
+		},
+		getDisplayAmount:function()
+		{
+			if (G.getRes('population').amount<=0) return '<b>-</b>';
+			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
+			if (amount>200) amount=200;
+			if (amount<-200) amount=-200;
+			return B(amount)+' xp/xp required';
+		},
+		getIcon:function(me)
+		{
+			if (G.getRes('population').amount<=0) return [17,16,'seasonal'];
+			else
+			{
+				var amount=me.amount/G.getRes('population').amount;
+				if (amount>=15) return [16,16,'seasonal'];
+				else if (amount>=12) return [15,16,'seasonal'];
+				else if (amount>=10) return [14,16,'seasonal'];
+				else if (amount>=8) return [13,16,'seasonal'];
+				else if (amount>=5) return [12,16,'seasonal'];
+				else if (amount>=3) return [11,16,'seasonal'];
+				else return [10,16,'seasonal'];
+			}
 		},
 	});
 	/*=====================================================================================
