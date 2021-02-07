@@ -18401,6 +18401,22 @@ new G.Tech({
 			 {type:'function',func:function(){if(day+leap>=40 && day+leap<=46)G.getDict('love').hidden=false;}},
 			]
 	});
+	new G.Trait({
+        name:'parental love',
+	desc:'Now newborn [baby,Babies] provide some [love,Love points] for each one born. This one will lead to more [love] sources.',
+        icon:[19,17,'seasonal'],
+	cost:{'culture':75,'research':90},
+        req:{'love grows around us':true},
+	category:'seasonal',chance:35,
+    });
+	new G.Trait({
+        name:'discovery with love',
+	desc:'From [research] you may gain now [love]. Each year you will get some [love] points. The formula for that is: <br>//<font color="aqua">Pts=amount of techs*(random number between 1 and 15)-(amount of traits/8)</font>',
+        icon:[6,17,'seasonal'],
+	cost:{'culture':75,'research':120,'insight':400},
+        req:{'parental love':true,'time measuring 1/2':true},
+	category:'seasonal',chance:50,
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
