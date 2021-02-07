@@ -2674,7 +2674,7 @@ var len=G.techsOwned.length;
 		G.draw['tech']();
 	
 	}}
-	G.createDebugMenu=function()
+	/*G.createDebugMenu=function()
 	{
 		var str=''+
 		'<div style="float:left;"><center>'+
@@ -2712,7 +2712,7 @@ var len=G.techsOwned.length;
 		l('debug').innerHTML=str;
 		
 		G.addCallbacks();
-	}
+	}*/
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
