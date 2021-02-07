@@ -9617,7 +9617,7 @@ if (!document.getElementById(cssId))
 			}
 			}
 		},
-		getDisplayAmount:function()
+		getDisplayAmount:function(me)
 		{
 			if (G.getRes('population').amount<=0) return '<b>-</b>';
 			var amount=me.amount;
