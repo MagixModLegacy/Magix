@@ -9610,18 +9610,13 @@ if (!document.getElementById(cssId))
 		icon:[10,16,'seasonal'],
 		tick:function(me,tick)
 		{
-			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
-			if(G.has('t4')){
-				if(amount>=98){
-					G.lose(me,G.getRes(me).amount*0.8)
-			}
-			}
+			
 		},
 		getDisplayAmount:function(me)
 		{
 			if (G.getRes('population').amount<=0) return '<b>-</b>';
 			var amount=G.getRes('love').amount;
-			return '<font size="1"><font color="yellow"><b> Lvl'+B(amount)+'</b></font> xp/xp required</font>';
+			return '<font size="1"><font color="yellow"><b> Lvl'+B(amount)+'</b></font> '+G.getRes('love xp').amount+'/'+G.getRes('love').amount*60000/(G.techN/100)+(G.trait.length*100)+'</font>';
 		},
 		getIcon:function(me)
 		{
@@ -9638,6 +9633,9 @@ if (!document.getElementById(cssId))
 				else return [10,16,'seasonal'];
 			}
 		},
+	});
+	new G.Res({
+		name:'love xp',
 	});
 	/*=====================================================================================
 	UNITS
