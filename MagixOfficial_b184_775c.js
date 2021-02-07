@@ -695,7 +695,6 @@ G.LoadResources=function()
 ////////ACTUAL CONTENT
 G.AddData({
 name:'Default dataset',
-displayName:'Magix',
 author:'pelletsstarPL',
 desc:'Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
@@ -750,7 +749,7 @@ func:function(){
 			'main':{
 				name:'<font color="#E66900">Essentials</font>',
 				base:[],
-				side:['population','worker','happiness','health','victory point'],
+				side:['population','worker','happiness','health','victory point','love'],
 		},
 			'terr':{
 				name:'Territory',
@@ -2793,7 +2792,6 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['new game']=function()
 	{
 		///new game mesg
-		G.modsByName['Default dataset'].displayName='Magix';
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});
 		if (G.achievByName['mausoleum'].won > 0) {
