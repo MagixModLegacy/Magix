@@ -1481,10 +1481,9 @@ func:function(){
 			plural:false
 	});
 	new G.Achiev({
-		icon:[1,0,'magixmod'],
 		name:'xmas buff',
+		icon:[1,0,'magixmod'],
 		visible:false, //debug
-		plural:true,
 	});
 			new G.Achiev({
 		tier:0,
@@ -3216,7 +3215,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					
 				} //some winterish replacements=
 		else{
-			G.getAchiev('xmas buff').won--;
+			G.getAchiev('xmas buff').won-=1;
 		}
 		
 		if ((day>=365 && day<=366) || (day>0 && day<=2)){
@@ -3232,7 +3231,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(day>=40 && day<=46){
 		
 		}else{
-			G.getAchiev('valentine buff').won--;
+			G.getAchiev('valentine buff').won-=1;
 		};
 			G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
 			G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
