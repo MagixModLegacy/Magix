@@ -9605,7 +9605,7 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'love',
-		desc:'[happiness] describes the global level of well-being of your [population].//Happy people work even harder, while unhappy people tend to slack off; at +100% happiness, most of your workers will work twice as fast, while at -100% happiness, they will work twice as slow. This goes on up to +200% and -200%.//Several things improve happiness, such as good [food,food], entertainment, or luxury items; things that bring down happiness are spoiled food, starvation, disease, death and harsh policies.//Happiness and unhappiness both tend to level off over time.',
+		desc:'Seasonal essential. [love] can unlock new bonuses on some levels. //Obtaining valentine traits will allow you to gain points for that essential from more sources. Depending on happiness you may gain it slower or faster. You won\'t gain any more [love] if [happiness] level will go below -100%. Xp gains will be lowered by 75% if your [health] level will go below -20%.',
 		startWith:1,
 		icon:[10,16,'seasonal'],
 		tick:function(me,tick)
@@ -9620,10 +9620,8 @@ if (!document.getElementById(cssId))
 		getDisplayAmount:function()
 		{
 			if (G.getRes('population').amount<=0) return '<b>-</b>';
-			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
-			if (amount>200) amount=200;
-			if (amount<-200) amount=-200;
-			return B(amount)+' xp/xp required';
+			var amount=me.amount;
+			return '<font color="yellow"> Lvl'+B(amount)+'</font> xp/xp required';
 		},
 		getIcon:function(me)
 		{
