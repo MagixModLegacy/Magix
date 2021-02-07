@@ -3205,7 +3205,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					
 				} //some winterish replacements=
 		else{
-			G.achievByName['xmas buff'].won--;
+			G.achievByName['xmas buff'].won-=1;
 		}
 		
 		if ((day>=365 && day<=366) || (day>0 && day<=2)){
@@ -3221,7 +3221,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(day>=40 && day<=46){
 		
 		}else{
-			G.achievByName['valentine buff'].won--;
+			G.achievByName['valentine buff'].won-=1;
 		};
 		if(G.achievByName['xmas buff'].won>=0){
 		var buff=Math.round(Math.random()*3)+1;
