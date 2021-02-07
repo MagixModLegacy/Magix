@@ -18412,10 +18412,18 @@ new G.Tech({
 	new G.Trait({
         name:'discovery with love',
 	desc:'From [research] you may gain now [love]. Each year you will get some [love] points. The formula for that is: <br>//<font color="aqua">Pts=amount of techs*(random number between 1 and 15)-(amount of traits/8)</font>',
-        icon:[6,17,'seasonal'],
+        icon:[3,15,'seasonal'],
 	cost:{'culture':75,'research':120,'insight':400},
         req:{'parental love':true,'time measuring 1/2':true},
 	category:'seasonal',chance:50,
+    });
+	new G.Trait({
+        name:'compliments',
+	desc:'Now [child,Children] generate [love] points. //Not all children rather teenagers that have a need to have a second half and love her. They are going to say nice compliments each other. //Not only teens. Also any children that are good-mannered and talk good things about other people.',
+        icon:[4,15,'seasonal'],
+	cost:{'culture':125,'research':120,'faith':100},
+        req:{'parental love':true,'alphabet 3/3':true},
+	category:'seasonal',chance:150,
     });
 	/*=====================================================================================
 	POLICIES
