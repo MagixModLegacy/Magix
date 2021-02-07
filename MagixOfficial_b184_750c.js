@@ -3232,11 +3232,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('valentine2').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.achievByName['valentine buff'].won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 80 pieces of [herb] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
         		G.getDict('valentine3').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.achievByName['valentine buff'].won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 70 pieces of [cooked meat] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
 			G.getDict('valentine4').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.achievByName['valentine buff'].won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with 1 extra [child] & 1 extra [insight] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
-		if(G.getAchiev('xmas buff').won>=0){
+		if(G.achievByName('xmas buff').won>=0){
 			var buff=Math.round(Math.random()*3)+1;
 			G.gainTrait(G.traitByName['xmas'+buff+'']);
 		}
-		if(G.getAchiev('valentine buff').won>=0){
+		if(G.achievByName('valentine buff').won>=0){
 			var buff=Math.round(Math.random()*3)+1;
 			G.gainTrait(G.traitByName['valentine'+buff+'']);
 		}	
