@@ -18237,6 +18237,45 @@ new G.Tech({
 		cost:{'insight':30,'culture':10},
 		req:{'scouting':true,'building':true,'a gift from the mausoleum':true},
 	});
+	new G.Tech({
+		name:'festive artisanistry',category:'seasonal',
+		desc:'unlocks [artisan of christmas]',
+		icon:[15,10,'seasonal'],
+		cost:{'insight':600,'culture':100,'influence':50},
+		req:{'winter holidays':true,'tribalism':false},
+	});
+	new G.Trait({
+        name:'valentine1',
+		displayName:'Waters of love',
+        icon:[3,17,'seasonal'],
+	effects:[{type:'provide res',what:{'water':80}}],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'valentine2',
+		displayName:'Lovely herbs',
+        icon:[4,17,'seasonal'],
+	effects:[{type:'provide res',what:{'herb':80}}],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'valentine3',
+		displayName:'Meat of lovefalling',
+        icon:[5,17,'seasonal'],
+	effects:[{type:'provide res',what:{'cooked meat':70}}],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'valentine4',
+		displayName:'Amore\'s child',
+        icon:[6,17,'seasonal'],
+	effects:[{type:'provide res',what:{'child':1,'insight':1}}],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
