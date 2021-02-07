@@ -9588,6 +9588,44 @@ if (!document.getElementById(cssId))
 			me.amount=G.techN;
 		},
 	});
+	new G.Res({
+		name:'love',
+		desc:'Seasonal essential. //[love] can unlock new bonuses on some levels. //Obtaining valentine traits will allow you to gain points for that essential from more sources. Depending on happiness you may gain it slower or faster. You won\'t gain any more [love] if [happiness] level will go below -100%. Xp gains will be lowered by 75% if your [health] level will go below -20%.',
+		startWith:1,
+		icon:[10,16,'seasonal'],
+		tick:function(me,tick)
+		{
+			var xpreq=((((G.getRes('love').amount+10)*55000)^G.getRes('love').amount)*G.getRes('love').amount+3)*(G.getRes('love').amount/1.85);
+			if(G.getRes('love xp').amount>=xpreq){
+			G.getRes('love xp').amount=0;me.amount++;	
+			}
+		},
+		getDisplayAmount:function(me)
+		{
+			if (G.getRes('population').amount<=0) return '<b>-</b>';
+			var amount=G.getRes('love').amount;
+			var xpreq=((((G.getRes('love').amount+10)*55000)^G.getRes('love').amount)*G.getRes('love').amount+3)*(G.getRes('love').amount/1.85);
+			return '<font color="yellow"><b>Lvl '+B(amount)+'</b></font> '+B(G.getRes('love xp').amount)+'/<br>'+B(xpreq)+'';
+		},
+		getIcon:function(me)
+		{
+			if (G.getRes('population').amount<=0) return [17,16,'seasonal'];
+			else
+			{
+				var amount=G.getRes('love').amount;
+				if (amount>=15) return [16,16,'seasonal'];
+				else if (amount>=12) return [15,16,'seasonal'];
+				else if (amount>=10) return [14,16,'seasonal'];
+				else if (amount>=8) return [13,16,'seasonal'];
+				else if (amount>=5) return [12,16,'seasonal'];
+				else if (amount>=3) return [11,16,'seasonal'];
+				else return [10,16,'seasonal'];
+			}
+		},
+	});
+	new G.Res({
+		name:'love xp',
+	});
 	/*=====================================================================================
 	UNITS
 	=======================================================================================*/
