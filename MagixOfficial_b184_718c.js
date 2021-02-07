@@ -9616,14 +9616,15 @@ if (!document.getElementById(cssId))
 		{
 			if (G.getRes('population').amount<=0) return '<b>-</b>';
 			var amount=G.getRes('love').amount;
-			return '<font size="1"><font color="yellow"><b> Lvl'+B(amount)+'</b></font> '+B(G.getRes('love xp').amount)+'/'+B(G.getRes('love').amount*60000/(G.techN/100)+(G.trait.length*100))+'</font>';
+			var xpreq=G.getRes('love').amount*60000/(G.techN/100)+(G.trait.length*100);
+			return '<font size="1"><font color="yellow"><b> Lvl'+B(amount)+'</b></font> '+B(G.getRes('love xp').amount)+'/'+B(xpreq)+'</font>';
 		},
 		getIcon:function(me)
 		{
 			if (G.getRes('population').amount<=0) return [17,16,'seasonal'];
 			else
 			{
-				var amount=me.amount/G.getRes('population').amount;
+				var amount=G.getRes('population').amount;
 				if (amount>=15) return [16,16,'seasonal'];
 				else if (amount>=12) return [15,16,'seasonal'];
 				else if (amount>=10) return [14,16,'seasonal'];
