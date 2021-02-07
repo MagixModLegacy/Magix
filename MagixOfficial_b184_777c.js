@@ -1625,7 +1625,10 @@ func:function(){
 			special:'seasonal',
 			visible:false,
 	});
-
+	new G.Achiev({
+		name:'valentine buff',
+		visible:false, //debug
+	});
 	
 	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
 	var year=new Date().getFullYear();
