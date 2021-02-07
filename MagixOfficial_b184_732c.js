@@ -9610,7 +9610,7 @@ if (!document.getElementById(cssId))
 		icon:[10,16,'seasonal'],
 		tick:function(me,tick)
 		{
-			var xpreq=((G.getRes('love').amount^2)*55000+((G.trait.length*50)*G.getRes('love').amount+4))*9;
+			var xpreq=((1+(G.getRes('love').amount)^2)*55000+((G.trait.length*50)*G.getRes('love').amount+4))*9;
 			if(G.getRes('love xp').amount>=xpreq){
 			G.getRes('love xp').amount=0;me.amount++;	
 			}
