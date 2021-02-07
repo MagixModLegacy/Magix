@@ -9611,7 +9611,7 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick)
 		{
 			//var xpreq=(((G.trait.length*50)*G.getRes('love').amount+4)+(1+(G.getRes('love').amount)^2)*55000)*9;
-			var xpreq=(((G.getRes('love').amount+10)^2)*55000)*20;
+			var xpreq=(G.getRes('love').amount+10*55000)^G.getRes('love').amount;
 			if(G.getRes('love xp').amount>=xpreq){
 			G.getRes('love xp').amount=0;me.amount++;	
 			}
