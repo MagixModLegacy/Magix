@@ -3201,13 +3201,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('snowman').hidden=false;
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('christmas essence').hidden=false;
-
-					
-				} //some winterish replacements=
-		else{
-			G.achievByName['xmas buff'].won-=1;
-		}
-		
+				}else{
+			G.achievByName['xmas buff'].won-=1;}
 		if ((day>=365 && day<=366) || (day>0 && day<=2)){
 			//also not only greetings but also some content unlocks
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
@@ -3218,7 +3213,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 	};
-		if(day>=40 && day<=46){
+		if(day+leap>=40 && day+leap<=46){
 		
 		}else{
 			G.achievByName['valentine buff'].won-=1;
