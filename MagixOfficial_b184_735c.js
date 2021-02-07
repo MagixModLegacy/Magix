@@ -9611,7 +9611,7 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick)
 		{
 			//var xpreq=(((G.trait.length*50)*G.getRes('love').amount+4)+(1+(G.getRes('love').amount)^2)*55000)*9;
-			var xpreq=(G.getRes('love').amount)^2)*55000)*20;
+			var xpreq=(G.getRes('love').amount^2)*55000)*20;
 			if(G.getRes('love xp').amount>=xpreq){
 			G.getRes('love xp').amount=0;me.amount++;	
 			}
@@ -9620,7 +9620,7 @@ if (!document.getElementById(cssId))
 		{
 			if (G.getRes('population').amount<=0) return '<b>-</b>';
 			var amount=G.getRes('love').amount;
-			var xpreq=(G.getRes('love').amount)^2)*55000)*20;
+			var xpreq=(G.getRes('love').amount^2)*55000)*20;
 			//var xpreq=(((G.trait.length*50)*G.getRes('love').amount+4)+(1+(G.getRes('love').amount)^2)*55000)*9;
 			return '<font color="yellow"><b>Lvl '+B(amount)+'</b></font> '+B(G.getRes('love xp').amount)+'/<br>'+B(xpreq)+'';
 		},
