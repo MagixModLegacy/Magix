@@ -9619,7 +9619,7 @@ if (!document.getElementById(cssId))
 		{
 			if (G.getRes('population').amount<=0) return '<b>-</b>';
 			var amount=G.getRes('love').amount;
-			var xpreq=(G.getRes('love').amount^3/2)*35000/(G.techN/100)+(G.trait.length*100);
+			var xpreq=(G.getRes('love').amount^1.95)*35000/(G.techN/100)+(G.trait.length*100);
 			return '<font size="1"><font color="yellow"><b> Lvl '+B(amount)+'</b></font> '+B(G.getRes('love xp').amount)+'/<br>'+B(xpreq)+'</font>';
 		},
 		getIcon:function(me)
