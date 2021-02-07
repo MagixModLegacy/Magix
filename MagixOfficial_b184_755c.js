@@ -1483,7 +1483,8 @@ func:function(){
 	new G.Achiev({
 		icon:[1,0,'magixmod'],
 		name:'xmas buff',
-		visible:false //debug
+		visible:false, //debug
+		plural:true,
 	});
 			new G.Achiev({
 		tier:0,
@@ -1628,7 +1629,8 @@ func:function(){
 	new G.Achiev({
 		icon:[1,0,'magixmod'],
 		name:'valentine buff',
-		visible:false //debug
+		visible:false, //debug
+		plural:true,
 	});
 	
 	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
