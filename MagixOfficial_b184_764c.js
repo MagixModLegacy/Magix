@@ -3216,7 +3216,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(day+leap>=40 && day+leap<=46){
 		
 		}else{
-			G.achievByName['valentine buff'].won-=1;
+			//G.achievByName['valentine buff'].won-=1;
 		};
 		if(G.achievByName['xmas buff'].won>=0){
 		var buff=Math.round(Math.random()*3)+1;
