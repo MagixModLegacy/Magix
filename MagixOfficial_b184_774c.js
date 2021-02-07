@@ -695,6 +695,7 @@ G.LoadResources=function()
 ////////ACTUAL CONTENT
 G.AddData({
 name:'Default dataset',
+displayName:'Magix',
 author:'pelletsstarPL',
 desc:'Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
