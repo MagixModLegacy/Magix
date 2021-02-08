@@ -3237,7 +3237,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 }
 	G.funcs['game over']=function()
 	{
-		var str='<b>'+G.getName('civ')+'</b> is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
+		var str='<font color="white"><b>'+G.getName('civ')+'</b></font> is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
 		G.Message({type:'bad',text:str,icon:[5,4]});
 		if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 		{
@@ -18387,6 +18387,40 @@ new G.Tech({
 	effects:[{type:'provide res',what:{'child':1,'insight':1}}],	
         req:{'tribalism':false},
 	category:'seasonal'
+    });
+		new G.Tech({
+		name:'love grows around us',category:'seasonal',displayName:'<font color="pink">Love grows around us</font>',
+		desc:'@One person that loves a lot other people is enough... wait '+G.getName('ruler')+' . You are ruler of the tribe and love people a lot. And they also love you. //Let\'s plant the seeds of <b>The festival of love</b> called Valentine\'s day. Will unlock you [love] - a special thing that is key of that event AND can bring you some rewards if level of [love] is decent enough.',
+		icon:[18,16,'seasonal'],
+		cost:{'insight':210,'culture':45,'faith':5,'research':80},
+		req:{'culture of celebration':true,'philosophy':true,'tribalism':false},
+		effects:[
+			 {type:'function',func:function(){if(day+leap>=40 && day+leap<=46)G.getDict('love').hidden=false;}},
+			]
+	});
+	new G.Trait({
+        name:'parental love',
+	desc:'Now newborn [baby,Babies] provide some [love,Love points] for each one born. This one will lead to more [love] sources.',
+        icon:[19,16,'seasonal'],
+	cost:{'culture':75,'research':90},
+        req:{'love grows around us':true},
+	category:'seasonal',chance:35,
+    });
+	new G.Trait({
+        name:'discovery with love',
+	desc:'From [research] you may gain now [love]. Each year you will get some [love] points. The formula for that is: <br>//<font color="aqua">Pts=amount of techs*(random number between 1 and 15)-(amount of traits/8)</font>',
+        icon:[3,15,'seasonal'],
+	cost:{'culture':75,'research':120,'insight':400},
+        req:{'parental love':true,'time measuring 1/2':true},
+	category:'seasonal',chance:50,
+    });
+	new G.Trait({
+        name:'compliments',
+	desc:'Now [child,Children] generate [love] points. //Not all children rather teenagers that have a need to have a second half and love her. They are going to say nice compliments each other. //Not only teens. Also any children that are good-mannered and talk good things about other people.',
+        icon:[4,15,'seasonal'],
+	cost:{'culture':125,'research':120,'faith':100},
+        req:{'parental love':true,'alphabet 3/3':true},
+	category:'seasonal',chance:150,
     });
 	/*=====================================================================================
 	POLICIES
