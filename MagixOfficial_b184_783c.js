@@ -3208,7 +3208,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
 			G.getDict('Firework crafting').req={'culture of celebration':true,'tribalism':true};
 			G.getDict('Firework launching guy').req={'culture of celebration':true,'Dark launching':true,'tribalism':true};
-			G.getDict('Artisan of new year (dark)').req={'culture of celebration':true,'Dark essenced fireworks':true,'tribalism':true};
 			G.getDict('Artisan of new year').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
@@ -3618,7 +3617,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
 			G.getDict('Firework crafting').req={'culture of celebration':true,'tribalism':true};
 			G.getDict('Firework launching guy').req={'culture of celebration':true,'Dark launching':true,'tribalism':true};
-			G.getDict('Artisan of new year (dark)').req={'culture of celebration':true,'Dark essenced fireworks':true,'tribalism':true};
 			G.getDict('Artisan of new year').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
