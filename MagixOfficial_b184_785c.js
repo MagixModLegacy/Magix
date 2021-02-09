@@ -3652,6 +3652,16 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		G.middleText('-kcab emoclew,dooG -<br><small>Yo accmlatd '+B(timeOffline)+' fast ticks whil yo wr away.<br><font color="lime">My two kys on my kyboard got brokn, so that is th ffct.</font></small>','slow');	
 		};
 		if (day>=40 && day<=46){  //valentines
+				G.getDict('Ambrosium treeplanting').icon=[11,15,'seasonal'];
+			G.getDict('cities').icon=[12,15,'seasonal'];
+			G.getDict('sedentism').icon=[13,15,'seasonal'];
+			G.getDict('scouting').icon=[14,15,'seasonal'];
+			G.getDict('focused scouting').icon=[15,15,'seasonal'];
+			G.getDict('well-digging').icon=[16,15,'seasonal'];
+			G.getDict('bows').icon=[17,15,'seasonal'];
+			G.getDict('spears').icon=[18,15,'seasonal'];
+			G.getDict('sewing').icon=[19,15,'seasonal'];
+			G.getDict('weaving II').icon=[9,16,'seasonal'];
 		G.middleText('<font color="pink">-Love is in the air -<br>-Welcome back- <br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');		
 	}
 			
