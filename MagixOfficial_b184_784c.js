@@ -3213,7 +3213,16 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 	};
 		if(day+leap>=40 && day+leap<=46){
-		
+			G.getDict('Ambrosium treeplanting').icon=[11,15,'seasonal'];
+			G.getDict('cities').icon=[12,15,'seasonal'];
+			G.getDict('sedentism').icon=[13,15,'seasonal'];
+			G.getDict('scouting').icon=[14,15,'seasonal'];
+			G.getDict('focused scouting').icon=[15,15,'seasonal'];
+			G.getDict('well-digging').icon=[16,15,'seasonal'];
+			G.getDict('bows').icon=[17,15,'seasonal'];
+			G.getDict('spears').icon=[18,15,'seasonal'];
+			G.getDict('sewing').icon=[19,15,'seasonal'];
+			G.getDict('weaving II').icon=[9,16,'seasonal'];
 		}else{
 			//G.achievByName['valentine buff'].won-=1;
 		};
