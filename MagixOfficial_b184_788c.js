@@ -1631,7 +1631,7 @@ func:function(){
 	new G.Achiev({
 		tier:0,
 		name:'love for eternity',
-		icon:[1,14,'seasonal'],
+		icon:[1,15,'seasonal'],
 		desc:'Finish [fortress of love]. //You don\'t have to ascend by this wonder. Also this fortress is place where no lie, no cheat exists... just love and respect. //Symbolically constructed in Paradise.',
 		effects:[
 			{type:'addFastTicksOnStart',amount:300},
@@ -1659,7 +1659,7 @@ func:function(){
 	new G.Achiev({
 		tier:0,
 		name:'obsessed?',
-		icon:[9,15,'seasonal',14,16,'seasonal'],
+		icon:[9,15,'seasonal',16,16,'seasonal'],
 		desc:'Reach [love] <font color="yellow">Level 15</font> during Valentine\'s day seasonal event. //This is probably obsession...',
 		effects:[
 			{type:'addFastTicksOnStart',amount:150},
@@ -3282,10 +3282,10 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
         		G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 			G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
-			/*G.getDict('valentine1').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 80 [water] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
+			G.getDict('valentine1').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 80 [water] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
 			G.getDict('valentine2').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 80 pieces of [herb] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
         		G.getDict('valentine3').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 70 pieces of [cooked meat] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
-			G.getDict('valentine4').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with 1 extra [child] & 1 extra [insight] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';*/
+			G.getDict('valentine4').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with 1 extra [child] & 1 extra [insight] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
 }
 	G.funcs['game over']=function()
 	{
@@ -5203,7 +5203,9 @@ G.writeMSettingButton=function(obj)
 						birthRate*=productionMult;
 						if (homeless>0 && me.amount>15) birthRate*=0.05;//harder to make babies if you have more than 15 people and some of them are homeless
 						var n=randomFloor(G.getRes('adult').amount*0.0003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
+						if(day+leap>=40 && day+leap<=46 && G.has('parental love'))G.gain('love xp',n,'birth');
 						var n=randomFloor(G.getRes('elder').amount*0.00003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
+						if(day+leap>=40 && day+leap<=46 && G.has('parental love'))G.gain('love xp',n/2,'birth');
 						G.getRes('born this year').amount+=born;
 						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});
 					}
