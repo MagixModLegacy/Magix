@@ -3245,7 +3245,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('christmas essence').hidden=false;
 				}else{
-			G.achievByName['xmas buff'].won-=1;}
+			G.achievByName['xmas buff'].won--;}
 		if ((day>=365 && day<=366) || (day>0 && day<=2)){
 			//also not only greetings but also some content unlocks
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
@@ -3268,9 +3268,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('spears').icon=[18,15,'seasonal'];
 			G.getDict('sewing').icon=[19,15,'seasonal'];
 			G.getDict('weaving II').icon=[9,16,'seasonal'];
-			if(G.achievByName['love for eternity'].won>=1)G.getAchiev('valentine buff').won=7;
+			if(G.achievByName['love for eternity'].won>=1)G.achievByName['valentine buff'].won=7;
 		}else{
-			G.achievByName['valentine buff'].won-=1;
+			G.achievByName['valentine buff'].won--;
 		};
 		if(G.achievByName['xmas buff'].won>=0){
 		var buff=Math.round(Math.random()*3)+1;
