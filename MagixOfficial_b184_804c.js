@@ -4080,6 +4080,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=15 && G.achievByName['obsessed?'].won==0){G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow')};
 		if(day+leap>=40 && day+leap<=46){
 			if(G.has('compliments') && G.hasNot('very artful compliments'))G.gain('love xp',G.getRes('child').amount*0.8*multiplier());
+			if(G.has('families full of love'))G.gain('love xp',G.getRes('elder').amount*0.7*multiplier());
 			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
 		
@@ -9721,7 +9722,7 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'love',
-		desc:'Seasonal essential. //[love] can unlock new bonuses on some levels. //Obtaining valentine traits will allow you to gain points for that essential from more sources. Depending on happiness you may gain it slower or faster. You won\'t gain any more [love] if [happiness] level will go below -100%. Xp gains will be lowered by 75% if your [health] level will go below -20%.',
+		desc:'Seasonal essential. //[love] can unlock new bonuses on some levels. //Obtaining valentine traits will allow you to gain points for that essential from more sources. Depending on happiness you may gain it slower or faster.',
 		icon:[10,16,'seasonal'],
 		tick:function(me,tick)
 		{
@@ -18546,6 +18547,14 @@ new G.Tech({
 	cost:{'culture':500,'research':100,'faith':500},
         req:{'compliments':true},
 	category:'seasonal',chance:135,
+    });
+	new G.Tech({
+        name:'families full of love',
+	desc:'Every year you gain some amount of [love] from [elder]s.',
+        icon:[10,15,'seasonal'],
+	cost:{'culture':75,'research':130,'faith':120,'influence':10,'insight':600},
+        req:{'love grows around us':true,'time measuring 2/2':true,'compliments':true,'Beginnings of alchemy':true},
+	category:'seasonal',chance:10,
     });
 	/*=====================================================================================
 	POLICIES
