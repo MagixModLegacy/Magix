@@ -13683,7 +13683,7 @@ new G.Unit({
 	new G.Unit({
 		name:'wonderful fortress of christmas',
 		desc:'Constucted in cold climates collosal, giant [wonderful fortress of christmas,Wonderful fortress of Christmas]. Taller and bigger than anything else giving its shadow of the festive to villages and cities all around. //Full of lights and ornaments so its mightiness is also the art of beauty. //This giant takes a lot of steps to be built and does not belong to cheapest wonders. //Merry Christmas!',
-		icon:[1,11,'seasonal'],
+		icon:[0,11,'seasonal'],
 		wonder:';',
 		steps:1200,
 		cost:{'basic building materials':3000,'christmas essence':10000},
@@ -13776,7 +13776,7 @@ new G.Unit({
 		name:'fortress of love',
 		displayName:'<font color="pink">Fortress of love</font>',
 		desc:'Constucted in Paradise, giant [fortress of love]. Settled into special region separated as much as possible from other isles gives even more uniqueness. Vibrant. //Only allowed there are: love, respect, good mood, empathy. //That is why not everyone is supposed to arrive there. Only the most kind people and souls will live there. //Happy valentines! @Note: Final level will need full 2 [love] levels.',
-		icon:[1,15,'seasonal'],
+		icon:[0,15,'seasonal'],
 		wonder:';',
 		steps:999,
 		cost:{'basic building materials':3000,'gems':3000},
