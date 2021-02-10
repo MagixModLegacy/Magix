@@ -4074,7 +4074,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		var multiplier=() => {if(G.achievByName['love for eternity'].won>=1) return 1.2; else return 1};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10 && G.achievByName['so adorable'].won==1){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow')};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=15 && G.achievByName['obsessed?'].won==0){G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow')};
-		if(day+leap>=40 && day+leap<=46 && (G.getRes('happiness')/G.getRes('population').amount)>-100 && (G.getRes('health')/G.getRes('population').amount)>-20){
+		if(day+leap>=40 && day+leap<=46){
 			if(G.has('compliments') && G.hasNot('very artful compliments'))G.gain('love xp',G.getRes('child').amount*0.8*multiplier());
 			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
@@ -5211,9 +5211,9 @@ G.writeMSettingButton=function(obj)
 						birthRate*=productionMult;
 						if (homeless>0 && me.amount>15) birthRate*=0.05;//harder to make babies if you have more than 15 people and some of them are homeless
 						var n=randomFloor(G.getRes('adult').amount*0.0003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
-						if(day+leap>=40 && day+leap<=46 && G.has('parental love') && (G.getRes('happiness')/G.getRes('population').amount)>-100 && (G.getRes('health')/G.getRes('population').amount)>-20) G.gain('love xp',n,'birth');
+						if(day+leap>=40 && day+leap<=46 && G.has('parental love')) G.gain('love xp',n,'birth');
 						var n=randomFloor(G.getRes('elder').amount*0.00003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
-						if(day+leap>=40 && day+leap<=46 && G.has('parental love') && (G.getRes('happiness')/G.getRes('population').amount)>-100 && (G.getRes('health')/G.getRes('population').amount)>-20)G.gain('love xp',n/2,'birth');
+						if(day+leap>=40 && day+leap<=46 && G.has('parental love'))G.gain('love xp',n/2,'birth');
 						G.getRes('born this year').amount+=born;
 						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});
 					}
