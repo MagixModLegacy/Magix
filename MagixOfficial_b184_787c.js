@@ -1628,7 +1628,48 @@ func:function(){
 		name:'valentine buff',
 		visible:false, //debug
 	});
-	
+	new G.Achiev({
+		tier:0,
+		name:'love for eternity',
+		icon:[1,14,'seasonal'],
+		desc:'Finish [fortress of love]. //You don\'t have to ascend by this wonder. Also this fortress is place where no lie, no cheat exists... just love and respect. //Symbolically constructed in Paradise.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25},
+		],
+			civ:0,
+			plural:false,
+			special:'seasonal',
+			visible:false,
+	});
+	new G.Achiev({
+		tier:0,
+		name:'so adorable',
+		icon:[8,15,'seasonal',14,16,'seasonal'],
+		desc:'Reach [love] <font color="yellow">Level 10</font> during Valentine\'s day seasonal event.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25},
+		],
+			civ:0,
+			plural:false,
+			special:'seasonal',
+			visible:false,
+	});
+	new G.Achiev({
+		tier:0,
+		name:'obsessed?',
+		icon:[9,15,'seasonal',14,16,'seasonal'],
+		desc:'Reach [love] <font color="yellow">Level 15</font> during Valentine\'s day seasonal event. //This is probably obsession...',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:10},
+		],
+		visible:false,
+		civ:0,
+		special:'shadow',
+			plural:false
+	});
 	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
 	var year=new Date().getFullYear();
 	var leap=(((year%4==0)&&(year%100!=0))||(year%400==0))?1:0;
@@ -2005,6 +2046,8 @@ G.setPolicyMode=function(me,mode)
 								G.dialogue.close();
 								G.doCost(me.unit.finalStepCost,amount);
 								if(me.unit.name=='wonderful fortress of christmas'){G.achievByName['capital of christmas'].won=1;G.middleText('-  Completed <font color="#bbbbff">Citadel of christmas</font><br>seasonal achievement - <br> <hr width="300"> Ho ho ho! Merry christmas to you! From now you can unlock special Christmas bonus','slow')};
+								if(me.unit.name=='fortress of love'){G.achievByName['love for eternity'].won=1;G.middleText('-  Completed <font color="#bbbbff">Love for eternity</font><br>seasonal achievement - <br> <hr width="300"> Love is in the air! From now you can unlock special Valentine\'s day bonus.','slow')};
+								if(me.unit.name=='mausoleum' && G.achievByName['mausoleum'].won>=3 && (G.getRes('population').amount-me.unit.finalStepCost)==0){G.achievByName['cruel goal'].won=1;G.middleText('-  Completed <font color="#ff00ff">Cruel goal</font><br>shadow achievement -','slow')};
 								if (G.checkPolicy('Toggle SFX')=='on'){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
 			audio.play(); 
@@ -2427,7 +2470,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='scientific university' && me.name!=='paradise portal' && me.name!=='wonderful fortress of christmas' && me.name!=='underworld' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='plain island portal' ||  me.name=='paradise portal' || me.name=='underworld' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='scientific university' && me.name!=='paradise portal'  && me.name!=='plain island portal' && me.name!=='wonderful fortress of christmas' && me.name!=='fortress of love' && me.name!=='underworld' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='plain island portal' ||  me.name=='paradise portal' || me.name=='underworld' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -3188,7 +3231,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('winter holidays').req={'culture of celebration':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'culture of celebration':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
-					G.getAchiev('xmas buff').won=7;
+					if(G.achievByName['capital of christmas'].won>=1)G.getAchiev('xmas buff').won=7;
 					G.getDict('wonderful fortress of christmas').req={'monument-building II':true,'f.r.o.s.t.y overclock II':true,'tribalism':true};
 					G.getDict('christmas essence storage').req={'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true,'tribalism':true};
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
@@ -3223,6 +3266,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('spears').icon=[18,15,'seasonal'];
 			G.getDict('sewing').icon=[19,15,'seasonal'];
 			G.getDict('weaving II').icon=[9,16,'seasonal'];
+			if(G.achievByName['love for eternity'].won>=1)G.getAchiev('valentine buff').won=7;
 		}else{
 			//G.achievByName['valentine buff'].won-=1;
 		};
@@ -4026,6 +4070,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
             '</div></div>'
 })
 		}
+		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow')};
+		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=15){G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow')};
 }
 	G.props['new day lines']=[ //2 quotes per line
 		'Creatures are lurking.',	'Danger abounds.',
@@ -4550,8 +4596,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.achievByName['speedresearcher'].won>=1){G.achievByName['speedresearcher'].visible=true}else{G.achievByName['speedresearcher'].visible=false};
 		if(G.achievByName['speedresearcher II'].won>=1){G.achievByName['speedresearcher II'].visible=true}else{G.achievByName['speedresearcher II'].visible=false};
 		if(G.achievByName['cruel goal'].won>=1){G.achievByName['cruel goal'].visible=true}else{G.achievByName['cruel goal'].visible=false};
+		if(G.achievByName['obsessed?'].won>=1){G.achievByName['obsessed?'].visible=true}else{G.achievByName['obsessed?'].visible=false};
 		if(G.achievByName['that was so brutal'].won>=1){G.achievByName['that was so brutal'].visible=true}else{G.achievByName['that was so brutal'].visible=false};
 		if(G.achievByName['capital of christmas'].won>=1 || (day+leap>=349 && day+leap<=362)){G.achievByName['capital of christmas'].visible=true}else{G.achievByName['capital of christmas'].visible=false};
+		if(G.achievByName['love for eternity'].won>=1 || (day+leap>=40 && day+leap<=46)){G.achievByName['love for eternity'].visible=true}else{G.achievByName['love for eternity'].visible=false};
+		if(G.achievByName['so adorable'].won>=1 || (day+leap>=40 && day+leap<=46)){G.achievByName['so adorable'].visible=true}else{G.achievByName['so adorable'].visible=false};
 		if(G.achievByName['i do not want to take things easily'].won>=1){G.achievByName['i do not want to take things easily'].visible=true}else{G.achievByName['i do not want to take things easily'].visible=false};
 		if(G.achievByName['god complex'].won>=1 || G.achievByName['it\'s over 9000'].won>=1 || G.achievByName['just plain lucky'].won>=1 || G.achievByName['speedresearcher'].won>=1 || G.achievByName['speedresearcher II'].won>=1 || G.achievByName['cruel goal'].won>=1 || G.achievByName['that was so brutal'].won>=1 || G.achievByName['i do not want to take things easily'].won>=1)G.achievByName['in the shadows'].won=1;
 		
@@ -13707,6 +13756,22 @@ new G.Unit({
 		],
 		req:{'the christmas':true,'tribalism':false},
 		category:'seasonal',
+	});
+	new G.Unit({
+		name:'fortress of love',
+		displayName:'<font color="pink">Fortress of love</font>',
+		desc:'Constucted in Paradise, giant [fortress of love]. Settled into special region separated as much as possible from other isles gives even more uniqueness. Vibrant. //Only allowed there are: love, respect, good mood, empathy. //That is why not everyone is supposed to arrive there. Only the most kind people and souls will live there. //Happy valentines! @Note: Final level will need full 2 [love] levels.',
+		icon:[0,15,'seasonal'],
+		wonder:';',
+		steps:999,
+		cost:{'basic building materials':3000,'gems':3000},
+		costPerStep:{'marble':4000,'metal tools':100,'metal weapons':100,'armor set':100,'basic building materials':1000,'stone':3000,'clay':2500,'cloud':1000,'Magic essences':15000,'gems':100,'gem block':25,'Mana':20000},
+		finalStepCost:{'love':2},
+		threexthreeIcon:[0,11,'seasonal'],
+		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
+		req:{'monument-building II':true},
+		category:'seasonal',
+		priority:5,
 	});
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
