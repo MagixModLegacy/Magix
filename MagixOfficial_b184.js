@@ -749,7 +749,7 @@ func:function(){
 			'main':{
 				name:'<font color="#E66900">Essentials</font>',
 				base:[],
-				side:['population','worker','happiness','health','victory point'],
+				side:['population','worker','happiness','health','victory point','love'],
 		},
 			'terr':{
 				name:'Territory',
@@ -1481,9 +1481,8 @@ func:function(){
 			plural:false
 	});
 	new G.Achiev({
-		icon:[1,0,'magixmod'],
 		name:'xmas buff',
-		visible:false //debug
+		visible:false, //debug
 	});
 			new G.Achiev({
 		tier:0,
@@ -1625,8 +1624,52 @@ func:function(){
 			special:'seasonal',
 			visible:false,
 	});
-
-	
+	new G.Achiev({
+		name:'valentine buff',
+		visible:false, //debug
+	});
+	new G.Achiev({
+		tier:0,
+		name:'love for eternity',
+		icon:[1,15,'seasonal'],
+		desc:'Finish [fortress of love]. //You don\'t have to ascend by this wonder. Also this fortress is place where no lie, no cheat exists... just love and respect. //Symbolically constructed in Paradise. @<b>Bonus: from some sources you gain 20% more [love] points.</b>',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25},
+		],
+			civ:0,
+			plural:false,
+			special:'seasonal',
+			visible:false,
+	});
+	new G.Achiev({
+		tier:0,
+		name:'so adorable',
+		icon:[8,15,'seasonal',14,16,'seasonal'],
+		desc:'Reach [love] <font color="yellow">Level 10</font> during Valentine\'s day seasonal event.',
+		effects:[
+			{type:'addFastTicksOnStart',amount:300},
+			{type:'addFastTicksOnResearch',amount:25},
+		],
+			civ:0,
+			plural:false,
+			special:'seasonal',
+			visible:false,
+	});
+	new G.Achiev({
+		tier:0,
+		name:'obsessed?',
+		icon:[9,15,'seasonal',16,16,'seasonal'],
+		desc:'Reach [love] <font color="yellow">Level 15</font> during Valentine\'s day seasonal event. //This is probably obsession...',
+		effects:[
+			{type:'addFastTicksOnStart',amount:150},
+			{type:'addFastTicksOnResearch',amount:10},
+		],
+		visible:false,
+		civ:0,
+		special:'shadow',
+			plural:false
+	});
 	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
 	var year=new Date().getFullYear();
 	var leap=(((year%4==0)&&(year%100!=0))||(year%400==0))?1:0;
@@ -2002,6 +2045,9 @@ G.setPolicyMode=function(me,mode)
 							{
 								G.dialogue.close();
 								G.doCost(me.unit.finalStepCost,amount);
+								if(me.unit.name=='wonderful fortress of christmas'){G.achievByName['capital of christmas'].won=1;G.middleText('-  Completed <font color="#bbbbff">Citadel of christmas</font><br>seasonal achievement - <br> <hr width="300"> Ho ho ho! Merry christmas to you! From now you can unlock special Christmas bonus','slow')};
+								if(me.unit.name=='fortress of love'){G.achievByName['love for eternity'].won=1;G.middleText('-  Completed <font color="#bbbbff">Love for eternity</font><br>seasonal achievement - <br> <hr width="300"> Love is in the air! From now you can unlock special Valentine\'s day bonus.','slow')};
+								if(me.unit.name=='mausoleum' && G.achievByName['mausoleum'].won>=3 && (G.getRes('population').amount-me.unit.finalStepCost)==0){G.achievByName['cruel goal'].won=1;G.middleText('-  Completed <font color="#ff00ff">Cruel goal</font><br>shadow achievement -','slow')};
 								if (G.checkPolicy('Toggle SFX')=='on'){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
 			audio.play(); 
@@ -2021,7 +2067,7 @@ G.setPolicyMode=function(me,mode)
 						G.dialogue.getCloseButton('- Back -')+
 						'</div>';
 					}
-					else if(me.name=="scientific university")
+					else if(me.name=="scientific university" || me.name=='fortress of love' || me.name=='wonderful fortress of christmas')
 					{
 						str+='<div class="fancyText par">Wonder completed</div>';
 						str+='<div class="fancyText par">You cannot ascend by this wonder. Not every wonder means ascension and here is example of that.</div>';
@@ -2424,7 +2470,7 @@ G.setPolicyMode=function(me,mode)
 					var str='<div class="info">';
 					str+='<div class="infoIcon"><div class="thing standalone'+G.getIconClasses(me,true)+'">'+G.getIconStr(me,0,0,true)+'</div></div>';
 					str+='<div class="fancyText barred infoTitle">'+me.displayName+'</div>';
-					if(me.name!=='scientific university' && me.name!=='paradise portal' && me.name!=='wonderful fortress of christmas' && me.name!=='underworld' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='plain island portal' ||  me.name=='paradise portal' || me.name=='underworld' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
+					if(me.name!=='scientific university' && me.name!=='paradise portal'  && me.name!=='plain island portal' && me.name!=='wonderful fortress of christmas' && me.name!=='fortress of love' && me.name!=='underworld' && me.name!=='grand mirror'){str+='<div class="fancyText barred" style="color:#c3f;">Wonder</div>'}else if(me.name=='plain island portal' ||  me.name=='paradise portal' || me.name=='underworld' || me.name=='grand mirror'){str+='<div class="fancyText barred" style="color:yellow;">Portal</div>'}else{str+='<div class="fancyText barred" style="color:#f0d;">Step-by-step building</div>'};
 					if (amount<0) str+='<div class="fancyText barred">You cannot destroy wonders,step-by-step buildings and portals(Work in progress)</div>';
 					else
 					{
@@ -2703,13 +2749,13 @@ var len=G.techsOwned.length;
 		//G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'Show tiers',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
 		G.button({text:'Reveal map',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
-		    '<br /><font color="lime">Debug mode. Magix: Release 46 (late beta)</font>'+
+		    '<br /><font color="lime">Debug mode. Magix: Release 47.0 (late beta)</font>'+
 		G.textWithTooltip('?','<div style="width:240px;text-align:left;">This is the debug menu. Please debug responsibly.<br>Further debug abilities while this mode is active :<div class="bulleted">click resources to add/remove some (keyboard shortcuts work the same way they do for purchasing units)</div><div class="bulleted">ctrl-click a trait or policy to remove it (may have strange, buggy effects)</div><div class="bulleted">click the Fast ticks display to get more fast ticks<br>(if add is equal 1 it will add 10, if add 10 then 100 and so on)</div><div class="bulleted">always see tech costs and requirements</div><div class="bulleted">gain access to debug robot units <br /> <b>BEEP BOOP BEEP</b></div><div class="bulleted">edit the map</div></div>','infoButton')+
 		'</center></div>';
 		l('debug').innerHTML=str;
 		
 		G.addCallbacks();
-	}
+	};
 	///////////MORE QUOTES!
 	G.cantWhenPaused=function()
 	{
@@ -2844,6 +2890,7 @@ G.gainTech(G.techByName['underworld\'s ascendant']);
 	if (G.achievByName['Next to the God'].won > 0 && G.hasNot('Life in faith')){
       G.gainTech(G.techByName['Life in faith'])
     };
+	
 		 if (G.achievByName['Talented?'].won > 0 && G.hasNot('smaller shacks')){
       G.gainTrait(G.traitByName['smaller shacks']);
     };
@@ -3184,40 +3231,67 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('winter holidays').req={'culture of celebration':true,'tribalism':true,'philosophy':true};
 			G.getDict('the christmas').req={'culture of celebration':true,'tribalism':true,'winter holidays':true};
 			G.getDict('carols').req={'symbolism II':true,'ritualism II':true,'Music':true,'tribalism':true};
-					G.getAchiev('xmas buff').won=7;
-					
+					if(G.achievByName['capital of christmas'].won>=1)G.getAchiev('xmas buff').won=7;
+					G.getDict('wonderful fortress of christmas').req={'monument-building II':true,'f.r.o.s.t.y overclock II':true,'tribalism':true};
+					G.getDict('christmas essence storage').req={'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true,'tribalism':true};
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
+					G.getDict('artisan of christmas').req={'festive artisanistry':true,'tribalism':true};
+					G.getDict('festive artisanistry').req={'winter holidays':true,'tribalism':true};
+					G.getDict('lodge of Christmas').req={'the christmas':true,'tribalism':true};
 					G.getDict('snow').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('festive light').hidden=false;
 					G.getDict('snowman').hidden=false;
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('christmas essence').hidden=false;
-
-					
-				} //some winterish replacements=
-		else{
-			G.getAchiev('xmas buff').won--;
-		}
-		if(G.getAchiev('xmas buff').won>=0){
-			var buff=Math.round(Math.random()*3)+1;
-			G.gainTrait(G.traitByName['xmas'+buff+'']);
-		}
+				}else{
+			G.achievByName['xmas buff'].won--;}
 		if ((day>=365 && day<=366) || (day>0 && day<=2)){
 			//also not only greetings but also some content unlocks
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
 			G.getDict('Firework crafting').req={'culture of celebration':true,'tribalism':true};
+			G.getDict('Firework launching guy').req={'culture of celebration':true,'Dark launching':true,'tribalism':true};
+			G.getDict('Artisan of new year').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 	};
-		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
-					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
-        				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
-					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+		if(day+leap>=40 && day+leap<=46){
+			G.getDict('Ambrosium treeplanting').icon=[11,15,'seasonal'];
+			G.getDict('love grows around us').req={'culture of celebration':true,'tribalism':true};
+			G.getDict('cities').icon=[12,15,'seasonal'];
+			G.getDict('sedentism').icon=[13,15,'seasonal'];
+			G.getDict('fortress of love').req={'lovely monument':true,'tribalism':true};
+			G.getDict('scouting').icon=[14,15,'seasonal'];
+			G.getDict('focused scouting').icon=[15,15,'seasonal'];
+			G.getDict('well-digging').icon=[16,15,'seasonal'];
+			G.getDict('bows').icon=[17,15,'seasonal'];
+			G.getDict('spears').icon=[18,15,'seasonal'];
+			G.getDict('sewing').icon=[19,15,'seasonal'];
+			G.getDict('weaving II').icon=[9,16,'seasonal'];
+			if(G.achievByName['love for eternity'].won>=1)G.achievByName['valentine buff'].won=7;
+		}else{
+			G.achievByName['valentine buff'].won--;
+		};
+		if(G.achievByName['xmas buff'].won>=0){
+		var buff=Math.round(Math.random()*3)+1;
+		G.gainTrait(G.traitByName['xmas'+buff+'']);
+	};
+	if(G.achievByName['valentine buff'].won>=0){
+		var buff=Math.round(Math.random()*3)+1;
+		G.gainTrait(G.traitByName['valentine'+buff+'']);
+	};	
+			G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
+			G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+        		G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+			G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+			G.getDict('valentine1').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 80 [water] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
+			G.getDict('valentine2').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 80 pieces of [herb] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
+        		G.getDict('valentine3').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 70 pieces of [cooked meat] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
+			G.getDict('valentine4').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.getAchiev('xmas buff').won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with 1 extra [child] & 1 extra [insight] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
 }
 	G.funcs['game over']=function()
 	{
-		var str=G.getName('civ')+' is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
+		var str='<font color="white"><b>'+G.getName('civ')+'</b></font> is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
 		G.Message({type:'bad',text:str,icon:[5,4]});
 		if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 		{
@@ -3525,6 +3599,14 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			b12++
 			c12++
 		}
+		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
+		G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+        	G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+		G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
+		G.getDict('valentine1').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.achievByName['valentine buff'].won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 80 [water] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
+		G.getDict('valentine2').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.achievByName['valentine buff'].won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 80 pieces of [herb] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
+        	G.getDict('valentine3').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.achievByName['valentine buff'].won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with extra 70 pieces of [cooked meat] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
+		G.getDict('valentine4').desc='Amore the Angel of [love] & son of [se03,Tu-ria] and [se11,Enlightened] thanks you for finishing the wonder and spreading love all around the globe. For now and for next <B>'+G.achievByName['valentine buff'].won+'</B> '+(G.achievByName['valentine buff'].won==1 ? "run/legacy" : "runs/legacies")+', you will start with 1 extra [child] & 1 extra [insight] //<font color="red">Note: While valentines you won\'t lose an use, however when Valentines ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Valentines. </font>';
 		if(G.hasNot('plain island building') && G.getRes('Plain Island emblem').amount==0 && G.getRes('plain portal point').amount>=2){
 			
 			G.getUnitByName('plain island portal').mode=0;
@@ -3576,7 +3658,10 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('f.r.o.s.t.y').req={'festive robot print':true,'tribalism':true};
 					G.getDict('child of Christmas').hidden=false;
 					G.getDict('snow').hidden=false;
+				G.getDict('artisan of christmas').req={'festive artisanistry':true,'tribalism':true};
+					G.getDict('festive artisanistry').req={'winter holidays':true,'tribalism':true};
 					G.getDict('festive light').hidden=false;
+				G.getDict('lodge of Christmas').req={'the christmas':true,'tribalism':true};
 					G.getDict('snowman').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('christmas essence').hidden=false;
@@ -3586,6 +3671,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			//also not only greetings but also some content unlocks
 			G.getDict('Firecracker').hidden=false;G.getDict('Blue firework').hidden=false;G.getDict('Orange firework').hidden=false;G.getDict('Dark Blue Firework').hidden=false;G.getDict('Dark Orange Firework').hidden=false;
 			G.getDict('Firework crafting').req={'culture of celebration':true,'tribalism':true};
+			G.getDict('Firework launching guy').req={'culture of celebration':true,'Dark launching':true,'tribalism':true};
+			G.getDict('Artisan of new year').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
 		var truY=yer.getFullYear();
@@ -3610,20 +3697,29 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(yer.getMonth()==3 && yer.getDate()==1){ //fools, maybe, maybe not, rather not
 		G.middleText('-kcab emoclew,dooG -<br><small>Yo accmlatd '+B(timeOffline)+' fast ticks whil yo wr away.<br><font color="lime">My two kys on my kyboard got brokn, so that is th ffct.</font></small>','slow');	
 		};
-		if (day>=41 && day<=46){  //valentines
+		if (day>=40 && day<=46){  //valentines
+				G.getDict('Ambrosium treeplanting').icon=[11,15,'seasonal'];
+			G.getDict('cities').icon=[12,15,'seasonal'];
+			G.getDict('love grows around us').req={'culture of celebration':true,'tribalism':true};
+			G.getDict('fortress of love').req={'lovely monument':true,'tribalism':true};
+			G.getDict('sedentism').icon=[13,15,'seasonal'];
+			G.getDict('scouting').icon=[14,15,'seasonal'];
+			G.getDict('focused scouting').icon=[15,15,'seasonal'];
+			G.getDict('well-digging').icon=[16,15,'seasonal'];
+			G.getDict('bows').icon=[17,15,'seasonal'];
+			G.getDict('spears').icon=[18,15,'seasonal'];
+			G.getDict('sewing').icon=[19,15,'seasonal'];
+			G.getDict('weaving II').icon=[9,16,'seasonal'];
 		G.middleText('<font color="pink">-Love is in the air -<br>-Welcome back- <br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');		
-		};
-		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
-					 G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
-        				G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
-					G.getDict('xmas4').desc='The spirits of the Christmas thank your [carver]s for carving festive statuettes out of various materials and for decoring cut stone with festive shapes/symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [carver]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
 	}
+			
+	};
 	G.funcs['new year']=function()
 	{
 		if (G.on)
 		{
-			
-			var txt = ''+G.year+'';ta=1;
+			ta=1;
+			var txt = ''+G.year+'';
 			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
 		G.getDict('worker').icon=[1,7,'seasonal'];
 		G.getDict('child').icon=[2,7,'seasonal'];
@@ -3978,6 +4074,17 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
             '</div></div>'
 })
 		}
+		
+		var multiplier=() => {if(G.achievByName['love for eternity'].won>=1) return 1.2; else return 1};
+		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10 && G.achievByName['so adorable'].won==1){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow')};
+		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=15 && G.achievByName['obsessed?'].won==0){G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow')};
+		if(day+leap>=40 && day+leap<=46){
+			if(G.has('compliments') && G.hasNot('very artful compliments'))G.gain('love xp',G.getRes('child').amount*0.8*multiplier());
+			if(G.has('families full of love'))G.gain('love xp',G.getRes('elder').amount*0.7*multiplier());
+			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
+			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
+		
+	};
 }
 	G.props['new day lines']=[ //2 quotes per line
 		'Creatures are lurking.',	'Danger abounds.',
@@ -4390,6 +4497,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if (G.on)
 		{
 			if(G.fps>30)G.fastTicks--;
+			
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
 			{
 				//show a random atmospheric message occasionally on new days
@@ -4501,8 +4609,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.achievByName['speedresearcher'].won>=1){G.achievByName['speedresearcher'].visible=true}else{G.achievByName['speedresearcher'].visible=false};
 		if(G.achievByName['speedresearcher II'].won>=1){G.achievByName['speedresearcher II'].visible=true}else{G.achievByName['speedresearcher II'].visible=false};
 		if(G.achievByName['cruel goal'].won>=1){G.achievByName['cruel goal'].visible=true}else{G.achievByName['cruel goal'].visible=false};
+		if(G.achievByName['obsessed?'].won>=1){G.achievByName['obsessed?'].visible=true}else{G.achievByName['obsessed?'].visible=false};
 		if(G.achievByName['that was so brutal'].won>=1){G.achievByName['that was so brutal'].visible=true}else{G.achievByName['that was so brutal'].visible=false};
 		if(G.achievByName['capital of christmas'].won>=1 || (day+leap>=349 && day+leap<=362)){G.achievByName['capital of christmas'].visible=true}else{G.achievByName['capital of christmas'].visible=false};
+		if(G.achievByName['love for eternity'].won>=1 || (day+leap>=40 && day+leap<=46)){G.achievByName['love for eternity'].visible=true}else{G.achievByName['love for eternity'].visible=false};
+		if(G.achievByName['so adorable'].won>=1 || (day+leap>=40 && day+leap<=46)){G.achievByName['so adorable'].visible=true}else{G.achievByName['so adorable'].visible=false};
 		if(G.achievByName['i do not want to take things easily'].won>=1){G.achievByName['i do not want to take things easily'].visible=true}else{G.achievByName['i do not want to take things easily'].visible=false};
 		if(G.achievByName['god complex'].won>=1 || G.achievByName['it\'s over 9000'].won>=1 || G.achievByName['just plain lucky'].won>=1 || G.achievByName['speedresearcher'].won>=1 || G.achievByName['speedresearcher II'].won>=1 || G.achievByName['cruel goal'].won>=1 || G.achievByName['that was so brutal'].won>=1 || G.achievByName['i do not want to take things easily'].won>=1)G.achievByName['in the shadows'].won=1;
 		
@@ -5090,7 +5201,7 @@ G.writeMSettingButton=function(obj)
 					}
 					var n=randomFloor(G.getRes('child').amount*0.002);G.gain('adult',n,'aging up');G.lose('child',n,'aging up');
 					var n=randomFloor(G.getRes('baby').amount*0.005);G.gain('child',n,'aging up');G.lose('baby',n,'aging up');
-					
+				
 					//births
 					var parents=G.getRes('adult').amount+G.getRes('elder').amount;
 					if (parents>=2)//can't make babies by yourself
@@ -5105,7 +5216,9 @@ G.writeMSettingButton=function(obj)
 						birthRate*=productionMult;
 						if (homeless>0 && me.amount>15) birthRate*=0.05;//harder to make babies if you have more than 15 people and some of them are homeless
 						var n=randomFloor(G.getRes('adult').amount*0.0003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
+						if(day+leap>=40 && day+leap<=46 && G.has('parental love')) G.gain('love xp',n,'birth');
 						var n=randomFloor(G.getRes('elder').amount*0.00003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
+						if(day+leap>=40 && day+leap<=46 && G.has('parental love'))G.gain('love xp',n/2,'birth');
 						G.getRes('born this year').amount+=born;
 						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});
 					}
@@ -5297,11 +5410,12 @@ G.writeMSettingButton=function(obj)
 			if(G.has('respect for the corpse')){
 				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
+			if(day+leap<=40 && day+leap>=46 && G.hasNot('peace')){
 			if(G.has('revenants') && G.getRes('Dark essence').amount>1000){
 				G.lose('corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
 				G.lose('Dark essence',0.15,'revenge of corpses');
 				G.gain('wild corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
-			}
+			}}
 		},	
 	});
 	new G.Res({
@@ -5462,6 +5576,18 @@ G.writeMSettingButton=function(obj)
 		},
 		getIcon:function(me)
 		{
+			if(day>=40 && day<=46){
+			if (G.getRes('population').amount<=0) return [8,16,'seasonal'];
+			else
+			{
+				var amount=me.amount/G.getRes('population').amount;
+				if (amount>=100) return [7,16,'seasonal'];
+				else if (amount>=50) return [6,16,'seasonal'];
+				else if (amount>=-50) return [5,16,'seasonal'];
+				else if (amount>=-100) return [4,16,'seasonal'];
+				else return [3,16,'seasonal'];
+			}	
+			}else{
 			if (G.getRes('population').amount<=0) return [5,5];
 			else
 			{
@@ -5471,6 +5597,7 @@ G.writeMSettingButton=function(obj)
 				else if (amount>=-50) return [2,5];
 				else if (amount>=-100) return [1,5];
 				else return [0,5];
+			}
 			}
 		},
 	});
@@ -7974,6 +8101,7 @@ if (!document.getElementById(cssId))
 			G.Message({type:'bad',text:'<b>Beware of Wild corpses!.</b> Since you obtained <font color="Red"><b>Revenants</b></font> as you noticed the Wild Corpses started to appear. They cause your [Dark essence] to leak and even worse they will kill your people. Slay them at any way you can.',icon:[24,0,'magixmod']});
 			madeWarnCorpseMesg = true
 			}
+			
 			const corpses = G.getDict('wild corpse')
   const chances = [
     {
@@ -7993,12 +8121,14 @@ if (!document.getElementById(cssId))
       action = chances[i].type
   }
   //Execute
+			if(day+leap<=40 && day+leap>=46 && G.hasNot('peace')){
     switch(action){
 		   
       case "hurt":
         G.lose("adult", corpses.amount*0.0011, "wild corpse encounter")
         G.gain("wounded", corpses.amount*0.0011, "wild corpse encounter")
         break
+    }
   }
 		},
 		category:'demog',
@@ -8018,6 +8148,7 @@ if (!document.getElementById(cssId))
 		partOf:'population',
 		tick:function(me,tick)
 		{
+			if(day+leap<=40 && day+leap>=46 && G.hasNot('peace')){
 		if (G.year>109 && G.hasNot('t1') && G.hasNot('t2')){ //Spawning rate
  		   var n = G.getRes('adult').amount * 0.00001
 		   if(G.checkPolicy('se02')=='on'){
@@ -8025,6 +8156,7 @@ if (!document.getElementById(cssId))
 		   }else{
 			     G.gain('thief',n,'unhappiness');
 		   }
+			}
 			}
 			var toCalm=me.amount*0.007;
 			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');G.gain('adult',(toCalm),'calmdown');
@@ -9138,7 +9270,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		new G.Res({
 		name:'Orange firework',
@@ -9150,7 +9282,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		
 		new G.Res({
@@ -9162,7 +9294,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		new G.Res({
 		name:'Dark Orange Firework',
@@ -9174,7 +9306,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		new G.Res({
 		name:'Firecracker',
@@ -9186,7 +9318,7 @@ if (!document.getElementById(cssId))
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 		},
 		category:'seasonal',
-		//hidden:true,
+		hidden:true,
 	});
 		new G.Res({
 		name:'corpsedecaypoint',
@@ -9587,6 +9719,43 @@ if (!document.getElementById(cssId))
 		tick:function(me,tick){
 			me.amount=G.techN;
 		},
+	});
+	new G.Res({
+		name:'love',
+		desc:'Seasonal essential. //[love] can unlock new bonuses on some levels. //Obtaining valentine traits will allow you to gain points for that essential from more sources. Depending on happiness you may gain it slower or faster.',
+		icon:[10,16,'seasonal'],
+		tick:function(me,tick)
+		{
+			var xpreq=((((G.getRes('love').amount+10)*35000)^(G.getRes('love').amount+1))*(G.getRes('love').amount+3))*((G.getRes('love').amount+1)/1.85);
+			if(G.getRes('love xp').amount>=xpreq){
+			G.getRes('love xp').amount=0;me.amount++;	
+			}
+		},
+		getDisplayAmount:function(me)
+		{
+			if (G.getRes('population').amount<=0) return '<b>-</b>';
+			var amount=G.getRes('love').amount;
+			var xpreq=((((G.getRes('love').amount+10)*35000)^(G.getRes('love').amount+1))*(G.getRes('love').amount+3))*((G.getRes('love').amount+1)/1.85);
+			return '<font color="yellow"><b>Lvl '+B(amount+1)+'</b></font> '+B(G.getRes('love xp').amount)+'/<br>'+B(xpreq)+'';
+		},
+		getIcon:function(me)
+		{
+			if (G.getRes('population').amount<=0) return [17,16,'seasonal'];
+			else
+			{
+				var amount=G.getRes('love').amount;
+				if (amount>=15) return [16,16,'seasonal'];
+				else if (amount>=12) return [15,16,'seasonal'];
+				else if (amount>=10) return [14,16,'seasonal'];
+				else if (amount>=8) return [13,16,'seasonal'];
+				else if (amount>=5) return [12,16,'seasonal'];
+				else if (amount>=3) return [11,16,'seasonal'];
+				else return [10,16,'seasonal'];
+			}
+		},
+	});
+	new G.Res({
+		name:'love xp',
 	});
 	/*=====================================================================================
 	UNITS
@@ -12946,27 +13115,14 @@ if (!document.getElementById(cssId))
 		use:{'worker':1},
 		upkeep:{'Thread':0.30,'Paper':0.3},
 		effects:[
-			{type:'gather',what:{'Blue firework':1.25}},
-			{type:'gather',what:{'Orange firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
+			{type:'gather',what:{'Blue firework':0.75},every:3},
+			{type:'gather',what:{'Orange firework':0.75},every:3},
+			{type:'gather',what:{'Firecracker':1},every:3},
+			{type:'gather',what:{'Dark Blue Firework':0.5},every:6,req:{'Dark essenced fireworks':true}},
+			{type:'gather',what:{'Dark Orange Firework':0.5},every:6,req:{'Dark essenced fireworks':true}},
+			{type:'mult',value:1.1,req:{'ground stone tools':true}},
 		],
-		req:{'culture of celebration':true,'Firework crafting':true/*,'culture of celebration':false*/},
-		category:'seasonal',
-		//limitPer:{'land':40},
-	});
-		new G.Unit({
-		name:'Artisan of new year (dark)',
-		desc:'This guy can craft new year fireworks for celebration. Sulfur? For fireworks? It is celebration so he has [Sulfur] already at his stock. He will just consume [Paper] , [Thread] and [Dark essence] to finish it up.',
-		icon:[19,0,'seasonal'],
-		cost:{},
-		use:{'worker':1},
-		upkeep:{'Thread':0.30,'Paper':0.3,'Dark essence':0.15},
-		effects:[
-			{type:'gather',what:{'Dark Blue Firework':1.25}},
-			{type:'gather',what:{'Dark Orange Firework':1.25}},
-			{type:'gather',what:{'Firecracker':1}}
-		],
-		req:{'culture of celebration':true,'Dark essenced fireworks':true/*,'culture of celebration':false*/},
+		req:{'culture of celebration':true,'Firework crafting':true,'tribalism':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -12982,7 +13138,7 @@ new G.Unit({
 			{type:'convert',from:{'Dark Blue Firework':1},into:{'happiness':75},every:2,context:'launching'},
 			{type:'convert',from:{'Dark Orange Firework':1},into:{'happiness':75},every:2,context:'launching'},
 		],
-		req:{'culture of celebration':true,'Firework launching':true/*,'culture of celebration':false*/},
+		req:{'culture of celebration':true,'Firework launching':true,'tribalism':false},
 		category:'seasonal',
 		//limitPer:{'land':40},
 	});
@@ -13540,7 +13696,7 @@ new G.Unit({
 		finalStepCost:{'christmas essence':40000,'Mana':1e5,'ice':7.5e4},
 		threexthreeIcon:[0,11,'seasonal'],
 		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
-		req:{'monument-building II':true,'f.r.o.s.t.y overclock II':true},
+		req:{'monument-building II':true,'f.r.o.s.t.y overclock II':true,'tribalism':false},
 		category:'seasonal',
 		priority:5,
 	});
@@ -13556,7 +13712,7 @@ new G.Unit({
 			{type:'waste',chance:0.2/10000,req:{'construction III':true,'improved construction':false}},
 			{type:'waste',chance:0.14/10000,req:{'improved construction':true}},
 		],
-		req:{'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true},
+		req:{'stockpiling':true,'building':true,'Essence storages':true,'the christmas':true,'tribalism':false},
 		category:'seasonal',
 	});
 	new G.Unit({
@@ -13577,8 +13733,66 @@ new G.Unit({
 		req:{'globetrottering':true},
 		category:'exploration',
 	});
-	
-	
+			new G.Unit({
+		name:'artisan of christmas',
+		desc:'@has the ability to turn [archaic building materials,Various things] into festive ornaments , lights and anything related to [the christmas]. Once they decay they turn into [christmas essence]. They can be used to build a very special wonder and bring some happiness especially lights.',
+		icon:[5,10,'seasonal'],
+		cost:{},
+		use:{'worker':1},
+		modes:{
+			'off':G.MODE_OFF,
+			'ornaments':{name:'Craft ornaments',icon:[6,10,'seasonal'],desc:'Craft 1 [christmas ornament] from [Thread]s, [Dyes] and [log]',use:{'worker':1,'stone tools':1}},
+			'lights':{name:'Craft lights',icon:[6,11,'seasonal'],desc:'Craft 1 [festive light] from [Thread]s, [tin ore] , [Dyes] , some [glass] and [Magic essences]',use:{'worker':1,'stone tools':1},req:{'festive lights':true}},
+		},
+		effects:[
+			{type:'convert',from:{'Thread':4,'Dyes':2,'log':0.2},into:{'christmas ornament':1},every:6,mode:'ornaments'},
+			{type:'convert',from:{'Thread':9,'tin ore':2,'glass':0.2,'Magic essences':3},into:{'festive light':1},every:6,mode:'lights'},
+			{type:'mult',value:1.1,req:{'ground stone tools':true}},
+		],
+		req:{'festive artisanistry':true,'tribalism':false},
+		category:'seasonal',
+	}); 
+	new G.Unit({
+		name:'lodge of Christmas',
+		desc:'@this lodge than turn normal [child,children] to [child of Christmas,children of Christmas].',
+		icon:[14,10,'seasonal'],
+		cost:{'archaic building materials':50,'basic building materials':30},
+		use:{'land':1,'worker':3},
+		//require:{'worker':1,'knapped tools':1},
+		//upkeep:{'coin':0.5},
+		gizmos:true,
+		modes:{
+			'off':G.MODE_OFF,
+			'gatherers':{name:'Gatherer\'s lodge',icon:[0,2],desc:'Hire [gatherer]s until there are 6 for each of this lodge.',req:{'tribalism':true}},
+			'hunters':{name:'Hunter\'s lodge',icon:[18,2],desc:'Hire [hunter]s until there are 6 for each of this lodge.',req:{'hunting':true}},
+			'fishers':{name:'Fisher\'s lodge',icon:[17,2],desc:'Hire [fisher]s until there are 6 for each of this lodge.',req:{'fishing':true}},
+			'diggers':{name:'Digger\'s lodge',icon:[7,2],desc:'Hire [digger]s until there are 6 for each of this lodge.',req:{'digging':true}},
+			'woodcutters':{name:'Woodcutter\'s lodge',icon:[8,2],desc:'Hire [woodcutter]s until there are 6 for each of this lodge.',req:{'woodcutting':true}},
+			'artisans':{name:'Artisan\'s lodge',icon:[6,2],desc:'Hire [artisan]s until there are 6 for each of this lodge.',req:{'stone-knapping':true}},
+			'florists':{name:'Florist\'s lodge',icon:[7,11,'magixmod'],desc:'Hire [Florist]s until there are 6 for each of this lodge.',req:{'plant lore':true}},
+		},
+		effects:[
+			
+		],
+		req:{'the christmas':true,'tribalism':false},
+		category:'seasonal',
+	});
+	new G.Unit({
+		name:'fortress of love',
+		displayName:'<font color="pink">Fortress of love</font>',
+		desc:'Constucted in Paradise, giant [fortress of love]. Settled into special region separated as much as possible from other isles gives even more uniqueness. Vibrant. //Only allowed there are: love, respect, good mood, empathy. //That is why not everyone is supposed to arrive there. Only the most kind people and souls will live there. //Happy valentines! @Note: Final level will need full 2 [love] levels.',
+		icon:[0,15,'seasonal'],
+		wonder:';',
+		steps:999,
+		cost:{'basic building materials':3000,'gems':3000},
+		costPerStep:{'marble':4000,'metal tools':100,'metal weapons':100,'armor set':100,'basic building materials':1000,'stone':3000,'clay':2500,'cloud':1000,'Magic essences':15000,'gems':100,'gem block':25,'Mana':20000},
+		finalStepCost:{'love':2},
+		threexthreeIcon:[0,11,'seasonal'],
+		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
+		req:{'lovely monument':true,'tribalism':false},
+		category:'seasonal',
+		priority:5,
+	});
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
 	=======================================================================================*/
@@ -15296,7 +15510,7 @@ autobuy(G.year)
 	});
 	new G.Trait({
 		name:'ground stone tools',
-		desc:'@[artisan]s and [carver]s craft 20% faster',
+		desc:'@[artisan]s and [carver]s craft 20% faster. //Note: it also applies to seasonal artisan for example [artisan of christmas] (with [culture of celebration] obtained]) but it is only 10% boost in their case.',
 		icon:[4,1],
 		cost:{'insight':3},
 		chance:10,
@@ -18084,7 +18298,7 @@ new G.Tech({
 	new G.Tech({
 		name:'the christmas',category:'seasonal',
 		displayName:'<font color="cyan">The Christmas</font>',
-		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //(WIP) Note: For that short while Christmas Seasonals patch is test one. Unlocks Lodge of Christmas.',
+		desc:'@People acknowledged to symbols of that event will not only expand your symbolics but also make decors like ornaments, lights. //Unlocks [lodge of Christmas].',
 		icon:[2,10,'seasonal'],
 		cost:{'insight':400,'culture':100,'faith':32},
 		req:{'culture of celebration':true,'Wizard complex':true,'tribalism':false,'winter holidays':true},
@@ -18237,6 +18451,111 @@ new G.Tech({
 		cost:{'insight':30,'culture':10},
 		req:{'scouting':true,'building':true,'a gift from the mausoleum':true},
 	});
+	new G.Tech({
+		name:'festive artisanistry',category:'seasonal',
+		desc:'unlocks [artisan of christmas]',
+		icon:[15,10,'seasonal'],
+		cost:{'insight':600,'culture':100,'influence':50},
+		req:{'winter holidays':true,'tribalism':false},
+	});
+	new G.Trait({
+        name:'valentine1',
+		displayName:'Waters of love',
+        icon:[3,17,'seasonal'],
+	effects:[{type:'provide res',what:{'water':80}}],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'valentine2',
+		displayName:'Lovely herbs',
+        icon:[4,17,'seasonal'],
+	effects:[{type:'provide res',what:{'herb':80}}],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'valentine3',
+		displayName:'Meat of lovefalling',
+        icon:[5,17,'seasonal'],
+	effects:[{type:'provide res',what:{'cooked meat':70}}],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+	new G.Trait({
+        name:'valentine4',
+		displayName:'Amore\'s child',
+        icon:[6,17,'seasonal'],
+	effects:[{type:'provide res',what:{'child':1,'insight':1}}],	
+        req:{'tribalism':false},
+	category:'seasonal'
+    });
+		new G.Tech({
+		name:'love grows around us',category:'seasonal',displayName:'<font color="pink">Love grows around us</font>',
+		desc:'@One person that loves a lot other people is enough... wait '+G.getName('ruler')+' . You are ruler of the tribe and love people a lot. And they also love you. //Let\'s plant the seeds of <b>The festival of love</b> called Valentine\'s day. Will unlock you [love] - a special thing that is key of that event AND can bring you some rewards if level of [love] is decent enough.',
+		icon:[18,16,'seasonal'],
+		cost:{'insight':210,'culture':45,'faith':5,'research':80},
+		req:{'culture of celebration':true,'philosophy':true,'tribalism':false},
+		effects:[
+			 {type:'function',func:function(){if(day+leap>=40 && day+leap<=46)G.getDict('love').hidden=false;}},
+			]
+	});
+	new G.Trait({
+        name:'parental love',
+	desc:'Now newborn [baby,Babies] provide some [love,Love points] for each one born. This one will lead to more [love] sources.',
+        icon:[19,16,'seasonal'],
+	cost:{'culture':75,'research':90},
+        req:{'love grows around us':true},
+	category:'seasonal',chance:35,
+    });
+	new G.Trait({
+        name:'discovery with love',
+	desc:'From [research] you may gain now [love]. Each year you will get some [love] points. The formula for that is: <br>//<font color="aqua">Pts=amount of techs*(random number between 1 and 15)-(amount of traits/8)</font>',
+        icon:[3,15,'seasonal'],
+	cost:{'culture':75,'research':120,'insight':400},
+        req:{'parental love':true,'time measuring 1/2':true},
+	category:'seasonal',chance:50,
+    });
+	new G.Trait({
+        name:'compliments',
+	desc:'Now [child,Children] generate [love] points. //Not all children rather teenagers that have a need to have a second half and love her. They are going to say nice compliments each other. //Not only teens. Also any children that are good-mannered and talk good things about other people.',
+        icon:[4,15,'seasonal'],
+	cost:{'culture':125,'research':120,'faith':100},
+        req:{'parental love':true,'alphabet 3/3':true},
+	category:'seasonal',chance:150,
+    });
+	new G.Trait({
+        name:'very artful compliments',
+	desc:'[child,Children] generate even more points from that source.',
+        icon:[5,15,'seasonal'],
+	cost:{'culture II':25,'research':150,'insight II':15},
+        req:{'parental love':true,'compliments':true,'alphabet 3/3':true},
+	category:'seasonal',chance:35,
+    });
+	new G.Tech({
+        name:'lovely monument',
+	desc:'//You can now start constructing [fortress of love].',
+        icon:[7,15,'seasonal'],
+	cost:{'culture II':25,'research':150,'insight II':15},
+        req:{'parental love':true,'compliments':true,'alphabet 3/3':true,'monument-building II':true},
+	category:'seasonal',chance:35,
+    });
+	new G.Trait({
+        name:'peace',
+	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+        icon:[6,15,'seasonal'],
+	cost:{'culture':500,'research':100,'faith':500},
+        req:{'compliments':true},
+	category:'seasonal',chance:135,
+    });
+	new G.Tech({
+        name:'families full of love',
+	desc:'Every year you gain some amount of [love] from [elder]s.',
+        icon:[10,15,'seasonal'],
+	cost:{'culture':75,'research':130,'faith':120,'influence':10,'insight':600},
+        req:{'love grows around us':true,'time measuring 2/2':true,'compliments':true,'Beginnings of alchemy':true},
+	category:'seasonal',chance:10,
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
