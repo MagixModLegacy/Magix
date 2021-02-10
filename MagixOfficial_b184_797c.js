@@ -4070,12 +4070,15 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
             '</div></div>'
 })
 		}
+		
 		var multiplier=() => {if(G.achievByName['love for eternity'].won>=1) return 1.2; else return 1};
-		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10 && G.getRes('happiness')/G.getRes('population').amount>-100 && G.getRes('health')/G.getRes('population').amount>-20){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow');
-		G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow');
+		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow')};
+		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=15){G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow')};
+		if(day+leap>=40 && day+leap<=46 && G.getRes('happiness')/G.getRes('population').amount>-100 && G.getRes('health')/G.getRes('population').amount>-20){
 			if(G.has('compliments') && G.hasNot('very artful compliments'))G.gain('love xp',G.getRes('child').amount*0.8*multiplier());
 			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
+		}
 	};
 }
 	G.props['new day lines']=[ //2 quotes per line
