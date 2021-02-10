@@ -1632,7 +1632,7 @@ func:function(){
 		tier:0,
 		name:'love for eternity',
 		icon:[1,15,'seasonal'],
-		desc:'Finish [fortress of love]. //You don\'t have to ascend by this wonder. Also this fortress is place where no lie, no cheat exists... just love and respect. //Symbolically constructed in Paradise.',
+		desc:'Finish [fortress of love]. //You don\'t have to ascend by this wonder. Also this fortress is place where no lie, no cheat exists... just love and respect. //Symbolically constructed in Paradise. @<b>Bonus: from some sources you gain 20% more [love] points.</b>',
 		effects:[
 			{type:'addFastTicksOnStart',amount:300},
 			{type:'addFastTicksOnResearch',amount:25},
@@ -4070,10 +4070,12 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
             '</div></div>'
 })
 		}
+		var multiplier=() => {if(G.achievByName['love for eternity'].won>=1) return 1.2; else return 1};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow');
 		G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow');
-			if(G.has('compliments') && G.hasNot('very artful compliments'))G.gain('love xp',G.getRes('child').amount*0.8);
-			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1);
+			if(G.has('compliments') && G.hasNot('very artful compliments'))G.gain('love xp',G.getRes('child').amount*0.8*multiplier());
+			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
+			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
 	};
 }
 	G.props['new day lines']=[ //2 quotes per line
@@ -13678,7 +13680,7 @@ new G.Unit({
 	new G.Unit({
 		name:'wonderful fortress of christmas',
 		desc:'Constucted in cold climates collosal, giant [wonderful fortress of christmas,Wonderful fortress of Christmas]. Taller and bigger than anything else giving its shadow of the festive to villages and cities all around. //Full of lights and ornaments so its mightiness is also the art of beauty. //This giant takes a lot of steps to be built and does not belong to cheapest wonders. //Merry Christmas!',
-		icon:[0,11,'seasonal'],
+		icon:[1,11,'seasonal'],
 		wonder:';',
 		steps:1200,
 		cost:{'basic building materials':3000,'christmas essence':10000},
@@ -13771,7 +13773,7 @@ new G.Unit({
 		name:'fortress of love',
 		displayName:'<font color="pink">Fortress of love</font>',
 		desc:'Constucted in Paradise, giant [fortress of love]. Settled into special region separated as much as possible from other isles gives even more uniqueness. Vibrant. //Only allowed there are: love, respect, good mood, empathy. //That is why not everyone is supposed to arrive there. Only the most kind people and souls will live there. //Happy valentines! @Note: Final level will need full 2 [love] levels.',
-		icon:[0,15,'seasonal'],
+		icon:[1,15,'seasonal'],
 		wonder:';',
 		steps:999,
 		cost:{'basic building materials':3000,'gems':3000},
