@@ -3260,6 +3260,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('love grows around us').req={'culture of celebration':true,'tribalism':true};
 			G.getDict('cities').icon=[12,15,'seasonal'];
 			G.getDict('sedentism').icon=[13,15,'seasonal'];
+			G.getDict('fortress of love').req={'lovely monument':true,'tribalism':true};
 			G.getDict('scouting').icon=[14,15,'seasonal'];
 			G.getDict('focused scouting').icon=[15,15,'seasonal'];
 			G.getDict('well-digging').icon=[16,15,'seasonal'];
@@ -3700,6 +3701,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				G.getDict('Ambrosium treeplanting').icon=[11,15,'seasonal'];
 			G.getDict('cities').icon=[12,15,'seasonal'];
 			G.getDict('love grows around us').req={'culture of celebration':true,'tribalism':true};
+			G.getDict('fortress of love').req={'lovely monument':true,'tribalism':true};
 			G.getDict('sedentism').icon=[13,15,'seasonal'];
 			G.getDict('scouting').icon=[14,15,'seasonal'];
 			G.getDict('focused scouting').icon=[15,15,'seasonal'];
@@ -13786,7 +13788,7 @@ new G.Unit({
 		finalStepCost:{'love':2},
 		threexthreeIcon:[0,11,'seasonal'],
 		use:{'worker':200,'Instructor':15,'metal tools':400,'metal weapons':200,'armor set':200},
-		req:{'monument-building II':true},
+		req:{'lovely monument':true,'tribalism':false},
 		category:'seasonal',
 		priority:5,
 	});
@@ -18534,7 +18536,7 @@ new G.Tech({
 	desc:'//You can now start constructing [fortress of love].',
         icon:[7,15,'seasonal'],
 	cost:{'culture II':25,'research':150,'insight II':15},
-        req:{'parental love':true,'compliments':true,'alphabet 3/3':true},
+        req:{'parental love':true,'compliments':true,'alphabet 3/3':true,'monument-building II':true},
 	category:'seasonal',chance:35,
     });
 	new G.Trait({
