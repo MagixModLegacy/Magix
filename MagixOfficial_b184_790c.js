@@ -9707,7 +9707,7 @@ if (!document.getElementById(cssId))
 		icon:[10,16,'seasonal'],
 		tick:function(me,tick)
 		{
-			var xpreq=((((G.getRes('love').amount+10)*55000)^G.getRes('love').amount)*G.getRes('love').amount+3)*((G.getRes('love').amount+1)/1.85);
+			var xpreq=((((G.getRes('love').amount+10)*55000)^G.getRes('love').amount+1)*G.getRes('love').amount+3)*((G.getRes('love').amount+1)/1.85);
 			if(G.getRes('love xp').amount>=xpreq){
 			G.getRes('love xp').amount=0;me.amount++;	
 			}
@@ -9716,7 +9716,7 @@ if (!document.getElementById(cssId))
 		{
 			if (G.getRes('population').amount<=0) return '<b>-</b>';
 			var amount=G.getRes('love').amount;
-			var xpreq=((((G.getRes('love').amount+10)*55000)^G.getRes('love').amount)*G.getRes('love').amount+3)*((G.getRes('love').amount+1)/1.85);
+			var xpreq=((((G.getRes('love').amount+10)*55000)^G.getRes('love').amount+1)*G.getRes('love').amount+3)*((G.getRes('love').amount+1)/1.85);
 			return '<font color="yellow"><b>Lvl '+B(amount+1)+'</b></font> '+B(G.getRes('love xp').amount)+'/<br>'+B(xpreq)+'';
 		},
 		getIcon:function(me)
