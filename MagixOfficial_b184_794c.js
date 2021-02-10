@@ -4070,8 +4070,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
             '</div></div>'
 })
 		}
-		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow')};
-		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=15){G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow')};
+		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow');
+		G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow');
+			if(G.has('compliments') && G.hasNot('very artful compliments'))G.gain('love xp',G.getRes('child').amount*0.8);
+			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1);
+	};
 }
 	G.props['new day lines']=[ //2 quotes per line
 		'Creatures are lurking.',	'Danger abounds.',
@@ -5188,7 +5191,7 @@ G.writeMSettingButton=function(obj)
 					}
 					var n=randomFloor(G.getRes('child').amount*0.002);G.gain('adult',n,'aging up');G.lose('child',n,'aging up');
 					var n=randomFloor(G.getRes('baby').amount*0.005);G.gain('child',n,'aging up');G.lose('baby',n,'aging up');
-					
+				
 					//births
 					var parents=G.getRes('adult').amount+G.getRes('elder').amount;
 					if (parents>=2)//can't make babies by yourself
@@ -5397,11 +5400,12 @@ G.writeMSettingButton=function(obj)
 			if(G.has('respect for the corpse')){
 				G.getDict('ritual necrophagy').desc='<b><font color="fuschia">Becuase you obtained [respect for the corpse] the effect of this trait is disabled. You can unlock new way better way to bury [corpse]s. Previous was so cruel making corpses willing revenge. Your people were:</font></b>@slowly turning [corpse]s into [meat] and [bone]s, creating some [faith] but harming [health]'
 			}
+			if(day+leap<=40 && day+leap>=46 && G.hasNot('peace')){
 			if(G.has('revenants') && G.getRes('Dark essence').amount>1000){
 				G.lose('corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
 				G.lose('Dark essence',0.15,'revenge of corpses');
 				G.gain('wild corpse',G.getRes('corpse').amount*0.001,'revenge of corpses');
-			}
+			}}
 		},	
 	});
 	new G.Res({
@@ -8087,6 +8091,7 @@ if (!document.getElementById(cssId))
 			G.Message({type:'bad',text:'<b>Beware of Wild corpses!.</b> Since you obtained <font color="Red"><b>Revenants</b></font> as you noticed the Wild Corpses started to appear. They cause your [Dark essence] to leak and even worse they will kill your people. Slay them at any way you can.',icon:[24,0,'magixmod']});
 			madeWarnCorpseMesg = true
 			}
+			
 			const corpses = G.getDict('wild corpse')
   const chances = [
     {
@@ -8106,12 +8111,14 @@ if (!document.getElementById(cssId))
       action = chances[i].type
   }
   //Execute
+			if(day+leap<=40 && day+leap>=46 && G.hasNot('peace')){
     switch(action){
 		   
       case "hurt":
         G.lose("adult", corpses.amount*0.0011, "wild corpse encounter")
         G.gain("wounded", corpses.amount*0.0011, "wild corpse encounter")
         break
+    }
   }
 		},
 		category:'demog',
@@ -8131,6 +8138,7 @@ if (!document.getElementById(cssId))
 		partOf:'population',
 		tick:function(me,tick)
 		{
+			if(day+leap<=40 && day+leap>=46 && G.hasNot('peace')){
 		if (G.year>109 && G.hasNot('t1') && G.hasNot('t2')){ //Spawning rate
  		   var n = G.getRes('adult').amount * 0.00001
 		   if(G.checkPolicy('se02')=='on'){
@@ -8138,6 +8146,7 @@ if (!document.getElementById(cssId))
 		   }else{
 			     G.gain('thief',n,'unhappiness');
 		   }
+			}
 			}
 			var toCalm=me.amount*0.007;
 			var spent=G.lose(me.name,randomFloor(toCalm),'calmdown');G.gain('adult',(toCalm),'calmdown');
@@ -18504,6 +18513,30 @@ new G.Tech({
 	cost:{'culture':125,'research':120,'faith':100},
         req:{'parental love':true,'alphabet 3/3':true},
 	category:'seasonal',chance:150,
+    });
+	new G.Trait({
+        name:'very artful compliments',
+	desc:'[child,Children] generate even more points from that source.',
+        icon:[5,15,'seasonal'],
+	cost:{'culture II':25,'research':150,'insight II':15},
+        req:{'parental love':true,'compliments':true,'alphabet 3/3':true},
+	category:'seasonal',chance:35,
+    });
+	new G.Tech({
+        name:'lovely monument',
+	desc:'//You can now start constructing [fortress of love].',
+        icon:[7,15,'seasonal'],
+	cost:{'culture II':25,'research':150,'insight II':15},
+        req:{'parental love':true,'compliments':true,'alphabet 3/3':true},
+	category:'seasonal',chance:35,
+    });
+	new G.Trait({
+        name:'peace',
+	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+        icon:[6,15,'seasonal'],
+	cost:{'culture':500,'research':100,'faith':500},
+        req:{'compliments':true},
+	category:'seasonal',chance:135,
     });
 	/*=====================================================================================
 	POLICIES
