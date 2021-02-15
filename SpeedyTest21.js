@@ -83,7 +83,7 @@ G.createTopInterface=function()
 				else if (speed==3) {if (G.getSetting('animations')) {triggerAnim(l('customSpeedButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');l('customSpeedButton').classList.add('on');}
 			}
 	}
-	G.funcs['new day']+=function(){
+	G.funcs['new day']=function(){
 		if(G.tickDuration==30)G.fastTicks--;	
 	}
 }});
