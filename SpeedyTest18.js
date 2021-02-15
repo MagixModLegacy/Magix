@@ -5,6 +5,7 @@ desc:'Not only pause , speed x1 , speed x30. Using a new button you can pick whi
 engineVersion:1,
 manifest:'ModManifest.js',
 func:function(){
+	G.tickDuration=30;
 	var speed=1;
 G.createTopInterface=function()
 	{
@@ -16,7 +17,7 @@ G.createTopInterface=function()
 			text:'<div class="image" style="width:9px;background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/playButtons.png) 0px 0px;"></div>',
 			tooltip:'Time will be stopped.<br><b>Generates fast ticks.</b>',
 			onclick:function(){G.setSetting('paused',1);
-					   
+					     G.tickDuration=30;
 					  }
 		})+
 		G.button({id:'playButton',
