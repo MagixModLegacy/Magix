@@ -69,20 +69,44 @@ G.createTopInterface=function()
 		G.addCallbacks();
 		G.updateSpeedButtons();
 	}
-	G.updateSpeedButtons=function()
-	{
-			var div=l('pauseButton');
-			if (div)
-			{
-				var speed=1;
-				if (G.getSetting('fast')) speed=2;//l('customSpeedButton').classList.remove('on')
-				if (G.getSetting('paused') || G.getSetting('forcePaused')) speed=0;
-				if (speed==0) {if (G.getSetting('animations')) {triggerAnim(l('pauseButton'),'plop');} l('pauseButton').classList.add('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');l('customSpeedButton').classList.remove('on');}
-				else if (speed==1) {if (G.getSetting('animations')) {triggerAnim(l('playButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.add('on');l('fastButton').classList.remove('on');l('customSpeedButton').classList.remove('on');}
-				else if (speed==2) {if (G.getSetting('animations')) {triggerAnim(l('fastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.add('on');l('customSpeedButton').classList.remove('on');}
-				else if (speed==3) {if (G.getSetting('animations')) {triggerAnim(l('customSpeedButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');l('customSpeedButton').classList.add('on');}
-			}
-	}
+	G.updateSpeedButtons = () => {
+  const pause = l('pauseButton');
+  const play = l('playButton');
+  const fast = l('fastButton');
+  const customSpeed = l('customSpeedButton');
+
+  if (pause) {
+    let speed = 1;
+    if (G.getSetting('fast')) {
+      speed = 2;
+    } // customSpeed.classList.remove('on')
+    if (G.getSetting('paused') || G.getSetting('forcePaused')) {
+      speed = 0;
+    }
+
+    pause.classList.remove('on');
+    play.classList.remove('on');
+    fast.classList.remove('on');
+    customSpeed.classList.remove('on');
+    if (speed === 0) {
+      G.getSetting('animations') && triggerAnim(pause, 'plop');
+
+      pause.classList.add('on');
+    } else if (speed === 1) {
+      G.getSetting('animations') && triggerAnim(play, 'plop');
+
+      play.classList.add('on');
+    } else if (speed === 2) {
+      G.getSetting('animations') && triggerAnim(fast, 'plop');
+
+      fast.classList.add('on');
+    } else if (speed === 3) {
+      G.getSetting('animations') && triggerAnim(customSpeed, 'plop');
+
+      customSpeed.classList.add('on');
+    }
+  }
+};
 	new G.Res({name:'fasttickdebug',hidden:true,
 		   tick:function(me,tick){
 			if(G.tickDuration<30)G.fastTicks--;   
