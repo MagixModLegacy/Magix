@@ -110,6 +110,10 @@ G.createTopInterface=function()
 	new G.Res({name:'fasttickdebug',hidden:true,
 		   tick:function(me,tick){
 			if(G.tickDuration<30)G.fastTicks--;   
+			   if(G.fastTicks==0){
+				speed=1;
+				  G.tickDuration=30;
+			   }
 		   }
 		  });
 }});
