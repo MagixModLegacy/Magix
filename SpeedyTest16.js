@@ -16,21 +16,18 @@ G.createTopInterface=function()
 			text:'<div class="image" style="width:9px;background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/playButtons.png) 0px 0px;"></div>',
 			tooltip:'Time will be stopped.<br><b>Generates fast ticks.</b>',
 			onclick:function(){G.setSetting('paused',1);
-      G.fps=30;
 					  }
 		})+
 		G.button({id:'playButton',
 			text:'<div class="image" style="width:9px;background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/playButtons.png) -11px 0px;"></div>',
 			tooltip:'Time will pass by normally - 1 day every second.',
 			onclick:function(){G.setSetting('paused',0);G.setSetting('fast',0);
-      G.fps=30;
 					  }
 		})+
 		G.button({id:'fastButton',
 			text:'<div class="image" style="width:9px;background:url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/playButtons.png) -21px 0px;"></div>',
 			tooltip:'Time will go by about 30 times faster - 1 month every second.<br>Uses up fast ticks.<br>May lower browser performance while active.',
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',1);}
-      G.fps=30;
 					  }
 		})+
     	G.button({id:'customSpeedButton',
@@ -68,7 +65,7 @@ G.createTopInterface=function()
 		G.addCallbacks();
 		G.updateSpeedButtons();
 	}
-	G.updateSpeedButtons=function()
+	/*G.updateSpeedButtons=function()
 	{
 			var div=l('pauseButton');
 			if (div)
@@ -81,6 +78,6 @@ G.createTopInterface=function()
 				else if (speed==2) {if (G.getSetting('animations')) {triggerAnim(l('fastButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.add('on');l('customSpeedButton').classList.remove('on');}
 				else if (speed==3) {if (G.getSetting('animations')) {triggerAnim(l('customSpeedButton'),'plop');} l('pauseButton').classList.remove('on');l('playButton').classList.remove('on');l('fastButton').classList.remove('on');l('customSpeedButton').classList.add('on');}
 			}
-	}
+	}*/
 	
 }});
