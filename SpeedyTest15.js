@@ -39,12 +39,12 @@ G.createTopInterface=function()
 			onclick:function(){if (G.fastTicks>0) {G.setSetting('paused',0);G.setSetting('fast',0);
       var sp=prompt("Please tell me at which speed you want to run this game. \n Note that it is going to work like 3x or 4x so all you need to type is just the number.");
 	var Speed=parseFloat(sp);						
-      if(isNaN(Speed)==false){
-      G.fps=(30*speed);
+      if(isNaN(Speed)==false && Speed!=0){
+      G.tickDuration=(30/speed);
 	      speed=3;
 	      G.middleText('- Speed x'+Speed+' -');
       }else{
-      G.fps=30;
+      G.tickDuration=30;
       }
       }}
 		})+
