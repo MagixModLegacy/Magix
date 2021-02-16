@@ -11070,7 +11070,7 @@ if (!document.getElementById(cssId))
 		({type:'convert',from:{'Cattail':4},into:{'Dyes':2},every:3}),
 		({type:'convert',from:{'Flax':3},into:{'Dyes':1},every:3}),
 		({type:'convert',from:{'Blue orchid':2},into:{'Dyes':1},every:3}),
-		({type:'convert',from:{'White tulip':2},into:{'WDyes':1},every:3}),
+		({type:'convert',from:{'White tulip':2},into:{'Dyes':1},every:3}),
 		({type:'convert',from:{'Lily of the Valley':3},into:{'Dyes':1},every:3}),
 		({type:'convert',from:{'Brown flower':2},into:{'Dyes':1},every:3}),
 		({type:'convert',from:{'Gray rose':3},into:{'Dyes':1},every:3}),
