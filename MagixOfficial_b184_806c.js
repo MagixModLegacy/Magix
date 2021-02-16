@@ -3272,11 +3272,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		}else{
 			G.achievByName['valentine buff'].won--;
 		};
-		if(G.achievByName['xmas buff'].won>=0){
+		if(G.achievByName['xmas buff'].won>=1){
 		var buff=Math.round(Math.random()*3)+1;
 		G.gainTrait(G.traitByName['xmas'+buff+'']);
 	};
-	if(G.achievByName['valentine buff'].won>=0){
+	if(G.achievByName['valentine buff'].won>=1){
 		var buff=Math.round(Math.random()*3)+1;
 		G.gainTrait(G.traitByName['valentine'+buff+'']);
 	};	
@@ -11070,7 +11070,7 @@ if (!document.getElementById(cssId))
 		({type:'convert',from:{'Cattail':4},into:{'Dyes':2},every:3}),
 		({type:'convert',from:{'Flax':3},into:{'Dyes':1},every:3}),
 		({type:'convert',from:{'Blue orchid':2},into:{'Dyes':1},every:3}),
-		({type:'convert',from:{'White tulip':2},into:{'WDyes':1},every:3}),
+		({type:'convert',from:{'White tulip':2},into:{'Dyes':1},every:3}),
 		({type:'convert',from:{'Lily of the Valley':3},into:{'Dyes':1},every:3}),
 		({type:'convert',from:{'Brown flower':2},into:{'Dyes':1},every:3}),
 		({type:'convert',from:{'Gray rose':3},into:{'Dyes':1},every:3}),
