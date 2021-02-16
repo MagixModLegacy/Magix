@@ -73,7 +73,7 @@ G.createTopInterface=function()
   const pause = l('pauseButton');
   const play = l('playButton');
   const fast = l('fastButton');
-  const customSpeed = l('customSpeedButton');
+//  const customSpeed = l('customSpeedButton');
 
   if (pause) {
     let speed = 1;
