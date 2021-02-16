@@ -87,7 +87,7 @@ G.createTopInterface=function()
     pause.classList.remove('on');
     play.classList.remove('on');
     fast.classList.remove('on');
-    customSpeed.classList.remove('on');
+    //customSpeed.classList.remove('on');
     if (speed === 0) {
       G.getSetting('animations') && triggerAnim(pause, 'plop');
 
@@ -101,9 +101,9 @@ G.createTopInterface=function()
 
       fast.classList.add('on');
     } else if (speed === 3) {
-      G.getSetting('animations') && triggerAnim(customSpeed, 'plop');
+      //G.getSetting('animations') && triggerAnim(customSpeed, 'plop');
 
-      customSpeed.classList.add('on');
+     // customSpeed.classList.add('on');
     }
   }
 };
