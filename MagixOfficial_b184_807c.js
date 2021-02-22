@@ -2721,9 +2721,9 @@ var len=G.techsOwned.length;
 	{
 		var str=''+
 		'<div style="float:left;"><center>'+
-		G.button({text:'New game',tooltip:'Instantly start a new game.',onclick:function(){G.T=0;G.NewGameWithSameMods();}})+
-		G.button({text:'Load',tooltip:'Reload the save.',onclick:function(){G.T=0;G.Load();}})+
-		G.button({text:'Clear',tooltip:'Wipe save data.',onclick:function(){G.Clear();}})+
+		G.button({text:'<font color="orange">New game</font>',tooltip:'Instantly start a new game.',onclick:function(){G.T=0;G.NewGameWithSameMods();}})+
+		G.button({text:'<font color="lime">Load</font>',tooltip:'Reload the save.',onclick:function(){G.T=0;G.Load();}})+
+		G.button({text:'<font color="pink">Clear</font>',tooltip:'Wipe save data.',onclick:function(){G.Clear();}})+
 		'<br />'+
 		G.button({text:'ALMIGHTY',tooltip:'Unlock every tech, trait and policy.',onclick:function(){
 			for (var i in G.tech)
@@ -2745,11 +2745,11 @@ var len=G.techsOwned.length;
 				}
 			G.middleText('<font color="#d4af37">- You are almighty! -<br /><small> - You are the god! - </small></font>','slow');
 		}})+
-		G.writeSettingButton({id:'showAllRes',name:'showAllRes',text:'Show resources',tooltip:'Toggle whether all resources should be visible.'})+
-		//G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'Show tiers',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
+		G.writeSettingButton({id:'showAllRes',name:'showAllRes',text:'<font color="aqua">Show resources</font>',tooltip:'Toggle whether all resources should be visible.'})+
+		G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'<font color="yellow">Show tiers</font>',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
 		G.button({text:'Reveal map',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
-		    '<br /><font color="lime">Debug mode. Magix: Release 47.0 (late beta)</font>'+
+		    '<br /><font color="lime">Debug mode. Magix: Release 47.2 (late beta)</font>'+
 		G.textWithTooltip('?','<div style="width:240px;text-align:left;">This is the debug menu. Please debug responsibly.<br>Further debug abilities while this mode is active :<div class="bulleted">click resources to add/remove some (keyboard shortcuts work the same way they do for purchasing units)</div><div class="bulleted">ctrl-click a trait or policy to remove it (may have strange, buggy effects)</div><div class="bulleted">click the Fast ticks display to get more fast ticks<br>(if add is equal 1 it will add 10, if add 10 then 100 and so on)</div><div class="bulleted">always see tech costs and requirements</div><div class="bulleted">gain access to debug robot units <br /> <b>BEEP BOOP BEEP</b></div><div class="bulleted">edit the map</div></div>','infoButton')+
 		'</center></div>';
 		l('debug').innerHTML=str;
@@ -3718,7 +3718,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		if (G.on)
 		{
-			ta=1;
+			if(G.getSetting('tieredDisplay')==0){ta=1}else{ta=0};
 			var txt = ''+G.year+'';
 			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
 		G.getDict('worker').icon=[1,7,'seasonal'];
