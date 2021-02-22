@@ -8184,12 +8184,12 @@ if (!document.getElementById(cssId))
 				if (G.year>=29)//Gear decaying at year 30 and later
 				{
 				var toSpoil=(G.getRes('metal tools').amount*0.0001);G.lose(('metal tools'),randomFloor(toSpoil),'decay');
-				if(G.hasNot('tool rafinery 2/2')){var toSpoil=(G.getRes('stone tools').amount*0.0004);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
+				if(G.hasNot('tool refinery 2/2')){var toSpoil=(G.getRes('stone tools').amount*0.0004);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
 				}else{
 					var toSpoil=(G.getRes('stone tools').amount*0.0002);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
 				};
 				var toSpoil=(G.getRes('knapped tools').amount*0.00055);G.lose(('knapped tools'),randomFloor(toSpoil),'decay');
-								if(G.hasNot('tool rafinery 2/2')){var toSpoil=(G.getRes('stone weapons').amount*0.0004);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
+								if(G.hasNot('tool refinery 2/2')){var toSpoil=(G.getRes('stone weapons').amount*0.0004);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
 				}else{
 					var toSpoil=(G.getRes('stone weapons').amount*0.0002);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
 				};
@@ -9176,11 +9176,11 @@ if (!document.getElementById(cssId))
 				 G.middleText('- Completed <font color="green">6 aces</font> achievement -','slow');
 				G.achievByName['6 aces'].won=1;
 				 }
-			if(G.has('tool rafinery 1/2') && G.hasNot('tool rafinery 2/2')){
+			if(G.has('tool refinery 1/2') && G.hasNot('tool refinery 2/2')){
 				G.getDict('stone tools').icon=[19,31,'magixmod'];
 				G.getDict('stone weapons').icon=[21,31,'magixmod'];
 				G.getDict('metal tools').icon=[20,31,'magixmod'];
-				}else if(G.has('tool rafinery 1/2') && G.has('tool rafinery 2/2')){
+				}else if(G.has('tool refinery 1/2') && G.has('tool refinery 2/2')){
 					G.getDict('stone tools').icon=[22,31,'magixmod'];
 				G.getDict('stone weapons').icon=[23,31,'magixmod']; 
 					G.getDict('metal tools').icon=[20,31,'magixmod'];
@@ -9894,8 +9894,8 @@ if (!document.getElementById(cssId))
 		modes:{
 			'knap':{name:'Knap flint',icon:[0,9],desc:'Turn [stone]s into [knapped tools].'},
 			'knap bone':{name:'Knap bone',icon:[0,9,8,7],desc:'Turn [bone]s into [knapped tools].',req:{'bone-working':true}},
-			'stone tools':{name:'Craft stone tools',icon:[1,9],desc:'Turn [stone]s and [stick]s into [stone tools].',req:{'tool-making':true,'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
-			'stone weapons':{name:'Craft stone weapons',icon:[5,9],desc:'Turn [stone]s and [stick]s into [stone weapons].',req:{'spears':true,'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
+			'stone tools':{name:'Craft stone tools',icon:[1,9],desc:'Turn [stone]s and [stick]s into [stone tools].',req:{'tool-making':true,'tool refinery 2/2':false,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
+			'stone weapons':{name:'Craft stone weapons',icon:[5,9],desc:'Turn [stone]s and [stick]s into [stone weapons].',req:{'spears':true,'tool refinery 2/2':false,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
 			'bows':{name:'Craft bows',icon:[6,9],desc:'Turn [stone]s and [stick]s into [bow]s.',req:{'bows':true,'manufacture units II':false,'factories II':false},use:{'stone tools':1}},
 			'baskets':{name:'Weave baskets',icon:[14,7],desc:'Turn [stick]s into [basket]s.',req:{'basket-weaving':true,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
 			'craftwands':{name:'Craft wands',icon:[6,4,'magixmod'],desc:'Your artisan will craft tool used by wizards. It is not any junk tool.',req:{'Wizardry':true},use:{'stone tools':2}},
@@ -9918,10 +9918,10 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.15,req:{'no knapping anymore':true,'<font color="maroon">Caretaking</font>':true},mode:'knap'},
 			{type:'mult',value:0.15,req:{'no knapping anymore':true,'<font color="maroon">Caretaking</font>':true},mode:'knap bone'},
 			//////////
-			{type:'convert',from:{'stick':1,'stone':1},into:{'stone tools':1},every:10,mode:'stone tools',req:{'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false}},
-			{type:'convert',from:{'stick':1,'stone':1},into:{'stone weapons':1},every:10,mode:'stone weapons',req:{'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false}},
-			{type:'convert',from:{'stick':1,'stone':1},into:{'bow':1},every:12,mode:'bows',req:{'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false}},
-			{type:'convert',from:{'stick':15},into:{'basket':1},every:12,mode:'baskets',req:{'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false}},
+			{type:'convert',from:{'stick':1,'stone':1},into:{'stone tools':1},every:10,mode:'stone tools',req:{'tool refinery 2/2':false,'manufacture units II':false,'factories II':false}},
+			{type:'convert',from:{'stick':1,'stone':1},into:{'stone weapons':1},every:10,mode:'stone weapons',req:{'tool refinery 2/2':false,'manufacture units II':false,'factories II':false}},
+			{type:'convert',from:{'stick':1,'stone':1},into:{'bow':1},every:12,mode:'bows',req:{'tool refinery 2/2':false,'manufacture units II':false,'factories II':false}},
+			{type:'convert',from:{'stick':15},into:{'basket':1},every:12,mode:'baskets',req:{'tool refinery 2/2':false,'manufacture units II':false,'factories II':false}},
 			{type:'convert',from:{'stick':4,'stone':2},into:{'Wand':1},every:7,mode:'craftwands'},
 			{type:'convert',from:{'Dyes':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:6,mode:'craftink'},
 			{type:'convert',from:{'Thread':35,'Dried leather':1},into:{'Fishing net':1},every:7,mode:'craftnet'},
@@ -13628,7 +13628,7 @@ new G.Unit({
 		cost:{'basic building materials':775,'Basic factory equipment':400},
 		upkeep:{'coal':3,'fire pit':0.15,'food':25,'water':35},
 		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
-		req:{'<font color="maroon">Moderation</font>':true,'factories II':true,'tool rafinery 2/2':true},
+		req:{'<font color="maroon">Moderation</font>':true,'factories II':true,'tool refinery 2/2':true},
 		category:'crafting',
 		effects:[
 			{type:'convert',from:{'stone':600,'stick':500,'fire pit':4.2,'coal':85},into:{'stone tools':80},every:5},
@@ -13645,7 +13645,7 @@ new G.Unit({
 		cost:{'basic building materials':775,'Basic factory equipment':400},
 		upkeep:{'coal':3,'fire pit':0.15,'food':65,'water':85},
 		use:{'worker':115,'land':1,'Instructor':15,'stone tools':96},
-		req:{'<font color="maroon">Caretaking</font>':true,'manufacture units II':true,'tool rafinery 2/2':true},
+		req:{'<font color="maroon">Caretaking</font>':true,'manufacture units II':true,'tool refinery 2/2':true},
 		category:'crafting',
 		effects:[
 			{type:'convert',from:{'stone':1800,'stick':1500,'fire pit':12.2,'coal':175},into:{'stone tools':255},every:15},
@@ -18155,7 +18155,7 @@ new G.Tech({
 	chance:50,category:'gods'
     });
 	new G.Tech({
-		name:'tool rafinery 1/2',category:'tier1',
+		name:'tool refinery 1/2',category:'tier1',
 		desc:'Old... not so primitive but still old and easily craftable. Is there a way to make them decay slower? Probably people will figure it out later.',
 		icon:[26,31,'magixmod'],
 		req:{'Paradise crafting':true},
@@ -18190,7 +18190,7 @@ new G.Tech({
 		chance:30
 	});
 	new G.Tech({
-		name:'tool rafinery 2/2',category:'tier2',
+		name:'tool refinery 2/2',category:'tier2',
 		desc:'[stone tools,Stone tools] become [stone tools,Refined tools] making them decay slower. Also [artisan] is no longer able to craft them but... obtain [factories II] or [manufacture units II] to unlock unit that will let you craft them again if you do not have it yet.',
 		icon:[25,31,'magixmod'],
 		req:{'Outstanding wisdom':true,'wonder \'o science':true},
@@ -18494,7 +18494,7 @@ new G.Tech({
 		name:'love grows around us',category:'seasonal',displayName:'<font color="pink">Love grows around us</font>',
 		desc:'@One person that loves a lot other people is enough... wait '+G.getName('ruler')+' . You are ruler of the tribe and love people a lot. And they also love you. //Let\'s plant the seeds of <b>The festival of love</b> called Valentine\'s day. Will unlock you [love] - a special thing that is key of that event AND can bring you some rewards if level of [love] is decent enough.',
 		icon:[18,16,'seasonal'],
-		cost:{'insight':210,'culture':45,'faith':5,'research':80},
+		cost:{'insight':240,'culture':45,'faith':5,'research':80},
 		req:{'culture of celebration':true,'philosophy':true,'tribalism':false},
 		effects:[
 			 {type:'function',func:function(){if(day+leap>=40 && day+leap<=46)G.getDict('love').hidden=false;}},
