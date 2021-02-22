@@ -19367,7 +19367,7 @@ new G.Tech({
 			{type:'squid',min:0.1,max:2,chance:0.33},
 		],
 		ocean:true,
-		image:Math.round(Math.random()+12),  //default 3
+		image:3,
 		score:0,
 	});
 	new G.Land({
