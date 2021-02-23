@@ -3339,15 +3339,15 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
             return '<div style="width:540px;min-height:540px;height:75%;">'+
                 '<div class="fancyText title"><font color="red">Everyone in your tribe<br> has died terribly</font></div>'+
                 '<div class="fancyText"><font size="4">Here are statistics of your tribe:</font><br>'+
-        '<font size="3" color="white"><br><li>Technologies obtained: '+G.techN+'</li>'+
-	'<li>Traits adopted: '+G.traitN+'</li>'+
-	'<li>Most people in your civilization<br>during the run: '+G.achievByName['mostPeopleDuringRun'].won+'</li>'+
-	'<li>Days survived: '+B(G.day+(300*G.year))+'</li>'+
-	(G.has('time measuring 1/2') ? '<li>Year survived: '+B(G.year+1)+'</li>' : '')+
-	'<li>Pieces of land discovered:'+Math.round(G.getRes('land').amount)+'</li>'+
-	(G.has('Eotm') ? 'Evolution of the minds occured' : '')+
-	'<li>Wonders completed during legacy: '+G.achievByName['wondersDuringRun'].won+'</li>'+
-	'<li>Season:<b> '+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></li>'+
+        '<font size="3" color="white"><br><li>Technologies obtained: '+G.techN+'</li><Br>'+
+	'<li>Traits adopted: '+G.traitN+'</li><Br>'+
+	'<li>Most people in your civilization<br>during the run: '+G.achievByName['mostPeopleDuringRun'].won+'</li><Br>'+
+	'<li>Days survived: '+B(G.day+(300*G.year))+'</li><Br>'+
+	(G.has('time measuring 1/2') ? '<li>Years survived: '+B(G.year+1)+'</li><Br>' : '')+
+	'<li>Pieces of land discovered:'+Math.round(G.getRes('land').amount)+'</li><Br>'+
+	(G.has('Eotm') ? 'Evolution of the minds occured<Br>' : '')+
+	'<li>Wonders completed during legacy: '+G.achievByName['wondersDuringRun'].won+'</li><Br>'+
+	'<li>Season:<b> '+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></li><Br>'+
                 '<br><br></font>'+
                 '</div><br>'+
                 'Technical note: Start a new game.'+
