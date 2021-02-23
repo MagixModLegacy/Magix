@@ -14509,7 +14509,7 @@ getCosts:function()
 	//MAGIX
 	new G.Tech({
 		name:'Wizardry',category:'tier1',
-		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
+		desc:'@ Some sort of weird, uncommon people will now arrive in tribe. These are called <b><font color="white">Wizards</font></b> .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made. Get [Wizard wisdom] so you may hire some [Wizard]s on your side. //Note: it doesn\'t mean anything bad.',
 		icon:[5,3,'magixmod'],
 		cost:{'insight':75,'faith':5},
 		req:{'well-digging':true,'a gift from the mausoleum':true,'spark\'o religion':true},
