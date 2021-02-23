@@ -3322,6 +3322,24 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			audio.play(); 
 		}
 		document.title='Tribe died - NeverEnding Legacy';
+		G.dialogue.popup(function(div){
+            return '<div style="width:540px;min-height:540px;height:75%;">'+
+                '<div class="fancyText title"><font color="red">Everyone in your tribe<br> has died terribly</font></div>'+
+                '<div class="fancyText"><font size="4">Here are statistics of your tribe:</font><br>'+
+        '<font size="3" color="white"><br><li>Technologies obtained: '+G.techN+'</li>'+
+	'<li>Traits adopted: '+G.traitN+'</li>'+
+	'<li>Most people in your civilization<br>during the run: '+G.traitN+'</li>'+
+	'<li>Days survived: '+B(G.day+(300*G.year))+'</li>'+
+	(G.has('time measuring 1/2') ? '<li>Year survived: '+B(G.year+1)+'</li>' : '')+
+	'<li>Pieces of land discovered:'+Math.round(G.getRes('land').amount)+'</li>'+
+	(G.has('Eotm') ? 'Evolution of the minds occured' : '')+
+	'<li>Wonders completed during legacy: 0</li>'+
+	'<li>Season:</li>'+
+                '<br><br></font>'+
+                '</div><br>'+
+                'Technical note: Start a new game.'+
+            '</div></div>'
+})
 	}
 	G.funcs['game loaded']=function()
 	{
@@ -3742,6 +3760,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		if (G.on)
 		{
+			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
 			if(G.getRes('population').amount>0)document.title='NeverEnding Legacy';
 			if(G.getSetting('tieredDisplay')==0){ta=1}else{ta=0};
 			var txt = ''+G.year+'';
@@ -3780,7 +3799,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			}
 		}
 			var rese = txt.endsWith("5");
-			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
+			
 			if(t1start==true)
 			{
 				
