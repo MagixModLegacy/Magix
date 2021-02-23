@@ -3341,13 +3341,13 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
                 '<div class="fancyText"><font size="4">Here are statistics of your tribe:</font><br>'+
         '<font size="3" color="white"><br><li>Technologies obtained: '+G.techN+'</li>'+
 	'<li>Traits adopted: '+G.traitN+'</li>'+
-	'<li>Most people in your civilization<br>during the run: '+G.traitN+'</li>'+
+	'<li>Most people in your civilization<br>during the run: '+G.achievByName['mostPeopleDuringRun'].won+'</li>'+
 	'<li>Days survived: '+B(G.day+(300*G.year))+'</li>'+
 	(G.has('time measuring 1/2') ? '<li>Year survived: '+B(G.year+1)+'</li>' : '')+
 	'<li>Pieces of land discovered:'+Math.round(G.getRes('land').amount)+'</li>'+
 	(G.has('Eotm') ? 'Evolution of the minds occured' : '')+
-	'<li>Wonders completed during legacy: 0</li>'+
-	'<li>Season:<b>'+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></li>'+
+	'<li>Wonders completed during legacy: '+G.achievByName['wondersDuringRun'].won+'</li>'+
+	'<li>Season:<b> '+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></li>'+
                 '<br><br></font>'+
                 '</div><br>'+
                 'Technical note: Start a new game.'+
