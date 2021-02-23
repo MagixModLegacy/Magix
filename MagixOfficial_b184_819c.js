@@ -3338,7 +3338,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		G.dialogue.popup(function(div){
             return '<div style="width:540px;min-height:540px;height:75%;">'+
                 '<div class="fancyText title"><font color="red">Everyone in your tribe<br> has died terribly</font></div>'+
-                '<div class="fancyText"><font size="4">Here are statistics of your tribe:</font><br>'+
+                '<div class="fancyText"><font size="4">Here are the statistics of your tribe:</font><br>'+
         '<font size="3" color="white"><br><li>Technologies obtained: '+G.techN+'</li><Br>'+
 	'<li>Traits adopted: '+G.traitN+'</li><Br>'+
 	'<li>Most people in your civilization<br>during the run: '+G.achievByName['mostPeopleDuringRun'].won+'</li><Br>'+
@@ -3347,6 +3347,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	'<li>Pieces of land discovered:'+Math.round(G.getRes('land').amount)+'</li><Br>'+
 	(G.has('Eotm') ? 'Evolution of the minds occured<Br>' : '')+
 	'<li>Wonders completed during legacy: '+G.achievByName['wondersDuringRun'].won+'</li><Br>'+
+	'<li>Units unlocked: '+G.unitN+'</li><Br>'+
+	'<li>Policies unlocked: '+G.policyN+'</li><Br>'+
+	'<li><font color="yellow">Trial: &nbsp;'+(G.has('trial') ? 'active' : 'none')+'</font></li><Br>'+
 	'<li>Season:<b> '+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></li><Br>'+
                 '<br><br></font>'+
                 '</div><br>'+
