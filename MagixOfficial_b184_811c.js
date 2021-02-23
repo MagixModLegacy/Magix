@@ -3299,8 +3299,13 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 }
 	G.funcs['game over']=function()
 	{
-		var str='<font color="white"><b>'+G.getName('civ')+'</b></font> is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
-		G.Message({type:'bad',text:str,icon:[5,4]});
+		if(G.techN<15){
+		G.Message({type:'bad',text:'Your small tribe <font color="white"><b>'+G.getName('civ')+'</b></font> has died sadly. No one will mention them',icon:[5,4]});
+		}else if(G.techN>=15 && G.techN<30){
+		G.Message({type:'bad',text:'Your small tribe <font color="white"><b>'+G.getName('civ')+'</b></font> has died sadly. Not even a sidenote in history book will be left about <font color="white"><b>'+G.getName('civ')+'</b></font>. ',icon:[5,4]});
+		}else if(G.techN>=30){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.',icon:[5,4]});
+		}
 		if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 		{
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/0population.mp3');
