@@ -3300,11 +3300,21 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	G.funcs['game over']=function()
 	{
 		if(G.techN<15){
-		G.Message({type:'bad',text:'Your small tribe <font color="white"><b>'+G.getName('civ')+'</b></font> has died sadly. No one will mention them',icon:[5,4]});
+		G.Message({type:'bad',text:'Your small tribe <font color="white"><b>'+G.getName('civ')+'</b></font> has died terribly. No one will mention them.',icon:[5,4]});
 		}else if(G.techN>=15 && G.techN<30){
 		G.Message({type:'bad',text:'Your small tribe <font color="white"><b>'+G.getName('civ')+'</b></font> has died sadly. Not even a sidenote in history book will be left about <font color="white"><b>'+G.getName('civ')+'</b></font>. ',icon:[5,4]});
-		}else if(G.techN>=30){
+		}else if(G.techN>=30 && G.techN<50){
 		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.',icon:[5,4]});
+		}else if(G.techN>=50 && G.techN<82){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization is no more, and your legacy is but a long-lost memory, surely a sidenote in a history book.<br><font color="lime">Everyone is dead but some relics of your tribe left.</font>',icon:[5,4]});
+		}else if(G.techN>=82 && G.techN<116){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization is no more, and your legacy is <b>not-so-long-lost memory</b>, and surely a interesting sidenote in a history book.<br><font color="lime">Everyone is dead but many relics of your tribe left.</font>',icon:[5,4]});
+		}else if(G.techN>=116 && G.techN<148){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization is no more, and your legacy is <b>not lost memory</b>, and surely a interesting, not short sidenote in a history book.<br><font color="lime">Everyone is dead but many relics and constructions of your tribe left waiting to be discovered by other civilization.</font>',icon:[5,4]});
+		}else if(G.techN>=148 && G.techN<190){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization exists no longer, everyone died and your legacy is <b>not lost memory</b>, and surely a interesting, not short sidenote in a history book.<br><font color="lime">Everyone is dead but  despite of that there is much relics and constructions, manuscripts of your tribe left waiting to be discovered and analyzed by other civilization.</font>',icon:[5,4]});
+		}else if(G.techN>=190){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization exists no longer, everyone died and your legacy isn\'t <b>lost memory</b>, and surely a interesting, long note in history book.<br><font color="lime">Everyone is dead but  despite of that there is a lot of artifacts and constructions, manuscripts of your tribe left waiting to be discovered and analyzed by other civilization.</font>',icon:[5,4]});
 		}
 		if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 		{
