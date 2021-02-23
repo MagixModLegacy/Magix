@@ -1684,6 +1684,14 @@ func:function(){
 		special:'shadow',
 			plural:false
 	});
+	new G.Achiev({
+		name:'wondersDuringRun',
+		visible:false, //debug
+	});
+	new G.Achiev({
+		name:'mostPeopleDuringRun',
+		visible:false, //debug
+	});
 	
 
 	if (day+leap>=289 && day+leap<=305){
@@ -2054,6 +2062,7 @@ G.setPolicyMode=function(me,mode)
 							{
 								G.dialogue.close();
 								G.doCost(me.unit.finalStepCost,amount);
+								G.achievByName['wondersDuringRun'].won++;
 								if(me.unit.name=='wonderful fortress of christmas'){G.achievByName['capital of christmas'].won=1;G.middleText('-  Completed <font color="#bbbbff">Citadel of christmas</font><br>seasonal achievement - <br> <hr width="300"> Ho ho ho! Merry christmas to you! From now you can unlock special Christmas bonus','slow')};
 								if(me.unit.name=='fortress of love'){G.achievByName['love for eternity'].won=1;G.middleText('-  Completed <font color="#bbbbff">Love for eternity</font><br>seasonal achievement - <br> <hr width="300"> Love is in the air! From now you can unlock special Valentine\'s day bonus.','slow')};
 								if(me.unit.name=='mausoleum' && G.achievByName['mausoleum'].won>=3 && (G.getRes('population').amount-me.unit.finalStepCost)==0){G.achievByName['cruel goal'].won=1;G.middleText('-  Completed <font color="#ff00ff">Cruel goal</font><br>shadow achievement -','slow')};
@@ -2878,6 +2887,8 @@ G.props['fastTicksOnResearch']=150;
 				if(G.achievByName['speedresearcher II'].won==0)G.middleText('- Completed <font color="#bbbbff">Speedresearcher II</font> shadow achievement - <br><hr width="300"><small>Incredible</small>. Also you gain one more <font color="#ffbbbb">Speedresearcher I</font> victory.','slow');
 			}
 		},600000);
+		G.achievByName['wondersDuringRun'].won=0;
+		G.achievByName['mostPeopleDuringRun'].won++;
 		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['a gift from the mausoleum']);}
 		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['authority of the ancestor']);G.gainTrait(G.traitByName['policies']);}
 		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['artistic gray cells']);}
@@ -4673,6 +4684,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 								audio.play(); 
 							}
 			G.middleText('<font color="#d4af37">- Congratulations: you striked lucky number. -<br><small>Completed "Just plain lucky" shadow achievement -<hr width="300">You striked the lucky number -'+G.achievByName['just plain lucky'].won+' '+(G.achievByName['just plain lucky'].won==1 ? 'time' : 'times')+'<br>Impressive.<br> DM me on discord to hear a word from me ~ pelletsstarPL</small>','slow');
+			if(G.achievByName['mostPeopleDuringRun'].won>=G.getRes('population').amount)G.achievByName['mostPeopleDuringRun'].won=G.getRes('population').amount;
 		}
 	};
 	
