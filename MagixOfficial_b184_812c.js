@@ -3321,6 +3321,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/0population.mp3');
 			audio.play(); 
 		}
+		document.title='Tribe died - NeverEnding Legacy';
 	}
 	G.funcs['game loaded']=function()
 	{
@@ -3741,6 +3742,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		if (G.on)
 		{
+			if(G.getRes('population').amount>0)document.title='NeverEnding Legacy';
 			if(G.getSetting('tieredDisplay')==0){ta=1}else{ta=0};
 			var txt = ''+G.year+'';
 			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
