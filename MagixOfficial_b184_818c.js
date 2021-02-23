@@ -4686,7 +4686,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.middleText('<font color="#d4af37">- Congratulations: you striked lucky number. -<br><small>Completed "Just plain lucky" shadow achievement -<hr width="300">You striked the lucky number -'+G.achievByName['just plain lucky'].won+' '+(G.achievByName['just plain lucky'].won==1 ? 'time' : 'times')+'<br>Impressive.<br> DM me on discord to hear a word from me ~ pelletsstarPL</small>','slow');
 			
 		}
-		if(G.achievByName['mostPeopleDuringRun'].won>=G.getRes('population').amount)G.achievByName['mostPeopleDuringRun'].won=G.getRes('population').amount;
+		if(G.getRes('population').amount>=G.achievByName['mostPeopleDuringRun'].won){G.achievByName['mostPeopleDuringRun'].won=G.getRes('population').amount};
 	};
 	
 	G.funcs['tracked stat str c1']=function()
