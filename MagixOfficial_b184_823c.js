@@ -3312,6 +3312,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 }
 	G.funcs['game over']=function()
 	{
+		var quote=Math.round(Math.random()*5);
+		const quotes=['"To the well-organized mind, death is but the next great adventure."','"The fear of death follows from the fear of life. A man who lives fully is prepared to die at any time."','"It is said that your life flashes before your eyes just before you die. That is true, it\'s called Life."','"Don\'t feel bad, I\'m usually about to die."','"Death is so terribly final, while life is full of possibilities."'];
 		if(G.techN<15){
 		G.Message({type:'bad',text:'Your small tribe <font color="white"><b>'+G.getName('civ')+'</b></font> has died terribly. No one will mention them.',icon:[5,4]});
 		}else if(G.techN>=15 && G.techN<30){
@@ -3353,6 +3355,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	'<li>Season:<b> '+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></li><Br>'+
                 '<br><br></font>'+
                 '</div><br>'+
+		  '<font size="3">'+quotes[quote]+'</font>'+  
                 'Technical note: Start a new game.'+
             '</div></div>'
 })
