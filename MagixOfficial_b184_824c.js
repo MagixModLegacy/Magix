@@ -3355,7 +3355,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	'<li>Season:<b> '+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></li><Br>'+
                 '<br><br></font>'+
                 '</div><br>'+
-		  '<font size="3">'+quotes[quote]+'</font>'+  
+		'<div class="fancyText title"><font size="3">'+quotes[quote]+'</font></div>'+  
                 'Technical note: Start a new game.'+
             '</div></div>'
 })
