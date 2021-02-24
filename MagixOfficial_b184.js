@@ -701,6 +701,19 @@ engineVersion:1,
 manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4Ta.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
+	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
+	document.getElementsByTagName('div')[4].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
+	document.getElementsByTagName('div')[5].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
+	document.getElementsByTagName('div')[6].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
+	document.getElementsByTagName('div')[7].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';
+	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
+	var year=new Date().getFullYear();
+	var leap=(((year%4==0)&&(year%100!=0))||(year%400==0))?1:0;
+	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
+	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(year);
+	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
+	/////////
+	
 	//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 	/*=====================================================================================
@@ -905,6 +918,7 @@ func:function(){
 		str+='<div class="par">'+G.doFunc('tracked stat str techs','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.techN);})+'</b></div>';
 		str+='<div class="par">'+G.doFunc('tracked stat str traits','Tracked stat')+': <b>'+G.selfUpdatingText(function(){return B(G.traitN);})+'</b></div>';
 		str+='<div class="par">Dead forests found: <b>'+G.selfUpdatingText(function(){return B(G.achievByName['lands of despair'].won);})+'</b></div>';
+		str+='<div class="par">Season:<b>'+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></div>';
 		str+='</div>';
 		str+='<div class="scrollBox underTitle" style="width:380px;right:0px;left:auto;background:rgba(0,0,0,0.25);">';
 		
@@ -1670,13 +1684,15 @@ func:function(){
 		special:'shadow',
 			plural:false
 	});
-	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
-	var year=new Date().getFullYear();
-	var leap=(((year%4==0)&&(year%100!=0))||(year%400==0))?1:0;
-	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
-	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(year);
-	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
-	/////////
+	new G.Achiev({
+		name:'wondersDuringRun',
+		visible:false, //debug
+	});
+	new G.Achiev({
+		name:'mostPeopleDuringRun',
+		visible:false, //debug
+	});
+	
 
 	if (day+leap>=289 && day+leap<=305){
 		var cssId = 'betaCss'; 
@@ -1861,6 +1877,7 @@ if (!document.getElementById(cssId))
 
 	G.update['land']=function()
 	{
+		G.updateMapDisplay();
 		if(la>lb){
 		var str='';
 		str+=G.textWithTooltip('?','<div style="width:240px;text-align:left;"><div class="par">This is your territory. While you only start with a small tile of land, there is a whole map for you to explore if you have units with that ability.</div><div class="par">Each tile you control adds to the natural resources available for your units to gather. You get more resources from fully-explored tiles than from tiles you\'ve just encountered.</div><div class="par">If you unlocked <b>Tile inspection</b> you can by clicking on an explored tile on the map to the right to see what goods can be found in it, and how those goods contribute to your natural resources.</div></div>','infoButton');
@@ -2045,6 +2062,7 @@ G.setPolicyMode=function(me,mode)
 							{
 								G.dialogue.close();
 								G.doCost(me.unit.finalStepCost,amount);
+								G.achievByName['wondersDuringRun'].won++;
 								if(me.unit.name=='wonderful fortress of christmas'){G.achievByName['capital of christmas'].won=1;G.middleText('-  Completed <font color="#bbbbff">Citadel of christmas</font><br>seasonal achievement - <br> <hr width="300"> Ho ho ho! Merry christmas to you! From now you can unlock special Christmas bonus','slow')};
 								if(me.unit.name=='fortress of love'){G.achievByName['love for eternity'].won=1;G.middleText('-  Completed <font color="#bbbbff">Love for eternity</font><br>seasonal achievement - <br> <hr width="300"> Love is in the air! From now you can unlock special Valentine\'s day bonus.','slow')};
 								if(me.unit.name=='mausoleum' && G.achievByName['mausoleum'].won>=3 && (G.getRes('population').amount-me.unit.finalStepCost)==0){G.achievByName['cruel goal'].won=1;G.middleText('-  Completed <font color="#ff00ff">Cruel goal</font><br>shadow achievement -','slow')};
@@ -2721,9 +2739,9 @@ var len=G.techsOwned.length;
 	{
 		var str=''+
 		'<div style="float:left;"><center>'+
-		G.button({text:'New game',tooltip:'Instantly start a new game.',onclick:function(){G.T=0;G.NewGameWithSameMods();}})+
-		G.button({text:'Load',tooltip:'Reload the save.',onclick:function(){G.T=0;G.Load();}})+
-		G.button({text:'Clear',tooltip:'Wipe save data.',onclick:function(){G.Clear();}})+
+		G.button({text:'<font color="orange">New game</font>',tooltip:'Instantly start a new game.',onclick:function(){G.T=0;G.NewGameWithSameMods();}})+
+		G.button({text:'<font color="lime">Load</font>',tooltip:'Reload the save.',onclick:function(){G.T=0;G.Load();}})+
+		G.button({text:'<font color="pink">Clear</font>',tooltip:'Wipe save data.',onclick:function(){G.Clear();}})+
 		'<br />'+
 		G.button({text:'ALMIGHTY',tooltip:'Unlock every tech, trait and policy.',onclick:function(){
 			for (var i in G.tech)
@@ -2745,11 +2763,11 @@ var len=G.techsOwned.length;
 				}
 			G.middleText('<font color="#d4af37">- You are almighty! -<br /><small> - You are the god! - </small></font>','slow');
 		}})+
-		G.writeSettingButton({id:'showAllRes',name:'showAllRes',text:'Show resources',tooltip:'Toggle whether all resources should be visible.'})+
-		//G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'Show tiers',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
+		G.writeSettingButton({id:'showAllRes',name:'showAllRes',text:'<font color="aqua">Show resources</font>',tooltip:'Toggle whether all resources should be visible.'})+
+		G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'<font color="yellow">Show tiers</font>',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
-		G.button({text:'Reveal map',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
-		    '<br /><font color="lime">Debug mode. Magix: Release 47.0 (late beta)</font>'+
+		G.button({text:'<font color="fuschia">Reveal map</font>',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
+		    '<br /><font color="lime">Debug mode. Magix: Release 48 (late beta)</font>'+
 		G.textWithTooltip('?','<div style="width:240px;text-align:left;">This is the debug menu. Please debug responsibly.<br>Further debug abilities while this mode is active :<div class="bulleted">click resources to add/remove some (keyboard shortcuts work the same way they do for purchasing units)</div><div class="bulleted">ctrl-click a trait or policy to remove it (may have strange, buggy effects)</div><div class="bulleted">click the Fast ticks display to get more fast ticks<br>(if add is equal 1 it will add 10, if add 10 then 100 and so on)</div><div class="bulleted">always see tech costs and requirements</div><div class="bulleted">gain access to debug robot units <br /> <b>BEEP BOOP BEEP</b></div><div class="bulleted">edit the map</div></div>','infoButton')+
 		'</center></div>';
 		l('debug').innerHTML=str;
@@ -2837,6 +2855,7 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		document.title='NeverEnding Legacy';
 		///new game mesg
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
 		G.Message({type:'important tall',text:str,icon:[0,3]});
@@ -2868,6 +2887,8 @@ G.props['fastTicksOnResearch']=150;
 				if(G.achievByName['speedresearcher II'].won==0)G.middleText('- Completed <font color="#bbbbff">Speedresearcher II</font> shadow achievement - <br><hr width="300"><small>Incredible</small>. Also you gain one more <font color="#ffbbbb">Speedresearcher I</font> victory.','slow');
 			}
 		},600000);
+		G.achievByName['wondersDuringRun'].won=0;
+		G.achievByName['mostPeopleDuringRun'].won=0;
 		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['a gift from the mausoleum']);}
 		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['authority of the ancestor']);G.gainTrait(G.traitByName['policies']);}
 		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['artistic gray cells']);}
@@ -3291,13 +3312,53 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 }
 	G.funcs['game over']=function()
 	{
-		var str='<font color="white"><b>'+G.getName('civ')+'</b></font> is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.';
-		G.Message({type:'bad',text:str,icon:[5,4]});
+		var quote=Math.round(Math.random()*5);
+		const quotes=['"To the well-organized mind, death is but the next great adventure."','"The fear of death follows from the fear of life. A man who lives fully is prepared to die at any time."','"It is said that your life flashes before your eyes just before you die. That is true, it\'s called Life."','"Don\'t feel bad, I\'m usually about to die."','"Death is so terribly final, while life is full of possibilities."'];
+		if(G.techN<15){
+		G.Message({type:'bad',text:'Your small tribe <font color="white"><b>'+G.getName('civ')+'</b></font> has died terribly. No one will mention them.',icon:[5,4]});
+		}else if(G.techN>=15 && G.techN<30){
+		G.Message({type:'bad',text:'Your small tribe <font color="white"><b>'+G.getName('civ')+'</b></font> has died sadly. Not even a sidenote in history book will be left about <font color="white"><b>'+G.getName('civ')+'</b></font>. ',icon:[5,4]});
+		}else if(G.techN>=30 && G.techN<50){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> is no more, and your legacy is but a long-lost memory, merely a sidenote in a history book.<br>Everyone is dead.',icon:[5,4]});
+		}else if(G.techN>=50 && G.techN<82){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization is no more, and your legacy is but a long-lost memory, surely a sidenote in a history book.<br><font color="lime">Everyone is dead but some relics of your tribe left.</font>',icon:[5,4]});
+		}else if(G.techN>=82 && G.techN<116){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization is no more, and your legacy is <b>not-so-long-lost memory</b>, and surely a interesting sidenote in a history book.<br><font color="lime">Everyone is dead but many relics of your tribe left.</font>',icon:[5,4]});
+		}else if(G.techN>=116 && G.techN<148){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization is no more, and your legacy is <b>not lost memory</b>, and surely a interesting, not short sidenote in a history book.<br><font color="lime">Everyone is dead but many relics and constructions of your tribe left waiting to be discovered by other civilization.</font>',icon:[5,4]});
+		}else if(G.techN>=148 && G.techN<190){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization exists no longer, everyone died and your legacy is <b>not lost memory</b>, and surely a interesting, not short sidenote in a history book.<br><font color="lime">Everyone is dead but  despite of that there is much relics and constructions, manuscripts of your tribe left waiting to be discovered and analyzed by other civilization.</font>',icon:[5,4]});
+		}else if(G.techN>=190){
+		G.Message({type:'bad',text:'<font color="white"><b>'+G.getName('civ')+'</b></font> civilization exists no longer, everyone died and your legacy isn\'t <b>lost memory</b>, and surely a interesting, long note in history book.<br><font color="lime">Everyone is dead but  despite of that there is a lot of artifacts and constructions, manuscripts of your tribe left waiting to be discovered and analyzed by other civilization.</font>',icon:[5,4]});
+		}
 		if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 		{
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/0population.mp3');
 			audio.play(); 
 		}
+		document.title='Tribe died - NeverEnding Legacy';
+		G.dialogue.popup(function(div){
+            return '<div style="width:540px;min-height:540px;height:75%;">'+
+                '<div class="fancyText title"><font color="red">Everyone in your tribe<br> has died terribly</font></div>'+
+                '<div class="fancyText"><font size="4">Here are the statistics of your tribe:</font><br>'+
+        '<font size="3" color="white"><br><li>Technologies obtained: '+G.techN+'</li><Br>'+
+	'<li>Traits adopted: '+G.traitN+'</li><Br>'+
+	'<li>Most people in your civilization<br>during the run: '+G.achievByName['mostPeopleDuringRun'].won+'</li><Br>'+
+	'<li>Days survived: '+B(G.day+(300*G.year))+'</li><Br>'+
+	(G.has('time measuring 1/2') ? '<li>Years survived: '+B(G.year+1)+'</li><Br>' : '')+
+	'<li>Pieces of land discovered:'+Math.round(G.getRes('land').amount)+'</li><Br>'+
+	(G.has('Eotm') ? 'Evolution of the minds occured<Br>' : '')+
+	'<li>Wonders completed during legacy: '+G.achievByName['wondersDuringRun'].won+'</li><Br>'+
+	'<li>Units unlocked: '+G.unitN+'</li><Br>'+
+	'<li><font color="yellow">Trial: &nbsp;'+(G.has('trial') ? 'active' : 'none')+'</font></li><Br>'+
+	'<li>Early game completed: '+(G.has('monument-building') ? 'YES' : 'NO')+'</li><Br>'+
+	'<li>Season:<b> '+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></li><Br>'+
+                '<br><br></font>'+
+                '</div><br>'+
+		'<div class="fancyText title"><font size="3">'+quotes[quote]+'</font></div>'+  
+                'Technical note: Start a new game.'+
+            '</div></div>'
+})
 	}
 	G.funcs['game loaded']=function()
 	{
@@ -3718,7 +3779,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		if (G.on)
 		{
-			ta=1;
+			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
+			if(G.getRes('population').amount>0)document.title='NeverEnding Legacy';
+			if(G.getSetting('tieredDisplay')==0){ta=1}else{ta=0};
 			var txt = ''+G.year+'';
 			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
 		G.getDict('worker').icon=[1,7,'seasonal'];
@@ -3755,7 +3818,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			}
 		}
 			var rese = txt.endsWith("5");
-			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
+			
 			if(t1start==true)
 			{
 				
@@ -4627,7 +4690,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 								audio.play(); 
 							}
 			G.middleText('<font color="#d4af37">- Congratulations: you striked lucky number. -<br><small>Completed "Just plain lucky" shadow achievement -<hr width="300">You striked the lucky number -'+G.achievByName['just plain lucky'].won+' '+(G.achievByName['just plain lucky'].won==1 ? 'time' : 'times')+'<br>Impressive.<br> DM me on discord to hear a word from me ~ pelletsstarPL</small>','slow');
+			
 		}
+		if(G.getRes('population').amount>=G.achievByName['mostPeopleDuringRun'].won){G.achievByName['mostPeopleDuringRun'].won=G.getRes('population').amount};
 	};
 	
 	G.funcs['tracked stat str c1']=function()
@@ -8184,12 +8249,12 @@ if (!document.getElementById(cssId))
 				if (G.year>=29)//Gear decaying at year 30 and later
 				{
 				var toSpoil=(G.getRes('metal tools').amount*0.0001);G.lose(('metal tools'),randomFloor(toSpoil),'decay');
-				if(G.hasNot('tool rafinery 2/2')){var toSpoil=(G.getRes('stone tools').amount*0.0004);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
+				if(G.hasNot('tool refinery 2/2')){var toSpoil=(G.getRes('stone tools').amount*0.0004);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
 				}else{
 					var toSpoil=(G.getRes('stone tools').amount*0.0002);G.lose(('stone tools'),randomFloor(toSpoil),'decay');
 				};
 				var toSpoil=(G.getRes('knapped tools').amount*0.00055);G.lose(('knapped tools'),randomFloor(toSpoil),'decay');
-								if(G.hasNot('tool rafinery 2/2')){var toSpoil=(G.getRes('stone weapons').amount*0.0004);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
+								if(G.hasNot('tool refinery 2/2')){var toSpoil=(G.getRes('stone weapons').amount*0.0004);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
 				}else{
 					var toSpoil=(G.getRes('stone weapons').amount*0.0002);G.lose(('stone weapons'),randomFloor(toSpoil),'decay');
 				};
@@ -9176,11 +9241,11 @@ if (!document.getElementById(cssId))
 				 G.middleText('- Completed <font color="green">6 aces</font> achievement -','slow');
 				G.achievByName['6 aces'].won=1;
 				 }
-			if(G.has('tool rafinery 1/2') && G.hasNot('tool rafinery 2/2')){
+			if(G.has('tool refinery 1/2') && G.hasNot('tool refinery 2/2')){
 				G.getDict('stone tools').icon=[19,31,'magixmod'];
 				G.getDict('stone weapons').icon=[21,31,'magixmod'];
 				G.getDict('metal tools').icon=[20,31,'magixmod'];
-				}else if(G.has('tool rafinery 1/2') && G.has('tool rafinery 2/2')){
+				}else if(G.has('tool refinery 1/2') && G.has('tool refinery 2/2')){
 					G.getDict('stone tools').icon=[22,31,'magixmod'];
 				G.getDict('stone weapons').icon=[23,31,'magixmod']; 
 					G.getDict('metal tools').icon=[20,31,'magixmod'];
@@ -9894,8 +9959,8 @@ if (!document.getElementById(cssId))
 		modes:{
 			'knap':{name:'Knap flint',icon:[0,9],desc:'Turn [stone]s into [knapped tools].'},
 			'knap bone':{name:'Knap bone',icon:[0,9,8,7],desc:'Turn [bone]s into [knapped tools].',req:{'bone-working':true}},
-			'stone tools':{name:'Craft stone tools',icon:[1,9],desc:'Turn [stone]s and [stick]s into [stone tools].',req:{'tool-making':true,'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
-			'stone weapons':{name:'Craft stone weapons',icon:[5,9],desc:'Turn [stone]s and [stick]s into [stone weapons].',req:{'spears':true,'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
+			'stone tools':{name:'Craft stone tools',icon:[1,9],desc:'Turn [stone]s and [stick]s into [stone tools].',req:{'tool-making':true,'tool refinery 2/2':false,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
+			'stone weapons':{name:'Craft stone weapons',icon:[5,9],desc:'Turn [stone]s and [stick]s into [stone weapons].',req:{'spears':true,'tool refinery 2/2':false,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
 			'bows':{name:'Craft bows',icon:[6,9],desc:'Turn [stone]s and [stick]s into [bow]s.',req:{'bows':true,'manufacture units II':false,'factories II':false},use:{'stone tools':1}},
 			'baskets':{name:'Weave baskets',icon:[14,7],desc:'Turn [stick]s into [basket]s.',req:{'basket-weaving':true,'manufacture units II':false,'factories II':false},use:{'knapped tools':1}},
 			'craftwands':{name:'Craft wands',icon:[6,4,'magixmod'],desc:'Your artisan will craft tool used by wizards. It is not any junk tool.',req:{'Wizardry':true},use:{'stone tools':2}},
@@ -9918,10 +9983,10 @@ if (!document.getElementById(cssId))
 			{type:'mult',value:0.15,req:{'no knapping anymore':true,'<font color="maroon">Caretaking</font>':true},mode:'knap'},
 			{type:'mult',value:0.15,req:{'no knapping anymore':true,'<font color="maroon">Caretaking</font>':true},mode:'knap bone'},
 			//////////
-			{type:'convert',from:{'stick':1,'stone':1},into:{'stone tools':1},every:10,mode:'stone tools',req:{'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false}},
-			{type:'convert',from:{'stick':1,'stone':1},into:{'stone weapons':1},every:10,mode:'stone weapons',req:{'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false}},
-			{type:'convert',from:{'stick':1,'stone':1},into:{'bow':1},every:12,mode:'bows',req:{'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false}},
-			{type:'convert',from:{'stick':15},into:{'basket':1},every:12,mode:'baskets',req:{'tool rafinery 2/2':false,'manufacture units II':false,'factories II':false}},
+			{type:'convert',from:{'stick':1,'stone':1},into:{'stone tools':1},every:10,mode:'stone tools',req:{'tool refinery 2/2':false,'manufacture units II':false,'factories II':false}},
+			{type:'convert',from:{'stick':1,'stone':1},into:{'stone weapons':1},every:10,mode:'stone weapons',req:{'tool refinery 2/2':false,'manufacture units II':false,'factories II':false}},
+			{type:'convert',from:{'stick':1,'stone':1},into:{'bow':1},every:12,mode:'bows',req:{'tool refinery 2/2':false,'manufacture units II':false,'factories II':false}},
+			{type:'convert',from:{'stick':15},into:{'basket':1},every:12,mode:'baskets',req:{'tool refinery 2/2':false,'manufacture units II':false,'factories II':false}},
 			{type:'convert',from:{'stick':4,'stone':2},into:{'Wand':1},every:7,mode:'craftwands'},
 			{type:'convert',from:{'Dyes':1,'mud':0.0015,'water':0.015},into:{'Ink':0.75},every:6,mode:'craftink'},
 			{type:'convert',from:{'Thread':35,'Dried leather':1},into:{'Fishing net':1},every:7,mode:'craftnet'},
@@ -13628,7 +13693,7 @@ new G.Unit({
 		cost:{'basic building materials':775,'Basic factory equipment':400},
 		upkeep:{'coal':3,'fire pit':0.15,'food':25,'water':35},
 		use:{'worker':15,'land':1,'Instructor':1,'stone tools':32},
-		req:{'<font color="maroon">Moderation</font>':true,'factories II':true,'tool rafinery 2/2':true},
+		req:{'<font color="maroon">Moderation</font>':true,'factories II':true,'tool refinery 2/2':true},
 		category:'crafting',
 		effects:[
 			{type:'convert',from:{'stone':600,'stick':500,'fire pit':4.2,'coal':85},into:{'stone tools':80},every:5},
@@ -13645,7 +13710,7 @@ new G.Unit({
 		cost:{'basic building materials':775,'Basic factory equipment':400},
 		upkeep:{'coal':3,'fire pit':0.15,'food':65,'water':85},
 		use:{'worker':115,'land':1,'Instructor':15,'stone tools':96},
-		req:{'<font color="maroon">Caretaking</font>':true,'manufacture units II':true,'tool rafinery 2/2':true},
+		req:{'<font color="maroon">Caretaking</font>':true,'manufacture units II':true,'tool refinery 2/2':true},
 		category:'crafting',
 		effects:[
 			{type:'convert',from:{'stone':1800,'stick':1500,'fire pit':12.2,'coal':175},into:{'stone tools':255},every:15},
@@ -14501,7 +14566,7 @@ getCosts:function()
 	//MAGIX
 	new G.Tech({
 		name:'Wizardry',category:'tier1',
-		desc:'@ [Archaic wizard]s will start their existence .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made.',
+		desc:'@ Some sort of weird, uncommon people will now arrive in tribe. These are called <b><font color="white">Wizards</font></b> .They behave weird. Here wizardry and essences will start to appear. Essences are not naturally generated so they consume mana to be made. Get [Wizard wisdom] so you may hire some [Wizard]s on your side. //Note: it doesn\'t mean anything bad.',
 		icon:[5,3,'magixmod'],
 		cost:{'insight':75,'faith':5},
 		req:{'well-digging':true,'a gift from the mausoleum':true,'spark\'o religion':true},
@@ -18155,7 +18220,7 @@ new G.Tech({
 	chance:50,category:'gods'
     });
 	new G.Tech({
-		name:'tool rafinery 1/2',category:'tier1',
+		name:'tool refinery 1/2',category:'tier1',
 		desc:'Old... not so primitive but still old and easily craftable. Is there a way to make them decay slower? Probably people will figure it out later.',
 		icon:[26,31,'magixmod'],
 		req:{'Paradise crafting':true},
@@ -18190,7 +18255,7 @@ new G.Tech({
 		chance:30
 	});
 	new G.Tech({
-		name:'tool rafinery 2/2',category:'tier2',
+		name:'tool refinery 2/2',category:'tier2',
 		desc:'[stone tools,Stone tools] become [stone tools,Refined tools] making them decay slower. Also [artisan] is no longer able to craft them but... obtain [factories II] or [manufacture units II] to unlock unit that will let you craft them again if you do not have it yet.',
 		icon:[25,31,'magixmod'],
 		req:{'Outstanding wisdom':true,'wonder \'o science':true},
@@ -18494,7 +18559,7 @@ new G.Tech({
 		name:'love grows around us',category:'seasonal',displayName:'<font color="pink">Love grows around us</font>',
 		desc:'@One person that loves a lot other people is enough... wait '+G.getName('ruler')+' . You are ruler of the tribe and love people a lot. And they also love you. //Let\'s plant the seeds of <b>The festival of love</b> called Valentine\'s day. Will unlock you [love] - a special thing that is key of that event AND can bring you some rewards if level of [love] is decent enough.',
 		icon:[18,16,'seasonal'],
-		cost:{'insight':210,'culture':45,'faith':5,'research':80},
+		cost:{'insight':240,'culture':45,'faith':5,'research':80},
 		req:{'culture of celebration':true,'philosophy':true,'tribalism':false},
 		effects:[
 			 {type:'function',func:function(){if(day+leap>=40 && day+leap<=46)G.getDict('love').hidden=false;}},
