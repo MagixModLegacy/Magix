@@ -701,7 +701,7 @@ engineVersion:1,
 manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4Ta.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
-	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 47.2, 2021 - pelletsstarPL</font>';
+	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
 	document.getElementsByTagName('div')[4].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
 	document.getElementsByTagName('div')[5].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
 	document.getElementsByTagName('div')[6].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
@@ -2767,7 +2767,7 @@ var len=G.techsOwned.length;
 		G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'<font color="yellow">Show tiers</font>',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
 		G.button({text:'<font color="fuschia">Reveal map</font>',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
-		    '<br /><font color="lime">Debug mode. Magix: Release 47.2 (late beta)</font>'+
+		    '<br /><font color="lime">Debug mode. Magix: Release 48 (late beta)</font>'+
 		G.textWithTooltip('?','<div style="width:240px;text-align:left;">This is the debug menu. Please debug responsibly.<br>Further debug abilities while this mode is active :<div class="bulleted">click resources to add/remove some (keyboard shortcuts work the same way they do for purchasing units)</div><div class="bulleted">ctrl-click a trait or policy to remove it (may have strange, buggy effects)</div><div class="bulleted">click the Fast ticks display to get more fast ticks<br>(if add is equal 1 it will add 10, if add 10 then 100 and so on)</div><div class="bulleted">always see tech costs and requirements</div><div class="bulleted">gain access to debug robot units <br /> <b>BEEP BOOP BEEP</b></div><div class="bulleted">edit the map</div></div>','infoButton')+
 		'</center></div>';
 		l('debug').innerHTML=str;
