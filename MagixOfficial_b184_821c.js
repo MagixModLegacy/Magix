@@ -3348,8 +3348,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	(G.has('Eotm') ? 'Evolution of the minds occured<Br>' : '')+
 	'<li>Wonders completed during legacy: '+G.achievByName['wondersDuringRun'].won+'</li><Br>'+
 	'<li>Units unlocked: '+G.unitN+'</li><Br>'+
-	'<li>Policies unlocked: '+G.policyN+'</li><Br>'+
 	'<li><font color="yellow">Trial: &nbsp;'+(G.has('trial') ? 'active' : 'none')+'</font></li><Br>'+
+	'<li>Early game completed: '+(G.has('monument-building') ? 'YES' : 'NO')+'</li><Br>'+
 	'<li>Season:<b> '+(((day>=1 && day<=2) || (day==365 || day==366)) ? "New year\'s eve" : ((day>=40 && day<=46) ? 'Valentine\'s day' : ((Date.getMonth==3 && Date.getDate==1) ? "Another anniversary since first rickroll... <Br><small>bruh</small>": ((day+leap>=289 && day+leap<=305) ? 'Haloween' : ((day+leap>=349 && day+leap<=362) ? 'Christmas': 'None')))))+'</b></li><Br>'+
                 '<br><br></font>'+
                 '</div><br>'+
