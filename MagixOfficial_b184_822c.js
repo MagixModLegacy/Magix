@@ -2888,7 +2888,7 @@ G.props['fastTicksOnResearch']=150;
 			}
 		},600000);
 		G.achievByName['wondersDuringRun'].won=0;
-		G.achievByName['mostPeopleDuringRun'].won++;
+		G.achievByName['mostPeopleDuringRun'].won=0;
 		if(G.achievByName['mausoleum'].won>=1){G.gainTech(G.techByName['a gift from the mausoleum']);}
 		if(G.achievByName['Democration'].won>=1){G.gainTech(G.techByName['authority of the ancestor']);G.gainTrait(G.traitByName['policies']);}
 		if(G.achievByName['Sacrificed for culture'].won>=1){G.gainTech(G.techByName['artistic gray cells']);}
