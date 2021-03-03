@@ -9825,10 +9825,9 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'afterlife',
-		desc:'Completing <b>Buried</b> granted you [afterlife]. Starting with 15 slots and growing for up to 500 will take away [corpse]s. If all of [afterlife] slots will be used up this resource will disappear and for rest of the run the bonus from [voodoo spirit] will be activated.',
+		desc:'Completing <b>Buried</b> granted you [afterlife]. Starting with 15 slots and growing for up to 500 will take away [corpse]s. If all of [afterlife] slots will be used up this resource will disappear and for rest of the run the bonus from [voodoo spirit] will be activated. The cap of [afterlife] slots can be increased by gaining early-game traits like [fear of death] , [belief in the afterlife].',
 		icon:[23,5,'magixmod'],
 		displayUsed:true,
-		meta:true,
 		startWith:50,
 	});
 	/*=====================================================================================
@@ -18630,6 +18629,16 @@ new G.Tech({
         req:{'love grows around us':true,'time measuring 2/2':true,'compliments':true,'Beginnings of alchemy':true},
 	category:'seasonal',chance:10,
     });
+		new G.Trait({
+		name:'voodoo spirit',
+		displayName:'<font color="fuschia">Policies</font>',
+		desc:'@You start run with two bonuses: //<b>Early game bonus</b>: learn more about [afterlife] (hover on this resource with your mouse) //<b>Late game bonus:</b> All units that provide [burial spot]s provide twice as much (except [Dark wormhole])',
+		icon:[24,5,'magixmod'],
+		effects:[
+		// {type:'function',func:function(){pb=1;pa=2}},
+		],
+		req:{'tribalism':true},
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
