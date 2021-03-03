@@ -772,7 +772,7 @@ func:function(){
 			'demog':{
 				name:'<font color="#0DA42B">Demographics</font>',
 				base:['baby','child','adult','elder','worker','sick','wounded'],
-				side:['population','housing','corpse','burial spot','Alchemists'],
+				side:['population','housing','corpse','burial spot','afterlife','Alchemists'],
 		},
 			'food':{
 				name:'<font color="#0080FF">Food & Water</font>',
@@ -9818,9 +9818,17 @@ if (!document.getElementById(cssId))
 				else return [10,16,'seasonal'];
 			}
 		},
+		hidden:true;
 	});
 	new G.Res({
 		name:'love xp',
+	});
+	new G.Res({
+		name:'afterlife',
+		desc:'Completing <b>Buried</b> granted you [afterlife]. Starting with 15 slots and growing for up to 500 will take away [corpse]s. If all of [afterlife] slots will be used up this resource will disappear and for rest of the run the bonus from [voodoo spirit] will be activated.',
+		icon:[23,5,'magixmod'],
+		displayUsed:true,
+		meta:true;
 	});
 	/*=====================================================================================
 	UNITS
