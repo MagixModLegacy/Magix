@@ -14271,6 +14271,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'spirituality':10}},
 			{type:'provide res',what:{'cultural balance':3}},
+			{type:'provide res',what:{'afterlife':100}},
 		],
 	});
 	
@@ -15605,6 +15606,9 @@ autobuy(G.year)
 		cost:{'culture':5},
 		chance:10,
 		req:{'language':true,'spark\'o religion':true},
+		effects:[
+		{type:'provide res',what:{'afterlife':50}},
+			],
 	});
 	new G.Trait({
 		name:'belief in the afterlife',
@@ -15614,6 +15618,7 @@ autobuy(G.year)
 		chance:10,
 		req:{'fear of death':true,'oral tradition':true,'spark\'o religion':true},
 		effects:[
+			{type:'provide res',what:{'afterlife':150}},
 		]
 	});
 	new G.Trait({
@@ -18322,7 +18327,10 @@ new G.Tech({
 		chance:1.3,
 		cost:{'culture':2},
 		req:{'oral tradition':true},
-		category:'religion'
+		category:'religion',
+		effects:[
+			{type:'provide res',what:{'afterlife':50}},
+		]
 	});
 	new G.Trait({
 		name:'t11',
@@ -18634,7 +18642,7 @@ new G.Tech({
 		desc:'@You start run with two bonuses: //<b>Early game bonus</b>: learn more about [afterlife] (hover on this resource with your mouse) //<b>Late game bonus:</b> All units that provide [burial spot]s provide twice as much (except [Dark wormhole])',
 		icon:[24,5,'magixmod'],
 		effects:[
-		// {type:'function',func:function(){pb=1;pa=2}},
+		 {type:'function',func:function(){G.getDict('afterlife').hidden=false}},
 		],
 		req:{'tribalism':true},
 	});
@@ -19565,7 +19573,7 @@ new G.Tech({
 	new G.Policy({
 		name:'Dreamy',
 		desc:'starts [se12] trial. Will warn you before start.',
-		icon:[24,18,'magixmod',20,25,'magixmod',1,22,'magixmod'],
+		icon:[24,18,'magixmod',18,25,'magixmod',1,22,'magixmod'],
 		cost:{'insight II':1,'influence II':1},
 		startMode:'off',		
 		req:{'se10':'on'},
