@@ -9830,11 +9830,13 @@ if (!document.getElementById(cssId))
 		displayUsed:true,
 		startWith:50,
 		tick:function(me){
-			if(G.getRes('corpse').amount>0){
-						
+			if(G.getRes('corpse').amount>0 && me.used<=me.amount){
+				G.getRes('corpse').amount--;
+				G.getRes('afterlife').used++;
 			}
-			
-		};
+			if(me.used>=me.amount)me.hidden=true;
+		},
+		hidden:true,
 	});
 	/*=====================================================================================
 	UNITS
