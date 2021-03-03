@@ -9818,7 +9818,7 @@ if (!document.getElementById(cssId))
 				else return [10,16,'seasonal'];
 			}
 		},
-		hidden:true;
+		hidden:true,
 	});
 	new G.Res({
 		name:'love xp',
