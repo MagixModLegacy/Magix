@@ -17258,7 +17258,7 @@ new G.Tech({
 		req:{'tribalism':false},
 		cost:{},
 		effects:[
-			{type:'function',func:function(){G.getDict('monument-building').desc='@unlocks wonder depending on Trial you are currently in';document.title='Trial active - NeverEnding Legacy';}},
+			{type:'function',func:function(){G.getDict('monument-building').desc='@unlocks wonder depending on Trial you are currently in';document.title='Trial active - NeverEnding Legacy'}},
 		],
 	});
 	new G.Trait({
