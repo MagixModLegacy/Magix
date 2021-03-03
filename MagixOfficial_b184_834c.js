@@ -9825,10 +9825,16 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'afterlife',
-		desc:'Completing <b>Buried</b> granted you [afterlife]. Starting with 15 slots and growing for up to 500 will take away [corpse]s. If all of [afterlife] slots will be used up this resource will disappear and for rest of the run the bonus from [voodoo spirit] will be activated. The cap of [afterlife] slots can be increased by gaining early-game traits like [fear of death] , [belief in the afterlife].',
+		desc:'Completing <b>Buried</b> granted you [afterlife]. Starting with 15 slots and growing for up to 400 will take away [corpse]s. If all of [afterlife] slots will be used up this resource will disappear and for rest of the run the bonus from [voodoo spirit] will be activated. The cap of [afterlife] slots can be increased by gaining early-game traits like [fear of death] , [belief in the afterlife].',
 		icon:[23,5,'magixmod'],
 		displayUsed:true,
 		startWith:50,
+		tick:function(me){
+			if(G.getRes('corpse').amount>0){
+						
+			}
+			
+		};
 	});
 	/*=====================================================================================
 	UNITS
