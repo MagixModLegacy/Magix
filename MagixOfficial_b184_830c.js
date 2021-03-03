@@ -9828,7 +9828,8 @@ if (!document.getElementById(cssId))
 		desc:'Completing <b>Buried</b> granted you [afterlife]. Starting with 15 slots and growing for up to 500 will take away [corpse]s. If all of [afterlife] slots will be used up this resource will disappear and for rest of the run the bonus from [voodoo spirit] will be activated.',
 		icon:[23,5,'magixmod'],
 		displayUsed:true,
-		meta:true;
+		meta:true,
+		startWith:50;
 	});
 	/*=====================================================================================
 	UNITS
