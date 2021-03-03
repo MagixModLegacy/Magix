@@ -18631,7 +18631,6 @@ new G.Tech({
     });
 		new G.Trait({
 		name:'voodoo spirit',
-		displayName:'<font color="fuschia">Policies</font>',
 		desc:'@You start run with two bonuses: //<b>Early game bonus</b>: learn more about [afterlife] (hover on this resource with your mouse) //<b>Late game bonus:</b> All units that provide [burial spot]s provide twice as much (except [Dark wormhole])',
 		icon:[24,5,'magixmod'],
 		effects:[
