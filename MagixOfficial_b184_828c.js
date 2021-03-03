@@ -19570,7 +19570,7 @@ new G.Tech({
             '</div><div class="buttonBox">'+
             '</div></div>'
 })}}
-				],*/
+				*/],
 	});
 	new G.Policy({
 		name:'discovery rituals',
