@@ -9829,7 +9829,7 @@ if (!document.getElementById(cssId))
 		icon:[23,5,'magixmod'],
 		displayUsed:true,
 		meta:true,
-		startWith:50;
+		startWith:50,
 	});
 	/*=====================================================================================
 	UNITS
