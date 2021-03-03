@@ -5437,7 +5437,7 @@ G.writeMSettingButton=function(obj)
 				{
 					//bury slowly
 				
-					if (graves.amount>graves.used && (G.getRes('afterlife').amount==0) || G.getRes('afterlife').used>=G.getRes('afterlife').amount)
+					if (graves.amount>graves.used && (G.getRes('afterlife').hidden==true)
 					{
 						if(G.checkPolicy('se08')=='off'){//BURI'O DAK
 						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
