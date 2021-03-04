@@ -714,6 +714,7 @@ func:function(){
 	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
 	/////////
 	G.getSafeName('patron','nameless patron')+';'; //NOT RELATED TO PATREON OR STH
+	G.setName('patron','nameless PaTron');
 	//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
 	/*=====================================================================================
