@@ -3029,12 +3029,13 @@ G.props['fastTicksOnResearch']=150;
 	{
 		var alfabeth=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 		var Name='';
-		for(i=0;i<Math.round((Math.random()*7)+2);i++){
+		for(var i=0;i<Math.round((Math.random()*7)+2);i++){
    		 if(i==0){
        			 Name+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];
         		Name=Name.toUpperCase();
-  		 }
+  		 }else{
    		 Name+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];
+		 }
 		}
 		G.setName('patron')=Name;
 		document.title='NeverEnding Legacy';
