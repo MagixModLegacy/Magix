@@ -2329,10 +2329,41 @@ G.setPolicyMode=function(me,mode)
 	}
 		G.draw['policy']();
 	}
-	G.Unit+=function(obj)
+	G.Unit=function(obj)
 	{
-		this.hidden=false;
-	};
+		this.type='unit';
+		this.startWith=0;
+		this.cost={};//spent to purchase the unit
+		this.use={};//resources the unit "takes up", such as workers or land; must satisfy these to purchase; also, if the used resources become lacking, the unit will waste away
+		this.staff={};//much like "use", except the unit doesn't waste away if it lacks those (use this for workers in a building, or a worker's tools); a percent of it simply goes idle - if the requirements are met again, the unit will cease being idle
+		this.require={};//resources the unit requires to build; works like "use", except the resources aren't actually used, we just need to own the specified amounts
+		this.upkeep={};//used every tick to keep the unit working
+		this.limitPer={};//the unit can't be built more than 1 per X of those resources (ie. : "only 1 per 100 population")
+		this.effects=[];
+		this.modes=[];
+		this.category='';
+		this.icon=[0,0];
+		this.priority=0;//units with a higher priority are executed and built first
+		this.hidden=false; //hidden
+		
+		for (var i in obj) this[i]=obj[i];
+		this.id=G.unit.length;
+		if (!this.displayName) this.displayName=cap(this.name);
+		if (this.wonder)
+		{
+			//if the unit is a wonder, .mode is now an integer representing the status of the wonder (0 : not started, 1 : started, 2 : started but paused, 3 : needs final step, 4 : complete) and .percent is now the wonder's completion step
+			//a wonder takes an initial cost, then a cost repeated a number of steps, then a final cost before it is complete
+			this.finalStepCost=this.finalStepCost||{};
+			this.finalStepUse=this.finalStepUse||{};
+			this.finalStepRequire=this.finalStepRequire||{};
+			this.steps=this.steps||0;
+			this.costPerStep=this.costPerStep||{};
+		}
+		G.unit.push(this);
+		G.unitByName[this.name]=this;
+		G.setDict(this.name,this);
+		this.mod=G.context;
+	}
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
@@ -2426,6 +2457,7 @@ G.setPolicyMode=function(me,mode)
 		{
 			var str='';
 			var me=G.unitsOwned[i];
+			if(me.hidden=false){
 			str+='<div class="thingWrapper">';
 			str+='<div class="unit thing'+G.getIconClasses(me.unit,true)+'" id="unit-'+me.id+'">'+
 				G.getIconStr(me.unit,'unit-icon-'+me.id,0,true)+
@@ -2443,6 +2475,7 @@ G.setPolicyMode=function(me,mode)
 			}
 			str+='</div>';
 			strByCat[me.unit.category]+=str;
+			}
 		}
 		
 		var str='';
