@@ -2176,7 +2176,7 @@ G.setPolicyMode=function(me,mode)
 				};
 				if (G.tooltip.parent!=me.l && G.getSetting('animations')) triggerAnim(me.l,'plop');
 				
-				if(me.unit.hidden==false){var bounds=me.l.getBoundingClientRect();}
+				var bounds=me.l.getBoundingClientRect();
 				var posX=bounds.left+bounds.width/2;
 				var posY=bounds.top;
 				for (var i in me.unit.cost)
@@ -2473,9 +2473,10 @@ G.setPolicyMode=function(me,mode)
 					'<div class="gizmo gizmo3" id="unit-percent-'+me.id+'"><div class="percentGizmo" id="unit-percentDisplay-'+me.id+'"></div></div>'+
 				'</div>';
 			}
+			}
 			str+='</div>';
 			strByCat[me.unit.category]+=str;
-			}
+			
 		}
 		
 		var str='';
