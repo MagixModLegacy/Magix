@@ -3027,7 +3027,7 @@ G.props['fastTicksOnResearch']=150;
 	G.funcs['new game']=function()
 	{
 		var realName=''; //GENERATING PATRON NAME
-		var patronName= (namE) => {
+		function patronName(namE){
 			var alfabeth=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 			for(var i=0;i<Math.round((Math.random()*7)+3);i++){
 				if(i==0){
@@ -3037,6 +3037,7 @@ G.props['fastTicksOnResearch']=150;
 				namE+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];	
 				}
 			}
+			return namE;
 		}
 		G.setName('patron',patronName(realName));
 		document.title='NeverEnding Legacy';
