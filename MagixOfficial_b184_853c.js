@@ -13,6 +13,171 @@ G.tabs=
 		{name:'<font color="yellow">Legacy</font>',showMap:false,id:'legacy',popup:true,addClass:'right',desc:'View your legacy stats and achievements.'},
 		{name:'<font color="yellow">Magix</font>',showMap:false,id:'Magix',popup:true,addClass:'right',desc:'Options and infos about the Magix mod.'}
 	];
+	G.Save=function(toStr) //Will be required for main huge update of 2021
+	{
+		//if toStr is true, don't actually save; return a string containing the save
+		if (!toStr && G.local && G.isIE) return false;
+		var str='';
+		
+		//general
+		G.lastDate=parseInt(Date.now());
+		str+=
+			parseFloat(G.engineVersion).toString()+';'+
+			parseFloat(G.startDate).toString()+';'+
+			parseFloat(G.fullDate).toString()+';'+
+			parseFloat(G.lastDate).toString()+';'+
+			parseFloat(G.year).toString()+';'+
+			parseFloat(G.day).toString()+';'+
+			parseFloat(G.fastTicks).toString()+';'+
+			parseFloat(G.furthestDay).toString()+';'+
+			parseFloat(G.totalDays).toString()+';'+
+			parseFloat(G.resets).toString()+';'+
+			'';
+		str+='|';
+		
+		//settings
+		for (var i in G.settings)
+		{
+			var me=G.settings[i];
+			if (me.type=='toggle') str+=(me.value?'1':'0');
+			else if (me.type=='int') str+=parseInt(me.value).toString();
+			str+=';';
+		}
+		str+='|';
+		
+		//mods
+		for (var i in G.mods)
+		{
+			var me=G.mods[i];
+			str+='"'+me.url.replaceAll('"','&quot;')+'":';
+			if (me.achievs)
+			{
+				//we save achievements separately for each mod
+				for (var ii in me.achievs)
+				{
+					str+=parseInt(me.achievs[ii].won).toString()+',';
+				}
+			}
+			str+=':';
+			//tracked stats (not fully implemented yet)
+			str+=parseFloat(G.trackedStat).toString();
+			str+=';';
+		}
+		str+='|';
+		
+		//culture and names
+		str+=(G.cultureSeed)+';';
+		str+=G.getSafeName('ruler')+';';
+		str+=G.getSafeName('civ')+';';
+		str+=G.getSafeName('civadj')+';';
+		str+=G.getSafeName('inhab')+';';
+		str+=G.getSafeName('inhabs')+';';
+		str+=G.getSafeName('patron')+';';
+		str+='|';
+		
+		//maps
+		str+=(G.currentMap.seed)+';';
+		
+		var map=G.currentMap;
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				var tile=map.tiles[x][y];
+				str+=
+					parseInt(tile.owner).toString()+':'+
+					parseInt(Math.floor(tile.explored*100)).toString()+':'+
+					',';
+			}
+		}
+		
+		str+='|';
+		
+		//techs & traits
+		var len=G.techsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			str+=parseInt(G.techsOwned[i].tech.id).toString()+';';
+		}
+		str+='|';
+		var len=G.traitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			str+=parseInt(G.traitsOwned[i].trait.id).toString()+';';
+		}
+		str+='|';
+		
+		//policies
+		var len=G.policy.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.policy[i];
+			if (me.visible)
+			{
+				str+=parseInt(me.id).toString()+','+parseInt(me.mode?me.mode.num:0).toString()+';';
+			}
+		}
+		str+='|';
+		
+		//res
+		var len=G.res.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.res[i];
+			str+=
+				(!me.meta?(parseFloat(Math.round(me.amount)).toString()+','):'')+
+				(me.displayUsed?(parseFloat(Math.round(me.used)).toString()+','):'')+
+				(me.visible?'1':'0')+';';
+		}
+		str+='|';
+		
+		//units
+		var len=G.unitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.unitsOwned[i];
+			if (true)//me.amount>0)
+			{
+				str+=parseInt(me.unit.id).toString()+','+
+				parseFloat(Math.round(me.amount)).toString()+
+				((me.unit.gizmos||me.unit.wonder)?
+					(','+parseInt(me.unit.wonder?me.mode:(me.mode?me.mode.num:0)).toString()+','+//mode
+					parseInt(me.percent).toString())//percent
+					:'')+
+				','+parseFloat(Math.round(me.targetAmount)).toString()+
+				','+parseFloat(Math.round(me.idle)).toString()+
+				';';
+			}
+		}
+		str+='|';
+		
+		//chooseboxes
+		var len=G.chooseBox.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.chooseBox[i];
+			var choices=[parseFloat(me.roll)];
+			for (var ii in me.choices)
+			{
+				choices.push(parseInt(me.choices[ii].id));
+			}
+			str+=choices.join(',')+';';
+		}
+		str+='|';
+		
+		//console.log('SAVE');
+		//console.log(str);
+		str=escape(str);
+		str=b64EncodeUnicode(str);
+		//console.log(Math.ceil(byteCount(str)/1000)+'kb');
+		if (!toStr)
+		{
+			window.localStorage.setItem(G.saveTo,str);
+			G.middleText('- Game saved -');
+			//console.log('Game saved successfully.');
+		}
+		else return str;
+	}
 G.LoadResources=function()
 	{
 		var resources=[
