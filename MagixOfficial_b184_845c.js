@@ -2176,7 +2176,7 @@ G.setPolicyMode=function(me,mode)
 				};
 				if (G.tooltip.parent!=me.l && G.getSetting('animations')) triggerAnim(me.l,'plop');
 				
-				var bounds=me.l.getBoundingClientRect();
+				if(me.hidden==false)var bounds=me.l.getBoundingClientRect();
 				var posX=bounds.left+bounds.width/2;
 				var posY=bounds.top;
 				for (var i in me.unit.cost)
