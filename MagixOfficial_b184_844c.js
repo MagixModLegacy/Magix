@@ -2457,8 +2457,8 @@ G.setPolicyMode=function(me,mode)
 		{
 			var str='';
 			var me=G.unitsOwned[i];
-			if(me.hidden=false){
 			str+='<div class="thingWrapper">';
+			if(me.hidden==false){
 			str+='<div class="unit thing'+G.getIconClasses(me.unit,true)+'" id="unit-'+me.id+'">'+
 				G.getIconStr(me.unit,'unit-icon-'+me.id,0,true)+
 				G.getArbitrarySmallIcon([0,0],false,'unit-modeIcon-'+me.id)+
