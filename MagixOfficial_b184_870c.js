@@ -352,7 +352,7 @@ G.Load=function(doneLoading)
 			G.setSafeName('civadj',G.readLoadedString(spl[ss++]),'tribal');
 			G.setSafeName('inhab',G.readLoadedString(spl[ss++]),'inhabitant');
 			G.setSafeName('inhabs',G.readLoadedString(spl[ss++]),'inhabitants');
-			G.setSafeName('patron',/*G.readLoadedString(spl[ss++]),*/'nameless patron');
+			G.setSafeName('patron',G.readLoadedString(spl[ss++]),'nameless patron');
 			//maps
 			var spl=str[s++].split(';');
 			//console.log('Map tiles : '+spl);
