@@ -19116,6 +19116,60 @@ new G.Tech({
 		],
 		req:{'tribalism':true},
 	});
+	new G.Trait({
+        name:'patron1',
+	displayName:''+G.getName("patron")+' the phoenix of fire',
+	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+        icon:[0,32,'magixmod'],
+	cost:{'culture':75,'faith':5},
+        req:{'compliments':true},
+	category:'religion',chance:25,
+    });
+	new G.Trait({
+        name:'patron2',
+	displayName:''+G.getName("patron")+' the phoenix of fire',
+	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+        icon:[1,32,'magixmod'],
+	cost:{'culture':75,'faith':5},
+        req:{'compliments':true},
+	category:'religion',chance:25,
+    });
+	new G.Trait({
+        name:'patron3',
+	displayName:''+G.getName("patron")+' the phoenix of fire',
+	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+        icon:[2,32,'magixmod'],
+	cost:{'culture':75,'faith':5},
+        req:{'compliments':true},
+	category:'religion',chance:25,
+    });
+	new G.Trait({
+        name:'patron4',
+	displayName:''+G.getName("patron")+' the phoenix of fire',
+	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+        icon:[3,32,'magixmod'],
+	cost:{'culture':75,'faith':5},
+        req:{'compliments':true},
+	category:'religion',chance:25,
+    });
+	new G.Trait({
+        name:'patron5',
+	displayName:''+G.getName("patron")+' the phoenix of fire',
+	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+        icon:[4,32,'magixmod'],
+	cost:{'culture':75,'faith':5},
+        req:{'compliments':true},
+	category:'religion',chance:25,
+    });
+	new G.Trait({
+        name:'patron6',
+	displayName:''+G.getName("patron")+' the phoenix of fire',
+	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+        icon:[5,32,'magixmod'],
+	cost:{'culture':75,'faith':5},
+        req:{'compliments':true},
+	category:'religion',chance:25,
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
