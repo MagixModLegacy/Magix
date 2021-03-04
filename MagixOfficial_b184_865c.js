@@ -225,6 +225,284 @@ G.LoadResources=function()
 		G.updateMapDisplay();
 		G.centerMap(G.currentMap);
 	}
+G.Load=function(doneLoading)
+	{
+		if (G.importStr) {var local=G.importStr;}
+		else
+		{
+			if (G.local && G.isIE) return false;
+			if (!window.localStorage) return false;
+			var local=window.localStorage.getItem(G.saveTo);
+		}
+		if (!local) return false;
+		var str='';
+		str=b64DecodeUnicode(local);
+		//console.log('LOAD');
+		//console.log(Math.ceil(byteCount(str)/1000)+'kb');
+		str=unescape(str);
+		//console.log(str);
+		if (str!='null' && str!='')
+		{
+			G.Reset();
+			G.resetSettings();
+			
+			//take care of strings first
+			G.stringsLoadedN=0;
+			G.stringsLoaded=[];
+			str=str.replace(/"(.*?)"/gi,G.parseLoadStrings);
+			
+			str=str.split('|');
+			
+			var s=0;
+			//general
+			var spl=str[s++].split(';');
+			//console.log('General : '+spl);
+			var i=0;
+			var fromVersion=parseFloat(spl[i++]);
+			G.startDate=parseFloat(spl[i++]);
+			G.fullDate=parseFloat(spl[i++]);
+			G.lastDate=parseFloat(spl[i++]);
+			G.year=parseFloat(spl[i++]);
+			G.day=parseFloat(spl[i++]);
+			G.fastTicks=parseFloat(spl[i++]);
+			G.furthestDay=parseFloat(spl[i++]);
+			G.totalDays=parseFloat(spl[i++]);
+			G.resets=parseFloat(spl[i++]);
+			//accumulate fast ticks when offline
+			var timeOffline=Math.max(0,(Date.now()-G.lastDate)/1000);
+			G.fastTicks+=Math.floor(timeOffline);
+			G.nextFastTick=Math.ceil((1-(timeOffline-Math.floor(timeOffline)))*G.tickDuration);
+			
+			//settings
+			var spl=str[s++].split(';');
+			//console.log('Settings : '+spl);
+			var len=spl.length;
+			for (var i=0;i<len;i++)
+			{
+				if (spl[i]!='' && G.settings[i])
+				{
+					var me=G.settings[i];
+					if (me.type=='toggle') me.value=(spl[i]=='1'?true:false);
+					else if (me.type=='int') me.value=parseInt(spl[i]);
+				}
+			}
+			for (var i in G.settings)
+			{
+				var me=G.settings[i];
+				if (me.onChange) me.onChange();
+			}
+			
+			
+			if (!doneLoading)
+			{
+				//mods
+				var spl=str[s++].split(';');
+				var mods=[];
+				for (var i in spl)
+				{
+					var spl2=spl[i].split(':');
+					var val=G.readLoadedString(spl2[0]);
+					if (val)
+					{
+						mods.push(val.replaceAll('&quot;','"'));
+					}
+				}
+				G.LoadMods(mods,G.Load,false);
+				return 1;
+			}
+			
+			G.importStr=0;
+			
+			//mod achievs & tracked stats
+			var spl=str[s++].split(';');
+			for (var i in spl)
+			{
+				var spl2=spl[i].split(':');
+				var mod=G.mods[i];
+				if (spl2[1] && mod.achievs)
+				{
+					bit=spl2[1].split(',');
+					for (var ii in bit)
+					{
+						if (bit[ii])
+						{
+							if (mod.achievs[ii]) mod.achievs[ii].won=parseInt(bit[ii]);
+						}
+					}
+				}
+				if (spl2[2])
+				{
+					bit=spl2[2].split(',');
+					for (var ii in bit)
+					{
+						if (bit[ii])
+						{
+							G.trackedStat=parseFloat(bit[ii]);
+						}
+					}
+				}
+			}
+			
+			//culture and names
+			var spl=str[s++].split(';');
+			var ss=0;
+			G.cultureSeed=spl[ss++];
+			G.setSafeName('ruler',G.readLoadedString(spl[ss++]),'Anonymous');
+			G.setSafeName('civ',G.readLoadedString(spl[ss++]),'nameless tribe');
+			G.setSafeName('civadj',G.readLoadedString(spl[ss++]),'tribal');
+			G.setSafeName('inhab',G.readLoadedString(spl[ss++]),'inhabitant');
+			G.setSafeName('inhabs',G.readLoadedString(spl[ss++]),'inhabitants');
+			G.setSafeName('patron',G.readLoadedString(spl[ss++]),'nameless patron');
+			//maps
+			var spl=str[s++].split(';');
+			//console.log('Map tiles : '+spl);
+			G.currentMap=new G.Map(0,24,24,spl[0]);
+			
+			var map=G.currentMap;
+			var spl2=spl[1].split(',');
+			var I=0;
+			for (var x=0;x<map.w;x++)
+			{
+				for (var y=0;y<map.h;y++)
+				{
+					if (spl2[I])
+					{
+						var tile=map.tiles[x][y];
+						spl3=spl2[I].split(':');
+						tile.owner=parseInt(spl3[0]);
+						tile.explored=parseInt(spl3[1])/100;
+					}
+					I++;
+				}
+			}
+			
+			G.updateMapForOwners(map);
+			G.centerMap(map);
+			
+			//techs & traits
+			var spl=str[s++].split(';');
+			//console.log('Techs : '+spl);
+			var len=spl.length;
+			for (var i=len-1;i>=0;i--)
+			{if (spl[i]!='') {G.gainTech(G.know[parseInt(spl[i])]);}}
+			
+			var spl=str[s++].split(';');
+			//console.log('Traits : '+spl);
+			var len=spl.length;
+			for (var i=len-1;i>=0;i--)
+			{if (spl[i]!='') G.gainTrait(G.know[parseInt(spl[i])]);}
+			
+			//policies
+			var spl=str[s++].split(';');
+			//console.log('Policies : '+spl);
+			var len=spl.length;
+			for (var i=len-1;i>=0;i--)
+			{if (spl[i]!='') {
+				var spl2=spl[i].split(',');
+				var me=G.policy[parseInt(spl2[0])];
+				G.gainPolicy(me);
+				me.mode=me.modesById[parseInt(spl2[1])];
+			}}
+			
+			//res
+			var spl=str[s++].split(';');
+			//console.log('Resources : '+spl);
+			var len=G.res.length;
+			for (var i=0;i<len;i++)
+			{
+				if (spl[i])
+				{
+					var me=G.res[i];
+					var spl2=spl[i].split(',');
+					if (parseInt(spl2[spl2.length-1])==1) me.visible=true; else me.visible=false;
+					if (!me.meta) me.amount=parseFloat(spl2[0]);
+					if (me.displayUsed) me.used=parseFloat(spl2[1]);
+				}
+			}
+			
+			//units
+			var spl=str[s++].split(';');
+			//console.log('Units : '+spl);
+			var len=spl.length;
+			for (var i=len-1;i>=0;i--)
+			{if (spl[i]!='')
+				{
+					var spl2=spl[i].split(',');
+					//unit id, amount, and if unit has gizmos : mode, percent
+					var obj={
+						id:G.unitN,
+						unit:G.unit[parseInt(spl2[0])],
+						amount:parseFloat(spl2[1]),
+						targetAmount:((typeof spl2[4]!=='undefined')?parseFloat(spl2[4]):parseFloat(spl2[1])),
+						idle:((typeof spl2[5]!=='undefined')?parseFloat(spl2[5]):0),
+						displayedAmount:0,
+						mode:parseInt(spl2[2])||0,
+						percent:parseInt(spl2[3]),
+						popups:[]
+						};
+					G.unitsOwned.unshift(obj);
+					var unit=G.unitsOwned[0];
+					if (unit.unit.modesById[0]) unit.mode=unit.unit.modesById[unit.mode];
+					G.unitsOwnedNames.unshift(G.unit[parseInt(spl2[0])].name);
+					G.unitN++;
+				}
+			}
+			
+			//assign unit .splitOf
+			var prev=0;
+			var len=G.unitsOwned.length;
+			for (var i=0;i<len;i++)
+			{
+				var me=G.unitsOwned[i];
+				if (prev && me.unit.id==prev.unit.id) me.splitOf=prev;
+				else prev=me;
+			}
+			prev=0;
+			
+			//chooseboxes
+			var spl=str[s++].split(';');
+			var len=spl.length;
+			for (var i=len-1;i>=0;i--)
+			{if (spl[i]!='')
+				{
+					G.chooseBox[i].choices=[];
+					var spl2=spl[i].split(',');
+					for (var ii in spl2)
+					{
+						if (ii==0) G.chooseBox[i].roll=parseFloat(spl2[ii]);
+						else G.chooseBox[i].choices[ii-1]=G.know[parseInt(spl2[ii])];
+					}
+				}
+			}
+			
+			G.runUnitReqs();
+			G.runPolicyReqs();
+			
+			G.applyAchievEffects('load');
+			
+			G.updateEverything();
+			G.createTopInterface();
+			G.createDebugMenu();
+			if (G.tabs[G.settingsByName['tab'].value]) G.setTab(G.tabs[G.settingsByName['tab'].value]);
+			G.setSetting('forcePaused',0);
+			
+			l('blackBackground').style.opacity=0;
+			if (timeOffline>=1) G.middleText('- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small>',true);
+			
+			G.rememberAchievs=true;
+			
+			G.animIntro=true;
+			G.introDur=G.fps*1;
+		
+			G.doFunc('game loaded');
+			
+			G.Logic(true);//force a tick (solves some issues with display updates; this howeverr means loading a paused game, saving and reloading will make a single day go by everytime, which isn't ideal)
+			
+			console.log('Game loaded successfully.');
+			return true;
+		}
+		return false;
+	}
 	G.getLandIconBG=function(land)
 	{
 		return 'url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png),url(https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png)';
