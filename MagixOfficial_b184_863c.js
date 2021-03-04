@@ -3027,6 +3027,7 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		
 		var alfabeth=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 		var Name='';
 		for(var i=0;i<Math.round((Math.random()*7)+2);i++){
@@ -3037,7 +3038,7 @@ G.props['fastTicksOnResearch']=150;
    		 Name+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];
 		 }
 		}
-		G.setName('patron')=Name;
+		G.names.patron=Name;
 		document.title='NeverEnding Legacy';
 		///new game mesg
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
