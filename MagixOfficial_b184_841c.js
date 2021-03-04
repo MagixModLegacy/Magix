@@ -2329,7 +2329,10 @@ G.setPolicyMode=function(me,mode)
 	}
 		G.draw['policy']();
 	}
-	
+	G.Unit+=function(obj)
+	{
+		this.hidden=false;
+	};
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
@@ -2423,7 +2426,6 @@ G.setPolicyMode=function(me,mode)
 		{
 			var str='';
 			var me=G.unitsOwned[i];
-			if(me.hidden==false){
 			str+='<div class="thingWrapper">';
 			str+='<div class="unit thing'+G.getIconClasses(me.unit,true)+'" id="unit-'+me.id+'">'+
 				G.getIconStr(me.unit,'unit-icon-'+me.id,0,true)+
@@ -2441,7 +2443,6 @@ G.setPolicyMode=function(me,mode)
 			}
 			str+='</div>';
 			strByCat[me.unit.category]+=str;
-			}
 		}
 		
 		var str='';
