@@ -19120,8 +19120,8 @@ new G.Tech({
 	});
 	new G.Trait({
         name:'patron1',
-	displayName:''+G.getName("patron")+' the phoenix of fire',
-	desc:'[patron1] represents flames and fires. @This patron is a symbol of fight and decisivness. @Your [Wizard]s and people picking this patron want to mark that their decisions are made with confidence. Also [Wizard]s believe that Phoenix will lead them to right paths of their lives. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	displayName:''+G.getName("patron")+' the Phoenix of Fire',
+	desc:'[patron1] represents flames and fires. @This patron also symbolizes fight and decisivness. @Your [Wizard]s and people picking this patron want to mark that their decisions are made with confidence. Also [Wizard]s believe that Phoenix will lead them to right paths of their lives. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[0,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false},
@@ -19129,8 +19129,8 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron2',
-	displayName:''+G.getName("patron")+' the son of the forest',
-	desc:'[patron2] represents nature and its flora. @This patron is a symbol of calm and peace. @Your [Wizard]s and people picking this patron want to mark that peace has keys to fix a lot of troubles and no agression is needed to solve every problem. Also [Wizard]s believe that The Son created once true Oasis of Peace. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	displayName:''+G.getName("patron")+' The Son of the Forest',
+	desc:'[patron2] represents nature and its flora. @This patron is also symbolizes calm and peace. @Your [Wizard]s and people picking this patron want to mark that peace has keys to fix a lot of troubles and no agression is needed to solve every problem. Also [Wizard]s believe that The Son created once true Oasis of Peace. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[1,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron1':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false},
@@ -19138,8 +19138,8 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron3',
-	displayName:''+G.getName("patron")+' the guide of the Winds',
-	desc:'[patron3] represents winds and hurricanes. @This patron is a symbol of time and impetuiosity. @Your [Wizard]s picking and sending their hopes to [patron3,Him] want to mark that each hard decision can be taken easily. Also [Wizard]s believe that one of [patron3,His] winds will blow their souls right to the Heaven preventing from being absorbed by darkness of Hell/Underworld. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	displayName:''+G.getName("patron")+' The Guide of the Winds',
+	desc:'[patron3] represents winds and hurricanes. @This patron is also symbolizes time and impetuiosity. @Your [Wizard]s picking and sending their hopes to [patron3,Him] want to mark that each hard decision can be taken easily. Also [Wizard]s believe that one of [patron3,His] winds will blow their souls right to the Heaven preventing from being absorbed by darkness of Hell/Underworld. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[2,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron1':false,'patron4':false,'patron5':false,'patron6':false},
@@ -19147,8 +19147,8 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron4',
-	displayName:''+G.getName("patron")+' the dark dragon',
-	desc:'[patron1] represents mysteries , secrets and insecurity. @This patron is a symbol of withdrawal and concealment. @Your [Wizard]s picking this patron want to mark that their lives are full of secrets and mysteries. Also [Wizard]s believe that Phoenix will lead them to right paths of their lives. Are there any miserables? @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	displayName:''+G.getName("patron")+' the Dark Dragon',
+	desc:'[patron4] represents mysteries , secrets and insecurity. @This patron also symbolizes withdrawal and concealment. @Your [Wizard]s picking this patron want to mark that their lives are full of secrets and mysteries. Also [Wizard]s believe that [patron4,The Dragon] will protect their secrets from being leaked and will curse "the leakers". Are there any miserables? @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[3,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron1':false,'patron5':false,'patron6':false},
@@ -19156,8 +19156,8 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron5',
-	displayName:''+G.getName("patron")+' the stormlord',
-	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+	displayName:''+G.getName("patron")+' The Stormlord',
+	desc:'[patron5] represents precision and impulsivity. @This patron also symbolizes indigation and quick action. @Your [Wizard]s picking this patron want to mark that sometimes all of us need to perform a decision very, very quickly. Also [Wizard]s believe that [patron5,The Stormlord] will guide through [population,people] lives helping making decisions with His precision. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[4,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron1':false,'patron6':false},
@@ -19165,8 +19165,8 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron6',
-	displayName:''+G.getName("patron")+' ,eye of the Sea',
-	desc:'During of <b>Valentine\'s day</b> event no [thief] no [wild corpse] will spawn.',
+	displayName:''+G.getName("patron")+' ,Eye of the Sea',
+	desc:'[patron6] represents restraint and observation. @This patron also symbolizes cautioness and prudence. @Your [Wizard]s picking this patron want to mark that you cannot sometimes do something quickly... you just need to do it slowly and thoughtfully. Also [Wizard]s believe that [patron6,The Eye] will help [population,people] keep restraint and prevent obsession to appear in their hearts. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[5,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false},
