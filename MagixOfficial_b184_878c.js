@@ -1,4 +1,4 @@
-var la=1;var lb=2;var lc=0;var ta=0;G.names.patron=''; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
+var la=1;var lb=2;var lc=0;var ta=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
@@ -703,6 +703,7 @@ engineVersion:1,
 manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4Ta.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
+	G.names.push.patron='';
 	if(document.baseURI.includes('dashnet.org/legacy/')){
 	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
 	document.getElementsByTagName('div')[4].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
