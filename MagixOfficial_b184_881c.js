@@ -1,5 +1,5 @@
 var la=1;var lb=2;var lc=0;var ta=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
-/*G.tabs=
+G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
 		//update : which system's update to call when toggling on
@@ -13,7 +13,6 @@ var la=1;var lb=2;var lc=0;var ta=0; //land id tab unlockable. without this trai
 		{name:'<font color="yellow">Legacy</font>',showMap:false,id:'legacy',popup:true,addClass:'right',desc:'View your legacy stats and achievements.'},
 		{name:'<font color="yellow">Magix</font>',showMap:false,id:'Magix',popup:true,addClass:'right',desc:'Options and infos about the Magix mod.'}
 	];
-*/
 G.LoadResources=function()
 	{
 		var resources=[
@@ -700,8 +699,7 @@ name:'Default dataset',
 author:'pelletsstarPL',
 desc:'Fit more people, discover essences which have its secret use. At the moment you can reach new dimensions which will increase your max land soon. More housing so you can fit more people. Mod utilizes vanilla part of the game by adding new modes or new units. Credits to Orteil for default dataset.',
 engineVersion:1,
-//manifest:'ModManifest.js',
-manifest:'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MagixMain/main.js',
+manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4Ta.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
 		/////////
