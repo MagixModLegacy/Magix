@@ -4752,6 +4752,10 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var stat=G.techN;
 			var text='unknown';if (stat<=25) text='pre-prehistoric';else if (stat<=50) text='prehistoric'; else if (stat<=100) text='skilled'; else if (stat<=170) text='decent technologically'; else if (stat<=240) text='expanded'; else if (stat<=325) text='advanced'; else if (stat<=400) text='modern'; else if (stat<=500) text='truly advanced'; else if (stat>=500) text='most advanced';
 			toParse+='Technological stage: <b>'+text+'</b>//';
+			if(G.has('Wizardry')){
+				var text='None';if(G.has('patron1'))text='<font color="orange">Fire:'+G.techByName['patron1'].displayName+'</font>';else if(G.has('patron2'))text='<font color="lime">Nature:'+G.techByName['patron2'].displayName+'</font>';else if(G.has('patron3'))text='<font color="#bbbbff">Wind:'+G.techByName['patron3'].displayName+'</font>';else if(G.has('patron4'))text='<font color="purple">Dark:'+G.techByName['patron4'].displayName+'</font>';else if(G.has('patron5'))text='<font color="yellow">Lightning:'+G.techByName['patron5'].displayName+'</font>';else if(G.has('patron6'))text='<font color="#6699FF">Nature:'+G.techByName['patron6'].displayName+'</font>';
+			toParse+='Patron of the civilization: <b>'+text+'</b>//';
+			}
 		}
 		else toParse+='All '+G.getName('inhabs')+' have died out.';
 		str+=G.parse(toParse);
@@ -18681,7 +18685,7 @@ new G.Tech({
 	});
 	new G.Trait({
         name:'patron1',
-	displayName:'Flamtnaja the Phoenix of Fire',
+	displayName:''+G.getName('civ')[0]+'flamtnaja the Phoenix of Fire',
 	desc:'[patron1] represents flames and fires. @This patron also symbolizes fight and decisivness. @Your [Wizard]s and people picking this patron want to mark that their decisions are made with confidence. Also [Wizard]s believe that Phoenix will lead them to right paths of their lives. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[0,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
@@ -18690,7 +18694,7 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron2',
-	displayName:'Uraloik The Son of the Forest',
+	displayName:''+G.getName('civ')[0]+'uraloik The Son of the Forest',
 	desc:'[patron2] represents nature and its flora. @This patron is also symbolizes calm and peace. @Your [Wizard]s and people picking this patron want to mark that peace has keys to fix a lot of troubles and no agression is needed to solve every problem. Also [Wizard]s believe that The Son created once true Oasis of Peace. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[1,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
@@ -18699,7 +18703,7 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron3',
-	displayName:'Vikol The Guide of the Winds',
+	displayName:''+G.getName('civ')[0]+'vikol The Guide of the Winds',
 	desc:'[patron3] represents winds and hurricanes. @This patron is also symbolizes time and impetuiosity. @Your [Wizard]s picking and sending their hopes to [patron3,Him] want to mark that each hard decision can be taken easily. Also [Wizard]s believe that one of [patron3,His] winds will blow their souls right to the Heaven preventing from being absorbed by darkness of Hell/Underworld. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[2,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
@@ -18708,7 +18712,7 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron4',
-	displayName:'Selatarraya the Dark Dragon',
+	displayName:''+G.getName('civ')[0]+'selatarraya the Dark Dragon',
 	desc:'[patron4] represents mysteries , secrets and insecurity. @This patron also symbolizes withdrawal and concealment. @Your [Wizard]s picking this patron want to mark that their lives are full of secrets and mysteries. Also [Wizard]s believe that [patron4,The Dragon] will protect their secrets from being leaked and will curse "the leakers". Are there any miserables? @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[3,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
@@ -18717,7 +18721,7 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron5',
-	displayName:'Kerus The Stormlord',
+	displayName:''+G.getName('civ')[0]+'kerus The Stormlord',
 	desc:'[patron5] represents precision and impulsivity. @This patron also symbolizes indigation and quick action. @Your [Wizard]s picking this patron want to mark that sometimes all of us need to perform a decision very, very quickly. Also [Wizard]s believe that [patron5,The Stormlord] will guide through [population,people] lives helping making decisions with His precision. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[4,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
@@ -18726,7 +18730,7 @@ new G.Tech({
     });
 	new G.Trait({
         name:'patron6',
-	displayName:'Olier\'ali ,Eye of the Sea',
+	displayName:''+G.getName('civ')[0]+'olier\'ali ,Eye of the Sea',
 	desc:'[patron6] represents restraint and observation. @This patron also symbolizes cautioness and prudence. @Your [Wizard]s picking this patron want to mark that you cannot sometimes do something quickly... you just need to do it slowly and thoughtfully. Also [Wizard]s believe that [patron6,The Eye] will help [population,people] keep restraint and prevent obsession to appear in their hearts. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[5,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
