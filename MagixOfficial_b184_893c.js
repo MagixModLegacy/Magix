@@ -18771,7 +18771,7 @@ new G.Tech({
 	cost:{'culture':75,'faith':5,'insight':105},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron6':false,'patron8':false,'unknown patron':false},
 		effects:[
-		 {type:'function',func:function(){G.getDict('patron7').displayName=G.getName('civ')[0].toUpperCase + 'chirus the time watcher';}},
+		 {type:'function',func:function(){G.getDict('patron7').displayName=G.getName('civ')[0].toUpperCase() + 'chirus the time watcher';}},
 		],
 	category:'religion',chance:45,
     });
@@ -18783,7 +18783,7 @@ new G.Tech({
 	cost:{'culture':75,'faith':5,'insight':105},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron6':false,'patron7':false,'unknown patron':false},
 		effects:[
-		 {type:'function',func:function(){G.getDict('patron8').displayName=G.getName('civ')[0].toUpperCase + 'hzakilok the homepeace keeper';}},
+		 {type:'function',func:function(){G.getDict('patron8').displayName=G.getName('civ')[0].toUpperCase() + 'hzakilok the homepeace keeper';}},
 		],
 	category:'religion',chance:45,
     });
