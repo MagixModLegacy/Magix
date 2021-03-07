@@ -18686,74 +18686,114 @@ new G.Tech({
 	new G.Trait({
         name:'patron1',
 	displayName:'Aflamtnaja the Phoenix of Fire',
-	desc:'[patron1] represents flames and fires. @This patron also symbolizes fight and decisivness. @Your [Wizard]s and people picking this patron want to mark that their decisions are made with confidence. Also [Wizard]s believe that Phoenix will lead them to right paths of their lives. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	desc:'[patron1] represents flames and fires. @This patron also symbolizes fight and decisivness. @Your [Wizard]s and people picking this patron want to mark that their decisions are made with confidence. Also [Wizard]s believe that Phoenix will lead them to right paths of their lives. //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[0,32,'magixmod'],
-	cost:{'culture':75,'faith':5},
-        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false},
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
 		effects:[
 		 {type:'function',func:function(){G.getDict('patron1').displayName=G.getName('civ')[0].toUpperCase()+'flamtnaja the Phoenix of Fire';}},
 		],
-	category:'religion',chance:25,
+	category:'religion',chance:45,
     });
 	new G.Trait({
         name:'patron2',
 	displayName:'Wuraloik The Son of the Forest',
-	desc:'[patron2] represents nature and its flora. @This patron is also symbolizes calm and peace. @Your [Wizard]s and people picking this patron want to mark that peace has keys to fix a lot of troubles and no agression is needed to solve every problem. Also [Wizard]s believe that The Son created once true Oasis of Peace. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	desc:'[patron2] represents nature and its flora. @This patron is also symbolizes calm and peace. @Your [Wizard]s and people picking this patron want to mark that peace has keys to fix a lot of troubles and no agression is needed to solve every problem. Also [Wizard]s believe that The Son created once true Oasis of Peace. //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[1,32,'magixmod'],
-	cost:{'culture':75,'faith':5},
-        req:{'Wizardry':true,'patron1':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false},
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron1':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
 		effects:[
 		 {type:'function',func:function(){G.getDict('patron2').displayName=G.getName('civ')[0].toUpperCase()+'wuraloik The Son of the Forest';}},
 		],
-	category:'religion',chance:25,
+	category:'religion',chance:45,
     });
 	new G.Trait({
         name:'patron3',
 	displayName:'Rvikol The Guide of the Winds',
-	desc:'[patron3] represents winds and hurricanes. @This patron is also symbolizes time and impetuiosity. @Your [Wizard]s picking and sending their hopes to [patron3,Him] want to mark that each hard decision can be taken easily. Also [Wizard]s believe that one of [patron3,His] winds will blow their souls right to the Heaven preventing from being absorbed by darkness of Hell/Underworld. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	desc:'[patron3] represents winds and hurricanes. @This patron is also symbolizes time and impetuiosity. @Your [Wizard]s picking and sending their hopes to [patron3,Him] want to mark that each hard decision can be taken easily. Also [Wizard]s believe that one of [patron3,His] winds will blow their souls right to the Heaven preventing from being absorbed by darkness of Hell/Underworld. //Cult of that patron persists through ages. Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[2,32,'magixmod'],
-	cost:{'culture':75,'faith':5},
-        req:{'Wizardry':true,'patron2':false,'patron1':false,'patron4':false,'patron5':false,'patron6':false},
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron1':false,'patron4':false,'patron5':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
 		effects:[
-		 {type:'function',func:function(){G.getDict('patron3').displayName=G.getName('civ')[0].toUpperCase()+'rvikol The Guide of the Winds;}},
+		 {type:'function',func:function(){G.getDict('patron3').displayName=G.getName('civ')[0].toUpperCase()+'rvikol The Guide of the Winds';}},
 		],
-	category:'religion',chance:25,
+	category:'religion',chance:45,
     });
 	new G.Trait({
         name:'patron4',
 	displayName:'Uselatarraya the Dark Dragon',
-	desc:'[patron4] represents mysteries , secrets and insecurity. @This patron also symbolizes withdrawal and concealment. @Your [Wizard]s picking this patron want to mark that their lives are full of secrets and mysteries. Also [Wizard]s believe that [patron4,The Dragon] will protect their secrets from being leaked and will curse "the leakers". Are there any miserables? @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	desc:'[patron4] represents mysteries , secrets and insecurity. @This patron also symbolizes withdrawal and concealment. @Your [Wizard]s picking this patron want to mark that their lives are full of secrets and mysteries. Also [Wizard]s believe that [patron4,The Dragon] will protect their secrets from being leaked and will curse "the leakers". Are there any miserables? //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[3,32,'magixmod'],
-	cost:{'culture':75,'faith':5},
-        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron1':false,'patron5':false,'patron6':false},
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron1':false,'patron5':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
 		effects:[
 		 {type:'function',func:function(){G.getDict('patron4').displayName=G.getName('civ')[0].toUpperCase()+'uselatarraya the Dark Dragon';}},
 		],
-	category:'religion',chance:25,
+	category:'religion',chance:45,
     });
 	new G.Trait({
         name:'patron5',
 	displayName:'Takerus The Stormlord',
-	desc:'[patron5] represents precision and impulsivity. @This patron also symbolizes indigation and quick action. @Your [Wizard]s picking this patron want to mark that sometimes all of us need to perform a decision very, very quickly. Also [Wizard]s believe that [patron5,The Stormlord] will guide through [population,people] lives helping making decisions with His precision. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	desc:'[patron5] represents precision and impulsivity. @This patron also symbolizes indigation and quick action. @Your [Wizard]s picking this patron want to mark that sometimes all of us need to perform a decision very, very quickly. Also [Wizard]s believe that [patron5,The Stormlord] will guide through [population,people] lives helping making decisions with His precision. //Cult of that patron persists through ages.  @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[4,32,'magixmod'],
-	cost:{'culture':75,'faith':5},
-        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron1':false,'patron6':false},
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron1':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
 		effects:[
 		 {type:'function',func:function(){G.getDict('patron5').displayName=G.getName('civ')[0].toUpperCase()+'takerus The Stormlord';}},
 		],
-	category:'religion',chance:25,
+	category:'religion',chance:45,
     });
 	new G.Trait({
         name:'patron6',
 	displayName:'Kolier\'ali ,Eye of the Sea',
-	desc:'[patron6] represents restraint and observation. @This patron also symbolizes cautioness and prudence. @Your [Wizard]s picking this patron want to mark that you cannot sometimes do something quickly... you just need to do it slowly and thoughtfully. Also [Wizard]s believe that [patron6,The Eye] will help [population,people] keep restraint and prevent obsession to appear in their hearts. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+	desc:'[patron6] represents restraint and observation. @This patron also symbolizes cautioness and prudence. @Your [Wizard]s picking this patron want to mark that you cannot sometimes do something quickly... you just need to do it slowly and thoughtfully. Also [Wizard]s believe that [patron6,The Eye] will help [population,people] keep restraint and prevent obsession to appear in their hearts. //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
         icon:[5,32,'magixmod'],
-	cost:{'culture':75,'faith':5},
-        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false},
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron8':false,'patron7':false,'unknown patron':false},
 		effects:[
 		 {type:'function',func:function(){G.getDict('patron6').displayName=G.getName('civ')[0].toUpperCase()+'kolier\'ali ,Eye of the Sea';}},
 		],
-	category:'religion',chance:25,
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'unknown patron',
+	desc:'Unknown patron. You don\'t know who is he/she. @Maybe it is a group of spirits/demigods/semigods... @It is impossible to point what it represents. @Each [Wizard] would tell you different thing about it. //Cult of that unknown patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[6,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron7':false,'patron8':false,'patron6':false},
+	category:'religion',chance:70,
+    });
+	new G.Trait({
+        name:'patron7',
+	displayName:'Chirus the time watcher',
+	desc:'[patron7] represents time and passing. @This patron also symbolizes that things pass all the time. @Your [Wizard]s picking this patron want to mark that they realize it. Also [Wizard]s believe that [patron7,The Time Watcher] will prolong [population,people] lives. //<b>Carpe diem!</b> //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[8,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron6':false,'patron8':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron7').displayName=G.getName('civ')[0].toUpperCase + 'chirus the time watcher';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'patron8',
+	displayName:'Hzakilok the homepeace keeper',
+	desc:'[patron8] is a patron of [housing,Houses]. @This patron also symbolizes that everywhere you can feel good but the best place is still your own home. @Your [Wizard]s picking this patron want to mark that their homeland can also be a peaceful place. Also [Wizard]s believe that [patron8,The Homepeace keeper] will protect [housing,Houses] from dark powers. //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[7,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron6':false,'patron7':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron8').displayName=G.getName('civ')[0].toUpperCase + 'hzakilok the homepeace keeper';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'nonpatronage',
+	desc:'Seems like your tribe want to live without gods sons/daughters . <b>The reasons might be:</b> @First decision that has been spread through tribe @Fear @Insecurity @Their religion say nothing about patronage //Through rest of the run [Wizard]s and eventually [population,people] will not pick/create their own Patron. @<font color="fuschia">Patron if chosen by [population,people] does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[9,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron7':false,'patron8':false,'patron6':false,'unknown patron':false},
+	category:'religion',chance:80,
     });
 	/*=====================================================================================
 	POLICIES
