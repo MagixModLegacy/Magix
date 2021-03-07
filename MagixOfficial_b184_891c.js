@@ -18690,6 +18690,9 @@ new G.Tech({
         icon:[0,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron1').displayName=G.getName('civ')[0].toUpperCase()+'flamtnaja the Phoenix of Fire';}},
+		],
 	category:'religion',chance:25,
     });
 	new G.Trait({
@@ -18699,6 +18702,9 @@ new G.Tech({
         icon:[1,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron1':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron2').displayName=G.getName('civ')[0].toUpperCase()+'wuraloik The Son of the Forest';}},
+		],
 	category:'religion',chance:25,
     });
 	new G.Trait({
@@ -18708,6 +18714,9 @@ new G.Tech({
         icon:[2,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron1':false,'patron4':false,'patron5':false,'patron6':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron3').displayName=G.getName('civ')[0].toUpperCase()+'rvikol The Guide of the Winds;}},
+		],
 	category:'religion',chance:25,
     });
 	new G.Trait({
@@ -18717,6 +18726,9 @@ new G.Tech({
         icon:[3,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron1':false,'patron5':false,'patron6':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron4').displayName=G.getName('civ')[0].toUpperCase()+'uselatarraya the Dark Dragon';}},
+		],
 	category:'religion',chance:25,
     });
 	new G.Trait({
@@ -18726,6 +18738,9 @@ new G.Tech({
         icon:[4,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron1':false,'patron6':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron5').displayName=G.getName('civ')[0].toUpperCase()+'takerus The Stormlord';}},
+		],
 	category:'religion',chance:25,
     });
 	new G.Trait({
@@ -18735,6 +18750,9 @@ new G.Tech({
         icon:[5,32,'magixmod'],
 	cost:{'culture':75,'faith':5},
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron6').displayName=G.getName('civ')[0].toUpperCase()+'kolier\'ali ,Eye of the Sea';}},
+		],
 	category:'religion',chance:25,
     });
 	/*=====================================================================================
