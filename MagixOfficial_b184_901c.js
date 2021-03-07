@@ -2848,7 +2848,7 @@ G.props['fastTicksOnResearch']=150;
 	
 		G.funcs['new game blurb']=function()
 	{   
-			
+		document.title='In the start menu - NeverEnding Legacy';
 		var str=
 		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
 		'<b>Your tribe :</b><div class="thingBox">'+
@@ -4757,9 +4757,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			toParse+='Patron of the civilization: <b>'+text+'</b>//';
 			}
 		}
-		else toParse+='All '+G.getName('inhabs')+' have died out.';
+		else toParse+='All '+G.getName('inhabs')+' have died out.<br>';
 		if(G.has('Wizardry') && (G.has('patron1') || G.has('patron2') || G.has('patron3') || G.has('patron4') || G.has('patron5') || G.has('patron6') || G.has('patron7') || G.has('patron8') || G.has('unknown patron') || G.has('nonpatronage'))){
-			if(G.has('nonpatronage') && G.getRes('population').amount==0)toParse+='They had no patron';
+			if(G.has('nonpatronage') && G.getRes('population').amount==0)toParse+='They had no patron';else if(G.getRes('population').amount==0)toParse+='They had a patron:';
 			if(G.hasNot('nonpatronage')){if(G.has('patron1'))toParse+='<font color="orange">Fire:'+G.getTrait('patron1').displayName+'</font>';else if(G.has('patron2'))toParse+='<font color="lime">Nature:'+G.getTrait('patron2').displayName+'</font>';else if(G.has('patron3'))toParse+='<font color="#bbbbff">Wind:'+G.getTrait('patron3').displayName+'</font>';else if(G.has('patron4'))toParse+='<font color="purple">Dark:'+G.getTrait('patron4').displayName+'</font>';else if(G.has('patron5'))toParse+='<font color="yellow">Lightning:'+G.getTrait('patron5').displayName+'</font>';else if(G.has('patron6'))toParse+='<font color="#6699FF">Water:'+G.getTrait('patron6').displayName+'</font>';else if(G.has('patron7'))toParse+='<font color="white">Time:'+G.getTrait('patron7').displayName+'</font>';else if(G.has('patron8'))toParse+='<font color="#FF9960">Homepeace:'+G.getTrait('patron8').displayName+'</font>';else if(G.has('unknown patron'))toParse+='Unknown'</font>'/};
 		}
 		str+=G.parse(toParse);
