@@ -1357,7 +1357,7 @@ func:function(){
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
-			civ:0
+			civ:0,plural:false
 	});
 		new G.Achiev({
 		tier:4,
@@ -18799,6 +18799,17 @@ new G.Tech({
         req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron7':false,'patron8':false,'patron6':false,'unknown patron':false},
 	category:'religion',chance:80,
     });
+	new G.Trait({
+		name:'t8',
+		displayName:'Buried',
+		desc:'You are during Buried trial. After you succesfully finish this trial you will no longer be able to rerun it.',
+		icon:[22,25,'magixmod',1,22,'magixmod'],
+		req:{'tribalism':false,'trial':true},
+		cost:{},
+			effects:[
+			{type:'provide res',what:{'spirituality':3,'faith':3}},
+		],
+	});
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
