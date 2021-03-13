@@ -6,7 +6,7 @@ Scripts and the mod code is a private own of mod creator.
 # Magic in the game
 But you will need to do something before you will unlock it.
 
-# Harder gameplay but interesting
+# Harder gameplay but more interesting
 Yes it was too easy. Since I made the mod it was 2k19 i noticed that increased difficulty/making normal things harder to unlock makes this game more interesting
 and enjoyable
 
