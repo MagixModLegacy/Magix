@@ -19650,7 +19650,7 @@ new G.Tech({
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
-})}}*/
+})}}
 				],
 	});
 	new G.Policy({
