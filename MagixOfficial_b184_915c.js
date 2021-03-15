@@ -4585,7 +4585,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		
 		if (G.on)
 		{
-			if(G.day==5 && G.year==0){G.gain('adult',G.getRes('sick').amount);G.lose('sick',G.getRes('sick').amount)};
+			if(G.day==5 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi)};
 			if(G.fps>30)G.fastTicks--;
 			
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
