@@ -4585,7 +4585,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		
 		if (G.on)
 		{
-			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi)};
+			
 			if(G.fps>30)G.fastTicks--;
 			
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
@@ -5035,6 +5035,7 @@ G.writeMSettingButton=function(obj)
 		icon:[0,3],
 		tick:function(me,tick)
 		{
+			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi)};//sickbois say goodbai
 			//this.displayName=G.getName('inhabs');
 			
 			if (me.amount>0)
