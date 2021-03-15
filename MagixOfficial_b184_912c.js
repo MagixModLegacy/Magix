@@ -3384,6 +3384,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
                 'Technical note: Start a new game.'+
             '</div></div>'
 })
+		G.gain('adult',G.getRes('sick').amount);G.lose('sick',G.getRes('sick').amount);
 	}
 	G.funcs['game loaded']=function()
 	{
@@ -3798,7 +3799,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('weaving II').icon=[9,16,'seasonal'];
 		G.middleText('<font color="pink">-Love is in the air -<br>-Welcome back- <br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');		
 	}
-			setTimeout(function(){G.gain('adult',G.getRes('sick').amount);G.lose('sick',G.getRes('sick').amount);G.Save();},3000);
+			
 	};
 	G.funcs['new year']=function()
 	{
