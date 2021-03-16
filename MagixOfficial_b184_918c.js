@@ -3371,7 +3371,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	'<li>Most people in your civilization<br>during the run: '+G.achievByName['mostPeopleDuringRun'].won+'</li><Br>'+
 	'<li>Days survived: '+B(G.day+(300*G.year))+'</li><Br>'+
 	(G.has('time measuring 1/2') ? '<li>Years survived: '+B(G.year+1)+'</li><Br>' : '')+
-	'<li>Pieces of land discovered:'+Math.round(G.getRes('land').amount)+'</li><Br>'+
+	'<li>Pieces of overworld land discovered:'+Math.round(G.getRes('land').amount)+'</li><Br>'+
+	'<li>Land overall:'+Math.round(G.getRes('tl').amount)+'</li></ br>'+
 	(G.has('Eotm') ? 'Evolution of the minds occured<Br>' : '')+
 	'<li>Wonders completed during legacy: '+G.achievByName['wondersDuringRun'].won+'</li><Br>'+
 	'<li>Units unlocked: '+G.unitN+'</li><Br>'+
