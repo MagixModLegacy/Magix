@@ -17315,7 +17315,8 @@ new G.Tech({
 		req:{'tribalism':false},
 		cost:{},
 		effects:[
-			{type:'function',func:function(){G.getDict('monument-building').desc='@unlocks wonder depending on Trial you are currently in';document.title='Trial active - NeverEnding Legacy'}},
+			{type:'function',func:function(){
+				G.getDict('monument-building').desc='@unlocks wonder depending on Trial you are currently in';document.title='Trial active - NeverEnding Legacy'}},
 		],
 	});
 	new G.Trait({
@@ -18811,6 +18812,14 @@ new G.Tech({
 		cost:{},
 			effects:[
 			{type:'provide res',what:{'spirituality':3,'faith':3}},
+				{type:'function',func:function(){ //BECAUSE DURING BURIED YOU HAVE WAY MORE HOUSING BUT IT DECAYS
+					G.getDict('house').desc='@provides 25 [housing]<>A sturdy home built to last.';
+					G.getDict('hovel').desc='@provides 20 [housing]<>A simple home for a family of villagers.';
+					G.getDict('hut').desc='@provides 12 [housing]<>Small dwelling built out of hardened mud and branches.';
+					G.getDict('mud shelter').desc='@provides 8 [housing]<>Basic, frail dwelling in which a small family can live.';
+					G.getDict('branch shelter').desc='@provides 8 [housing]<>Basic, very frail dwelling in which a small family can live.';
+					G.getDict('bamboo hut').desc='@provides 15 [housing]<>Small dwelling with roof out of branches and walls out of [Bamboo].';
+				}},
 		],
 	});
 	/*=====================================================================================
