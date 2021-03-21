@@ -1759,6 +1759,7 @@ if (!document.getElementById(cssId))
 		if (me.wideIcon && allowWide) str+=' wide3'; //default 72x24 for wonders
 		if (me.twoxtwoIcon && allowWide) str+=' widenhigh1'; //48x48
 		if (me.threexthreeIcon && allowWide) str+=' widenhigh2'; //72x72
+		if (me.uicon) str+='utilframed'; //24x24 with special frame utility
 		else str+=' wide1'; //default 24x24 for most of things
 		return str;
 	}
@@ -19181,7 +19182,7 @@ new G.Tech({
 		new G.Policy({
 		name:'Toggle SFX',
 		desc:'Disable/Enable sounds from <li>technology: obtaining, rerolling choices.</li><li>Trait obtaining</li><li>Game over</li><li>Obtaining an Emblem</li><li>Switching policy modes</li><li>Finishing a wonder</li><li>Ascending by wonder</li><li>Switching between tabs</li><li>Special events</li>',
-		icon:[29,0,'magixmod'],
+		uicon:[29,0,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{},
@@ -19190,7 +19191,7 @@ new G.Tech({
 		new G.Policy({
 		name:'Theme changer',
 		desc:'Switch theme if you wish',
-		icon:[28,21,'magixmod'],
+		uicon:[28,21,'magixmod'],
 		cost:{},
 		req:{'life has its theme':true},
 		modes:{
