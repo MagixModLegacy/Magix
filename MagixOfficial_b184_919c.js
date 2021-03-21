@@ -705,8 +705,7 @@ func:function(){
 		/////////
 	//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
 //===========================
-	var names=G.names;
-	names.push.patron='';
+	G.maxMessages=25
 	if(document.baseURI.includes('dashnet.org/legacy/')){
 	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
 	document.getElementsByTagName('div')[4].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
@@ -18823,6 +18822,19 @@ new G.Tech({
 				}},
 		],
 	});
+	new G.Tech({
+        name:'message memory',
+	desc:'Message history increased from 25 to 50. <>Later you can unlock message filters.',
+        icon:[35,13,'magixmod'],
+	cost:{'culture':15,'insight':5},
+        req:{'oral tradition':true,'caligraphy':true},
+	category:'tier1',chance:7,
+	effects:[
+				{type:'function',func:function(){ //BECAUSE DURING BURIED YOU HAVE WAY MORE HOUSING BUT IT DECAYS
+					G.maxMessages=50;	
+				}},
+		],
+    });
 	/*=====================================================================================
 	POLICIES
 	=======================================================================================*/
