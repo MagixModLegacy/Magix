@@ -1759,7 +1759,7 @@ if (!document.getElementById(cssId))
 		if (me.wideIcon && allowWide) str+=' wide3'; //default 72x24 for wonders
 		if (me.twoxtwoIcon && allowWide) str+=' widenhigh1'; //48x48
 		if (me.threexthreeIcon && allowWide) str+=' widenhigh2'; //72x72
-		if (me.uicon) str+='utilframed'; //24x24 with special frame utility
+		if (me.uicon && allowWide) str+='utilframed'; //24x24 with special frame utility
 		else str+=' wide1'; //default 24x24 for most of things
 		return str;
 	}
@@ -19191,6 +19191,7 @@ new G.Tech({
 		new G.Policy({
 		name:'Theme changer',
 		desc:'Switch theme if you wish',
+		icon:[28,21,'magixmod'],
 		uicon:[28,21,'magixmod'],
 		cost:{},
 		req:{'life has its theme':true},
