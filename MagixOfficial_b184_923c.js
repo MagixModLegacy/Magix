@@ -9919,7 +9919,7 @@ if (!document.getElementById(cssId))
 		name:'gatherer',
 		startWith:5,
 		desc:'@forages for basic [food], [water] and [archaic building materials,Various interesting things]<>A vital part of an early tribe, [gatherer]s venture in the wilderness to gather food, wood, and other things of note.',
-		icon:[0,2],
+		uicon:[0,2],
 		cost:{},
 		use:{'worker':1},
 		//upkeep:{'food':0.2},
