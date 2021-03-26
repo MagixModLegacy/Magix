@@ -2258,7 +2258,7 @@ G.setPolicyMode=function(me,mode)
 								var str='<div class="info">'+G.parse(me.desc);
 								//if (!isEmpty(me.use)) str+='<div class="divider"></div><div class="fancyText par">Uses : '+G.getUseString(me.use,true,true)+' per '+proto.name+'</div>';
 								//if (target.amount>0 && target.mode.num!=me.num && !isEmpty(uses)) str+='<div class="divider"></div><div class="fancyText par">Needs '+G.getUseString(uses,true,false,target.amount)+' to switch</div>';
-								if(me.policy.category!='mag')str+='<div><b>Changing to this mode will cost you </b>'+G.getCostString(proto.cost,true,false,1)+'.</div></div>';
+								if(G.getPolicy(me).category!='mag')str+='<div><b>Changing to this mode will cost you </b>'+G.getCostString(proto.cost,true,false,1)+'.</div></div>';
 								return str;
 							};}(mode,me),{offY:-8});
 						}
