@@ -13992,8 +13992,8 @@ getCosts:function()
 		onBuy:function(what,index)
 		{
 			G.fastTicks+=G.props['fastTicksOnResearch'];
-			if(G.checkPolicy('research messages')=='on'){
 				G.gainTech(what);
+			if(G.checkPolicy('research messages')=='on'){
 				var randomMessage=Math.floor(Math.random()*4)
 				if(randomMessage>=0 && randomMessage<=1){
 				G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
