@@ -4593,9 +4593,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				//show a random atmospheric message occasionally on new days
 				//we pick one of the first 5 lines in the array, then push that line back at the end; this means we get a semi-random stream of lines with no frequent repetitions
 				var i=Math.floor(Math.random()*5);
+				if(G.checkPolicy('new day lines')=='on'){
 				var msg=G.props['new day lines'].splice(i,1)[0];
 				G.props['new day lines'].push(msg);
 				G.Message({text:msg});
+				}
 			}
 			
 			//possibility to gain random traits everyday
@@ -4610,7 +4612,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 						{
 							G.doCost(me.cost,1);
 							G.gainTrait(me);
-							if(G.checkPolicy('obtaining a trait message')=='on'){
+							if(G.checkPolicy('obtaining a trait messages')=='on'){
 							switch(me.category){
 								case "knowledge":G.Message({type:'important tall',text:'Your people have adopted the knowledge: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "devils":G.Message({type:'bad tall',text:'Devils brought to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
