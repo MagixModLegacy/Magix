@@ -2923,6 +2923,7 @@ G.props['fastTicksOnResearch']=150;
 		if (G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.hasNot('underworld\'s ascendant')){
 G.gainTech(G.techByName['underworld\'s ascendant']);
 };
+		if(G.resets>3)G.gainTech(G.techByName['message filtering']);
 		if (G.achievByName['Experienced'].won > 0 && G.hasNot('<font color="lime">Fruit supplies</font>')){G.gainTech(G.techByName['<font color="lime">Fruit supplies</font>']);}
 		 if (G.achievByName['Extremely smart'].won > 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('life has its theme')) {
       G.gainTech(G.techByName['life has its theme']);
