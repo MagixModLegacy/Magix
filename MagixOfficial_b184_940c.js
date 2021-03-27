@@ -4610,7 +4610,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 						{
 							G.doCost(me.cost,1);
 							G.gainTrait(me);
-							if(G.policy('obtaining a trait message')=='on'){
+							if(G.checkPolicy('obtaining a trait message')=='on'){
 							switch(me.category){
 								case "knowledge":G.Message({type:'important tall',text:'Your people have adopted the knowledge: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "devils":G.Message({type:'bad tall',text:'Devils brought to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
