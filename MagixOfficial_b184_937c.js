@@ -19832,7 +19832,7 @@ new G.Tech({
 	new G.Policy({
 		name:'research messages',
 		desc:'Disable/Enable messages that inform you what you have just researched.',
-		icon:[14,32,'magixmod'],
+		icon:[15,32,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{'message filtering':true},
@@ -19841,7 +19841,7 @@ new G.Tech({
 	new G.Policy({
 		name:'obtaining a trait messages',
 		desc:'Disable/Enable messages that inform you about trait your people have just adopted.',
-		icon:[15,32,'magixmod'],
+		icon:[16,32,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{'message filtering':true},
@@ -19850,7 +19850,7 @@ new G.Tech({
 	new G.Policy({
 		name:'seasonal loots messages',
 		desc:'Disable/Enable messages that inform you what you looted during some season for example during Easter.',
-		icon:[16,32,'magixmod'],
+		icon:[17,32,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{'message filtering':true},
@@ -19859,7 +19859,7 @@ new G.Tech({
 	new G.Policy({
 		name:'Disease messages',
 		desc:'Disable/Enable messages that inform you how many [population,people] have become [sick]. This also disables infos about recovered [sick] people.',
-		icon:[17,32,'magixmod'],
+		icon:[18,32,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{'message filtering':true},
@@ -19868,7 +19868,7 @@ new G.Tech({
 	new G.Policy({
 		name:'Tutorial messages',
 		desc:'Disable/Enable tutorial messages.',
-		icon:[18,32,'magixmod'],
+		icon:[19,32,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{'message filtering':true},
@@ -19877,7 +19877,7 @@ new G.Tech({
 	new G.Policy({
 		name:'Story messages',
 		desc:'Disable/Enable story messages. Those look differently than [new day lines]. They appear while researching. Having more and more techs will show next parts of that.',
-		icon:[19,32,'magixmod'],
+		icon:[30,32,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{'message filtering':true},
