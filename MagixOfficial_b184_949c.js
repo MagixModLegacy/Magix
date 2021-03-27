@@ -5326,7 +5326,7 @@ G.writeMSettingButton=function(obj)
 						var n=randomFloor(G.getRes('elder').amount*0.00003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
 						if(day+leap>=40 && day+leap<=46 && G.has('parental love'))G.gain('love xp',n/2,'birth');
 						G.getRes('born this year').amount+=born;
-						if(G.checkPolicy('birth messages')){
+						if(G.checkPolicy('birth messages')=='on'){
 						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});}
 					}
 					
@@ -5352,8 +5352,9 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('sick',changed,'disease');
-						if(G.checkPolicy('disease messages')){
-						if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});};
+						if(G.checkPolicy('disease messages')=='on'){
+							if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});
+						};
 						}
 					//sickness : death and recovery
 					var sickMortality=0.005;
@@ -5368,8 +5369,9 @@ G.writeMSettingButton=function(obj)
 					var changed=0;
 					var n=G.lose('sick',randomFloor(Math.random()*G.getRes('sick').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
 					G.gain('happiness',changed*10,'recovery');
-					if(G.checkPolicy('disease messages')){
-					if (changed>0) G.Message({type:'good',mergeId:'sickRecovered',textFunc:function(args){return B(args.n)+' sick '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});};
+					if(G.checkPolicy('disease messages')=='on'){
+					if (changed>0) G.Message({type:'good',mergeId:'sickRecovered',textFunc:function(args){return B(args.n)+' sick '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});
+					};
 					
 					//wounds
 					var toChange=0.00003;
@@ -5385,7 +5387,9 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('wounded',changed,'accident');
-						if (changed>0) G.Message({type:'bad',mergeId:'gotWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' got wounded.';},args:{n:changed},icon:[7,3]});
+						if(G.checkPolicy('accident messages')=='on'){
+							if (changed>0) G.Message({type:'bad',mergeId:'gotWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' got wounded.';},args:{n:changed},icon:[7,3]});
+						};
 					}
 					//wounds : death and recovery
 					var woundMortality=0.005;
@@ -5400,7 +5404,9 @@ G.writeMSettingButton=function(obj)
 					var changed=0;
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
 					G.gain('happiness',changed*10,'recovery');
+					if(G.checkPolicy('accident messages')=='on'){
 					if (changed>0) G.Message({type:'good',mergeId:'woundedRecovered',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' recovered from their wounds.';},args:{n:changed},icon:[4,3]});
+					}
 				}
 			}
 			else if (G.T>0) {G.GameOver();}
@@ -8652,6 +8658,7 @@ if (!document.getElementById(cssId))
 			
 			if(G.policy.length >= 15 && !pol15 && G.policy.length <= 18){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
 			}
+			if(G.checkPolicy('story messages')=='on'){
 			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
 				G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
@@ -8685,6 +8692,7 @@ if (!document.getElementById(cssId))
 			if (G.has('burial') && !burystory && !G.has('monument-building')){
 			G.Message({type:'important',text:'The view of unburied corpses fears you and your settlers. Now they know that to calm down people you can just bury it.',icon:[13,2]})
 				burystory=true
+			}
 			}
 				if(G.checkPolicy('tutorial messages')=='on'){
 			if(G.has('fire-making') && !firestory && !G.has('construction')){
@@ -8770,9 +8778,11 @@ if (!document.getElementById(cssId))
 			G.Message({type:'tutorial',text:'Next part of doctrine is a trait. You don\'t have to roll new researches. All you should do now is waiting and no spending any essentials, because next part of doctrine despite it is a Trait but it is not cheap thing. Even numbered stages are traits while odd numbered stages are represented as researches.',icon:[32,27,'magixmod']})
 				doctip=true
 			}}}
+			if(G.checkPolicy('story messages')=='on'){
 			if(G.has('Mo\' beauty') && !mobeauty && G.hasNot('Doctrine of the dark wormhole 5/5')){
 			G.Message({type:'story2',text:'Oh. <b>Mo\' beauty</b> made cities look much, much nicer. Lanterns, flower decors everywhere. Sometimes even <b>tools</b> (not joking now) have some shapes,patterns carved. And it is not any festival. You wander and even some huts get even more beautiful than ever.'})
 			mobeauty=true
+			}
 		}
 		},
 		category:'flowersanddyes',
@@ -19890,6 +19900,15 @@ new G.Tech({
 		name:'story messages',
 		desc:'Disable/Enable story messages. Those look differently than [new day lines]. They appear while researching. Having more and more techs will show next parts of that.',
 		icon:[20,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'accident messages',
+		desc:'Disable/Enable messages that inform you how many [population,people] have become [wounded]. This also disables infos about recovered [wounded] people.',
+		icon:[21,32,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{'message filtering':true},
