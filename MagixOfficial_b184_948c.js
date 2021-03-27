@@ -5326,7 +5326,8 @@ G.writeMSettingButton=function(obj)
 						var n=randomFloor(G.getRes('elder').amount*0.00003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
 						if(day+leap>=40 && day+leap<=46 && G.has('parental love'))G.gain('love xp',n/2,'birth');
 						G.getRes('born this year').amount+=born;
-						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});
+						if(G.checkPolicy('birth messages')){
+						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});}
 					}
 					
 					//health (diseases and wounds)
@@ -5351,8 +5352,9 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('sick',changed,'disease');
-						if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});
-					}
+						if(G.checkPolicy('disease messages')){
+						if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});};
+						}
 					//sickness : death and recovery
 					var sickMortality=0.005;
 					var changed=0;
@@ -5366,7 +5368,8 @@ G.writeMSettingButton=function(obj)
 					var changed=0;
 					var n=G.lose('sick',randomFloor(Math.random()*G.getRes('sick').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
 					G.gain('happiness',changed*10,'recovery');
-					if (changed>0) G.Message({type:'good',mergeId:'sickRecovered',textFunc:function(args){return B(args.n)+' sick '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});
+					if(G.checkPolicy('disease messages')){
+					if (changed>0) G.Message({type:'good',mergeId:'sickRecovered',textFunc:function(args){return B(args.n)+' sick '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});};
 					
 					//wounds
 					var toChange=0.00003;
@@ -5390,6 +5393,7 @@ G.writeMSettingButton=function(obj)
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*woundMortality),'wounds');G.gain('corpse',n,'wounds');changed+=n;
 					G.gain('happiness',-changed*15*deathUnhappinessMult,'death');
 					G.getRes('died this year').amount+=changed;
+					
 					if (changed>0) G.Message({type:'bad',mergeId:'diedWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from their wounds.';},args:{n:changed},icon:[5,4]});
 					
 					var sickHealing=0.005;
