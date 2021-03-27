@@ -8720,6 +8720,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'tutorial',text:'You now can control food and water rations. Your people seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may later become the major one if you will ignore this.',icon:[4,28,'magixmod']})
 					rofpopup=true
 				}
+			if(G.checkPolicy('tutorial messages')){
 			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
 				G.Message({type:'tutorial',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover secrets hidden in new territory. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
 					explorepop=true
@@ -8761,7 +8762,7 @@ if (!document.getElementById(cssId))
 			if(G.has('Doctrine of the dark wormhole 1/5') && !doctip && G.hasNot('Doctrine of the dark wormhole 2/5')){
 			G.Message({type:'tutorial',text:'Next part of doctrine is a trait. You don\'t have to roll new researches. All you should do now is waiting and no spending any essentials, because next part of doctrine despite it is a Trait but it is not cheap thing. Even numbered stages are traits while odd numbered stages are represented as researches.',icon:[32,27,'magixmod']})
 				doctip=true
-			}
+			}}
 			if(G.has('Mo\' beauty') && !mobeauty && G.hasNot('Doctrine of the dark wormhole 5/5')){
 			G.Message({type:'story2',text:'Oh. <b>Mo\' beauty</b> made cities look much, much nicer. Lanterns, flower decors everywhere. Sometimes even <b>tools</b> (not joking now) have some shapes,patterns carved. And it is not any festival. You wander and even some huts get even more beautiful than ever.'})
 			mobeauty=true
@@ -19860,7 +19861,7 @@ new G.Tech({
 		category:'mag',
 	});
 	new G.Policy({
-		name:'Disease messages',
+		name:'disease messages',
 		desc:'Disable/Enable messages that inform you how many [population,people] have become [sick]. This also disables infos about recovered [sick] people.',
 		icon:[18,32,'magixmod'],
 		cost:{},
@@ -19869,7 +19870,7 @@ new G.Tech({
 		category:'mag',
 	});
 	new G.Policy({
-		name:'Tutorial messages',
+		name:'tutorial messages',
 		desc:'Disable/Enable tutorial messages.',
 		icon:[19,32,'magixmod'],
 		cost:{},
@@ -19878,7 +19879,7 @@ new G.Tech({
 		category:'mag',
 	});
 	new G.Policy({
-		name:'Story messages',
+		name:'story messages',
 		desc:'Disable/Enable story messages. Those look differently than [new day lines]. They appear while researching. Having more and more techs will show next parts of that.',
 		icon:[20,32,'magixmod'],
 		cost:{},
