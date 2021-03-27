@@ -3942,6 +3942,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					audio.play(); 
 			}
 			////STORYLINE////
+			if(G.checkPolicy('story messages')=='on'){
 			if(G.techN >= 25 && G.techN <=34 && !st1){
 				G.Message({type:'story1',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
 				st1=true
@@ -4007,7 +4008,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				G.Message({type:'story1',text:'Their creativity has no limits... definitely.',icon:[31,30,'magixmod']});
 				st15=true
 			}
-		}
+		}}
 		if(G.has('t2')){
 			if(G.getRes('population').amount>=Math.round(125-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))){
 				var popinfo=Math.round(125-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))
@@ -13991,16 +13992,17 @@ getCosts:function()
 		onBuy:function(what,index)
 		{
 			G.fastTicks+=G.props['fastTicksOnResearch'];
-			
-			G.gainTech(what);
-			var randomMessage=Math.floor(Math.random()*4)
-			if(randomMessage>=0 && randomMessage<=1){
-			G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
-			}else if(randomMessage>1 && randomMessage<=2){
-			G.Message({type:'good tall',text:'Your people have learnt <b>'+what.displayName+'</b>.',icon:what.icon})
-			}else if(randomMessage>2 && randomMessage<=4){
-			G.Message({type:'good tall',text:'Your people have acknowledged with <b>'+what.displayName+'</b>.',icon:what.icon})
-			};
+			if(G.checkPolicy('research messages')=='on'){
+				G.gainTech(what);
+				var randomMessage=Math.floor(Math.random()*4)
+				if(randomMessage>=0 && randomMessage<=1){
+				G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
+				}else if(randomMessage>1 && randomMessage<=2){
+				G.Message({type:'good tall',text:'Your people have learnt <b>'+what.displayName+'</b>.',icon:what.icon})
+				}else if(randomMessage>2 && randomMessage<=4){
+				G.Message({type:'good tall',text:'Your people have acknowledged with <b>'+what.displayName+'</b>.',icon:what.icon})
+				};
+			}
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseOption-'+index+'-'+this.id),l('techBox').children[0]);
 			l('techBox').children[0].classList.add('popIn');
