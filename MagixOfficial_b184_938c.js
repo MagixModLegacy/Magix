@@ -19877,7 +19877,7 @@ new G.Tech({
 	new G.Policy({
 		name:'Story messages',
 		desc:'Disable/Enable story messages. Those look differently than [new day lines]. They appear while researching. Having more and more techs will show next parts of that.',
-		icon:[30,32,'magixmod'],
+		icon:[20,32,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{'message filtering':true},
