@@ -4610,6 +4610,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 						{
 							G.doCost(me.cost,1);
 							G.gainTrait(me);
+							if(G.policy('obtaining a trait message')=='on'){
 							switch(me.category){
 								case "knowledge":G.Message({type:'important tall',text:'Your people have adopted the knowledge: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "devils":G.Message({type:'bad tall',text:'Devils brought to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
@@ -4618,7 +4619,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 								case "short":G.Message({type:'important tall',text:'Your people have adopted the <u>short-term</u> trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
 								case "long":G.Message({type:'important tall',text:'Your people have adopted the <u>long-term</u> trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
 								default:G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
-							}
+							}}
 							if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 							{
 								var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTrait.mp3');
