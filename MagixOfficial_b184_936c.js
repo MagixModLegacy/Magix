@@ -18837,9 +18837,9 @@ new G.Tech({
     });
 	new G.Tech({
         name:'message filtering',
-	desc:'Message history increased from 25 to 50. <>Later you can unlock message filters.',
-        icon:[12,32,'magixmod'],
-        req:{'tribalism':false,'caligraphy':true},
+	desc:'Via policy tab you can specify now what kind of messages you want to see in right-side panel of the game. However you won\'t be able to disable raports/[thief] inbound warning/(TBA)Catastrophe message/Anything related to current [trial].',
+        icon:[11,32,'magixmod'],
+        req:{'tribalism':false},
 	category:'tier1',chance:7,
     });
 	/*=====================================================================================
@@ -19801,6 +19801,87 @@ new G.Tech({
 		startMode:'off',
 		req:{'ritualism':true,'globetrottering':true},
 		category:'faith',
+	});
+	new G.Policy({
+		name:'birth messages',
+		desc:'Disable/Enable messages informing that some [baby,babies] has been born in your civilization.',
+		icon:[12,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'death messages',
+		desc:'Disable/Enable messages informing that some people have died. <>Note: It will disable ANY death messages regardless of reason of people\'s death.',
+		icon:[13,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'new day lines',
+		desc:'Disable/Enable new day lines. Those are atmospheric messages written with darker text.',
+		icon:[14,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'research messages',
+		desc:'Disable/Enable messages that inform you what you have just researched.',
+		icon:[14,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'obtaining a trait messages',
+		desc:'Disable/Enable messages that inform you about trait your people have just adopted.',
+		icon:[15,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'seasonal loots messages',
+		desc:'Disable/Enable messages that inform you what you looted during some season for example during Easter.',
+		icon:[16,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'Disease messages',
+		desc:'Disable/Enable messages that inform you how many [population,people] have become [sick]. This also disables infos about recovered [sick] people.',
+		icon:[17,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'Tutorial messages',
+		desc:'Disable/Enable tutorial messages.',
+		icon:[18,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'Story messages',
+		desc:'Disable/Enable story messages. Those look differently than [new day lines]. They appear while researching. Having more and more techs will show next parts of that.',
+		icon:[19,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
 	});
 	/*=====================================================================================
 	LANDS
