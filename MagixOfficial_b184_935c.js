@@ -4752,7 +4752,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var text='unknown';if (stat<=-200) text='dreadful'; else if (stat<=-100) text='sickly'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='good'; else if (stat<=200) text='gleaming'; else if (stat>=200) text='examplary';
 			toParse+='Health : <b>'+text+'</b>//';
 			var stat=G.techN;
-			var text='unknown';if (stat<=25) text='pre-prehistoric';else if (stat<=50) text='prehistoric'; else if (stat<=100) text='skilled'; else if (stat<=170) text='decent technologically'; else if (stat<=240) text='expanded'; else if (stat<=325) text='advanced'; else if (stat<=400) text='modern'; else if (stat<=500) text='truly advanced'; else if (stat>=500) text='most advanced';
+			var text='unknown';if (stat<=28) text='pre-prehistoric';else if (stat<=50) text='prehistoric'; else if (stat<=100) text='skilled'; else if (stat<=170) text='decent technologically'; else if (stat<=240) text='expanded'; else if (stat<=325) text='advanced'; else if (stat<=400) text='modern'; else if (stat<=500) text='truly advanced'; else if (stat>=500) text='most advanced';
 			toParse+='Technological stage: <b>'+text+'</b>//';
 			if(G.has('Wizardry')){
 				var text='None';if(G.has('patron1'))text='<font color="orange">Fire:'+G.getTrait('patron1').displayName+'</font>';else if(G.has('patron2'))text='<font color="lime">Nature:'+G.getTrait('patron2').displayName+'</font>';else if(G.has('patron3'))text='<font color="#bbbbff">Wind:'+G.getTrait('patron3').displayName+'</font>';else if(G.has('patron4'))text='<font color="purple">Dark:'+G.getTrait('patron4').displayName+'</font>';else if(G.has('patron5'))text='<font color="yellow">Lightning:'+G.getTrait('patron5').displayName+'</font>';else if(G.has('patron6'))text='<font color="#6699FF">Water:'+G.getTrait('patron6').displayName+'</font>';else if(G.has('patron7'))text='<font color="white">Time:'+G.getTrait('patron7').displayName+'</font>';else if(G.has('patron8'))text='<font color="#FF9960">Homepeace:'+G.getTrait('patron8').displayName+'</font>';else if(G.has('unknown patron'))text='Unknown</font>';
@@ -18824,16 +18824,23 @@ new G.Tech({
 	});
 	new G.Tech({
         name:'message memory',
-	desc:'Message history increased from 25 to 50. <>Later you can unlock message filters.',
+	desc:'Message history increased from 25 to 50. <>Later you can unlock [message filtering]. However this tech cannot be researched via this box. You\'ll start next runs with that after 3 Ascensions performed. '+(G.resets>=3 ? '' : "<b>You performed: "+G.resets+"/3</b>")+'.',
         icon:[35,13,'magixmod'],
 	cost:{'culture':15,'insight':5},
         req:{'oral tradition':true,'caligraphy':true},
 	category:'tier1',chance:7,
 	effects:[
-				{type:'function',func:function(){ //BECAUSE DURING BURIED YOU HAVE WAY MORE HOUSING BUT IT DECAYS
+				{type:'function',func:function(){
 					G.maxMessages=50;	
 				}},
 		],
+    });
+	new G.Tech({
+        name:'message filtering',
+	desc:'Message history increased from 25 to 50. <>Later you can unlock message filters.',
+        icon:[12,32,'magixmod'],
+        req:{'tribalism':false,'caligraphy':true},
+	category:'tier1',chance:7,
     });
 	/*=====================================================================================
 	POLICIES
