@@ -5189,7 +5189,9 @@ G.writeMSettingButton=function(obj)
 							G.gain('corpse',died,'dehydration');
 							G.gain('happiness',-died*20*deathUnhappinessMult,'dehydration');
 							G.getRes('died this year').amount+=died;
+							if(G.checkPolicy('death messages')=='on'){ //toggle
 							if (died>0) G.Message({type:'bad',mergeId:'diedDehydration',textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died from dehydration.';},args:{died:died},icon:[5,4]});
+							};
 						}
 					}
 					
@@ -5232,7 +5234,9 @@ G.writeMSettingButton=function(obj)
 							G.gain('corpse',died,'starvation');
 							G.gain('happiness',-died*20*deathUnhappinessMult,'starvation');
 							G.getRes('died this year').amount+=died;
+							if(G.checkPolicy('death messages')=='on'){ //toggle
 							if (died>0) G.Message({type:'bad',mergeId:'diedStarvation',textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died from starvation.';},args:{died:died},icon:[5,4]});
+							};
 						}
 					}
 				}
@@ -5294,8 +5298,9 @@ G.writeMSettingButton=function(obj)
 						G.gain('corpse',n,'old age');
 						G.lose('elder',n,'old age');
 						G.gain('happiness',-n*5*deathUnhappinessMult,'death');
+						if(G.checkPolicy('death messages')=='on'){ //toggle
 						if (n>0) G.Message({type:'bad',mergeId:'diedAge',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died of old age.';},args:{n:n},icon:[13,4]});
-						
+						}
 						G.getRes('died this year').amount+=n;
 					}
 					if (G.year>=5)//no aging adults the first 5 years
@@ -5350,7 +5355,7 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('sick',changed,'disease');
-						if(G.checkPolicy('disease messages')=='on'){
+						if(G.checkPolicy('disease messages')=='on'){ //toggle
 							if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});
 						};
 						}
@@ -5360,8 +5365,9 @@ G.writeMSettingButton=function(obj)
 					var n=G.lose('sick',randomFloor(Math.random()*G.getRes('sick').amount*sickMortality),'disease');G.gain('corpse',n,'disease');changed+=n;
 					G.gain('happiness',-changed*15*deathUnhappinessMult,'death');
 					G.getRes('died this year').amount+=changed;
+					if(G.checkPolicy('death messages')=='on'){ //toggle
 					if (changed>0) G.Message({type:'bad',mergeId:'diedSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from disease.';},args:{n:changed},icon:[5,4]});
-					
+					};
 					var sickHealing=0.01;
 					if (G.checkPolicy('flower rituals')=='on') sickHealing*=1.2;
 					var changed=0;
@@ -5395,9 +5401,9 @@ G.writeMSettingButton=function(obj)
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*woundMortality),'wounds');G.gain('corpse',n,'wounds');changed+=n;
 					G.gain('happiness',-changed*15*deathUnhappinessMult,'death');
 					G.getRes('died this year').amount+=changed;
-					
+					if(G.checkPolicy('death messages')=='on'){ //toggle
 					if (changed>0) G.Message({type:'bad',mergeId:'diedWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from their wounds.';},args:{n:changed},icon:[5,4]});
-					
+					}
 					var sickHealing=0.005;
 					var changed=0;
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
