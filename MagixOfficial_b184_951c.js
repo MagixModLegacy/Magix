@@ -5284,7 +5284,7 @@ G.writeMSettingButton=function(obj)
 				
 				//homelessness
 				var homeless=Math.max(0,(me.amount)-G.getRes('housing').amount);
-				if (G.has('sedentism') && me.amount>15 && homeless>0)
+				if (G.has('sedentism') && me.amount>15 && homeless>0 && G.checkPolicy('homelessness messages')=='on')
 				{
 					if (tick%10==0) G.Message({type:'bad',mergeId:'homeless',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person is':'people are')+' homeless.<br>Homelessness with more than 15 population leads to lower birth rates.';},args:{n:homeless},replaceOnly:true,icon:[12,4]});
 				}
@@ -19902,7 +19902,7 @@ new G.Tech({
 	});
 	new G.Policy({
 		name:'story messages',
-		desc:'Disable/Enable story messages. Those look differently than [new day lines]. They appear while researching. Having more and more techs will show next parts of that.',
+		desc:'Disable/Enable story messages. Those look differently than [new day lines]. They appear while researching. Having more and more techs will show next parts of that. You rather want turn it on... //mod creator\'s note: worked some time for some sort of story, maybe you want to check it.',
 		icon:[20,32,'magixmod'],
 		cost:{},
 		startMode:'on',
@@ -19913,6 +19913,43 @@ new G.Tech({
 		name:'accident messages',
 		desc:'Disable/Enable messages that inform you how many [population,people] have become [wounded]. This also disables infos about recovered [wounded] people.',
 		icon:[21,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'homelessness messages',
+		desc:'Disable/Enable messages about [housing,homelessness]. <small>Those will always display... ehh. You want turn\'em off I guess.</small>',
+		icon:[22,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+		new G.Policy({
+		name:'exploration messages',
+		desc:'Disable/Enable messages about recently discovered tiles.',
+		icon:[23,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+		new G.Policy({
+		name:'lost messages',
+		displayName:'unit accidents messages',
+		desc:'Disable/Enable messages about [scout]s / [wanderer]s being lost, [hunter]s being wounded while hunting, [mine]s collapsed, etc. related to it.',
+		icon:[24,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+		new G.Policy({
+		name:'wonder messages',
+		desc:'This is related only to messages that appear when you start constructing a wonder for now. <br> Via this you can disable/enable them.',
+		icon:[25,32,'magixmod'],
 		cost:{},
 		startMode:'on',
 		req:{'message filtering':true},
