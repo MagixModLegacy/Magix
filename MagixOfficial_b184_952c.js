@@ -2016,7 +2016,8 @@ G.setPolicyMode=function(me,mode)
 				else if (!G.testUse(me.unit.require,amount)) success=false;
 				if (success)
 				{
-					if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
+					
+					if(G.checkPolicy('wonder messages')=='on')if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
 					G.doCost(me.unit.cost,amount);
 					G.doUse(me.unit.use,amount);
 					G.applyUnitBuyEffects(me,amount);
@@ -4776,11 +4777,13 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	
 	G.funcs['found tile']=function(tile)
 	{
-	
+		
 		G.Message({type:'good',mergeId:'foundTile',textFunc:function(args){
 			if(args.tile.land.displayName=="Dead forest"){G.achievByName['lands of despair'].won=G.achievByName['lands of despair'].won+1;if(G.achievByName['lands of despair'].won<1){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')}};
+			if(G.checkPolicy('exploration messages')=='on'){
 			if (args.count==1){ return 'Our explorers have found a new tile : <b>'+args.tile.land.displayName;+'</b>.'
 			}else{ return 'Our explorers have found '+B(args.count)+' new tiles; the latest is <b>'+args.tile.land.displayName;+'</b>.'};
+			}else{break;};
 						     
 		},args:{tile:tile,count:1},icon:[14,4]});
 
@@ -8196,13 +8199,17 @@ if (!document.getElementById(cssId))
 			var changed=0;
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkHealing),'healing');G.gain('adult',n,'-');changed+=n;
 			G.gain('happiness',changed*10,'recovery');
+			if(G.checkPolicy('disease messages')=='on'){
 			if (changed>0) G.Message({type:'good',mergeId:'drunkRecovered',textFunc:function(args){return B(args.n)+' drunk '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});
+			}
 			//Drunk's death
 			var drunkMortality=0.005;
 			var changed=0;
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkMortality),'drunk');G.gain('corpse',n,'alcohol sickness');changed+=n;
 			G.getRes('died this year').amount+=changed;
+			if(G.checkPolicy('disease messages')=='on'){
 			if (changed>0) G.Message({type:'bad',mergeId:'diedDrunk',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from alcohol sickness.';},args:{n:changed},icon:[5,4]});
+			}
 			if (G.has('Beer recipe')){ //Spawning rate from Beer recipe trait
  		   var n = G.getRes('adult').amount * 0.000015
   		  G.gain('drunk',n,'Beer');
