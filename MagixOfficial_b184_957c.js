@@ -9941,7 +9941,7 @@ if (!document.getElementById(cssId))
 				changed/=workers;
 				G.wasteUnit(me,changed);
 				
-				if (changed>0 && mesg==true) G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
+				if (changed>0 && mesg==true && G.checkPolicy('lost messages')=='on') G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
 						return args.str.replaceAll('\\[people\\]',(args.n==1?args.single:args.plural)).replaceAll('\\[X\\]',B(args.n));
 					},args:{n:changed,str:message,single:single,plural:plural},icon:me.unit.icon});
 			}
