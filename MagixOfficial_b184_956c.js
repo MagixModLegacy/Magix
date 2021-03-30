@@ -1480,7 +1480,8 @@ func:function(){
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
 		],
-		civ:0
+		civ:0,
+		plural:true
 	});
 	new G.Achiev({
 		tier:4,
