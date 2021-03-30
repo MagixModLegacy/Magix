@@ -691,19 +691,7 @@ G.LoadResources=function()
 		if (verbose) console.log('Rendering map took '+(Date.now()-time)+'ms.');
 		return c;
 	}
-if(document.baseURI.endsWith=='orteil.dashnet.org/legacy/'){
-	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
-	document.getElementsByTagName('div')[4].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
-	document.getElementsByTagName('div')[5].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
-	document.getElementsByTagName('div')[6].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
-	document.getElementsByTagName('div')[7].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';
-}else if(document.baseURI.endsWith=='cookieclicker.eu/legacy/'){
-	document.getElementsByTagName('div')[5].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
-	document.getElementsByTagName('div')[6].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
-	document.getElementsByTagName('div')[7].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
-	document.getElementsByTagName('div')[8].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
-	document.getElementsByTagName('div')[9].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';	
-	}
+
 //////////////////////////////////////////////////////////////
 ////////ACTUAL CONTENT
 G.AddData({
@@ -714,17 +702,31 @@ engineVersion:1,
 manifest:'ModManifest.js',
 sheets:{'magixmod':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/MaGiXmOdB4Ta.png','seasonal':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/seasonalMagix.png','terrain':'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/terrainMagix.png'},//custom stylesheet (note : broken in IE and Edge for the time being)
 func:function(){
-
+		/////////
+	//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
+//===========================
+	G.maxMessages=25
+	if(document.baseURI.includes('dashnet.org/legacy/')){
+	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
+	document.getElementsByTagName('div')[4].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
+	document.getElementsByTagName('div')[5].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
+	document.getElementsByTagName('div')[6].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
+	document.getElementsByTagName('div')[7].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';
+}else if(document.baseURI.includes('cookieclicker.eu/legacy/')){
+	document.getElementsByTagName('div')[5].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
+	document.getElementsByTagName('div')[6].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
+	document.getElementsByTagName('div')[7].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
+	document.getElementsByTagName('div')[8].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
+	document.getElementsByTagName('div')[9].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';	
+	}
 	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
 	var year=new Date().getFullYear();
 	var leap=(((year%4==0)&&(year%100!=0))||(year%400==0))?1:0;
 	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
 	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(year);
 	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
-	/////////
+
 	
-	//READ THIS: All rights reserved to mod creator and people that were helping the main creator with coding. Mod creator rejects law to copying icons from icon sheets used for this mod. All noticed plagiariasm will be punished. Copyright: 2020
-//===========================
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
 	=======================================================================================*/
@@ -781,7 +783,7 @@ func:function(){
 			'demog':{
 				name:'<font color="#0DA42B">Demographics</font>',
 				base:['baby','child','adult','elder','worker','sick','wounded'],
-				side:['population','housing','corpse','burial spot','Alchemists'],
+				side:['population','housing','corpse','burial spot','afterlife','Alchemists'],
 		},
 			'food':{
 				name:'<font color="#0080FF">Food & Water</font>',
@@ -1354,7 +1356,7 @@ func:function(){
 			{type:'addFastTicksOnStart',amount:50},
 			{type:'addFastTicksOnResearch',amount:5},
 		],
-			civ:0
+			civ:0,plural:false
 	});
 		new G.Achiev({
 		tier:4,
@@ -1478,7 +1480,8 @@ func:function(){
 			{type:'addFastTicksOnStart',amount:200},
 			{type:'addFastTicksOnResearch',amount:10},
 		],
-		civ:0
+		civ:0,
+		plural:true
 	});
 	new G.Achiev({
 		tier:4,
@@ -2014,7 +2017,8 @@ G.setPolicyMode=function(me,mode)
 				else if (!G.testUse(me.unit.require,amount)) success=false;
 				if (success)
 				{
-					if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
+					
+					if(G.checkPolicy('wonder messages')=='on')if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
 					G.doCost(me.unit.cost,amount);
 					G.doUse(me.unit.use,amount);
 					G.applyUnitBuyEffects(me,amount);
@@ -2127,6 +2131,8 @@ G.setPolicyMode=function(me,mode)
 								if (!achiev.won) middleText='<font color="pink">- Completed the '+achiev.displayName+' victory -</font>'
 								achiev.won++;
 							}
+							document.title='Ascending - NeverEnding Legacy';
+							setTimeout(function(){document.title='NeverEnding Legacy'},5000);
 							G.resets++;
 							G.NewGameWithSameMods();
 							G.middleText(middleText,true);
@@ -2254,7 +2260,7 @@ G.setPolicyMode=function(me,mode)
 								var str='<div class="info">'+G.parse(me.desc);
 								//if (!isEmpty(me.use)) str+='<div class="divider"></div><div class="fancyText par">Uses : '+G.getUseString(me.use,true,true)+' per '+proto.name+'</div>';
 								//if (target.amount>0 && target.mode.num!=me.num && !isEmpty(uses)) str+='<div class="divider"></div><div class="fancyText par">Needs '+G.getUseString(uses,true,false,target.amount)+' to switch</div>';
-								str+='<div><b>Changing to this mode will cost you </b>'+G.getCostString(proto.cost,true,false,1)+'.</div></div>';
+								str+=(target.category!='mag' ? '<div><b>Changing to this mode will cost you </b>'+G.getCostString(proto.cost,true,false,1)+'.</div></div>' : '');
 								return str;
 							};}(mode,me),{offY:-8});
 						}
@@ -2338,7 +2344,6 @@ G.setPolicyMode=function(me,mode)
 	}
 		G.draw['policy']();
 	}
-	
 /////////MODYFING UNIT TAB!!!!! (so some "wonders" which are step-by-step buildings now will have displayed Step-by-step instead of wonder. Same to portals)
 		G.update['unit']=function()
 	{
@@ -2844,7 +2849,7 @@ G.props['fastTicksOnResearch']=150;
 	
 		G.funcs['new game blurb']=function()
 	{   
-			
+		document.title='In the start menu - NeverEnding Legacy';
 		var str=
 		'<font color="fuschia">Magix expansion has been loaded succesfully. <b>: )</b></br></font>'+
 		'<b>Your tribe :</b><div class="thingBox">'+
@@ -2864,6 +2869,18 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
+		
+		/*var alfabeth=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+		var Name='';
+		for(var i=0;i<Math.round((Math.random()*7)+2);i++){
+   		 if(i==0){
+       			 Name+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];
+        		Name=Name.toUpperCase();
+  		 }else{
+   		 Name+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];
+		 }
+		}
+		G.names.patron=Name;*/
 		document.title='NeverEnding Legacy';
 		///new game mesg
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
@@ -2908,6 +2925,7 @@ G.props['fastTicksOnResearch']=150;
 		if (G.achievByName['"In the underworld"'].won >= 1 && G.achievByName['Democration'].won >= 1 && G.achievByName['Sacrificed for culture'].won >= 1 && G.achievByName['Insight-ly'].won >= 1 && G.hasNot('underworld\'s ascendant')){
 G.gainTech(G.techByName['underworld\'s ascendant']);
 };
+		if(G.resets>3)G.gainTech(G.techByName['message filtering']);
 		if (G.achievByName['Experienced'].won > 0 && G.hasNot('<font color="lime">Fruit supplies</font>')){G.gainTech(G.techByName['<font color="lime">Fruit supplies</font>']);}
 		 if (G.achievByName['Extremely smart'].won > 0 && G.achievByName['<font color="DA4f37">Mausoleum eternal</font>'].won >= 1 && G.hasNot('life has its theme')) {
       G.gainTech(G.techByName['life has its theme']);
@@ -3355,7 +3373,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	'<li>Most people in your civilization<br>during the run: '+G.achievByName['mostPeopleDuringRun'].won+'</li><Br>'+
 	'<li>Days survived: '+B(G.day+(300*G.year))+'</li><Br>'+
 	(G.has('time measuring 1/2') ? '<li>Years survived: '+B(G.year+1)+'</li><Br>' : '')+
-	'<li>Pieces of land discovered:'+Math.round(G.getRes('land').amount)+'</li><Br>'+
+	'<li>Pieces of overworld land discovered:'+Math.round(G.getRes('land').amount)+'</li><Br>'+
+	'<li>Land overall:'+Math.round(G.getRes('tl').amount)+'</li></ br>'+
 	(G.has('Eotm') ? 'Evolution of the minds occured<Br>' : '')+
 	'<li>Wonders completed during legacy: '+G.achievByName['wondersDuringRun'].won+'</li><Br>'+
 	'<li>Units unlocked: '+G.unitN+'</li><Br>'+
@@ -3368,6 +3387,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
                 'Technical note: Start a new game.'+
             '</div></div>'
 })
+		
 	}
 	G.funcs['game loaded']=function()
 	{
@@ -3924,6 +3944,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					audio.play(); 
 			}
 			////STORYLINE////
+			if(G.checkPolicy('story messages')=='on'){
 			if(G.techN >= 25 && G.techN <=34 && !st1){
 				G.Message({type:'story1',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
 				st1=true
@@ -3989,7 +4010,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				G.Message({type:'story1',text:'Their creativity has no limits... definitely.',icon:[31,30,'magixmod']});
 				st15=true
 			}
-		}
+		}}
 		if(G.has('t2')){
 			if(G.getRes('population').amount>=Math.round(125-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))){
 				var popinfo=Math.round(125-(G.achievByName['Unhappy'].won*2.5)-(G.techN/100))
@@ -4132,7 +4153,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				}
 	}
 		if(G.has('t4'))G.lose('population',G.getRes('population').amount*0.03);
-		if(G.has('t11'))G.lose('faith',5+G.achievByName['Faithful'].won);
+		if(G.has('t11'))G.lose('faith',2.5+G.achievByName['Faithful'].won);
 		if(G.has('t11') && G.getRes('faith').amount==0){
 			G.lose('population',G.getRes('population').amount);	
 			G.dialogue.popup(function(div){
@@ -4459,6 +4480,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 										tile.explored+=0.1;
 										G.tileToRender(tile);
 										updateMap=true;
+										if(tile.explored.displayName=='Dead forest')G.achievByName['lands of despair'].won++;
+										if(G.achievByName['lands of despair'].won<1 && tile.explored.displayName=='Dead forest'){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')};
 										G.doFuncWithArgs('found tile',[tile]);
 									}
 								}
@@ -4568,6 +4591,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		
 		if (G.on)
 		{
+			
 			if(G.fps>30)G.fastTicks--;
 			
 			if (G.getSetting('atmosphere') && Math.random()<0.01)
@@ -4575,9 +4599,11 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				//show a random atmospheric message occasionally on new days
 				//we pick one of the first 5 lines in the array, then push that line back at the end; this means we get a semi-random stream of lines with no frequent repetitions
 				var i=Math.floor(Math.random()*5);
+				if(G.checkPolicy('new day lines')=='on'){
 				var msg=G.props['new day lines'].splice(i,1)[0];
 				G.props['new day lines'].push(msg);
 				G.Message({text:msg});
+				}
 			}
 			
 			//possibility to gain random traits everyday
@@ -4592,6 +4618,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 						{
 							G.doCost(me.cost,1);
 							G.gainTrait(me);
+							if(G.checkPolicy('obtaining a trait messages')=='on'){
 							switch(me.category){
 								case "knowledge":G.Message({type:'important tall',text:'Your people have adopted the knowledge: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "devils":G.Message({type:'bad tall',text:'Devils brought to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
@@ -4600,7 +4627,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 								case "short":G.Message({type:'important tall',text:'Your people have adopted the <u>short-term</u> trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
 								case "long":G.Message({type:'important tall',text:'Your people have adopted the <u>long-term</u> trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
 								default:G.Message({type:'important tall',text:'Your people have adopted the trait <b>'+me.displayName+'</b>.',icon:me.icon}); break;
-							}
+							}}
 							if (G.checkPolicy('Toggle SFX')=='on') //Toggle SFX
 							{
 								var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GainedTrait.mp3');
@@ -4734,10 +4761,18 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var text='unknown';if (stat<=-200) text='dreadful'; else if (stat<=-100) text='sickly'; else if (stat<=-50) text='low'; else if (stat<50) text='average'; else if (stat<100) text='good'; else if (stat<=200) text='gleaming'; else if (stat>=200) text='examplary';
 			toParse+='Health : <b>'+text+'</b>//';
 			var stat=G.techN;
-			var text='unknown';if (stat<=25) text='pre-prehistoric';else if (stat<=50) text='prehistoric'; else if (stat<=100) text='skilled'; else if (stat<=170) text='decent technologically'; else if (stat<=240) text='expanded'; else if (stat<=325) text='advanced'; else if (stat<=400) text='modern'; else if (stat<=500) text='truly advanced'; else if (stat>=500) text='most advanced';
+			var text='unknown';if (stat<=28) text='pre-prehistoric';else if (stat<=50) text='prehistoric'; else if (stat<=100) text='skilled'; else if (stat<=170) text='decent technologically'; else if (stat<=240) text='expanded'; else if (stat<=325) text='advanced'; else if (stat<=400) text='modern'; else if (stat<=500) text='truly advanced'; else if (stat>=500) text='most advanced';
 			toParse+='Technological stage: <b>'+text+'</b>//';
+			if(G.has('Wizardry')){
+				var text='None';if(G.has('patron1'))text='<font color="orange">Fire:'+G.getTrait('patron1').displayName+'</font>';else if(G.has('patron2'))text='<font color="lime">Nature:'+G.getTrait('patron2').displayName+'</font>';else if(G.has('patron3'))text='<font color="#bbbbff">Wind:'+G.getTrait('patron3').displayName+'</font>';else if(G.has('patron4'))text='<font color="purple">Dark:'+G.getTrait('patron4').displayName+'</font>';else if(G.has('patron5'))text='<font color="yellow">Lightning:'+G.getTrait('patron5').displayName+'</font>';else if(G.has('patron6'))text='<font color="#6699FF">Water:'+G.getTrait('patron6').displayName+'</font>';else if(G.has('patron7'))text='<font color="white">Time:'+G.getTrait('patron7').displayName+'</font>';else if(G.has('patron8'))text='<font color="#FF9960">Homepeace:'+G.getTrait('patron8').displayName+'</font>';else if(G.has('unknown patron'))text='Unknown</font>';
+			toParse+='Patron of the civilization: <b>'+text+'</b>//';
+			}
 		}
-		else toParse+='All '+G.getName('inhabs')+' have died out.';
+		else{ toParse+='All '+G.getName('inhabs')+' have died out.<br>';
+		if(G.has('Wizardry') && (G.has('patron1') || G.has('patron2') || G.has('patron3') || G.has('patron4') || G.has('patron5') || G.has('patron6') || G.has('patron7') || G.has('patron8') || G.has('unknown patron') || G.has('nonpatronage'))){
+			if(G.has('nonpatronage') && G.getRes('population').amount==0)toParse+='They had no patron';else if(G.getRes('population').amount==0)toParse+='They had a patron:';
+			if(G.hasNot('nonpatronage')){if(G.has('patron1'))toParse+='<font color="orange">Fire:'+G.getTrait('patron1').displayName+'</font>';else if(G.has('patron2'))toParse+='<font color="lime">Nature:'+G.getTrait('patron2').displayName+'</font>';else if(G.has('patron3'))toParse+='<font color="#bbbbff">Wind:'+G.getTrait('patron3').displayName+'</font>';else if(G.has('patron4'))toParse+='<font color="purple">Dark:'+G.getTrait('patron4').displayName+'</font>';else if(G.has('patron5'))toParse+='<font color="yellow">Lightning:'+G.getTrait('patron5').displayName+'</font>';else if(G.has('patron6'))toParse+='<font color="#6699FF">Water:'+G.getTrait('patron6').displayName+'</font>';else if(G.has('patron7'))toParse+='<font color="white">Time:'+G.getTrait('patron7').displayName+'</font>';else if(G.has('patron8'))toParse+='<font color="#FF9960">Homepeace:'+G.getTrait('patron8').displayName+'</font>';else if(G.has('unknown patron'))toParse+='the unknown one</font>'};
+		}}
 		str+=G.parse(toParse);
 		str+='</div>';
 		return str;
@@ -4745,14 +4780,14 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	
 	G.funcs['found tile']=function(tile)
 	{
-	
+		if(G.checkPolicy("exploration messages")=='on'){
 		G.Message({type:'good',mergeId:'foundTile',textFunc:function(args){
-			if(args.tile.land.displayName=="Dead forest"){G.achievByName['lands of despair'].won=G.achievByName['lands of despair'].won+1;if(G.achievByName['lands of despair'].won<1){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')}};
+			/*if(args.tile.land.displayName=="Dead forest"){G.achievByName['lands of despair'].won=G.achievByName['lands of despair'].won+1;if(G.achievByName['lands of despair'].won<1){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')}};*/
+			
 			if (args.count==1){ return 'Our explorers have found a new tile : <b>'+args.tile.land.displayName;+'</b>.'
-			}else{ return 'Our explorers have found '+B(args.count)+' new tiles; the latest is <b>'+args.tile.land.displayName;+'</b>.'};
-						     
+			}else{ return 'Our explorers have found '+B(args.count)+' new tiles; the latest is <b>'+args.tile.land.displayName;+'</b>.'};			     
 		},args:{tile:tile,count:1},icon:[14,4]});
-
+		}
 	}
 	
 	G.funcs['production multiplier']=function()
@@ -5009,6 +5044,7 @@ G.writeMSettingButton=function(obj)
 		icon:[0,3],
 		tick:function(me,tick)
 		{
+			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi)};//sickbois say goodbai
 			//this.displayName=G.getName('inhabs');
 			
 			if (me.amount>0)
@@ -5134,8 +5170,7 @@ G.writeMSettingButton=function(obj)
 					var rations=G.checkPolicy('water rations');
 					if (rations=='none') {toConsume=0;G.gain('happiness',-me.amount*3,'water rations');G.gain('health',-me.amount*2,'water rations');}
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'water rations');G.gain('health',-me.amount*0.5,'water rations')}
-					else if (rations=='plentiful') 
-					{toConsume*=1.5;G.gain('happiness',me.amount*0.85,'water rations');}
+					else if (rations=='plentiful') {toConsume*=1.5;G.gain('happiness',me.amount*1,'water rations');}
 					toConsume=randomFloor(toConsume);
 					var lacking=toConsume-G.lose('water',toConsume,'drinking');
 					if (rations=='none') lacking=me.amount*0.5;
@@ -5158,7 +5193,9 @@ G.writeMSettingButton=function(obj)
 							G.gain('corpse',died,'dehydration');
 							G.gain('happiness',-died*20*deathUnhappinessMult,'dehydration');
 							G.getRes('died this year').amount+=died;
+							if(G.checkPolicy('death messages')=='on'){ //toggle
 							if (died>0) G.Message({type:'bad',mergeId:'diedDehydration',textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died from dehydration.';},args:{died:died},icon:[5,4]});
+							};
 						}
 					}
 					
@@ -5174,8 +5211,7 @@ G.writeMSettingButton=function(obj)
 					var rations=G.checkPolicy('food rations');
 					if (rations=='none') {toConsume=0;G.gain('happiness',-me.amount*3,'food rations');G.gain('health',-me.amount*2,'food rations');}
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'food rations');G.gain('health',-me.amount*0.5,'food rations');}
-					else if (rations=='plentiful')
-					{toConsume*=1.5;G.gain('happiness',me.amount*0.85,'food rations');}
+					else if (rations=='plentiful') {toConsume*=1.5;G.gain('happiness',me.amount*1,'food rations');}
 					toConsume=randomFloor(toConsume*consumeMult);
 					var consumed=G.lose('food',toConsume,'eating');
 					G.gain('happiness',G.lose('salt',randomFloor(consumed*0.1),'eating')*5,'salting food');//use salt
@@ -5202,7 +5238,9 @@ G.writeMSettingButton=function(obj)
 							G.gain('corpse',died,'starvation');
 							G.gain('happiness',-died*20*deathUnhappinessMult,'starvation');
 							G.getRes('died this year').amount+=died;
+							if(G.checkPolicy('death messages')=='on'){ //toggle
 							if (died>0) G.Message({type:'bad',mergeId:'diedStarvation',textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died from starvation.';},args:{died:died},icon:[5,4]});
+							};
 						}
 					}
 				}
@@ -5250,7 +5288,7 @@ G.writeMSettingButton=function(obj)
 				
 				//homelessness
 				var homeless=Math.max(0,(me.amount)-G.getRes('housing').amount);
-				if (G.has('sedentism') && me.amount>15 && homeless>0)
+				if (G.has('sedentism') && me.amount>15 && homeless>0 && G.checkPolicy('homelessness messages')=='on')
 				{
 					if (tick%10==0) G.Message({type:'bad',mergeId:'homeless',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person is':'people are')+' homeless.<br>Homelessness with more than 15 population leads to lower birth rates.';},args:{n:homeless},replaceOnly:true,icon:[12,4]});
 				}
@@ -5264,8 +5302,9 @@ G.writeMSettingButton=function(obj)
 						G.gain('corpse',n,'old age');
 						G.lose('elder',n,'old age');
 						G.gain('happiness',-n*5*deathUnhappinessMult,'death');
+						if(G.checkPolicy('death messages')=='on'){ //toggle
 						if (n>0) G.Message({type:'bad',mergeId:'diedAge',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died of old age.';},args:{n:n},icon:[13,4]});
-						
+						}
 						G.getRes('died this year').amount+=n;
 					}
 					if (G.year>=5)//no aging adults the first 5 years
@@ -5294,7 +5333,8 @@ G.writeMSettingButton=function(obj)
 						var n=randomFloor(G.getRes('elder').amount*0.00003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
 						if(day+leap>=40 && day+leap<=46 && G.has('parental love'))G.gain('love xp',n/2,'birth');
 						G.getRes('born this year').amount+=born;
-						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});
+						if(G.checkPolicy('birth messages')=='on'){
+						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});}
 					}
 					
 					//health (diseases and wounds)
@@ -5319,22 +5359,27 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('sick',changed,'disease');
-						if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});
-					}
+						if(G.checkPolicy('disease messages')=='on'){ //toggle
+							if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});
+						};
+						}
 					//sickness : death and recovery
 					var sickMortality=0.005;
 					var changed=0;
 					var n=G.lose('sick',randomFloor(Math.random()*G.getRes('sick').amount*sickMortality),'disease');G.gain('corpse',n,'disease');changed+=n;
 					G.gain('happiness',-changed*15*deathUnhappinessMult,'death');
 					G.getRes('died this year').amount+=changed;
+					if(G.checkPolicy('death messages')=='on'){ //toggle
 					if (changed>0) G.Message({type:'bad',mergeId:'diedSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from disease.';},args:{n:changed},icon:[5,4]});
-					
+					};
 					var sickHealing=0.01;
 					if (G.checkPolicy('flower rituals')=='on') sickHealing*=1.2;
 					var changed=0;
 					var n=G.lose('sick',randomFloor(Math.random()*G.getRes('sick').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
 					G.gain('happiness',changed*10,'recovery');
+					if(G.checkPolicy('disease messages')=='on'){
 					if (changed>0) G.Message({type:'good',mergeId:'sickRecovered',textFunc:function(args){return B(args.n)+' sick '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});
+					};
 					
 					//wounds
 					var toChange=0.00003;
@@ -5350,7 +5395,9 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('wounded',changed,'accident');
-						if (changed>0) G.Message({type:'bad',mergeId:'gotWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' got wounded.';},args:{n:changed},icon:[7,3]});
+						if(G.checkPolicy('accident messages')=='on'){
+							if (changed>0) G.Message({type:'bad',mergeId:'gotWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' got wounded.';},args:{n:changed},icon:[7,3]});
+						};
 					}
 					//wounds : death and recovery
 					var woundMortality=0.005;
@@ -5358,13 +5405,16 @@ G.writeMSettingButton=function(obj)
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*woundMortality),'wounds');G.gain('corpse',n,'wounds');changed+=n;
 					G.gain('happiness',-changed*15*deathUnhappinessMult,'death');
 					G.getRes('died this year').amount+=changed;
+					if(G.checkPolicy('death messages')=='on'){ //toggle
 					if (changed>0) G.Message({type:'bad',mergeId:'diedWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from their wounds.';},args:{n:changed},icon:[5,4]});
-					
+					}
 					var sickHealing=0.005;
 					var changed=0;
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
 					G.gain('happiness',changed*10,'recovery');
+					if(G.checkPolicy('accident messages')=='on'){
 					if (changed>0) G.Message({type:'good',mergeId:'woundedRecovered',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' recovered from their wounds.';},args:{n:changed},icon:[4,3]});
+					}
 				}
 			}
 			else if (G.T>0) {G.GameOver();}
@@ -5446,7 +5496,7 @@ G.writeMSettingButton=function(obj)
 				{
 					//bury slowly
 				
-					if (graves.amount>graves.used)
+					if (graves.amount>graves.used && G.getRes('afterlife').hidden==true)
 					{
 						if(G.checkPolicy('se08')=='off'){//BURI'O DAK
 						var amount=Math.min(graves.amount-graves.used,Math.max(1,randomFloor(me.amount*0.1)));
@@ -8150,13 +8200,17 @@ if (!document.getElementById(cssId))
 			var changed=0;
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkHealing),'healing');G.gain('adult',n,'-');changed+=n;
 			G.gain('happiness',changed*10,'recovery');
+			if(G.checkPolicy('disease messages')=='on'){
 			if (changed>0) G.Message({type:'good',mergeId:'drunkRecovered',textFunc:function(args){return B(args.n)+' drunk '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});
+			}
 			//Drunk's death
 			var drunkMortality=0.005;
 			var changed=0;
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkMortality),'drunk');G.gain('corpse',n,'alcohol sickness');changed+=n;
 			G.getRes('died this year').amount+=changed;
+			if(G.checkPolicy('disease messages')=='on'){
 			if (changed>0) G.Message({type:'bad',mergeId:'diedDrunk',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from alcohol sickness.';},args:{n:changed},icon:[5,4]});
+			}
 			if (G.has('Beer recipe')){ //Spawning rate from Beer recipe trait
  		   var n = G.getRes('adult').amount * 0.000015
   		  G.gain('drunk',n,'Beer');
@@ -8616,6 +8670,7 @@ if (!document.getElementById(cssId))
 			
 			if(G.policy.length >= 15 && !pol15 && G.policy.length <= 18){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
 			}
+			if(G.checkPolicy('story messages')=='on'){
 			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
 				G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
@@ -8650,6 +8705,8 @@ if (!document.getElementById(cssId))
 			G.Message({type:'important',text:'The view of unburied corpses fears you and your settlers. Now they know that to calm down people you can just bury it.',icon:[13,2]})
 				burystory=true
 			}
+			}
+				if(G.checkPolicy('tutorial messages')=='on'){
 			if(G.has('fire-making') && !firestory && !G.has('construction')){
 			   G.Message({type:'tutorial',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
 			firestory=true
@@ -8690,6 +8747,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'tutorial',text:'You now can control food and water rations. Your people seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may later become the major one if you will ignore this.',icon:[4,28,'magixmod']})
 					rofpopup=true
 				}
+			if(G.checkPolicy('tutorial messages')=='on'){
 			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
 				G.Message({type:'tutorial',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover secrets hidden in new territory. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
 					explorepop=true
@@ -8731,10 +8789,12 @@ if (!document.getElementById(cssId))
 			if(G.has('Doctrine of the dark wormhole 1/5') && !doctip && G.hasNot('Doctrine of the dark wormhole 2/5')){
 			G.Message({type:'tutorial',text:'Next part of doctrine is a trait. You don\'t have to roll new researches. All you should do now is waiting and no spending any essentials, because next part of doctrine despite it is a Trait but it is not cheap thing. Even numbered stages are traits while odd numbered stages are represented as researches.',icon:[32,27,'magixmod']})
 				doctip=true
-			}
+			}}}
+			if(G.checkPolicy('story messages')=='on'){
 			if(G.has('Mo\' beauty') && !mobeauty && G.hasNot('Doctrine of the dark wormhole 5/5')){
 			G.Message({type:'story2',text:'Oh. <b>Mo\' beauty</b> made cities look much, much nicer. Lanterns, flower decors everywhere. Sometimes even <b>tools</b> (not joking now) have some shapes,patterns carved. And it is not any festival. You wander and even some huts get even more beautiful than ever.'})
 			mobeauty=true
+			}
 		}
 		},
 		category:'flowersanddyes',
@@ -9827,9 +9887,25 @@ if (!document.getElementById(cssId))
 				else return [10,16,'seasonal'];
 			}
 		},
+		hidden:true,
 	});
 	new G.Res({
 		name:'love xp',
+	});
+	new G.Res({
+		name:'afterlife',
+		desc:'Completing <b>Buried</b> granted you [afterlife]. Starting with 15 slots and growing for up to 400 will take away [corpse]s. If all of [afterlife] slots will be used up this resource will disappear and for rest of the run the bonus from [voodoo spirit] will be activated. The cap of [afterlife] slots can be increased by gaining early-game traits like [fear of death] , [belief in the afterlife].',
+		icon:[23,5,'magixmod'],
+		displayUsed:true,
+		startWith:50,
+		tick:function(me){
+			if(G.getRes('corpse').amount>0 && me.used<=me.amount){
+				G.getRes('corpse').amount--;
+				G.getRes('afterlife').used++;
+			}
+			if(me.used>=me.amount)me.hidden=true;
+		},
+		hidden:true,
 	});
 	/*=====================================================================================
 	UNITS
@@ -9865,7 +9941,7 @@ if (!document.getElementById(cssId))
 				changed/=workers;
 				G.wasteUnit(me,changed);
 				
-				if (changed>0 && mesg==true) G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
+				if (changed>0 && mesg==true && G.checkPolicy('lost messages')=='on') G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
 						return args.str.replaceAll('\\[people\\]',(args.n==1?args.single:args.plural)).replaceAll('\\[X\\]',B(args.n));
 					},args:{n:changed,str:message,single:single,plural:plural},icon:me.unit.icon});
 			}
@@ -13943,16 +14019,17 @@ getCosts:function()
 		onBuy:function(what,index)
 		{
 			G.fastTicks+=G.props['fastTicksOnResearch'];
-			
-			G.gainTech(what);
-			var randomMessage=Math.floor(Math.random()*4)
-			if(randomMessage>=0 && randomMessage<=1){
-			G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
-			}else if(randomMessage>1 && randomMessage<=2){
-			G.Message({type:'good tall',text:'Your people have learnt <b>'+what.displayName+'</b>.',icon:what.icon})
-			}else if(randomMessage>2 && randomMessage<=4){
-			G.Message({type:'good tall',text:'Your people have acknowledged with <b>'+what.displayName+'</b>.',icon:what.icon})
-			};
+				G.gainTech(what);
+			if(G.checkPolicy('research messages')=='on'){
+				var randomMessage=Math.floor(Math.random()*4)
+				if(randomMessage>=0 && randomMessage<=1){
+				G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
+				}else if(randomMessage>1 && randomMessage<=2){
+				G.Message({type:'good tall',text:'Your people have learnt <b>'+what.displayName+'</b>.',icon:what.icon})
+				}else if(randomMessage>2 && randomMessage<=4){
+				G.Message({type:'good tall',text:'Your people have acknowledged with <b>'+what.displayName+'</b>.',icon:what.icon})
+				};
+			}
 			G.update['tech']();
 			G.popupSquares.spawn(l('chooseOption-'+index+'-'+this.id),l('techBox').children[0]);
 			l('techBox').children[0].classList.add('popIn');
@@ -14272,6 +14349,7 @@ getCosts:function()
 		effects:[
 			{type:'provide res',what:{'spirituality':10}},
 			{type:'provide res',what:{'cultural balance':3}},
+			{type:'provide res',what:{'afterlife':100}},
 		],
 	});
 	
@@ -15606,6 +15684,9 @@ autobuy(G.year)
 		cost:{'culture':5},
 		chance:10,
 		req:{'language':true,'spark\'o religion':true},
+		effects:[
+		{type:'provide res',what:{'afterlife':50}},
+			],
 	});
 	new G.Trait({
 		name:'belief in the afterlife',
@@ -15615,6 +15696,7 @@ autobuy(G.year)
 		chance:10,
 		req:{'fear of death':true,'oral tradition':true,'spark\'o religion':true},
 		effects:[
+			{type:'provide res',what:{'afterlife':150}},
 		]
 	});
 	new G.Trait({
@@ -17267,7 +17349,8 @@ new G.Tech({
 		req:{'tribalism':false},
 		cost:{},
 		effects:[
-			{type:'function',func:function(){G.getDict('monument-building').desc='@unlocks wonder depending on Trial you are currently in'}},
+			{type:'function',func:function(){
+				G.getDict('monument-building').desc='@unlocks wonder depending on Trial you are currently in';document.title='Trial active - NeverEnding Legacy'}},
 		],
 	});
 	new G.Trait({
@@ -18323,7 +18406,10 @@ new G.Tech({
 		chance:1.3,
 		cost:{'culture':2},
 		req:{'oral tradition':true},
-		category:'religion'
+		category:'religion',
+		effects:[
+			{type:'provide res',what:{'afterlife':50}},
+		]
 	});
 	new G.Trait({
 		name:'t11',
@@ -18629,6 +18715,166 @@ new G.Tech({
 	cost:{'culture':75,'research':130,'faith':120,'influence':10,'insight':600},
         req:{'love grows around us':true,'time measuring 2/2':true,'compliments':true,'Beginnings of alchemy':true},
 	category:'seasonal',chance:10,
+    });
+		new G.Trait({
+		name:'voodoo spirit',
+		desc:'@You start run with two bonuses: //<b>Early game bonus</b>: learn more about [afterlife] (hover on this resource with your mouse) //<b>Late game bonus:</b> All units that provide [burial spot]s provide twice as much (except [Dark wormhole])',
+		icon:[24,5,'magixmod'],
+		effects:[
+		 {type:'function',func:function(){G.getDict('afterlife').hidden=false}},
+		],
+		req:{'tribalism':true},
+	});
+	new G.Trait({
+        name:'patron1',
+	displayName:'Aflamtnaja the Phoenix of Fire',
+	desc:'[patron1] represents flames and fires. @This patron also symbolizes fight and decisivness. @Your [Wizard]s and people picking this patron want to mark that their decisions are made with confidence. Also [Wizard]s believe that Phoenix will lead them to right paths of their lives. //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[0,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron1').displayName=G.getName('civ')[0].toUpperCase()+'flamtnaja the Phoenix of Fire';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'patron2',
+	displayName:'Wuraloik The Son of the Forest',
+	desc:'[patron2] represents nature and its flora. @This patron is also symbolizes calm and peace. @Your [Wizard]s and people picking this patron want to mark that peace has keys to fix a lot of troubles and no agression is needed to solve every problem. Also [Wizard]s believe that The Son created once true Oasis of Peace. //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[1,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron1':false,'patron3':false,'patron4':false,'patron5':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron2').displayName=G.getName('civ')[0].toUpperCase()+'wuraloik The Son of the Forest';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'patron3',
+	displayName:'Rvikol The Guide of the Winds',
+	desc:'[patron3] represents winds and hurricanes. @This patron is also symbolizes time and impetuiosity. @Your [Wizard]s picking and sending their hopes to [patron3,Him] want to mark that each hard decision can be taken easily. Also [Wizard]s believe that one of [patron3,His] winds will blow their souls right to the Heaven preventing from being absorbed by darkness of Hell/Underworld. //Cult of that patron persists through ages. Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[2,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron1':false,'patron4':false,'patron5':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron3').displayName=G.getName('civ')[0].toUpperCase()+'rvikol The Guide of the Winds';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'patron4',
+	displayName:'Uselatarraya the Dark Dragon',
+	desc:'[patron4] represents mysteries , secrets and insecurity. @This patron also symbolizes withdrawal and concealment. @Your [Wizard]s picking this patron want to mark that their lives are full of secrets and mysteries. Also [Wizard]s believe that [patron4,The Dragon] will protect their secrets from being leaked and will curse "the leakers". Are there any miserables? //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[3,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron1':false,'patron5':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron4').displayName=G.getName('civ')[0].toUpperCase()+'uselatarraya the Dark Dragon';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'patron5',
+	displayName:'Takerus The Stormlord',
+	desc:'[patron5] represents precision and impulsivity. @This patron also symbolizes indigation and quick action. @Your [Wizard]s picking this patron want to mark that sometimes all of us need to perform a decision very, very quickly. Also [Wizard]s believe that [patron5,The Stormlord] will guide through [population,people] lives helping making decisions with His precision. //Cult of that patron persists through ages.  @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[4,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron1':false,'patron6':false,'patron8':false,'patron7':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron5').displayName=G.getName('civ')[0].toUpperCase()+'takerus The Stormlord';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'patron6',
+	displayName:'Kolier\'ali ,Eye of the Sea',
+	desc:'[patron6] represents restraint and observation. @This patron also symbolizes cautioness and prudence. @Your [Wizard]s picking this patron want to mark that you cannot sometimes do something quickly... you just need to do it slowly and thoughtfully. Also [Wizard]s believe that [patron6,The Eye] will help [population,people] keep restraint and prevent obsession to appear in their hearts. //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[5,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron8':false,'patron7':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron6').displayName=G.getName('civ')[0].toUpperCase()+'kolier\'ali ,Eye of the Sea';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'unknown patron',
+	desc:'Unknown patron. You don\'t know who is he/she. @Maybe it is a group of spirits/demigods/semigods... @It is impossible to point what it represents. @Each [Wizard] would tell you different thing about it. //Cult of that unknown patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[6,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron7':false,'patron8':false,'patron6':false},
+	category:'religion',chance:70,
+    });
+	new G.Trait({
+        name:'patron7',
+	displayName:'Chirus the time watcher',
+	desc:'[patron7] represents time and passing. @This patron also symbolizes that things pass all the time. @Your [Wizard]s picking this patron want to mark that they realize it. Also [Wizard]s believe that [patron7,The Time Watcher] will prolong [population,people] lives. //<b>Carpe diem!</b> //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[8,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron6':false,'patron8':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron7').displayName=G.getName('civ')[0].toUpperCase() + 'chirus the time watcher';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'patron8',
+	displayName:'Hzakilok the homepeace keeper',
+	desc:'[patron8] is a patron of [housing,Houses]. @This patron also symbolizes that everywhere you can feel good but the best place is still your own home. @Your [Wizard]s picking this patron want to mark that their homeland can also be a peaceful place. Also [Wizard]s believe that [patron8,The Homepeace keeper] will protect [housing,Houses] from dark powers. //Cult of that patron persists through ages. @<font color="fuschia">Patron does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[7,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron6':false,'patron7':false,'unknown patron':false},
+		effects:[
+		 {type:'function',func:function(){G.getDict('patron8').displayName=G.getName('civ')[0].toUpperCase() + 'hzakilok the homepeace keeper';}},
+		],
+	category:'religion',chance:45,
+    });
+	new G.Trait({
+        name:'nonpatronage',
+	desc:'Seems like your tribe want to live without gods sons/daughters . <b>The reasons might be:</b> @First decision that has been spread through tribe @Fear @Insecurity @Their religion say nothing about patronage //Through rest of the run [Wizard]s and eventually [population,people] will not pick/create their own Patron. @<font color="fuschia">Patron if chosen by [population,people] does not involve gameplay in any way. It is lore thing.</font>',
+        icon:[9,32,'magixmod'],
+	cost:{'culture':75,'faith':5,'insight':105},
+        req:{'Wizardry':true,'patron2':false,'patron3':false,'patron4':false,'patron5':false,'patron1':false,'patron7':false,'patron8':false,'patron6':false,'unknown patron':false},
+	category:'religion',chance:80,
+    });
+	new G.Trait({
+		name:'t8',
+		displayName:'Buried',
+		desc:'You are during Buried trial. After you succesfully finish this trial you will no longer be able to rerun it.',
+		icon:[22,25,'magixmod',1,22,'magixmod'],
+		req:{'tribalism':false,'trial':true},
+		cost:{},
+			effects:[
+			{type:'provide res',what:{'spirituality':3,'faith':3}},
+				{type:'function',func:function(){ //BECAUSE DURING BURIED YOU HAVE WAY MORE HOUSING BUT IT DECAYS
+					G.getDict('house').desc='@provides 25 [housing]<>A sturdy home built to last.';
+					G.getDict('hovel').desc='@provides 20 [housing]<>A simple home for a family of villagers.';
+					G.getDict('hut').desc='@provides 12 [housing]<>Small dwelling built out of hardened mud and branches.';
+					G.getDict('mud shelter').desc='@provides 8 [housing]<>Basic, frail dwelling in which a small family can live.';
+					G.getDict('branch shelter').desc='@provides 8 [housing]<>Basic, very frail dwelling in which a small family can live.';
+					G.getDict('bamboo hut').desc='@provides 15 [housing]<>Small dwelling with roof out of branches and walls out of [Bamboo].';
+				}},
+		],
+	});
+	new G.Tech({
+        name:'message memory',
+	desc:'Message history increased from 25 to 50. <>Later you can unlock [message filtering]. However this tech cannot be researched via this box. You\'ll start next runs with that after 3 Ascensions performed. '+(G.resets>=3 ? '' : "<b>You performed: "+G.resets+"/3</b>")+'.',
+        icon:[35,13,'magixmod'],
+	cost:{'culture':15,'insight':5},
+        req:{'oral tradition':true,'caligraphy':true},
+	category:'tier1',chance:7,
+	effects:[
+				{type:'function',func:function(){
+					G.maxMessages=50;	
+				}},
+		],
+    });
+	new G.Tech({
+        name:'message filtering',
+	desc:'Via policy tab you can specify now what kind of messages you want to see in right-side panel of the game. However you won\'t be able to disable raports/[thief] inbound warning/(TBA)Catastrophe message/Anything related to current [trial].',
+        icon:[11,32,'magixmod'],
+        req:{'tribalism':false},
+	category:'tier1',chance:7,
     });
 	/*=====================================================================================
 	POLICIES
@@ -19244,7 +19490,7 @@ new G.Tech({
                 '<br>Trial rules<br>'+
                 'Enter the plane where I will show you that the time is mo\' than just years and days, weeks and months. Each year in my plane will decrease productivity of all your units by random ratio from [around 0.01% to 0.5%]. In addition Dreamers in this plane don\'t exist and nobody knows who are they but I will bring down to you some , random amount of <font color="aqua">Insight</font> each year(in this trial amount of <font color="aqua">Insight</font> can be equal to 160% of <font color="aqua">Wisdom</font> amount).Finish the trial by building mai wonder and ascend your soul to me.I will reward you with a small improvement.For completing trial for the first time the bonus cap will be increased by 2.5% and you will gain first Victory Point from this challenge. (This trial will be repeatable but will get harder and harder after each time you will perform it again. Difficulty will start increasing after first trial completion<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane','slow');G.getRes('corpse').amount=0;G.Save();G.techN=0;G.traitN=0; return '<div class="fancyText">Alright then... good luck<br>Then the Patience trial begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Patience','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;var t1=G.traitByName['t1'];var trial=G.traitByName['trial'];G.gainTrait(t1);G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Patience trial has been started. You are in Chra-nos\'s plane','slow');G.doFunc('new game');G.getRes('corpse').amount=0;G.Save();G.techN=0;G.traitN=0; return '<div class="fancyText">Alright then... good luck<br>Then the Patience trial begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Patience','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -19271,7 +19517,7 @@ new G.Tech({
                 '<br>Trial rules<br>'+
                 'I am a Madness. This plane is full of anger... No way to make\'em happy. You will have to handle it. In fact people\'s happiness will be always at -200% level and can\'t be raised even to +1%. In addition penalty from unhappiness is bigger than normal. Reaching -400% happiness causes Madness to kick you out of this plane. Every 3 discoveries My penalty from unhappiness raises up by 10%(compounding). Construct a Wonder of Madness for Bersaria and ascend by it to finish the challenge. Beating mah challenge for the first time will make mah backfire weaker and thee Thieve hunters are al-most unharmable!<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.lose('sick',5);G.gain('adult',5);G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.getRes('corpse').amount=0;G.Save();G.techN=0;G.traitN=0; return '<div class="fancyText">Alright then... good luck<br>Then the Unhappy trial begins...<br>The Madness begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.lose('sick',5);G.gain('adult',5);G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t2']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Unhappy trial has been started. You are in Bersaria\'s plane','slow');G.doFunc('new game');G.getRes('corpse').amount=0;G.Save();G.techN=0;G.traitN=0; return '<div class="fancyText">Alright then... good luck<br>Then the Unhappy trial begins...<br>The Madness begins</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Unhappy','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -19298,7 +19544,7 @@ new G.Tech({
                 '<br>Trial rules<br>'+
                 'I am a personification of Inspiration. Ya met me '+G.getName('ruler')+'! Ya want me to be closer to ya and your people. Al the right! But show me ya are worthy of me. In my plane no one except me can gather <font color="green">culture</font> , <font color="green">influence</font> for ya. (their amounts can over cap but Tu-ria won\'t bring down to you next portion if even just one of the essentials will overcap) Onle me! Just me! Researching and discovering will be tougher. For this trial <font color="green">water rations</font> cannot be set to plentiful(food one can be still be set)! In addition you will be forced to keep cultural stability. Doing anything related to researching, discovering causes stability to go low while doing cultural things will bring it up.(also few researches will increase up the stability) Don\'t get too low or too much(it will make trial attempt failed). Completing mah challenge for the first time will encourage me to make yar Cultural units gaining more Culture for ya. My penalty will go lower for ya. <br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('beyond').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t3']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.gainTech(G.techByName['a gift from the mausoleum']);G.techN=0;G.traitN=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Cultural','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('health').amount=0;G.getRes('beyond').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t3']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Cultural trial has been started. You are in Tu-ria\'s plane','slow');G.getRes('corpse').amount=0;G.gainTech(G.techByName['a gift from the mausoleum']);G.doFunc('new game');G.techN=0;G.traitN=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Cultural trial begins...</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Cultural','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -19325,7 +19571,7 @@ new G.Tech({
                 '<br>Trial rules<br>'+
                 'I am patron of hunters! But in my trial you will hunt yourself. You\'ll hunt your weakpoints. In my plane your people won\'t like taste of green willing for tasty meat. <font color="pink">Gatherer</font> and <font color="pink">fisher</font> doesn\'t exist there too. But you have no time for eating and being happy from taste of hunted deer. Each year 3% of your people will die and <font color="pink">Health</font> will go lower and lower increasing vulnerability to the diseases. Happiness cap for this trial is: from -200% to 98%! You\'ll be able to bring health back to 0 state only once(via policies) but it will consume half of your total food. Build a wonder of my religion. Completing the trial for the first time I will empower all hunting units and cooked meat,cured meat will decay slower.<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t4']);G.techN=0;G.traitN=0;var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Hunted trial has been started. You are in Hartar\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Hunted trial begins...<br>The meat rush begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Hunted','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.fastTicks=0;G.gainTrait(G.traitByName['t4']);G.techN=0;G.doFunc('new game');G.traitN=0;var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Hunted trial has been started. You are in Hartar\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Hunted trial begins...<br>The meat rush begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Hunted','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
@@ -19350,6 +19596,156 @@ new G.Tech({
 			'+3':{name:'<font color="#ff8066">+3</font>',desc:'A 10.25% chance to receive 0.15 to 1.5 [insight] at the start of new year.'},
 		},
 	});
+	
+		new G.Policy({
+		name:'reset health level',
+		desc:'Only available while in Hunted. Resets health to 0%. Available only once per each Hunted attempt.',
+		icon:[21,29,'magixmod'],
+		cost:{'influence':1},
+		startMode:'inactive',
+		modes:{
+		'inactive':{name:'Inactive',desc:'Ability is currently unused'},
+		'activate':{name:'Activate',desc:'Active this ability'},
+		'alreadyused':{name:'Already used',req:{'tribalism':false}},
+		},
+		req:{'t4':true,'trial':true},
+		category:'Florists',
+	});
+	new G.Policy({
+		name:'Unfishy (WIP)',
+		desc:'starts [se05] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',25,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se10':'on'},
+		category:'trial',
+		effects:[
+			/*{type:'function',func:function(){G.dialogue.popup(function(div){
+            return '<div style="width:580px;min-height:550px;height:75%;">'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Pocket - -</font></div>'+
+				'<div class="fancyText">The Mamuun\'s trial</font></div><br>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/10.png" width="72" height="72"/>'+
+                '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
+'<br><br><Br><br>'+
+				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
+                '<br>Trial rules<br>'+
+                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. Also exploring units are 2.5x as efficient. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
+'<div class="fancyText title">Tell me your choice...</div>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.doFunc('new game');G.middleText('The Pocket trial has been started. You are in Mammun\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '</div>'+
+            '</div><div class="buttonBox">'+
+            '</div></div>'
+})}}*/
+				],
+	});
+	new G.Policy({
+		name:'Ocean (WIP)',
+		desc:'starts [se06] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',24,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se10':'on'},
+		category:'trial',
+		effects:[
+			/*{type:'function',func:function(){G.dialogue.popup(function(div){
+            return '<div style="width:580px;min-height:550px;height:75%;">'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Pocket - -</font></div>'+
+				'<div class="fancyText">The Mamuun\'s trial</font></div><br>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/10.png" width="72" height="72"/>'+
+                '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
+'<br><br><Br><br>'+
+				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
+                '<br>Trial rules<br>'+
+                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. Also exploring units are 2.5x as efficient. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
+'<div class="fancyText title">Tell me your choice...</div>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.doFunc('new game');G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Mammun\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '</div>'+
+            '</div><div class="buttonBox">'+
+            '</div></div>'
+})}}*/
+				],
+	});
+	new G.Policy({
+		name:'Herbalism (WIP)',
+		desc:'starts [se07] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',23,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se10':'on'},
+		category:'trial',
+		effects:[
+			/*{type:'function',func:function(){G.dialogue.popup(function(div){
+            return '<div style="width:580px;min-height:550px;height:75%;">'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Pocket - -</font></div>'+
+				'<div class="fancyText">The Mamuun\'s trial</font></div><br>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/10.png" width="72" height="72"/>'+
+                '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
+'<br><br><Br><br>'+
+				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
+                '<br>Trial rules<br>'+
+                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. Also exploring units are 2.5x as efficient. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
+'<div class="fancyText title">Tell me your choice...</div>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);G.doFunc('new game');var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Mammun\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '</div>'+
+            '</div><div class="buttonBox">'+
+            '</div></div>'
+})}}*/
+				],
+	});
+	new G.Policy({
+		name:'Buried',
+		desc:'starts [se08] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',22,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se10':'on','voodoo spirit':false},
+		category:'trial',
+		effects:[
+			{type:'function',func:function(){G.dialogue.popup(function(div){
+            return '<div style="width:580px;min-height:550px;height:75%;">'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Pocket - -</font></div>'+
+				'<div class="fancyText">The Buri\'o dak\'s trial</font></div><br>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/8.png" width="72" height="72"/>'+
+                '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
+'<br><br><Br><br>'+
+				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
+                '<br>Trial rules<br>'+
+                'My plane full of one thing... Death. Full of darkness. Also everything that provide you <font color="white">Housing</font> provide 2.5x more than it would do normally. Also every 300 morning and night cycles some of your <font color="white">Housing</font> will decay and some of your <font color="white">People</font> will die producing Dark Essence.<br><Br><BR>'+
+'<div class="fancyText title">Tell me your choice...</div>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.doFunc('new game');G.gainTrait(G.traitByName['t8']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Buried trial has been started. You are in Buri\'o dak\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '</div>'+
+            '</div><div class="buttonBox">'+
+            '</div></div>'
+})}}
+				],
+	});
+	new G.Policy({
+		name:'Underground (WIP)',
+		desc:'starts [se09] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',21,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se10':'on'},
+		category:'trial',
+		effects:[
+			/*{type:'function',func:function(){G.dialogue.popup(function(div){
+            return '<div style="width:580px;min-height:550px;height:75%;">'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Pocket - -</font></div>'+
+				'<div class="fancyText">The Mamuun\'s trial</font></div><br>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/10.png" width="72" height="72"/>'+
+                '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
+'<br><br><Br><br>'+
+				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
+                '<br>Trial rules<br>'+
+                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. Also exploring units are 2.5x as efficient. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
+'<div class="fancyText title">Tell me your choice...</div>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.doFunc('new game');G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Mammun\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '</div>'+
+            '</div><div class="buttonBox">'+
+            '</div></div>'
+})}}*/
+				],
+	});
 	new G.Policy({
 		name:'Pocket',
 		desc:'starts [se10] trial. Will warn you before start.',
@@ -19368,28 +19764,14 @@ new G.Tech({
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. Also exploring units are 2.5x as efficient. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
+                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. Also exploring units are 2.5x as efficient. To buy resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Mammun\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.doFunc('new game');G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.middleText('The Pocket trial has been started. You are in Mammun\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
 })}}
 				],
-	});
-		new G.Policy({
-		name:'reset health level',
-		desc:'Only available while in Hunted. Resets health to 0%. Available only once per each Hunted attempt.',
-		icon:[21,29,'magixmod'],
-		cost:{'influence':1},
-		startMode:'inactive',
-		modes:{
-		'inactive':{name:'Inactive',desc:'Ability is currently unused'},
-		'activate':{name:'Activate',desc:'Active this ability'},
-		'alreadyused':{name:'Already used',req:{'tribalism':false}},
-		},
-		req:{'t4':true,'trial':true},
-		category:'Florists',
 	});
 	new G.Policy({
 		name:'Faithful',
@@ -19411,12 +19793,39 @@ new G.Tech({
                 '<br>Trial rules<br>'+
                 'Be faithful. Only faith will lead you to victory. In this plane you start with 100 <font color="aqua">spirituality</font> and 100 <font color="aqua">Faith</font>. Each year you lose around '+(5+G.achievByName['Faithful'].won)+' Faith. Be careful! If your Faith will go negative/reach zero the trial will be failed and you will come back to the mortal world. The more you research, the more Faith you will lose. In addition Soothsayer works at 10% of its normal efficiency. Build up a replacement of Mausoleum... the Faithoselum and ascend by it. Completing trial causes Soothsayers generate faith more succesfully so early-game faith gathering will be easier because of Enlightened\'s patron.'+
 '<div class="fancyText title">Tell me your choice...</div>'+
-                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){	G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.gainTrait(G.traitByName['t11']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Faithful trial has been started. You are in Enlightened\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.techN=0;G.traitN=0;G.doFunc('new game');G.fastTicks=0;G.gainTrait(G.traitByName['t11']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Faithful trial has been started. You are in Enlightened\'s plane','slow');G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
                 '</div>'+
             '</div><div class="buttonBox">'+
             '</div></div>'
 })}}
 				],
+	});
+	new G.Policy({
+		name:'Dreamy',
+		desc:'starts [se12] trial. Will warn you before start.',
+		icon:[24,18,'magixmod',18,25,'magixmod',1,22,'magixmod'],
+		cost:{'insight II':1,'influence II':1},
+		startMode:'off',		
+		req:{'se10':'on'},
+		category:'trial',
+		effects:[
+			/*{type:'function',func:function(){G.dialogue.popup(function(div){
+            return '<div style="width:580px;min-height:550px;height:75%;">'+
+                '<div class="fancyText title"><font color="#d4af37" size="5">- - Pocket - -</font></div>'+
+				'<div class="fancyText">The Mamuun\'s trial</font></div><br>'+
+				'<img src="https://pipe.miroware.io/5db9be8a56a97834b159fd5b/Trial%20icons/10.png" width="72" height="72"/>'+
+                '<div class="fancyText bitBiggerText scrollBox underTitle" style="text-align:left;padding:32px;">'+
+'<br><br><Br><br>'+
+				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
+                '<br>Trial rules<br>'+
+                'My plane is for rich people. Are you one of them? Well. In this plane you will earn money. Gatherer can gather money there... in 3 tiers. Also exploring units are 2.5x as efficient. To buying resources that you can\'t gather you will need 3rd tier of currency. None of crafting units exist in fact crafting isn\'t even possible in this plane. Only and just gathering(except some). Remember. Lower tiers of currency decays faster. From year 110 and above you will start losing money because of thievery. Lead your people to build a wonder of Mamuun worship and ascend your soul for Mamuun. Completing this trial for the first time will increase capacity of all [stockpile,storage units] by 35% (additive). (The one that applies bonus for beating for the second time - raise up from 35 to 55%)<br><Br><BR>'+
+'<div class="fancyText title">Tell me your choice...</div>'+
+                '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.doFunc('new game');G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.gainTrait(G.traitByName['t10']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Pocket trial has been started. You are in Mammun\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
+                '</div>'+
+            '</div><div class="buttonBox">'+
+            '</div></div>'
+})}}
+				*/],
 	});
 	new G.Policy({
 		name:'discovery rituals',
@@ -19426,6 +19835,133 @@ new G.Tech({
 		startMode:'off',
 		req:{'ritualism':true,'globetrottering':true},
 		category:'faith',
+	});
+	new G.Policy({
+		name:'birth messages',
+		desc:'Disable/Enable messages informing that some [baby,babies] has been born in your civilization.',
+		icon:[12,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'death messages',
+		desc:'Disable/Enable messages informing that some people have died. <>Note: It will disable ANY death messages regardless of reason of people\'s death.',
+		icon:[13,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'new day lines',
+		desc:'Disable/Enable new day lines. Those are atmospheric messages written with darker text.',
+		icon:[14,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'research messages',
+		desc:'Disable/Enable messages that inform you what you have just researched.',
+		icon:[15,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'obtaining a trait messages',
+		desc:'Disable/Enable messages that inform you about trait your people have just adopted.',
+		icon:[16,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'seasonal loots messages',
+		desc:'Disable/Enable messages that inform you what you looted during some season for example during Easter.',
+		icon:[17,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'disease messages',
+		desc:'Disable/Enable messages that inform you how many [population,people] have become [sick]. This also disables infos about recovered [sick] people.',
+		icon:[18,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'tutorial messages',
+		desc:'Disable/Enable tutorial messages.',
+		icon:[19,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'story messages',
+		desc:'Disable/Enable story messages. Those look differently than [new day lines]. They appear while researching. Having more and more techs will show next parts of that. You rather want turn it on... //mod creator\'s note: worked some time for some sort of story, maybe you want to check it.',
+		icon:[20,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'accident messages',
+		desc:'Disable/Enable messages that inform you how many [population,people] have become [wounded]. This also disables infos about recovered [wounded] people.',
+		icon:[21,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+	new G.Policy({
+		name:'homelessness messages',
+		desc:'Disable/Enable messages about [housing,homelessness]. <small>Those will always display... ehh. You want turn\'em off I guess.</small>',
+		icon:[22,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+		new G.Policy({
+		name:'exploration messages',
+		desc:'Disable/Enable messages about recently discovered tiles.',
+		icon:[23,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+		new G.Policy({
+		name:'lost messages',
+		displayName:'unit accidents messages',
+		desc:'Disable/Enable messages about [scout]s / [wanderer]s being lost, [hunter]s being wounded while hunting, [mine]s collapsed, etc. related to it.',
+		icon:[24,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
+	});
+		new G.Policy({
+		name:'wonder messages',
+		desc:'This is related only to messages that appear when you start constructing a wonder for now. <br> Via this you can disable/enable them.',
+		icon:[25,32,'magixmod'],
+		cost:{},
+		startMode:'on',
+		req:{'message filtering':true},
+		category:'mag',
 	});
 	/*=====================================================================================
 	LANDS
@@ -20801,4 +21337,3 @@ G.funcs['create map']=function(w,h)
 	}
 }
 });
-
