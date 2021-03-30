@@ -4479,6 +4479,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 										tile.explored+=0.1;
 										G.tileToRender(tile);
 										updateMap=true;
+										if(tile.explored.displayName=='Dead forest')G.achievByName['lands of despair'].won++;
+										if(G.achievByName['lands of despair'].won<1){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')}};
 										G.doFuncWithArgs('found tile',[tile]);
 									}
 								}
@@ -4777,16 +4779,14 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	
 	G.funcs['found tile']=function(tile)
 	{
-		
+		if(G.checkPolicy("exploration messages")=='on'){
 		G.Message({type:'good',mergeId:'foundTile',textFunc:function(args){
-			if(args.tile.land.displayName=="Dead forest"){G.achievByName['lands of despair'].won=G.achievByName['lands of despair'].won+1;if(G.achievByName['lands of despair'].won<1){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')}};
-			if(G.checkPolicy('exploration messages')=='on'){
+			/*if(args.tile.land.displayName=="Dead forest"){G.achievByName['lands of despair'].won=G.achievByName['lands of despair'].won+1;if(G.achievByName['lands of despair'].won<1){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')}};*/
+			
 			if (args.count==1){ return 'Our explorers have found a new tile : <b>'+args.tile.land.displayName;+'</b>.'
-			}else{ return 'Our explorers have found '+B(args.count)+' new tiles; the latest is <b>'+args.tile.land.displayName;+'</b>.'};
-			}else{break;};
-						     
+			}else{ return 'Our explorers have found '+B(args.count)+' new tiles; the latest is <b>'+args.tile.land.displayName;+'</b>.'};			     
 		},args:{tile:tile,count:1},icon:[14,4]});
-
+		}
 	}
 	
 	G.funcs['production multiplier']=function()
