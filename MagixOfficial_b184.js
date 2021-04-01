@@ -6645,7 +6645,7 @@ G.writeMSettingButton=function(obj)
 		name:'influence',
 		displayName:'Attack power',
 		desc:'you get 1 [influence] every some period of time. Represents your power on arena.',
-		icon:[15,2,'seasonal'],
+		icon:[15,3,'seasonal'],
 		category:'main',
 		limit:'authority',
 		startWith:5,
