@@ -14141,7 +14141,7 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'language',displayName:'lnagugaue',,category:'tier1',
+		name:'language',displayName:'lnagugaue',category:'tier1',
 		desc:'@provides 30 [inspiration]@provides 30 [wisdom]<>[language] improves on [speech] by combining complex grammar with a rich vocabulary, allowing for better communication and the first signs of culture.',
 		icon:[19,1,'seasonal'],
 		cost:{'insight':10},
