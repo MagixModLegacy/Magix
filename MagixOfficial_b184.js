@@ -6315,7 +6315,7 @@ G.writeMSettingButton=function(obj)
 	new G.Res({
 		name:'iron ore',
 		desc:'Ore that can be processed into [hard metal ingot]s.',
-		icon:[19,4,'seasonal'],
+		icon:[10,8],
 		partOf:'misc materials',
 		category:'ore',
 	});
@@ -6618,7 +6618,7 @@ G.writeMSettingButton=function(obj)
 		name:'faith',
 		displayName:'Armor',
 		desc:'Reperesents a defense power on the arena. (stll works like Faith so don\'t worry)',
-		icon:[14,2,'seasonal'],
+		icon:[14,3,'seasonal'],
 		category:'main',
 		limit:'spirituality',
 		tick:function(me,tick)
