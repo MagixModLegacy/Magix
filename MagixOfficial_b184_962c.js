@@ -3365,7 +3365,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		}
 		if(yer.getMonth()==3 && yer.getDate()==1){
 			document.title='Tribe OOFed - NeverEnding Legacy';
-		}else{document.title='Tribe died - NeverEnding Legacy';}
+		}else{document.title='Tribe died - NeverEnding Legacy';
+		     };
 		G.dialogue.popup(function(div){
             return '<div style="width:540px;min-height:540px;height:75%;">'+
                 '<div class="fancyText title"><font color="red">Everyone in your tribe<br> has died terribly</font></div>'+
@@ -6398,7 +6399,6 @@ G.writeMSettingButton=function(obj)
 		name:'precious metal ingot',
 		desc:'Metal with little industrial usefulness but imbued with valuable aesthetics.//Includes gold and silver.',
 		icon:[11,9],
-		
 		category:'build',
 	});
 	
