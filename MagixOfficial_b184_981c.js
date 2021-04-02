@@ -1,4 +1,4 @@
-var la=1;var lb=2;var lc=0;var ta=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
+var la=1;var lb=2;var lc=0;var ta=0;let stageDeadTemple=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
@@ -2004,6 +2004,7 @@ G.setPolicyMode=function(me,mode)
 	G.buyUnit=function(me,amount,any)
 	{
 		//if any is true, by anywhere between 0 and amount; otherwise, fail if we can't buy the precise amount
+		console.log(me.percent);
 		var success=true;
 		amount=Math.round(amount);
 		if (me.unit.wonder && amount>0)
