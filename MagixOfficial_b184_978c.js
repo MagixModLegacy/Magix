@@ -2024,6 +2024,7 @@ G.setPolicyMode=function(me,mode)
 					G.applyUnitBuyEffects(me,amount);
 					me.mode=2;//start paused
 					me.percent=0;
+					console.log(me.percent);
 					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 					
 					var bounds=me.l.getBoundingClientRect();
@@ -4513,7 +4514,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 										tile.explored+=0.1;
 										G.tileToRender(tile);
 										updateMap=true;
-										console.log(tile.land.name);
 										if(tile.land.name=='dead forest')G.achievByName['lands of despair'].won++;
 										if(G.achievByName['lands of despair'].won<1 && tile.explored.displayName=='Dead forest'){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')};
 										G.doFuncWithArgs('found tile',[tile]);
@@ -13519,7 +13519,7 @@ new G.Unit({
 		wideIcon:[0,26,'magixmod'],
 		cost:{'basic building materials':250,'bone':200,'corpse':20},
 		costPerStep:{'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3,'Dark Essence':2},
-		steps:1000,
+		steps:2000,
 		messageOnStart:'Your people have started building the <b>Temple of the Dead</b>. You do not know why but it goes slightly slower than normal. But its shadow spreads fear all around.',
 		finalStepCost:{'population':50,'corpse':40},
 		finalStepDesc:'To perform the final step 50 [population,people] and 40 [corpse]s must be sacrificed to escape this hell once and for all and award 15 <b>Victory points</b>.',
