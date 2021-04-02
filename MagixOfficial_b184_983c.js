@@ -1,4 +1,4 @@
-var la=1;var lb=2;var lc=0;var ta=0;let stageDeadTemple=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
+var la=1;var lb=2;var lc=0;var ta=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
