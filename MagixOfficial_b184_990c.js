@@ -4175,7 +4175,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var lostHousing=Math.ceil(G.getRes('housing').amount*0.03)+1;var lostPeople=Math.ceil(G.getRes('population').amount*0.02)+1;
 			G.lose('housing',lostHousing,'The dark decay');G.lose('population',lostPeople,'The dark decay');
 			G.gain('corpse',lostPeople,'The dark death');G.gain('Dark essence',(Math.round(lostHousing*0.75))+lostPeople,'The dark death');
-			G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>'+lostHousing+' <b>Housing</b></li><li>'+lostPeople+' <b> people</b></li> <br>However it made you '+(Math.round(lostHousing*0.75)+lostPeople)+' Dark essence richer. Use Dark Essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']})
+			G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>'+lostHousing+' <b>Housing</b></li><li>'+lostPeople+' <b> people</b></li> <br>However it made you '+(Math.round(lostHousing*0.75)+lostPeople)+' Dark essence richer. Use Dark essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']})
 		};
 		var multiplier=() => {if(G.achievByName['love for eternity'].won>=1) return 1.2; else return 1};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10 && G.achievByName['so adorable'].won==1){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow')};
@@ -13643,7 +13643,7 @@ new G.Unit({
 		icon:[1,26,'magixmod'],
 		wideIcon:[0,26,'magixmod'],
 		cost:{'basic building materials':250,'bone':200,'corpse':20},
-		costPerStep:{'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3,'Dark Essence':2},
+		costPerStep:{'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3,'Dark essence':2},
 		steps:2000,
 		messageOnStart:'Your people have started building the <b>Temple of the Dead</b>. You do not know why but it goes slightly slower than normal. But its shadow spreads fear all around.',
 		finalStepCost:{'population':50,'corpse':40},
