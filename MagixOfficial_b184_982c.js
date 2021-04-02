@@ -831,6 +831,132 @@ func:function(){
 				side:[],
 		},
 	};
+		G.logic['unit']=function()
+	{
+		var mult=G.doFunc('production multiplier',1);//global production multiplier - affects how many times the unit effects will be applied every tick
+		
+		var len=G.unitsOwned.length;
+		//we turn the list of owned units into internally shuffled sections sorted by priority, then work through those in order
+		var priorities=[];
+		for (var i=0;i<len;i++)
+		{
+			if (!priorities[G.unitsOwned[i].unit.priority]) priorities[G.unitsOwned[i].unit.priority]=[G.unitsOwned[i].unit.priority];
+			priorities[G.unitsOwned[i].unit.priority].push(G.unitsOwned[i]);
+		}
+		
+		priorities.sort(function(a,b){return b[0]-a[0]});
+				
+		for (var iP in priorities)
+		{
+			priorities[iP].shift();
+			shuffle(priorities[iP]);
+			var len=priorities[iP].length;
+			for (var i=0;i<len;i++)
+			{
+				var me=priorities[iP][i];
+				if (!me.unit.wonder && me.amount<me.targetAmount)//try to build up to target
+				{
+					var toMake=Math.min(me.targetAmount-me.amount,Math.max(1,me.targetAmount*0.5));
+					G.buyUnit(me,toMake,true);
+				}
+				else if (!me.unit.wonder && me.amount>me.targetAmount)
+				{
+					var toDie=Math.min(me.amount-me.targetAmount,Math.max(1,me.amount*0.5));
+					G.killUnit(me,toDie,true);
+				}
+				if (!me.unit.wonder && me.idle>0)//try to refill
+				{
+					var toMake=Math.min(me.idle,Math.max(1,me.idle*0.5));
+					G.unidleUnit(me,toMake);
+				}
+				
+				var amount=G.applyUnitAmountEffects(me);//modify the effective amount
+				if (amount>0)
+				{
+					//apply effects every tick
+					var repeat=randomFloor(mult);
+					if (repeat>0)
+					{
+						for (var ii=0;ii<repeat;ii++)
+						{
+							G.applyUnitEffects(me,amount);
+						}
+					}
+				}
+				if (me.unit.wonder)
+				{
+					//apply steps
+					if (me.mode==1 || me.mode==2)
+					{
+						
+						if (me.percent>=me.unit.steps)
+						{
+							me.mode=3;
+							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
+						}
+						if (me.mode==1 && G.testCost(me.unit.costPerStep,1))
+						{
+							me.percent++;
+							console.log(me.percent)
+							G.doCost(me.unit.costPerStep,1);
+							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
+						}
+						if (me.percent>=me.unit.steps)
+						{
+							me.mode=3;
+							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
+						}
+					}
+				}
+				if (me.amount>0)
+				{
+					var waste=0;
+					var idle=0;
+					//run upkeep and check used resources; if we're short on either, waste away
+					for (var ii in me.unit.upkeep)
+					{
+						var res=G.getRes(ii);
+						var upkeep=me.unit.upkeep[ii]*(me.amount-me.idle);
+						var spent=G.lose(ii,upkeep,'unit upkeep');
+						if (spent<upkeep)
+						{
+							if (me.unit.alternateUpkeep && me.unit.alternateUpkeep[ii])//last resort
+							{spent+=G.lose(me.unit.alternateUpkeep[ii],upkeep*(me.amount-me.idle)-spent,'unit upkeep');}
+							if (spent<upkeep) idle=true;
+						}
+					}
+					for (var ii in me.unit.use)
+					{
+						var res=G.getRes(ii);
+						var use=me.unit.use[ii];
+						//if (res.amount<res.used) waste=1;
+						//if (me.amount>0 && res.name=='worker') console.log('we need '+(use*(me.amount))+', we have '+(res.amount-res.used)+' for '+(me.amount)+' '+me.unit.name+'; deleting '+(waste,(use*(me.amount)-(res.amount-res.used))/use));
+						if (use && (res.amount<=use*(me.amount) || res.amount<res.used)) waste=true;
+					}
+					for (var ii in me.unit.staff)
+					{
+						var res=G.getRes(ii);
+						var use=me.unit.staff[ii];
+						//if (res.amount<res.used) idle=1;
+						if (use && (res.amount<=use*(me.amount-me.idle) || res.amount<res.used)) idle=true;
+					}
+					for (var ii in me.mode.use)
+					{
+						var res=G.getRes(ii);
+						var use=me.mode.use[ii];
+						//if (res.amount<res.used) idle=1;
+						if (use && (res.amount<=use*(me.amount-me.idle) || res.amount<res.used)) idle=true;
+					}
+					if (!G.testLimit(me.unit.limitPer,G.getUnitAmount(me.unit.name))) waste=true;
+					
+					//if (idle) G.idleUnit(me,Math.ceil(idle));
+					//if (waste) G.wasteUnit(me,Math.ceil(waste));
+					if (idle) G.idleUnit(me,Math.ceil((me.amount-me.idle)*0.05));
+					if (waste) G.wasteUnit(me,Math.ceil(me.amount*0.05));
+				}
+			}
+		}
+	}
 	/*=====================================================================================
 	ACHIEVEMENTS AND LEGACY
 		When the player completes a wonder, they may click it to ascend; this takes them to the new game screen.
@@ -2004,7 +2130,6 @@ G.setPolicyMode=function(me,mode)
 	G.buyUnit=function(me,amount,any)
 	{
 		//if any is true, by anywhere between 0 and amount; otherwise, fail if we can't buy the precise amount
-		console.log(me.percent);
 		var success=true;
 		amount=Math.round(amount);
 		if (me.unit.wonder && amount>0)
