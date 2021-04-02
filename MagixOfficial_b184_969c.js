@@ -707,13 +707,13 @@ func:function(){
 //===========================
 	G.maxMessages=25
 	if(document.baseURI.includes('dashnet.org/legacy/')){
-	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
+	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 49, 2021 - pelletsstarPL</font>';
 	document.getElementsByTagName('div')[4].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
 	document.getElementsByTagName('div')[5].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
 	document.getElementsByTagName('div')[6].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
 	document.getElementsByTagName('div')[7].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';
 }else if(document.baseURI.includes('cookieclicker.eu/legacy/')){
-	document.getElementsByTagName('div')[5].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 48, 2021 - pelletsstarPL</font>';
+	document.getElementsByTagName('div')[5].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 49, 2021 - pelletsstarPL</font>';
 	document.getElementsByTagName('div')[6].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
 	document.getElementsByTagName('div')[7].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
 	document.getElementsByTagName('div')[8].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
@@ -4179,7 +4179,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.has('families full of love'))G.gain('love xp',G.getRes('elder').amount*0.7*multiplier());
 			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
-		
+		if(G.has('t8'))G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>x <b>Housing</b></li><li>y <b> people</b></li> <br>However it made you z Dark Essence richer. Use Dark Essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']});
 	}};
 	if(yer.getMonth()==3 && yer.getDate()==1){
 	G.props['new day lines']=[ //2 quotes per line /replacement : AF / normal
@@ -13510,13 +13510,13 @@ new G.Unit({
 		icon:[1,26,'magixmod'],
 		wideIcon:[0,26,'magixmod'],
 		cost:{'basic building materials':250,'bone':200,'corpse':20},
-		costPerStep:{'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3},
+		costPerStep:{'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3,'Dark Essence':2},
 		steps:1000,
 		messageOnStart:'Your people have started building the <b>Temple of the Dead</b>. You do not know why but it goes slightly slower than normal. But its shadow spreads fear all around.',
 		finalStepCost:{'population':50,'corpse':40},
 		finalStepDesc:'To perform the final step 50 [population,people] and 40 [corpse]s must be sacrificed to escape this hell once and for all and award 15 <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'language':true,'tribalism':false},
+		req:{'t8':true},//due to trial conditions you start run with unlocked wonder
 		category:'wonder',
 	});
 	new G.Unit({
