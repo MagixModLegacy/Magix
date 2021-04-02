@@ -720,7 +720,7 @@ func:function(){
 	document.getElementsByTagName('div')[9].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';	
 	}
 	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
-	var yer=new Date().getFullYear();
+	var yer=new Date();
 	var leap=(((yer%4==0)&&(yer%100!=0))||(yer%400==0))?1:0;
 	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
 	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(yer);
