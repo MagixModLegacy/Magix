@@ -2018,7 +2018,7 @@ G.setPolicyMode=function(me,mode)
 				if (success)
 				{
 					
-					if(G.checkPolicy('wonder messages')=='on')if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
+					if(G.checkPolicy('wonder messages')=='on' || G.resets<=3)if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
 					G.doCost(me.unit.cost,amount);
 					G.doUse(me.unit.use,amount);
 					G.applyUnitBuyEffects(me,amount);
@@ -3944,7 +3944,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					audio.play(); 
 			}
 			////STORYLINE////
-			if(G.checkPolicy('story messages')=='on'){
+			if(G.checkPolicy('story messages')=='on' || G.resets<=3){
 			if(G.techN >= 25 && G.techN <=34 && !st1){
 				G.Message({type:'story1',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
 				st1=true
@@ -4178,35 +4178,60 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
 		
 	};
-}
+}	if(yer.getMonth()==3 && yer.getDate()==1){
 	G.props['new day lines']=[ //2 quotes per line /replacement : AF / normal
-		'Mantisk blades has been discovered','you met freind today',//'Creatures are lurking.',	'Danger abounds.',
-		'BRUH','OOF',//'Wild beasts are on the prowl.',	'Large monsters roam, unseen.',
-		'Who is missing the bucket?!','Another bucket found on one of the streets',//'This is a cold night.',	'No sound but the low hum of a gray sky.',
-		'Harder but more interesting ~ pelletsstarPL',//'The darkness is terrifying.',	'Clouds twist in complicated shapes.',
-		'Creepers inbound','It is raining',//'It is raining.',	'Dark birds caw ominously in the distance.',
-		'.gnivigrofnu is thgin ehT','.noziroh eth no mrost a si erehT',//'There is a storm on the horizon.',	'The night is unforgiving.',
-		'Another stream on twitch.','pelletsstarPL prepares next update',//'Creatures crawl in the shadows.',	'A stream burbles quietly nearby.',
-		'Another covid-der in the tribe.','Someone hits others with the broom.',//'In the distance, a prey falls to a pack of beasts.',	'An unexplained sound echoes on the horizon.',
-		'freinds meet during the night','Gatherer said another BRUH.',//'Everything stands still in the morning air.',	'A droning sound fills the sky.',
-		'README.txt','README.png',//'The night sky sparkles, its mysteries unbroken.',	'Dry bones crack and burst underfoot.',
-		'Wild thorns do nothing.','Something does nothing in the distance.',//'Wild thorns scratch the ankles.',	'Something howls in the distance.',
-		'Strange ashes snow down.','A loud YEET is heard.',//'Strange ashes snow down slowly from far away.',	'A blood-curdling wail is heard.',
-		'Memish creatures roll and scurry in the dirt','i++;',//'Unknown creatures roll and scurry in the dirt.',	'The air carries a peculiar smell today.',
-		'Magix','Thanks for entering to the game this day',//'Wild scents flow in from elsewhere.',	'The dust is oppressive.',
-		'Wind blows','Secrets await.',//'Wind blows from the north.',	'Secrets await.',
-		//'Discover unknown.',	'A morning fog welcomes you.',
-		'Noisestorm','Unnoisestorm',//'An eerie glow from above illuminates the night.',
-		'Distant laands lie undisturbed.','<b>What happened?</b>',//'Distant lands lay undisturbed.',	'<b>Magic awaits.</b>',
-		'A warm breeze is blowing','sheesh',//'A cool breeze is blowing.',	'Another sea wave crashes against a huge rock.',
-		//'What a cloudy day today.',	'It\'s dry air today.',
-		'jeez','...gosh',//'Wild brambles look so scary even from far.',	'Some dangerous creature sleeps calmly.',
-		'QUACK!','beep beep boop',//'From far a sounds of a falling tree can be heard',	'There is no wind today.',
-		'Blab','blep',//'Just the another day in your tribe',	'From somwhere a meowing sound can be heard',
-		//'Uncover the secrets',	'Merge with nature',
-		//'Discover undiscovered',	'This is a lush evening.',
-		//'Another sea wave crashes against a tall cliff.',
+		'Mantisk blades has been discovered','you met freind today','Creatures are lurking.',	'Danger abounds.',
+		'Wild beasts are on the prowl.',	'Large monsters roam, unseen.',
+		'Who is missing the bucket?!','Another bucket found on one of the streets',
+		'Harder but more interesting ~ pelletsstarPL',
+		'Creepers inbound','It is raining','Your rolling pins are rolling and pinning',
+		'.gnivigrofnu is thgin ehT','.noziroh eth no mrost a si erehT',
+		'Another stream on twitch.','pelletsstarPL prepares next update',
+		'Another covid-der in the tribe.','Someone hits others with the broom.',
+		'freinds meet during the night','Gatherer said another BRUH.','<font color="pink">Purcharse full version of Magix to unlock special content.</font>,
+		'README.txt','README.png','<font color="pink">Hey, over here!</font>,
+		'Wild thorns do nothing.','Something does nothing in the distance.',
+		'Strange ashes snow down.','A loud YEET is heard.',
+		'Memish creatures roll and scurry in the dirt','i++;',
+		'Magix','Thanks for entering to the game this day',
+		'Wind blows','Secrets await.',
+		'Noisestorm','Unnoisestorm',
+		'Distant laands lie undisturbed.','<b>What happened?</b>',
+		'A warm breeze is blowing','sheesh',
+		'jeez','...gosh', 'You spin me round...',
+		'QUACK!','beep beep boop',
+		'Blab','blep','Moist cookies ~ grandma',
 	];
+	}else{
+		G.props['new day lines']=[ //2 quotes per line /replacement : AF / normal
+		'Creatures are lurking.',	'Danger abounds.',
+		'Wild beasts are on the prowl.',	'Large monsters roam, unseen.',//'BRUH','OOF',
+		'This is a cold night.',	'No sound but the low hum of a gray sky.',
+		'The darkness is terrifying.',	'Clouds twist in complicated shapes.',
+		'It is raining.',	'Dark birds caw ominously in the distance.',
+		'There is a storm on the horizon.',	'The night is unforgiving.',
+		'Creatures crawl in the shadows.',	'A stream burbles quietly nearby.',
+		'In the distance, a prey falls to a pack of beasts.',	'An unexplained sound echoes on the horizon.',
+		'Everything stands still in the morning air.',	'A droning sound fills the sky.',
+		'The night sky sparkles, its mysteries unbroken.',	'Dry bones crack and burst underfoot.',
+		'Wild thorns scratch the ankles.',	'Something howls in the distance.',
+		'Strange ashes snow down slowly from far away.',	'A blood-curdling wail is heard.',
+		'Unknown creatures roll and scurry in the dirt.',	'The air carries a peculiar smell today.',
+		'Wild scents flow in from elsewhere.',	'The dust is oppressive.',
+		'Wind blows from the north.',	'Secrets await.',
+		'Discover unknown.',	'A morning fog welcomes you.',
+		'An eerie glow from above illuminates the night.',
+		'Distant lands lay undisturbed.',	'<b>Magic awaits.</b>',
+		'A cool breeze is blowing.',	'Another sea wave crashes against a huge rock.',
+		'What a cloudy day today.',	'It\'s dry air today.',
+		'Wild brambles look so scary even from far.',	'Some dangerous creature sleeps calmly.',
+		'From far a sounds of a falling tree can be heard',	'There is no wind today.',
+		'Just the another day in your tribe',	'From somwhere a meowing sound can be heard',
+		'Uncover the secrets',	'Merge with nature',
+		'Discover undiscovered',	'This is a lush evening.',
+		'Another sea wave crashes against a tall cliff.','What a storm',
+	];
+	}
 	/*=====================================================================================
 	Halloween ToT
 	=======================================================================================*/
@@ -4599,7 +4624,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				//show a random atmospheric message occasionally on new days
 				//we pick one of the first 5 lines in the array, then push that line back at the end; this means we get a semi-random stream of lines with no frequent repetitions
 				var i=Math.floor(Math.random()*5);
-				if(G.checkPolicy('new day lines')=='on'){
+				if(G.checkPolicy('new day lines')=='on'  || G.resets<=3){
 				var msg=G.props['new day lines'].splice(i,1)[0];
 				G.props['new day lines'].push(msg);
 				G.Message({text:msg});
@@ -4618,7 +4643,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 						{
 							G.doCost(me.cost,1);
 							G.gainTrait(me);
-							if(G.checkPolicy('obtaining a trait messages')=='on'){
+							if(G.checkPolicy('obtaining a trait messages')=='on' || G.resets<=3){
 							switch(me.category){
 								case "knowledge":G.Message({type:'important tall',text:'Your people have adopted the knowledge: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "devils":G.Message({type:'bad tall',text:'Devils brought to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
@@ -4780,7 +4805,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	
 	G.funcs['found tile']=function(tile)
 	{
-		if(G.checkPolicy("exploration messages")=='on'){
+		if(G.checkPolicy('exploration messages')=='on'  || G.resets<=3){
 		G.Message({type:'good',mergeId:'foundTile',textFunc:function(args){
 			/*if(args.tile.land.displayName=="Dead forest"){G.achievByName['lands of despair'].won=G.achievByName['lands of despair'].won+1;if(G.achievByName['lands of despair'].won<1){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')}};*/
 			
@@ -5193,7 +5218,7 @@ G.writeMSettingButton=function(obj)
 							G.gain('corpse',died,'dehydration');
 							G.gain('happiness',-died*20*deathUnhappinessMult,'dehydration');
 							G.getRes('died this year').amount+=died;
-							if(G.checkPolicy('death messages')=='on'){ //toggle
+							if(G.checkPolicy('death messages')=='on' || G.resets<=3){ //toggle
 							if (died>0) G.Message({type:'bad',mergeId:'diedDehydration',textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died from dehydration.';},args:{died:died},icon:[5,4]});
 							};
 						}
@@ -5238,7 +5263,7 @@ G.writeMSettingButton=function(obj)
 							G.gain('corpse',died,'starvation');
 							G.gain('happiness',-died*20*deathUnhappinessMult,'starvation');
 							G.getRes('died this year').amount+=died;
-							if(G.checkPolicy('death messages')=='on'){ //toggle
+							if(G.checkPolicy('death messages')=='on' || G.resets<=3){ //toggle
 							if (died>0) G.Message({type:'bad',mergeId:'diedStarvation',textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died from starvation.';},args:{died:died},icon:[5,4]});
 							};
 						}
@@ -5288,7 +5313,7 @@ G.writeMSettingButton=function(obj)
 				
 				//homelessness
 				var homeless=Math.max(0,(me.amount)-G.getRes('housing').amount);
-				if (G.has('sedentism') && me.amount>15 && homeless>0 && G.checkPolicy('homelessness messages')=='on')
+				if (G.has('sedentism') && me.amount>15 && homeless>0 && G.checkPolicy('homelessness messages')=='on' || G.resets<=3)
 				{
 					if (tick%10==0) G.Message({type:'bad',mergeId:'homeless',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person is':'people are')+' homeless.<br>Homelessness with more than 15 population leads to lower birth rates.';},args:{n:homeless},replaceOnly:true,icon:[12,4]});
 				}
@@ -5302,7 +5327,7 @@ G.writeMSettingButton=function(obj)
 						G.gain('corpse',n,'old age');
 						G.lose('elder',n,'old age');
 						G.gain('happiness',-n*5*deathUnhappinessMult,'death');
-						if(G.checkPolicy('death messages')=='on'){ //toggle
+						if(G.checkPolicy('death messages')=='on' || G.resets<=3){ //toggle
 						if (n>0) G.Message({type:'bad',mergeId:'diedAge',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died of old age.';},args:{n:n},icon:[13,4]});
 						}
 						G.getRes('died this year').amount+=n;
@@ -5333,7 +5358,7 @@ G.writeMSettingButton=function(obj)
 						var n=randomFloor(G.getRes('elder').amount*0.00003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
 						if(day+leap>=40 && day+leap<=46 && G.has('parental love'))G.gain('love xp',n/2,'birth');
 						G.getRes('born this year').amount+=born;
-						if(G.checkPolicy('birth messages')=='on'){
+						if(G.checkPolicy('birth messages')=='on' || G.resets<=3){
 						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});}
 					}
 					
@@ -5359,7 +5384,7 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('sick',changed,'disease');
-						if(G.checkPolicy('disease messages')=='on'){ //toggle
+						if(G.checkPolicy('disease messages')=='on' || G.resets<=3){ //toggle
 							if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});
 						};
 						}
@@ -5369,7 +5394,7 @@ G.writeMSettingButton=function(obj)
 					var n=G.lose('sick',randomFloor(Math.random()*G.getRes('sick').amount*sickMortality),'disease');G.gain('corpse',n,'disease');changed+=n;
 					G.gain('happiness',-changed*15*deathUnhappinessMult,'death');
 					G.getRes('died this year').amount+=changed;
-					if(G.checkPolicy('death messages')=='on'){ //toggle
+					if(G.checkPolicy('death messages')=='on' || G.resets<=3){ //toggle
 					if (changed>0) G.Message({type:'bad',mergeId:'diedSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from disease.';},args:{n:changed},icon:[5,4]});
 					};
 					var sickHealing=0.01;
@@ -5377,7 +5402,7 @@ G.writeMSettingButton=function(obj)
 					var changed=0;
 					var n=G.lose('sick',randomFloor(Math.random()*G.getRes('sick').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
 					G.gain('happiness',changed*10,'recovery');
-					if(G.checkPolicy('disease messages')=='on'){
+					if(G.checkPolicy('disease messages')=='on' || G.resets<=3){
 					if (changed>0) G.Message({type:'good',mergeId:'sickRecovered',textFunc:function(args){return B(args.n)+' sick '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});
 					};
 					
@@ -5395,7 +5420,7 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('wounded',changed,'accident');
-						if(G.checkPolicy('accident messages')=='on'){
+						if(G.checkPolicy('accident messages')=='on' || G.resets<=3){
 							if (changed>0) G.Message({type:'bad',mergeId:'gotWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' got wounded.';},args:{n:changed},icon:[7,3]});
 						};
 					}
@@ -5405,14 +5430,14 @@ G.writeMSettingButton=function(obj)
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*woundMortality),'wounds');G.gain('corpse',n,'wounds');changed+=n;
 					G.gain('happiness',-changed*15*deathUnhappinessMult,'death');
 					G.getRes('died this year').amount+=changed;
-					if(G.checkPolicy('death messages')=='on'){ //toggle
+					if(G.checkPolicy('death messages' || G.resets<=3)=='on'){ //toggle
 					if (changed>0) G.Message({type:'bad',mergeId:'diedWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from their wounds.';},args:{n:changed},icon:[5,4]});
 					}
 					var sickHealing=0.005;
 					var changed=0;
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
 					G.gain('happiness',changed*10,'recovery');
-					if(G.checkPolicy('accident messages')=='on'){
+					if(G.checkPolicy('accident messages')=='on' || G.resets<=3){
 					if (changed>0) G.Message({type:'good',mergeId:'woundedRecovered',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' recovered from their wounds.';},args:{n:changed},icon:[4,3]});
 					}
 				}
@@ -8200,7 +8225,7 @@ if (!document.getElementById(cssId))
 			var changed=0;
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkHealing),'healing');G.gain('adult',n,'-');changed+=n;
 			G.gain('happiness',changed*10,'recovery');
-			if(G.checkPolicy('disease messages')=='on'){
+			if(G.checkPolicy('disease messages')=='on' || G.resets<=3){
 			if (changed>0) G.Message({type:'good',mergeId:'drunkRecovered',textFunc:function(args){return B(args.n)+' drunk '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});
 			}
 			//Drunk's death
@@ -8208,7 +8233,7 @@ if (!document.getElementById(cssId))
 			var changed=0;
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkMortality),'drunk');G.gain('corpse',n,'alcohol sickness');changed+=n;
 			G.getRes('died this year').amount+=changed;
-			if(G.checkPolicy('disease messages')=='on'){
+			if(G.checkPolicy('disease messages')=='on' || G.resets<=3){
 			if (changed>0) G.Message({type:'bad',mergeId:'diedDrunk',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from alcohol sickness.';},args:{n:changed},icon:[5,4]});
 			}
 			if (G.has('Beer recipe')){ //Spawning rate from Beer recipe trait
@@ -8670,7 +8695,7 @@ if (!document.getElementById(cssId))
 			
 			if(G.policy.length >= 15 && !pol15 && G.policy.length <= 18){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
 			}
-			if(G.checkPolicy('story messages')=='on'){
+			if(G.checkPolicy('story messages')=='on' || G.resets<=3){
 			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
 				G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
@@ -8706,7 +8731,7 @@ if (!document.getElementById(cssId))
 				burystory=true
 			}
 			}
-				if(G.checkPolicy('tutorial messages')=='on'){
+				if(G.checkPolicy('tutorial messages')=='on' || G.resets<=3){
 			if(G.has('fire-making') && !firestory && !G.has('construction')){
 			   G.Message({type:'tutorial',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
 			firestory=true
@@ -8747,7 +8772,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'tutorial',text:'You now can control food and water rations. Your people seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may later become the major one if you will ignore this.',icon:[4,28,'magixmod']})
 					rofpopup=true
 				}
-			if(G.checkPolicy('tutorial messages')=='on'){
+			if(G.checkPolicy('tutorial messages')=='on' || G.resets<=3){
 			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
 				G.Message({type:'tutorial',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover secrets hidden in new territory. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
 					explorepop=true
@@ -8790,7 +8815,7 @@ if (!document.getElementById(cssId))
 			G.Message({type:'tutorial',text:'Next part of doctrine is a trait. You don\'t have to roll new researches. All you should do now is waiting and no spending any essentials, because next part of doctrine despite it is a Trait but it is not cheap thing. Even numbered stages are traits while odd numbered stages are represented as researches.',icon:[32,27,'magixmod']})
 				doctip=true
 			}}}
-			if(G.checkPolicy('story messages')=='on'){
+			if(G.checkPolicy('story messages')=='on' || G.resets<=3){
 			if(G.has('Mo\' beauty') && !mobeauty && G.hasNot('Doctrine of the dark wormhole 5/5')){
 			G.Message({type:'story2',text:'Oh. <b>Mo\' beauty</b> made cities look much, much nicer. Lanterns, flower decors everywhere. Sometimes even <b>tools</b> (not joking now) have some shapes,patterns carved. And it is not any festival. You wander and even some huts get even more beautiful than ever.'})
 			mobeauty=true
@@ -9941,7 +9966,7 @@ if (!document.getElementById(cssId))
 				changed/=workers;
 				G.wasteUnit(me,changed);
 				
-				if (changed>0 && mesg==true && G.checkPolicy('lost messages')=='on') G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
+				if (changed>0 && mesg==true && (G.checkPolicy('lost messages')=='on' || G.resets<=3)) G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
 						return args.str.replaceAll('\\[people\\]',(args.n==1?args.single:args.plural)).replaceAll('\\[X\\]',B(args.n));
 					},args:{n:changed,str:message,single:single,plural:plural},icon:me.unit.icon});
 			}
@@ -14020,7 +14045,7 @@ getCosts:function()
 		{
 			G.fastTicks+=G.props['fastTicksOnResearch'];
 				G.gainTech(what);
-			if(G.checkPolicy('research messages')=='on'){
+			if(G.checkPolicy('research messages')=='on'  || G.resets<=3){
 				var randomMessage=Math.floor(Math.random()*4)
 				if(randomMessage>=0 && randomMessage<=1){
 				G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
@@ -18853,6 +18878,7 @@ new G.Tech({
 					G.getDict('mud shelter').desc='@provides 8 [housing]<>Basic, frail dwelling in which a small family can live.';
 					G.getDict('branch shelter').desc='@provides 8 [housing]<>Basic, very frail dwelling in which a small family can live.';
 					G.getDict('bamboo hut').desc='@provides 15 [housing]<>Small dwelling with roof out of branches and walls out of [Bamboo].';
+					G.getDict('monument-building').desc='@useless because you unlock wonder in this plane at the very beginning of the Trial.';
 				}},
 		],
 	});
@@ -19710,7 +19736,7 @@ new G.Tech({
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'My plane full of one thing... Death. Full of darkness. Also everything that provide you <font color="white">Housing</font> provide 2.5x more than it would do normally. Also every 300 morning and night cycles some of your <font color="white">Housing</font> will decay and some of your <font color="white">People</font> will die producing Dark Essence.<br><Br><BR>'+
+                'My plane full of one thing... Death. Full of darkness. Also everything that provide you <font color="white">Housing</font> provide 2.5x more than it would do normally. Also every 300th morning and night cycles some of your <font color="white">Housing</font> will decay and some of your <font color="white">People</font> will die producing Dark Essence. You unlock the Wonder at the very beginning in this plane. Completing the trial will grant you special award. You won\'t be able to retry the trial after its completion.<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.doFunc('new game');G.gainTrait(G.traitByName['t8']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Buried trial has been started. You are in Buri\'o dak\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
                 '</div>'+
