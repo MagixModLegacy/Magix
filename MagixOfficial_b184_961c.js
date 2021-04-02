@@ -4191,7 +4191,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		'Another stream on twitch.','pelletsstarPL prepares next update',
 		'Another covid-der in the tribe.','Someone hits others with the broom.',
 		'freinds meet during the night','Gatherer said another BRUH.','<font color="pink">Purcharse full version of Magix to unlock special content.</font>',
-		'README.txt','README.png','<font color="pink">Hey, over here!</font>,
+		'README.txt','README.png','<font color="pink">Hey, over here!</font>',
 		'Wild thorns do nothing.','Something does nothing in the distance.',
 		'Strange ashes snow down.','A loud YEET is heard.',
 		'Memish creatures roll and scurry in the dirt','i++;',
