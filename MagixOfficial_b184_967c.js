@@ -3339,6 +3339,10 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 }
 	G.funcs['game over']=function()
 	{
+			if(yer.getMonth()==3 && yer.getDate()==1){
+			document.title='Tribe OOFed - NeverEnding Legacy';
+		}else{document.title='Tribe died - NeverEnding Legacy';
+		     };
 		var quote=Math.round(Math.random()*5);
 		const quotes=['"To the well-organized mind, death is but the next great adventure."','"The fear of death follows from the fear of life. A man who lives fully is prepared to die at any time."','"It is said that your life flashes before your eyes just before you die. That is true, it\'s called Life."','"Don\'t feel bad, I\'m usually about to die."','"Death is so terribly final, while life is full of possibilities."'];
 		if(G.techN<15){
@@ -3363,10 +3367,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/0population.mp3');
 			audio.play(); 
 		}
-		if(yer.getMonth()==3 && yer.getDate()==1){
-			document.title='Tribe OOFed - NeverEnding Legacy';
-		}else{document.title='Tribe died - NeverEnding Legacy';
-		     };
 		G.dialogue.popup(function(div){
             return '<div style="width:540px;min-height:540px;height:75%;">'+
                 '<div class="fancyText title"><font color="red">Everyone in your tribe<br> has died terribly</font></div>'+
