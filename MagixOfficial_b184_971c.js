@@ -4170,7 +4170,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
             '</div></div>'
 })
 		}
-		
+		if(G.has('t8')){G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>x <b>Housing</b></li><li>y <b> people</b></li> <br>However it made you z Dark Essence richer. Use Dark Essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']})};
 		var multiplier=() => {if(G.achievByName['love for eternity'].won>=1) return 1.2; else return 1};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10 && G.achievByName['so adorable'].won==1){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow')};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=15 && G.achievByName['obsessed?'].won==0){G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow')};
@@ -4179,7 +4179,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.has('families full of love'))G.gain('love xp',G.getRes('elder').amount*0.7*multiplier());
 			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
-		if(G.has('t8')){G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>x <b>Housing</b></li><li>y <b> people</b></li> <br>However it made you z Dark Essence richer. Use Dark Essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']})};
+		
 	}};
 	if(yer.getMonth()==3 && yer.getDate()==1){
 	G.props['new day lines']=[ //2 quotes per line /replacement : AF / normal
