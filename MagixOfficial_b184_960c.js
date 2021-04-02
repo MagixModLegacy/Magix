@@ -3363,7 +3363,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/0population.mp3');
 			audio.play(); 
 		}
-		document.title='Tribe died - NeverEnding Legacy';
+		if(yer.getMonth()==3 && yer.getDate()==1){
+			document.title='Tribe OOFed - NeverEnding Legacy';
+		}else{document.title='Tribe died - NeverEnding Legacy';}
 		G.dialogue.popup(function(div){
             return '<div style="width:540px;min-height:540px;height:75%;">'+
                 '<div class="fancyText title"><font color="red">Everyone in your tribe<br> has died terribly</font></div>'+
@@ -4188,7 +4190,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		'.gnivigrofnu is thgin ehT','.noziroh eth no mrost a si erehT',
 		'Another stream on twitch.','pelletsstarPL prepares next update',
 		'Another covid-der in the tribe.','Someone hits others with the broom.',
-		'freinds meet during the night','Gatherer said another BRUH.','<font color="pink">Purcharse full version of Magix to unlock special content.</font>,
+		'freinds meet during the night','Gatherer said another BRUH.','<font color="pink">Purcharse full version of Magix to unlock special content.</font>',
 		'README.txt','README.png','<font color="pink">Hey, over here!</font>,
 		'Wild thorns do nothing.','Something does nothing in the distance.',
 		'Strange ashes snow down.','A loud YEET is heard.',
@@ -5654,7 +5656,7 @@ G.writeMSettingButton=function(obj)
 			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
 			if(G.has('t4')){
 				if(amount>=98){
-					G.lose(me,G.getRes(me).amount*0.8)
+					G.lose('happiness',G.getRes('happiness').amount*0.8)
 			}
 			}
 		},
