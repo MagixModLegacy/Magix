@@ -4180,7 +4180,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
 		
-	};
+	}};
 	if(yer.getMonth()==3 && yer.getDate()==1){
 	G.props['new day lines']=[ //2 quotes per line /replacement : AF / normal
 		'Mantisk blades has been discovered','you met freind today','Creatures are lurking.',	'Danger abounds.',
