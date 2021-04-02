@@ -4173,7 +4173,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		if(G.has('t8') && G.year>2){ //it'd be nearly impossible if it would occur like just now
 			var lostHousing=Math.ceil(G.getRes('housing').amount*0.03)+1;var lostPeople=Math.ceil(G.getRes('population').amount*0.02)+1;
 			G.lose('housing',lostHousing,'The dark decay');G.lose('population',lostPeople,'The dark decay');
-			G.gain('corpse',lostPeople,'The dark death');G.gain('Dark Essence',Math.round(lostHousing*0.75)+lostPeople,'The dark death');
+			G.gain('corpse',lostPeople,'The dark death');G.gain('Dark essence',Math.round(lostHousing*0.75)+lostPeople,'The dark death');
 			G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>'+lostHousing+' <b>Housing</b></li><li>'+lostPeople+' <b> people</b></li> <br>However it made you '+Math.round(lostHousing*0.75)+lostPeople+' Dark Essence richer. Use Dark Essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']})
 		};
 		var multiplier=() => {if(G.achievByName['love for eternity'].won>=1) return 1.2; else return 1};
