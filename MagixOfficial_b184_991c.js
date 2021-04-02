@@ -5110,7 +5110,7 @@ G.logic['unit']=function()
 						if (me.mode==1 && G.testCost(me.unit.costPerStep,1))
 						{
 							me.percent++;
-							if(me.unit.name='Temple of the Dead' && me.percent>1000)G.getDict('Temple of the Dead').costPerStep={'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3,'Dark essence':me.percent*0.01},
+							if(me.unit.name='Temple of the Dead' && me.percent>100)G.getDict('Temple of the Dead').costPerStep={'basic building materials':(10+me.percent*0.0001),'corpse':2+(me.percent*0.00001),'precious building materials':1.2,'bone':3+(me.percent*0.01),'Dark essence':2+(me.percent*0.01)},
 							G.doCost(me.unit.costPerStep,1);
 							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
 						}
