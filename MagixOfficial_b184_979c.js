@@ -2024,9 +2024,7 @@ G.setPolicyMode=function(me,mode)
 					G.applyUnitBuyEffects(me,amount);
 					me.mode=2;//start paused
 					me.percent=0;
-					console.log(me.percent);
 					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
-					
 					var bounds=me.l.getBoundingClientRect();
 					var posX=bounds.left+bounds.width/2;
 					var posY=bounds.top;
@@ -2048,6 +2046,7 @@ G.setPolicyMode=function(me,mode)
 				//building in progress; resuming construction
 				if (success)
 				{
+					console.log(me.percent);
 					me.mode=1;
 					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 				}
