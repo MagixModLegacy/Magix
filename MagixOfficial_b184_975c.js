@@ -6787,12 +6787,14 @@ G.writeMSettingButton=function(obj)
 		partOf:'Magic essences',
 		tick:function(me,tick)
 		{
+			if(G.hasNot('t8')){
 			var toSpoil=me.amount*0.0001;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 			if(G.has('Liberating darkness')){
 				if(me.amount < G.getRes('dark essence limit').amount){
 					G.gain(me.name,20,'The Skull');
 				}
+			}
 			}
 		},
 		whenGathered:researchWhenGathered,
@@ -18886,6 +18888,7 @@ new G.Tech({
 					G.getDict('branch shelter').desc='@provides 8 [housing]<>Basic, very frail dwelling in which a small family can live.';
 					G.getDict('bamboo hut').desc='@provides 15 [housing]<>Small dwelling with roof out of branches and walls out of [Bamboo].';
 					G.getDict('monument-building').desc='@useless because you unlock wonder in this plane at the very beginning of the Trial.';
+					G.getDict('Dark essence').limit=null;
 				}},
 		],
 	});
