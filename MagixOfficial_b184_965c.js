@@ -720,11 +720,11 @@ func:function(){
 	document.getElementsByTagName('div')[9].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';	
 	}
 	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
-	var year=new Date().getFullYear();
-	var leap=(((year%4==0)&&(year%100!=0))||(year%400==0))?1:0;
-	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
-	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(year);
-	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
+	var yer=new Date().getFullYear();
+	var leap=(((yer%4==0)&&(yer%100!=0))||(yer%400==0))?1:0;
+	var day=Math.floor((new Date()-new Date(new Date().getFullYer(),0,0))/(1000*60*60*24));
+	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(yer);
+	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYer(),0,0))/(1000*60*60*24));
 
 	
 	/*=====================================================================================
@@ -3363,7 +3363,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/0population.mp3');
 			audio.play(); 
 		}
-		if(year.getMonth()==3 && year.getDate()==1){
+		if(yer.getMonth()==3 && yer.getDate()==1){
 			document.title='Tribe OOFed - NeverEnding Legacy';
 		}else{document.title='Tribe died - NeverEnding Legacy';
 		     };
@@ -3768,26 +3768,26 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.getDict('Artisan of new year').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Firework launching').req={'culture of celebration':true,'Firework crafting':true,'tribalism':true};
 			G.getDict('Dark essence fireworks').req={'culture of celebration':true,'Firework crafting':true,'Wizard complex':true,'tribalism':true};
-		var truY=year.getFullYear();
+		var truY=yer.getFullYear();
 			if (day>=365 && day<=366)G.middleText('<big><font color="pink">Happy '+(truY+1)+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 			if (day>0 && day<=2)G.middleText('<big><font color="pink">Happy '+truY+'!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.</small></font>','slow');
 	};
-		if (year.getMonth()==6 && year.getDate()>=14 && year.getDate()<=20){ //Magix anniversary week
-		G.middleText('<big><font color="olive">Magix turns '+(year.getFullYear()-2019)+'</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br> Thanks for playing this neat mod ~ pelletsstarPL. <font color="aqua">It really motivates for further updates. Keep playing.</font></small></font>','slow');
+		if (yer.getMonth()==6 && yer.getDate()>=14 && yer.getDate()<=20){ //Magix anniversary week
+		G.middleText('<big><font color="olive">Magix turns '+(yer.getFullYear()-2019)+'</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br> Thanks for playing this neat mod ~ pelletsstarPL. <font color="aqua">It really motivates for further updates. Keep playing.</font></small></font>','slow');
 	};
 		if (day>=easterDay-7 && day<=easterDay){ //EASTER
 			G.middleText('<big><font color="green">Happy Easter!</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away. Easter bunny does a sniff,sniff</small></font>','slow');
 		};
-		if (year.getMonth()==9 && year.getDate()==9){ //MOD CREATOR's birthday
+		if (yer.getMonth()==9 && yer.getDate()==9){ //MOD CREATOR's birthday
 		G.middleText('<big>Today Magix creator has its birthday.</big><br>- Welcome back -<br><small>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
 	};
-		if (year.getMonth()==2 && year.getDate()==8){ //Females/Ladies day greeting
+		if (yer.getMonth()==2 && yer.getDate()==8){ //Females/Ladies day greeting
 		G.middleText('<big>Today is Female\'s day.</big><br><small>Make sure you will greet some lady nicely today and not only today :)<br>- Welcome back -<br>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
 	};
-		if (year.getMonth()==2 && year.getDate()==8){ //Males/Gentlemen day greeting
+		if (yer.getMonth()==2 && yer.getDate()==8){ //Males/Gentlemen day greeting
 		G.middleText('<big>Today is Male\'s day.</big><br><small>Yeah boiii<br>- Welcome back -<br>You accumulated '+B(timeOffline)+' fast ticks while you were away.<br></small></font>','slow');
 	};
-		if(year.getMonth()==3 && year.getDate()==1){ //fools, maybe, maybe not, rather not
+		if(yer.getMonth()==3 && yer.getDate()==1){ //fools, maybe, maybe not, rather not
 		G.middleText('-kcab emoclew,dooG -<br><small>Yo accmlatd '+B(timeOffline)+' fast ticks whil yo wr away.<br><font color="lime">My two kys on my kyboard got brokn, so that is th ffct.</font></small>','slow');	
 		};
 		if (day>=40 && day<=46){  //valentines
@@ -4181,7 +4181,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
 		
 	}};
-	if(year.getMonth()==3 && year.getDate()==1){
+	if(yer.getMonth()==3 && yer.getDate()==1){
 	G.props['new day lines']=[ //2 quotes per line /replacement : AF / normal
 		'Mantisk blades has been discovered','you met freind today','Creatures are lurking.',	'Danger abounds.',
 		'Wild beasts are on the prowl.',	'Large monsters roam, unseen.',
