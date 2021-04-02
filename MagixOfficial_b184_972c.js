@@ -4170,7 +4170,12 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
             '</div></div>'
 })
 		}
-		if(G.has('t8')){G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>x <b>Housing</b></li><li>y <b> people</b></li> <br>However it made you z Dark Essence richer. Use Dark Essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']})};
+		if(G.has('t8') && G.year>2){ //it'd be nearly impossible if it would occur like just now
+			var lostHousing=Math.ceil(G.getRes('housing').amount*0.03)+1;var lostPeople=Math.ceil(G.getRes('population').amount*0.02)+1;
+			G.lose('housing',lostHousing,'The dark decay');G.lose('population',lostPeople,'The dark decay');
+			G.gain('corpse',lostPeople,'The dark death');G.gain('Dark Essence',Math.round(lostHousing*0.75)+lostPeople,'The dark death');
+			G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>'+lostHousing+' <b>Housing</b></li><li>'+lostPeople+' <b> people</b></li> <br>However it made you '+Math.round(lostHousing*0.75)+lostPeople+' Dark Essence richer. Use Dark Essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']})
+		};
 		var multiplier=() => {if(G.achievByName['love for eternity'].won>=1) return 1.2; else return 1};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10 && G.achievByName['so adorable'].won==1){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow')};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=15 && G.achievByName['obsessed?'].won==0){G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow')};
