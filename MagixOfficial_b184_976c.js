@@ -4513,6 +4513,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 										tile.explored+=0.1;
 										G.tileToRender(tile);
 										updateMap=true;
+										console.log(tile.explored.displayName);
 										if(tile.explored.displayName=='Dead forest')G.achievByName['lands of despair'].won++;
 										if(G.achievByName['lands of despair'].won<1 && tile.explored.displayName=='Dead forest'){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')};
 										G.doFuncWithArgs('found tile',[tile]);
