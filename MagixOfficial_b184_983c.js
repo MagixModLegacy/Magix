@@ -897,7 +897,7 @@ func:function(){
 						if (me.mode==1 && G.testCost(me.unit.costPerStep,1))
 						{
 							me.percent++;
-							console.log(me.percent)
+							if(me.unit.name='Temple of the Dead' && me.step>1000)G.getDict('Temple of the Dead').costPerStep={'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3,'Dark Essence':2+(me.percent*0.01)},
 							G.doCost(me.unit.costPerStep,1);
 							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
 						}
