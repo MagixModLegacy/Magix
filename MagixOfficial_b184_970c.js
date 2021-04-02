@@ -2781,7 +2781,7 @@ var len=G.techsOwned.length;
 		G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'<font color="yellow">Show tiers</font>',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
 		G.button({text:'<font color="fuschia">Reveal map</font>',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
-		    '<br /><font color="lime">Debug mode. Magix: Release 48 (late beta)</font>'+
+		    '<br /><font color="lime">Debug mode. Magix: Release 49 (late beta)</font>'+
 		G.textWithTooltip('?','<div style="width:240px;text-align:left;">This is the debug menu. Please debug responsibly.<br>Further debug abilities while this mode is active :<div class="bulleted">click resources to add/remove some (keyboard shortcuts work the same way they do for purchasing units)</div><div class="bulleted">ctrl-click a trait or policy to remove it (may have strange, buggy effects)</div><div class="bulleted">click the Fast ticks display to get more fast ticks<br>(if add is equal 1 it will add 10, if add 10 then 100 and so on)</div><div class="bulleted">always see tech costs and requirements</div><div class="bulleted">gain access to debug robot units <br /> <b>BEEP BOOP BEEP</b></div><div class="bulleted">edit the map</div></div>','infoButton')+
 		'</center></div>';
 		l('debug').innerHTML=str;
@@ -4179,7 +4179,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.has('families full of love'))G.gain('love xp',G.getRes('elder').amount*0.7*multiplier());
 			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
-		if(G.has('t8'))G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>x <b>Housing</b></li><li>y <b> people</b></li> <br>However it made you z Dark Essence richer. Use Dark Essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']});
+		if(G.has('t8')){G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>x <b>Housing</b></li><li>y <b> people</b></li> <br>However it made you z Dark Essence richer. Use Dark Essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']})};
 	}};
 	if(yer.getMonth()==3 && yer.getDate()==1){
 	G.props['new day lines']=[ //2 quotes per line /replacement : AF / normal
@@ -13505,7 +13505,7 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'Temple of the Dead',
-		desc:'@Leads to <b>Buried</b> trial completion. //Dark temple built in dead and hostile terrain. A lot of graves around. That may attract Buri\'o dak.<><font color="#0F0000">Why is everyone feared of death? Just face it.</font>',
+		desc:'@Leads to <b>Buried</b> trial completion. //Dark temple built in dead and hostile terrain. A lot of graves around. That may attract Buri\'o dak.<><font color="#FF00FF">Why is everyone feared of death? Just face it.</font>',
 		wonder:'Buried',
 		icon:[1,26,'magixmod'],
 		wideIcon:[0,26,'magixmod'],
