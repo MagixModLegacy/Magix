@@ -1,5 +1,7 @@
 var la=1;var lb=2;var lc=0;var ta=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
+if(G.theme==0){
 G.theme=0; //theme
+}else{G.theme=G.theme};
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
