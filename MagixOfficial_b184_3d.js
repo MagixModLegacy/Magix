@@ -5355,7 +5355,7 @@ G.logic['unit']=function()
 		icon:[0,3],
 		tick:function(me,tick)
 		{
-			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi);if(G.theme==1)G.setPolicyMode('Theme changer','green')};//sickbois say goodbai
+			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi);if(G.theme==1)G.setPolicyModeByName('Theme changer','green')};//sickbois say goodbai
 			//this.displayName=G.getName('inhabs');
 			
 			if (me.amount>0)
