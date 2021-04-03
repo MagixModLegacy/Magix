@@ -7974,7 +7974,27 @@ G.logic['unit']=function()
 		{
 			var toSpoil=me.amount*0.0008;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-	
+							if(G.checkPolicy('Theme changer')=='green'){
+							G.theme=1;
+	/*============================================================================
+	THEMES
+	============================================================================*/
+		if (G.checkPolicy('Theme changer')=='green'){
+		var cssId = 'greenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GreenTheme/greentheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+										
+							}
 				if (G.checkPolicy('Theme changer')=='blue'){
 		var cssId = 'bluethemeCss';  
 if (!document.getElementById(cssId))
@@ -19550,30 +19570,6 @@ new G.Tech({
 			'wooden':{name:'Wooden',desc:'Switches to wooden theme. Reward for completing Buried trial for the first... and the last time.',req:{'smaller shacks':true}},
 		},
 		category:'mag',
-			effects:[
-						{type:'function',func:function(){
-							if(G.checkPolicy('Theme changer')=='green'){
-							G.theme=1;
-										/*============================================================================
-	THEMES
-	============================================================================*/
-		if (G.checkPolicy('Theme changer')=='green'){
-		var cssId = 'greenthemeCss';  
-if (!document.getElementById(cssId))
-{
-    var head  = document.getElementsByTagName('head')[0];
-    var link  = document.createElement('link');
-    link.id   = cssId;
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
-    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GreenTheme/greentheme.css';
-    link.media = 'all';
-    head.appendChild(link);
-}
-		}
-										
-							}}}
-				],
 	});
 	if(G.modsByName['Market mod']){
 		 new G.Policy({
