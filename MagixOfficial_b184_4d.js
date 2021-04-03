@@ -5355,7 +5355,22 @@ G.logic['unit']=function()
 		icon:[0,3],
 		tick:function(me,tick)
 		{
-			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi);if(G.theme==1)G.setPolicyModeByName('Theme changer','green')};//sickbois say goodbai
+			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi);
+							      switch(G.theme){
+								case 1:	 G.setPolicyModeByName('Theme changer','green');break;    
+								case 2:	G.setPolicyModeByName('Theme changer','blue');break;
+								case 3:	G.setPolicyModeByName('Theme changer','red');break;
+								case 4:	G.setPolicyModeByName('Theme changer','cyan');break;
+								case 5:	G.setPolicyModeByName('Theme changer','gray');break;
+								case 6:	G.setPolicyModeByName('Theme changer','indigo');break;	 
+								case 7:	G.setPolicyModeByName('Theme changer','bronze');break;
+								case 8:	G.setPolicyModeByName('Theme changer','silver');break;
+								case 9:	G.setPolicyModeByName('Theme changer','golden');break;
+								case 10:	G.setPolicyModeByName('Theme changer','black');break;
+								case 11:	G.setPolicyModeByName('Theme changer','wooden');break;
+								      default:G.setPolicyModeByName('Theme changer','default');break;
+							      }
+							     };//sickbois say goodbai, also autoswitch theme
 			//this.displayName=G.getName('inhabs');
 			
 			if (me.amount>0)
@@ -7993,6 +8008,7 @@ if (!document.getElementById(cssId))
 										
 							}
 				if (G.checkPolicy('Theme changer')=='blue'){
+					G.theme=2;
 		var cssId = 'bluethemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8007,6 +8023,7 @@ if (!document.getElementById(cssId))
 }
 		}
 					if (G.checkPolicy('Theme changer')=='red'){
+						G.theme=3;
 		var cssId = 'redthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8021,6 +8038,7 @@ if (!document.getElementById(cssId))
 }
 		}
 						if (G.checkPolicy('Theme changer')=='gray'){
+							G.theme=5;
 		var cssId = 'graythemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8035,6 +8053,7 @@ if (!document.getElementById(cssId))
 }
 		}
 					if (G.checkPolicy('Theme changer')=='cyan'){
+						G.theme=4;
 		var cssId = 'cyanthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8049,6 +8068,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='indigo'){
+				G.theme=6;
 		var cssId = 'indigothemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8063,6 +8083,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='bronze'){
+				G.theme=7;
 		var cssId = 'bronzethemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8077,6 +8098,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='silver'){
+				G.theme=8;
 		var cssId = 'silverthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8091,6 +8113,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='golden'){
+				G.theme=9;
 		var cssId = 'goldenthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8105,6 +8128,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='black'){
+				G.theme=10;
 		var cssId = 'goldenthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8119,6 +8143,7 @@ if (!document.getElementById(cssId))
 }
 		}
 				if (G.checkPolicy('Theme changer')=='wooden'){
+					G.theme=11;
 		var cssId = 'woodenthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -8128,6 +8153,21 @@ if (!document.getElementById(cssId))
     link.rel  = 'stylesheet';
     link.type = 'text/css';
     link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/woodentheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+			if (G.checkPolicy('Theme changer')=='default'){
+					G.theme=0;
+		var cssId = 'woodenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/DefaultTheme/defaulttheme.css';
     link.media = 'all';
     head.appendChild(link);
 }
