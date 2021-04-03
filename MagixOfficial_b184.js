@@ -720,10 +720,10 @@ func:function(){
 	document.getElementsByTagName('div')[9].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';	
 	}
 	///FOR SEASONAL CONTENT. IK COPIED FROM CC, BUT IT WILL HELP ME. ALSO THAT IS HOW MODDING LOOKS LIKE THAT xD
-	var year=new Date().getFullYear();
-	var leap=(((year%4==0)&&(year%100!=0))||(year%400==0))?1:0;
+	var yer=new Date();
+	var leap=(((yer%4==0)&&(yer%100!=0))||(yer%400==0))?1:0;
 	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
-	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(year);
+	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(yer);
 	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
 
 	
@@ -2018,14 +2018,13 @@ G.setPolicyMode=function(me,mode)
 				if (success)
 				{
 					
-					if(G.checkPolicy('wonder messages')=='on')if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
+					if(G.checkPolicy('wonder messages')=='on' || G.resets<=3)if (me.unit.messageOnStart) G.Message({type:'important',text:me.unit.messageOnStart});
 					G.doCost(me.unit.cost,amount);
 					G.doUse(me.unit.use,amount);
 					G.applyUnitBuyEffects(me,amount);
 					me.mode=2;//start paused
 					me.percent=0;
 					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
-					
 					var bounds=me.l.getBoundingClientRect();
 					var posX=bounds.left+bounds.width/2;
 					var posY=bounds.top;
@@ -2038,6 +2037,7 @@ G.setPolicyMode=function(me,mode)
 				//building in progress; pausing construction
 				if (success)
 				{
+					console.log(me.percent);
 					me.mode=2;
 					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 				}
@@ -2047,6 +2047,7 @@ G.setPolicyMode=function(me,mode)
 				//building in progress; resuming construction
 				if (success)
 				{
+					
 					me.mode=1;
 					if (G.getSetting('animations')) triggerAnim(me.l,'plop');
 				}
@@ -3339,6 +3340,10 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 }
 	G.funcs['game over']=function()
 	{
+			if(yer.getMonth()==3 && yer.getDate()==1){
+			document.title='Tribe OOFed - NeverEnding Legacy';
+		}else{document.title='Tribe died - NeverEnding Legacy';
+		     };
 		var quote=Math.round(Math.random()*5);
 		const quotes=['"To the well-organized mind, death is but the next great adventure."','"The fear of death follows from the fear of life. A man who lives fully is prepared to die at any time."','"It is said that your life flashes before your eyes just before you die. That is true, it\'s called Life."','"Don\'t feel bad, I\'m usually about to die."','"Death is so terribly final, while life is full of possibilities."'];
 		if(G.techN<15){
@@ -3363,7 +3368,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/0population.mp3');
 			audio.play(); 
 		}
-		document.title='Tribe performed an OOF - NeverEnding Legacy';
 		G.dialogue.popup(function(div){
             return '<div style="width:540px;min-height:540px;height:75%;">'+
                 '<div class="fancyText title"><font color="red">Everyone in your tribe<br> has died terribly</font></div>'+
@@ -3755,7 +3759,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					G.getDict('snowman').hidden=false;
 					G.getDict('christmas ornament').hidden=false;
 					G.getDict('christmas essence').hidden=false;
-	};var yer=new Date();
+	};
 		//SEASONALs
 		if ((day>=365 && day<=366) || (day>0 && day<=2)){
 			//also not only greetings but also some content unlocks
@@ -3808,10 +3812,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	{
 		if (G.on)
 		{
-			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/AFools/Duck.mp3');
-					audio.play(); 
 			G.updateMapDisplay() //FIX for map(because it is using my sheet not default one)
-			if(G.getRes('population').amount>0)document.title='NeverEnding Legacy DEMO';
+			if(G.getRes('population').amount>0)document.title='NeverEnding Legacy';
 			if(G.getSetting('tieredDisplay')==0){ta=1}else{ta=0};
 			var txt = ''+G.year+'';
 			if(day+leap>=289 && day+leap<=305){G.getDict('population').icon=[0,7,'seasonal'];
@@ -3946,7 +3948,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 					audio.play(); 
 			}
 			////STORYLINE////
-			if(G.checkPolicy('story messages')=='on'){
+			if(G.checkPolicy('story messages')=='on' || G.resets<=3){
 			if(G.techN >= 25 && G.techN <=34 && !st1){
 				G.Message({type:'story1',text:'You glance at your <i>'+G.getName('inhabs')+'</i> for a while. Who knows if that small tribe is on a good way to become the empire or kingdom or whatever'});
 				st1=true
@@ -4169,7 +4171,12 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
             '</div></div>'
 })
 		}
-		
+		if(G.has('t8') && G.year>2){ //it'd be nearly impossible if it would occur like just now
+			var lostHousing=Math.ceil(G.getRes('housing').amount*0.03)+1;var lostPeople=Math.ceil(G.getRes('population').amount*0.02)+1;
+			G.lose('housing',lostHousing,'The dark decay');G.lose('population',lostPeople,'The dark decay');
+			G.gain('corpse',lostPeople,'The dark death');G.gain('Dark essence',(Math.round(lostHousing*0.75))+lostPeople,'The dark death');
+			G.Message({type:'story1',text:'The plane\'s conditions caused you losing: <li>'+lostHousing+' <b>Housing</b></li><li>'+lostPeople+' <b> people</b></li> <br>However it made you '+(Math.round(lostHousing*0.75)+lostPeople)+' Dark essence richer. Use Dark essence to build Temple of the Dead and finish the trial. There it doesn\'t decay unlike any other plane.',icon:[10,32,'magixmod']})
+		};
 		var multiplier=() => {if(G.achievByName['love for eternity'].won>=1) return 1.2; else return 1};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=10 && G.achievByName['so adorable'].won==1){G.achievByName['so adorable'].won=1;G.middleText('- Completed <font color="pink">So adorable</font> <br>seasonal achievement.','slow')};
 		if(day+leap>=40 && day+leap<=46 && G.getRes('love').amount>=15 && G.achievByName['obsessed?'].won==0){G.achievByName['obsessed?'].won=1;G.middleText('- Completed <font color="pink">Obsessed?</font> <br>seasonal shadow achievement.','slow')};
@@ -4179,36 +4186,61 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			if(G.has('very artful compliments'))G.gain('love xp',G.getRes('child').amount*1.1*multiplier());
 			if(G.has('discovery with love'))G.gain('love xp',G.techN*(Math.round(Math.random()*21)+1)-(G.traitN/8)*multiplier());
 		
-	};
-}
+	}};
+	if(yer.getMonth()==3 && yer.getDate()==1){
 	G.props['new day lines']=[ //2 quotes per line /replacement : AF / normal
-		'Mantisk blades has been discovered','you met freind today',//'Creatures are lurking.',	'Danger abounds.',
-		'BRUH','OOF',//'Wild beasts are on the prowl.',	'Large monsters roam, unseen.',
-		'Who is missing the bucket?!','Another bucket found on one of the streets',//'This is a cold night.',	'No sound but the low hum of a gray sky.',
-		'Harder but more interesting ~ pelletsstarPL',//'The darkness is terrifying.',	'Clouds twist in complicated shapes.',
-		'Creepers inbound','It is raining',//'It is raining.',	'Dark birds caw ominously in the distance.',
-		'.gnivigrofnu is thgin ehT','.noziroh eth no mrost a si erehT',//'There is a storm on the horizon.',	'The night is unforgiving.',
-		'Another stream on twitch.','pelletsstarPL prepares next update',//'Creatures crawl in the shadows.',	'A stream burbles quietly nearby.',
-		'Another covid-der in the tribe.','Someone hits others with the broom.',//'In the distance, a prey falls to a pack of beasts.',	'An unexplained sound echoes on the horizon.',
-		'freinds meet during the night','Gatherer said another BRUH.',//'Everything stands still in the morning air.',	'A droning sound fills the sky.',
-		'README.txt','README.png',//'The night sky sparkles, its mysteries unbroken.',	'Dry bones crack and burst underfoot.',
-		'Wild thorns do nothing.','Something does nothing in the distance.',//'Wild thorns scratch the ankles.',	'Something howls in the distance.',
-		'Strange ashes snow down.','A loud YEET is heard.',//'Strange ashes snow down slowly from far away.',	'A blood-curdling wail is heard.',
-		'Memish creatures roll and scurry in the dirt','i++;',//'Unknown creatures roll and scurry in the dirt.',	'The air carries a peculiar smell today.',
-		'Magix','Thanks for entering to the game this day',//'Wild scents flow in from elsewhere.',	'The dust is oppressive.',
-		'Wind blows','Secrets await.',//'Wind blows from the north.',	'Secrets await.',
-		//'Discover unknown.',	'A morning fog welcomes you.',
-		'Noisestorm','Unnoisestorm',//'An eerie glow from above illuminates the night.',
-		'Distant laands lie undisturbed.','<b>What happened?</b>',//'Distant lands lay undisturbed.',	'<b>Magic awaits.</b>',
-		'A warm breeze is blowing','sheesh',//'A cool breeze is blowing.',	'Another sea wave crashes against a huge rock.',
-		//'What a cloudy day today.',	'It\'s dry air today.',
-		'jeez','...gosh',//'Wild brambles look so scary even from far.',	'Some dangerous creature sleeps calmly.',
-		'QUACK!','beep beep boop',//'From far a sounds of a falling tree can be heard',	'There is no wind today.',
-		'Blab','blep',//'Just the another day in your tribe',	'From somwhere a meowing sound can be heard',
+		'Mantisk blades has been discovered','you met freind today','Creatures are lurking.',	'Danger abounds.',
+		'Wild beasts are on the prowl.',	'Large monsters roam, unseen.',
+		'Who is missing the bucket?!','Another bucket found on one of the streets',
+		'Harder but more interesting ~ pelletsstarPL',
+		'Creepers inbound','It is raining','Your rolling pins are rolling and pinning',
+		'.gnivigrofnu is thgin ehT','.noziroh eth no mrost a si erehT',
+		'Another stream on twitch.','pelletsstarPL prepares next update',
+		'Another covid-der in the tribe.','Someone hits others with the broom.',
+		'freinds meet during the night','Gatherer said another BRUH.','<font color="pink">Purcharse full version of Magix to unlock special content.</font>',
+		'README.txt','README.png','<font color="pink">Hey, over here!</font>',
+		'Wild thorns do nothing.','Something does nothing in the distance.',
+		'Strange ashes snow down.','A loud YEET is heard.',
+		'Memish creatures roll and scurry in the dirt','i++;',
+		'Magix','Thanks for entering to the game this day',
+		'Wind blows','Secrets await.',
+		'Noisestorm','Unnoisestorm',
+		'Distant laands lie undisturbed.','<b>What happened?</b>',
+		'A warm breeze is blowing','sheesh',
+		'jeez','...gosh', 'You spin me round...',
+		'QUACK!','beep beep boop',
+		'Blab','blep','Moist cookies ~ grandma',
+	];
+	}else{
+		G.props['new day lines']=[ //2 quotes per line /replacement : AF / normal
+		'Creatures are lurking.',	'Danger abounds.',
+		'Wild beasts are on the prowl.',	'Large monsters roam, unseen.',//'BRUH','OOF',
+		'This is a cold night.',	'No sound but the low hum of a gray sky.',
+		'The darkness is terrifying.',	'Clouds twist in complicated shapes.',
+		'It is raining.',	'Dark birds caw ominously in the distance.',
+		'There is a storm on the horizon.',	'The night is unforgiving.',
+		'Creatures crawl in the shadows.',	'A stream burbles quietly nearby.',
+		'In the distance, a prey falls to a pack of beasts.',	'An unexplained sound echoes on the horizon.',
+		'Everything stands still in the morning air.',	'A droning sound fills the sky.',
+		'The night sky sparkles, its mysteries unbroken.',	'Dry bones crack and burst underfoot.',
+		'Wild thorns scratch the ankles.',	'Something howls in the distance.',
+		'Strange ashes snow down slowly from far away.',	'A blood-curdling wail is heard.',
+		'Unknown creatures roll and scurry in the dirt.',	'The air carries a peculiar smell today.',
+		'Wild scents flow in from elsewhere.',	'The dust is oppressive.',
+		'Wind blows from the north.',	'Secrets await.',
+		'Discover unknown.',	'A morning fog welcomes you.',
+		'An eerie glow from above illuminates the night.',
+		'Distant lands lay undisturbed.',	'<b>Magic awaits.</b>',
+		'A cool breeze is blowing.',	'Another sea wave crashes against a huge rock.',
+		'What a cloudy day today.',	'It\'s dry air today.',
+		'Wild brambles look so scary even from far.',	'Some dangerous creature sleeps calmly.',
+		'From far a sounds of a falling tree can be heard',	'There is no wind today.',
+		'Just the another day in your tribe',	'From somwhere a meowing sound can be heard',
 		'Uncover the secrets',	'Merge with nature',
 		'Discover undiscovered',	'This is a lush evening.',
-		'Another sea wave crashes against a tall cliff.',
+		'Another sea wave crashes against a tall cliff.','What a storm',
 	];
+	}
 	/*=====================================================================================
 	Halloween ToT
 	=======================================================================================*/
@@ -4482,7 +4514,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 										tile.explored+=0.1;
 										G.tileToRender(tile);
 										updateMap=true;
-										if(tile.explored.displayName=='Dead forest')G.achievByName['lands of despair'].won++;
+										if(tile.land.name=='dead forest')G.achievByName['lands of despair'].won++;
 										if(G.achievByName['lands of despair'].won<1 && tile.explored.displayName=='Dead forest'){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')};
 										G.doFuncWithArgs('found tile',[tile]);
 									}
@@ -4601,7 +4633,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 				//show a random atmospheric message occasionally on new days
 				//we pick one of the first 5 lines in the array, then push that line back at the end; this means we get a semi-random stream of lines with no frequent repetitions
 				var i=Math.floor(Math.random()*5);
-				if(G.checkPolicy('new day lines')=='on'){
+				if(G.checkPolicy('new day lines')=='on'  || G.resets<=3){
 				var msg=G.props['new day lines'].splice(i,1)[0];
 				G.props['new day lines'].push(msg);
 				G.Message({text:msg});
@@ -4620,7 +4652,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 						{
 							G.doCost(me.cost,1);
 							G.gainTrait(me);
-							if(G.checkPolicy('obtaining a trait messages')=='on'){
+							if(G.checkPolicy('obtaining a trait messages')=='on' || G.resets<=3){
 							switch(me.category){
 								case "knowledge":G.Message({type:'important tall',text:'Your people have adopted the knowledge: <b>'+me.displayName+'</b>.',icon:me.icon});break;
 								case "devils":G.Message({type:'bad tall',text:'Devils brought to your people: <b>'+me.displayName+'</b>.',icon:me.icon});break;
@@ -4782,7 +4814,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 	
 	G.funcs['found tile']=function(tile)
 	{
-		if(G.checkPolicy("exploration messages")=='on'){
+		if(G.checkPolicy('exploration messages')=='on'  || G.resets<=3){
 		G.Message({type:'good',mergeId:'foundTile',textFunc:function(args){
 			/*if(args.tile.land.displayName=="Dead forest"){G.achievByName['lands of despair'].won=G.achievByName['lands of despair'].won+1;if(G.achievByName['lands of despair'].won<1){G.middleText('- Completed <font color="gray">Lands of despair</font> achievement -','slow')}};*/
 			
@@ -5012,7 +5044,132 @@ G.writeMSettingButton=function(obj)
 		'</div>';
 		return str;
 }
-
+G.logic['unit']=function()
+	{
+		var mult=G.doFunc('production multiplier',1);//global production multiplier - affects how many times the unit effects will be applied every tick
+		
+		var len=G.unitsOwned.length;
+		//we turn the list of owned units into internally shuffled sections sorted by priority, then work through those in order
+		var priorities=[];
+		for (var i=0;i<len;i++)
+		{
+			if (!priorities[G.unitsOwned[i].unit.priority]) priorities[G.unitsOwned[i].unit.priority]=[G.unitsOwned[i].unit.priority];
+			priorities[G.unitsOwned[i].unit.priority].push(G.unitsOwned[i]);
+		}
+		
+		priorities.sort(function(a,b){return b[0]-a[0]});
+				
+		for (var iP in priorities)
+		{
+			priorities[iP].shift();
+			shuffle(priorities[iP]);
+			var len=priorities[iP].length;
+			for (var i=0;i<len;i++)
+			{
+				var me=priorities[iP][i];
+				if (!me.unit.wonder && me.amount<me.targetAmount)//try to build up to target
+				{
+					var toMake=Math.min(me.targetAmount-me.amount,Math.max(1,me.targetAmount*0.5));
+					G.buyUnit(me,toMake,true);
+				}
+				else if (!me.unit.wonder && me.amount>me.targetAmount)
+				{
+					var toDie=Math.min(me.amount-me.targetAmount,Math.max(1,me.amount*0.5));
+					G.killUnit(me,toDie,true);
+				}
+				if (!me.unit.wonder && me.idle>0)//try to refill
+				{
+					var toMake=Math.min(me.idle,Math.max(1,me.idle*0.5));
+					G.unidleUnit(me,toMake);
+				}
+				
+				var amount=G.applyUnitAmountEffects(me);//modify the effective amount
+				if (amount>0)
+				{
+					//apply effects every tick
+					var repeat=randomFloor(mult);
+					if (repeat>0)
+					{
+						for (var ii=0;ii<repeat;ii++)
+						{
+							G.applyUnitEffects(me,amount);
+						}
+					}
+				}
+				if (me.unit.wonder)
+				{
+					//apply steps
+					if (me.mode==1 || me.mode==2)
+					{
+						
+						if (me.percent>=me.unit.steps)
+						{
+							me.mode=3;
+							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
+						}
+						if (me.mode==1 && G.testCost(me.unit.costPerStep,1))
+						{
+							me.percent++;
+							if(me.unit.name='Temple of the Dead' && me.percent>100)G.getDict('Temple of the Dead').costPerStep={'basic building materials':(10+me.percent*0.0001),'corpse':2+(me.percent*0.00001),'precious building materials':1.2,'bone':3+(me.percent*0.01),'Dark essence':2+(me.percent*0.01)},
+							G.doCost(me.unit.costPerStep,1);
+							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
+						}
+						if (me.percent>=me.unit.steps)
+						{
+							me.mode=3;
+							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
+						}
+					}
+				}
+				if (me.amount>0)
+				{
+					var waste=0;
+					var idle=0;
+					//run upkeep and check used resources; if we're short on either, waste away
+					for (var ii in me.unit.upkeep)
+					{
+						var res=G.getRes(ii);
+						var upkeep=me.unit.upkeep[ii]*(me.amount-me.idle);
+						var spent=G.lose(ii,upkeep,'unit upkeep');
+						if (spent<upkeep)
+						{
+							if (me.unit.alternateUpkeep && me.unit.alternateUpkeep[ii])//last resort
+							{spent+=G.lose(me.unit.alternateUpkeep[ii],upkeep*(me.amount-me.idle)-spent,'unit upkeep');}
+							if (spent<upkeep) idle=true;
+						}
+					}
+					for (var ii in me.unit.use)
+					{
+						var res=G.getRes(ii);
+						var use=me.unit.use[ii];
+						//if (res.amount<res.used) waste=1;
+						//if (me.amount>0 && res.name=='worker') console.log('we need '+(use*(me.amount))+', we have '+(res.amount-res.used)+' for '+(me.amount)+' '+me.unit.name+'; deleting '+(waste,(use*(me.amount)-(res.amount-res.used))/use));
+						if (use && (res.amount<=use*(me.amount) || res.amount<res.used)) waste=true;
+					}
+					for (var ii in me.unit.staff)
+					{
+						var res=G.getRes(ii);
+						var use=me.unit.staff[ii];
+						//if (res.amount<res.used) idle=1;
+						if (use && (res.amount<=use*(me.amount-me.idle) || res.amount<res.used)) idle=true;
+					}
+					for (var ii in me.mode.use)
+					{
+						var res=G.getRes(ii);
+						var use=me.mode.use[ii];
+						//if (res.amount<res.used) idle=1;
+						if (use && (res.amount<=use*(me.amount-me.idle) || res.amount<res.used)) idle=true;
+					}
+					if (!G.testLimit(me.unit.limitPer,G.getUnitAmount(me.unit.name))) waste=true;
+					
+					//if (idle) G.idleUnit(me,Math.ceil(idle));
+					//if (waste) G.wasteUnit(me,Math.ceil(waste));
+					if (idle) G.idleUnit(me,Math.ceil((me.amount-me.idle)*0.05));
+					if (waste) G.wasteUnit(me,Math.ceil(me.amount*0.05));
+				}
+			}
+		}
+	}
 
 			
 	/*=====================================================================================
@@ -5043,7 +5200,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Your [population] represents everyone living under your rule. These are the people that look to you for protection, survival, and glory.',
 		meta:true,
 		visible:true,
-		icon:[1,1,'seasonal'],
+		icon:[0,3],
 		tick:function(me,tick)
 		{
 			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi)};//sickbois say goodbai
@@ -5195,7 +5352,7 @@ G.writeMSettingButton=function(obj)
 							G.gain('corpse',died,'dehydration');
 							G.gain('happiness',-died*20*deathUnhappinessMult,'dehydration');
 							G.getRes('died this year').amount+=died;
-							if(G.checkPolicy('death messages')=='on'){ //toggle
+							if(G.checkPolicy('death messages')=='on' || G.resets<=3){ //toggle
 							if (died>0) G.Message({type:'bad',mergeId:'diedDehydration',textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died from dehydration.';},args:{died:died},icon:[5,4]});
 							};
 						}
@@ -5240,7 +5397,7 @@ G.writeMSettingButton=function(obj)
 							G.gain('corpse',died,'starvation');
 							G.gain('happiness',-died*20*deathUnhappinessMult,'starvation');
 							G.getRes('died this year').amount+=died;
-							if(G.checkPolicy('death messages')=='on'){ //toggle
+							if(G.checkPolicy('death messages')=='on' || G.resets<=3){ //toggle
 							if (died>0) G.Message({type:'bad',mergeId:'diedStarvation',textFunc:function(args){return B(args.died)+' '+(args.died==1?'person':'people')+' died from starvation.';},args:{died:died},icon:[5,4]});
 							};
 						}
@@ -5290,7 +5447,7 @@ G.writeMSettingButton=function(obj)
 				
 				//homelessness
 				var homeless=Math.max(0,(me.amount)-G.getRes('housing').amount);
-				if (G.has('sedentism') && me.amount>15 && homeless>0 && G.checkPolicy('homelessness messages')=='on')
+				if (G.has('sedentism') && me.amount>15 && homeless>0 && G.checkPolicy('homelessness messages')=='on' || G.resets<=3)
 				{
 					if (tick%10==0) G.Message({type:'bad',mergeId:'homeless',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person is':'people are')+' homeless.<br>Homelessness with more than 15 population leads to lower birth rates.';},args:{n:homeless},replaceOnly:true,icon:[12,4]});
 				}
@@ -5304,7 +5461,7 @@ G.writeMSettingButton=function(obj)
 						G.gain('corpse',n,'old age');
 						G.lose('elder',n,'old age');
 						G.gain('happiness',-n*5*deathUnhappinessMult,'death');
-						if(G.checkPolicy('death messages')=='on'){ //toggle
+						if(G.checkPolicy('death messages')=='on' || G.resets<=3){ //toggle
 						if (n>0) G.Message({type:'bad',mergeId:'diedAge',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died of old age.';},args:{n:n},icon:[13,4]});
 						}
 						G.getRes('died this year').amount+=n;
@@ -5335,7 +5492,7 @@ G.writeMSettingButton=function(obj)
 						var n=randomFloor(G.getRes('elder').amount*0.00003*birthRate);G.gain('baby',n,'birth');G.gain('happiness',n*10,'birth');born+=n;
 						if(day+leap>=40 && day+leap<=46 && G.has('parental love'))G.gain('love xp',n/2,'birth');
 						G.getRes('born this year').amount+=born;
-						if(G.checkPolicy('birth messages')=='on'){
+						if(G.checkPolicy('birth messages')=='on' || G.resets<=3){
 						if (born>0) G.Message({type:'good',mergeId:'born',textFunc:function(args){return B(args.born)+' '+(args.born==1?'baby has':'babies have')+' been born.';},args:{born:born},icon:[2,3]});}
 					}
 					
@@ -5361,8 +5518,8 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('sick',changed,'disease');
-						if(G.checkPolicy('disease messages')=='on'){ //toggle
-							if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' got... y know what.';},args:{n:changed},icon:[6,3]});
+						if(G.checkPolicy('disease messages')=='on' || G.resets<=3){ //toggle
+							if (changed>0) G.Message({type:'bad',mergeId:'fellSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' fell sick.';},args:{n:changed},icon:[6,3]});
 						};
 						}
 					//sickness : death and recovery
@@ -5371,15 +5528,15 @@ G.writeMSettingButton=function(obj)
 					var n=G.lose('sick',randomFloor(Math.random()*G.getRes('sick').amount*sickMortality),'disease');G.gain('corpse',n,'disease');changed+=n;
 					G.gain('happiness',-changed*15*deathUnhappinessMult,'death');
 					G.getRes('died this year').amount+=changed;
-					if(G.checkPolicy('death messages')=='on'){ //toggle
-					if (changed>0) G.Message({type:'bad',mergeId:'diedSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from COVID.';},args:{n:changed},icon:[5,4]});
+					if(G.checkPolicy('death messages')=='on' || G.resets<=3){ //toggle
+					if (changed>0) G.Message({type:'bad',mergeId:'diedSick',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from disease.';},args:{n:changed},icon:[5,4]});
 					};
 					var sickHealing=0.01;
 					if (G.checkPolicy('flower rituals')=='on') sickHealing*=1.2;
 					var changed=0;
 					var n=G.lose('sick',randomFloor(Math.random()*G.getRes('sick').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
 					G.gain('happiness',changed*10,'recovery');
-					if(G.checkPolicy('disease messages')=='on'){
+					if(G.checkPolicy('disease messages')=='on' || G.resets<=3){
 					if (changed>0) G.Message({type:'good',mergeId:'sickRecovered',textFunc:function(args){return B(args.n)+' sick '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});
 					};
 					
@@ -5397,7 +5554,7 @@ G.writeMSettingButton=function(obj)
 						for (var i in weights)
 						{var n=G.lose(i,randomFloor(Math.random()*G.getRes(i).amount*toChange*weights[i]),'-');changed+=n;}
 						G.gain('wounded',changed,'accident');
-						if(G.checkPolicy('accident messages')=='on'){
+						if(G.checkPolicy('accident messages')=='on' || G.resets<=3){
 							if (changed>0) G.Message({type:'bad',mergeId:'gotWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' got wounded.';},args:{n:changed},icon:[7,3]});
 						};
 					}
@@ -5407,14 +5564,14 @@ G.writeMSettingButton=function(obj)
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*woundMortality),'wounds');G.gain('corpse',n,'wounds');changed+=n;
 					G.gain('happiness',-changed*15*deathUnhappinessMult,'death');
 					G.getRes('died this year').amount+=changed;
-					if(G.checkPolicy('death messages')=='on'){ //toggle
+					if(G.checkPolicy('death messages' || G.resets<=3)=='on'){ //toggle
 					if (changed>0) G.Message({type:'bad',mergeId:'diedWounded',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from their wounds.';},args:{n:changed},icon:[5,4]});
 					}
 					var sickHealing=0.005;
 					var changed=0;
 					var n=G.lose('wounded',randomFloor(Math.random()*G.getRes('wounded').amount*sickHealing),'healing');G.gain('adult',n,'-');changed+=n;
 					G.gain('happiness',changed*10,'recovery');
-					if(G.checkPolicy('accident messages')=='on'){
+					if(G.checkPolicy('accident messages')=='on' || G.resets<=3){
 					if (changed>0) G.Message({type:'good',mergeId:'woundedRecovered',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' recovered from their wounds.';},args:{n:changed},icon:[4,3]});
 					}
 				}
@@ -5436,7 +5593,7 @@ G.writeMSettingButton=function(obj)
 		startWith:0,
 		visible:true,
 		partOf:'population',
-		icon:[3,1,'seasonal'],
+		icon:[2,3],
 	});
 	new G.Res({
 		name:'child',
@@ -5444,7 +5601,7 @@ G.writeMSettingButton=function(obj)
 		startWith:2,
 		visible:true,
 		partOf:'population',
-		icon:[4,1,'seasonal'],
+		icon:[3,3],
 	});
 	new G.Res({
 		name:'adult',
@@ -5452,7 +5609,7 @@ G.writeMSettingButton=function(obj)
 		startWith:5,
 		visible:true,
 		partOf:'population',
-		icon:[5,1,'seasonal'],
+		icon:[4,3],
 	});
 	new G.Res({
 		name:'elder',
@@ -5460,20 +5617,19 @@ G.writeMSettingButton=function(obj)
 		startWith:1,
 		visible:true,
 		partOf:'population',
-		icon:[6,1,'seasonal'],
+		icon:[5,3],
 	});
 	new G.Res({
 		name:'sick',
-		displayName:'COVID19 infected',
 		desc:'[adult,People] can fall [sick,sick] when your [health] levels are too low. They do not [worker,work], but may be healed over time.',
 		partOf:'population',
-		icon:[7,1,'seasonal'],
+		icon:[6,3],
 	});
 	new G.Res({
 		name:'wounded',
 		desc:'[adult,People] may get [wounded,wounded] due to work injuries, or from war. They do not [worker,work], but may slowly get better over time.',
 		partOf:'population',
-		icon:[8,1,'seasonal'],
+		icon:[7,3],
 	});
 	new G.Res({
 		name:'corpse',
@@ -5548,7 +5704,7 @@ G.writeMSettingButton=function(obj)
 	new G.Res({
 		name:'burial spot',
 		desc:'Each [burial spot] has enough room for one [corpse], letting you prevent the spread of disease and unhappiness.//By default, corpses are buried at the rate of 1 per day.//The number on the left is how many burial spots are occupied, while the number on the right is how many you have in total.',
-		icon:[12,3,'sesaonal'],
+		icon:[13,4],
 		displayUsed:true,
 	});
 		new G.Res({
@@ -5561,7 +5717,7 @@ G.writeMSettingButton=function(obj)
 	new G.Res({
 		name:'housing',
 		desc:'Each [housing,Housing spot] accommodates one [population,Person].//Beyond the 15 people a nomad tribe can support, your population will only grow if you have empty housing.//Homelessness (having less housing than population) will lead to unhappiness and disease.//The number on the left is how much housing is occupied, while the number on the right is how much housing room you have in total.',
-		icon:[3,2,'seasonal'],
+		icon:[12,4],
 		getDisplayAmount:function()
 		{
 			return B(Math.min(this.displayedAmount,G.getRes('population').displayedAmount))+'<wbr>/'+B(this.displayedAmount);
@@ -5595,7 +5751,7 @@ G.writeMSettingButton=function(obj)
 		desc:'Your [worker,Workforce] is the part of your [population] that is ready to work.//The number on the left is how many are currently being employed, while the number on the right is your total amount of workers.',
 		startWith:0,
 		visible:true,
-		icon:[2,1,'seasonal'],
+		icon:[1,3],
 		displayUsed:true,
 		tick:function(me,tick)
 		{
@@ -5632,7 +5788,7 @@ G.writeMSettingButton=function(obj)
 			var amount=(this.displayedAmount/G.getRes('population').displayedAmount);
 			if(G.has('t4')){
 				if(amount>=98){
-					G.lose(me,G.getRes(me).amount*0.8)
+					G.lose('happiness',G.getRes('happiness').amount*0.8)
 			}
 			}
 		},
@@ -6306,9 +6462,8 @@ G.writeMSettingButton=function(obj)
 	
 	new G.Res({
 		name:'copper ore',
-		displayName:'LeMAOn ore',
 		desc:'Ore that can be processed into [soft metal ingot]s.',
-		icon:[19,4,'seasonal'],
+		icon:[9,8],
 		partOf:'misc materials',
 		category:'ore',
 	});
@@ -6328,9 +6483,8 @@ G.writeMSettingButton=function(obj)
 	});
 	new G.Res({
 		name:'tin ore',
-		displayName:'BRUHonze ore',
 		desc:'Ore that can be processed into [soft metal ingot]s.',
-		icon:[19,4,'seasonal'],
+		icon:[13,8],
 		partOf:'misc materials',
 		category:'ore',
 	});
@@ -6376,7 +6530,6 @@ G.writeMSettingButton=function(obj)
 		name:'precious metal ingot',
 		desc:'Metal with little industrial usefulness but imbued with valuable aesthetics.//Includes gold and silver.',
 		icon:[11,9],
-		
 		category:'build',
 	});
 	
@@ -6616,9 +6769,8 @@ G.writeMSettingButton=function(obj)
 	
 	new G.Res({
 		name:'faith',
-		displayName:'Armor',
-		desc:'Reperesents a defense power on the arena. (stll works like Faith so don\'t worry)',
-		icon:[14,3,'seasonal'],
+		desc:'[faith] derives from all things divine, from meditation to sacrifices.//'+limitDesc('[spirituality]')+'//Some cultural traits and technologies depend on faith.',
+		icon:[7,4],
 		category:'main',
 		limit:'spirituality',
 		tick:function(me,tick)
@@ -6643,9 +6795,8 @@ G.writeMSettingButton=function(obj)
 	
 	new G.Res({
 		name:'influence',
-		displayName:'Attack power',
-		desc:'you get 1 [influence] every some period of time. Represents your power on arena.',
-		icon:[15,3,'seasonal'],
+		desc:'[influence] is generated by power structures.//You also get 1 influence point at the start of every year.//'+limitDesc('[authority]')+'//Influence is required to enact most policies or remove traits.',
+		icon:[11,4],
 		category:'main',
 		limit:'authority',
 		startWith:5,
@@ -6762,12 +6913,14 @@ G.writeMSettingButton=function(obj)
 		partOf:'Magic essences',
 		tick:function(me,tick)
 		{
+			if(G.hasNot('t8')){
 			var toSpoil=me.amount*0.0001;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
 			if(G.has('Liberating darkness')){
 				if(me.amount < G.getRes('dark essence limit').amount){
 					G.gain(me.name,20,'The Skull');
 				}
+			}
 			}
 		},
 		whenGathered:researchWhenGathered,
@@ -8145,7 +8298,7 @@ if (!document.getElementById(cssId))
 		new G.Res({
 		name:'Instructor',
 		desc:'Instructor can teach people any thing. Can teach alchemy or many other. If he will become [elder], he will retire.//The number on the left is how many are currently being employed, while the number on the right is your total amount of instructors.',
-		icon:[0,3,'seasonal'],
+		icon:[12,6,'magixmod'],
 		partOf:'population',
 		category:'demog',
 		displayUsed:true,
@@ -8162,7 +8315,7 @@ if (!document.getElementById(cssId))
 		new G.Res({
 		name:'Alchemists',//There is something more :)
 		desc:'This stat shows all alchemists you currently have in total(children + adult alchemists).//The number on the left is how many are currently being employed, while the number on the right is your total amount of alchemists.',
-		icon:[0,5,'sesaonal'],
+		icon:[12,8,'magixmod'],
 		partOf:'population',
 		meta:true,
 		tick:function(me,tick)
@@ -8172,7 +8325,7 @@ if (!document.getElementById(cssId))
 		new G.Res({
 		name:'Alchemist',
 		desc:'Adult alchemist. Can be hired to special category of jobs same as his younger version. While he will at [elder] age he will retire.//The number on the left is how many are currently being employed, while the number on the right is your total amount of adult alchemists.',
-		icon:[0,2,'seasonal'],
+		icon:[12,5,'magixmod'],
 		partOf:'Alchemists',
 		displayUsed:true,
 		tick:function(me,tick)
@@ -8184,7 +8337,7 @@ if (!document.getElementById(cssId))
 		new G.Res({
 		name:'Child alchemist',
 		desc:'Younger alchemist. Can be hired to special category of jobs but chance for accidents will grow. Soon he will grow to [Alchemist].//The number on the left is how many are currently being employed, while the number on the right is your total amount of child alchemists.',
-		icon:[0,4,'seasonal'],
+		icon:[12,7,'magixmod'],
 		partOf:'Alchemists',
 		displayUsed:true,
 		tick:function(me,tick)
@@ -8197,7 +8350,7 @@ if (!document.getElementById(cssId))
 		name:'drunk',
 		desc:'[adult,People] may get [drunk] due to drinking too much alcohol brews. They do not [worker,work], but may slowly get better over time. Common healer cannot aid with it. Unhealed by any (except) default [healer] alcohol sickness will lead [drunk,drunken] people to death. ',
 		partOf:'population',
-		icon:[1,2,'seasonal'],
+		icon:[17,0,'magixmod'],
 		tick:function(me,tick)
 		{
 			var n=randomFloor(G.getRes('Wine').amount*0.009);G.gain('drunk',n,'alcohol drinking');G.lose('adult',n,'alcohol drinking');G.lose('Wine',n,'drinking');
@@ -8207,7 +8360,7 @@ if (!document.getElementById(cssId))
 			var changed=0;
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkHealing),'healing');G.gain('adult',n,'-');changed+=n;
 			G.gain('happiness',changed*10,'recovery');
-			if(G.checkPolicy('disease messages')=='on'){
+			if(G.checkPolicy('disease messages')=='on' || G.resets<=3){
 			if (changed>0) G.Message({type:'good',mergeId:'drunkRecovered',textFunc:function(args){return B(args.n)+' drunk '+(args.n==1?'person':'people')+' got better.';},args:{n:changed},icon:[4,3]});
 			}
 			//Drunk's death
@@ -8215,7 +8368,7 @@ if (!document.getElementById(cssId))
 			var changed=0;
 			var n=G.lose('drunk',randomFloor(Math.random()*G.getRes('drunk').amount*drunkMortality),'drunk');G.gain('corpse',n,'alcohol sickness');changed+=n;
 			G.getRes('died this year').amount+=changed;
-			if(G.checkPolicy('disease messages')=='on'){
+			if(G.checkPolicy('disease messages')=='on' || G.resets<=3){
 			if (changed>0) G.Message({type:'bad',mergeId:'diedDrunk',textFunc:function(args){return B(args.n)+' '+(args.n==1?'person':'people')+' died from alcohol sickness.';},args:{n:changed},icon:[5,4]});
 			}
 			if (G.has('Beer recipe')){ //Spawning rate from Beer recipe trait
@@ -8278,7 +8431,7 @@ if (!document.getElementById(cssId))
 		new G.Res({
 		name:'thief',
 		desc:'[thief,Thieves] are unhappy adults who commit crimes to show their unhappiness. Even 200% [happiness] won\'t decrease their spawn rate to zero. They can: @steal resources @wound and even <b>kill [population,people]</b>',
-		icon:[2,2,'seasonal'],
+		icon:[23,0,'magixmod'],
 		category:'demog',
 		partOf:'population',
 		tick:function(me,tick)
@@ -8677,7 +8830,7 @@ if (!document.getElementById(cssId))
 			
 			if(G.policy.length >= 15 && !pol15 && G.policy.length <= 18){G.Message({type:'important',text:'Your rules and fact that you are leading this tribe have become accepted. People are bound to you.',icon:[11,4]});pol15=true;
 			}
-			if(G.checkPolicy('story messages')=='on'){
+			if(G.checkPolicy('story messages')=='on' || G.resets<=3){
 			if(G.has('language') && !langstory && G.hasNot('oral tradition')){
 				G.Message({
 				type:'important',text:'Now while talking to your people they understand you better. And they understand themselves each other',
@@ -8713,7 +8866,7 @@ if (!document.getElementById(cssId))
 				burystory=true
 			}
 			}
-				if(G.checkPolicy('tutorial messages')=='on'){
+				if(G.checkPolicy('tutorial messages')=='on' || G.resets<=3){
 			if(G.has('fire-making') && !firestory && !G.has('construction')){
 			   G.Message({type:'tutorial',text:'Cold days and nights are gone if you will get some fire pits.',icon:[13,7]})
 			firestory=true
@@ -8754,7 +8907,7 @@ if (!document.getElementById(cssId))
 				G.Message({type:'tutorial',text:'You now can control food and water rations. Your people seem a little angry and want to eat and drink more. Check the policies, there you may find a solution to this minor problem that may later become the major one if you will ignore this.',icon:[4,28,'magixmod']})
 					rofpopup=true
 				}
-			if(G.checkPolicy('tutorial messages')=='on'){
+			if(G.checkPolicy('tutorial messages')=='on' || G.resets<=3){
 			if(G.getRes('land').amount==100 && !explorepop && !G.has('scout').amount>=1){
 				G.Message({type:'tutorial',text:'<b>Maybe it is the time to hire a Scout.</b><br>Wanderer can\'t discover new tiles but may explore and discover secrets hidden in new territory. If you haven\'t hired a <b>Scout</b> yet think about doing it sometime. If you don\'t have him unlocked focus to get <b>Scouting</b> research',icon:[5,28,'magixmod']})
 					explorepop=true
@@ -8797,7 +8950,7 @@ if (!document.getElementById(cssId))
 			G.Message({type:'tutorial',text:'Next part of doctrine is a trait. You don\'t have to roll new researches. All you should do now is waiting and no spending any essentials, because next part of doctrine despite it is a Trait but it is not cheap thing. Even numbered stages are traits while odd numbered stages are represented as researches.',icon:[32,27,'magixmod']})
 				doctip=true
 			}}}
-			if(G.checkPolicy('story messages')=='on'){
+			if(G.checkPolicy('story messages')=='on' || G.resets<=3){
 			if(G.has('Mo\' beauty') && !mobeauty && G.hasNot('Doctrine of the dark wormhole 5/5')){
 			G.Message({type:'story2',text:'Oh. <b>Mo\' beauty</b> made cities look much, much nicer. Lanterns, flower decors everywhere. Sometimes even <b>tools</b> (not joking now) have some shapes,patterns carved. And it is not any festival. You wander and even some huts get even more beautiful than ever.'})
 			mobeauty=true
@@ -9041,9 +9194,8 @@ if (!document.getElementById(cssId))
 		var value=(G.getAchiev('Pocket').won*3+1)*100;
 	new G.Res({
 		name:'faith II',
-		displayName:'Armor II',
-		desc:'500 armor I = 1 armor II . Armor represents your power on the arena.',
-		icon:[14,4,'seasonal'],
+		desc:'[faith II] derives from all things divine, from meditation to sacrifices.//'+limitDesc('[spirituality II]')+'//Some cultural traits and technologies depend on faith. This is higher tier essential. <><font color="aqua">You need to know that each 500 [faith] can be converted into 1 [faith II] point.</font>',
+		icon:[17,19,'magixmod'],
 		category:'main',
 		limit:'spirituality II',
 		tick:function(me,tick)
@@ -9344,9 +9496,8 @@ if (!document.getElementById(cssId))
 	});
 	new G.Res({
 		name:'influence II',
-		displayName:'Attack power II',
-		desc:'500 attack power I = 1 attack power II . Armor represents your power on the arena.',
-		icon:[15,4,'seasonal'],
+		desc:'[influence II] is generated by power structures.//'+limitDesc('[authority II]')+'//Influence is required to enact most policies or remove traits. This is higher tier essential. <><font color="aqua">You need to know that each 500 [influence] can be converted into 1 [influence II] point.</font>',
+		icon:[20,19,'magixmod'],
 		category:'main',
 		limit:'authority II',
 		tick:function(me,tick)
@@ -9858,7 +10009,7 @@ if (!document.getElementById(cssId))
 	new G.Res({
 		name:'research',
 		displayName:'Researches',
-		icon:[19,3,'seasonal'],
+		icon:[35,3,'magixmod'],
 		tick:function(me,tick){
 			me.amount=G.techN;
 		},
@@ -9950,7 +10101,7 @@ if (!document.getElementById(cssId))
 				changed/=workers;
 				G.wasteUnit(me,changed);
 				
-				if (changed>0 && mesg==true && G.checkPolicy('lost messages')=='on') G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
+				if (changed>0 && mesg==true && (G.checkPolicy('lost messages')=='on' || G.resets<=3)) G.Message({type:'bad',mergeId:'unitGotConverted-'+me.unit.name,textFunc:function(args){
 						return args.str.replaceAll('\\[people\\]',(args.n==1?args.single:args.plural)).replaceAll('\\[X\\]',B(args.n));
 					},args:{n:changed,str:message,single:single,plural:plural},icon:me.unit.icon});
 			}
@@ -9958,10 +10109,9 @@ if (!document.getElementById(cssId))
 	}
 	new G.Unit({
 		name:'gatherer',
-		displayName:'Bruhterer',
 		startWith:5,
 		desc:'@forages for basic [food], [water] and [archaic building materials,Various interesting things]<>A vital part of an early tribe, [gatherer]s venture in the wilderness to gather food, wood, and other things of note.',
-		icon:[0,1,'seasonal'],
+		icon:[0,2],
 		cost:{},
 		use:{'worker':1},
 		//upkeep:{'food':0.2},
@@ -10872,7 +11022,7 @@ if (!document.getElementById(cssId))
 	new G.Unit({
 		name:'stockpile',
 		desc:'@provides 1000 [material storage]<>A simple building where resources are stored.//Slows material decay and deters theft somewhat, but may itself decay over time.',
-		icon:[12,2,'seasonal'],
+		icon:[22,4],
 		cost:{'archaic building materials':100},
 		use:{'land':2},
 		//require:{'worker':2,'stone tools':2},
@@ -13488,18 +13638,18 @@ new G.Unit({
 	});
 	new G.Unit({
 		name:'Temple of the Dead',
-		desc:'@Leads to <b>Buried</b> trial completion. //Dark temple built in dead and hostile terrain. A lot of graves around. That may attract Buri\'o dak.<><font color="#0F0000">Why is everyone feared of death? Just face it.</font>',
+		desc:'@Leads to <b>Buried</b> trial completion. //Dark temple built in dead and hostile terrain. A lot of graves around. That may attract Buri\'o dak.<><font color="#FF00FF">Why is everyone feared of death? Just face it.</font>',
 		wonder:'Buried',
 		icon:[1,26,'magixmod'],
 		wideIcon:[0,26,'magixmod'],
 		cost:{'basic building materials':250,'bone':200,'corpse':20},
-		costPerStep:{'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3},
-		steps:1000,
+		costPerStep:{'basic building materials':10,'corpse':2,'precious building materials':1.2,'bone':3,'Dark essence':2},
+		steps:2000,
 		messageOnStart:'Your people have started building the <b>Temple of the Dead</b>. You do not know why but it goes slightly slower than normal. But its shadow spreads fear all around.',
 		finalStepCost:{'population':50,'corpse':40},
 		finalStepDesc:'To perform the final step 50 [population,people] and 40 [corpse]s must be sacrificed to escape this hell once and for all and award 15 <b>Victory points</b>.',
 		use:{'land':10,'worker':5,'metal tools':5},
-		req:{'language':true,'tribalism':false},
+		req:{'t8':true},//due to trial conditions you start run with unlocked wonder
 		category:'wonder',
 	});
 	new G.Unit({
@@ -13878,7 +14028,7 @@ new G.Unit({
 	new G.Unit({
 		name:'globetrotter',
 		desc:'@[globetrotter] is able to discover new tiles and explore already discovered (note that [globetrotter] is gonna do it slower than actual [scout])@can explore occupied tiles but does it slower than actual [wanderer]@may sometimes get lost<>[globetrotter]s explore the world in search of new territories and deepen knowledge about territories already known.',
-		icon:[19,2,'seasonal'],
+		icon:[35,2,'magixmod'],
 		cost:{'food':100},
 		use:{'worker':1},
 		limitPer:{'research':4},
@@ -14030,7 +14180,7 @@ getCosts:function()
 		{
 			G.fastTicks+=G.props['fastTicksOnResearch'];
 				G.gainTech(what);
-			if(G.checkPolicy('research messages')=='on'){
+			if(G.checkPolicy('research messages')=='on'  || G.resets<=3){
 				var randomMessage=Math.floor(Math.random()*4)
 				if(randomMessage>=0 && randomMessage<=1){
 				G.Message({type:'good tall',text:'Your people have discovered the secrets of <b>'+what.displayName+'</b>.',icon:what.icon})
@@ -14121,7 +14271,7 @@ getCosts:function()
 	new G.Tech({
 		name:'tribalism',category:'tier1',
 		desc:'@unlocks [gatherer]@provides 5 [authority]<>Taking its roots in wild animal packs, [tribalism] is the organization of individuals into simple social structures with little hierarchy.',
-		icon:[17,2,'seasonal'],
+		icon:[0,1],
 		startWith:true,
 		effects:[
 			{type:'provide res',what:{'authority':5}},
@@ -14141,9 +14291,9 @@ getCosts:function()
 		],
 	});
 	new G.Tech({
-		name:'language',displayName:'lnagugaue',category:'tier1',
+		name:'language',category:'tier1',
 		desc:'@provides 30 [inspiration]@provides 30 [wisdom]<>[language] improves on [speech] by combining complex grammar with a rich vocabulary, allowing for better communication and the first signs of culture.',
-		icon:[19,1,'seasonal'],
+		icon:[2,1],
 		cost:{'insight':10},
 		req:{'speech':true},
 		effects:[
@@ -14157,7 +14307,7 @@ getCosts:function()
 	new G.Tech({
 		name:'oral tradition',category:'tier1',
 		desc:'@unlocks [storyteller]@provides 20 [inspiration]@provides 20 [wisdom]<>[oral tradition] emerges when the members of a tribe gather at night to talk about their day. Stories, ideas, and myths are all shared and passed on from generation to generation.',
-		icon:[16,3,'seasonal'],
+		icon:[5,1],
 		cost:{'insight':10},
 		req:{'language':true},
 		effects:[
@@ -14233,7 +14383,7 @@ getCosts:function()
 	new G.Tech({
 		name:'sedentism',category:'tier1',
 		desc:'@unlocks [mud shelter]s and [branch shelter]s@unlocks [lodge]s<>To stay in one place when food is scarce is a bold gamble, especially to those without knowledge of agriculture.',//TODO : this should unlock a policy that lets you switch between nomadism (housing and food storage have no effect) and sedentism (gathering and hunting are much less efficient)
-		icon:[18,3,'seasonal'],
+		icon:[8,1],
 		cost:{'insight':20},
 		req:{'stone-knapping':true,'digging':true,'language':true,'intuition':true},
 		effects:[
@@ -14243,7 +14393,7 @@ getCosts:function()
 	new G.Tech({
 		name:'building',category:'tier1',
 		desc:'@unlocks [hut]s@unlocks [stockpile]s (with [stockpiling])<>The [building,Hut] is only slightly more sophisticated than simple shelters, but is more spacious and can withstand wear longer.',
-		icon:[13,3,'seasonal'],
+		icon:[9,1],
 		cost:{'insight':20},
 		req:{'sedentism':true,'tool-making':true,'intuition':true},
 		effects:[
@@ -14253,7 +14403,7 @@ getCosts:function()
 	new G.Tech({
 		name:'cities',category:'tier1',
 		desc:'@unlocks [hovel]s<>',
-		icon:[18,3,'seasonal'],
+		icon:[29,7],
 		cost:{'insight':25},
 		req:{'building':true,'intuition':true},
 		effects:[
@@ -14270,9 +14420,9 @@ getCosts:function()
 		chance:3,
 	});
 	new G.Tech({
-		name:'city planning',displayName:'IQ planning',category:'tier1',
+		name:'city planning',category:'tier1',
 		desc:'@unlocks [architect]s<>',
-		icon:[18,5,'seasonal'],
+		icon:[22,8],
 		cost:{'insight':25},
 		req:{'construction':true,'cities':true,'caligraphy':true,'alphabet 1/3':true,'intuition':true},
 		effects:[
@@ -14313,7 +14463,7 @@ getCosts:function()
 	new G.Tech({
 		name:'well-digging',category:'tier1',
 		desc:'@unlocks [well]s<>It takes some thinking to figure out that water can be found if you dig deep enough.//It takes a lot of bravery, however, to find out if it is safe to drink.',
-		icon:[18,4,'seasonal'],
+		icon:[22,7],
 		cost:{'insight':10},
 		req:{'digging':true,'sedentism':true,'tool-making':true},
 		effects:[
@@ -14377,7 +14527,7 @@ getCosts:function()
 	new G.Tech({
 		name:'burial',category:'tier1',
 		desc:'@unlocks [grave]s@exposed [corpse]s make people even more unhappy<>It is the belief that there might be more to death than is first apparent that drives us to bury our deceased.',
-		icon:[16,5,'seasonal'],
+		icon:[14,1],
 		cost:{'insight':5},
 		req:{'ritualism':true,'digging':true},
 		effects:[
@@ -14444,7 +14594,7 @@ getCosts:function()
 	new G.Tech({
 		name:'fire-making',category:'tier1',
 		desc:'@unlocks [firekeeper]s<>Fire keeps you warm and makes animal attacks much less frequent.',
-		icon:[17,1,'seasonal'],
+		icon:[16,1],
 		cost:{'insight':15},
 		req:{'stone-knapping':true},
 		effects:[
@@ -14462,7 +14612,7 @@ getCosts:function()
 	new G.Tech({
 		name:'curing',category:'tier1',
 		desc:'@[firekeeper]s can now prepare [cured meat] and [cured seafood] with [salt], which last much longer<>Storing food with special preparations seems to ward off rot, and comes along with the advent of delicious jerky.',
-		icon:[13,4,'seasonal'],
+		icon:[27,7],
 		cost:{'insight':15},
 		req:{'cooking':true,'stockpiling':true,'intuition':true},
 	});
@@ -14470,7 +14620,7 @@ getCosts:function()
 	new G.Tech({
 		name:'sewing',category:'tier1',
 		desc:'@unlocks [clothier]s, who work with fabric and can sew [primitive clothes]<>',//TODO : desc
-		icon:[13,5,'seasonal'],
+		icon:[29,1],
 		cost:{'insight':10},
 		req:{'tool-making':true,'intuition':true},
 		effects:[
@@ -14496,7 +14646,7 @@ getCosts:function()
 	new G.Tech({category:'tier1',
 		name:'smelting',
 		desc:'@unlocks [furnace]s, which turn ore into metal ingots@unlocks [blacksmith workshop]s, which forge metal ingots into metal goods<>',//TODO : desc
-		icon:[17,5,'seasonal'],
+		icon:[26,5],
 		cost:{'insight':30},
 		req:{'fire-making':true,'building':true},'intuition':true,
 		effects:[
@@ -14542,8 +14692,8 @@ getCosts:function()
 	
 	new G.Tech({
 		name:'chieftains',category:'tier1',
-		desc:'@unlocks [chieftain]s, which generate [influence]@provides 5 [authority]<> CLAN OF RAINBOOOOWWWW',//TODO : desc
-		icon:[16,4,'seasonal'],
+		desc:'@unlocks [chieftain]s, which generate [influence]@provides 5 [authority]<>',//TODO : desc
+		icon:[22,6],
 		cost:{'insight':10},
 		req:{'oral tradition':true},
 		effects:[
@@ -14552,8 +14702,8 @@ getCosts:function()
 	});
 	new G.Tech({
 		name:'clans',category:'tier1',
-		desc:'@unlocks [clan leader]s, which generate [influence]@provides 5 [authority]<> TO THE SKY N BEYOND',//TODO : desc
-		icon:[17,4,'seasonal'],
+		desc:'@unlocks [clan leader]s, which generate [influence]@provides 5 [authority]<>',//TODO : desc
+		icon:[23,6],
 		cost:{'insight':25},
 		req:{'chieftains':true,'code of law':true,'intuition':true},
 		effects:[
@@ -14626,7 +14776,7 @@ getCosts:function()
 	new G.Tech({
 		name:'pottery',category:'tier1',
 		desc:'@unlocks [potter]s, which produce goods such as [pot]s out of [clay] and [mud]@unlocks [granary,Granaries] (with [stockpiling])@[digger]s find more [clay]<>',
-		icon:[16,2,'seasonal'],
+		icon:[28,6],
 		cost:{'insight':20},
 		req:{'fire-making':true,'digging':true,'tool-making':true},
 		effects:[
@@ -15515,9 +15665,9 @@ autobuy(G.year)
 			],
 	});
 		new G.Tech({
-		name:'Richer language',displayName:'Richer lngauguge',category:'tier2',
+		name:'Richer language',category:'tier2',
 		desc:'Language they use for everyday life will become even more richer. Synonyms for basic words, neologisms and many more. This is some sign of wisdom isn\'t it? @provides 10 [wisdom II]',
-		icon:[18,1,'seasonal'],
+		icon:[27,7,'magixmod'],
 		cost:{'insight II':15},
 		req:{'Eotm':true,'language':true},
 		effects:[
@@ -17913,7 +18063,7 @@ new G.Tech({
 	new G.Trait({
         name:'gardening',
         desc:'<font color="#aaffff">A key for farms. People learn how to make a irrigation system. Thanks to it they may start thinking about making some small gardens, then expand them to farms or even plantations.</font>',
-        icon:[13,3,'seasonal'],
+        icon:[10,0,'magixmod'],
         cost:{'insight':40},
 	effects:[
 	],	
@@ -18077,12 +18227,12 @@ new G.Tech({
 		name:'primary intuition',category:'tier1',
 		desc:'[primary intuition] is like a key to researching. However if [population,people] will expand their intuition they should be able to think about further researching. //Having just [primary intuition] allows you to research up to [oral tradition] tech. More complicated researches like sewing, crafting can be unlocked only with "secondary" [intuition].',
 		startWith:true,
-		icon:[14,2,'seasonal'],
+		icon:[34,31,'magixmod'],
 	});
 	new G.Trait({
 		name:'intuition',
 		desc:'[intuition] opens a way to more complex researching. Researches related to crafting, building, planning etc can be "on plan" since this moment.',
-		icon:[15,2,'seasonal'],
+		icon:[35,31,'magixmod'],
 		chance:1.75,
 		cost:{'culture':1,'insight':1,'influence':1},
 		req:{'oral tradition':true},
@@ -18863,6 +19013,8 @@ new G.Tech({
 					G.getDict('mud shelter').desc='@provides 8 [housing]<>Basic, frail dwelling in which a small family can live.';
 					G.getDict('branch shelter').desc='@provides 8 [housing]<>Basic, very frail dwelling in which a small family can live.';
 					G.getDict('bamboo hut').desc='@provides 15 [housing]<>Small dwelling with roof out of branches and walls out of [Bamboo].';
+					G.getDict('monument-building').desc='@useless because you unlock wonder in this plane at the very beginning of the Trial.';
+					G.getDict('Dark essence').limit=null;
 				}},
 		],
 	});
@@ -19720,7 +19872,7 @@ new G.Tech({
 '<br><br><Br><br>'+
 				'<center><font color="red">Note: Starting this trial will cause similar effects as ascension does, but only these bonuses from achievements will carry to the Trial: +1 tech choice(from Row 3 completion)</font>'+
                 '<br>Trial rules<br>'+
-                'My plane full of one thing... Death. Full of darkness. Also everything that provide you <font color="white">Housing</font> provide 2.5x more than it would do normally. Also every 300 morning and night cycles some of your <font color="white">Housing</font> will decay and some of your <font color="white">People</font> will die producing Dark Essence.<br><Br><BR>'+
+                'My plane full of one thing... Death. Full of darkness. Also everything that provide you <font color="white">Housing</font> provide 2.5x more than it would do normally. Also every 300th morning and night cycles some of your <font color="white">Housing</font> will decay and some of your <font color="white">People</font> will die producing Dark Essence. You unlock the Wonder at the very beginning in this plane. Completing the trial will grant you special award. You won\'t be able to retry the trial after its completion.<br><Br><BR>'+
 '<div class="fancyText title">Tell me your choice...</div>'+
                 '<center>'+G.button({text:'Start the trial',tooltip:'Let the Trial begin. You\'ll pseudoascend.',onclick:function(){G.dialogue.close();G.dialogue.popup(function(div){G.getRes('beyond').amount=0;G.unitsOwned.length=0;G.policy.length=0;G.traitsOwned.length=0;G.techsOwned.length=0;G.NewGameConfirm();G.getRes('burial spot').used=0;G.getRes('worker').used=0;G.getRes('stone weapons').used=0;G.getRes('armor set').used=0;G.getRes('metal weapons').used=0;G.getRes('Fishing net').used=0;G.getRes('knapped tools').used=0;G.getRes('stone tools').used=0;G.getRes('land').used=0;G.getRes('metal tools').used=0;G.getRes('Instructor').used=0;G.getRes('Wand').used=0;G.getRes('Alchemist').used=0;G.getRes('corpse').amount=0;G.getRes('beyond').amount=0;G.getRes('health').amount=0;G.getRes('happiness').amount=0;G.techN=0;G.traitN=0;G.fastTicks=0;G.doFunc('new game');G.gainTrait(G.traitByName['t8']);var trial=G.traitByName['trial'];G.gainTrait(trial);G.year=0; G.day=0;G.middleText('The Buried trial has been started. You are in Buri\'o dak\'s plane','slow');G.Save(); return '<div class="fancyText">Alright then... good luck<br>Then the Pocket trial begins :)</font><br>Technical note: Refresh the page.</div>'+G.dialogue.getCloseButton('Okay')+''})}})+''+G.button({tooltip:'Do your last preparations',text:'Wait I am not ready yet!',onclick:function(){G.dialogue.forceClose(); G.setPolicyModeByName('Pocket','off')}})+'</center>'+
                 '</div>'+
@@ -19840,7 +19992,7 @@ new G.Tech({
 	new G.Policy({
 		name:'discovery rituals',
 		desc:'Improves <b>Exploration</b> units by: // @[wanderer]:5% @[scout]:3% @[globetrotter]:4%. <>Consumes 2 [faith] every 20 days. Will stop if you run out.',
-		icon:[18,2,'seasonal'],
+		icon:[35,0,'magixmod'],
 		cost:{'faith':4},
 		startMode:'off',
 		req:{'ritualism':true,'globetrottering':true},
