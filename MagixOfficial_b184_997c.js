@@ -3038,7 +3038,6 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
-		if(G.theme==1)G.setPolicyModeByName('Theme changer','green');
 		document.title='NeverEnding Legacy';
 		///new game mesg
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
@@ -3415,8 +3414,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			G.gainTrait(G.traitByName['bonus4'])
 		}
 		
-		
-	
+		setTimeout(function(){
+		if(G.theme==1)G.setPolicyModeByName('Theme changer','green');
+		},3000);
 	
 		//NO EXTRA ORES WITH MAGIX
 		if(G.modsByName['Extra ores(for data.js)']){
