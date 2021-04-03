@@ -1,4 +1,5 @@
 var la=1;var lb=2;var lc=0;var ta=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
+G.theme=0; //theme
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
@@ -725,7 +726,171 @@ func:function(){
 	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
 	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(yer);
 	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
-
+	G.Save=function(toStr)
+	{
+		//if toStr is true, don't actually save; return a string containing the save
+		if (!toStr && G.local && G.isIE) return false;
+		var str='';
+		
+		//general
+		G.lastDate=parseInt(Date.now());
+		str+=
+			parseFloat(G.engineVersion).toString()+';'+
+			parseFloat(G.startDate).toString()+';'+
+			parseFloat(G.fullDate).toString()+';'+
+			parseFloat(G.lastDate).toString()+';'+
+			parseFloat(G.year).toString()+';'+
+			parseFloat(G.day).toString()+';'+
+			parseFloat(G.fastTicks).toString()+';'+
+			parseFloat(G.furthestDay).toString()+';'+
+			parseFloat(G.totalDays).toString()+';'+
+			parseFloat(G.resets).toString()+';'+  //Ascensions
+			parseFloat(G.theme).toString()+';'+  ///current theme. Default one is 0, green is 1, blue is 2 and so on.
+			'';
+		str+='|';
+		
+		//settings
+		for (var i in G.settings)
+		{
+			var me=G.settings[i];
+			if (me.type=='toggle') str+=(me.value?'1':'0');
+			else if (me.type=='int') str+=parseInt(me.value).toString();
+			str+=';';
+		}
+		str+='|';
+		
+		//mods
+		for (var i in G.mods)
+		{
+			var me=G.mods[i];
+			str+='"'+me.url.replaceAll('"','&quot;')+'":';
+			if (me.achievs)
+			{
+				//we save achievements separately for each mod
+				for (var ii in me.achievs)
+				{
+					str+=parseInt(me.achievs[ii].won).toString()+',';
+				}
+			}
+			str+=':';
+			//tracked stats (not fully implemented yet)
+			str+=parseFloat(G.trackedStat).toString();
+			str+=';';
+		}
+		str+='|';
+		
+		//culture and names
+		str+=(G.cultureSeed)+';';
+		str+=G.getSafeName('ruler')+';';
+		str+=G.getSafeName('civ')+';';
+		str+=G.getSafeName('civadj')+';';
+		str+=G.getSafeName('inhab')+';';
+		str+=G.getSafeName('inhabs')+';';
+		str+='|';
+		
+		//maps
+		str+=(G.currentMap.seed)+';';
+		
+		var map=G.currentMap;
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				var tile=map.tiles[x][y];
+				str+=
+					parseInt(tile.owner).toString()+':'+
+					parseInt(Math.floor(tile.explored*100)).toString()+':'+
+					',';
+			}
+		}
+		
+		str+='|';
+		
+		//techs & traits
+		var len=G.techsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			str+=parseInt(G.techsOwned[i].tech.id).toString()+';';
+		}
+		str+='|';
+		var len=G.traitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			str+=parseInt(G.traitsOwned[i].trait.id).toString()+';';
+		}
+		str+='|';
+		
+		//policies
+		var len=G.policy.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.policy[i];
+			if (me.visible)
+			{
+				str+=parseInt(me.id).toString()+','+parseInt(me.mode?me.mode.num:0).toString()+';';
+			}
+		}
+		str+='|';
+		
+		//res
+		var len=G.res.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.res[i];
+			str+=
+				(!me.meta?(parseFloat(Math.round(me.amount)).toString()+','):'')+
+				(me.displayUsed?(parseFloat(Math.round(me.used)).toString()+','):'')+
+				(me.visible?'1':'0')+';';
+		}
+		str+='|';
+		
+		//units
+		var len=G.unitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.unitsOwned[i];
+			if (true)//me.amount>0)
+			{
+				str+=parseInt(me.unit.id).toString()+','+
+				parseFloat(Math.round(me.amount)).toString()+
+				((me.unit.gizmos||me.unit.wonder)?
+					(','+parseInt(me.unit.wonder?me.mode:(me.mode?me.mode.num:0)).toString()+','+//mode
+					parseInt(me.percent).toString())//percent
+					:'')+
+				','+parseFloat(Math.round(me.targetAmount)).toString()+
+				','+parseFloat(Math.round(me.idle)).toString()+
+				';';
+			}
+		}
+		str+='|';
+		
+		//chooseboxes
+		var len=G.chooseBox.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.chooseBox[i];
+			var choices=[parseFloat(me.roll)];
+			for (var ii in me.choices)
+			{
+				choices.push(parseInt(me.choices[ii].id));
+			}
+			str+=choices.join(',')+';';
+		}
+		str+='|';
+		
+		//console.log('SAVE');
+		//console.log(str);
+		str=escape(str);
+		str=b64EncodeUnicode(str);
+		//console.log(Math.ceil(byteCount(str)/1000)+'kb');
+		if (!toStr)
+		{
+			window.localStorage.setItem(G.saveTo,str);
+			G.middleText('- Game saved -');
+			//console.log('Game saved successfully.');
+		}
+		else return str;
+	}
 	
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -2133,6 +2298,7 @@ G.setPolicyMode=function(me,mode)
 								achiev.won++;
 							}
 							document.title='Ascending - NeverEnding Legacy';
+							G.theme=G.theme;
 							setTimeout(function(){document.title='NeverEnding Legacy'},5000);
 							G.resets++;
 							G.NewGameWithSameMods();
@@ -2870,18 +3036,7 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
-		
-		/*var alfabeth=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-		var Name='';
-		for(var i=0;i<Math.round((Math.random()*7)+2);i++){
-   		 if(i==0){
-       			 Name+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];
-        		Name=Name.toUpperCase();
-  		 }else{
-   		 Name+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];
-		 }
-		}
-		G.names.patron=Name;*/
+		if(G.theme==1)G.setPolicyModeByName('Theme changer','green');
 		document.title='NeverEnding Legacy';
 		///new game mesg
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
@@ -7819,23 +7974,7 @@ G.logic['unit']=function()
 		{
 			var toSpoil=me.amount*0.0008;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
-	/*============================================================================
-	THEMES
-	============================================================================*/
-		if (G.checkPolicy('Theme changer')=='green'){
-		var cssId = 'greenthemeCss';  
-if (!document.getElementById(cssId))
-{
-    var head  = document.getElementsByTagName('head')[0];
-    var link  = document.createElement('link');
-    link.id   = cssId;
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
-    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GreenTheme/greentheme.css';
-    link.media = 'all';
-    head.appendChild(link);
-}
-		}
+	
 				if (G.checkPolicy('Theme changer')=='blue'){
 		var cssId = 'bluethemeCss';  
 if (!document.getElementById(cssId))
@@ -19411,6 +19550,28 @@ new G.Tech({
 			'wooden':{name:'Wooden',desc:'Switches to wooden theme. Reward for completing Buried trial for the first... and the last time.',req:{'smaller shacks':true}},
 		},
 		category:'mag',
+			effects:[
+						{type:'function',func:function(){G.theme=1;
+										/*============================================================================
+	THEMES
+	============================================================================*/
+		if (G.checkPolicy('Theme changer')=='green'){
+		var cssId = 'greenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/GreenTheme/greentheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+										
+										},mode:'green'}
+				],
 	});
 	if(G.modsByName['Market mod']){
 		 new G.Policy({
