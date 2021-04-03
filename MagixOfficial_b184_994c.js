@@ -19550,8 +19550,10 @@ new G.Tech({
 			'wooden':{name:'Wooden',desc:'Switches to wooden theme. Reward for completing Buried trial for the first... and the last time.',req:{'smaller shacks':true}},
 		},
 		category:'mag',
-			effectsgreen:[
-						{type:'function',func:function(){G.theme=1;
+			effects:[
+						{type:'function',func:function(){
+							if(G.checkPolicy('Theme changer')=='green'){
+							G.theme=1;
 										/*============================================================================
 	THEMES
 	============================================================================*/
@@ -19570,7 +19572,7 @@ if (!document.getElementById(cssId))
 }
 		}
 										
-										}}
+							}}}
 				],
 	});
 	if(G.modsByName['Market mod']){
