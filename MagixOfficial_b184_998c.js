@@ -3413,10 +3413,7 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		}else if(G.getRes('victory point').amount >=20 && G.getRes('victory point').amount <35 && G.hasNot('bonus4')){
 			G.gainTrait(G.traitByName['bonus4'])
 		}
-		
-		setTimeout(function(){
-		if(G.theme==1)G.setPolicyModeByName('Theme changer','green');
-		},3000);
+		if(G.theme==1)G.setPolicyMode('Theme changer','green');
 	
 		//NO EXTRA ORES WITH MAGIX
 		if(G.modsByName['Extra ores(for data.js)']){
