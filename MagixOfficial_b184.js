@@ -1,4 +1,7 @@
 var la=1;var lb=2;var lc=0;var ta=0; //land id tab unlockable. without this trait you can;t see policies, lc is for that quote depending on starting type
+if(G.theme==0){
+G.theme=0; //theme
+}else{G.theme=G.theme};
 G.tabs=
 	[
 		//div : which div to empty+hide or display when tab is toggled
@@ -707,13 +710,13 @@ func:function(){
 //===========================
 	G.maxMessages=25
 	if(document.baseURI.includes('dashnet.org/legacy/')){
-	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 49, 2021 - pelletsstarPL</font>';
+	document.getElementsByTagName('div')[3].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 50, 2021 - pelletsstarPL</font>';
 	document.getElementsByTagName('div')[4].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
 	document.getElementsByTagName('div')[5].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
 	document.getElementsByTagName('div')[6].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
 	document.getElementsByTagName('div')[7].innerHTML='<img src="https://www.symbols.com/images/symbol/2846_cookie-clicker-logo.png" width="15" height="15" style="text-align:center" /><a href="https://orteil.dashnet.org/cookieclicker/"><font color="orange">Cookie Clicker</font></a> &nbsp;&nbsp; <a href="https://orteil.dashnet.org/randomgen/">RandomGen</a> &nbsp;&nbsp; Unofficial <img src="https://www.chip.pl/uploads/2019/10/w4LOMW8R5hX5143fQ1Yj2DVE6P3wFU1V-720x467.png" width="15" height="15"/><a href="https://www.reddit.com/r/LegacyTheOrteilGame/"><font color="orange">Reddit</font></a>';
 }else if(document.baseURI.includes('cookieclicker.eu/legacy/')){
-	document.getElementsByTagName('div')[5].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 49, 2021 - pelletsstarPL</font>';
+	document.getElementsByTagName('div')[5].innerHTML='<b>NeverEnding Legacy &#153;</b>  &#xa9 <a href="dashnet.org">Orteil</a>, 2017 , <font color="yellow">Magix release 50, 2021 - pelletsstarPL</font>';
 	document.getElementsByTagName('div')[6].innerHTML='<img src="https://cdn3.iconfinder.com/data/icons/sociocons/256/twitter-sociocon.png" width="15" height="15" /><a href="https://twitter.com/orteil42"><font color="Aqua">Twitter</a>';
 	document.getElementsByTagName('div')[7].innerHTML='<img src="https://www.net-aware.org.uk/siteassets/images-and-icons/application-icons/app-icons-tumblr.png" width="15" height="15" /><a href="https://orteil42.tumblr.com/"><font color="white">Tumblr</a>';
 	document.getElementsByTagName('div')[8].innerHTML='Help? Bugs? Ideas? Check out <img src="https://yt3.ggpht.com/ytc/AAUvwniEUaBNWbH9Pk7A1cmIBdxnYt0YYrgNKx5h8grSMA=s900-c-k-c0x00ffffff-no-rj" width="15" height="15" /><a href="https://discord.com/invite/cookie"><font color="#bbbbff">Dashnet discord</font></a>';
@@ -725,7 +728,171 @@ func:function(){
 	var day=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/(1000*60*60*24));
 	var easterDay=function(Y){var C = Math.floor(Y/100);var N = Y - 19*Math.floor(Y/19);var K = Math.floor((C - 17)/25);var I = C - Math.floor(C/4) - Math.floor((C - K)/3) + 19*N + 15;I = I - 30*Math.floor((I/30));I = I - Math.floor(I/28)*(1 - Math.floor(I/28)*Math.floor(29/(I + 1))*Math.floor((21 - N)/11));var J = Y + Math.floor(Y/4) + I + 2 - C + Math.floor(C/4);J = J - 7*Math.floor(J/7);var L = I - J;var M = 3 + Math.floor((L + 40)/44);var D = L + 28 - 31*Math.floor(M/4);return new Date(Y,M-1,D);}(yer);
 	easterDay=Math.floor((easterDay-new Date(easterDay.getFullYear(),0,0))/(1000*60*60*24));
-
+	G.Save=function(toStr)
+	{
+		//if toStr is true, don't actually save; return a string containing the save
+		if (!toStr && G.local && G.isIE) return false;
+		var str='';
+		
+		//general
+		G.lastDate=parseInt(Date.now());
+		str+=
+			parseFloat(G.engineVersion).toString()+';'+
+			parseFloat(G.startDate).toString()+';'+
+			parseFloat(G.fullDate).toString()+';'+
+			parseFloat(G.lastDate).toString()+';'+
+			parseFloat(G.year).toString()+';'+
+			parseFloat(G.day).toString()+';'+
+			parseFloat(G.fastTicks).toString()+';'+
+			parseFloat(G.furthestDay).toString()+';'+
+			parseFloat(G.totalDays).toString()+';'+
+			parseFloat(G.resets).toString()+';'+  //Ascensions
+			parseFloat(G.theme).toString()+';'+  ///current theme. Default one is 0, green is 1, blue is 2 and so on.
+			'';
+		str+='|';
+		
+		//settings
+		for (var i in G.settings)
+		{
+			var me=G.settings[i];
+			if (me.type=='toggle') str+=(me.value?'1':'0');
+			else if (me.type=='int') str+=parseInt(me.value).toString();
+			str+=';';
+		}
+		str+='|';
+		
+		//mods
+		for (var i in G.mods)
+		{
+			var me=G.mods[i];
+			str+='"'+me.url.replaceAll('"','&quot;')+'":';
+			if (me.achievs)
+			{
+				//we save achievements separately for each mod
+				for (var ii in me.achievs)
+				{
+					str+=parseInt(me.achievs[ii].won).toString()+',';
+				}
+			}
+			str+=':';
+			//tracked stats (not fully implemented yet)
+			str+=parseFloat(G.trackedStat).toString();
+			str+=';';
+		}
+		str+='|';
+		
+		//culture and names
+		str+=(G.cultureSeed)+';';
+		str+=G.getSafeName('ruler')+';';
+		str+=G.getSafeName('civ')+';';
+		str+=G.getSafeName('civadj')+';';
+		str+=G.getSafeName('inhab')+';';
+		str+=G.getSafeName('inhabs')+';';
+		str+='|';
+		
+		//maps
+		str+=(G.currentMap.seed)+';';
+		
+		var map=G.currentMap;
+		for (var x=0;x<map.w;x++)
+		{
+			for (var y=0;y<map.h;y++)
+			{
+				var tile=map.tiles[x][y];
+				str+=
+					parseInt(tile.owner).toString()+':'+
+					parseInt(Math.floor(tile.explored*100)).toString()+':'+
+					',';
+			}
+		}
+		
+		str+='|';
+		
+		//techs & traits
+		var len=G.techsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			str+=parseInt(G.techsOwned[i].tech.id).toString()+';';
+		}
+		str+='|';
+		var len=G.traitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			str+=parseInt(G.traitsOwned[i].trait.id).toString()+';';
+		}
+		str+='|';
+		
+		//policies
+		var len=G.policy.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.policy[i];
+			if (me.visible)
+			{
+				str+=parseInt(me.id).toString()+','+parseInt(me.mode?me.mode.num:0).toString()+';';
+			}
+		}
+		str+='|';
+		
+		//res
+		var len=G.res.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.res[i];
+			str+=
+				(!me.meta?(parseFloat(Math.round(me.amount)).toString()+','):'')+
+				(me.displayUsed?(parseFloat(Math.round(me.used)).toString()+','):'')+
+				(me.visible?'1':'0')+';';
+		}
+		str+='|';
+		
+		//units
+		var len=G.unitsOwned.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.unitsOwned[i];
+			if (true)//me.amount>0)
+			{
+				str+=parseInt(me.unit.id).toString()+','+
+				parseFloat(Math.round(me.amount)).toString()+
+				((me.unit.gizmos||me.unit.wonder)?
+					(','+parseInt(me.unit.wonder?me.mode:(me.mode?me.mode.num:0)).toString()+','+//mode
+					parseInt(me.percent).toString())//percent
+					:'')+
+				','+parseFloat(Math.round(me.targetAmount)).toString()+
+				','+parseFloat(Math.round(me.idle)).toString()+
+				';';
+			}
+		}
+		str+='|';
+		
+		//chooseboxes
+		var len=G.chooseBox.length;
+		for (var i=0;i<len;i++)
+		{
+			var me=G.chooseBox[i];
+			var choices=[parseFloat(me.roll)];
+			for (var ii in me.choices)
+			{
+				choices.push(parseInt(me.choices[ii].id));
+			}
+			str+=choices.join(',')+';';
+		}
+		str+='|';
+		
+		//console.log('SAVE');
+		//console.log(str);
+		str=escape(str);
+		str=b64EncodeUnicode(str);
+		//console.log(Math.ceil(byteCount(str)/1000)+'kb');
+		if (!toStr)
+		{
+			window.localStorage.setItem(G.saveTo,str);
+			G.middleText('- Game saved -');
+			//console.log('Game saved successfully.');
+		}
+		else return str;
+	}
 	
 	/*=====================================================================================
 	TECH & TRAIT CATEGORIES
@@ -2079,7 +2246,14 @@ G.setPolicyMode=function(me,mode)
 								G.achievByName['wondersDuringRun'].won++;
 								if(me.unit.name=='wonderful fortress of christmas'){G.achievByName['capital of christmas'].won=1;G.middleText('-  Completed <font color="#bbbbff">Citadel of christmas</font><br>seasonal achievement - <br> <hr width="300"> Ho ho ho! Merry christmas to you! From now you can unlock special Christmas bonus','slow')};
 								if(me.unit.name=='fortress of love'){G.achievByName['love for eternity'].won=1;G.middleText('-  Completed <font color="#bbbbff">Love for eternity</font><br>seasonal achievement - <br> <hr width="300"> Love is in the air! From now you can unlock special Valentine\'s day bonus.','slow')};
-								if(me.unit.name=='mausoleum' && G.achievByName['mausoleum'].won>=3 && (G.getRes('population').amount-me.unit.finalStepCost)==0){G.achievByName['cruel goal'].won=1;G.middleText('-  Completed <font color="#ff00ff">Cruel goal</font><br>shadow achievement -','slow')};
+								if(me.unit.name=='mausoleum' && G.achievByName['mausoleum'].won>=3 && G.getRes('population').amount-me.unit.finalStepCost.population==0 && G.achievByName['cruel goal'].won==0){G.achievByName['cruel goal'].won=1;G.middleText('-  Completed <font color="#ff00ff">Cruel goal</font><br>shadow achievement -','slow')};
+								/*that was so brutal*/
+								if(G.achievByName['cruel goal'].won>=1){
+									if(me.unit.name=='pagoda of passing time' || me.unit.name=='Pagoda of culture' || me.unit.name=='Hartar\'s statue' || me.unit.name=='Pagoda of democracy' || me.unit.name=='Fortress of cultural legacy' || me.unit.name=='Complex of Dreamers' || me.unit.name=='Fortress of magicians' || me.unit.name=='Platinum fish statue' || me.unit.name=='Tomb of oceans' || me.unit.name=='The Herboleum' || me.unit.name=='Temple of the Stone' || me.unit.name=='Mausoleum of the Dreamer'){
+										if(G.getRes('population').amount-me.unit.finalStepCost.population==0 && G.achievByName['that was so brutal'].won==0){G.achievByName['that was so brutal'].won=1;G.middleText('- Hey... that was so brutal. Why? Just why? - <br><small>Completed <font color="pink">That was so brutal</font> shadow achievement.</small>','slow')};
+									}
+								}
+								
 								if (G.checkPolicy('Toggle SFX')=='on'){
 			var audio = new Audio('https://pipe.miroware.io/5db9be8a56a97834b159fd5b/WonderComplete.mp3');
 			audio.play(); 
@@ -2133,8 +2307,10 @@ G.setPolicyMode=function(me,mode)
 								achiev.won++;
 							}
 							document.title='Ascending - NeverEnding Legacy';
+							G.theme=G.theme;
 							setTimeout(function(){document.title='NeverEnding Legacy'},5000);
 							G.resets++;
+							if (G.checkPolicy('Theme changer')=='default')G.theme=0;
 							G.NewGameWithSameMods();
 							G.middleText(middleText,true);
 						}}(instance)})+'<br>'+
@@ -2782,7 +2958,7 @@ var len=G.techsOwned.length;
 		G.writeSettingButton({id:'tieredDisplay',name:'tieredDisplay',text:'<font color="yellow">Show tiers</font>',tooltip:'Toggle whether technologies should display in tiers instead of in the order they were researched.<br>When in that mode, click a tech to highlight its ancestors and descendants.'})+
 		'<br/>'+
 		G.button({text:'<font color="fuschia">Reveal map</font>',tooltip:'Explore the whole map instantly.',onclick:function(){G.revealMap(G.currentMap);}})+
-		    '<br /><font color="lime">Debug mode. Magix: Release 49 (late beta)</font>'+
+		    '<br /><font color="lime">Debug mode. Magix: Release 50 (late beta)</font>'+
 		G.textWithTooltip('?','<div style="width:240px;text-align:left;">This is the debug menu. Please debug responsibly.<br>Further debug abilities while this mode is active :<div class="bulleted">click resources to add/remove some (keyboard shortcuts work the same way they do for purchasing units)</div><div class="bulleted">ctrl-click a trait or policy to remove it (may have strange, buggy effects)</div><div class="bulleted">click the Fast ticks display to get more fast ticks<br>(if add is equal 1 it will add 10, if add 10 then 100 and so on)</div><div class="bulleted">always see tech costs and requirements</div><div class="bulleted">gain access to debug robot units <br /> <b>BEEP BOOP BEEP</b></div><div class="bulleted">edit the map</div></div>','infoButton')+
 		'</center></div>';
 		l('debug').innerHTML=str;
@@ -2870,18 +3046,6 @@ G.props['fastTicksOnResearch']=150;
 	//////////////////////////////////////
 	G.funcs['new game']=function()
 	{
-		
-		/*var alfabeth=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-		var Name='';
-		for(var i=0;i<Math.round((Math.random()*7)+2);i++){
-   		 if(i==0){
-       			 Name+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];
-        		Name=Name.toUpperCase();
-  		 }else{
-   		 Name+=alfabeth[Math.round(Math.random()*(alfabeth.length-1))];
-		 }
-		}
-		G.names.patron=Name;*/
 		document.title='NeverEnding Legacy';
 		///new game mesg
 		var str='Your name is '+G.getName('ruler')+''+((G.getName('ruler').toLowerCase()=='orteil' || G.getName('ruler').toLowerCase()=='pelletsstarpl' || G.getName('ruler').toLowerCase()=='opti' )?' <i>(but that\'s not you, is it?)</i>':'')+', ruler of '+G.getName('civ')+'. Your tribe is primitive, but full of hope.<br>The first year of your legacy has begun. May it stand the test of time.';
@@ -3245,6 +3409,8 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			b12++
 			c12++
 		}
+		G.getDict('villa of victory').effects.push({type:'provide',what:{'housing':(100+(G.getRes('victory point').amount*8))}});
+		G.getDict('villa of victory').desc='@The more [victory point]s you got the more of housing it will provide. Starting from 100 it will provide 8 more housing per each [victory point] obtained. Villas cannot waste however those are very limited. At the moment it provides:'+(100+(G.getRes('victory point').amount*8))+'[housing].';
 		/*---------------------
 		. . . assignments
 		----------------------------*/
@@ -3257,10 +3423,6 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 		}else if(G.getRes('victory point').amount >=20 && G.getRes('victory point').amount <35 && G.hasNot('bonus4')){
 			G.gainTrait(G.traitByName['bonus4'])
 		}
-		
-		
-	
-	
 		//NO EXTRA ORES WITH MAGIX
 		if(G.modsByName['Extra ores(for data.js)']){
 			G.middleText('Sorry',sloweerer)
@@ -3693,6 +3855,9 @@ if (G.achievByName['Pocket'].won > 1 && G.hasNot('well stored 2')){
 			b12++
 			c12++
 		}
+		G.getDict('villa of victory').effects.push({type:'provide',what:{'housing':(100+(G.getRes('victory point').amount*7))}});
+		G.getDict('villa of victory').desc='@The more [victory point]s you got the more of housing it will provide. Starting from 60 it will provide 7 more housing per each [victory point] obtained. Villas cannot waste however those are very limited. At the moment it provides:'+(100+(G.getRes('victory point').amount*8))+'[housing].';
+		////
 		G.getDict('xmas1').desc='The spirits of the Christmas thank your [artisan]s for crafting lights, ornaments, decors bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [artisan]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas. </font>';
 		G.getDict('xmas2').desc='The spirits of the Christmas thank your [clothier]s for weaving, sewing festive clothing bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [clothier]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
         	G.getDict('xmas3').desc='The spirits of the Christmas thank your [potter]s for crafting festive pots, bowls with Christmas symbols bringing Christmas climate to this world. For now and for next <B>'+G.achievByName['xmas buff'].won+'</B> '+(G.achievByName['xmas buff'].won==1 ? "run/legacy" : "runs/legacies")+', your [potter]s are 3% more efficient. //<font color="red">Note: While christmas you won\'t lose an use, however when christmas ends you will start losing that bonus meaning that after that you won\'t be able to get this buff stacks again until next Christmas.</font>';
@@ -5044,132 +5209,7 @@ G.writeMSettingButton=function(obj)
 		'</div>';
 		return str;
 }
-G.logic['unit']=function()
-	{
-		var mult=G.doFunc('production multiplier',1);//global production multiplier - affects how many times the unit effects will be applied every tick
-		
-		var len=G.unitsOwned.length;
-		//we turn the list of owned units into internally shuffled sections sorted by priority, then work through those in order
-		var priorities=[];
-		for (var i=0;i<len;i++)
-		{
-			if (!priorities[G.unitsOwned[i].unit.priority]) priorities[G.unitsOwned[i].unit.priority]=[G.unitsOwned[i].unit.priority];
-			priorities[G.unitsOwned[i].unit.priority].push(G.unitsOwned[i]);
-		}
-		
-		priorities.sort(function(a,b){return b[0]-a[0]});
-				
-		for (var iP in priorities)
-		{
-			priorities[iP].shift();
-			shuffle(priorities[iP]);
-			var len=priorities[iP].length;
-			for (var i=0;i<len;i++)
-			{
-				var me=priorities[iP][i];
-				if (!me.unit.wonder && me.amount<me.targetAmount)//try to build up to target
-				{
-					var toMake=Math.min(me.targetAmount-me.amount,Math.max(1,me.targetAmount*0.5));
-					G.buyUnit(me,toMake,true);
-				}
-				else if (!me.unit.wonder && me.amount>me.targetAmount)
-				{
-					var toDie=Math.min(me.amount-me.targetAmount,Math.max(1,me.amount*0.5));
-					G.killUnit(me,toDie,true);
-				}
-				if (!me.unit.wonder && me.idle>0)//try to refill
-				{
-					var toMake=Math.min(me.idle,Math.max(1,me.idle*0.5));
-					G.unidleUnit(me,toMake);
-				}
-				
-				var amount=G.applyUnitAmountEffects(me);//modify the effective amount
-				if (amount>0)
-				{
-					//apply effects every tick
-					var repeat=randomFloor(mult);
-					if (repeat>0)
-					{
-						for (var ii=0;ii<repeat;ii++)
-						{
-							G.applyUnitEffects(me,amount);
-						}
-					}
-				}
-				if (me.unit.wonder)
-				{
-					//apply steps
-					if (me.mode==1 || me.mode==2)
-					{
-						
-						if (me.percent>=me.unit.steps)
-						{
-							me.mode=3;
-							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
-						}
-						if (me.mode==1 && G.testCost(me.unit.costPerStep,1))
-						{
-							me.percent++;
-							if(me.unit.name='Temple of the Dead' && me.percent>100)G.getDict('Temple of the Dead').costPerStep={'basic building materials':(10+me.percent*0.0001),'corpse':2+(me.percent*0.00001),'precious building materials':1.2,'bone':3+(me.percent*0.01),'Dark essence':2+(me.percent*0.01)},
-							G.doCost(me.unit.costPerStep,1);
-							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
-						}
-						if (me.percent>=me.unit.steps)
-						{
-							me.mode=3;
-							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
-						}
-					}
-				}
-				if (me.amount>0)
-				{
-					var waste=0;
-					var idle=0;
-					//run upkeep and check used resources; if we're short on either, waste away
-					for (var ii in me.unit.upkeep)
-					{
-						var res=G.getRes(ii);
-						var upkeep=me.unit.upkeep[ii]*(me.amount-me.idle);
-						var spent=G.lose(ii,upkeep,'unit upkeep');
-						if (spent<upkeep)
-						{
-							if (me.unit.alternateUpkeep && me.unit.alternateUpkeep[ii])//last resort
-							{spent+=G.lose(me.unit.alternateUpkeep[ii],upkeep*(me.amount-me.idle)-spent,'unit upkeep');}
-							if (spent<upkeep) idle=true;
-						}
-					}
-					for (var ii in me.unit.use)
-					{
-						var res=G.getRes(ii);
-						var use=me.unit.use[ii];
-						//if (res.amount<res.used) waste=1;
-						//if (me.amount>0 && res.name=='worker') console.log('we need '+(use*(me.amount))+', we have '+(res.amount-res.used)+' for '+(me.amount)+' '+me.unit.name+'; deleting '+(waste,(use*(me.amount)-(res.amount-res.used))/use));
-						if (use && (res.amount<=use*(me.amount) || res.amount<res.used)) waste=true;
-					}
-					for (var ii in me.unit.staff)
-					{
-						var res=G.getRes(ii);
-						var use=me.unit.staff[ii];
-						//if (res.amount<res.used) idle=1;
-						if (use && (res.amount<=use*(me.amount-me.idle) || res.amount<res.used)) idle=true;
-					}
-					for (var ii in me.mode.use)
-					{
-						var res=G.getRes(ii);
-						var use=me.mode.use[ii];
-						//if (res.amount<res.used) idle=1;
-						if (use && (res.amount<=use*(me.amount-me.idle) || res.amount<res.used)) idle=true;
-					}
-					if (!G.testLimit(me.unit.limitPer,G.getUnitAmount(me.unit.name))) waste=true;
-					
-					//if (idle) G.idleUnit(me,Math.ceil(idle));
-					//if (waste) G.wasteUnit(me,Math.ceil(waste));
-					if (idle) G.idleUnit(me,Math.ceil((me.amount-me.idle)*0.05));
-					if (waste) G.wasteUnit(me,Math.ceil(me.amount*0.05));
-				}
-			}
-		}
-	}
+
 
 			
 	/*=====================================================================================
@@ -5203,7 +5243,22 @@ G.logic['unit']=function()
 		icon:[0,3],
 		tick:function(me,tick)
 		{
-			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi)};//sickbois say goodbai
+			if(G.day>=5 && G.day<=8 && G.year==0){var sickboi=G.getRes('sick').amount;G.gain('adult',sickboi);G.lose('sick',sickboi);
+							      switch(G.theme){
+								case 1:	 G.setPolicyModeByName('Theme changer','green');break;    
+								case 2:	G.setPolicyModeByName('Theme changer','blue');break;
+								case 3:	G.setPolicyModeByName('Theme changer','red');break;
+								case 4:	G.setPolicyModeByName('Theme changer','cyan');break;
+								case 5:	G.setPolicyModeByName('Theme changer','gray');break;
+								case 6:	G.setPolicyModeByName('Theme changer','indigo');break;	 
+								case 7:	G.setPolicyModeByName('Theme changer','bronze');break;
+								case 8:	G.setPolicyModeByName('Theme changer','silver');break;
+								case 9:	G.setPolicyModeByName('Theme changer','golden');break;
+								case 10:	G.setPolicyModeByName('Theme changer','black');break;
+								case 11:	G.setPolicyModeByName('Theme changer','wooden');break;
+								      default:G.setPolicyModeByName('Theme changer','default');break;
+							      }
+							     };//sickbois say goodbai, also autoswitch theme
 			//this.displayName=G.getName('inhabs');
 			
 			if (me.amount>0)
@@ -5329,7 +5384,7 @@ G.logic['unit']=function()
 					var rations=G.checkPolicy('water rations');
 					if (rations=='none') {toConsume=0;G.gain('happiness',-me.amount*3,'water rations');G.gain('health',-me.amount*2,'water rations');}
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'water rations');G.gain('health',-me.amount*0.5,'water rations')}
-					else if (rations=='plentiful') {toConsume*=1.5;G.gain('happiness',me.amount*1,'water rations');}
+					else if (rations=='plentiful') {toConsume*=1.5;G.gain('happiness',me.amount*0.7,'water rations');}
 					toConsume=randomFloor(toConsume);
 					var lacking=toConsume-G.lose('water',toConsume,'drinking');
 					if (rations=='none') lacking=me.amount*0.5;
@@ -5370,7 +5425,7 @@ G.logic['unit']=function()
 					var rations=G.checkPolicy('food rations');
 					if (rations=='none') {toConsume=0;G.gain('happiness',-me.amount*3,'food rations');G.gain('health',-me.amount*2,'food rations');}
 					else if (rations=='meager') {toConsume*=0.5;G.gain('happiness',-me.amount*1,'food rations');G.gain('health',-me.amount*0.5,'food rations');}
-					else if (rations=='plentiful') {toConsume*=1.5;G.gain('happiness',me.amount*1,'food rations');}
+					else if (rations=='plentiful') {toConsume*=1.5;G.gain('happiness',me.amount*0.7,'food rations');} //prev:1
 					toConsume=randomFloor(toConsume*consumeMult);
 					var consumed=G.lose('food',toConsume,'eating');
 					G.gain('happiness',G.lose('salt',randomFloor(consumed*0.1),'eating')*5,'salting food');//use salt
@@ -7819,6 +7874,8 @@ G.logic['unit']=function()
 		{
 			var toSpoil=me.amount*0.0008;
 			var spent=G.lose(me.name,randomFloor(toSpoil),'decay');
+							if(G.checkPolicy('Theme changer')=='green'){
+							G.theme=1;
 	/*============================================================================
 	THEMES
 	============================================================================*/
@@ -7836,7 +7893,10 @@ if (!document.getElementById(cssId))
     head.appendChild(link);
 }
 		}
+										
+							}
 				if (G.checkPolicy('Theme changer')=='blue'){
+					G.theme=2;
 		var cssId = 'bluethemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7851,6 +7911,7 @@ if (!document.getElementById(cssId))
 }
 		}
 					if (G.checkPolicy('Theme changer')=='red'){
+						G.theme=3;
 		var cssId = 'redthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7865,6 +7926,7 @@ if (!document.getElementById(cssId))
 }
 		}
 						if (G.checkPolicy('Theme changer')=='gray'){
+							G.theme=5;
 		var cssId = 'graythemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7879,6 +7941,7 @@ if (!document.getElementById(cssId))
 }
 		}
 					if (G.checkPolicy('Theme changer')=='cyan'){
+						G.theme=4;
 		var cssId = 'cyanthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7893,6 +7956,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='indigo'){
+				G.theme=6;
 		var cssId = 'indigothemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7907,6 +7971,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='bronze'){
+				G.theme=7;
 		var cssId = 'bronzethemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7921,6 +7986,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='silver'){
+				G.theme=8;
 		var cssId = 'silverthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7935,6 +8001,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='golden'){
+				G.theme=9;
 		var cssId = 'goldenthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7949,6 +8016,7 @@ if (!document.getElementById(cssId))
 }
 		}
 			if (G.checkPolicy('Theme changer')=='black'){
+				G.theme=10;
 		var cssId = 'goldenthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7963,6 +8031,7 @@ if (!document.getElementById(cssId))
 }
 		}
 				if (G.checkPolicy('Theme changer')=='wooden'){
+					G.theme=11;
 		var cssId = 'woodenthemeCss';  
 if (!document.getElementById(cssId))
 {
@@ -7972,6 +8041,21 @@ if (!document.getElementById(cssId))
     link.rel  = 'stylesheet';
     link.type = 'text/css';
     link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/woodentheme.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+		}
+			if (G.checkPolicy('Theme changer')=='default'){
+					
+		var cssId = 'woodenthemeCss';  
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://pipe.miroware.io/5db9be8a56a97834b159fd5b/DefaultTheme/defaulttheme.css';
     link.media = 'all';
     head.appendChild(link);
 }
@@ -10898,6 +10982,8 @@ if (!document.getElementById(cssId))
 		effects:[
 			{type:'provide',what:{'burial spot':1},req:{'Spiritual piety':false}},
 			{type:'provide',what:{'burial spot':3},req:{'Spiritual piety':true}},
+			{type:'provide',what:{'burial spot':1},req:{'Spiritual piety':false,'voodoo spirit':true}},
+			{type:'provide',what:{'burial spot':3},req:{'Spiritual piety':true,'voodoo spirit':true}},
 			//{type:'waste',chance:1/100,desired:true},
 			{type:'function',func:function(me){
 				var buried=G.getRes('burial spot').used;
@@ -12555,6 +12641,7 @@ if (!document.getElementById(cssId))
 		use:{'Land of the Plain Island':100,'worker':10},
 		effects:[
 			{type:'provide',what:{'burial spot':7500}},
+			{type:'provide',what:{'burial spot':2500},req:{'voodoo spirit':true}},
 		],
 		req:{'plain island building':true,'Burial in new world':true},
 		category:'plainisleunit',
@@ -12568,10 +12655,11 @@ if (!document.getElementById(cssId))
 		use:{'Land of the Plain Island':5},
 		effects:[
 			{type:'provide',what:{'burial spot':100}},
+			{type:'provide',what:{'burial spot':100},req:{'voodoo spirit':true}},
 		],
 		req:{'plain island building':true,'Burial in new world':true},
 		category:'plainisleunit',
-		limitPer:{'land':40},
+		limitPer:{'land':45},
 	});
 		new G.Unit({
 		name:'Single grave',
@@ -12581,6 +12669,7 @@ if (!document.getElementById(cssId))
 		use:{'Land of the Plain Island':1},
 		effects:[
 			{type:'provide',what:{'burial spot':1}},
+			{type:'provide',what:{'burial spot':1},req:{'voodoo spirit':true}},
 		],
 		req:{'plain island building':true,'Burial in new world':true},
 		category:'plainisleunit',
@@ -13274,7 +13363,7 @@ if (!document.getElementById(cssId))
     		desc:'@opens a portal to a huge <b>God\'s Paradise</b>A very hard project, allowed by God.//A Dream to see Paradise, angels and much, much more comes real. You will grant +26500 [Land of the Paradise] at your own but you <b>must</b> follow some of God\'s rules.',
     		wideIcon:[31,29,'magixmod'],
 			icon:[32,29,'magixmod'],
-		wonder:'.',
+			wonder:'.',
 			steps:35,
     		cost:{'precious building materials':3500,'insight':50,'faith':150,'Fire essence':450,'Water essence':475,'Dark essence':375,'Wind essence':2750,'Lightning essence':377,'Nature essence':10075,'precious metal ingot':1e3,'heavenlyTemplePoint':400},
     		use:{'land':10},
@@ -14102,6 +14191,20 @@ new G.Unit({
 		req:{'lovely monument':true,'tribalism':false},
 		category:'seasonal',
 		priority:5,
+	});
+	new G.Unit({
+		name:'villa of victory',
+		desc:'@The more [victory point]s you got the more of housing it will provide. Starting from 100 it will provide 8 more housing per each [victory point] obtained. Villas cannot waste however those are very limited. At the moment it provides:'+(100+(G.getRes('victory point').amount*8))+'[housing].',
+		wideIcon:[1,31,'magixmod'],
+		icon:[1,31,'magixmod'],
+		cost:{'basic building materials':1000,'precious building materials':300},
+		use:{'land':40},
+		limitPer:{'land':1000,'population':11000},
+		effects:[
+			//{type:'provide',what:{'housing':60+(G.getRes('victory point').amount*7)}},
+		],
+		req:{'villas of victory':true},
+		category:'civil',
 	});
 	/*=====================================================================================
 	MAGIX MODIFICATIONS FOR VANILLA UNITS
@@ -16736,8 +16839,8 @@ new G.Tech({
 			{type:'function',func:function(){
 			G.getDict('Church').icon = [24,23,'magixmod'];
 			G.getDict('grave').use = {'land':0.7};
-			G.getDict('grave').icon = [24,22,'magixmod'];
-			G.getDict('grave').desc ='@provides 3 [burial spot], in which the [corpse,dead] are automatically interred one by one@graves with buried corpses decay over time, freeing up land for more graves<>A simple grave dug into the earth, where the dead may find rest.//Burying your dead helps prevent [health,disease] and makes your people slightly [happiness,happier].';
+			if(G.has('voodoo spirit'))G.getDict('grave').icon = [27,32,'magixmod'];else G.getDict('grave').icon = [24,22,'magixmod'];
+			G.getDict('grave').desc ='@provides '+(3+1*(G.has('voodoo spirit')+2))+' [burial spot], in which the [corpse,dead] are automatically interred one by one@graves with buried corpses decay over time, freeing up land for more graves<>A simple grave dug into the earth, where the dead may find rest.//Burying your dead helps prevent [health,disease] and makes your people slightly [happiness,happier].';
 			}}
 		],
 		req:{'ritualism II':true,'ritualism':true,'God\'s trait #6 Fertile essences farms':true}
@@ -18279,7 +18382,7 @@ new G.Tech({
 	});
 	new G.Tech({
 		name:'villas of victory',category:'tier2',
-		desc:'provides 15 [inspiration II],5 [spirituality II] and [authority II]. //Unlocks villa of victory(WIP). New way to give people housing... //This unit will provide amount of housing equal to result of equation below: //<font color="aqua">(victory points+1)*5</font>',
+		desc:'provides 15 [inspiration II],5 [spirituality II] and [authority II]. //Unlocks villa of victory. New way to give people housing... //This unit will provide amount of housing equal to result of equation below: //<font color="aqua">(victory points+1)*5</font>',
 		icon:[0,31,'magixmod'],
 		req:{'Bigger university':true},
 		cost:{'insight II':325,'science':50,'culture II':25},
@@ -18878,10 +18981,12 @@ new G.Tech({
     });
 		new G.Trait({
 		name:'voodoo spirit',
-		desc:'@You start run with two bonuses: //<b>Early game bonus</b>: learn more about [afterlife] (hover on this resource with your mouse) //<b>Late game bonus:</b> All units that provide [burial spot]s provide twice as much (except [Dark wormhole])',
+		desc:'@You start run with two bonuses: //<b>Early game bonus</b>: learn more about [afterlife] (hover on this resource with your mouse) //<b>Late game bonus:</b> All units that provide [burial spot]s provide twice as much (except [Dark wormhole] and [Cemetary of Plain Island] which gets 2500 more [burial spot]s.)',
 		icon:[24,5,'magixmod'],
 		effects:[
-		 {type:'function',func:function(){G.getDict('afterlife').hidden=false}},
+		 {type:'function',func:function(){
+			 G.getDict('afterlife').hidden=false;if(G.hasNot('Spiritual piety')){G.getDict('grave').icon=[26,32,'magixmod']};/*bc its earlygame*/
+			 G.getDict('Single grave').icon=[30,32,'magixmod'];G.getDict('Family graves').icon=[28,32,'magixmod'];G.getDict('Cemetary of Plain Island').icon=[29,32,'magixmod'];}},
 		],
 		req:{'tribalism':true},
 	});
@@ -21257,7 +21362,135 @@ new G.Tech({
 		name:'reserve',
 		desc:'A [reserve] prevents any resource extraction from this tile, letting depleted resources heal over.',
 	});
-	
+	//UNIT LOGIC
+	G.logic['unit']=function()
+	{
+		var mult=G.doFunc('production multiplier',1);//global production multiplier - affects how many times the unit effects will be applied every tick
+		
+		var len=G.unitsOwned.length;
+		//we turn the list of owned units into internally shuffled sections sorted by priority, then work through those in order
+		var priorities=[];
+		for (var i=0;i<len;i++)
+		{
+			if (!priorities[G.unitsOwned[i].unit.priority]) priorities[G.unitsOwned[i].unit.priority]=[G.unitsOwned[i].unit.priority];
+			priorities[G.unitsOwned[i].unit.priority].push(G.unitsOwned[i]);
+		}
+		
+		priorities.sort(function(a,b){return b[0]-a[0]});
+				
+		for (var iP in priorities)
+		{
+			priorities[iP].shift();
+			shuffle(priorities[iP]);
+			var len=priorities[iP].length;
+			for (var i=0;i<len;i++)
+			{
+				var me=priorities[iP][i];
+				if (!me.unit.wonder && me.amount<me.targetAmount)//try to build up to target
+				{
+					var toMake=Math.min(me.targetAmount-me.amount,Math.max(1,me.targetAmount*0.5));
+					G.buyUnit(me,toMake,true);
+				}
+				else if (!me.unit.wonder && me.amount>me.targetAmount)
+				{
+					var toDie=Math.min(me.amount-me.targetAmount,Math.max(1,me.amount*0.5));
+					G.killUnit(me,toDie,true);
+				}
+				if (!me.unit.wonder && me.idle>0)//try to refill
+				{
+					var toMake=Math.min(me.idle,Math.max(1,me.idle*0.5));
+					G.unidleUnit(me,toMake);
+				}
+				
+				var amount=G.applyUnitAmountEffects(me);//modify the effective amount
+				if (amount>0)
+				{
+					//apply effects every tick
+					var repeat=randomFloor(mult);
+					if (repeat>0)
+					{
+						for (var ii=0;ii<repeat;ii++)
+						{
+							G.applyUnitEffects(me,amount);
+						}
+					}
+				}
+				if (me.unit.wonder)
+				{
+					//apply steps
+					if (me.mode==1 || me.mode==2)
+					{
+						
+						if (me.percent>=me.unit.steps)
+						{
+							me.mode=3;
+							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
+						}
+						if (me.mode==1 && G.testCost(me.unit.costPerStep,1))
+						{
+							me.percent++;
+							if(me.unit.name=='Temple of the Dead' && me.percent>100 && me.percent<=500)G.getDict('Temple of the Dead').costPerStep={'basic building materials':(10+me.percent*0.0001),'corpse':2+(me.percent*0.00001),'precious building materials':1.2,'bone':3+(me.percent*0.01),'Dark essence':2+(me.percent*0.01)};
+							if(me.unit.name=='Temple of the Dead' && me.percent>500 && me.percent<=1400)G.getDict('Temple of the Dead').costPerStep={'basic building materials':(10+me.percent*0.0001),'corpse':2+(me.percent*0.00001),'precious building materials':2,'bone':3+(me.percent*0.013),'Dark essence':4+(me.percent*0.015)};
+							if(me.unit.name=='Temple of the Dead' && me.percent>1400)G.getDict('Temple of the Dead').costPerStep={'basic building materials':(30+me.percent*0.0001),'corpse':2+(me.percent*0.00003),'precious building materials':3,'bone':4+(me.percent*0.013),'Dark essence':7+(me.percent*0.02)};
+							G.doCost(me.unit.costPerStep,1);
+							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
+						}
+						if (me.percent>=me.unit.steps)
+						{
+							me.mode=3;
+							if (G.getSetting('animations') && me.l) triggerAnim(me.l,'plop');
+						}
+					}
+				}
+				if (me.amount>0)
+				{
+					var waste=0;
+					var idle=0;
+					//run upkeep and check used resources; if we're short on either, waste away
+					for (var ii in me.unit.upkeep)
+					{
+						var res=G.getRes(ii);
+						var upkeep=me.unit.upkeep[ii]*(me.amount-me.idle);
+						var spent=G.lose(ii,upkeep,'unit upkeep');
+						if (spent<upkeep)
+						{
+							if (me.unit.alternateUpkeep && me.unit.alternateUpkeep[ii])//last resort
+							{spent+=G.lose(me.unit.alternateUpkeep[ii],upkeep*(me.amount-me.idle)-spent,'unit upkeep');}
+							if (spent<upkeep) idle=true;
+						}
+					}
+					for (var ii in me.unit.use)
+					{
+						var res=G.getRes(ii);
+						var use=me.unit.use[ii];
+						//if (res.amount<res.used) waste=1;
+						//if (me.amount>0 && res.name=='worker') console.log('we need '+(use*(me.amount))+', we have '+(res.amount-res.used)+' for '+(me.amount)+' '+me.unit.name+'; deleting '+(waste,(use*(me.amount)-(res.amount-res.used))/use));
+						if (use && (res.amount<=use*(me.amount) || res.amount<res.used)) waste=true;
+					}
+					for (var ii in me.unit.staff)
+					{
+						var res=G.getRes(ii);
+						var use=me.unit.staff[ii];
+						//if (res.amount<res.used) idle=1;
+						if (use && (res.amount<=use*(me.amount-me.idle) || res.amount<res.used)) idle=true;
+					}
+					for (var ii in me.mode.use)
+					{
+						var res=G.getRes(ii);
+						var use=me.mode.use[ii];
+						//if (res.amount<res.used) idle=1;
+						if (use && (res.amount<=use*(me.amount-me.idle) || res.amount<res.used)) idle=true;
+					}
+					if (!G.testLimit(me.unit.limitPer,G.getUnitAmount(me.unit.name))) waste=true;
+					
+					//if (idle) G.idleUnit(me,Math.ceil(idle));
+					//if (waste) G.wasteUnit(me,Math.ceil(waste));
+					if (idle) G.idleUnit(me,Math.ceil((me.amount-me.idle)*0.05));
+					if (waste) G.wasteUnit(me,Math.ceil(me.amount*0.05));
+				}
+			}
+		}
+	}
 	/*=====================================================================================
 	MAP GENERATOR
 	=======================================================================================*/
