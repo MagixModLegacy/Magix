@@ -1669,7 +1669,7 @@ G.getDict('market_sell').modes['magic essences']={
 		});
 	new G.Unit({
 		name:'art seller',
-		desc:'@can sell [Painting] for some [market_coin]. This unique seller can settle in any world except [<span style="color: #FF0000">Underworld</span>]',
+		desc:'@can sell [Painting] for some [market_coin]. This unique seller can settle in any world except [underworld]',
 		icon:[30,26,'magixmod'],
 		cost:{},
 		gizmos:true,
