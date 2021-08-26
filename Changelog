@@ -11,6 +11,7 @@
 =================================================================================================================================================================================================================================
                                                           U   P   D   A   T   E                   L  O  G
 							  
+							  Function Game.PARTY ported from cookie clicker. Available as G.PARTY. Type in console G.PARTY=1 for party. : )
 							  Test: new main menu
 							  Legacy tab changes. You can't switch pages to see new achievements for new race until you do ??? achievement.
 							  Changed the way of loading a mod. That was necesarry. Sorry guys if you lost saves due to that. I may try best
