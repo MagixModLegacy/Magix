@@ -13,12 +13,13 @@
 							  
 							  Function Game.PARTY ported from cookie clicker. Available as G.PARTY. Type in console G.PARTY=1 for party. : )
 							  Test: new main menu
-							  Legacy tab changes. You can't switch pages to see new achievements for new race until you do ??? achievement.
-							  Changed the way of loading a mod. That was necesarry. Sorry guys if you lost saves due to that. I may try best
-							  to restore them for you just dm me with details.
+							  Legacy tab rebuilt. You can't switch pages to see new achievements for new race until you do ??? achievement.
+							  Stats are divided into categories
 							  Now ascensions stat will show after first ascension.
 							  After first footage of dead forest a stat related to it will be displayed.
 							  After getting first Victory Point from Trials you will see Victory points stat.
+							    Changed the way of loading a mod. That was necesarry. Sorry guys if you lost saves due to that. I may try best
+							  to restore them for you just dm me with details.
 							  Rewritten can't when paused function.
 							  Homelessness messages appear less often.
 							  ---------------------
