@@ -11,7 +11,10 @@
 =================================================================================================================================================================================================================================
                                                           U   P   D   A   T   E                   L  O  G
 							  
-							  Balanced happiness and health (i guess)
+							  CB2: Removed flowers and dyes tab
+							  CB2: Added Pine good for boreal forests
+							  CB2: Removed sub-flower resources for good
+							CB2:  Balanced happiness and health (i guess)
 							  Function Game.PARTY ported from cookie clicker. Available as G.PARTY. Type in console G.PARTY=1 for party. : )
 							  Test: new main menu
 							  Legacy tab rebuilt. You can't switch pages to see new achievements for new race until you do ??? achievement.
