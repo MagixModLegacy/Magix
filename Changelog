@@ -11,15 +11,19 @@
 =================================================================================================================================================================================================================================
                                                           U   P   D   A   T   E                   L  O  G
 							  
+							  CB3: ToDo: Remove Child Alchs
+							  CB3: Changed balance for hardened barns.
 							  CB3: Changed color for Moderation & Caretaking trait names
 							 CB3: Renamed everything for human race. Mostly I made raw ID's starting with low case instead of a capital letter.
-							 CB3: Renamed Essence of the holiness to holy essence
+							 CB3: Renamed Essence of the holiness to holy essence and few techs
 							  CB3: Now soldiers defeats stat won't appear at new year/century messages till at least battling thieves isn't unlocked
 							  CB3: ToDo: Make auras actually work and affect gameplay
-							  CB3: renamed few things in the mod's code
-							  CB3: ToDo: New race = new ores unique for this race
+							  CB3: New race = new ores unique for this race
 							  CB3: ToDo: Removed the chosen one and moved just plain lucky to Overall section.
 							  CB3: ToDo: Add overall section for achievements. Those are gonna be achievments that can be done regardless of race you are currently playing with. 
+							  
+							  
+							  
                                                           CB3: Now you can know how much water you have on the world. As land has uses water will get more ways of use in next mod updates 
 							  CB3: Limit per n researches has been removed from exploration units and replaced with other mechanic.
 							  CB3: Fixed chranos balance
