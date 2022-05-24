@@ -16,12 +16,13 @@
 							  	reworked farms for human race
 									- Replaced "Farms in the new land" tech with "Agriculture"
 									- Moved food farms from Plain Island to Overworld
-									- TODO: Make them available at earlier stage of the game
+									- Now farms are available at earlier stage of the game
 									- TODO: Remove berries and watermelons entirely from the game.
 									- Removed "Berry Masterry" tech
 									- TODO: Replaced God's trait 2 effect
 									- replaced Watermelon farm with vegetable farm
 									- improved magic plants farm sprites
+									- moved Windmills to crafting unit category
 								-TODO: Add a possibility to rename your Plain Island.
 							  
 							  Halloween:
