@@ -15,13 +15,14 @@
 							  	changed sounds of buying techs
 							  	reworked farms for human race
 									- TODO: Replace "Farms in the new land" tech with "Agriculture"
-									- Move farms from Plain Island to Overworld
-									- Make them available at earlier stage of the game
-									- Remove berries and watermelons entirely from the game.
+									- Moved food farms from Plain Island to Overworld
+									- TODO: Make them available at earlier stage of the game
+									- TODO: Remove berries and watermelons entirely from the game.
 									- Removed "Berry Masterry" tech
-									- Replaced God's trait 2 effect
+									- TODO: Replaced God's trait 2 effect
 									- replaced Watermelon farm with vegetable farm
-								-TODO: Add a possibility to name your Plain Island.
+									- improved magic plants farm sprites
+								-TODO: Add a possibility to rename your Plain Island.
 							  
 							  Halloween:
 							  Added warning about upcoming big update
