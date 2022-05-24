@@ -17,14 +17,15 @@
 									- Replaced "Farms in the new land" tech with "Agriculture"
 									- Moved food farms from Plain Island to Overworld
 									- Now farms are available at earlier stage of the game
-									- TODO: Remove berries and watermelons entirely from the game.
+									- Remove berries and watermelons entirely from the game.
 									- Removed "Berry Masterry" tech
-									- TODO: Replaced God's trait 2 effect
+									- Replaced God's trait 2 effect
 									- replaced Watermelon farm with vegetable farm
 									- improved magic plants farm sprites
 									- moved Windmills to crafting unit category
-								-TODO: Add a possibility to rename your Plain Island.
+								-Added ability to rename your Plain Island.
 								-Reworked Artisan of juice.
+								-TODO: change mechanics for exploration units
 							  
 							  Halloween:
 							  Added warning about upcoming big update
