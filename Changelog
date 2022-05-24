@@ -13,7 +13,12 @@
 							  Besides closed beta changes:
 							  	increased chance to get rules of food and policies traits
 							  	changed sounds of buying techs
-							  	
+							  	reworked farms for human race
+									- TODO: Replace "Farms in the new land" tech with "Agriculture"
+									- Move farms from Plain Island to Overworld
+									- Make them available at earlier stage of the game
+									- Remove berries and watermelons entirely from the game.
+								-TODO: Add a possibility to name your Plain Island.
 							  
 							  Halloween:
 							  Added warning about upcoming big update
