@@ -28,7 +28,8 @@
 								-changed mechanics for exploration units. Now it is capped but researching can increase or even remove exploration cap for your civilization.
 								-Renamed firework launcher
 								-city planning now requires new Basic mapping tech
-								TODO: make 2nd levels and increase their bonus
+								-TODO: Cap health just like happiness
+								-TODO: make 2nd levels for root wonders and increase their bonus
 							  
 							  Halloween:
 							  Added warning about upcoming big update
