@@ -38,6 +38,7 @@
 								-Scavenging for c2 is more efficient: 1/15 --> 1/12
 								-changed recipes for kilns
 								-pyrite now decays as is supposed to
+								-changed message for year 90 when you are before first ascension
 							  
 							  Halloween:
 							  Added warning about upcoming big update
