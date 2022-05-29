@@ -30,7 +30,7 @@
 								 However at some point they will work slower despite of happiness level
 								-changed mechanics for exploration units. Now it is capped but researching can increase or even remove exploration cap for your civilization.
 								-Renamed firework launcher
-								-TODO:Replace crossbow belts with arrows to support both bows and crossbows
+								-Replaced crossbow belts with arrows to support both bows and crossbows
 								-city planning now requires new Basic mapping tech
 								-Health is now capped just like happiness
 								-TODO: make 2nd levels for root wonders and increase their bonus
@@ -38,7 +38,7 @@
 								-Scavenging for c2 is more efficient: 1/15 --> 1/12
 								-changed recipes for kilns
 								-pyrite now decays as is supposed to
-								-changed message for year 90 when you are before first ascension
+								-changed message for year 90 when you are before first ascension(human race)
 								-hunter in bow and crossbow hunting mode now uses arrows just like orteil planned to do(i made your another dream come true lol)
 								-Now artisan crafts bows and crossbows in craft bows mode but for crafting arrows use a new mode added that is unlockable with bows research
 							  
