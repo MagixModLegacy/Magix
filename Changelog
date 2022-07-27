@@ -27,6 +27,9 @@
 								-Thot/Philosopher mod now works with Elf race... or at least it should work with
 								-Removed limit of exploration units for human race
 									speaking of it now Evolution of the minds(Human race) boosts his insight income instead of weakening it
+								-changed Earth aura effects
+									accident rate gets increased by lower amount but it drops by the same one (as auras have cycles which last 40 ingame years each)
+									- made rest of planned effect actually affect the game
 							  R53 TODO:
 							  	-add 2nd levels of Pagoda , Fortress and Complex
 									-make them gain bigger bonuses for the player. Prevent player from getting higher bonus from 2nd levels of these wonders until they Elves fortress
@@ -36,7 +39,7 @@
 							  	-Add 2 new policies to make early game playable in more than one way
 									-Consume on find: people/elves consume food when found lowering spoilage providing high happiness but leading to bigger starvation
 							  		-Wandering gatherers. Gatherer can explore until 50 pieces of land but with very high chance to get lost
-							  	-change Earth aura effects
+							  	
 								-Add herbalism trial
 								-Make joy of eating/culture of moderation not determine future paths. So people can pick caretaking with culture of moderation and vice versa.
 								-Just like elves add belief in the beforelife for humans which in fact is alternate path of religion.
