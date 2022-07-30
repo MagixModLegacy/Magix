@@ -14,6 +14,7 @@
 							  
 							  
 							  R53 DONE:
+							  	-Fixed bug with insects as food not applying at page refresh
 							  	-Removed hyoretsu's tech menu . Sorry dude but I had to
 								-replaced skull of wild death wonder with better wonder called The Cemetarium
 								-Further rework exploring
