@@ -14,6 +14,7 @@
 							  
 							  
 							  R53 DONE:
+							  	-Added rest of starting C2 content
 							  	-Fixed bug with insects as food not applying at page refresh
 							  	-Removed hyoretsu's tech menu . Sorry dude but I had to
 								-replaced skull of wild death wonder with better wonder called The Cemetarium
@@ -39,12 +40,11 @@
 							  	-Add 2 new policies to make early game playable in more than one way
 									-Consume on find: people/elves consume food when found lowering spoilage providing high happiness but leading to bigger starvation
 							  		-Wandering gatherers. Gatherer can explore until 50 pieces of land but with very high chance to get lost
-							  	
+							  	-Add opposite of Fear of death
 								-Add herbalism trial
 								
 								-Just like elves add belief in the beforelife for humans which in fact is alternate path of religion.
 								-adjust many wonders for this
-								-add rest of C2 starting content
 								-Rework sick/wounded
 								
 							  
