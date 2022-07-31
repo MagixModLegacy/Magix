@@ -28,7 +28,7 @@
 								-Cleaned up some mess in achievements
 								
 							  	Human race:
-								
+								-Added achievement for obtaining 250 researches
 								-Changed culture of the afterlife unhappiness from death affection level
 								-Made joy of eating/culture of moderation not determine future paths. So people can pick caretaking with culture of moderation and vice versa.
 								-Now you start with 800 industry points instead of 1000. However when people pick Moderation you can gain extra 200.
@@ -38,7 +38,7 @@
 								-Evolution of the minds slightly boosts Philosopher's insight income instead of weakening it
 								
 								Elf race:
-								
+								-Added achievements for obtaining 50 techs
 								-Added rest of starting C2 content
 								-Fixed Ice aura being deadly
 									- made rest of planned effect actually affect the game
