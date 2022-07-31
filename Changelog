@@ -14,28 +14,47 @@
 							  
 							  
 							  R53 DONE:
-							  	-Now you start with 800 industry points instead of 1000. However when people pick Moderation you can gain extra 200.
-							  	-Artisan's craft dyes mode now requires plant lore II instead of I as on level I you do not have florists yet
-							  	-For units, policies and traits tab new button has been added in top right corner allowing you to adjust display of unit/policies/traits categories
-							  	-Changed a bit natural way of corpses decaying
-							  	-fixed mausoleum
-							  	-Added rest of starting C2 content
-							  	-Fixed bug with insects as food not applying at page refresh
-							  	-Removed hyoretsu's tech menu . Sorry dude but I had to
-								-replaced skull of wild death wonder with better wonder called The Cemetarium
-								-Further rework exploring
+							  	Overall:
+								
+								-Artisan's craft dyes mode now requires plant lore II instead of I as on level I you do not have florists yet
+								-Changed a bit natural way of corpses decaying
+								-Fixed bug with insects as food not applying at page refresh
+								-Removed hyoretsu's tech menu . Sorry dude but I had to
+								-Further reworked exploring
 									-make boats real for both human & elf races
-									-From now Boat building will require Construction research. This apply to both C1 and C2.
-								-Fixed Ice aura being deadly
-								-Added druids for c2 along with related to them globetrotter's alternative
-								- C2 chieftains and clan leaders are 20% more limited.
-								-Thot/Philosopher mod now works with Elf race... or at least it should work with
-								-Removed limit of exploration units for human race
-									speaking of it now Evolution of the minds(Human race) boosts his insight income instead of weakening it
-								-changed Earth aura effects
-									accident rate gets increased by lower amount but it drops by the same one (as auras have cycles which last 40 ingame years each)
-									- made rest of planned effect actually affect the game
+									-From now Boat building will require Construction research.
+								-For units, policies and traits tab new button has been added in top right corner allowing you to adjust display of unit/policies/traits categories
+								
+							  	Human race:
+								
 								-Made joy of eating/culture of moderation not determine future paths. So people can pick caretaking with culture of moderation and vice versa.
+								-Now you start with 800 industry points instead of 1000. However when people pick Moderation you can gain extra 200.
+								-fixed mausoleum
+								-replaced skull of wild death wonder with better wonder called The Cemetarium
+								-Removed limit of exploration units
+								-Evolution of the minds slightly boosts Philosopher's insight income instead of weakening it
+								
+								Elf race:
+								
+								-Added rest of starting C2 content
+								-Fixed Ice aura being deadly
+									- made rest of planned effect actually affect the game
+								-Added druids for c2 along with related to them globetrotter's alternative
+								-Chieftains and clan leaders are 20% more limited.
+							  	-Added new knowledge that will unlock you new kind of dreamer who will generate only Creativity but also will slowly charge battery of discoveries
+							  	-Thot/Philosopher mod now works with Elf race... or at least it should work with
+							  	
+							  	
+							  	
+							  	
+							  	
+							  	
+	
+								
+									
+									
+									
+								
 							  R53 TODO:
 							  	-Rename Afterlife resource
 							  	-add 2nd levels of Pagoda , Fortress and Complex
