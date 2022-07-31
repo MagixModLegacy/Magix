@@ -42,7 +42,8 @@
 							  	
 							  	-Add 2 new policies to make early game playable in more than one way
 									-Consume on find: people/elves consume food when found lowering spoilage providing high happiness but leading to bigger starvation
-							  		-Wandering gatherers. Gatherer can explore until 50 pieces of land but with very high chance to get lost
+							  		-Wandering gatherers. Gatherer can explore until 60 pieces of land but with very high chance to get lost
+									IN PROGRESS: add limit
 							  	-Add opposite of Fear of death
 									-Elves: DONE
 								-Add herbalism trial
