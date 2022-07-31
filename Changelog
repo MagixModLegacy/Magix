@@ -14,6 +14,7 @@
 							  
 							  
 							  R53 DONE:
+							  	-Changed a bit natural way of corpses decaying
 							  	-fixed mausoleum
 							  	-Added rest of starting C2 content
 							  	-Fixed bug with insects as food not applying at page refresh
