@@ -26,6 +26,7 @@
 								-For units, policies and traits tab new button has been added in top right corner allowing you to adjust display of unit/policies/traits categories
 									- it was ported and improved from one of vanilla compatible mods called Heritage
 								-Cleaned up some mess in achievements
+								-Added Fear of death's opposite trait for both races that reduces unhappiness from unburied corpses by half
 								
 							  	Human race:
 								-Renamed druids symbols to make them have more climate
@@ -60,6 +61,8 @@
 									
 								
 							  R53 TODO:
+							  	-Code mental balance ritual - elf race
+							  	-When boat sinks make game "kill" wanderers and scouts with crew mode set
 							  	-Add atmospheric message for 250 techs
 							  	-Rename Afterlife resource
 							  	-add 2nd levels of Pagoda , Fortress and Complex
@@ -71,13 +74,11 @@
 									-Consume on find: people/elves consume food when found lowering spoilage providing high happiness but leading to bigger starvation
 							  		-Wandering gatherers. Gatherer can explore until 60 pieces of land but with very high chance to get lost
 									IN PROGRESS: add limit
-							  	-Add opposite of Fear of death
-									-Elves: DONE
 								-Add herbalism trial
 								- Once you do humane stuff go back to C2 to finish earth aura
-								-Just like elves add belief in the beforelife for humans which in fact is alternate path of religion.
-								-adjust many wonders for this
-								-Rework sick/wounded
+								-Add B.i.t.Beforelife for human race
+									-adjust many wonders for this
+								-Rework sick/wounded - postponed for R54
 								
 							  
 							  Fixed many descriptions
