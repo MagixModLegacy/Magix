@@ -14,6 +14,7 @@
 							  
 							  
 							  R53 DONE:
+							  	-fixed mausoleum
 							  	-Added rest of starting C2 content
 							  	-Fixed bug with insects as food not applying at page refresh
 							  	-Removed hyoretsu's tech menu . Sorry dude but I had to
@@ -32,6 +33,7 @@
 									- made rest of planned effect actually affect the game
 								-Made joy of eating/culture of moderation not determine future paths. So people can pick caretaking with culture of moderation and vice versa.
 							  R53 TODO:
+							  	-Rename Afterlife resource
 							  	-add 2nd levels of Pagoda , Fortress and Complex
 									-make them gain bigger bonuses for the player. Prevent player from getting higher bonus from 2nd levels of these wonders until they Elves fortress
 									reach appropriate levels that will unlock them. Like you can ascend once and unlock the bonus but when you ascend without Fortress for 2nd time bonus
