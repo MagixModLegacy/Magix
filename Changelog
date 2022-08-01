@@ -11,7 +11,7 @@
 =================================================================================================================================================================================================================================
                                                           U   P   D   A   T   E                   L  O  G
 							  
-							  
+							  -Rework sick/wounded - postponed for R54
 							  
 							  R53 DONE:
 							  	Overall:
@@ -74,12 +74,13 @@
 							  	-Add 2 new policies to make early game playable in more than one way
 									-Consume on find: people/elves consume food when found lowering spoilage providing high happiness but leading to bigger starvation
 							  		-Wandering gatherers. Gatherer can explore until 60 pieces of land but with very high chance to get lost
+									As for elf race add Creative foraging
 									IN PROGRESS: add limit
 								-Add herbalism trial
 								- Once you do humane stuff go back to C2 to finish earth aura
 								-Add B.i.t.Beforelife for human race
 									-adjust many wonders for this
-								-Rework sick/wounded - postponed for R54
+								
 								
 							  
 							  Fixed many descriptions
