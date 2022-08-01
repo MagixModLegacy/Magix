@@ -15,7 +15,10 @@
 							  
 							  R53 DONE:
 							  	Overall:
-								
+								-Add 2 new policies to make early game playable in more than one way
+									-Consume on find: people/elves consume food when found lowering spoilage providing high happiness but leading to bigger starvation
+							  		-Wandering gatherers. Gatherer can explore until some more land is explore but with very high chance to get lost
+									As for elf race added Creative foraging
 								-Artisan's craft dyes mode now requires plant lore II instead of I as on level I you do not have florists yet
 								-Changed a bit natural way of corpses decaying
 								-Fixed bug with insects as food not applying at page refresh
@@ -62,7 +65,7 @@
 									
 								
 							  R53 TODO:
-							  	-Code mental balance ritual - elf race
+							  	-code consume on find
 							  	-When boat sinks make game "kill" wanderers and scouts with crew mode set
 							  	-Add atmospheric message for 250 techs
 							  	-Rename Afterlife resource
@@ -71,11 +74,7 @@
 									reach appropriate levels that will unlock them. Like you can ascend once and unlock the bonus but when you ascend without Fortress for 2nd time bonus
 									be provided
 							  	
-							  	-Add 2 new policies to make early game playable in more than one way
-									-Consume on find: people/elves consume food when found lowering spoilage providing high happiness but leading to bigger starvation
-							  		-Wandering gatherers. Gatherer can explore until 60 pieces of land but with very high chance to get lost
-									As for elf race add Creative foraging
-									IN PROGRESS: add limit
+							  	
 								-Add herbalism trial
 								- Once you do humane stuff go back to C2 to finish earth aura
 								-Add B.i.t.Beforelife for human race
