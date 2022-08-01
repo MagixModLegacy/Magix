@@ -29,6 +29,7 @@
 								-For units, policies and traits tab new button has been added in top right corner allowing you to adjust display of unit/policies/traits categories
 									- it was ported and improved from one of vanilla compatible mods called Heritage
 								-Cleaned up some mess in achievements
+								-Improved magix utilities policy category display and made them be available before policies trait. That's because they aren't related to rules for the population. 
 								-Added Fear of death's opposite trait for both races that reduces unhappiness from unburied corpses by half
 								
 							  	Human race:
