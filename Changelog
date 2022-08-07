@@ -14,6 +14,7 @@
 							  R54 plans:
 							  -Rework sick/wounded - postponed for R54
 							  -try to improve pantheon display
+							  -Improve techs display in more optimized way
 							  
 							  R53 DONE:
 							  	Overall:
@@ -78,7 +79,7 @@
 								
 							  R53 TODO:
 							  	-Improve res display
-							  	-Improve techs display in more optimized way
+							  	
 							  	-Make mausoleum BiTA/BiTB double chance bonus trigger at early level and add new better one for Mausoleum eternal
 							  	-code consume on find
 							  	-When boat sinks make game "kill" wanderers and scouts with crew mode set
