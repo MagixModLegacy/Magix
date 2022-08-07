@@ -17,6 +17,7 @@
 							  
 							  R53 DONE:
 							  	Overall:
+								-Fixed laws of food not working
 								-Add 2 new policies to make early game playable in more than one way
 									-Consume on find: people/elves consume food when found lowering spoilage providing high happiness but leading to bigger starvation
 							  		-Wandering gatherers. Gatherer can explore until some more land is explore but with very high chance to get lost
@@ -75,6 +76,7 @@
 									
 								
 							  R53 TODO:
+							  	-Improve techs display in more optimized way
 							  	-Make mausoleum BiTA/BiTB double chance bonus trigger at early level and add new better one for Mausoleum eternal
 							  	-code consume on find
 							  	-When boat sinks make game "kill" wanderers and scouts with crew mode set
