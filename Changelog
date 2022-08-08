@@ -42,6 +42,7 @@
 								-Added Fear of death's opposite trait for both races that reduces unhappiness from unburied corpses by half - thanks ZophieBlackHeart for this great idea ;)
 								
 							  	Human race:
+								-renamed afterlife resource
 								-balanced Mausoleum evolving
 									-now new Missionary tech will provide 1 more spirituality when your mausoleum will get above halfway of evolution process
 									-made Mausoleum's BiTA/BiTB double chance bonus trigger at level 8 instead of triggering at evolution completion
@@ -90,7 +91,6 @@
 							
 							  	-When boat sinks make game "kill" wanderers and scouts with crew mode set
 							  	-Add atmospheric message for 250 techs
-							  	-Rename Afterlife resource
 							  	-add 2nd levels of Pagoda , Fortress and Complex
 									-make them gain bigger bonuses for the player. Prevent player from getting higher bonus from 2nd levels of these wonders until they Elves fortress
 									reach appropriate levels that will unlock them. Like you can ascend once and unlock the bonus but when you ascend without Fortress for 2nd time bonus
