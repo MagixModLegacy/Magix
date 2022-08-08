@@ -43,6 +43,9 @@
 								
 							  	Human race:
 								-balanced Mausoleum evolving
+									-now new Missionary tech will provide 1 more spirituality when your mausoleum will get above halfway of evolution process
+									-made Mausoleum's BiTA/BiTB double chance bonus trigger at level 8 instead of triggering at evolution completion
+									-now when evolution is completed EVERY trait has a little bit more chance to be adopted	while playing human race	
 								-Some researches and knowledges have been changed:
 									-Some have improved sprites. If you wish to contribute at improving sprites DM me on discord
 									-TODO: alchemy has been renamed to simple "Alchemy" and no longer requires Juicy expertise. It's still good to have this trait anyway :)
@@ -84,7 +87,7 @@
 								
 							  R53 TODO:
 							  
-							  	-Make mausoleum BiTA/BiTB double chance bonus trigger at early level and add new better one for Mausoleum eternal
+							  	
 							  	-code consume on find
 							  	-When boat sinks make game "kill" wanderers and scouts with crew mode set
 							  	-Add atmospheric message for 250 techs
