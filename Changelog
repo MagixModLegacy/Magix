@@ -16,7 +16,6 @@
 							  -Rework sick/wounded - postponed for R54
 							  -try to improve pantheon display
 							  -Improve techs display in more optimized way
-							  -more Mausoleum and beforelife unlocks
 							  
 							  R53 DONE:
 							  	Overall:
@@ -90,6 +89,7 @@
 									
 								
 							  R53 TODO:
+							  	-add archaeology
 							  	-When boat sinks make game "kill" wanderers and scouts with crew mode set
 							  	-add 2nd levels of Pagoda , Fortress and Complex
 									-make them gain bigger bonuses for the player. Prevent player from getting higher bonus from 2nd levels of these wonders until they Elves fortress
