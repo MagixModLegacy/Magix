@@ -12,13 +12,14 @@
                                                           U   P   D   A   T   E                   L  O  G
 							  
 							  R54 plans:
-							  -Optimize mausoleum and fortress evolving functions
+							  
 							  -Rework sick/wounded - postponed for R54
 							  -try to improve pantheon display
 							  -Improve techs display in more optimized way
 							  
 							  R53 DONE:
 							  	Overall:
+								-Optimized mausoleum and fortress evolving functions
 								-Improved mausoleum evolving descriptions along with fortress ones
 								-Fixed laws of food not working
 								-Add 2 new policies to make early game playable in more than one way
