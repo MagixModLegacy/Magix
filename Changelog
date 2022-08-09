@@ -21,6 +21,7 @@
 							  
 							  R53 DONE:
 							  	Overall:
+								-Fixed chance property not working for unit effects that have 'gather' id
 								-Optimized mausoleum and fortress evolving functions
 								-Improved mausoleum evolving descriptions along with fortress ones
 								-Fixed laws of food not working
