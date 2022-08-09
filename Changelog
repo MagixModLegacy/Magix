@@ -12,7 +12,7 @@
                                                           U   P   D   A   T   E                   L  O  G
 							  
 							  R54 plans:
-							  -further improve relics
+							  -further improve relics(prepare tab)
 							  -portals icons redraw
 							  -Rework sick/wounded - postponed for R54
 							  -try to improve pantheon display
@@ -21,6 +21,7 @@
 							  
 							  R53 DONE:
 							  	Overall:
+								-Gardening has increased chance to be adopted by both races
 								-Fixed chance property not working for unit effects that have 'gather' id
 								-Optimized mausoleum and fortress evolving functions
 								-Improved mausoleum evolving descriptions along with fortress ones
