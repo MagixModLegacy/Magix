@@ -17,7 +17,7 @@
 							  -Rework sick/wounded - postponed for R54
 							  -try to improve pantheon display
 							  -Improve techs display in more optimized way
-							  -Give an use to water tiles
+							  -Give more use to water tiles
 							  
 							  R53 DONE:
 							  	Overall:
@@ -93,6 +93,7 @@
 									
 								
 							  R53 TODO:
+							  	-add water houses
 							  	-change cultural trial
 							  	-add archaeology for both races
 									-mausoleum's lvl 7 unlocks it for humans
